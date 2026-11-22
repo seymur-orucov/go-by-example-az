@@ -6,6 +6,23 @@ Son yenilənmə: 2026-11-23
 
 ---
 
+## Vizyon: öyrənmə platforması
+
+**Nümunələrlə Go ilk prototipdir.** Ondan sonra layihə roadmap.sh və itbooster.ru tipində **vahid platformaya** çevrilir:
+
+| Prinsip | Mənası |
+|---|---|
+| **Roadmap ilə öyrənmə** | Developer nəyi, hansı ardıcıllıqla öyrənəcəyini yol xəritəsində görür; harada olduğunu və növbəti addımı bilir |
+| **Nəzəriyyə + praktika bir yerdə** | Yol xəritəsinin hər node-u həm nəzəri izaha (konsept), həm də praktikaya (işlək nümunə, tapşırıq, sual) aparır |
+| **Bütün texnologiyalar bir saytda** | Go, Python, Rust, TypeScript, SQL və s. eyni platformada, eyni dizayn və eyni dərs formatı ilə. Ayrı saytlar **yoxdur** |
+| **Azərbaycan dilində** | Kontent Azərbaycan dilində, terminlər ingiliscə |
+
+Prototipdə bu vizyona hazırlıq artıq var: header-də texnologiya seçicisi, "Yol xəritəsi" görünüşü, statuslar (öyrənilib / növbəti / qarşıda), irəliləyiş, "Bir platforma, bir neçə dil" bölməsi.
+
+Mərhələlər bu vizyona görə qurulub: 1–5 Go prototipini canlı sayta çıxarır, 6–7 onu platformaya çevirir.
+
+---
+
 ## Mərhələ 0 — Konsept və qərarlar ✅
 
 - [x] Məqsəd: gobyexample.com-un Azərbaycan dilində, müasir dizaynlı, sadələşdirilmiş alternativi
@@ -49,11 +66,11 @@ Framework-süz statik HTML/CSS/JS, `design/` qovluğunda.
 
 ## Mərhələ 2 — Layihə skeleti `[ ]`
 
-Monorepo (npm workspaces), hub-a hazır, amma ilk buraxılış tək sayt kimi:
+Monorepo (npm workspaces). İlk buraxılış yalnız Go kontenti ilə çıxır, amma struktur **əvvəldən vahid platforma** üçün qurulur (Mərhələ 6–7): marşrutlar `/<texnologiya>/...`, kontent `content/<texnologiya>/`, ortaq tema və komponentlər.
 
 ```
 packages/theme/        # tokens.css + Astro komponentləri (Layout, Sidebar, CodeStep, Player, SearchPalette, RunButton)
-apps/go/               # Astro sayt; kontent ../../content/go-dan oxunur
+apps/site/             # vahid Astro sayt; ilk buraxılışda yalnız /go/...; kontent ../../content/*-dan oxunur
 content/go/
   sections.yaml        # bölmələr və sıralama
   examples/<slug>/
@@ -92,12 +109,29 @@ functions/api/run.ts   # go.dev/_/compile proxy (rate-limit + ölçü limiti)
 
 - [ ] Bölmə-bölmə əlavə (cəmi 84 nümunə, 9 bölmə — siyahı `design/data.js`-dədir)
 
+## Mərhələ 6 — Platformaya keçid: roadmap + nəzəriyyə + praktika `[ ]`
+
+Go prototipi canlı olduqdan sonra sayt vahid platformaya çevrilir.
+
+- [ ] Kontent modelinə **nəzəriyyə** növü əlavə etmək: konsept məqaləsi (qısa izah, diaqram, əlaqəli nümunələr). Hazırkı nümunələr **praktika** növü olur
+- [ ] **Roadmap modeli**: node-lar (mövzular), ardıcıllıq, asılılıqlar, səviyyələr; hər node nəzəriyyəyə və praktikaya bağlanır. Roadmap-lar fayl kimi saxlanılır, məsələn `content/roadmaps/<id>.yaml`
+- [ ] Roadmap səhifəsi: interaktiv xəritə (roadmap.sh üslubu), node kliklənəndə panel: nəzəriyyə, praktika, status
+- [ ] Praktika genişlənir: tapşırıqlar (kodu tamamla / düzəlt), testlə yoxlama, "Özünü yoxla" sualları
+- [ ] Platforma strukturu (itbooster üslubu): ana səhifə → texnologiyalar və roadmap-lar → roadmap → node → dərs
+- [ ] Texnologiya seçicisi işlək olur; marşrutlar `/<texnologiya>/...` formasında (məsələn `/go/slices`), Go linkləri qırılmır
+- [ ] Ortaq axtarış bütün texnologiyalar üzrə
+
+## Mərhələ 7 — Yeni texnologiyalar `[ ]`
+
+- [ ] Hər texnologiya eyni formatla əlavə olunur: roadmap + nəzəriyyə + praktika
+- [ ] Namizədlər: Python, TypeScript, Rust, SQL (sıra sonra müəyyən olunur)
+- [ ] Kod işlətmə hər dil üçün ayrıca həll tələb edir (Go-da `go.dev` proxy; digərlərində WASM və ya xarici API) — dil əlavə edərkən araşdırılır
+
 ## Gələcək (indi lazım deyil)
 
-- [ ] Hub sayt (`apps/hub`) — eyni `content/*` qovluqlarından oxuyur
-- [ ] Digər texnologiyalar: Python, Rust, TypeScript, SQL
+- [ ] Hesablar və irəliləyişin cihazlar arasında sinxronu — o zaman verilənlər bazası lazım olacaq (əvvəlcə `localStorage` kifayətdir)
+- [ ] Rol əsaslı roadmap-lar (məsələn "Backend developer (Go)"), bir neçə texnologiyanı birləşdirən
 - [ ] Başqa dillərə tərcümə (EN, RU, TR) — kod və izah ayrı saxlandığı üçün asandır
-- [ ] Hesablar / server tərəfdə irəliləyiş — yalnız lazım olsa, onda verilənlər bazası düşünülür
 
 ---
 

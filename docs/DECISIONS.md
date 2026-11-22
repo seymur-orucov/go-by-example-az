@@ -2,6 +2,15 @@
 
 Razılaşdırılmış qərarlar və səbəbləri. Qərar dəyişsə, köhnəsini silmə: üstündən xətt çək (`~~...~~`) və yenisini tarixlə yaz.
 
+## Vizyon (2026-11-23)
+
+| Qərar | Səbəb |
+|---|---|
+| "Nümunələrlə Go" **ilk prototipdir**; yekun hədəf roadmap.sh və itbooster.ru tipində **öyrənmə platformasıdır** | İstifadəçinin əsas məqsədi |
+| Developer **roadmap ilə** öyrənir; hər addımda həm **nəzəriyyə**, həm **praktika** bu resursdan verilir | Developer düzgün ardıcıllıqla, bir mənbədən öyrənsin |
+| **Bütün texnologiyalar bir saytda**; ayrı saytlar yoxdur | İstifadəçinin qərarı; ortaq dizayn, axtarış, irəliləyiş |
+| roadmap.sh və itbooster.ru yalnız **struktur və UX referansıdır**; onların kontenti və roadmap-ları kopyalanmır, öz roadmap-larımız yazılır | Hüquqi təhlükəsizlik: o saytların kontenti CC BY lisenziyalı deyil |
+
 ## Məhsul və kontent
 
 | Qərar | Səbəb |
@@ -24,8 +33,11 @@ Razılaşdırılmış qərarlar və səbəbləri. Qərar dəyişsə, köhnəsini
 | **Pagefind** (statik axtarış) | Serversiz, `Ctrl+K` palitrası ilə |
 | **CodeMirror 6**, yalnız "Redaktə" kliklənəndə lazy-load | İlkin yükləməni yüngül saxlamaq |
 | Kod işlətmə: Cloudflare Pages Function → `go.dev/_/compile` proxy; alınmasa Playground linki | `go.dev` CORS başlığı vermir; pulsuz limit (100k sorğu/gün) kifayətdir |
-| **Monorepo** (npm workspaces): `packages/theme`, `apps/go`, `content/go`; sonra `apps/hub` | Ayrı sayt da, hub da eyni kontentdən qurula bilir |
-| İlk buraxılış **tək sayt**, hub sonra | YAGNI — hub-a hazır struktur kifayətdir |
+| ~~**Monorepo**: `packages/theme`, `apps/go`, `content/go`; sonra `apps/hub`~~ | ~~Ayrı sayt da, hub da eyni kontentdən qurula bilir~~ |
+| ~~İlk buraxılış **tək sayt**, hub sonra~~ | ~~YAGNI — hub-a hazır struktur kifayətdir~~ |
+| **Monorepo** (npm workspaces): `packages/theme`, **vahid** `apps/site`, `content/<texnologiya>/`, `content/roadmaps/` (2026-11-23) | Ayrı saytlar olmayacaq; bütün texnologiyalar bir saytda |
+| İlk buraxılış yalnız Go kontenti ilə, amma marşrutlar əvvəldən `/<texnologiya>/...` (məsələn `/go/slices`) (2026-11-23) | Sonra yeni texnologiya əlavə ediləndə linklər qırılmasın |
+| Kontent iki növdür: **nəzəriyyə** (konsept) və **praktika** (nümunə, tapşırıq); roadmap node-u hər ikisinə bağlanır (2026-11-23) | Vizyon: nəzəriyyə + praktika bir yerdə |
 | Kontent: hər nümunə qovluq — `meta.yaml`, `main.go`, `az.md`, `output.txt` | Kod CI-də yoxlanır, çıxış avtomatik generasiya olunur, başqa dillərə keçid asandır |
 | İrəliləyiş `localStorage`-də | Hesab tələb etmir |
 | **Hosting: Cloudflare Pages**, domen yoxdur → `*.pages.dev` | Pulsuz, hər PR üçün preview URL |
@@ -56,3 +68,6 @@ Razılaşdırılmış qərarlar və səbəbləri. Qərar dəyişsə, köhnəsini
 - Palitranın yekun seçimi: 4 seçim qalsın, yoxsa bir standart?
 - İzah ↔ kod arasında ox/əyri xətt lazımdırmı?
 - A, B, C variantları təsdiqdən sonra silinsin, yoxsa arxivdə qalsın?
+- Roadmap-lar texnologiya üzrə (məsələn "Go"), yoxsa rol üzrə (məsələn "Backend developer") olacaq, yoxsa hər ikisi?
+- Platformada hesablar lazım olacaqmı? Lazım olsa, verilənlər bazası və backend tələb olunur, bu da statik sayt qərarını dəyişir.
+- Go-dan sonra hansı texnologiya gəlir?

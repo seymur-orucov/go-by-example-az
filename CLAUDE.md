@@ -2,6 +2,8 @@
 
 Layihə: **Nümunələrlə Go** — gobyexample.com-un Azərbaycan dilində alternativi. Ümumi baxış: [README.md](README.md).
 
+**Əsas məqsəd:** bu, ilk prototipdir. Yekun hədəf roadmap.sh / itbooster.ru tipində vahid öyrənmə platformasıdır: roadmap ilə öyrənmə, hər addımda nəzəriyyə + praktika, bütün texnologiyalar bir saytda. Struktur və texniki qərarlar bu hədəfə uyğun verilməlidir (məsələn marşrutlar `/<texnologiya>/...`, kontent `content/<texnologiya>/`). Təfərrüat: [docs/ROADMAP.md](docs/ROADMAP.md#vizyon-öyrənmə-platforması).
+
 ## İşə başlamazdan əvvəl oxu
 1. [docs/ROADMAP.md](docs/ROADMAP.md) — hansı mərhələdəyik, nə qalıb, "Növbəti sessiyada haradan başlamaq".
 2. [docs/DECISIONS.md](docs/DECISIONS.md) — razılaşdırılmış qərarlar; bunları yenidən müzakirəyə açma.

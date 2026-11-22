@@ -4,7 +4,15 @@
 
 Hər mövzu qısa izahdan, işlək koddan və addım-addım vizualdan ibarətdir. İzah ilə kod qarşılıqlı işıqlanır: izahın üzərinə gələndə uyğun kod sətirləri, kodun üzərinə gələndə isə uyğun izah addımı işıqlanır.
 
-Gələcəkdə eyni format digər texnologiyalar (Python, Rust, TypeScript, SQL…) üçün də istifadə oluna bilər: ya ayrı-ayrı saytlar, ya da vahid hub kimi.
+## Əsas məqsəd
+
+"Nümunələrlə Go" **ilk prototipdir**. Yekun hədəf [roadmap.sh](https://roadmap.sh) və [itbooster.ru](https://itbooster.ru) tipində **vahid öyrənmə platformasıdır**:
+
+- Developer **düzgün yol xəritəsi (roadmap)** ilə irəliləyir: nəyi, hansı ardıcıllıqla öyrənməli olduğunu görür.
+- Yol xəritəsinin hər addımında həm **nəzəriyyə** (qısa, aydın izah), həm də **praktika** (işlək nümunələr, tapşırıqlar, "Özünü yoxla" sualları) eyni resursdan verilir.
+- **Bütün texnologiyalar bir saytda** olur (Go, Python, Rust, TypeScript, SQL…), ayrı-ayrı saytlar yaradılmır.
+
+Go prototipi bu platformanın dizaynını, dərs formatını və kontent modelini sınamaq üçündür. Təfərrüat: [docs/ROADMAP.md](docs/ROADMAP.md#vizyon-öyrənmə-platforması).
 
 ## Hazırkı vəziyyət
 
@@ -49,7 +57,7 @@ docs/            Plan, tarixçə, qərarlar, referanslar
 .claude/         Claude Code üçün preview server konfiqurasiyası
 ```
 
-Mərhələ 2-dən etibarən Astro monoreposu əlavə olunacaq (`apps/`, `packages/`, `content/`). Plan: [docs/ROADMAP.md](docs/ROADMAP.md).
+Mərhələ 2-dən etibarən Astro monoreposu əlavə olunacaq (`apps/site`, `packages/theme`, `content/<texnologiya>/`, `content/roadmaps/`). Plan: [docs/ROADMAP.md](docs/ROADMAP.md).
 
 ## Lisenziya və istinad
 

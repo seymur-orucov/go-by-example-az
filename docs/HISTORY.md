@@ -68,3 +68,8 @@ Edildi:
 
 ### 13. Repo və sənədlər
 Davam etmək üçün git repo yaradıldı; `README.md`, `docs/` (yol xəritəsi, jurnal, qərarlar, referanslar) və `CLAUDE.md` yazıldı. İstifadəçinin seçimi ilə GitHub-da **public** repo açıldı: https://github.com/seymur-orucov/go-by-example-az
+
+### 14. Əsas məqsəd dəqiqləşdi: vahid öyrənmə platforması
+İstifadəçi: ilk prototipdən sonra itbooster.ru və roadmap.sh tipində sayta keçmək əsas məqsəddir. Developer düzgün roadmap ilə həm praktikanı, həm nəzəriyyəni bu resursdan alsın. Bütün texnologiyalar bir sayt üzərində olacaq.
+
+Edildi: vizyon README-yə və [ROADMAP.md](ROADMAP.md)-yə yazıldı; Mərhələ 6 (platformaya keçid: roadmap modeli, nəzəriyyə + praktika) və Mərhələ 7 (yeni texnologiyalar) əlavə olundu. [DECISIONS.md](DECISIONS.md)-də "ayrı saytlar / hub sonra" qərarı ləğv edildi, əvəzinə vahid sayt (`apps/site`, `/<texnologiya>/...` marşrutları) yazıldı; yeni açıq məsələlər əlavə olundu.
