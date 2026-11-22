@@ -79,3 +79,8 @@ Edildi: vizyon README-yə və [ROADMAP.md](ROADMAP.md)-yə yazıldı; Mərhələ
 - Hesablar: **ilk prototipdən sonra lazım olacaq**.
 
 Edildi: [DECISIONS.md](DECISIONS.md)-də iki roadmap növü və hesablar qərar kimi yazıldı; "statik sayt, backend yoxdur" qərarı dəqiqləşdirildi (prototip statik, platformada backend + DB). [ROADMAP.md](ROADMAP.md) Mərhələ 6-ya istiqamət roadmap-ı və hesablar əlavə olundu. Yeni açıq məsələ: hesablar üçün backend texnologiyası, giriş üsulu, hosting.
+
+### 16. Roadmap-ların mənbəyi
+İstifadəçi: konkret roadmap-lar roadmap.sh və itbooster.ru resurslarının birləşməsi əsasında təkmilləşdiriləcək.
+
+Edildi: [DECISIONS.md](DECISIONS.md), [ROADMAP.md](ROADMAP.md) (Mərhələ 6-da 4 addımlıq iş qaydası) və [REFERENCES.md](REFERENCES.md) (yeni "Roadmap mənbələri" bölməsi) yeniləndi. Dəqiqləşdirmə: mövzular, ardıcıllıq və asılılıqlar bu resurslardan götürülür, mətnlər və diaqramlar isə özümüz yazırıq, çünki onların kontenti açıq lisenziyalı deyil.

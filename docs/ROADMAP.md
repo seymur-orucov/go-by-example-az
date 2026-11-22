@@ -116,6 +116,11 @@ Go prototipi canlı olduqdan sonra sayt vahid platformaya çevrilir.
 
 - [ ] Kontent modelinə **nəzəriyyə** növü əlavə etmək: konsept məqaləsi (qısa izah, diaqram, əlaqəli nümunələr). Hazırkı nümunələr **praktika** növü olur
 - [ ] **Roadmap modeli**: node-lar (mövzular), ardıcıllıq, asılılıqlar, səviyyələr; hər node nəzəriyyəyə və praktikaya bağlanır. Roadmap-lar fayl kimi saxlanılır, məsələn `content/roadmaps/<id>.yaml`
+- [ ] Roadmap-ların məzmunu **roadmap.sh və itbooster.ru resurslarının birləşməsi** əsasında təkmilləşdirilir. Hər roadmap üçün:
+  1. hər iki saytda uyğun roadmap/kursun mövzu siyahısı və ardıcıllığı toplanır;
+  2. müqayisə edilir: ortaq mövzular, yalnız birində olanlar, fərqli ardıcıllıqlar;
+  3. birləşmiş siyahı qurulur, boşluqlar doldurulur, Go prototipindəki nümunələrə bağlanır;
+  4. mətnlər və diaqramlar özümüz tərəfindən yazılır (kopyalanmır — [DECISIONS.md](DECISIONS.md#vizyon-2026-11-23))
 - [ ] İki növ roadmap:
   - **texnologiya** roadmap-ı — məsələn "Go": dilin özü, sadədən mürəkkəbə;
   - **istiqamət** roadmap-ı — məsələn "Backend": bir neçə texnologiyanın node-larını birləşdirir (Go, SQL, HTTP, Docker…), node-lar texnologiya kontentinə istinad edir, kontent təkrarlanmır

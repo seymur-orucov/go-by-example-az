@@ -10,6 +10,15 @@
 | https://go.dev/doc/ | Rəsmi Go sənədləri — terminlər və yoxlama üçün |
 | https://go.dev/play/ | Go Playground — kodu işlətmək üçün fallback |
 
+## Roadmap mənbələri
+
+Platformanın konkret roadmap-ları (Go, Backend və s.) bu iki resursun **birləşməsi** əsasında təkmilləşdiriləcək. Onlardan mövzular, ardıcıllıq və asılılıqlar götürülür; mətnlər və diaqramlar özümüz tərəfindən yazılır ([DECISIONS.md](DECISIONS.md#vizyon-2026-11-23)).
+
+| Resurs | Nə üçün |
+|---|---|
+| https://roadmap.sh | Texnologiya və istiqamət roadmap-ları (məsələn Go, Backend): mövzu siyahısı, ardıcıllıq, tövsiyə olunan / alternativ yollar |
+| https://itbooster.ru/ | Kurs və mövzu strukturu, nəzəriyyə ilə praktikanın birləşdirilməsi |
+
 ## Dizayn referansları
 
 İstifadəçinin göndərdiyi saytlar. Dizayn onlara **tam oxşamamalıdır**, hər birindən bəyənilən hissə götürülür.

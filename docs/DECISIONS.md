@@ -9,7 +9,9 @@ Razılaşdırılmış qərarlar və səbəbləri. Qərar dəyişsə, köhnəsini
 | "Nümunələrlə Go" **ilk prototipdir**; yekun hədəf roadmap.sh və itbooster.ru tipində **öyrənmə platformasıdır** | İstifadəçinin əsas məqsədi |
 | Developer **roadmap ilə** öyrənir; hər addımda həm **nəzəriyyə**, həm **praktika** bu resursdan verilir | Developer düzgün ardıcıllıqla, bir mənbədən öyrənsin |
 | **Bütün texnologiyalar bir saytda**; ayrı saytlar yoxdur | İstifadəçinin qərarı; ortaq dizayn, axtarış, irəliləyiş |
-| roadmap.sh və itbooster.ru yalnız **struktur və UX referansıdır**; onların kontenti və roadmap-ları kopyalanmır, öz roadmap-larımız yazılır | Hüquqi təhlükəsizlik: o saytların kontenti CC BY lisenziyalı deyil |
+| ~~roadmap.sh və itbooster.ru yalnız **struktur və UX referansıdır**; onların kontenti və roadmap-ları kopyalanmır, öz roadmap-larımız yazılır~~ | ~~Hüquqi təhlükəsizlik~~ |
+| Konkret roadmap-lar (Go, Backend və s.) **[roadmap.sh](https://roadmap.sh) və [itbooster.ru](https://itbooster.ru/) resurslarının birləşməsi əsasında** təkmilləşdirilir: hər ikisinin mövzu siyahısı və ardıcıllığı müqayisə edilir, birləşdirilir, boşluqlar doldurulur (2026-11-23) | İstifadəçinin qərarı: iki resursun güclü tərəfləri bir roadmap-da |
+| Bu resurslardan **mövzular, onların ardıcıllığı və asılılıqları** götürülür; **mətnlər, izahlar və diaqramlar özümüz tərəfindən** Azərbaycan dilində yazılır, birbaşa kopyalanmır | Hər iki saytın kontenti açıq lisenziyalı deyil (CC BY kimi); mövzu siyahısından istifadə təhlükəsizdir, mətnin kopyalanması isə yox |
 | İki növ roadmap: **texnologiya** üzrə (məsələn "Go") və **istiqamət** üzrə (məsələn "Backend"). İstiqamət roadmap-ı bir neçə texnologiyanın node-larını birləşdirə bilər | İstifadəçi: "Go texnologiyadır, backend isə istiqamətdir" — hər ikisi lazımdır |
 | **İstifadəçi hesabları** ilk prototipdən sonra (platforma mərhələsində) lazım olacaq | İrəliləyiş cihazlar arasında saxlanılsın, roadmap üzrə şəxsi yol izlənsin |
 
