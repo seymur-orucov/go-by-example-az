@@ -10,6 +10,8 @@ Razılaşdırılmış qərarlar və səbəbləri. Qərar dəyişsə, köhnəsini
 | Developer **roadmap ilə** öyrənir; hər addımda həm **nəzəriyyə**, həm **praktika** bu resursdan verilir | Developer düzgün ardıcıllıqla, bir mənbədən öyrənsin |
 | **Bütün texnologiyalar bir saytda**; ayrı saytlar yoxdur | İstifadəçinin qərarı; ortaq dizayn, axtarış, irəliləyiş |
 | roadmap.sh və itbooster.ru yalnız **struktur və UX referansıdır**; onların kontenti və roadmap-ları kopyalanmır, öz roadmap-larımız yazılır | Hüquqi təhlükəsizlik: o saytların kontenti CC BY lisenziyalı deyil |
+| İki növ roadmap: **texnologiya** üzrə (məsələn "Go") və **istiqamət** üzrə (məsələn "Backend"). İstiqamət roadmap-ı bir neçə texnologiyanın node-larını birləşdirə bilər | İstifadəçi: "Go texnologiyadır, backend isə istiqamətdir" — hər ikisi lazımdır |
+| **İstifadəçi hesabları** ilk prototipdən sonra (platforma mərhələsində) lazım olacaq | İrəliləyiş cihazlar arasında saxlanılsın, roadmap üzrə şəxsi yol izlənsin |
 
 ## Məhsul və kontent
 
@@ -27,7 +29,8 @@ Razılaşdırılmış qərarlar və səbəbləri. Qərar dəyişsə, köhnəsini
 
 | Qərar | Səbəb |
 |---|---|
-| **Statik sayt**, backend və DB yoxdur | Pulsuz hosting, sadəlik; DB yalnız hesablar/şərhlər lazım olsa |
+| ~~**Statik sayt**, backend və DB yoxdur~~ | ~~Pulsuz hosting, sadəlik; DB yalnız hesablar/şərhlər lazım olsa~~ |
+| Go prototipi (Mərhələ 1–5) **statik sayt**, backend və DB yoxdur; platforma mərhələsində (6+) hesablar üçün **backend + verilənlər bazası** əlavə olunur. Kontent səhifələri yenə statik qalır (2026-11-23) | Hesablar ilk prototipdən sonra lazım olacaq; kontentin statik qalması sürət və pulsuz hosting verir |
 | **Astro** + Content Collections + Zod | Sıfır JS ilə sürətli HTML, Markdown/MDX, çoxsaylı kolleksiyalar |
 | **Shiki** (build vaxtı kod rənglənməsi) | VS Code keyfiyyəti, brauzerdə JS lazım deyil |
 | **Pagefind** (statik axtarış) | Serversiz, `Ctrl+K` palitrası ilə |
@@ -68,6 +71,6 @@ Razılaşdırılmış qərarlar və səbəbləri. Qərar dəyişsə, köhnəsini
 - Palitranın yekun seçimi: 4 seçim qalsın, yoxsa bir standart?
 - İzah ↔ kod arasında ox/əyri xətt lazımdırmı?
 - A, B, C variantları təsdiqdən sonra silinsin, yoxsa arxivdə qalsın?
-- Roadmap-lar texnologiya üzrə (məsələn "Go"), yoxsa rol üzrə (məsələn "Backend developer") olacaq, yoxsa hər ikisi?
-- Platformada hesablar lazım olacaqmı? Lazım olsa, verilənlər bazası və backend tələb olunur, bu da statik sayt qərarını dəyişir.
 - Go-dan sonra hansı texnologiya gəlir?
+- Hesablar üçün backend necə qurulacaq: öz API-miz (məsələn Go + PostgreSQL — həm də layihənin öz mövzusu ilə uyğun gəlir) və ya hazır xidmət (Supabase və s.)? Giriş üsulu: GitHub / Google OAuth, e-poçt? Hosting pulsuz qalmalıdırmı? — Mərhələ 6-dan əvvəl qərar verilməlidir.
+- Hesabı olmayan istifadəçi: irəliləyiş `localStorage`-də qalır və hesab açanda serverə köçürülür?

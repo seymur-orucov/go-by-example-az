@@ -12,7 +12,8 @@ Son yenilənmə: 2026-11-23
 
 | Prinsip | Mənası |
 |---|---|
-| **Roadmap ilə öyrənmə** | Developer nəyi, hansı ardıcıllıqla öyrənəcəyini yol xəritəsində görür; harada olduğunu və növbəti addımı bilir |
+| **Roadmap ilə öyrənmə** | Developer nəyi, hansı ardıcıllıqla öyrənəcəyini yol xəritəsində görür; harada olduğunu və növbəti addımı bilir. Roadmap-lar iki növdür: **texnologiya** ("Go") və **istiqamət** ("Backend") |
+| **Hesablar** | Platforma mərhələsində qeydiyyat və irəliləyişin serverdə saxlanması (Go prototipində yox) |
 | **Nəzəriyyə + praktika bir yerdə** | Yol xəritəsinin hər node-u həm nəzəri izaha (konsept), həm də praktikaya (işlək nümunə, tapşırıq, sual) aparır |
 | **Bütün texnologiyalar bir saytda** | Go, Python, Rust, TypeScript, SQL və s. eyni platformada, eyni dizayn və eyni dərs formatı ilə. Ayrı saytlar **yoxdur** |
 | **Azərbaycan dilində** | Kontent Azərbaycan dilində, terminlər ingiliscə |
@@ -115,6 +116,11 @@ Go prototipi canlı olduqdan sonra sayt vahid platformaya çevrilir.
 
 - [ ] Kontent modelinə **nəzəriyyə** növü əlavə etmək: konsept məqaləsi (qısa izah, diaqram, əlaqəli nümunələr). Hazırkı nümunələr **praktika** növü olur
 - [ ] **Roadmap modeli**: node-lar (mövzular), ardıcıllıq, asılılıqlar, səviyyələr; hər node nəzəriyyəyə və praktikaya bağlanır. Roadmap-lar fayl kimi saxlanılır, məsələn `content/roadmaps/<id>.yaml`
+- [ ] İki növ roadmap:
+  - **texnologiya** roadmap-ı — məsələn "Go": dilin özü, sadədən mürəkkəbə;
+  - **istiqamət** roadmap-ı — məsələn "Backend": bir neçə texnologiyanın node-larını birləşdirir (Go, SQL, HTTP, Docker…), node-lar texnologiya kontentinə istinad edir, kontent təkrarlanmır
+- [ ] **İstifadəçi hesabları**: qeydiyyat / giriş, irəliləyişin serverdə saxlanması və cihazlar arasında sinxronu, roadmap üzrə şəxsi yol. Bunun üçün backend + verilənlər bazası lazımdır; kontent səhifələri statik qalır. Texnologiya seçimi açıq məsələdir ([DECISIONS.md](DECISIONS.md#açıq-məsələlər-qərar-gözləyir))
+- [ ] Hesabsız istifadə də mümkün qalır (irəliləyiş `localStorage`-də)
 - [ ] Roadmap səhifəsi: interaktiv xəritə (roadmap.sh üslubu), node kliklənəndə panel: nəzəriyyə, praktika, status
 - [ ] Praktika genişlənir: tapşırıqlar (kodu tamamla / düzəlt), testlə yoxlama, "Özünü yoxla" sualları
 - [ ] Platforma strukturu (itbooster üslubu): ana səhifə → texnologiyalar və roadmap-lar → roadmap → node → dərs
@@ -129,8 +135,7 @@ Go prototipi canlı olduqdan sonra sayt vahid platformaya çevrilir.
 
 ## Gələcək (indi lazım deyil)
 
-- [ ] Hesablar və irəliləyişin cihazlar arasında sinxronu — o zaman verilənlər bazası lazım olacaq (əvvəlcə `localStorage` kifayətdir)
-- [ ] Rol əsaslı roadmap-lar (məsələn "Backend developer (Go)"), bir neçə texnologiyanı birləşdirən
+- [ ] Digər istiqamətlər: Frontend, DevOps və s.
 - [ ] Başqa dillərə tərcümə (EN, RU, TR) — kod və izah ayrı saxlandığı üçün asandır
 
 ---

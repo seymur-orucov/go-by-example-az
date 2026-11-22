@@ -73,3 +73,9 @@ Davam etmək üçün git repo yaradıldı; `README.md`, `docs/` (yol xəritəsi,
 İstifadəçi: ilk prototipdən sonra itbooster.ru və roadmap.sh tipində sayta keçmək əsas məqsəddir. Developer düzgün roadmap ilə həm praktikanı, həm nəzəriyyəni bu resursdan alsın. Bütün texnologiyalar bir sayt üzərində olacaq.
 
 Edildi: vizyon README-yə və [ROADMAP.md](ROADMAP.md)-yə yazıldı; Mərhələ 6 (platformaya keçid: roadmap modeli, nəzəriyyə + praktika) və Mərhələ 7 (yeni texnologiyalar) əlavə olundu. [DECISIONS.md](DECISIONS.md)-də "ayrı saytlar / hub sonra" qərarı ləğv edildi, əvəzinə vahid sayt (`apps/site`, `/<texnologiya>/...` marşrutları) yazıldı; yeni açıq məsələlər əlavə olundu.
+
+### 15. Açıq məsələlərə cavablar
+- Roadmap növü: **hər ikisi** — "Go texnologiyadır, Backend isə istiqamətdir".
+- Hesablar: **ilk prototipdən sonra lazım olacaq**.
+
+Edildi: [DECISIONS.md](DECISIONS.md)-də iki roadmap növü və hesablar qərar kimi yazıldı; "statik sayt, backend yoxdur" qərarı dəqiqləşdirildi (prototip statik, platformada backend + DB). [ROADMAP.md](ROADMAP.md) Mərhələ 6-ya istiqamət roadmap-ı və hesablar əlavə olundu. Yeni açıq məsələ: hesablar üçün backend texnologiyası, giriş üsulu, hosting.
