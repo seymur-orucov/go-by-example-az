@@ -15,6 +15,7 @@ Layihə: **Nümunələrlə Go** — gobyexample.com-un Azərbaycan dilində alte
 - Seçilmiş variant **D**-dir (`design/d/`). A, B, C yalnız müqayisə üçündür, onlara toxunma.
 - D ortaq faylları təkrar istifadə edir: `design/app.js`, `design/data.js`, `design/b/b.js`, `design/c/c.js`, `design/c/style.css` (D-nin `style.css`-i onu import edir). Bunları dəyişsən, A–C-yə də təsir edir.
 - Animasiyalar `prefers-reduced-motion`-da söndürülməlidir.
+- roadmap.sh / itbooster.ru-dan mətni yalnız istifadəçi qeyd etdikdə götür və tərcümə et; nəticəni `content-private/`-ə yaz (git-ə düşmür). Müəllifin razılığı [DECISIONS.md](docs/DECISIONS.md)-də qeyd olunmayıbsa, bu mətnləri public repo-ya commit etmə və sayta qoyma.
 - Hər iterasiyadan sonra `docs/HISTORY.md`-yə qısa qeyd əlavə et, `docs/ROADMAP.md`-də işarələri yenilə.
 
 ## Prototipi işə salmaq

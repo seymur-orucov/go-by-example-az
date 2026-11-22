@@ -84,3 +84,10 @@ Edildi: [DECISIONS.md](DECISIONS.md)-də iki roadmap növü və hesablar qərar 
 İstifadəçi: konkret roadmap-lar roadmap.sh və itbooster.ru resurslarının birləşməsi əsasında təkmilləşdiriləcək.
 
 Edildi: [DECISIONS.md](DECISIONS.md), [ROADMAP.md](ROADMAP.md) (Mərhələ 6-da 4 addımlıq iş qaydası) və [REFERENCES.md](REFERENCES.md) (yeni "Roadmap mənbələri" bölməsi) yeniləndi. Dəqiqləşdirmə: mövzular, ardıcıllıq və asılılıqlar bu resurslardan götürülür, mətnlər və diaqramlar isə özümüz yazırıq, çünki onların kontenti açıq lisenziyalı deyil.
+
+### 17. Mətnlərin tərcüməsi
+İstifadəçi: mətnlər istifadəçi qeyd etdiyi anda həmin resurslardan götürülür və tərcümə olunur.
+
+Yoxlanıldı: roadmap.sh-ın `license` faylı mətn və şəkillərin yalnız şəxsi istifadəsinə icazə verir, başqa formada dərc üçün müəllifin qabaqcadan razılığını tələb edir; itbooster.ru-da açıq lisenziya yoxdur.
+
+Edildi: qayda [DECISIONS.md](DECISIONS.md)-yə yazıldı, yanına şərt əlavə olundu — tərcümələr müəllifin razılığına qədər `content-private/`-də (git-ə düşmür) saxlanılır, razılıqdan sonra repo-ya və sayta keçir. [ROADMAP.md](ROADMAP.md)-yə müəlliflərə müraciət addımı, [REFERENCES.md](REFERENCES.md)-yə lisenziya sütunu əlavə olundu.

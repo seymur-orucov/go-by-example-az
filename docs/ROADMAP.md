@@ -120,7 +120,9 @@ Go prototipi canlı olduqdan sonra sayt vahid platformaya çevrilir.
   1. hər iki saytda uyğun roadmap/kursun mövzu siyahısı və ardıcıllığı toplanır;
   2. müqayisə edilir: ortaq mövzular, yalnız birində olanlar, fərqli ardıcıllıqlar;
   3. birləşmiş siyahı qurulur, boşluqlar doldurulur, Go prototipindəki nümunələrə bağlanır;
-  4. mətnlər və diaqramlar özümüz tərəfindən yazılır (kopyalanmır — [DECISIONS.md](DECISIONS.md#vizyon-2026-11-23))
+  4. mətnlər: istifadəçi qeyd etdiyi mövzularda həmin resurslardan götürülür və Azərbaycan dilinə tərcümə olunur; qalanlarında özümüz yazırıq
+  5. tərcümə edilmiş mətn public repo-ya və sayta yalnız müəllifin yazılı razılığından sonra düşür; o vaxta qədər `content-private/`-də (git-ə düşmür) saxlanılır — [DECISIONS.md](DECISIONS.md#vizyon-2026-11-23)
+- [ ] roadmap.sh və itbooster.ru müəlliflərinə tərcümə və dərc üçün müraciət
 - [ ] İki növ roadmap:
   - **texnologiya** roadmap-ı — məsələn "Go": dilin özü, sadədən mürəkkəbə;
   - **istiqamət** roadmap-ı — məsələn "Backend": bir neçə texnologiyanın node-larını birləşdirir (Go, SQL, HTTP, Docker…), node-lar texnologiya kontentinə istinad edir, kontent təkrarlanmır

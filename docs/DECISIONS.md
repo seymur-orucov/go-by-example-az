@@ -11,7 +11,9 @@ Razılaşdırılmış qərarlar və səbəbləri. Qərar dəyişsə, köhnəsini
 | **Bütün texnologiyalar bir saytda**; ayrı saytlar yoxdur | İstifadəçinin qərarı; ortaq dizayn, axtarış, irəliləyiş |
 | ~~roadmap.sh və itbooster.ru yalnız **struktur və UX referansıdır**; onların kontenti və roadmap-ları kopyalanmır, öz roadmap-larımız yazılır~~ | ~~Hüquqi təhlükəsizlik~~ |
 | Konkret roadmap-lar (Go, Backend və s.) **[roadmap.sh](https://roadmap.sh) və [itbooster.ru](https://itbooster.ru/) resurslarının birləşməsi əsasında** təkmilləşdirilir: hər ikisinin mövzu siyahısı və ardıcıllığı müqayisə edilir, birləşdirilir, boşluqlar doldurulur (2026-11-23) | İstifadəçinin qərarı: iki resursun güclü tərəfləri bir roadmap-da |
-| Bu resurslardan **mövzular, onların ardıcıllığı və asılılıqları** götürülür; **mətnlər, izahlar və diaqramlar özümüz tərəfindən** Azərbaycan dilində yazılır, birbaşa kopyalanmır | Hər iki saytın kontenti açıq lisenziyalı deyil (CC BY kimi); mövzu siyahısından istifadə təhlükəsizdir, mətnin kopyalanması isə yox |
+| ~~Bu resurslardan **mövzular, onların ardıcıllığı və asılılıqları** götürülür; **mətnlər, izahlar və diaqramlar özümüz tərəfindən** yazılır, birbaşa kopyalanmır~~ | ~~Hər iki saytın kontenti açıq lisenziyalı deyil~~ |
+| Bu resurslardan **mövzular, ardıcıllıq və asılılıqlar** götürülür. **Mətnlər** isə istifadəçi konkret mövzu üçün **qeyd etdiyi anda** həmin resurslardan götürülür və Azərbaycan dilinə **tərcümə olunur**. İstifadəçi qeyd etməyibsə, mətn özümüz tərəfindən yazılır (2026-11-23) | İstifadəçinin qərarı |
+| **Şərt:** roadmap.sh və ya itbooster.ru-dan tərcümə edilmiş mətn **public repo-ya commit olunmazdan və saytda dərc olunmazdan əvvəl** müəllifdən yazılı razılıq alınmalıdır. Razılıq alınana qədər tərcümələr yalnız lokal / private saxlanılır (`.gitignore`-dakı `content-private/` qovluğu). Razılıq alındıqda onun qeydi bu fayla yazılır və mənbəyə istinad saytda göstərilir | roadmap.sh-ın lisenziyası (repo-dakı `license` faylı, yoxlanıldı 2026-11-23): mətn və şəkillər yalnız şəxsi istifadə üçündür; başqa formada, o cümlədən mətn şəklində dərc etmək üçün müəllifin qabaqcadan razılığı lazımdır. itbooster.ru-da açıq lisenziya göstərilməyib — default olaraq bütün hüquqlar qorunur sayılır |
 | İki növ roadmap: **texnologiya** üzrə (məsələn "Go") və **istiqamət** üzrə (məsələn "Backend"). İstiqamət roadmap-ı bir neçə texnologiyanın node-larını birləşdirə bilər | İstifadəçi: "Go texnologiyadır, backend isə istiqamətdir" — hər ikisi lazımdır |
 | **İstifadəçi hesabları** ilk prototipdən sonra (platforma mərhələsində) lazım olacaq | İrəliləyiş cihazlar arasında saxlanılsın, roadmap üzrə şəxsi yol izlənsin |
 
@@ -74,5 +76,6 @@ Razılaşdırılmış qərarlar və səbəbləri. Qərar dəyişsə, köhnəsini
 - İzah ↔ kod arasında ox/əyri xətt lazımdırmı?
 - A, B, C variantları təsdiqdən sonra silinsin, yoxsa arxivdə qalsın?
 - Go-dan sonra hansı texnologiya gəlir?
+- roadmap.sh (Kamran Ahmed) və itbooster.ru müəlliflərindən mətnlərin tərcüməsi və dərci üçün razılıq — kim, nə vaxt müraciət edəcək? Razılıqların qeydi: _hələ yoxdur_.
 - Hesablar üçün backend necə qurulacaq: öz API-miz (məsələn Go + PostgreSQL — həm də layihənin öz mövzusu ilə uyğun gəlir) və ya hazır xidmət (Supabase və s.)? Giriş üsulu: GitHub / Google OAuth, e-poçt? Hosting pulsuz qalmalıdırmı? — Mərhələ 6-dan əvvəl qərar verilməlidir.
 - Hesabı olmayan istifadəçi: irəliləyiş `localStorage`-də qalır və hesab açanda serverə köçürülür?

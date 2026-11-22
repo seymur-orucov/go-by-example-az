@@ -12,12 +12,12 @@
 
 ## Roadmap mənbələri
 
-Platformanın konkret roadmap-ları (Go, Backend və s.) bu iki resursun **birləşməsi** əsasında təkmilləşdiriləcək. Onlardan mövzular, ardıcıllıq və asılılıqlar götürülür; mətnlər və diaqramlar özümüz tərəfindən yazılır ([DECISIONS.md](DECISIONS.md#vizyon-2026-11-23)).
+Platformanın konkret roadmap-ları (Go, Backend və s.) bu iki resursun **birləşməsi** əsasında təkmilləşdiriləcək. Onlardan mövzular, ardıcıllıq və asılılıqlar götürülür. Mətnlər istifadəçi qeyd etdiyi anda bu resurslardan götürülüb tərcümə olunur, amma dərcdən əvvəl müəllifin razılığı lazımdır ([DECISIONS.md](DECISIONS.md#vizyon-2026-11-23)).
 
-| Resurs | Nə üçün |
-|---|---|
-| https://roadmap.sh | Texnologiya və istiqamət roadmap-ları (məsələn Go, Backend): mövzu siyahısı, ardıcıllıq, tövsiyə olunan / alternativ yollar |
-| https://itbooster.ru/ | Kurs və mövzu strukturu, nəzəriyyə ilə praktikanın birləşdirilməsi |
+| Resurs | Nə üçün | Lisenziya |
+|---|---|---|
+| https://roadmap.sh | Texnologiya və istiqamət roadmap-ları (məsələn Go, Backend): mövzu siyahısı, ardıcıllıq, tövsiyə olunan / alternativ yollar | Xüsusi lisenziya ([repo-dakı `license`](https://github.com/kamranahmedse/developer-roadmap/blob/master/license)): yalnız şəxsi istifadə; dərc üçün qabaqcadan razılıq |
+| https://itbooster.ru/ | Kurs və mövzu strukturu, nəzəriyyə ilə praktikanın birləşdirilməsi | Açıq lisenziya göstərilməyib — bütün hüquqlar qorunur sayılır |
 
 ## Dizayn referansları
 
