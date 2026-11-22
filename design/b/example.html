@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="az">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Slices · Nümunələrlə Go</title>
+  <meta name="description" content="Go-da slice: yaratmaq, element əlavə etmək və kəsik götürmək — addım-addım vizual izahla.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <button class="btn btn-ghost btn-icon menu-toggle" data-menu-toggle aria-label="Menyu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <a class="logo" href="index.html">Nümunələrlə <b>Go</b></a>
+    <nav class="nav" aria-label="Əsas menyu">
+      <a href="index.html#proqram" aria-current="page">Öyrən</a>
+      <a href="index.html#proqram">Yol xəritəsi</a>
+      <a href="https://go.dev/play/" target="_blank" rel="noopener">Playground</a>
+      <a href="index.html#ferq">Haqqında</a>
+    </nav>
+    <div class="header-right">
+      <button class="search-trigger" data-open-search aria-label="Axtarış (Ctrl+K)">
+        <i data-icon="search" style="display:contents"></i><span>Axtar</span><kbd>Ctrl K</kbd>
+      </button>
+      <button class="btn btn-ghost btn-icon" data-theme-toggle></button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar" aria-label="Bölmə"></aside>
+    <div class="scrim"></div>
+
+    <main class="article">
+      <div class="crumbs"><a href="index.html#proqram">Öyrən</a> / <a href="index.html#proqram">Kolleksiyalar</a> / <b>Slices</b></div>
+      <div class="lesson-meta">
+        <span class="tag green">başlanğıc</span><span>4 dəq</span><span>·</span><span>09 / 84</span>
+        <span class="tag done" id="learned-tag" hidden>✓ öyrənildi</span>
+      </div>
+      <div class="lesson-title">
+        <div>
+          <h1>Slices</h1>
+          <p class="sub">Dinamik massiv — Go-da ən çox işlənən kolleksiya</p>
+        </div>
+      </div>
+
+      <p class="lead"><strong>Slice</strong> — eyni tipli elementlərin ardıcıllığıdır. Massivdən (<a href="example.html?ex=arrays">arrays</a>) fərqi: ölçüsü sabit deyil, lazım olduqca böyüyür. Praktikada Go-da massiv əvəzinə demək olar ki, həmişə slice işlədilir.</p>
+
+      <div class="walkthrough">
+        <div class="steps" id="steps">
+          <section class="step">
+            <h3>Boş slice</h3>
+            <p><code>[]string</code> — “string-lərdən ibarət slice”. Mötərizənin içi boşdur: ölçü göstərilmir.</p>
+            <p>Yeni elan olunmuş slice boşdur: uzunluğu <code>0</code>, dəyəri <code>nil</code>.</p>
+            <pre class="code snippet"></pre>
+          </section>
+          <section class="step">
+            <h3>make ilə hazır ölçü</h3>
+            <p><code>make([]string, 3)</code> 3 elementli slice yaradır. Elementlər sıfır dəyərlə dolur — string üçün <code>""</code>.</p>
+            <p>Elementə indekslə müraciət edilir: <code>s[0]</code>. Saymaq <code>0</code>-dan başlayır.</p>
+            <pre class="code snippet"></pre>
+          </section>
+          <section class="step">
+            <h3>append ilə əlavə</h3>
+            <p><code>append</code> sona element əlavə edir və <em>yeni</em> slice qaytarır. Yer çatmayanda Go daha böyük massiv ayırır.</p>
+            <div class="note"><span><b>Diqqət:</b> nəticəni geri yazın — <code>s = append(s, ...)</code>. Yalnız <code>append(s, "d")</code> yazsanız, <code>s</code> dəyişməz.</span></div>
+            <pre class="code snippet"></pre>
+          </section>
+          <section class="step">
+            <h3>Kəsik götürmək s[a:b]</h3>
+            <p><code>a</code>-dan başlayır, <code>b</code>-yə qədər gedir — <code>b</code> daxil deyil. <code>s[1:3]</code> → 1-ci və 2-ci elementlər.</p>
+            <div class="note info"><span>Kəsik yeni yaddaş ayırmır — orijinal slice ilə eyni elementləri “görür”.</span></div>
+            <pre class="code snippet"></pre>
+          </section>
+          <section class="step">
+            <h3>Qısa yazılış</h3>
+            <p>Elementlər əvvəlcədən məlumdursa, slice-ı birbaşa dəyərlərlə yaradın. <code>:=</code> tipi özü təyin edir.</p>
+            <pre class="code snippet"></pre>
+          </section>
+        </div>
+
+        <div class="sticky-pane">
+          <div class="player">
+            <div class="player-head">
+              <span class="player-title" id="p-title"></span>
+              <span class="player-count" id="p-count"></span>
+              <div class="player-tools">
+                <button class="btn btn-ghost btn-sm btn-icon" id="btn-copy" title="Kopyala" aria-label="Kopyala">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg>
+                </button>
+                <button class="btn btn-ghost btn-sm" id="btn-edit" title="Kodu redaktə et"><span class="txt">Redaktə</span></button>
+                <a class="btn btn-ghost btn-sm btn-icon" href="https://go.dev/play/" target="_blank" rel="noopener" title="Go Playground-da aç" aria-label="Go Playground-da aç">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+                </a>
+                <button class="btn btn-accent btn-sm" id="btn-run">▶ <span class="txt">İşə sal</span></button>
+              </div>
+            </div>
+            <div class="player-body">
+              <div class="pane code-scroll" id="code-box">
+                <div class="pane-head"><span class="label">kod · <span class="fname">slices.go</span></span></div>
+                <pre class="code" id="code" spellcheck="false"></pre>
+              </div>
+              <div class="bottom-row">
+                <div class="pane">
+                  <div class="pane-head"><span class="label">yaddaş</span></div>
+                  <div class="vis" id="vis"></div>
+                </div>
+                <div class="terminal" aria-live="polite">
+                  <div class="pane-head"><span class="label">çıxış</span><span class="status" id="run-status"><span class="led"></span><span>addım rejimi</span></span></div>
+                  <div class="term-body" id="term"></div>
+                </div>
+              </div>
+            </div>
+            <p class="player-note" id="p-note"></p>
+            <div class="player-foot">
+              <button class="btn btn-ghost btn-sm" id="p-reset">↺ <span class="txt">Sıfırla</span></button>
+              <button class="btn btn-ghost btn-sm" id="p-prev">← <span class="txt">Əvvəlki</span></button>
+              <button class="btn btn-ghost btn-sm" id="p-next"><span class="txt">Növbəti</span> →</button>
+              <div class="progress-dots" id="p-dots"></div>
+              <span class="grow"></span>
+              <button class="btn btn-accent btn-sm" id="p-play"></button>
+            </div>
+          </div>
+          <div class="hint">
+            <span><kbd>←</kbd><kbd>→</kbd> addımlar</span>
+            <span><kbd>Ctrl</kbd><kbd>↵</kbd> işə sal</span>
+            <span>izah ↔ kod: üzərinə gəl</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="after">
+        <section class="card">
+          <span class="label">Yadda saxla</span>
+          <h2>4 əsas qayda</h2>
+          <ol class="takeaways">
+            <li><span><code>[]T</code> — T tipli slice; ölçü tipin hissəsi deyil.</span></li>
+            <li><span><code>len(s)</code> elementlərin sayı, <code>cap(s)</code> isə ayrılmış yerdir.</span></li>
+            <li><span><code>s = append(s, x)</code> — nəticəni həmişə geri yaz.</span></li>
+            <li><span><code>s[a:b]</code> — <code>a</code> daxil, <code>b</code> daxil deyil; yaddaş paylaşılır.</span></li>
+          </ol>
+        </section>
+        <section class="card quiz">
+          <span class="label">Özünü yoxla</span>
+          <h2>Bu kod nə çap edəcək?</h2>
+          <pre class="code" id="quiz-code"></pre>
+          <div class="quiz-options" id="quiz">
+            <button class="quiz-option" data-ok="0"><span class="letter">A</span>[10 20 30]</button>
+            <button class="quiz-option" data-ok="1"><span class="letter">B</span>[20 30]</button>
+            <button class="quiz-option" data-ok="0"><span class="letter">C</span>[20 30 40]</button>
+          </div>
+          <p class="quiz-feedback" id="quiz-fb"></p>
+        </section>
+      </div>
+
+      <div class="done-bar">
+        <div><h3>Mövzunu başa düşdünüz?</h3><p>İşarələyin — irəliləyiş bu brauzerdə saxlanılır.</p></div>
+        <button class="btn" id="btn-learned">✓ <span>Öyrəndim</span></button>
+      </div>
+
+      <nav class="pager" aria-label="Nümunələr arasında keçid">
+        <a href="example.html?ex=arrays" data-prev><span class="dir"><span>← Əvvəlki</span><kbd>Shift ←</kbd></span><b>Arrays</b><small>Sabit ölçülü massiv</small></a>
+        <a class="next" href="example.html?ex=maps" data-next><span class="dir"><span>Növbəti →</span><kbd>Shift →</kbd></span><b>Maps</b><small>Açar–dəyər cütləri</small></a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="inner">
+      <p>Mark McGranaghan və Eli Bendersky-nin <a href="https://gobyexample.com" rel="noopener">Go by Example</a> layihəsi əsasında hazırlanıb, Azərbaycan dilinə uyğunlaşdırılıb və sadələşdirilib. Kontent <a href="https://creativecommons.org/licenses/by/3.0/" rel="noopener">CC BY 3.0</a> lisenziyası ilə paylaşılır.</p>
+      <p>Go adı Google LLC-yə məxsusdur.<br>Variant B · dizayn prototipi · <a href="../example.html">Variant A</a></p>
+    </div>
+  </footer>
+
+  <script src="../data.js"></script>
+  <script src="../app.js"></script>
+  <script src="b.js"></script>
+  <script>
+  // ←/→ bu səhifədə addımları dəyişir; səhifələr arası keçid Shift ilə (app.js-dəki ümumi qısayoldan əvvəl tutulur)
+  window.addEventListener("keydown", (ev) => {
+    if (ev.shiftKey || ev.ctrlKey || ev.metaKey || ev.altKey) return;
+    if (ev.key !== "ArrowLeft" && ev.key !== "ArrowRight") return;
+    const a = document.activeElement;
+    if (/INPUT|TEXTAREA/.test(a.tagName) || a.isContentEditable || document.querySelector(".palette-backdrop.open")) return;
+    ev.stopPropagation(); ev.preventDefault();
+    if (window.__lesson) window.__lesson.go(window.__lesson.pinned + (ev.key === "ArrowRight" ? 1 : -1), true);
+  }, true);
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const G = window.GOAZ, B = window.GOAZ_B, L = B.SLICES;
+    const SLUG = "slices";
+
+    const want = new URLSearchParams(location.search).get("ex");
+    if (want && want !== SLUG) {
+      const e = G.FLAT.find((x) => x.slug === want);
+      setTimeout(() => G.toast("Prototipdə yalnız “Slices” hazırdır" + (e ? " — “" + e.title + "” sonra" : "")), 300);
+    }
+
+    // Sidebar: yalnız cari bölmə + digər bölmələr
+    const sb = document.getElementById("sidebar");
+    function renderSidebar() {
+      const sec = G.SECTIONS.find((s) => s.items.some((it) => it[0] === SLUG));
+      const done = sec.items.filter((it) => G.learnedSet.has(it[0])).length;
+      let h = '<a class="back" href="index.html#proqram">← Bütün bölmələr</a>' +
+        '<div class="sb-track"><span class="track-icon" style="--c:' + B.SECTION_COLORS[sec.id] + '">' + G.I[sec.icon] + "</span><div><b>" + G.esc(sec.title) +
+        "</b><small>" + done + " / " + sec.items.length + " öyrənilib</small></div></div>" +
+        '<span class="label">Bu bölmədə</span><ul class="sb-items">';
+      sec.items.forEach(([slug, title]) => {
+        h += '<li><a href="' + G.href(slug) + '"' + (slug === SLUG ? ' aria-current="page"' : "") + '><span class="b' + (G.learnedSet.has(slug) ? " done" : "") + '"></span>' + G.esc(title) + "</a></li>";
+      });
+      h += '</ul><div class="sb-other"><span class="label">Digər bölmələr</span>';
+      G.SECTIONS.filter((s) => s !== sec).forEach((s) => {
+        h += '<a href="' + G.href(s.items[0][0]) + '">' + G.esc(s.title) + "<span>" + s.items.length + "</span></a>";
+      });
+      sb.innerHTML = h + "</div>";
+    }
+    renderSidebar();
+
+    // Addım-addım snippet-lər (dar ekran)
+    const stepEls = Array.from(document.querySelectorAll(".step"));
+    stepEls.forEach((el, i) => G.renderCode(el.querySelector(".snippet"), L.src, { from: L.steps[i].lines[0], to: L.steps[i].lines[1] }));
+
+    const pre = document.getElementById("code");
+    const runBtn = document.getElementById("btn-run"), term = document.getElementById("term"), st = document.getElementById("run-status");
+    function setStatus(cls, text) { st.className = "status" + (cls ? " " + cls : ""); st.lastChild.textContent = text; }
+    let lockScroll = 0;
+    const inView = (el) => { const r = el.getBoundingClientRect(); return r.top >= 70 && r.bottom <= innerHeight; };
+    const wide = () => matchMedia("(min-width: 1201px)").matches;
+    // Proqram tərəfindən scroll edəndə scroll bitənə qədər IntersectionObserver aktiv addımı dəyişməsin
+    function scrollToStep(el) {
+      lockScroll = Infinity;
+      let done = false;
+      const release = () => { if (done) return; done = true; lockScroll = Date.now() + 120; };
+      window.addEventListener("scrollend", release, { once: true });
+      setTimeout(release, 1500);
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    const lesson = B.createLesson({
+      lesson: L, pre, stepEls, scrollBox: document.getElementById("code-box"),
+      vis: document.getElementById("vis"),
+      term: document.getElementById("term"),
+      title: document.getElementById("p-title"),
+      count: document.getElementById("p-count"),
+      note: document.getElementById("p-note"),
+      dots: document.getElementById("p-dots"),
+      prev: document.getElementById("p-prev"),
+      next: document.getElementById("p-next"),
+      reset: document.getElementById("p-reset"),
+      play: document.getElementById("p-play"),
+      onNavigate(i) { // düymə/klaviatura ilə keçid → izahı göstər
+        if (wide() && !inView(stepEls[i])) scrollToStep(stepEls[i]);
+      },
+      onCodeHover: (() => { let t; return (i) => { clearTimeout(t); t = setTimeout(() => { if (wide() && !inView(stepEls[i])) scrollToStep(stepEls[i]); }, 350); }; })(),
+      onChange() { setStatus("", "addım rejimi"); },
+    });
+    window.__lesson = lesson;
+
+    // İzah → kod
+    let hovering = false;
+    stepEls.forEach((el, i) => {
+      el.addEventListener("mouseenter", () => { if (!wide()) return; hovering = true; lesson.preview(i); });
+      el.addEventListener("mouseleave", () => { hovering = false; lesson.preview(null); });
+      el.addEventListener("click", () => { if (wide()) lesson.go(i); });
+    });
+
+    // Scroll ilə aktiv addım
+    const io = new IntersectionObserver((entries) => {
+      if (hovering || Date.now() < lockScroll || pre.isContentEditable) return;
+      entries.forEach((en) => { if (en.isIntersecting) lesson.go(stepEls.indexOf(en.target)); });
+    }, { rootMargin: "-42% 0px -50% 0px" });
+    stepEls.forEach((el) => io.observe(el));
+
+    // İşə sal (prototip: simulyasiya; real saytda /api/run)
+    function run() {
+      if (runBtn.disabled) return;
+      lesson.stop();
+      runBtn.disabled = true; setStatus("run", "işləyir…");
+      term.innerHTML = '<span class="prompt">$</span> go run slices.go';
+      setTimeout(() => {
+        const lines = pre.isContentEditable ? ["(prototip: redaktə olunmuş kod real saytda serverdə icra olunacaq)"] : L.steps.map((s) => s.out);
+        lines.forEach((l, i) => { const s = document.createElement("span"); s.className = "out-line"; s.style.animationDelay = i * 60 + "ms"; s.textContent = l; term.appendChild(s); });
+        setStatus("ok", "0.34 san"); runBtn.disabled = false;
+      }, 700);
+    }
+    runBtn.addEventListener("click", run);
+    document.addEventListener("keydown", (ev) => { if ((ev.ctrlKey || ev.metaKey) && ev.key === "Enter") { ev.preventDefault(); run(); } });
+
+    document.getElementById("btn-copy").addEventListener("click", async () => {
+      const text = pre.isContentEditable ? pre.innerText : L.src;
+      G.toast((await G.copyText(text)) ? "Kod kopyalandı" : "Kopyalamaq alınmadı");
+    });
+
+    const editBtn = document.getElementById("btn-edit");
+    editBtn.addEventListener("click", () => {
+      if (!pre.isContentEditable) {
+        lesson.stop();
+        pre.classList.remove("has-focus");
+        pre.textContent = L.src; pre.setAttribute("contenteditable", "true"); pre.style.paddingLeft = "16px"; pre.focus();
+        editBtn.querySelector(".txt").textContent = "Sıfırla";
+        G.toast("Redaktə rejimi — dəyiş və işə sal");
+      } else {
+        pre.removeAttribute("contenteditable"); pre.style.paddingLeft = "";
+        G.renderCode(pre, L.src); lesson.rerender();
+        editBtn.querySelector(".txt").textContent = "Redaktə";
+      }
+    });
+
+    // Quiz
+    G.renderCode(document.getElementById("quiz-code"), "x := []int{10, 20, 30, 40}\nfmt.Println(x[1:3])");
+    const fb = document.getElementById("quiz-fb");
+    document.getElementById("quiz").addEventListener("click", (ev) => {
+      const b = ev.target.closest(".quiz-option"); if (!b) return;
+      if (b.dataset.ok === "1") {
+        b.classList.add("correct"); document.querySelectorAll(".quiz-option").forEach((o) => o.disabled = true);
+        fb.className = "quiz-feedback ok"; fb.textContent = "Düzdür! İndeks 1 daxildir, 3 isə daxil deyil → [20 30].";
+      } else {
+        b.classList.add("wrong"); b.disabled = true;
+        fb.className = "quiz-feedback no"; fb.textContent = "Yox. s[a:b]-də b daxil deyil. Yenidən cəhd edin.";
+      }
+    });
+
+    // Öyrəndim
+    const lb = document.getElementById("btn-learned"), tag = document.getElementById("learned-tag");
+    function paintLearned() {
+      const on = G.learnedSet.has(SLUG);
+      lb.classList.toggle("is-done", on); lb.querySelector("span").textContent = on ? "Öyrənildi" : "Öyrəndim";
+      tag.hidden = !on;
+    }
+    lb.addEventListener("click", () => {
+      if (G.learnedSet.has(SLUG)) G.learnedSet.delete(SLUG); else { G.learnedSet.add(SLUG); G.toast("Əla! Növbəti: Maps →"); }
+      G.saveLearned(); paintLearned(); renderSidebar();
+    });
+    paintLearned();
+  });
+  </script>
+</body>
+</html>

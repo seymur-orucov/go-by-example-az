@@ -1,0 +1,203 @@
+/* ==========================================================
+   Nümunələrlə Go — Design tokens
+   Bütün rənglər, şriftlər və ölçülər burada. Gələcəkdə başqa
+   texnologiya saytları yalnız --accent* dəyişənlərini dəyişir.
+   ========================================================== */
+
+:root {
+  /* Typography */
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: 2.25rem;
+  --text-4xl: clamp(2.25rem, 5vw, 3.5rem);
+
+  /* Spacing (4px grid) */
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px;
+  --s-5: 20px; --s-6: 24px; --s-8: 32px; --s-10: 40px;
+  --s-12: 48px; --s-16: 64px; --s-20: 80px;
+
+  /* Radius */
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-xl: 20px;
+  --r-full: 999px;
+
+  /* Layout */
+  --header-h: 60px;
+  --sidebar-w: 272px;
+  --content-max: 1440px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --dur: 180ms;
+
+  /* Brand (Go palette) */
+  --go-blue: #00add8;
+  --go-aqua: #00a29c;
+  --go-fuchsia: #ce3262;
+  --go-yellow: #fddd00;
+
+  /* ---------- Light (default values) ---------- */
+  --bg: #f8fafc;
+  --bg-grad: radial-gradient(1200px 500px at 85% -10%, rgba(0, 173, 216, 0.10), transparent 60%);
+  --surface: #ffffff;
+  --surface-2: #f2f5f8;
+  --surface-3: #e9eef3;
+  --border: #e3e8ee;
+  --border-strong: #cfd7e0;
+
+  --text: #0e1621;
+  --text-muted: #4f5d6e;
+  --text-subtle: #7f8b9a;
+
+  --accent: #0087ad;
+  --accent-strong: #00add8;
+  --accent-soft: rgba(0, 173, 216, 0.10);
+  --accent-ring: rgba(0, 173, 216, 0.35);
+  --on-accent: #ffffff;
+
+  --success: #00857f;
+  --success-soft: rgba(0, 162, 156, 0.12);
+  --warn: #8a6d00;
+  --warn-soft: rgba(253, 221, 0, 0.18);
+  --danger: #b4214f;
+  --danger-soft: rgba(206, 50, 98, 0.10);
+
+  --shadow-sm: 0 1px 2px rgba(15, 23, 32, 0.06);
+  --shadow-md: 0 4px 16px rgba(15, 23, 32, 0.08);
+  --shadow-lg: 0 24px 60px rgba(15, 23, 32, 0.18);
+
+  /* Code */
+  --code-bg: #f6f8fb;
+  --code-border: #e3e8ee;
+  --code-text: #1b2430;
+  --code-gutter: #a3adba;
+  --code-line-hl: rgba(0, 173, 216, 0.10);
+  --code-line-bar: #00add8;
+  --tok-kw: #b4237a;
+  --tok-type: #0b7fa6;
+  --tok-fn: #3758c9;
+  --tok-str: #2d7d2a;
+  --tok-num: #a15c00;
+  --tok-com: #8a94a3;
+  --tok-builtin: #7a3fc4;
+
+  --term-bg: #0d1218;
+  --term-text: #d7e1ea;
+  --term-muted: #6b7b8c;
+
+  color-scheme: light;
+}
+
+/* ---------- Dark ---------- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0a0e14;
+    --bg-grad: radial-gradient(1200px 520px at 85% -10%, rgba(0, 173, 216, 0.14), transparent 60%);
+    --surface: #10161e;
+    --surface-2: #151c26;
+    --surface-3: #1b2430;
+    --border: #1e2834;
+    --border-strong: #2a3644;
+
+    --text: #e6edf3;
+    --text-muted: #9aa7b6;
+    --text-subtle: #627083;
+
+    --accent: #3cc8ec;
+    --accent-strong: #00add8;
+    --accent-soft: rgba(0, 173, 216, 0.14);
+    --accent-ring: rgba(0, 173, 216, 0.45);
+    --on-accent: #04151b;
+
+    --success: #36d6c9;
+    --success-soft: rgba(0, 162, 156, 0.18);
+    --warn: #ffe45c;
+    --warn-soft: rgba(253, 221, 0, 0.12);
+    --danger: #f2669a;
+    --danger-soft: rgba(206, 50, 98, 0.16);
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.35);
+    --shadow-lg: 0 30px 80px rgba(0, 0, 0, 0.6);
+
+    --code-bg: #0c1117;
+    --code-border: #1e2834;
+    --code-text: #dde6ee;
+    --code-gutter: #3d4a59;
+    --code-line-hl: rgba(0, 173, 216, 0.12);
+    --code-line-bar: #00add8;
+    --tok-kw: #f286c4;
+    --tok-type: #79d4f5;
+    --tok-fn: #8fb4ff;
+    --tok-str: #a5e39b;
+    --tok-num: #f9c97c;
+    --tok-com: #5c6b7d;
+    --tok-builtin: #c9a7ff;
+
+    --term-bg: #070a0e;
+    --term-text: #d7e1ea;
+    --term-muted: #5c6b7d;
+
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0a0e14;
+  --bg-grad: radial-gradient(1200px 520px at 85% -10%, rgba(0, 173, 216, 0.14), transparent 60%);
+  --surface: #10161e;
+  --surface-2: #151c26;
+  --surface-3: #1b2430;
+  --border: #1e2834;
+  --border-strong: #2a3644;
+
+  --text: #e6edf3;
+  --text-muted: #9aa7b6;
+  --text-subtle: #627083;
+
+  --accent: #3cc8ec;
+  --accent-strong: #00add8;
+  --accent-soft: rgba(0, 173, 216, 0.14);
+  --accent-ring: rgba(0, 173, 216, 0.45);
+  --on-accent: #04151b;
+
+  --success: #36d6c9;
+  --success-soft: rgba(0, 162, 156, 0.18);
+  --warn: #ffe45c;
+  --warn-soft: rgba(253, 221, 0, 0.12);
+  --danger: #f2669a;
+  --danger-soft: rgba(206, 50, 98, 0.16);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 30px 80px rgba(0, 0, 0, 0.6);
+
+  --code-bg: #0c1117;
+  --code-border: #1e2834;
+  --code-text: #dde6ee;
+  --code-gutter: #3d4a59;
+  --code-line-hl: rgba(0, 173, 216, 0.12);
+  --code-line-bar: #00add8;
+  --tok-kw: #f286c4;
+  --tok-type: #79d4f5;
+  --tok-fn: #8fb4ff;
+  --tok-str: #a5e39b;
+  --tok-num: #f9c97c;
+  --tok-com: #5c6b7d;
+  --tok-builtin: #c9a7ff;
+
+  --term-bg: #070a0e;
+  --term-text: #d7e1ea;
+  --term-muted: #5c6b7d;
+
+  color-scheme: dark;
+}

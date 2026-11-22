@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="az">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Slices · Nümunələrlə Go</title>
+  <meta name="description" content="Go-da slice: yaratmaq, element əlavə etmək və kəsik götürmək — qısa izah və işlək nümunə.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <header class="site-header">
+    <button class="btn btn-ghost btn-icon menu-toggle" data-menu-toggle aria-label="Menyu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <a class="brand" href="index.html" aria-label="Nümunələrlə Go — ana səhifə">
+      <span class="brand-mark">go</span>
+      <span class="brand-name">Nümunələrlə Go<small>Azərbaycan dilində</small></span>
+    </a>
+    <div class="header-spacer"></div>
+    <button class="search-trigger" data-open-search aria-label="Axtarış (Ctrl+K)">
+      <i data-icon="search" style="display:contents"></i>
+      <span>Nümunə axtar…</span>
+      <span class="kbds"><kbd>Ctrl</kbd><kbd>K</kbd></span>
+    </button>
+    <div class="header-actions">
+      <button class="btn btn-ghost btn-icon" data-theme-toggle></button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar" aria-label="Mövzular"></aside>
+    <div class="scrim"></div>
+
+    <main class="article">
+      <nav class="crumbs" aria-label="Yol">
+        <a href="index.html">Ana səhifə</a>
+        <i data-icon="chev" style="display:contents"></i>
+        <a href="index.html#sections">Kolleksiyalar</a>
+        <i data-icon="chev" style="display:contents"></i>
+        <span>Slices</span>
+      </nav>
+
+      <div class="ex-head">
+        <div>
+          <h1>Slices <span class="subtitle">Dinamik massiv — Go-da ən çox işlənən kolleksiya</span></h1>
+          <div class="ex-meta">
+            <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>4 dəq</span>
+            <span class="badge">Başlanğıc</span>
+            <span class="badge">#09 · Kolleksiyalar</span>
+            <span class="badge ok" id="learned-badge" hidden><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm4.7 7.7-5.5 5.5a1 1 0 0 1-1.4 0l-2.5-2.5a1 1 0 1 1 1.4-1.4l1.8 1.8 4.8-4.8a1 1 0 0 1 1.4 1.4Z"/></svg>Öyrənildi</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="ex-intro">
+        <strong>Slice</strong> — eyni tipli elementlərin ardıcıllığıdır. Massivdən (<a href="example.html?ex=arrays">arrays</a>) fərqi: ölçüsü sabit deyil, lazım olduqca böyüyür. Praktikada Go-da massiv əvəzinə demək olar ki, həmişə slice işlədilir.
+      </p>
+
+      <div class="walkthrough">
+        <div class="steps" id="steps">
+          <section class="step" data-lines="6-7">
+            <span class="step-num">1</span>
+            <h3>Boş slice</h3>
+            <p><code>[]string</code> — “string-lərdən ibarət slice” deməkdir. Kvadrat mötərizənin içi boşdur, yəni ölçü göstərilmir.</p>
+            <p>Yeni elan olunmuş slice boşdur: uzunluğu <code>0</code>, dəyəri isə <code>nil</code>.</p>
+            <pre class="code snippet"></pre>
+          </section>
+
+          <section class="step" data-lines="9-13">
+            <span class="step-num">2</span>
+            <h3><code>make</code> ilə hazır ölçü</h3>
+            <p><code>make([]string, 3)</code> 3 elementli slice yaradır. Elementlər tipin sıfır dəyəri ilə dolur — string üçün bu, boş mətndir <code>""</code>.</p>
+            <p>Elementə indekslə müraciət edilir: <code>s[0]</code>. Saymaq <code>0</code>-dan başlayır.</p>
+            <pre class="code snippet"></pre>
+          </section>
+
+          <section class="step" data-lines="15-16">
+            <span class="step-num">3</span>
+            <h3><code>append</code> ilə əlavə etmək</h3>
+            <p><code>append</code> sona bir və ya bir neçə element əlavə edir və <em>yeni</em> slice qaytarır.</p>
+            <div class="callout">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0ZM12 9v4M12 17h.01"/></svg>
+              <span>Nəticəni mütləq geri yazın: <code>s = append(s, ...)</code>. Yalnız <code>append(s, "d")</code> yazsanız, <code>s</code> dəyişməz.</span>
+            </div>
+            <pre class="code snippet"></pre>
+          </section>
+
+          <section class="step" data-lines="18">
+            <span class="step-num">4</span>
+            <h3>Kəsik götürmək <code>s[a:b]</code></h3>
+            <p><code>a</code> indeksindən başlayır, <code>b</code>-yə qədər gedir — <code>b</code> özü daxil deyil. <code>s[1:3]</code> → 1-ci və 2-ci elementlər.</p>
+            <div class="callout info">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
+              <span>Kəsik yeni yaddaş ayırmır — orijinal slice ilə eyni elementləri “görür”.</span>
+            </div>
+            <pre class="code snippet"></pre>
+          </section>
+
+          <section class="step" data-lines="20-21">
+            <span class="step-num">5</span>
+            <h3>Qısa yazılış</h3>
+            <p>Elementlər əvvəlcədən məlumdursa, slice-ı birbaşa dəyərlərlə yaradın. <code>:=</code> tipi özü təyin edir.</p>
+            <pre class="code snippet"></pre>
+          </section>
+        </div>
+
+        <div class="code-pane">
+          <h2 class="pane-title">Tam proqram</h2>
+          <div class="code-window">
+            <div class="cw-bar">
+              <span class="cw-file"><span class="gofile">GO</span> slices.go</span>
+              <div class="cw-actions">
+                <button class="btn btn-ghost btn-icon" id="btn-copy" title="Kopyala" aria-label="Kopyala">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg>
+                </button>
+                <button class="btn btn-ghost" id="btn-edit" title="Kodu redaktə et">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 1 1 3 3L7 19l-4 1 1-4Z"/></svg>
+                  <span class="label">Redaktə</span>
+                </button>
+                <a class="btn btn-ghost btn-icon" id="btn-play" href="https://go.dev/play/" target="_blank" rel="noopener" title="Go Playground-da aç" aria-label="Go Playground-da aç">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+                </a>
+                <button class="btn btn-run" id="btn-run">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15a1 1 0 0 0 1.5.9l12-7.5a1 1 0 0 0 0-1.8l-12-7.5A1 1 0 0 0 7 4.5Z"/></svg>
+                  <span class="label">İşə sal</span>
+                </button>
+              </div>
+            </div>
+            <pre class="code" id="code" spellcheck="false"></pre>
+            <div class="terminal" aria-live="polite">
+              <div class="term-head">Çıxış <span class="status" id="run-status"><span class="led"></span><span>hazır</span></span></div>
+              <div class="term-body" id="run-out"></div>
+            </div>
+          </div>
+          <div class="code-hint">
+            <span><kbd>Ctrl</kbd><kbd>↵</kbd> işə sal</span>
+            <span><kbd>←</kbd><kbd>→</kbd> əvvəlki / növbəti</span>
+            <span>İzahın üzərinə gəlin — sətirlər işıqlanır</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="after">
+        <section class="panel">
+          <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2Z"/></svg>Yadda saxla</h2>
+          <ul class="takeaways">
+            <li><span data-icon="check" style="display:contents"></span><span><code>[]T</code> — T tipli slice; ölçü tipin bir hissəsi deyil.</span></li>
+            <li><span data-icon="check" style="display:contents"></span><span><code>len(s)</code> elementlərin sayını verir.</span></li>
+            <li><span data-icon="check" style="display:contents"></span><span><code>s = append(s, x)</code> — nəticəni həmişə geri yaz.</span></li>
+            <li><span data-icon="check" style="display:contents"></span><span><code>s[a:b]</code> — <code>a</code> daxil, <code>b</code> daxil deyil.</span></li>
+          </ul>
+        </section>
+
+        <section class="panel quiz">
+          <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/></svg>Özünü yoxla</h2>
+          <p style="color:var(--text-muted);font-size:var(--text-sm);margin-bottom:var(--s-3)">Bu kod nə çap edəcək?</p>
+          <pre class="code" id="quiz-code"></pre>
+          <div class="quiz-options" id="quiz">
+            <button class="quiz-option" data-ok="0"><span class="letter">A</span>[10 20 30]</button>
+            <button class="quiz-option" data-ok="1"><span class="letter">B</span>[20 30]</button>
+            <button class="quiz-option" data-ok="0"><span class="letter">C</span>[20 30 40]</button>
+          </div>
+          <p class="quiz-feedback" id="quiz-fb"></p>
+        </section>
+      </div>
+
+      <div class="done-bar">
+        <div>
+          <h3>Mövzunu başa düşdünüz?</h3>
+          <p>İşarələyin — irəliləyişiniz bu brauzerdə saxlanılır.</p>
+        </div>
+        <button class="btn" id="btn-learned">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>
+          <span>Öyrəndim</span>
+        </button>
+      </div>
+
+      <nav class="pager" aria-label="Nümunələr arasında keçid">
+        <a href="example.html?ex=arrays" data-prev>
+          <span class="dir"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Əvvəlki<kbd>←</kbd></span>
+          <b>Arrays</b><small>Sabit ölçülü massiv</small>
+        </a>
+        <a class="next" href="example.html?ex=maps" data-next>
+          <span class="dir"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Növbəti<kbd>→</kbd></span>
+          <b>Maps</b><small>Açar–dəyər cütləri</small>
+        </a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="inner">
+      <p>Bu sayt Mark McGranaghan və Eli Bendersky-nin <a href="https://gobyexample.com" rel="noopener">Go by Example</a> layihəsi əsasında hazırlanıb, Azərbaycan dilinə uyğunlaşdırılıb və sadələşdirilib. Kontent <a href="https://creativecommons.org/licenses/by/3.0/" rel="noopener">CC BY 3.0</a> lisenziyası ilə paylaşılır.</p>
+      <p>Go loqosu və adı Google LLC-yə məxsusdur.<br>Dizayn prototipi · 2026</p>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const G = window.GOAZ;
+    const SLUG = "slices";
+
+    const SRC = [
+      'package main',
+      '',
+      'import "fmt"',
+      '',
+      'func main() {',
+      '\tvar s []string',
+      '\tfmt.Println("boş:", s, len(s))',
+      '',
+      '\ts = make([]string, 3)',
+      '\ts[0] = "a"',
+      '\ts[1] = "b"',
+      '\ts[2] = "c"',
+      '\tfmt.Println("make:", s, len(s))',
+      '',
+      '\ts = append(s, "d", "e")',
+      '\tfmt.Println("append:", s)',
+      '',
+      '\tfmt.Println("kəsik:", s[1:3])',
+      '',
+      '\tt := []int{1, 2, 3}',
+      '\tfmt.Println("qısa:", t)',
+      '}',
+    ].join("\n");
+    const OUTPUT = ["boş: [] 0", "make: [a b c] 3", "append: [a b c d e]", "kəsik: [b c]", "qısa: [1 2 3]"];
+
+    // Prototipdə yalnız Slices hazırdır
+    const want = new URLSearchParams(location.search).get("ex");
+    if (want && want !== SLUG) {
+      const e = G.FLAT.find((x) => x.slug === want);
+      setTimeout(() => G.toast("Prototipdə yalnız “Slices” hazırdır" + (e ? " — “" + e.title + "” sonra əlavə olunacaq" : "")), 300);
+    }
+
+    G.renderSidebar(document.getElementById("sidebar"), SLUG);
+
+    // Full code
+    const pre = document.getElementById("code");
+    G.renderCode(pre, SRC);
+
+    // Per-step snippets (mobil/dar ekran)
+    const steps = Array.from(document.querySelectorAll(".step"));
+    const range = (s) => { const [a, b] = s.split("-").map(Number); return [a, b || a]; };
+    steps.forEach((st) => { const [a, b] = range(st.dataset.lines); G.renderCode(st.querySelector(".snippet"), SRC, { from: a, to: b }); });
+
+    // Step ↔ code highlighting
+    function focusStep(st) {
+      steps.forEach((x) => x.classList.toggle("is-active", x === st));
+      if (!st) { pre.classList.remove("has-focus"); pre.querySelectorAll(".hl").forEach((l) => l.classList.remove("hl")); return; }
+      const [a, b] = range(st.dataset.lines);
+      pre.classList.add("has-focus");
+      pre.querySelectorAll(".line").forEach((l) => { const n = +l.dataset.n; l.classList.toggle("hl", n >= a && n <= b); });
+    }
+    let hovering = false;
+    steps.forEach((st) => {
+      st.addEventListener("mouseenter", () => { hovering = true; focusStep(st); });
+      st.addEventListener("mouseleave", () => { hovering = false; focusStep(scrollActive); });
+    });
+    // Tərs istiqamət: kod sətrinin üzərinə gələndə uyğun izah addımı işıqlanır
+    const stepForLine = (n) => steps.find((s) => { const [a, b] = range(s.dataset.lines); return n >= a && n <= b; }) || null;
+    let scrollTimer = null;
+    pre.addEventListener("mouseover", (ev) => {
+      if (editing) return;
+      const line = ev.target.closest(".line"); if (!line) return;
+      const st = stepForLine(+line.dataset.n);
+      hovering = true;
+      focusStep(st);
+      clearTimeout(scrollTimer);
+      if (st) {
+        // Addım ekrandan kənardadırsa, qısa gecikmə ilə görünən sahəyə gətir
+        scrollTimer = setTimeout(() => {
+          const r = st.getBoundingClientRect();
+          if (r.top < 70 || r.bottom > innerHeight) st.scrollIntoView({ behavior: "smooth", block: "center" });
+        }, 350);
+      }
+    });
+    pre.addEventListener("mouseleave", () => { clearTimeout(scrollTimer); hovering = false; if (!editing) focusStep(scrollActive); });
+
+    // Scroll-driven active step
+    let scrollActive = null;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => { if (en.isIntersecting) scrollActive = en.target; });
+      if (!hovering && !editing) focusStep(scrollActive);
+    }, { rootMargin: "-40% 0px -50% 0px" });
+    steps.forEach((st) => io.observe(st));
+
+    // Run (prototip: nəticə simulyasiya olunur; real saytda /api/run → go.dev proxy)
+    const runBtn = document.getElementById("btn-run"), out = document.getElementById("run-out"), st = document.getElementById("run-status");
+    out.innerHTML = '<span class="muted">▶ “İşə sal” — kod Go serverində icra olunacaq</span>';
+    function run() {
+      if (runBtn.disabled) return;
+      runBtn.disabled = true; st.className = "status run"; st.lastChild.textContent = "işləyir…";
+      out.innerHTML = '<span class="prompt">$</span> go run slices.go';
+      setTimeout(() => {
+        const lines = editing ? ["(prototip: redaktə edilmiş kod real saytda serverdə icra olunacaq)"] : OUTPUT;
+        lines.forEach((l, i) => { const s = document.createElement("span"); s.className = "out-line" + (editing ? " muted" : ""); s.style.animationDelay = i * 60 + "ms"; s.textContent = l; out.appendChild(s); });
+        st.className = "status ok"; st.lastChild.textContent = "0.34 san"; runBtn.disabled = false;
+      }, 700);
+    }
+    runBtn.addEventListener("click", run);
+    document.addEventListener("keydown", (ev) => { if ((ev.ctrlKey || ev.metaKey) && ev.key === "Enter") { ev.preventDefault(); run(); } });
+
+    // Copy
+    document.getElementById("btn-copy").addEventListener("click", async () => {
+      const text = editing ? pre.innerText.replace(/^\s*\d+/gm, "") : SRC;
+      G.toast((await G.copyText(text)) ? "Kod kopyalandı" : "Kopyalamaq alınmadı");
+    });
+
+    // Edit (prototip: sadə contenteditable; real saytda CodeMirror lazy-load)
+    let editing = false;
+    const editBtn = document.getElementById("btn-edit");
+    editBtn.addEventListener("click", () => {
+      editing = !editing;
+      if (editing) {
+        focusStep(null);
+        pre.textContent = SRC; pre.setAttribute("contenteditable", "true"); pre.style.paddingLeft = "20px"; pre.focus();
+        editBtn.querySelector(".label").textContent = "Sıfırla";
+        G.toast("Redaktə rejimi — kodu dəyişib işə salın");
+      } else {
+        pre.removeAttribute("contenteditable"); pre.style.paddingLeft = ""; G.renderCode(pre, SRC);
+        editBtn.querySelector(".label").textContent = "Redaktə";
+      }
+    });
+
+    // Quiz
+    G.renderCode(document.getElementById("quiz-code"), 'x := []int{10, 20, 30, 40}\nfmt.Println(x[1:3])');
+    const fb = document.getElementById("quiz-fb");
+    document.getElementById("quiz").addEventListener("click", (ev) => {
+      const b = ev.target.closest(".quiz-option"); if (!b) return;
+      const opts = document.querySelectorAll(".quiz-option");
+      if (b.dataset.ok === "1") {
+        b.classList.add("correct"); opts.forEach((o) => o.disabled = true);
+        fb.className = "quiz-feedback ok"; fb.textContent = "Düzdür! İndeks 1 daxildir, 3 isə daxil deyil → [20 30].";
+      } else {
+        b.classList.add("wrong"); b.disabled = true;
+        fb.className = "quiz-feedback no"; fb.textContent = "Yox. Xatırlayın: s[a:b]-də b daxil deyil. Yenidən cəhd edin.";
+      }
+    });
+
+    // Learned
+    const lb = document.getElementById("btn-learned"), badge = document.getElementById("learned-badge");
+    function paintLearned() {
+      const on = G.learnedSet.has(SLUG);
+      lb.classList.toggle("is-done", on); lb.querySelector("span").textContent = on ? "Öyrənildi ✓" : "Öyrəndim";
+      badge.hidden = !on;
+    }
+    lb.addEventListener("click", () => {
+      if (G.learnedSet.has(SLUG)) G.learnedSet.delete(SLUG); else { G.learnedSet.add(SLUG); G.toast("Əla! Növbəti: Maps →"); }
+      G.saveLearned(); paintLearned(); G.renderSidebar(document.getElementById("sidebar"), SLUG);
+    });
+    paintLearned();
+
+    // Playground link: kod URL-də ötürülmür (prototip) — real saytda /play/p/<id> paylaşım linki
+  });
+  </script>
+</body>
+</html>

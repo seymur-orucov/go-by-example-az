@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="az">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nümunələrlə Go</title>
+  <meta name="description" content="Go proqramlaşdırma dilini Azərbaycan dilində, addım-addım vizual nümunələrlə öyrənin.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="index.html">Nümunələrlə <b>Go</b></a>
+    <nav class="nav" aria-label="Əsas menyu">
+      <a href="#proqram" aria-current="page">Öyrən</a>
+      <a href="#proqram">Yol xəritəsi</a>
+      <a href="https://go.dev/play/" target="_blank" rel="noopener">Playground</a>
+      <a href="#ferq">Haqqında</a>
+    </nav>
+    <div class="header-right">
+      <button class="search-trigger" data-open-search aria-label="Axtarış (Ctrl+K)">
+        <i data-icon="search" style="display:contents"></i><span>Axtar</span><kbd>Ctrl K</kbd>
+      </button>
+      <button class="btn btn-ghost btn-icon" data-theme-toggle></button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <span class="pill"><span class="dot"></span><span id="pill-text">84 nümunə — tamamilə pulsuz</span></span>
+    <h1>Go-nu öyrən,<br><span class="hl">nümunələrlə.</span></h1>
+    <p class="hero-sub">Qısa izah, işlək kod və addım-addım vizual. Hər sətrin nə etdiyini gör — Azərbaycan dilində.</p>
+    <div class="hero-cta">
+      <a class="btn btn-accent btn-lg" href="example.html?ex=hello-world">Öyrənməyə başla</a>
+      <a class="btn btn-lg" href="#proqram">Proqrama bax</a>
+    </div>
+
+    <span class="float-tag" style="top:16%;left:9%;--c:#6cb6ff"><i></i>slice</span>
+    <span class="float-tag" style="top:13%;right:12%;--c:#3affa0"><i></i>goroutine</span>
+    <span class="float-tag" style="top:46%;left:5%;--c:#dcbdfb"><i></i>interface</span>
+    <span class="float-tag" style="top:52%;right:6%;--c:#f69d50"><i></i>channel</span>
+    <span class="float-tag" style="bottom:18%;left:13%;--c:#f47067"><i></i>defer</span>
+    <span class="float-tag" style="bottom:14%;right:16%;--c:#e8ff5a"><i></i>generics</span>
+  </section>
+
+  <div class="marquee" aria-hidden="true"><div class="marquee-track" id="mq1"></div><div class="marquee-track" id="mq2"></div></div>
+
+  <main class="wrap">
+    <section class="block" id="demo">
+      <div class="block-head">
+        <span class="label">Canlı nümunə</span>
+        <h2>Oxuma — gör.</h2>
+        <p>Addımları keç və ya kodun üzərinə gəl: yaddaşda nə baş verdiyini izlə.</p>
+      </div>
+      <div class="player">
+        <div class="player-head">
+          <span class="player-title" id="d-title"></span>
+          <span class="player-count" id="d-count"></span>
+        </div>
+        <div class="player-body demo">
+          <div class="pane">
+            <div class="pane-head"><span class="label">kod · <span class="fname">slices.go</span></span></div>
+            <pre class="code" id="d-code"></pre>
+          </div>
+          <div style="display:grid;gap:12px;align-content:start">
+            <div class="pane">
+              <div class="pane-head"><span class="label">yaddaş</span></div>
+              <div class="vis" id="d-vis"></div>
+            </div>
+            <div class="terminal">
+              <div class="pane-head"><span class="label">çıxış</span></div>
+              <div class="term-body" id="d-term"></div>
+            </div>
+          </div>
+        </div>
+        <p class="player-note" id="d-note"></p>
+        <div class="player-foot">
+          <button class="btn btn-ghost btn-sm" id="d-reset">↺ Sıfırla</button>
+          <button class="btn btn-ghost btn-sm" id="d-prev">← Əvvəlki</button>
+          <button class="btn btn-ghost btn-sm" id="d-next">Növbəti →</button>
+          <div class="progress-dots" id="d-dots"></div>
+          <span class="grow"></span>
+          <button class="btn btn-accent btn-sm" id="d-play"></button>
+        </div>
+      </div>
+      <p style="text-align:center;margin-top:18px"><a class="label" style="color:var(--accent-ink)" href="example.html?ex=slices">Tam dərsə bax →</a></p>
+    </section>
+
+    <section class="block" id="ferq">
+      <div class="block-head">
+        <span class="label">Fərq</span>
+        <h2>Sənəd oxumaq və ya görmək</h2>
+        <p>Go by Example-ın yığcam üslubu — üstəgəl vizual və interaktivlik.</p>
+      </div>
+      <div class="compare">
+        <div class="compare-card">
+          <span class="label">Adi dərslik</span>
+          <h3>Mətn → kod → təxmin et</h3>
+          <ul>
+            <li>Uzun izah, kod ayrıca blokda</li>
+            <li>Hansı sətrin nəyə aid olduğunu özün tapırsan</li>
+            <li>Nəticəni görmək üçün kodu köçürüb işə salırsan</li>
+            <li>Yaddaşda nə baş verdiyi görünmür</li>
+          </ul>
+        </div>
+        <div class="compare-card good">
+          <span class="label">Nümunələrlə Go</span>
+          <h3>Bax → toxun → anla</h3>
+          <ul>
+            <li>Hər addım 2–3 cümlə, Azərbaycan dilində</li>
+            <li>İzah ↔ kod qarşılıqlı işıqlanır</li>
+            <li>Brauzerdə bir kliklə işə sal və dəyiş</li>
+            <li>Slice, map, kanal — vizual olaraq</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="proqram">
+      <div class="block-head">
+        <span class="label">Proqram</span>
+        <h2 id="prog-title">9 bölmə. 84 nümunə.</h2>
+        <p>Sadədən mürəkkəbə. İstənilən yerdən başla.</p>
+      </div>
+      <button class="search-big" data-open-search><i data-icon="search" style="display:contents"></i>Nümunə, mövzu və ya açar söz axtar…</button>
+      <div class="tracks" id="tracks"></div>
+
+      <div class="track-view" id="track-view">
+        <div class="tv-head">
+          <span class="track-icon" id="tv-icon"></span>
+          <div><h3 id="tv-title"></h3><p id="tv-desc"></p></div>
+        </div>
+        <div class="chips" id="chips">
+          <button class="chip" data-lvl="all" aria-pressed="true">Hamısı</button>
+          <button class="chip" data-lvl="todo" aria-pressed="false">Öyrənilməyən</button>
+          <button class="chip" data-lvl="done" aria-pressed="false">Öyrənilən</button>
+        </div>
+        <div class="rows" id="rows"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="inner">
+      <p>Mark McGranaghan və Eli Bendersky-nin <a href="https://gobyexample.com" rel="noopener">Go by Example</a> layihəsi əsasında hazırlanıb, Azərbaycan dilinə uyğunlaşdırılıb və sadələşdirilib. Kontent <a href="https://creativecommons.org/licenses/by/3.0/" rel="noopener">CC BY 3.0</a> lisenziyası ilə paylaşılır.</p>
+      <p>Go adı Google LLC-yə məxsusdur.<br>Variant B · dizayn prototipi · <a href="../index.html">Variant A</a></p>
+    </div>
+  </footer>
+
+  <script src="../data.js"></script>
+  <script src="../app.js"></script>
+  <script src="b.js"></script>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const G = window.GOAZ, B = window.GOAZ_B;
+
+    document.getElementById("pill-text").textContent = G.FLAT.length + " nümunə — tamamilə pulsuz";
+    document.getElementById("prog-title").textContent = G.SECTIONS.length + " bölmə. " + G.FLAT.length + " nümunə.";
+
+    // Marquee
+    const mq = G.FLAT.slice(0, 40).map((e) => {
+      const sec = G.SECTIONS.find((s) => s.title === e.section);
+      return '<span style="--c:' + B.SECTION_COLORS[sec.id] + '"><i></i>' + G.esc(e.title) + "</span>";
+    }).join("");
+    document.getElementById("mq1").innerHTML = mq;
+    document.getElementById("mq2").innerHTML = mq;
+
+    // Demo player
+    B.createLesson({
+      lesson: B.SLICES,
+      pre: document.getElementById("d-code"),
+      vis: document.getElementById("d-vis"),
+      term: document.getElementById("d-term"),
+      title: document.getElementById("d-title"),
+      count: document.getElementById("d-count"),
+      note: document.getElementById("d-note"),
+      dots: document.getElementById("d-dots"),
+      prev: document.getElementById("d-prev"),
+      next: document.getElementById("d-next"),
+      reset: document.getElementById("d-reset"),
+      play: document.getElementById("d-play"),
+    });
+
+    // Tracks
+    const tracks = document.getElementById("tracks");
+    tracks.innerHTML = G.SECTIONS.map((s) => {
+      const done = s.items.filter((it) => G.learnedSet.has(it[0])).length;
+      return '<button class="track" data-id="' + s.id + '" aria-pressed="false" style="--c:' + B.SECTION_COLORS[s.id] + '">' +
+        '<span class="track-icon">' + G.I[s.icon] + "</span><h3>" + G.esc(s.title) + "</h3><p>" + G.esc(s.desc) + "</p>" +
+        '<span class="meta"><span>' + s.items.length + " nümunə</span><span>" + done + "/" + s.items.length + "</span></span>" +
+        '<span class="bar"><span style="width:' + Math.round(done / s.items.length * 100) + '%"></span></span></button>';
+    }).join("");
+
+    let current = "collections", filter = "all";
+    function renderTrack() {
+      const s = G.SECTIONS.find((x) => x.id === current);
+      tracks.querySelectorAll(".track").forEach((t) => t.setAttribute("aria-pressed", String(t.dataset.id === current)));
+      const icon = document.getElementById("tv-icon");
+      icon.style.setProperty("--c", B.SECTION_COLORS[s.id]); icon.innerHTML = G.I[s.icon];
+      document.getElementById("tv-title").textContent = s.title;
+      document.getElementById("tv-desc").textContent = s.desc;
+      const lvl = B.LEVEL_BY_SECTION[s.id];
+      const items = s.items.filter(([slug]) => filter === "all" || (filter === "done") === G.learnedSet.has(slug));
+      document.getElementById("rows").innerHTML = items.length ? items.map(([slug, title, sub]) => {
+        const e = G.FLAT.find((x) => x.slug === slug);
+        const done = G.learnedSet.has(slug);
+        return '<a class="row" href="' + G.href(slug) + '"><span class="n">' + String(e.n).padStart(2, "0") + "</span>" +
+          "<span><b>" + G.esc(title) + '</b><span class="meta"><span>' + G.esc(sub) + "</span><span>·</span><span>" + B.minutesFor(slug) +
+          ' dəq</span><span>·</span><span class="lvl ' + lvl + '">' + B.LEVEL_LABEL[lvl] + "</span></span></span>" +
+          (done ? '<span class="done">✓ öyrənildi</span>' : '<span class="arrow">→</span>') + "</a>";
+      }).join("") : '<p class="label" style="padding:24px;text-align:center">Bu filtrdə nümunə yoxdur</p>';
+    }
+    tracks.addEventListener("click", (e) => {
+      const t = e.target.closest(".track"); if (!t) return;
+      current = t.dataset.id; renderTrack();
+      document.getElementById("track-view").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+    document.getElementById("chips").addEventListener("click", (e) => {
+      const c = e.target.closest(".chip"); if (!c) return;
+      filter = c.dataset.lvl;
+      document.querySelectorAll("#chips .chip").forEach((x) => x.setAttribute("aria-pressed", String(x === c)));
+      renderTrack();
+    });
+    renderTrack();
+  });
+  </script>
+</body>
+</html>

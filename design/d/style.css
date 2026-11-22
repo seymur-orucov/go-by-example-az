@@ -1,0 +1,423 @@
+/* ==========================================================
+   Nümunələrlə Go — Variant D (birləşmiş)
+   Baza: Variant C (rənglər, palitra, struktur).
+   A-dan: versiya nişanı, "Bütün mövzular" kartları, sidebar, tam hündürlükdə kod.
+   B-dən: "Oxuma — gör." demo, "Proqram" bölməsi (trek kartları + sətirlər).
+   ========================================================== */
+@import url("../c/style.css");
+
+/* ---------- Versiya nişanı (A) ---------- */
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 4px 12px 4px 4px;
+  font-size: 12.5px; font-weight: 500;
+  color: var(--text-muted);
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-full);
+}
+.eyebrow .new { padding: 3px 9px; border-radius: var(--r-full); font-weight: 600; color: var(--on-accent); background: var(--grad); }
+.eyebrow b { color: var(--text); font-weight: 600; }
+.eyebrow-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+
+/* ---------- Bölmə görünüş seçicisi ---------- */
+.view-switch { display: inline-flex; gap: 2px; padding: 3px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 11px; }
+.view-switch button { height: 30px; padding: 0 12px; font: 500 13px/1 var(--font-sans); color: var(--text-muted); background: none; border: 0; border-radius: 8px; cursor: pointer; }
+.view-switch button:hover { color: var(--text); }
+.view-switch button[aria-pressed="true"] { color: var(--text); background: var(--surface); box-shadow: var(--shadow-sm); }
+.prog-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+.search-big {
+  display: flex; align-items: center; gap: 10px; flex: 1; min-width: 220px;
+  height: 42px; padding: 0 14px;
+  font: 400 14px/1 var(--font-sans); color: var(--text-subtle); text-align: left;
+  background: var(--surface); border: 1px solid var(--line-strong); border-radius: 11px; cursor: text;
+}
+.search-big:hover { border-color: var(--accent-ring); }
+.search-big svg { width: 16px; height: 16px; }
+
+/* ---------- "Bütün mövzular" kartları (A) ---------- */
+.sections-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 12px; }
+.section-card { display: flex; flex-direction: column; padding: 20px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-xl); transition: border-color var(--dur), box-shadow var(--dur); }
+.section-card:hover { border-color: var(--line-strong); box-shadow: var(--shadow-sm); }
+.sc-head { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+.sc-icon { display: grid; place-items: center; width: 36px; height: 36px; flex: none; border-radius: 10px; color: var(--c, var(--accent)); background: color-mix(in srgb, var(--c, var(--accent)) 14%, transparent); }
+.sc-icon svg { width: 18px; height: 18px; }
+.sc-head h3 { font-size: 16px; font-weight: 650; }
+.sc-head .sc-count { margin-left: auto; font: 500 12px/1 var(--font-mono); color: var(--text-subtle); }
+.section-card > p { font-size: 13.5px; color: var(--text-subtle); margin-bottom: 12px; }
+.sc-bar { height: 3px; border-radius: 3px; background: var(--surface-3); overflow: hidden; margin-bottom: 10px; }
+.sc-bar span { display: block; height: 100%; background: var(--grad); }
+.sc-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; }
+.sc-list a { display: flex; align-items: center; gap: 10px; padding: 6px 8px; margin: 0 -8px; border-radius: 8px; font-size: 14px; color: var(--text); }
+.sc-list a:hover { background: var(--surface-2); }
+.sc-list .sub { margin-left: auto; font-size: 12px; color: var(--text-subtle); text-align: right; }
+.sc-list .check { width: 16px; height: 16px; flex: none; color: var(--green); }
+.sc-list .check.empty { color: var(--line-strong); }
+.sc-list a.next { color: var(--accent-ink); font-weight: 600; }
+.sc-list a.next .check { color: var(--accent); }
+.sc-more { align-self: flex-start; margin-top: 8px; padding: 0; font: 500 13px/1.4 var(--font-sans); color: var(--accent-ink); background: none; border: 0; cursor: pointer; }
+
+/* ---------- "Proqram" trek kartları + sətirlər (B) ---------- */
+.tracks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.track {
+  display: flex; flex-direction: column; gap: 6px;
+  padding: 18px; text-align: left; font: inherit; color: inherit;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-xl);
+  cursor: pointer; transition: border-color var(--dur), transform var(--dur) var(--ease), box-shadow var(--dur);
+}
+.track:hover { border-color: var(--line-strong); transform: translateY(-2px); }
+.track[aria-pressed="true"] { border-color: var(--accent-ring); box-shadow: 0 12px 30px -18px var(--accent-ring); background: linear-gradient(160deg, var(--accent-soft), transparent 55%), var(--surface); }
+.track .sc-icon { margin-bottom: 6px; }
+.track h3 { font-size: 15px; font-weight: 650; }
+.track p { font-size: 13px; color: var(--text-subtle); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.track .meta { display: flex; justify-content: space-between; margin-top: 4px; font: 500 11.5px/1 var(--font-mono); color: var(--text-subtle); }
+.track-view { margin-top: 28px; }
+.tv-head { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+.tv-head .sc-icon { width: 46px; height: 46px; }
+.tv-head h3 { font-size: 22px; font-weight: 750; letter-spacing: -0.02em; }
+.tv-head p { font-size: 14px; color: var(--text-subtle); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.filter button { height: 28px; padding: 0 12px; font: 500 12.5px/1 var(--font-sans); color: var(--text-muted); background: transparent; border: 1px solid var(--line-strong); border-radius: var(--r-full); cursor: pointer; }
+.filter button[aria-pressed="true"] { color: var(--on-accent); background: var(--grad); border-color: transparent; }
+.rows { display: grid; gap: 6px; }
+.row { display: grid; grid-template-columns: 40px 1fr auto; align-items: center; gap: 8px; padding: 12px 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; transition: border-color var(--dur), transform var(--dur) var(--ease); }
+.row:hover { border-color: var(--accent-ring); transform: translateX(3px); }
+.row .n { font: 500 12px/1 var(--font-mono); color: var(--text-subtle); }
+.row b { display: block; font-size: 14.5px; font-weight: 600; }
+.row .meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; font-size: 12px; color: var(--text-subtle); }
+.row .meta .lvl { color: var(--green); }
+.row .meta .lvl.orta { color: var(--amber); }
+.row .meta .lvl.irəli { color: var(--red); }
+.row .done { font-size: 12px; color: var(--green); }
+.row .arrow { color: var(--text-subtle); }
+
+/* ---------- Demo (B) ---------- */
+.demo { display: grid; grid-template-columns: 1.1fr 1fr; gap: 10px; }
+.demo-side { display: grid; gap: 10px; align-content: start; }
+
+/* ==========================================================
+   DƏRS SƏHİFƏSİ
+   ========================================================== */
+
+/* Sidebar (A üslubu: bütün bölmələr, açılıb-bağlanan qruplar) */
+.sb-progress { margin-bottom: 20px; }
+.sb-progress .row2 { display: flex; justify-content: space-between; font-size: 12.5px; color: var(--text-muted); margin-bottom: 6px; }
+.sb-progress .row2 b { color: var(--text); font-weight: 600; }
+.sb-progress .bar { height: 4px; border-radius: 4px; background: var(--surface-3); overflow: hidden; }
+.sb-progress .bar span { display: block; height: 100%; background: var(--grad); }
+.sb-group + .sb-group { margin-top: 2px; }
+.sb-group summary {
+  display: flex; align-items: center; gap: 8px;
+  padding: 7px 8px; margin: 0 -8px;
+  font: 600 11.5px/1.3 var(--font-sans); letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--text-subtle);
+  border-radius: 8px; cursor: pointer; list-style: none;
+}
+.sb-group summary::-webkit-details-marker { display: none; }
+.sb-group summary:hover { color: var(--text-muted); background: var(--surface-2); }
+.sb-group summary .dot { width: 7px; height: 7px; flex: none; border-radius: 2px; background: var(--c); }
+.sb-group summary .cnt { margin-left: auto; font: 500 11px/1 var(--font-mono); letter-spacing: 0; }
+.sb-group summary svg { width: 14px; height: 14px; flex: none; transition: transform var(--dur) var(--ease); }
+.sb-group[open] summary svg { transform: rotate(90deg); }
+.sb-list { list-style: none; margin: 2px 0 10px; padding: 0 0 0 10px; border-left: 1px solid var(--line-strong); margin-left: 3px; }
+.sb-list a { position: relative; display: flex; align-items: center; gap: 8px; padding: 5px 10px; font-size: 14px; color: var(--text-muted); border-radius: 8px; }
+.sb-list a:hover { color: var(--text); background: var(--surface-2); }
+.sb-list a[aria-current="page"] { color: var(--accent-ink); background: var(--accent-soft); font-weight: 600; }
+.sb-list a[aria-current="page"]::before { content: ""; position: absolute; left: -11px; top: 6px; bottom: 6px; width: 2px; border-radius: 2px; background: var(--grad); }
+.sb-list .ok { width: 15px; height: 15px; flex: none; margin-left: auto; color: var(--green); }
+
+/* Kod pəncərəsi (A üslubu: tam hündürlük, qısaldılmır) */
+.code-window { background: var(--code-bg); border: 1px solid var(--line-strong); border-radius: var(--r-xl); overflow: hidden; }
+.cw-bar { display: flex; align-items: center; gap: 8px; height: 46px; padding: 0 8px 0 14px; border-bottom: 1px solid var(--line); background: var(--surface); }
+.cw-file { display: inline-flex; align-items: center; gap: 8px; font: 500 12.5px/1 var(--font-mono); color: var(--text-muted); white-space: nowrap; }
+.cw-file .gofile { padding: 3px 5px; font: 700 9px/1 var(--font-mono); color: #fff; background: #00add8; border-radius: 4px; }
+.cw-actions { display: flex; align-items: center; gap: 2px; margin-left: auto; }
+.cw-steps { display: inline-flex; align-items: center; gap: 2px; margin-right: 4px; padding-right: 6px; border-right: 1px solid var(--line); }
+.cw-steps .count { min-width: 52px; text-align: center; font: 500 12px/1 var(--font-mono); color: var(--text-subtle); }
+.code-window pre.code { padding: 12px 0 14px; }
+.code-window .terminal { border: 0; border-top: 1px solid var(--line); border-radius: 0; }
+.code-window .terminal .pane-head { padding-top: 10px; }
+
+/* Addımın daxilində yaddaş vizualı */
+.step-vis { margin-top: 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--code-bg); }
+.step-vis .vis { padding: 10px 12px 12px; }
+.step-vis .vis-head { margin-bottom: 10px; }
+.step-vis .cell .box { width: 36px; height: 36px; font-size: 12.5px; }
+.step-vis .cells { min-height: 52px; }
+.step-vis-cap { display: flex; align-items: center; gap: 8px; padding: 8px 12px 0; }
+.step-vis-cap .label { flex: 1; }
+.step-vis-cap small { font-size: 12px; color: var(--text-subtle); }
+.step:not(.is-active) .step-vis { opacity: 0.7; }
+
+@media (max-width: 1200px) {
+  .tracks { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 980px) {
+  .demo { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 640px) {
+  .tracks { grid-template-columns: minmax(0, 1fr); }
+  .sections-grid { grid-template-columns: minmax(0, 1fr); }
+  .row { grid-template-columns: 30px 1fr auto; padding: 11px 12px; }
+  .cw-actions .txt, .cw-steps { display: none; }
+  .step-vis .cell .box { width: 32px; height: 32px; }
+  .view-switch { width: 100%; }
+  .view-switch button { flex: 1; padding: 0 6px; }
+}
+
+/* ==========================================================
+   ANA SƏHİFƏ — yüngül animasiyalar
+   ========================================================== */
+/* Hərəkətli qradiyent fon: C-dəki statik ləkələrin (.hero::before) yerinə.
+   Palitranın iki rəngi (--accent, --accent-2) böyük yumşaq ləkələr kimi yavaş-yavaş üzür
+   və bir-birinə qarışır. Rənglər palitra seçicisi ilə birlikdə dəyişir. */
+.hero::before { display: none; }
+.hero-bg {
+  --blob-a: 55%;
+  position: absolute; z-index: -1;
+  left: calc(50% - 50vw); right: calc(50% - 50vw); top: -120px; height: 760px;
+  overflow: hidden; pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, #000 50%, transparent);
+          mask-image: linear-gradient(to bottom, #000 50%, transparent);
+}
+:root[data-theme="light"] .hero-bg { --blob-a: 30%; }
+@media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) .hero-bg { --blob-a: 30%; } }
+.blob {
+  position: absolute;
+  width: max(560px, 62vw); aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--c) var(--blob-a), transparent), transparent);
+  will-change: transform;
+}
+.blob.b1 { --c: var(--accent);   left: -18%; top: -30%; animation: blob-1 28s ease-in-out infinite alternate; }
+.blob.b2 { --c: var(--accent-2); right: -20%; top: -10%; animation: blob-2 34s ease-in-out infinite alternate; }
+.blob.b3 { --c: var(--accent-2); left: 20%; top: 25%; width: max(420px, 44vw); opacity: 0.7; animation: blob-3 40s ease-in-out infinite alternate; }
+@keyframes blob-1 {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(28vw, 10%, 0) scale(1.15); }
+  100% { transform: translate3d(12vw, 22%, 0) scale(0.95); }
+}
+@keyframes blob-2 {
+  0%   { transform: translate3d(0, 0, 0) scale(1.05); }
+  50%  { transform: translate3d(-26vw, 16%, 0) scale(0.9); }
+  100% { transform: translate3d(-8vw, -6%, 0) scale(1.15); }
+}
+@keyframes blob-3 {
+  0%   { transform: translate3d(0, 0, 0); }
+  50%  { transform: translate3d(22vw, -18%, 0) scale(1.2); }
+  100% { transform: translate3d(-14vw, -4%, 0) scale(0.9); }
+}
+
+/* Hero elementləri yüklənəndə növbə ilə qalxır */
+.hero .eyebrow-row, .hero h1, .hero p.sub, .hero-cta, .hero .resume { animation: rise 0.7s var(--ease) both; }
+.hero h1 { animation-delay: 0.06s; }
+.hero p.sub { animation-delay: 0.12s; }
+.hero-cta { animation-delay: 0.18s; }
+.hero .resume { animation-delay: 0.28s; }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } }
+
+/* Başlıqdakı qradiyent yavaşca axır */
+.hero h1 .grad-text {
+  background-image: linear-gradient(100deg, var(--accent), var(--accent-2), var(--accent));
+  background-size: 200% auto;
+  animation: grad-flow 7s linear infinite;
+}
+@keyframes grad-flow { to { background-position: 200% center; } }
+
+/* ---------- Scroll animasiyaları (sinifləri d.js əlavə edir; JS olmasa hər şey görünür) ---------- */
+/* Bölmə başlığı: sözlər maskanın altından növbə ilə qalxır */
+.fx-words .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.12em; margin-bottom: -0.12em; }
+.fx-words .w > span { display: inline-block; transform: translateY(110%) rotate(4deg); transform-origin: left bottom; transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); transition-delay: calc(var(--i) * 70ms + 120ms); }
+.section-head.in .fx-words .w > span { transform: none; }
+[data-count] { font-variant-numeric: tabular-nums; }
+
+/* Kod etiketi yazılır, alt mətn bulanıqlıqdan aydınlaşır */
+.fx .section-head .tag-code { opacity: 0; transform: translateY(8px); transition: opacity 0.4s, transform 0.5s var(--ease); }
+.fx .section-head.in .tag-code { opacity: 1; transform: none; }
+.tag-code.typing .caret { animation: none; }
+.fx .section-head > p { opacity: 0; filter: blur(10px); transform: translateY(14px); transition: opacity 0.9s var(--ease) 0.45s, filter 0.9s var(--ease) 0.45s, transform 0.9s var(--ease) 0.45s; }
+.fx .section-head.in > p { opacity: 1; filter: none; transform: none; }
+
+/* Kartlar: aşağıdan, kiçikdən və bulanıqdan */
+.fx-card { opacity: 0; }
+.fx-card.in { animation: card-in 0.85s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: var(--d, 0s); }
+@keyframes card-in { from { opacity: 0; transform: translateY(48px) scale(0.94); filter: blur(8px); } }
+/* Yol xəritəsi: budaqlar kənarlardan gəlir */
+.map-row.fx-card.in .map-branch.left { animation: from-left 0.7s var(--ease) both; animation-delay: calc(var(--d, 0s) + 0.1s); }
+.map-row.fx-card.in .map-branch.right { animation: from-right 0.7s var(--ease) both; animation-delay: calc(var(--d, 0s) + 0.1s); }
+@keyframes from-left { from { opacity: 0; transform: translateX(-40px); } }
+@keyframes from-right { from { opacity: 0; transform: translateX(40px); } }
+
+/* ---------- Görünüş keçidləri: Bütün mövzular / Bölmə üzrə / Yol xəritəsi ---------- */
+.view-in > * { animation: card-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: calc(var(--i, 0) * 55ms); }
+.rows.view-in > * { animation: row-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: calc(var(--i, 0) * 35ms); }
+@keyframes row-in { from { opacity: 0; transform: translateX(-18px); } }
+/* Xəritə: mərkəzi xətt yuxarıdan aşağı çəkilir, node-lar böyüyür, budaqlar kənarlardan gəlir */
+.map.view-in::before { animation: line-grow 1s cubic-bezier(0.16, 1, 0.3, 1) both; transform-origin: 50% 0; }
+@keyframes line-grow { from { transform: translateX(-1px) scaleY(0); } }
+.map.view-in > .map-row { animation: fade 0.3s both; animation-delay: calc(var(--i, 0) * 90ms); }
+.map.view-in .map-node { animation: node-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both; animation-delay: calc(var(--i, 0) * 90ms + 0.05s); }
+.map.view-in .map-branch.left { animation: from-left 0.7s var(--ease) both; animation-delay: calc(var(--i, 0) * 90ms + 0.15s); }
+.map.view-in .map-branch.right { animation: from-right 0.7s var(--ease) both; animation-delay: calc(var(--i, 0) * 90ms + 0.15s); }
+@keyframes node-pop { from { opacity: 0; transform: scale(0.7); } }
+
+/* ---------- "Niyə bu sayt?" — bento kartları ---------- */
+.bento-card { transition: border-color 0.3s, transform 0.4s var(--ease), box-shadow 0.4s; }
+.bento-card:hover { border-color: var(--accent-ring); transform: translateY(-4px); box-shadow: 0 18px 40px -24px var(--accent-ring); }
+/* kursoru izləyən işıq */
+.bento-card::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity 0.3s;
+  background: radial-gradient(280px circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--accent) 14%, transparent), transparent 70%);
+}
+.bento-card:hover::after { opacity: 1; }
+.bento-card > * { position: relative; z-index: 1; }
+
+/* Kart ekranda olanda (.live) daxili animasiyalar işləyir; ekrandan çıxanda dayanır */
+/* !important: aşağıdakı `animation` qısa yazılışları play-state-i "running"-ə sıfırlayır */
+.bento-card:not(.live) .art *,
+.bento-card:not(.live) .art *::after { animation-play-state: paused !important; }
+
+/* 1. Addım-addım vizual: d və e slice-a "append" olunur */
+.mini-cells span.on { animation: cell-append 4.5s cubic-bezier(0.34, 1.56, 0.64, 1) infinite; }
+.mini-cells span.on + span.on { animation-delay: 0.35s; }
+.mini-cells span.cap { animation: cap-blink 4.5s infinite; }
+@keyframes cell-append {
+  0%, 12% { opacity: 0; transform: translateY(-14px) scale(0.6); }
+  24%, 86% { opacity: 1; transform: none; }
+  96%, 100% { opacity: 0; transform: scale(0.8); }
+}
+@keyframes cap-blink { 0%, 20% { opacity: 1; } 30%, 80% { opacity: 0.35; } 100% { opacity: 1; } }
+
+/* 2. Brauzerdə işə sal: əmr yazılır, sonra nəticə çıxır */
+.t-cmd { display: inline-block; vertical-align: bottom; overflow: hidden; white-space: nowrap; width: 14ch; border-right: 2px solid transparent; animation: t-type 5s steps(14, end) infinite, t-caret 5s infinite; }
+.t-out { display: inline-block; color: #86efac; animation: t-out 5s infinite; }
+@keyframes t-type { 0%, 6% { width: 0; } 34%, 100% { width: 14ch; } }
+@keyframes t-caret { 0%, 38% { border-right-color: #8fb0ff; } 40%, 100% { border-right-color: transparent; } }
+@keyframes t-out { 0%, 40% { opacity: 0; transform: translateY(4px); } 46%, 90% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+
+/* 3. İzah ↔ kod: işıq iki tərəf arasında gedib-gəlir */
+.mini-link .l { animation: link-glow 3.2s infinite; }
+.mini-link .r { animation: link-glow 3.2s infinite 1.6s; }
+.mini-link .arrow { animation: link-arrow 3.2s ease-in-out infinite; }
+@keyframes link-glow { 0%, 45%, 100% { box-shadow: 0 0 0 0 transparent; } 15% { box-shadow: 0 0 0 4px var(--accent-soft), 0 0 22px -4px var(--accent-ring); } }
+@keyframes link-arrow { 0%, 100% { transform: translateX(-3px); } 50% { transform: translateX(3px); } }
+
+/* 4. Özünü yoxla: variantlar yoxlanılır, düzgün cavab seçilir */
+.bento-card .chip { animation: chip-scan 4s infinite; }
+.bento-card .chip:nth-child(3) { animation-delay: 0.6s; }
+.bento-card .chip.green { animation: chip-pick 4s infinite; }
+@keyframes chip-scan { 0%, 100% { border-color: var(--line); } 8%, 16% { border-color: var(--accent); color: var(--text); } 24% { border-color: var(--line); } 60%, 90% { opacity: 0.45; } }
+@keyframes chip-pick { 0%, 40% { transform: none; box-shadow: none; } 50% { transform: scale(1.14); box-shadow: 0 0 0 4px var(--green-soft); } 58%, 90% { transform: scale(1.04); box-shadow: 0 0 0 3px var(--green-soft); } 100% { transform: none; box-shadow: none; } }
+
+/* 5. Klaviatura ilə: düymələr növbə ilə basılır */
+.kbd-row kbd { animation: key-press 2.4s infinite; }
+.kbd-row kbd:nth-child(2) { animation-delay: 0.4s; }
+.kbd-row kbd:nth-child(3) { animation-delay: 0.8s; }
+.kbd-row kbd:nth-child(4) { animation-delay: 1.2s; }
+.kbd-row kbd:nth-child(5) { animation-delay: 1.6s; }
+.kbd-row kbd:nth-child(6) { animation-delay: 2s; }
+@keyframes key-press { 0%, 14%, 100% { transform: none; color: var(--text-subtle); border-color: var(--line-strong); box-shadow: 0 2px 0 var(--line-strong); } 4%, 9% { transform: translateY(2px); color: var(--accent-ink); border-color: var(--accent); box-shadow: 0 0 0 var(--line-strong); } }
+
+/* 6. Yol xəritəsi: irəliləyiş zolağı dolur */
+.bento-card .mini-bar span { animation: bar-fill 4s cubic-bezier(0.16, 1, 0.3, 1) infinite; }
+@keyframes bar-fill { 0%, 8% { width: 0; } 45%, 100% { width: 38%; } }
+
+/* 7. Açıq mənbə: nişanın üzərindən parıltı keçir */
+.bento-card .chip.acc { position: relative; overflow: hidden; animation: none; }
+.bento-card .chip.acc::after { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, 0.45), transparent 70%); transform: translateX(-120%); animation: shine 3s ease-in-out infinite; }
+@keyframes shine { 0%, 50% { transform: translateX(-120%); } 80%, 100% { transform: translateX(120%); } }
+
+/* Demo pleyer: scroll-a bağlı 3D giriş (transform/opacity JS-dən) */
+.fx-tilt { transform-origin: 50% 0; will-change: transform, opacity; }
+.hero-grid { will-change: transform, opacity; }
+
+/* ==========================================================
+   DƏRS SƏHİFƏSİ — görünüş rejimləri (d.js)
+   <html data-sidebar="off" | data-width="full" | data-zen>
+   ========================================================== */
+:root { --content-w: 1220px; }
+.layout { max-width: none; }
+.article { width: 100%; max-width: var(--content-w); margin-inline: auto; transition: max-width 280ms var(--ease); }
+html[data-width="full"] .article { max-width: 100%; }
+.article.mode-in { animation: fade 0.35s var(--ease); }
+
+/* Header-dəki panel düyməsi: geniş ekranda sidebar-ı gizlədir, dar ekranda drawer açır */
+.sb-toggle { margin-left: -6px; }
+.sb-toggle .sb-fill { opacity: 0; transition: opacity var(--dur); }
+.sb-toggle[aria-pressed="true"] .sb-fill { opacity: 0.3; }
+
+@media (min-width: 981px) {
+  .layout { transition: grid-template-columns 280ms var(--ease); }
+  .sidebar { min-width: 0; transition: opacity 200ms 100ms, visibility 0s; }
+  html[data-sidebar="off"] .layout { grid-template-columns: 0px minmax(0, 1fr); }
+  html[data-sidebar="off"] .sidebar { opacity: 0; visibility: hidden; overflow: hidden; border-right-color: transparent; transition: opacity 120ms, visibility 0s 280ms; }
+}
+
+/* Görünüş menyusu */
+.view-picker { position: relative; }
+.view-menu { left: auto; right: 0; width: 300px; }
+.vm-row {
+  display: flex; align-items: center; gap: 10px; width: 100%;
+  padding: 9px 10px; border: 0; border-radius: 8px; background: none;
+  font: 500 13.5px/1.3 var(--font-sans); color: var(--text); text-align: left; cursor: pointer;
+}
+.vm-row:hover { background: var(--surface-2); }
+.vm-row > svg { width: 17px; height: 17px; flex: none; color: var(--text-muted); }
+.vm-row .t { flex: 1; min-width: 0; }
+.vm-row .t small { display: block; margin-top: 2px; font-size: 11.5px; font-weight: 400; color: var(--text-subtle); }
+.vm-row kbd { flex: none; }
+.vm-static { cursor: default; padding-bottom: 6px; }
+.vm-static:hover { background: none; }
+.switch { position: relative; width: 30px; height: 18px; flex: none; border-radius: var(--r-full); background: var(--surface-3); transition: background var(--dur); }
+.switch::after { content: ""; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); transition: transform var(--dur) var(--ease); }
+[aria-checked="true"] > .switch { background: var(--grad); }
+[aria-checked="true"] > .switch::after { transform: translateX(12px); }
+.vm-seg { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin: 0 10px 8px 37px; padding: 3px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px; }
+.vm-seg button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 30px; font: 500 12.5px/1 var(--font-sans); color: var(--text-muted); background: none; border: 0; border-radius: 7px; cursor: pointer; }
+.vm-seg button svg { width: 15px; height: 15px; }
+.vm-seg button:hover { color: var(--text); }
+.vm-seg button[aria-checked="true"] { color: var(--text); background: var(--surface); box-shadow: var(--shadow-sm); }
+.menu-sep { height: 1px; margin: 6px 4px; background: var(--line); }
+
+.btn-zen[aria-pressed="true"] { color: var(--accent-ink); background: var(--accent-soft); border-color: transparent; }
+
+/* ---------- Zen rejimi ---------- */
+html[data-zen] { scroll-padding-top: 24px; }
+html[data-zen] .site-header,
+html[data-zen] .site-footer,
+html[data-zen] .sidebar,
+html[data-zen] .crumbs { display: none; }
+html[data-zen] .layout { grid-template-columns: minmax(0, 1fr); }
+html[data-zen] .article { max-width: var(--content-w); padding-top: 48px; } /* zen həmişə mərkəzdə */
+
+.read-progress { position: fixed; top: 0; left: 0; right: 0; z-index: 80; height: 3px; display: none; pointer-events: none; }
+.read-progress span { display: block; height: 100%; background: var(--grad); transform: scaleX(0); transform-origin: left; transition: transform 120ms linear; }
+html[data-zen] .read-progress { display: block; }
+
+.zen-bar {
+  position: fixed; left: 16px; bottom: 16px; z-index: 70;
+  display: none; align-items: center; gap: 10px;
+  height: 42px; padding: 0 5px 0 8px;
+  font-size: 13px; color: var(--text-muted);
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  border: 1px solid var(--line-strong); border-radius: var(--r-full);
+  box-shadow: var(--shadow);
+  opacity: 0.4;
+  transition: opacity 240ms var(--ease);
+}
+html[data-zen] .zen-bar { display: flex; }
+.zen-bar:hover, .zen-bar:focus-within, .zen-bar.show { opacity: 1; }
+.zen-bar .logo-mark { width: 26px; height: 26px; font-size: 10px; border-radius: 50%; }
+.zen-bar b { max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text); font-weight: 600; }
+.zen-bar .sep { width: 1px; height: 18px; background: var(--line-strong); }
+.zen-bar .zen-hint { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: var(--text-subtle); }
+.zen-bar .btn { gap: 6px; border-radius: var(--r-full); }
+
+@media (max-width: 980px) {
+  .view-picker { display: none; }
+}
+@media (max-width: 640px) {
+  .zen-bar .zen-hint, .zen-bar .sep { display: none; }
+  html[data-zen] .article { padding-top: 28px; }
+  .btn-zen span { display: none; }
+}

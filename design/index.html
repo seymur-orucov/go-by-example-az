@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="az">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nümunələrlə Go</title>
+  <meta name="description" content="Go proqramlaşdırma dilini Azərbaycan dilində, qısa izahlı və işlək nümunələrlə öyrənin.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Nümunələrlə Go — ana səhifə">
+      <span class="brand-mark">go</span>
+      <span class="brand-name">Nümunələrlə Go<small>Azərbaycan dilində</small></span>
+    </a>
+    <div class="header-spacer"></div>
+    <button class="search-trigger" data-open-search aria-label="Axtarış (Ctrl+K)">
+      <i data-icon="search" style="display:contents"></i>
+      <span>Nümunə axtar…</span>
+      <span class="kbds"><kbd>Ctrl</kbd><kbd>K</kbd></span>
+    </button>
+    <div class="header-actions">
+      <button class="btn btn-ghost btn-icon" data-theme-toggle></button>
+      <a class="btn btn-ghost btn-icon" href="#" aria-label="GitHub" title="GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.3-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <main class="home-main">
+    <section class="hero">
+      <div>
+        <span class="eyebrow"><span class="dot">Yeni</span> Go 1.25 üçün yenilənib</span>
+        <h1>Go-nu <span class="grad">nümunələrlə</span> öyrən</h1>
+        <p class="hero-lead">Hər mövzu — qısa izah və işlək kod. Oxu, brauzerdə işə sal, dəyiş, nəticəni dərhal gör. Tamamilə Azərbaycan dilində.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary btn-lg" href="example.html?ex=hello-world">Öyrənməyə başla
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <button class="btn btn-lg" data-open-search>
+            <i data-icon="search" style="display:contents"></i> Mövzu axtar
+          </button>
+        </div>
+        <div class="hero-stats">
+          <div><strong id="stat-count">80</strong><span>nümunə</span></div>
+          <div><strong id="stat-sections">9</strong><span>bölmə</span></div>
+          <div><strong>Pulsuz</strong><span>açıq mənbə</span></div>
+        </div>
+      </div>
+
+      <div class="hero-card" aria-label="Kod nümunəsi">
+        <div class="cw-bar">
+          <span class="cw-file"><span class="gofile">GO</span> salam.go</span>
+          <div class="cw-actions">
+            <button class="btn btn-run btn-sm" id="hero-run">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15a1 1 0 0 0 1.5.9l12-7.5a1 1 0 0 0 0-1.8l-12-7.5A1 1 0 0 0 7 4.5Z"/></svg>
+              <span class="label">İşə sal</span>
+            </button>
+          </div>
+        </div>
+        <pre class="code" id="hero-code"></pre>
+        <div class="terminal">
+          <div class="term-head">Çıxış <span class="status" id="hero-status"><span class="led"></span><span>hazır</span></span></div>
+          <div class="term-body" id="hero-out"><span class="muted">▶ “İşə sal” düyməsini basın</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="progress-card" id="progress-card">
+      <div class="progress-ring" id="ring">
+        <svg viewBox="0 0 56 56"><circle class="track" cx="28" cy="28" r="24"/><circle class="bar" cx="28" cy="28" r="24" stroke-dasharray="150.8" stroke-dashoffset="150.8"/></svg>
+        <b id="ring-pct">0%</b>
+      </div>
+      <div class="pc-text">
+        <h3 id="pc-title">Xoş gəldiniz!</h3>
+        <p id="pc-sub">İrəliləyişiniz bu brauzerdə saxlanılır.</p>
+      </div>
+      <a class="btn btn-primary" id="pc-continue" href="example.html?ex=slices">Davam et</a>
+    </div>
+
+    <div class="section-head">
+      <div>
+        <h2>Bütün mövzular</h2>
+        <p>Sadədən mürəkkəbə doğru düzülüb. İstənilən yerdən başlaya bilərsiniz.</p>
+      </div>
+    </div>
+    <div class="sections-grid" id="sections"></div>
+
+    <div class="section-head"><div><h2>Niyə bu sayt?</h2></div></div>
+    <div class="features">
+      <div class="feature"><div class="sc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4.5v15l12-7.5-12-7.5Z"/></svg></div><h3>Brauzerdə işə sal</h3><p>Heç nə quraşdırmadan kodu işlədin, dəyişin və nəticəni görün.</p></div>
+      <div class="feature"><div class="sc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h7"/></svg></div><h3>Addım-addım izah</h3><p>İzahın üzərinə gəlin — koddakı uyğun sətirlər işıqlanır.</p></div>
+      <div class="feature"><div class="sc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg></div><h3>Özünü yoxla</h3><p>Hər mövzunun sonunda qısa sual və irəliləyiş izləmə.</p></div>
+      <div class="feature"><div class="sc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 10h.01M11 10h.01M15 10h.01M7 14h10"/></svg></div><h3>Klaviatura ilə</h3><p><kbd>Ctrl</kbd> <kbd>K</kbd> axtarış, <kbd>←</kbd> <kbd>→</kbd> nümunələr arasında keçid.</p></div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="inner">
+      <p>Bu sayt Mark McGranaghan və Eli Bendersky-nin <a href="https://gobyexample.com" rel="noopener">Go by Example</a> layihəsi əsasında hazırlanıb, Azərbaycan dilinə uyğunlaşdırılıb və sadələşdirilib. Kontent <a href="https://creativecommons.org/licenses/by/3.0/" rel="noopener">CC BY 3.0</a> lisenziyası ilə paylaşılır.</p>
+      <p>Go loqosu və adı Google LLC-yə məxsusdur.<br>Dizayn prototipi · 2026</p>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const G = window.GOAZ;
+
+    // Hero code
+    const heroSrc = 'package main\n\nimport "fmt"\n\nfunc main() {\n\tad := "Dünya"\n\tfmt.Println("Salam,", ad+"!")\n\n\tfor i := 1; i <= 3; i++ {\n\t\tfmt.Println("Addım", i)\n\t}\n}\n';
+    G.renderCode(document.getElementById("hero-code"), heroSrc);
+    const heroOut = ["Salam, Dünya!", "Addım 1", "Addım 2", "Addım 3"];
+    const runBtn = document.getElementById("hero-run"), out = document.getElementById("hero-out"), st = document.getElementById("hero-status");
+    runBtn.addEventListener("click", () => {
+      runBtn.disabled = true; st.className = "status run"; st.lastChild.textContent = "işləyir…";
+      out.innerHTML = '<span class="prompt">$</span> go run salam.go';
+      setTimeout(() => {
+        heroOut.forEach((l, i) => { const s = document.createElement("span"); s.className = "out-line"; s.style.animationDelay = i * 70 + "ms"; s.textContent = l; out.appendChild(s); });
+        st.className = "status ok"; st.lastChild.textContent = "0.21 san"; runBtn.disabled = false;
+      }, 650);
+    });
+
+    // Stats
+    document.getElementById("stat-count").textContent = G.FLAT.length;
+    document.getElementById("stat-sections").textContent = G.SECTIONS.length;
+
+    // Progress
+    const done = G.FLAT.filter((e) => G.learnedSet.has(e.slug)).length;
+    const pct = Math.round((done / G.FLAT.length) * 100);
+    document.querySelector("#ring .bar").style.strokeDashoffset = 150.8 * (1 - done / G.FLAT.length);
+    document.getElementById("ring-pct").textContent = pct + "%";
+    const next = G.FLAT.find((e) => !G.learnedSet.has(e.slug));
+    if (done > 0 && next) {
+      document.getElementById("pc-title").textContent = done + " / " + G.FLAT.length + " nümunə öyrənilib";
+      document.getElementById("pc-sub").innerHTML = "Növbəti: <b>" + G.esc(next.title) + "</b> — " + G.esc(next.sub) + " · " + G.esc(next.section);
+      document.getElementById("pc-continue").href = G.href(next.slug);
+    } else if (!done) {
+      document.getElementById("pc-continue").textContent = "Başla";
+      document.getElementById("pc-continue").href = G.href("hello-world");
+    }
+
+    // Sections grid
+    const LIMIT = 6;
+    const grid = document.getElementById("sections");
+    grid.innerHTML = G.SECTIONS.map((s) => {
+      const sd = s.items.filter((it) => G.learnedSet.has(it[0])).length;
+      const items = s.items.map(([slug, title, sub], i) => {
+        const n = G.FLAT.find((e) => e.slug === slug).n;
+        return '<li' + (i >= LIMIT ? ' hidden' : '') + '><a href="' + G.href(slug) + '">' +
+          '<span class="check' + (G.learnedSet.has(slug) ? '' : ' empty') + '">' + (G.learnedSet.has(slug) ? G.I.check : G.I.circle) + '</span>' +
+          '<span>' + G.esc(title) + '</span><span class="sub">' + G.esc(sub) + '</span></a></li>';
+      }).join("");
+      const more = s.items.length > LIMIT ? '<button class="sc-more" data-more>+ daha ' + (s.items.length - LIMIT) + ' nümunə</button>' : '';
+      return '<article class="section-card"><div class="sc-head"><span class="sc-icon">' + G.I[s.icon] + '</span><h3>' + G.esc(s.title) +
+        '</h3><span class="sc-count">' + sd + '/' + s.items.length + '</span></div><p>' + G.esc(s.desc) + '</p>' +
+        '<div class="sc-bar"><span style="width:' + Math.round(sd / s.items.length * 100) + '%"></span></div>' +
+        '<ul class="sc-list">' + items + '</ul>' + more + '</article>';
+    }).join("");
+    grid.addEventListener("click", (ev) => {
+      const b = ev.target.closest("[data-more]"); if (!b) return;
+      b.parentElement.querySelectorAll("li[hidden]").forEach((li) => li.hidden = false); b.remove();
+    });
+  });
+  </script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+# Yol xəritəsi
+
+Son yenilənmə: 2026-11-23
+
+İşarələr: `[x]` görülüb · `[~]` gedir · `[ ]` qarşıdadır
+
+---
+
+## Mərhələ 0 — Konsept və qərarlar ✅
+
+- [x] Məqsəd: gobyexample.com-un Azərbaycan dilində, müasir dizaynlı, sadələşdirilmiş alternativi
+- [x] Lisenziya araşdırıldı: CC BY 3.0, mənbəyə istinad şərti ilə tərcümə və uyğunlaşdırma icazəlidir
+- [x] Arxitektura təklifi qəbul edildi: Astro + Shiki + Pagefind, statik sayt, hub-a hazır monorepo
+- [x] Hosting: Cloudflare Pages (domen yoxdur, `*.pages.dev`)
+- [x] Terminlər ingiliscə qalır (`slice`, `goroutine`), ilk işlənəndə qısa izah verilir
+- [x] Kod saytın içində işləyəcək (`go.dev/_/compile` proxy), alınmasa Playground linki
+
+Təfərrüat: [DECISIONS.md](DECISIONS.md).
+
+---
+
+## Mərhələ 1 — Dizayn prototipi `[~]` (hazırkı mərhələ)
+
+Framework-süz statik HTML/CSS/JS, `design/` qovluğunda.
+
+### Görülənlər
+- [x] Dizayn tokenləri (açıq və tünd tema), Inter + JetBrains Mono (`ə ı ş ç ğ ö ü` dəstəyi)
+- [x] **Variant A** "Clean" — Stripe/Linear üslubu, Go mavisi
+- [x] İzah ↔ kod **iki istiqamətli** işıqlanma (hover)
+- [x] **Variant B** "Scope" — frontscope.dev əsasında: addım pleyeri, yaddaş vizualı
+- [x] **Variant C** "Roadmap" — roadmap.sh + itbooster.ru: yol xəritəsi, bento, 4 palitra, hub seçicisi
+- [x] **Variant D** — A, B və C-nin bəyənilən hissələrinin birləşməsi (istifadəçi seçdi)
+- [x] D: hərəkətli qradiyent fon (palitranın iki rəngi yavaş üzür)
+- [x] D: scroll animasiyaları — başlıq sözləri maskadan qalxır, kod etiketi yazılır, rəqəmlər sayılır, kartlar növbə ilə gəlir, hero solur, demo pleyer 3D-dən düzəlir
+- [x] D: "Bütün mövzular / Bölmə üzrə / Yol xəritəsi" tab keçidlərində animasiya
+- [x] D: "Niyə bu sayt?" bento kartlarında daxili mini-animasiyalar və kursoru izləyən işıq
+- [x] D dərs səhifəsi: sidebar gizlətmə (`[`), kontent eni mərkəzdə / tam en (`F`), Zen rejimi (`Z`, `Esc`)
+- [x] Layihə üçün git repo və sənədlər (bu fayl)
+
+### Qalanlar (Mərhələ 2-yə keçməzdən əvvəl)
+- [ ] Variant D-nin **yekun təsdiqi** — istifadəçinin son rəyi
+- [ ] Palitranın yekun seçimi (hazırda 4 seçim: Nebula, İndiqo, Okean, Qrafit; standart Nebula)
+- [ ] Mobil görünüşün D üçün ayrıca nəzərdən keçirilməsi (ana səhifə animasiyaları + dərs səhifəsi)
+- [ ] Açıq temanın D üçün yekun yoxlanışı
+- [ ] İstəyə bağlı: izah ilə kod arasında **ox/əyri xətt** ilə əlaqə (istifadəçinin ideyası, hələ edilməyib)
+- [ ] Təsdiqdən sonra A, B, C variantlarını arxivə çıxarmaq (məsələn `design/archive/`) və ya silmək
+
+---
+
+## Mərhələ 2 — Layihə skeleti `[ ]`
+
+Monorepo (npm workspaces), hub-a hazır, amma ilk buraxılış tək sayt kimi:
+
+```
+packages/theme/        # tokens.css + Astro komponentləri (Layout, Sidebar, CodeStep, Player, SearchPalette, RunButton)
+apps/go/               # Astro sayt; kontent ../../content/go-dan oxunur
+content/go/
+  sections.yaml        # bölmələr və sıralama
+  examples/<slug>/
+    meta.yaml          # title, section, order, status, səviyyə, müddət
+    main.go            # işlək, sadələşdirilmiş kod; seqment sərhədləri şərhlərlə
+    az.md              # seqment başına kompakt izah
+    output.txt         # CI tərəfindən generasiya olunur
+functions/api/run.ts   # go.dev/_/compile proxy (rate-limit + ölçü limiti)
+.github/workflows/ci.yml
+```
+
+- [ ] npm workspaces, Astro, Content Collections + Zod sxemi
+- [ ] Variant D-nin tokenlərini və komponentlərini `packages/theme`-ə köçürmək
+- [ ] Shiki ilə build vaxtı kod rənglənməsi (prototipdəki sadə rəngləyicinin yerinə)
+- [ ] Pagefind ilə statik axtarış (`Ctrl+K` palitrası)
+- [ ] CodeMirror 6 — yalnız "Redaktə" kliklənəndə lazy-load
+- [ ] `/api/run` — Cloudflare Pages Function, `go.dev/_/compile`-a proxy (CORS yoxdur, ona görə proxy lazımdır)
+- [ ] İrəliləyiş `localStorage`-də (try/catch ilə)
+- [ ] Görünüş rejimləri (sidebar, en, zen) və animasiyalar komponentlərə köçürülür; `prefers-reduced-motion` qorunur
+
+## Mərhələ 3 — Pilot kontent `[ ]`
+
+10 nümunə, hər biri orijinaldan sadə, Azərbaycan dilində kompakt izahla:
+
+- [ ] hello-world · values · variables · constants · for · if-else · slices · maps · functions · goroutines
+- [ ] Terminologiya lüğəti (`docs/GLOSSARY.md`): ingiliscə termin + qısa Azərbaycan izahı
+- [ ] Vizual tələb edən mövzular üçün addım vizualları (slice, map, kanal, goroutine)
+
+## Mərhələ 4 — CI/CD `[ ]`
+
+- [ ] GitHub repo (remote) — istifadəçi tərəfindən təsdiq edilməlidir
+- [ ] GitHub Actions: `setup-go` → hər `main.go` üçün `go vet` + `go run` → `output.txt` müqayisəsi; `npm ci && npm run build`; link yoxlaması
+- [ ] Cloudflare Pages: GitHub inteqrasiyası (main → production, PR → preview URL). Hesab istifadəçi tərəfindən qoşulur
+
+## Mərhələ 5 — Qalan ~74 nümunə `[ ]`
+
+- [ ] Bölmə-bölmə əlavə (cəmi 84 nümunə, 9 bölmə — siyahı `design/data.js`-dədir)
+
+## Gələcək (indi lazım deyil)
+
+- [ ] Hub sayt (`apps/hub`) — eyni `content/*` qovluqlarından oxuyur
+- [ ] Digər texnologiyalar: Python, Rust, TypeScript, SQL
+- [ ] Başqa dillərə tərcümə (EN, RU, TR) — kod və izah ayrı saxlandığı üçün asandır
+- [ ] Hesablar / server tərəfdə irəliləyiş — yalnız lazım olsa, onda verilənlər bazası düşünülür
+
+---
+
+## Növbəti sessiyada haradan başlamaq
+
+1. `node design/serve.mjs` → http://localhost:4321/d/ açıb Variant D-yə bax.
+2. "Mərhələ 1 → Qalanlar" siyahısından davam et, ya da istifadəçinin yeni rəyini tətbiq et.
+3. D təsdiqlənəndən sonra Mərhələ 2-yə keç: əvvəlcə plan rejimində skeleti razılaşdır.
+
+Qeyd: lokal kompüterdə **Go quraşdırılmayıb** (Node 22 var). Mərhələ 3-dən əvvəl Go-nu quraşdırmaq tövsiyə olunur ki, nümunələr lokal yoxlanıla bilsin.
