@@ -15,6 +15,8 @@ Gələcəkdə eyni format digər texnologiyalar (Python, Rust, TypeScript, SQL�
 Node.js 18+ lazımdır, başqa asılılıq yoxdur:
 
 ```powershell
+git clone https://github.com/seymur-orucov/go-by-example-az.git
+cd go-by-example-az
 node design/serve.mjs
 ```
 

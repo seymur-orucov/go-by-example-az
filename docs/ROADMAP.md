@@ -84,7 +84,7 @@ functions/api/run.ts   # go.dev/_/compile proxy (rate-limit + ölçü limiti)
 
 ## Mərhələ 4 — CI/CD `[ ]`
 
-- [ ] GitHub repo (remote) — istifadəçi tərəfindən təsdiq edilməlidir
+- [x] GitHub repo (public): https://github.com/seymur-orucov/go-by-example-az
 - [ ] GitHub Actions: `setup-go` → hər `main.go` üçün `go vet` + `go run` → `output.txt` müqayisəsi; `npm ci && npm run build`; link yoxlaması
 - [ ] Cloudflare Pages: GitHub inteqrasiyası (main → production, PR → preview URL). Hesab istifadəçi tərəfindən qoşulur
 

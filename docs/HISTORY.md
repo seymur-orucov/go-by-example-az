@@ -67,4 +67,4 @@ Edildi:
 - Bento kartları: hər birində mövzuya uyğun mini-animasiya (append, terminalda yazı, izah ↔ kod işığı, quiz seçimi, düymə basılması, zolaq dolması, parıltı). Yalnız ekrandaykən işləyir. Hover-də kart qalxır, kursoru izləyən işıq görünür.
 
 ### 13. Repo və sənədlər
-Davam etmək üçün git repo yaradıldı; `README.md`, `docs/` (yol xəritəsi, jurnal, qərarlar, referanslar) və `CLAUDE.md` yazıldı.
+Davam etmək üçün git repo yaradıldı; `README.md`, `docs/` (yol xəritəsi, jurnal, qərarlar, referanslar) və `CLAUDE.md` yazıldı. İstifadəçinin seçimi ilə GitHub-da **public** repo açıldı: https://github.com/seymur-orucov/go-by-example-az

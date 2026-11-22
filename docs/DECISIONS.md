@@ -30,6 +30,7 @@ Razılaşdırılmış qərarlar və səbəbləri. Qərar dəyişsə, köhnəsini
 | İrəliləyiş `localStorage`-də | Hesab tələb etmir |
 | **Hosting: Cloudflare Pages**, domen yoxdur → `*.pages.dev` | Pulsuz, hər PR üçün preview URL |
 | CI: GitHub Actions — `go vet`, `go run`, çıxış müqayisəsi, build, link yoxlaması | Nümunələr heç vaxt sınmasın |
+| Repo **public**: https://github.com/seymur-orucov/go-by-example-az (2026-11-23) | Kontent CC BY lisenziyalıdır; açıq mənbə, düzəliş təklifləri üçün |
 
 ## Dizayn
 
@@ -55,4 +56,3 @@ Razılaşdırılmış qərarlar və səbəbləri. Qərar dəyişsə, köhnəsini
 - Palitranın yekun seçimi: 4 seçim qalsın, yoxsa bir standart?
 - İzah ↔ kod arasında ox/əyri xətt lazımdırmı?
 - A, B, C variantları təsdiqdən sonra silinsin, yoxsa arxivdə qalsın?
-- GitHub repo: public, yoxsa private? (CC BY kontenti üçün public məntiqlidir)
