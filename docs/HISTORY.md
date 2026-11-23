@@ -174,3 +174,15 @@ Module 1 done (branch `chore/repo-skeleton`):
 The user asked whether the backend will be written in Go and whether the database will be PostgreSQL, then asked for alternatives to Supabase, and chose the paid option: **Go API + managed PostgreSQL, paid hosting allowed**.
 
 Done: recorded in [DECISIONS.md](DECISIONS.md) (Technical architecture); the open question was narrowed to the details (sign-in method, auth approach, Postgres and API host, budget), to be compared with live prices when Phase 6 starts; [ROADMAP.md](ROADMAP.md) Phase 6 updated. Phases 2–5 are unaffected (static site).
+
+### 27. Phase 2, module 2 (part 1): content model, theme package, /go/
+The user asked to continue with module 2, step by step: content, then theme, then the `/go/` page.
+
+Done (branch `feat/site-content-theme`, built on module 1):
+- Astro `glob`/`file` loaders read `content/go/` from outside the Astro root (the planned spike worked). `sections.yaml` + `meta.yaml` for all 84 topics (generated once from `design/shared/data.js`); `hello-world` is `ready`, the rest `planned`. Levels are provisional.
+- `packages/theme`: styles split into tokens / base / platform; `Layout`, `Header`, `Footer`, `Icon`; vanilla TypeScript shell (theme, palette picker, menus, toast, Ctrl+K search that ignores Azerbaijani diacritics, drawer, spy). The demo progress (8 topics pre-learned) was dropped; progress starts empty. `goaz:*` storage keys are kept.
+- `/go/`: statically rendered hero, section cards, tracks and roadmap views; progress painted from `localStorage`.
+- Found: the `file()` loader does not keep the yaml order, so sections carry an explicit `order`.
+- Checked in headless Chrome over DevTools (progress, views, filter, search, no JS errors). Mobile not verified (headless minimum width).
+- Left out on purpose: demo player and the "Niyə bu sayt" bento (they promise features that do not exist yet); "Go 1.27" badge (unverified claim).
+- Tooling note: `astro preview` must be stopped with `astro preview stop`; stopping the wrapper does not stop the server.

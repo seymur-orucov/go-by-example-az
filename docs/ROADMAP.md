@@ -96,10 +96,11 @@ functions/api/run.ts   # go.dev/_/compile proxy (rate limit + size limit)
 ```
 
 - [x] pnpm workspaces (version pinned via `packageManager`, Node 24 via `devEngines`), Astro 7 site skeleton — module 1
-- [ ] Content Collections + Zod schema (module 2)
+- [x] Content Collections + Zod schema: `goSections`, `goExamples`; `content/go/sections.yaml` and `meta.yaml` for all 84 topics (module 2)
 - [x] Tooling: commitlint + lefthook git hooks, Prettier + ESLint, `CHANGELOG.md` (Keep a Changelog), SemVer from the first release (`0.1.0`) — module 1
 - [x] Minimal CI (`.github/workflows/ci.yml`): lint, format check, type check, build, PR title check — module 1 (Go checks and Cloudflare stay in Phase 4)
-- [ ] Move Variant D's tokens and components into `packages/theme`
+- [~] Move Variant D's tokens and components into `packages/theme`: styles, `Layout`, `Header`, `Footer`, `Icon`, shell scripts (theme, palette, menus, Ctrl+K search, spy) done; `Sidebar`, `CodeStep`, `Player` and the lesson view modes remain (module 2)
+- [~] Pages: `/go/` done (three views, progress from `localStorage`); `/go/<slug>/`, `/go/roadmap/`, `/` and `/roadmaps/backend/` remain (module 2)
 - [ ] Build-time syntax highlighting with Shiki (replacing the prototype's simple highlighter)
 - [ ] Static search with Pagefind (`Ctrl+K` palette)
 - [ ] CodeMirror 6 — lazy-loaded only when "Edit" is clicked
@@ -174,7 +175,7 @@ Once the Go prototype is live, the site becomes a unified platform.
 ## Where to start next session
 
 1. `pnpm install`, then `pnpm lint && pnpm format:check && pnpm check && pnpm build` to confirm the workspace is healthy. The design reference: `node design/serve.mjs` → http://localhost:4321/d/.
-2. Phase 2, **module 2** (`feat/site-content-theme`): content model, `packages/theme`, the 4 pages — see [DECISIONS.md](DECISIONS.md#phase-2-technical-decisions-2026-11-23) and the plan in HISTORY entry 25. Spike first: the Astro `glob` loader with a base outside the Astro root.
+2. Phase 2, **module 2** (`feat/site-content-theme`), continued: the lesson page `/go/<slug>/` first (decide the content format `steps.yaml` / `az.md` first; `Sidebar`, `CodeStep`, Shiki, two-way highlighting, view modes), then `/go/roadmap/`, `/` and `/roadmaps/backend/`. Also still to port: the "Oxuma — gör" demo player and the "Niyə bu sayt" bento (left out of `/go/` on purpose).
 3. The platform name is still open; nothing in Phase 2 depends on it.
 4. Work on a branch and commit with Conventional Commits (see [CONTRIBUTING.md](../CONTRIBUTING.md)); group work into module PRs.
 
