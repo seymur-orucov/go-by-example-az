@@ -32,6 +32,7 @@ Agreed decisions and their rationale. When a decision changes, don't delete the 
 | **Live coding** is **postponed** until after the other sections: it needs a test-case runner (the `go.dev/_/compile` proxy returns output only), and the work repeats per language | The user's decision; highest technical risk |
 | **Rollout order:** 1) roadmap + theory/practice → 2) visual explanations → 3) tests/quizzes → 4) interview preparation → 5) algorithms → 6) live coding | The user agreed; ordered by value vs. cost and risk |
 | **Home page** (itbooster style): hero → **choose your path** (by technology / by direction) → **node model** (one node, five facets) → **platform sections** with status → visual demo. Each technology gets its own page (prototype: `design/d/go.html`, future route `/go/`) | Chosen by Claude at the user's request ("up to you"): the platform needs a technology + direction choice up front, while the Go landing content stays one click away |
+| A dedicated **roadmap page** (`design/d/roadmap.html`, future `/go/roadmap` and `/roadmaps/<id>`) is a first-class part of the platform, reachable from the header nav, the home page, the Go page and lessons. It shows a technology roadmap (Go) and a **direction roadmap preview** (Backend: Git → HTTP → Go → SQL → Docker → Deploy, Go nodes are real, the rest "coming soon"). Clicking a node opens the 5-facet panel; the selected node is in the URL hash (`#slices`, `#backend/goroutines`) | The user did not see the roadmap after the home page redesign: it was hidden as the third tab of the Go page, but the roadmap is the core of the platform and "will be used in the project and will develop" (2026-11-23) |
 | Until the platform name is decided, the prototype uses the **working name "Nümunələrlə"**, kept in one place per page (`data-brand`) so it's easy to replace | The user is still thinking about the name |
 
 ## Product and content
@@ -102,14 +103,17 @@ The project follows widely used international conventions and best practices. De
 | Lesson page view modes: hide sidebar, centered/full width, Zen (always centered) | The user's wish |
 | Home page background: a **slowly moving gradient** in two palette colors (not waves) | The user rejected waves and sent a reference image |
 | Scroll, tab switch and bento animations in the spirit of frontscope; all disabled under `prefers-reduced-motion` | The user's wish + accessibility |
+| Palettes: **Nebula is the default**; the other three (İndiqo, Okean, Qrafit) stay as user-selectable options (2026-11-23) | The user agreed to the proposal |
+| The explanation ↔ code **arrow / curved line** is moved to Phase 2 and built with the real components (2026-11-23) | The user agreed; it needs the final lesson layout |
+| Variants A, B and C are **archived** under `design/archive/`, not deleted (2026-11-23) | The user agreed; kept for reference. D's shared files must move out of `b/` and `c/` first |
 | Technology switcher in the header (`Go ▾` → Python, Rust… "coming soon") and a "One platform, several languages" section | Preparation for the hub |
 | Narrow screens: < 1200px a code snippet under each step; < 980px the sidebar becomes a drawer | Mobile UX |
 
 ## Open questions (awaiting decision)
 
-- Final palette choice: keep 4 options, or one default?
-- Is an arrow/curved line between explanation ↔ code needed?
-- Should variants A, B, C be deleted after approval, or archived?
+- ~~Final palette choice: keep 4 options, or one default?~~ — decided 2026-11-23: Nebula default, 4 options stay.
+- ~~Is an arrow/curved line between explanation ↔ code needed?~~ — moved to Phase 2 (2026-11-23).
+- ~~Should variants A, B, C be deleted after approval, or archived?~~ — archived under `design/archive/` (2026-11-23).
 - Which technology comes after Go?
 - Consent from the authors of roadmap.sh (Kamran Ahmed) and itbooster.ru to translate and publish texts — who reaches out, and when? Consent records: _none yet_.
 - How will the backend for accounts be built: our own API (e.g. Go + PostgreSQL — which also fits the project's own subject) or a hosted service (Supabase, etc.)? Sign-in method: GitHub / Google OAuth, email? Must hosting stay free? — Must be decided before Phase 6.
