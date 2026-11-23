@@ -1,0 +1,34 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@platform/theme/components/Layout.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const sections = await getCollection("goSections");
+const examples = await getCollection("goExamples");
+
+// Examples are numbered in section order, then by their order inside the section.
+const sectionIndex = new Map(sections.map((s, i) => [s.id, i]));
+const sorted = [...examples].sort(
+  (a, b) =>
+    (sectionIndex.get(a.data.section) ?? 0) - (sectionIndex.get(b.data.section) ?? 0) ||
+    a.data.order - b.data.order,
+);
+const sectionTitle = new Map(sections.map((s) => [s.id, s.data.title]));
+
+const searchIndex = sorted.map((e, i) => ({
+  slug: e.id,
+  title: e.data.title,
+  sub: e.data.subtitle,
+  section: sectionTitle.get(e.data.section) ?? "",
+  n: i + 1,
+  href: `/go/${e.id}/`,
+}));
+---
+
+<Layout {...Astro.props} searchIndex={searchIndex} goCount={examples.length}>
+  <slot />
+</Layout>

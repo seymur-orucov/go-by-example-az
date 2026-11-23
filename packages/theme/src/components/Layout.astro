@@ -1,0 +1,65 @@
+---
+import "../styles/index.css";
+import Footer from "./Footer.astro";
+import Header from "./Header.astro";
+
+interface SearchEntry {
+  slug: string;
+  title: string;
+  sub: string;
+  section: string;
+  n: number;
+  href: string;
+}
+
+interface Props {
+  title: string;
+  description?: string;
+  /** Entries for the Ctrl+K palette; the site builds them from its content collections. */
+  searchIndex?: SearchEntry[];
+  goCount?: number;
+}
+
+const { title, description, searchIndex = [], goCount } = Astro.props;
+---
+
+<!doctype html>
+<html lang="az">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <!-- Apply the saved theme and palette before first paint (no flash). -->
+    <script is:inline>
+      try {
+        const d = document.documentElement;
+        const t = JSON.parse(localStorage.getItem("goaz:theme"));
+        if (t === "light" || t === "dark") d.setAttribute("data-theme", t);
+        const p = JSON.parse(localStorage.getItem("goaz:palette"));
+        if (p && p !== "nebula") d.setAttribute("data-palette", p);
+      } catch {
+        /* storage unavailable: fall back to the system theme */
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <Header goCount={goCount} />
+    <slot />
+    <Footer />
+    <script
+      type="application/json"
+      id="search-index"
+      set:html={JSON.stringify(searchIndex).replace(/</g, "\\u003c")}
+    />
+    <script>
+      import "../scripts/shell";
+    </script>
+  </body>
+</html>

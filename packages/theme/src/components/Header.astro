@@ -1,0 +1,104 @@
+---
+// Site header: logo, technology switcher, main nav, search trigger, palette picker, theme toggle.
+// Routes follow /<technology>/...; directions live under /roadmaps/.
+interface Props {
+  goCount?: number;
+}
+const { goCount } = Astro.props;
+---
+
+<header class="site-header">
+  <a class="logo" href="/" aria-label="Nümunələrlə — ana səhifə">
+    <span class="logo-mark">nü</span>
+    <span class="logo-text">Nümunələrlə</span>
+  </a>
+  <div class="dd">
+    <button class="tech-switch" data-menu-btn aria-label="Texnologiya seç">
+      <span class="dot dot-all"></span>Texnologiya
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="m6 9 6 6 6-6"></path>
+      </svg>
+    </button>
+    <div class="menu" hidden>
+      <div class="menu-title label">Texnologiyalar</div>
+      <a class="menu-item" href="/go/">
+        <span class="dot" style="background:#00add8"></span>Go
+        <small>{goCount ? `${goCount} nümunə ✓` : "hazırdır"}</small>
+      </a>
+      <span class="menu-item soon">
+        <span class="dot" style="background:#3776ab"></span>Python<small>tezliklə</small>
+      </span>
+      <span class="menu-item soon">
+        <span class="dot" style="background:#dea584"></span>Rust<small>tezliklə</small>
+      </span>
+      <span class="menu-item soon">
+        <span class="dot" style="background:#3178c6"></span>TypeScript<small>tezliklə</small>
+      </span>
+      <span class="menu-item soon">
+        <span class="dot" style="background:#94a3b8"></span>SQL<small>tezliklə</small>
+      </span>
+      <div class="menu-title label">İstiqamətlər</div>
+      <a class="menu-item" href="/roadmaps/backend/">
+        <span class="dot" style="background:#8b5cf6"></span>Backend<small>önizləmə</small>
+      </a>
+      <span class="menu-item soon">
+        <span class="dot" style="background:#f472b6"></span>Frontend<small>tezliklə</small>
+      </span>
+    </div>
+  </div>
+  <nav class="nav" aria-label="Əsas menyu">
+    <a href="/go/roadmap/">Yol xəritəsi</a>
+    <a href="/#bolmeler">Bölmələr</a>
+    <a href="/go/">Go</a>
+  </nav>
+  <div class="header-spacer"></div>
+  <div class="header-right">
+    <button class="search-trigger" data-open-search aria-label="Axtarış (Ctrl+K)">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <circle cx="11" cy="11" r="7"></circle>
+        <path d="m20 20-3.5-3.5"></path>
+      </svg>
+      <span>Mövzu axtar…</span>
+      <kbd>Ctrl K</kbd>
+    </button>
+    <div class="dd palette-picker">
+      <button
+        class="btn btn-ghost btn-icon"
+        data-menu-btn
+        aria-label="Rəng palitrası"
+        title="Rəng palitrası"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="13.5" cy="6.5" r="1.5"></circle>
+          <circle cx="17.5" cy="10.5" r="1.5"></circle>
+          <circle cx="8.5" cy="7.5" r="1.5"></circle>
+          <circle cx="6.5" cy="12.5" r="1.5"></circle>
+          <path d="M12 2a10 10 0 0 0 0 20c1 0 1.7-.8 1.7-1.7 0-.4-.2-.8-.4-1.1-.3-.3-.4-.7-.4-1.1 0-.9.8-1.7 1.7-1.7H17a5 5 0 0 0 5-5c0-4.9-4.5-8.4-10-8.4Z"></path>
+        </svg>
+      </button>
+      <div class="menu" data-palette-menu hidden></div>
+    </div>
+    <button class="btn btn-ghost btn-icon" data-theme-toggle></button>
+  </div>
+</header>
