@@ -35,7 +35,8 @@ Then open in a browser:
 
 | URL | What's there |
 |---|---|
-| http://localhost:4321/d/ | **Variant D** — the chosen design (home page) |
+| http://localhost:4321/d/ | **Variant D** — the chosen design (platform home page) |
+| http://localhost:4321/d/go.html | Variant D — Go technology page |
 | http://localhost:4321/d/example.html | Variant D — lesson page (pilot: Slices) |
 | http://localhost:4321/, `/b/`, `/c/` | Variants A, B, C — kept for comparison |
 

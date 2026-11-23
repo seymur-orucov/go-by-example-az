@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="az">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Go — Nümunələrlə</title>
+  <meta name="description" content="Go proqramlaşdırma dilini Azərbaycan dilində, qısa izah, işlək kod və vizual nümunələrlə öyrənin.">
+  <!-- Technology page (future route: /go/). The platform home is index.html. -->
+  <script>try { var p = JSON.parse(localStorage.getItem("goaz:palette")); if (p && p !== "nebula") document.documentElement.setAttribute("data-palette", p); } catch (e) {}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="index.html" aria-label="Nümunələrlə — ana səhifə"><span class="logo-mark">nü</span><span class="logo-text" data-brand>Nümunələrlə</span></a>
+    <div class="dd">
+      <button class="tech-switch" data-menu-btn aria-label="Texnologiya seç"><span class="dot"></span>Go
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+      <div class="menu" hidden>
+        <div class="menu-title label">Texnologiyalar</div>
+        <a class="menu-item" href="go.html"><span class="dot" style="background:#00add8"></span>Go<small>84 nümunə ✓</small></a>
+        <span class="menu-item soon"><span class="dot" style="background:#3776ab"></span>Python<small>tezliklə</small></span>
+        <span class="menu-item soon"><span class="dot" style="background:#dea584"></span>Rust<small>tezliklə</small></span>
+        <span class="menu-item soon"><span class="dot" style="background:#3178c6"></span>TypeScript<small>tezliklə</small></span>
+        <span class="menu-item soon"><span class="dot" style="background:#94a3b8"></span>SQL<small>tezliklə</small></span>
+      </div>
+    </div>
+    <nav class="nav" aria-label="Əsas menyu">
+      <a href="#proqram" aria-current="page">Nümunələr</a>
+      <a href="#proqram" data-view-link="map">Yol xəritəsi</a>
+      <a href="https://go.dev/play/" target="_blank" rel="noopener">Playground</a>
+    </nav>
+    <div class="header-spacer"></div>
+    <div class="header-right">
+      <button class="search-trigger" data-open-search aria-label="Axtarış (Ctrl+K)"><i data-icon="search" style="display:contents"></i><span>Nümunə axtar…</span><kbd>Ctrl K</kbd></button>
+      <div class="dd palette-picker">
+        <button class="btn btn-ghost btn-icon" data-menu-btn aria-label="Rəng palitrası" title="Rəng palitrası">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r="1.5"/><circle cx="17.5" cy="10.5" r="1.5"/><circle cx="8.5" cy="7.5" r="1.5"/><circle cx="6.5" cy="12.5" r="1.5"/><path d="M12 2a10 10 0 0 0 0 20c1 0 1.7-.8 1.7-1.7 0-.4-.2-.8-.4-1.1-.3-.3-.4-.7-.4-1.1 0-.9.8-1.7 1.7-1.7H17a5 5 0 0 0 5-5c0-4.9-4.5-8.4-10-8.4Z"/></svg>
+        </button>
+        <div class="menu" data-palette-menu hidden></div>
+      </div>
+      <button class="btn btn-ghost btn-icon" data-theme-toggle></button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO: C strukturu + A-dakı versiya nişanı -->
+    <section class="hero" id="start" data-spy="Başla">
+      <!-- Animasiyalı fon: palitranın iki rəngində yavaş hərəkət edən qradiyent ləkələri (d/style.css → .hero-bg) -->
+      <div class="hero-bg" aria-hidden="true">
+        <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span>
+      </div>
+      <div class="hero-grid">
+        <div>
+          <nav class="crumbs home-crumbs" aria-label="Yol"><a href="index.html">Ana səhifə</a><span class="sep">/</span><a href="index.html#yol">Texnologiyalar</a><span class="sep">/</span><span>Go</span></nav>
+          <div class="eyebrow-row">
+            <span class="eyebrow"><span class="new">Yeni</span><span><b id="go-ver">Go 1.27</b> üçün yenilənib</span></span>
+          </div>
+          <h1>Go-nu <span class="grad-text">nümunələrlə</span> öyrən</h1>
+          <p class="sub">84 qısa nümunə — hər biri 2–3 cümləlik izah, işlək kod və addım-addım vizual. Tamamilə Azərbaycan dilində və pulsuz.</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary btn-lg" href="example.html?ex=hello-world">Öyrənməyə başla
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="btn btn-lg" href="#proqram">Bütün mövzular</a>
+          </div>
+        </div>
+        <aside class="resume" aria-label="İrəliləyiş">
+          <div class="resume-top">
+            <div class="ring">
+              <svg viewBox="0 0 54 54"><defs><linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--accent)"/><stop offset="1" style="stop-color:var(--accent-2)"/></linearGradient></defs>
+                <circle class="track" cx="27" cy="27" r="23"/><circle class="bar" id="ring-bar" cx="27" cy="27" r="23" stroke-dasharray="144.5" stroke-dashoffset="144.5"/></svg>
+              <b id="ring-pct">0%</b>
+            </div>
+            <div><h3 id="r-title">Sənin irəliləyişin</h3><p>Bu brauzerdə saxlanılır</p></div>
+          </div>
+          <a class="resume-next" id="r-next" href="#">
+            <div><span class="k">NÖVBƏTİ</span><b id="r-next-title">—</b><small id="r-next-sub"></small></div>
+            <span class="go">→</span>
+          </a>
+        </aside>
+      </div>
+    </section>
+
+    <!-- OXUMA — GÖR (B) -->
+    <section class="section" id="demo" data-spy="Canlı nümunə">
+      <div class="section-head">
+        <span class="tag-code">demo.Play()<span class="caret"></span></span>
+        <h2>Oxuma — <span class="grad-text">gör.</span></h2>
+        <p>Addımları keç və ya kodun üzərinə gəl: yaddaşda nə baş verdiyini izlə.</p>
+      </div>
+      <div class="player">
+        <div class="player-head">
+          <span class="player-title" id="d-title"></span>
+          <span class="player-count" id="d-count"></span>
+        </div>
+        <div class="player-body demo">
+          <div class="pane">
+            <div class="pane-head"><span class="label">Kod · <span class="fname">slices.go</span></span></div>
+            <pre class="code" id="d-code"></pre>
+          </div>
+          <div class="demo-side">
+            <div class="pane">
+              <div class="pane-head"><span class="label">Yaddaş</span></div>
+              <div class="vis" id="d-vis"></div>
+            </div>
+            <div class="terminal">
+              <div class="pane-head"><span class="label">Çıxış</span></div>
+              <div class="term-body" id="d-term"></div>
+            </div>
+          </div>
+        </div>
+        <p class="player-note" id="d-note"></p>
+        <div class="player-foot">
+          <button class="btn btn-ghost btn-sm" id="d-reset">↺ <span class="txt">Sıfırla</span></button>
+          <button class="btn btn-ghost btn-sm" id="d-prev">← <span class="txt">Əvvəlki</span></button>
+          <button class="btn btn-ghost btn-sm" id="d-next"><span class="txt">Növbəti</span> →</button>
+          <div class="progress-dots" id="d-dots"></div>
+          <span class="grow"></span>
+          <button class="btn btn-primary btn-sm" id="d-play"></button>
+        </div>
+      </div>
+      <p style="text-align:center;margin-top:16px"><a href="example.html?ex=slices" style="color:var(--accent-ink);font-weight:500">Tam dərsə bax →</a></p>
+    </section>
+
+    <!-- PROQRAM (B) + BÜTÜN MÖVZULAR (A) + YOL XƏRİTƏSİ (C) -->
+    <section class="section" id="proqram" data-spy="Proqram">
+      <div class="section-head">
+        <span class="tag-code">roadmap.Choose()<span class="caret"></span></span>
+        <h2 id="prog-title">9 bölmə. 84 nümunə.</h2>
+        <p>Sadədən mürəkkəbə. İstənilən yerdən başla.</p>
+      </div>
+      <div class="prog-bar">
+        <button class="search-big" data-open-search><i data-icon="search" style="display:contents"></i>Nümunə, mövzu və ya açar söz axtar…</button>
+        <div class="view-switch" role="group" aria-label="Görünüş">
+          <button data-view="cards" aria-pressed="true">Bütün mövzular</button>
+          <button data-view="tracks" aria-pressed="false">Bölmə üzrə</button>
+          <button data-view="map" aria-pressed="false">Yol xəritəsi</button>
+        </div>
+      </div>
+
+      <div id="view-cards" class="sections-grid"></div>
+
+      <div id="view-tracks" hidden>
+        <div class="tracks" id="tracks"></div>
+        <div class="track-view" id="track-view">
+          <div class="tv-head"><span class="sc-icon" id="tv-icon"></span><div><h3 id="tv-title"></h3><p id="tv-desc"></p></div></div>
+          <div class="filter" id="filter">
+            <button data-f="all" aria-pressed="true">Hamısı</button>
+            <button data-f="todo" aria-pressed="false">Öyrənilməyən</button>
+            <button data-f="done" aria-pressed="false">Öyrənilən</button>
+          </div>
+          <div class="rows" id="rows"></div>
+        </div>
+      </div>
+
+      <div id="view-map" hidden>
+        <div class="map-legend"><span><i style="background:var(--green)"></i>öyrənilib</span><span><i style="background:var(--accent)"></i>növbəti</span><span><i></i>qarşıda</span></div>
+        <div class="map" id="map"></div>
+      </div>
+    </section>
+
+    <!-- NİYƏ BU SAYT (C bento) -->
+    <section class="section" id="niye" data-spy="Niyə bu sayt">
+      <div class="section-head">
+        <span class="tag-code">features.Why()<span class="caret"></span></span>
+        <h2>Niyə bu sayt?</h2>
+        <p>Go by Example-ın yığcam üslubu — vizual, interaktiv və öz dilində.</p>
+      </div>
+      <div class="bento">
+        <article class="bento-card b-wide glow">
+          <h3>Addım-addım vizual</h3>
+          <p>Slice böyüyür, map dolur, kanal mesaj ötürür — yaddaşda nə baş verdiyini addım-addım izlə.</p>
+          <div class="art"><div class="mini-cells"><span>a</span><span>b</span><span>c</span><span class="on">d</span><span class="on">e</span><span class="cap">·</span></div></div>
+        </article>
+        <article class="bento-card b-narrow">
+          <h3>Brauzerdə işə sal</h3>
+          <p>Quraşdırma lazım deyil. Dəyiş, işə sal, nəticəni gör.</p>
+          <div class="art"><div class="terminal" style="padding:10px 12px;font-size:12px"><span style="color:#8fb0ff">$</span> <span class="t-cmd">go run main.go</span><br><span class="t-out">Salam, Dünya!</span></div></div>
+        </article>
+        <article class="bento-card b-mid">
+          <h3>İzah ↔ kod</h3>
+          <p>İzahın üzərinə gəl — kod işıqlanır. Kodun üzərinə gəl — izah tapılır.</p>
+          <div class="art mini-link"><div class="l hl">03 · append ilə əlavə</div><span class="arrow">⇄</span><div class="r hl">s = append(s, "d")</div></div>
+        </article>
+        <article class="bento-card b-mid">
+          <h3>Özünü yoxla</h3>
+          <p>Hər mövzunun sonunda “bu kod nə çap edəcək?” sualı.</p>
+          <div class="art" style="display:flex;flex-wrap:wrap;gap:6px;font:500 12px/1 var(--font-mono)"><span class="chip">[10 20 30]</span><span class="chip green">[20 30] ✓</span><span class="chip">[20 30 40]</span></div>
+        </article>
+        <article class="bento-card b-narrow">
+          <h3>Klaviatura ilə</h3>
+          <p>Siçana ehtiyac yoxdur.</p>
+          <div class="art kbd-row"><kbd>Ctrl</kbd><kbd>K</kbd><kbd>←</kbd><kbd>→</kbd><kbd>Ctrl</kbd><kbd>↵</kbd></div>
+        </article>
+        <article class="bento-card b-narrow">
+          <h3>Yol xəritəsi</h3>
+          <p>Harada olduğunu və növbəti addımı həmişə gör.</p>
+          <div class="art"><div class="group-head" style="margin:0"><span class="mini-bar" style="width:100%"><span style="width:38%"></span></span></div></div>
+        </article>
+        <article class="bento-card b-narrow">
+          <h3>Açıq mənbə</h3>
+          <p>Səhv tapdın? GitHub-da düzəliş təklif et.</p>
+          <div class="art"><span class="chip acc">CC BY 3.0</span></div>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <nav class="spy" id="spy" aria-label="Bölmələr"></nav>
+
+  <footer class="site-footer">
+    <div class="inner">
+      <p>Mark McGranaghan və Eli Bendersky-nin <a href="https://gobyexample.com" rel="noopener">Go by Example</a> layihəsi əsasında hazırlanıb, Azərbaycan dilinə uyğunlaşdırılıb və sadələşdirilib. Kontent <a href="https://creativecommons.org/licenses/by/3.0/" rel="noopener">CC BY 3.0</a> lisenziyası ilə paylaşılır.</p>
+      <p>Go adı Google LLC-yə məxsusdur.<br>Variant D · dizayn prototipi</p>
+    </div>
+  </footer>
+
+  <script src="../data.js"></script>
+  <script src="../app.js"></script>
+  <script src="../b/b.js"></script>
+  <script src="../c/c.js"></script>
+  <script src="d.js"></script>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const G = window.GOAZ, B = window.GOAZ_B, C = window.GOAZ_C;
+    const ls = G.learnedSet;
+    const next = G.FLAT.find((e) => !ls.has(e.slug));
+    const done = G.FLAT.filter((e) => ls.has(e.slug)).length;
+    const pct = (a, b) => Math.round(a / b * 100);
+
+    document.getElementById("prog-title").textContent = G.SECTIONS.length + " bölmə. " + G.FLAT.length + " nümunə.";
+
+    // İrəliləyiş kartı
+    document.getElementById("ring-bar").style.strokeDashoffset = 144.5 * (1 - done / G.FLAT.length);
+    document.getElementById("ring-pct").textContent = pct(done, G.FLAT.length) + "%";
+    document.getElementById("r-title").textContent = done + " / " + G.FLAT.length + " nümunə öyrənilib";
+    if (next) {
+      document.getElementById("r-next").href = G.href(next.slug);
+      document.getElementById("r-next-title").textContent = next.title;
+      document.getElementById("r-next-sub").textContent = next.sub + " · " + next.section;
+    }
+
+    // Demo pleyer (B)
+    B.createLesson({
+      lesson: B.SLICES,
+      pre: document.getElementById("d-code"), vis: document.getElementById("d-vis"), term: document.getElementById("d-term"),
+      title: document.getElementById("d-title"), count: document.getElementById("d-count"), note: document.getElementById("d-note"),
+      dots: document.getElementById("d-dots"), prev: document.getElementById("d-prev"), next: document.getElementById("d-next"),
+      reset: document.getElementById("d-reset"), play: document.getElementById("d-play"),
+    });
+
+    // Görünüş 1: Bütün mövzular (A kartları)
+    const LIMIT = 6;
+    const cards = document.getElementById("view-cards");
+    cards.innerHTML = G.SECTIONS.map((s) => {
+      const sd = s.items.filter((it) => ls.has(it[0])).length;
+      const items = s.items.map(([slug, title, sub], i) => {
+        const d = ls.has(slug), nx = next && next.slug === slug;
+        return "<li" + (i >= LIMIT ? " hidden" : "") + '><a href="' + G.href(slug) + '"' + (nx ? ' class="next"' : "") + '><span class="check' + (d ? "" : " empty") + '">' + (d ? G.I.check : G.I.circle) + "</span><span>" + G.esc(title) + '</span><span class="sub">' + (nx ? "növbəti" : G.esc(sub)) + "</span></a></li>";
+      }).join("");
+      const more = s.items.length > LIMIT ? '<button class="sc-more" data-more>+ daha ' + (s.items.length - LIMIT) + " nümunə</button>" : "";
+      return '<article class="section-card" style="--c:' + C.SECTION_COLORS[s.id] + '"><div class="sc-head"><span class="sc-icon">' + G.I[s.icon] + "</span><h3>" + G.esc(s.title) +
+        '</h3><span class="sc-count">' + sd + "/" + s.items.length + "</span></div><p>" + G.esc(s.desc) + '</p><div class="sc-bar"><span style="width:' + pct(sd, s.items.length) + '%"></span></div><ul class="sc-list">' + items + "</ul>" + more + "</article>";
+    }).join("");
+    cards.addEventListener("click", (e) => {
+      const b = e.target.closest("[data-more]"); if (!b) return;
+      b.parentElement.querySelectorAll("li[hidden]").forEach((li) => (li.hidden = false)); b.remove();
+    });
+
+    // Görünüş 2: Bölmə üzrə (B trek kartları + sətirlər)
+    const tracks = document.getElementById("tracks");
+    tracks.innerHTML = G.SECTIONS.map((s) => {
+      const sd = s.items.filter((it) => ls.has(it[0])).length;
+      return '<button class="track" data-id="' + s.id + '" aria-pressed="false" style="--c:' + C.SECTION_COLORS[s.id] + '"><span class="sc-icon">' + G.I[s.icon] + "</span><h3>" + G.esc(s.title) + "</h3><p>" + G.esc(s.desc) + "</p>" +
+        '<span class="meta"><span>' + s.items.length + " nümunə · " + C.LEVEL[s.id] + "</span><span>" + sd + "/" + s.items.length + '</span></span><span class="sc-bar" style="margin:4px 0 0"><span style="width:' + pct(sd, s.items.length) + '%"></span></span></button>';
+    }).join("");
+    let current = next ? G.SECTIONS.find((s) => s.items.some((it) => it[0] === next.slug)).id : "basics", filter = "all";
+    function renderTrack() {
+      const s = G.SECTIONS.find((x) => x.id === current);
+      tracks.querySelectorAll(".track").forEach((t) => t.setAttribute("aria-pressed", String(t.dataset.id === current)));
+      const icon = document.getElementById("tv-icon"); icon.style.setProperty("--c", C.SECTION_COLORS[s.id]); icon.innerHTML = G.I[s.icon];
+      document.getElementById("tv-title").textContent = s.title;
+      document.getElementById("tv-desc").textContent = s.desc;
+      const lvl = C.LEVEL[s.id];
+      const items = s.items.filter(([slug]) => filter === "all" || (filter === "done") === ls.has(slug));
+      document.getElementById("rows").innerHTML = items.length ? items.map(([slug, title, sub]) => {
+        const e = G.FLAT.find((x) => x.slug === slug);
+        return '<a class="row" href="' + G.href(slug) + '"><span class="n">' + String(e.n).padStart(2, "0") + "</span><span><b>" + G.esc(title) +
+          '</b><span class="meta"><span>' + G.esc(sub) + "</span><span>·</span><span>" + B.minutesFor(slug) + ' dəq</span><span>·</span><span class="lvl ' + lvl + '">' + lvl + "</span></span></span>" +
+          (ls.has(slug) ? '<span class="done">✓ öyrənildi</span>' : '<span class="arrow">→</span>') + "</a>";
+      }).join("") : '<p style="padding:20px;text-align:center;color:var(--text-subtle)">Bu filtrdə nümunə yoxdur</p>';
+    }
+    tracks.addEventListener("click", (e) => {
+      const t = e.target.closest(".track"); if (!t) return;
+      current = t.dataset.id; renderTrack();
+      document.getElementById("track-view").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+    document.getElementById("filter").addEventListener("click", (e) => {
+      const b = e.target.closest("button"); if (!b) return;
+      filter = b.dataset.f;
+      document.querySelectorAll("#filter button").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+      renderTrack();
+    });
+    renderTrack();
+
+    // Görünüş 3: Yol xəritəsi (C)
+    document.getElementById("map").innerHTML = G.SECTIONS.map((s) => {
+      const sd = s.items.filter(([slug]) => ls.has(slug)).length;
+      const leaf = ([slug, title]) => '<a class="leaf' + (ls.has(slug) ? " done" : (next && next.slug === slug ? " next" : "")) + '" href="' + G.href(slug) + '"><i></i>' + G.esc(title) + "</a>";
+      const half = Math.ceil(s.items.length / 2);
+      return '<div class="map-row"><div class="map-branch left">' + s.items.slice(0, half).map(leaf).join("") + "</div>" +
+        '<div class="map-node"><b>' + G.esc(s.title) + "</b><small>" + sd + " / " + s.items.length + " · " + C.LEVEL[s.id] + '</small><span class="bar"><span style="width:' + pct(sd, s.items.length) + '%"></span></span></div>' +
+        '<div class="map-branch right">' + s.items.slice(half).map(leaf).join("") + "</div></div>";
+    }).join("");
+
+    // Görünüş seçicisi
+    const views = { cards: "view-cards", tracks: "view-tracks", map: "view-map" };
+    function setView(v) {
+      Object.entries(views).forEach(([k, id]) => (document.getElementById(id).hidden = k !== v));
+      document.querySelectorAll("[data-view]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.view === v)));
+      try { localStorage.setItem("goaz:view", v); } catch (e) {}
+    }
+    document.querySelectorAll("[data-view]").forEach((b) => b.addEventListener("click", () => setView(b.dataset.view)));
+    document.querySelectorAll("[data-view-link]").forEach((a) => a.addEventListener("click", () => setView(a.dataset.viewLink)));
+    try { const v = localStorage.getItem("goaz:view"); if (views[v]) setView(v); } catch (e) {}
+
+    // Scroll-spy
+    const spy = document.getElementById("spy");
+    const secs = Array.from(document.querySelectorAll("[data-spy]"));
+    spy.innerHTML = secs.map((s) => '<a href="#' + s.id + '" aria-label="' + s.dataset.spy + '"><span>' + s.dataset.spy + "</span></a>").join("");
+    const dots = Array.from(spy.querySelectorAll("a"));
+    const io = new IntersectionObserver((ents) => ents.forEach((en) => {
+      if (en.isIntersecting) dots.forEach((d, i) => d.classList.toggle("on", secs[i] === en.target));
+    }), { rootMargin: "-45% 0px -50% 0px" });
+    secs.forEach((s) => io.observe(s));
+    dots[0].classList.add("on");
+  });
+  </script>
+</body>
+</html>

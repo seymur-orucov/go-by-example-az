@@ -42,6 +42,16 @@ Based on feedback, the liked parts of A, B and C together:
   - *Zen mode* — header, sidebar, footer and the path line are hidden, content stays centered; reading progress at the top, output panel bottom-left. Opens with <kbd>Z</kbd>, closes with <kbd>Esc</kbd>; there is also a “Zen” button in the lesson header.
   - Panel and width choices are saved in `localStorage`, zen only for this tab (`sessionStorage`); they are applied in `<head>` to avoid flicker on load.
 
+#### Platform home (`d/index.html`, 2026-11-23)
+D's home page now presents the **platform**, not only Go. The former Go home page moved to `d/go.html` (the future `/go/` route).
+- **Header:** working-name logo (“Nümunələrlə”, `data-brand`; the final name is an open question), a “Texnologiya ▾” menu listing technologies and directions, nav: Roadmaps · Sections · Go.
+- **Hero:** platform pitch, “Choose your path” / “Start with Go” CTAs, facts row, and a “continue” card with Go progress.
+- **Choose your path** (`path.Choose()`): a switch between **by technology** (Go active with progress; Python, TypeScript, SQL, Rust “coming soon”) and **by direction** (Backend “in preparation”, Frontend, DevOps; each card lists the technologies it combines). The choice is remembered.
+- **Every step — theory and practice** (`node.Open()`): a Go roadmap fragment (6 nodes with learned / next / upcoming status) and a panel with 5 tabs per node — Theory · Practice (highlighted code) · Visual (animated steps) · Test (clickable quiz) · Interview (question + revealable answer). Tabs support arrow keys.
+- **Platform sections** (`platform.Sections()`): a bento of the 6 sections in the agreed rollout order with status badges and mini-animations (roadmap nodes pulse, a quiz answer is picked, an interview answer appears, two pointers move, a live-coding timer ticks and tests pass).
+- **Don't read — see.** demo kept as the showcase of the visual explanation section.
+- The lesson page logo links to the platform home; its Go links and breadcrumbs point to `go.html`.
+
 In all variants **explanation ↔ code highlight each other**: hovering the explanation highlights code lines, and hovering a code line highlights the matching explanation step (scrolling it into view if needed).
 
 ## Files
@@ -61,7 +71,9 @@ In all variants **explanation ↔ code highlight each other**: hovering the expl
 | `c/index.html`, `c/example.html` | Variant C pages (reuse `b/b.js` for the player) |
 | `d/style.css` | Variant D: A and B components on top of `c/style.css` |
 | `d/d.js` | Variant D: lesson page view modes (panel, width, zen) and home page scroll animation |
-| `d/index.html`, `d/example.html` | Variant D pages (reuse `b/b.js`, `c/c.js`) |
+| `d/index.html` | Variant D: platform home (path choice, node explorer, platform sections) |
+| `d/go.html` | Variant D: Go technology page (former home page; future `/go/`) |
+| `d/example.html` | Variant D: lesson page (reuses `b/b.js`, `c/c.js`) |
 | `serve.mjs` | Dependency-free local server |
 
 ## Design decisions

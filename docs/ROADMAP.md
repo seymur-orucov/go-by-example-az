@@ -62,8 +62,9 @@ Framework-free static HTML/CSS/JS in the `design/` directory.
 
 ### Remaining (before moving to Phase 2)
 - [x] Variant D chosen as the base design (2026-11-23); it will still change to fit the platform scope
-- [ ] **Discussion of the platform sections**: tests/quizzes, interview preparation, algorithms, live coding, visual code explanations; technology vs direction choice
-- [ ] **Home page redesign** for the platform (technology + direction choice, the new sections) — after the discussion
+- [x] **Discussion of the platform sections**: node model (theory · practice · visual · test · interview), algorithms as a separate track, live coding postponed, rollout order — [DECISIONS.md](DECISIONS.md#platform-sections-2026-11-23)
+- [~] **Home page redesign** for the platform: first version done (`d/index.html`: path choice, node explorer, sections bento; Go page moved to `d/go.html`) — awaiting feedback
+- [ ] Platform name (working name "Nümunələrlə" for now)
 - [ ] **Final approval** of Variant D — the user's final feedback
 - [ ] Final palette choice (currently 4 options: Nebula, İndiqo, Okean, Qrafit; Nebula by default)
 - [ ] A separate review of the mobile view for D (home page animations + lesson page)
@@ -139,12 +140,13 @@ Once the Go prototype is live, the site becomes a unified platform.
 - [ ] Using the site without an account stays possible (progress in `localStorage`)
 - [ ] Roadmap page: interactive map (roadmap.sh style); clicking a node opens a panel: theory, practice, status
 - [ ] Practice expands: exercises (complete / fix the code), test-based checking, "Check yourself" questions
-- [ ] Platform sections (the detailed model is discussed first, see Phase 1 → Remaining):
-  - **tests / quizzes** per node and per roadmap;
-  - **interview preparation**: questions by topic and level, system design (reference: hellointerview.com);
-  - **algorithms and data structures**: pattern-based track (reference: algomaster.io);
-  - **live coding**: timed in-browser coding tasks with automatic checks;
-  - **visual code explanations**: building on the step player and memory visual from variants B/D
+- [ ] Platform sections, in the agreed order ([DECISIONS.md](DECISIONS.md#platform-sections-2026-11-23)):
+  1. **roadmap + theory/practice** (above);
+  2. **visual code explanations**: building on the step player and memory visual from variants B/D;
+  3. **tests / quizzes** per node and per roadmap;
+  4. **interview preparation**: questions by topic and level, linked to nodes and as a standalone list; system design sub-section (reference: hellointerview.com);
+  5. **algorithms and data structures**: separate, technology-independent, pattern-based track (reference: algomaster.io);
+  6. **live coding** (postponed): timed in-browser tasks with automatic checks; needs a test-case runner decision first
 - [ ] Reach out to the authors of hellointerview.com and algomaster.io (texts only with written consent — [DECISIONS.md](DECISIONS.md#vision-2026-11-23))
 - [ ] Platform structure (itbooster style): home → technologies and roadmaps → roadmap → node → lesson
 - [ ] The technology switcher becomes functional; routes take the form `/<technology>/...` (e.g. `/go/slices`), Go links don't break
@@ -165,8 +167,8 @@ Once the Go prototype is live, the site becomes a unified platform.
 
 ## Where to start next session
 
-1. `node design/serve.mjs` → open http://localhost:4321/d/ and look at Variant D.
-2. Next topic: **discussion of the platform sections** (tests, interview preparation, algorithms, live coding, visual explanations; technology vs direction choice), then the **home page redesign** in D.
+1. `node design/serve.mjs` → open http://localhost:4321/d/ (platform home) and http://localhost:4321/d/go.html (Go page).
+2. Next topic: the user's **feedback on the new platform home page**; the platform name is still open.
 3. Continue from the "Phase 1 → Remaining" list, or apply the user's new feedback.
 4. Once D is approved, move to Phase 2: first agree on the skeleton in plan mode.
 5. Work on a branch and commit with Conventional Commits (see [CONTRIBUTING.md](../CONTRIBUTING.md)).

@@ -21,6 +21,19 @@ Agreed decisions and their rationale. When a decision changes, don't delete the 
 | **Language policy:** the site's primary language is **Azerbaijani** (`az`, default locale, no URL prefix). Other languages are added **only after a quality translation** of the existing content is ready; unreviewed machine translation is not published. The content structure is i18n-ready from the start (one file per locale: `az.md`, `en.md`…) (2026-11-23) | The user's decision; quality over quantity |
 | [hellointerview.com](https://www.hellointerview.com/) and [algomaster.io](https://algomaster.io/) are added as sources for interview preparation, system design and algorithms. The same rule as for roadmap.sh applies: topics, coverage and ordering are used as a reference; texts are translated only when the user marks them, kept in `content-private/`, and published only after the author's written consent (2026-11-23) | Both sites' terms (checked 2026-11-23) keep all rights reserved: hellointerview.com ([terms](https://www.hellointerview.com/terms)) forbids copying, publishing and derivative works; algomaster.io ([terms](https://algomaster.io/policies/terms-of-service)) declares the content its exclusive property and grants no reuse rights |
 
+## Platform sections (2026-11-23)
+
+| Decision | Rationale |
+|---|---|
+| Everything hangs off a **roadmap node**. A node has up to five facets: **Theory** (concept article), **Practice** (working example, exercise), **Visual** (step-by-step explanation), **Test** (node quiz), **Interview** (questions on this topic). Sections are different views of the same content, not separate sites | One platform; content is not duplicated |
+| **Tests/quizzes:** 5–10 questions per node (multiple choice, "what does this code print?"), plus a final test per roadmap; linked by `node-id` | Cheap to build, measures learning |
+| **Interview preparation:** questions by topic and level with answers; linked to nodes **and** browsable as a standalone list. **System design** is a separate sub-section (reference: hellointerview.com) | Questions are useful both inside a lesson and on their own |
+| **Algorithms and data structures** are a **separate, technology-independent track**, organised by pattern (two pointers, sliding window, BFS/DFS…), each pattern with theory + exercises (reference: algomaster.io) | The user agreed; patterns don't belong to one language |
+| **Live coding** is **postponed** until after the other sections: it needs a test-case runner (the `go.dev/_/compile` proxy returns output only), and the work repeats per language | The user's decision; highest technical risk |
+| **Rollout order:** 1) roadmap + theory/practice → 2) visual explanations → 3) tests/quizzes → 4) interview preparation → 5) algorithms → 6) live coding | The user agreed; ordered by value vs. cost and risk |
+| **Home page** (itbooster style): hero → **choose your path** (by technology / by direction) → **node model** (one node, five facets) → **platform sections** with status → visual demo. Each technology gets its own page (prototype: `design/d/go.html`, future route `/go/`) | Chosen by Claude at the user's request ("up to you"): the platform needs a technology + direction choice up front, while the Go landing content stays one click away |
+| Until the platform name is decided, the prototype uses the **working name "Nümunələrlə"**, kept in one place per page (`data-brand`) so it's easy to replace | The user is still thinking about the name |
+
 ## Product and content
 
 | Decision | Rationale |
@@ -101,8 +114,9 @@ The project follows widely used international conventions and best practices. De
 - Consent from the authors of roadmap.sh (Kamran Ahmed) and itbooster.ru to translate and publish texts — who reaches out, and when? Consent records: _none yet_.
 - How will the backend for accounts be built: our own API (e.g. Go + PostgreSQL — which also fits the project's own subject) or a hosted service (Supabase, etc.)? Sign-in method: GitHub / Google OAuth, email? Must hosting stay free? — Must be decided before Phase 6.
 - Users without an account: does progress stay in `localStorage` and get migrated to the server when they sign up?
-- **Platform sections** (to be discussed in detail): how tests/quizzes, interview preparation, algorithms, live coding and visual code explanations are modelled, how they link to roadmap nodes, and which of them come first.
-- **Home page redesign:** how the home page presents the choice of technology and direction and the platform sections (today it presents only Go).
-- **Platform and repo name:** "Nümunələrlə Go" and `go-by-example-az` no longer describe the whole platform. Rename before or after Phase 2?
+- ~~**Platform sections**: how they are modelled, linked to nodes, and ordered~~ — decided 2026-11-23, see "Platform sections".
+- ~~**Home page redesign**~~ — first version done 2026-11-23 (`design/d/index.html`); awaiting the user's feedback.
+- **Platform and repo name:** "Nümunələrlə Go" and `go-by-example-az` no longer describe the whole platform. The prototype uses the working name "Nümunələrlə"; the user is still thinking (2026-11-23). Rename before or after Phase 2?
+- Live coding runner: write `go test`-style checks through the `go.dev` proxy, or run our own sandbox? — Decide when the section is started (last in the order).
 - Consent from the authors of hellointerview.com and algomaster.io (same as for roadmap.sh and itbooster.ru). Consent records: _none yet_.
 - Which languages come after Azerbaijani, and who reviews translation quality?
