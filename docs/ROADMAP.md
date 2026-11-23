@@ -68,7 +68,7 @@ Framework-free static HTML/CSS/JS in the `design/` directory.
 - [ ] **Final approval** of Variant D — the user's final feedback
 - [ ] Final palette choice (currently 4 options: Nebula, İndiqo, Okean, Qrafit; Nebula by default)
 - [ ] A separate review of the mobile view for D (home page animations + lesson page)
-- [ ] Final check of the light theme for D
+- [~] Final check of the light theme for D — the platform home is checked in light and dark with all 4 palettes (2026-11-23); `go.html` and the lesson page still need a check
 - [ ] Optional: an **arrow/curved line** linking explanation and code (the user's idea, not done yet)
 - [ ] After approval, move variants A, B, C to an archive (e.g. `design/archive/`) or delete them
 
