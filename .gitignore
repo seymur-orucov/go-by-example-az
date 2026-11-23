@@ -1,23 +1,23 @@
-# OS / redaktor
+# OS / editor
 .DS_Store
 Thumbs.db
 desktop.ini
 .vscode/
 .idea/
 
-# Node / Astro (Mərhələ 2)
+# Node / Astro (Phase 2)
 node_modules/
 dist/
 .astro/
 .wrangler/
 
-# Mühit faylları
+# Environment files
 .env
 .env.*
 !.env.example
 
-# Claude Code lokal ayarları
+# Claude Code local settings
 .claude/settings.local.json
 
-# Müəllif razılığı gözləyən tərcümələr (roadmap.sh, itbooster.ru) — public repo-ya düşməməlidir
+# Translations awaiting author consent (roadmap.sh, itbooster.ru) — must not reach the public repo
 content-private/

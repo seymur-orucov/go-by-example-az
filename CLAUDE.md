@@ -1,28 +1,31 @@
-# Claude Code üçün təlimat
+# Instructions for Claude Code
 
-Layihə: **Nümunələrlə Go** — gobyexample.com-un Azərbaycan dilində alternativi. Ümumi baxış: [README.md](README.md).
+Project: **Nümunələrlə Go** — an Azerbaijani-language alternative to gobyexample.com. Overview: [README.md](README.md).
 
-**Əsas məqsəd:** bu, ilk prototipdir. Yekun hədəf roadmap.sh / itbooster.ru tipində vahid öyrənmə platformasıdır: roadmap ilə öyrənmə, hər addımda nəzəriyyə + praktika, bütün texnologiyalar bir saytda. Struktur və texniki qərarlar bu hədəfə uyğun verilməlidir (məsələn marşrutlar `/<texnologiya>/...`, kontent `content/<texnologiya>/`). Təfərrüat: [docs/ROADMAP.md](docs/ROADMAP.md#vizyon-öyrənmə-platforması).
+**Main goal:** this is the first prototype. The end goal is a unified learning platform in the spirit of roadmap.sh / itbooster.ru: learning by roadmap, theory + practice at every step, all technologies on one site. Structural and technical decisions must fit that goal (e.g. routes `/<technology>/...`, content in `content/<technology>/`). Details: [docs/ROADMAP.md](docs/ROADMAP.md#vision-learning-platform).
 
-## İşə başlamazdan əvvəl oxu
-1. [docs/ROADMAP.md](docs/ROADMAP.md) — hansı mərhələdəyik, nə qalıb, "Növbəti sessiyada haradan başlamaq".
-2. [docs/DECISIONS.md](docs/DECISIONS.md) — razılaşdırılmış qərarlar; bunları yenidən müzakirəyə açma.
-3. [docs/HISTORY.md](docs/HISTORY.md) — istifadəçinin əvvəlki rəyləri (nəyi bəyənib, nəyi rədd edib).
+## Read before starting
+1. [docs/ROADMAP.md](docs/ROADMAP.md) — which phase we're in, what's left, "Where to start next session".
+2. [docs/DECISIONS.md](docs/DECISIONS.md) — agreed decisions; don't reopen them for discussion.
+3. [docs/HISTORY.md](docs/HISTORY.md) — the user's earlier feedback (what they liked, what they rejected).
 
-## Qaydalar
-- İstifadəçi ilə **Azərbaycan dilində** danış. Saytın bütün UI mətnləri Azərbaycan dilindədir; Go terminləri ingiliscə qalır.
-- Hazırkı mərhələ **dizayn prototipidir**: `design/` framework-süz statik HTML/CSS/JS-dir, asılılıq əlavə etmə.
-- Seçilmiş variant **D**-dir (`design/d/`). A, B, C yalnız müqayisə üçündür, onlara toxunma.
-- D ortaq faylları təkrar istifadə edir: `design/app.js`, `design/data.js`, `design/b/b.js`, `design/c/c.js`, `design/c/style.css` (D-nin `style.css`-i onu import edir). Bunları dəyişsən, A–C-yə də təsir edir.
-- Animasiyalar `prefers-reduced-motion`-da söndürülməlidir.
-- roadmap.sh / itbooster.ru-dan mətni yalnız istifadəçi qeyd etdikdə götür və tərcümə et; nəticəni `content-private/`-ə yaz (git-ə düşmür). Müəllifin razılığı [DECISIONS.md](docs/DECISIONS.md)-də qeyd olunmayıbsa, bu mətnləri public repo-ya commit etmə və sayta qoyma.
-- Hər iterasiyadan sonra `docs/HISTORY.md`-yə qısa qeyd əlavə et, `docs/ROADMAP.md`-də işarələri yenilə.
+## Rules
+- Talk to the user in **Azerbaijani**. All site UI text is in Azerbaijani; Go terms stay in English.
+- The current phase is a **design prototype**: `design/` is framework-free static HTML/CSS/JS — don't add dependencies.
+- The chosen variant is **D** (`design/d/`). A, B, C exist only for comparison — don't touch them.
+- D reuses shared files: `design/app.js`, `design/data.js`, `design/b/b.js`, `design/c/c.js`, `design/c/style.css` (D's `style.css` imports it). Changing them also affects A–C.
+- Animations must be disabled under `prefers-reduced-motion`.
+- Code, comments, docs, commit messages, branch names and PR descriptions are in **English**. Site UI text and learning content stay in Azerbaijani.
+- Git: never commit to `main` directly — create a branch (`feat/…`, `fix/…`, `docs/…`, `chore/…`). Commit messages follow **Conventional Commits** (`docs(roadmap): …`, `feat(design): …`). Push and open PRs only after the user confirms. Details: [CONTRIBUTING.md](CONTRIBUTING.md).
+- Package manager from Phase 2 is **pnpm** (not npm/yarn).
+- Take text from roadmap.sh / itbooster.ru / hellointerview.com / algomaster.io only when the user marks it, then translate it; write the result to `content-private/` (not tracked by git). Unless the author's consent is recorded in [DECISIONS.md](docs/DECISIONS.md), don't commit these texts to the public repo or put them on the site.
+- After each iteration add a short entry to `docs/HISTORY.md` and update the checkboxes in `docs/ROADMAP.md`.
 
-## Prototipi işə salmaq
+## Running the prototype
 ```
 node design/serve.mjs        # http://localhost:4321/d/
 ```
-Preview konfiqurasiyası: `.claude/launch.json` (ad: `design`). Server `no-store` başlığı verir, amma brauzer köhnə faylı göstərsə, keşsiz yenilə.
+Preview configuration: `.claude/launch.json` (name: `design`). The server sends a `no-store` header, but if the browser shows a stale file, do a hard reload.
 
-## Mühit
-Windows, Node 22. Go lokal quraşdırılmayıb.
+## Environment
+Windows, Node 22. Go is not installed locally.

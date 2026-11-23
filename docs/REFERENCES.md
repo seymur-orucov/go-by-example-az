@@ -1,51 +1,71 @@
-# Referanslar
+# References
 
-## Mənbə kontent
+## Source content
 
-| Link | Qeyd |
+| Link | Note |
 |---|---|
-| https://gobyexample.com | Əsas mənbə. Müəlliflər: Mark McGranaghan, Eli Bendersky |
-| https://github.com/mmcgrana/gobyexample | Orijinal repo (nümunələrin kodu və izahları) |
-| https://creativecommons.org/licenses/by/3.0/ | Kontent lisenziyası (CC BY 3.0) |
-| https://go.dev/doc/ | Rəsmi Go sənədləri — terminlər və yoxlama üçün |
-| https://go.dev/play/ | Go Playground — kodu işlətmək üçün fallback |
+| https://gobyexample.com | Primary source. Authors: Mark McGranaghan, Eli Bendersky |
+| https://github.com/mmcgrana/gobyexample | Original repo (example code and explanations) |
+| https://creativecommons.org/licenses/by/3.0/ | Content license (CC BY 3.0) |
+| https://go.dev/doc/ | Official Go documentation — for terminology and verification |
+| https://go.dev/play/ | Go Playground — fallback for running code |
 
-## Roadmap mənbələri
+## Roadmap sources
 
-Platformanın konkret roadmap-ları (Go, Backend və s.) bu iki resursun **birləşməsi** əsasında təkmilləşdiriləcək. Onlardan mövzular, ardıcıllıq və asılılıqlar götürülür. Mətnlər istifadəçi qeyd etdiyi anda bu resurslardan götürülüb tərcümə olunur, amma dərcdən əvvəl müəllifin razılığı lazımdır ([DECISIONS.md](DECISIONS.md#vizyon-2026-11-23)).
+The platform's concrete roadmaps (Go, Backend, etc.) will be refined based on a **merge** of these two resources. Topics, ordering and dependencies are taken from them. Texts are taken from these resources and translated when the user marks them, but publishing requires the author's consent ([DECISIONS.md](DECISIONS.md#vision-2026-11-23)).
 
-| Resurs | Nə üçün | Lisenziya |
+| Resource | Used for | License |
 |---|---|---|
-| https://roadmap.sh | Texnologiya və istiqamət roadmap-ları (məsələn Go, Backend): mövzu siyahısı, ardıcıllıq, tövsiyə olunan / alternativ yollar | Xüsusi lisenziya ([repo-dakı `license`](https://github.com/kamranahmedse/developer-roadmap/blob/master/license)): yalnız şəxsi istifadə; dərc üçün qabaqcadan razılıq |
-| https://itbooster.ru/ | Kurs və mövzu strukturu, nəzəriyyə ilə praktikanın birləşdirilməsi | Açıq lisenziya göstərilməyib — bütün hüquqlar qorunur sayılır |
+| https://roadmap.sh | Technology and direction roadmaps (e.g. Go, Backend): topic list, ordering, recommended / alternative paths | Custom license ([`license` in the repo](https://github.com/kamranahmedse/developer-roadmap/blob/master/license)): personal use only; prior consent required for publishing |
+| https://itbooster.ru/ | Course and topic structure, combining theory with practice | No open license stated — all rights reserved by default |
 
-## Dizayn referansları
+## Interview and algorithms sources
 
-İstifadəçinin göndərdiyi saytlar. Dizayn onlara **tam oxşamamalıdır**, hər birindən bəyənilən hissə götürülür.
+Sources for the interview preparation, system design and algorithms sections of the platform. The same rule as for the roadmap sources applies: topics, coverage and ordering are used as a reference; texts are translated only when the user marks them, kept in `content-private/`, and published only after the author's written consent ([DECISIONS.md](DECISIONS.md#vision-2026-11-23)).
 
-| Sayt | Nə bəyənildi / nə götürüldü | Nə bəyənilmədi |
+| Resource | Used for | License |
 |---|---|---|
-| https://frontscope.dev/ | Vizualizasiyalar: addım pleyeri, yaddaş vizualı; scroll animasiyaları; "Oxuma — gör." üslubu | Şriftlər (Syne), sarı/limon rəng; B variantı ona çox oxşadı |
-| https://roadmap.sh/ | Sadə və kompakt; sıx kafel şəbəkəsi; yol xəritəsi görünüşü (mərkəzi xətt + budaqlar); statuslar (öyrənilib / növbəti / qarşıda) | — |
-| https://itbooster.ru/ | Maraqlı struktur; kod üslubunda bölmə etiketləri (`features.Why()`); bento kartlar; scroll-spy nöqtələri | — |
-| Stripe / Linear (ümumi üslub) | Variant A-nın təmiz, redaksiyalı görünüşü | — |
-| İstifadəçinin göndərdiyi "FOCUS" şəkli | Hərəkətli fon üçün: tünd göy → bənövşəyi yumşaq qradiyent, yavaş hərəkət | — |
+| https://www.hellointerview.com/ | Interview preparation: system design, DSA, behavioral, low-level design; interview question formats; mock interview flow | All rights reserved ([terms](https://www.hellointerview.com/terms), checked 2026-11-23): copying, publishing and derivative works are prohibited without permission |
+| https://algomaster.io/ | Algorithms and data structures: DSA patterns and their ordering; system design, LLD, concurrency; animated explanations | All rights reserved ([terms](https://algomaster.io/policies/terms-of-service), checked 2026-11-23): content is the exclusive property of AlgoMasterIO LLC, no reuse rights granted |
 
-## Texnologiyalar (Mərhələ 2+)
+## Design references
 
-| Alət | Link | Nə üçün |
+Sites sent by the user. The design must **not copy them**; the liked part of each is taken.
+
+| Site | What was liked / taken | What was not liked |
 |---|---|---|
-| Astro | https://astro.build | Statik sayt framework-ü, Content Collections |
-| Shiki | https://shiki.style | Build vaxtı kod rənglənməsi |
-| Pagefind | https://pagefind.app | Statik axtarış indeksi |
-| CodeMirror 6 | https://codemirror.net | Brauzerdə kod redaktoru (lazy-load) |
-| Cloudflare Pages | https://pages.cloudflare.com | Hosting, PR preview, Pages Functions (`/api/run`) |
-| GitHub Actions + setup-go | https://github.com/actions/setup-go | CI: nümunələrin yoxlanması |
-| Go compile API | `https://go.dev/_/compile` | Kodu işlətmək (CORS yoxdur → proxy lazımdır) |
+| https://frontscope.dev/ | Visualizations: step player, memory visual; scroll animations; the "Don't read — see." style | Fonts (Syne), yellow/lime color; variant B ended up too similar to it |
+| https://roadmap.sh/ | Simple and compact; dense tile grid; roadmap view (central line + branches); statuses (learned / next / upcoming) | — |
+| https://itbooster.ru/ | Interesting structure; code-style section labels (`features.Why()`); bento cards; scroll-spy dots | — |
+| Stripe / Linear (general style) | Variant A's clean, editorial look | — |
+| The "FOCUS" image sent by the user | For the animated background: dark blue → purple soft gradient, slow movement | — |
 
-## Şriftlər
+## Technologies (Phase 2+)
 
-| Şrift | Link | Qeyd |
+| Tool | Link | Purpose |
 |---|---|---|
-| Inter | https://fonts.google.com/specimen/Inter | Mətn; Azərbaycan hərfləri var |
-| JetBrains Mono | https://fonts.google.com/specimen/JetBrains+Mono | Kod; liqaturalar söndürülür |
+| Astro | https://astro.build | Static site framework, Content Collections |
+| Shiki | https://shiki.style | Build-time syntax highlighting |
+| Pagefind | https://pagefind.app | Static search index |
+| CodeMirror 6 | https://codemirror.net | In-browser code editor (lazy-loaded) |
+| Cloudflare Pages | https://pages.cloudflare.com | Hosting, PR previews, Pages Functions (`/api/run`) |
+| GitHub Actions + setup-go | https://github.com/actions/setup-go | CI: verifying examples |
+| Go compile API | `https://go.dev/_/compile` | Running code (no CORS → proxy needed) |
+
+## Engineering conventions
+
+| Standard | Link |
+|---|---|
+| Conventional Commits 1.0 | https://www.conventionalcommits.org/en/v1.0.0/ |
+| GitHub Flow | https://docs.github.com/en/get-started/using-github/github-flow |
+| Semantic Versioning | https://semver.org/ |
+| Keep a Changelog | https://keepachangelog.com/ |
+| EditorConfig | https://editorconfig.org/ |
+| pnpm workspaces | https://pnpm.io/workspaces |
+
+## Fonts
+
+| Font | Link | Note |
+|---|---|---|
+| Inter | https://fonts.google.com/specimen/Inter | Text; has Azerbaijani letters |
+| JetBrains Mono | https://fonts.google.com/specimen/JetBrains+Mono | Code; ligatures disabled |

@@ -1,0 +1,32 @@
+Learning content license
+========================
+
+The learning content of this project (example explanations, lesson texts,
+example programs under content/ and their prototype copies under design/)
+is licensed under the Creative Commons Attribution 3.0 Unported License
+(CC BY 3.0):
+
+    https://creativecommons.org/licenses/by/3.0/
+
+Attribution
+-----------
+
+The content is based on "Go by Example" by Mark McGranaghan and
+Eli Bendersky (https://gobyexample.com,
+https://github.com/mmcgrana/gobyexample), licensed under CC BY 3.0.
+It has been translated into Azerbaijani, adapted and simplified.
+
+When you reuse this content, credit both "Go by Example" (Mark McGranaghan,
+Eli Bendersky) and this project, link to the license, and indicate if
+changes were made.
+
+Scope
+-----
+
+- Source code of the site, tooling and design system: MIT License (see LICENSE).
+- Third-party texts (roadmap.sh, itbooster.ru, hellointerview.com,
+  algomaster.io) are NOT covered by this license and are not included in
+  this repository unless the author's written consent is recorded in
+  docs/DECISIONS.md.
+
+"Go" is a trademark of Google LLC.
