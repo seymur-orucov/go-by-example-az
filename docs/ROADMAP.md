@@ -16,7 +16,10 @@ Markers: `[x]` done · `[~]` in progress · `[ ]` upcoming
 | **Accounts** | In the platform phase: sign-up and server-side progress (not in the Go prototype) |
 | **Theory + practice together** | Every roadmap node leads both to a theoretical explanation (concept) and to practice (working example, exercise, question) |
 | **All technologies on one site** | Go, Python, Rust, TypeScript, SQL, etc. on the same platform, with the same design and lesson format. **No** separate sites |
+| **Technologies + directions** | Users choose by technology (Go, Python…) or by direction (Backend, Frontend…), as on roadmap.sh and itbooster.ru |
+| **Practice formats** | Beyond lessons: tests/quizzes, interview preparation (incl. system design), algorithms and data structures, live coding, visual code explanations. Detailed model to be discussed |
 | **In Azerbaijani** | Content in Azerbaijani, terms in English |
+| **Language policy** | Azerbaijani is the primary language. Other languages are added only after a quality translation of the existing content |
 
 The prototype already prepares for this vision: a technology switcher in the header, the "Roadmap" view, statuses (learned / next / upcoming), progress, the "One platform, several languages" section.
 
@@ -55,7 +58,12 @@ Framework-free static HTML/CSS/JS in the `design/` directory.
 - [x] D lesson page: hide sidebar (`[`), content width centered / full (`F`), Zen mode (`Z`, `Esc`)
 - [x] Git repo and documentation for the project (this file)
 
+- [x] Platform scope, sources (hellointerview.com, algomaster.io), language policy and engineering conventions recorded; docs translated to English; `CONTRIBUTING.md`, licenses, `.editorconfig`, `.gitattributes`, GitHub templates added
+
 ### Remaining (before moving to Phase 2)
+- [x] Variant D chosen as the base design (2026-11-23); it will still change to fit the platform scope
+- [ ] **Discussion of the platform sections**: tests/quizzes, interview preparation, algorithms, live coding, visual code explanations; technology vs direction choice
+- [ ] **Home page redesign** for the platform (technology + direction choice, the new sections) — after the discussion
 - [ ] **Final approval** of Variant D — the user's final feedback
 - [ ] Final palette choice (currently 4 options: Nebula, İndiqo, Okean, Qrafit; Nebula by default)
 - [ ] A separate review of the mobile view for D (home page animations + lesson page)
@@ -67,7 +75,7 @@ Framework-free static HTML/CSS/JS in the `design/` directory.
 
 ## Phase 2 — Project skeleton `[ ]`
 
-Monorepo (npm workspaces). The first release ships with Go content only, but the structure is built **from the start for a unified platform** (Phases 6–7): routes `/<technology>/...`, content in `content/<technology>/`, shared theme and components.
+Monorepo (pnpm workspaces). The first release ships with Go content only, but the structure is built **from the start for a unified platform** (Phases 6–7): routes `/<technology>/...`, content in `content/<technology>/`, shared theme and components.
 
 ```
 packages/theme/        # tokens.css + Astro components (Layout, Sidebar, CodeStep, Player, SearchPalette, RunButton)
@@ -83,7 +91,8 @@ functions/api/run.ts   # go.dev/_/compile proxy (rate limit + size limit)
 .github/workflows/ci.yml
 ```
 
-- [ ] npm workspaces, Astro, Content Collections + Zod schema
+- [ ] pnpm workspaces (version pinned via `packageManager`), Astro, Content Collections + Zod schema
+- [ ] Tooling: commitlint + git hooks (husky or lefthook), Prettier + ESLint, `CHANGELOG.md` (Keep a Changelog) and SemVer from the first release
 - [ ] Move Variant D's tokens and components into `packages/theme`
 - [ ] Build-time syntax highlighting with Shiki (replacing the prototype's simple highlighter)
 - [ ] Static search with Pagefind (`Ctrl+K` palette)
@@ -103,7 +112,7 @@ functions/api/run.ts   # go.dev/_/compile proxy (rate limit + size limit)
 ## Phase 4 — CI/CD `[ ]`
 
 - [x] GitHub repo (public): https://github.com/seymur-orucov/go-by-example-az
-- [ ] GitHub Actions: `setup-go` → `go vet` + `go run` for each `main.go` → compare against `output.txt`; `npm ci && npm run build`; link check
+- [ ] GitHub Actions: `setup-go` → `go vet` + `go run` for each `main.go` → compare against `output.txt`; `pnpm install --frozen-lockfile && pnpm build`; lint + type-check; commit message check; link check
 - [ ] Cloudflare Pages: GitHub integration (main → production, PR → preview URL). The account is connected by the user
 
 ## Phase 5 — Remaining ~74 examples `[ ]`
@@ -130,6 +139,13 @@ Once the Go prototype is live, the site becomes a unified platform.
 - [ ] Using the site without an account stays possible (progress in `localStorage`)
 - [ ] Roadmap page: interactive map (roadmap.sh style); clicking a node opens a panel: theory, practice, status
 - [ ] Practice expands: exercises (complete / fix the code), test-based checking, "Check yourself" questions
+- [ ] Platform sections (the detailed model is discussed first, see Phase 1 → Remaining):
+  - **tests / quizzes** per node and per roadmap;
+  - **interview preparation**: questions by topic and level, system design (reference: hellointerview.com);
+  - **algorithms and data structures**: pattern-based track (reference: algomaster.io);
+  - **live coding**: timed in-browser coding tasks with automatic checks;
+  - **visual code explanations**: building on the step player and memory visual from variants B/D
+- [ ] Reach out to the authors of hellointerview.com and algomaster.io (texts only with written consent — [DECISIONS.md](DECISIONS.md#vision-2026-11-23))
 - [ ] Platform structure (itbooster style): home → technologies and roadmaps → roadmap → node → lesson
 - [ ] The technology switcher becomes functional; routes take the form `/<technology>/...` (e.g. `/go/slices`), Go links don't break
 - [ ] Shared search across all technologies
@@ -143,14 +159,16 @@ Once the Go prototype is live, the site becomes a unified platform.
 ## Future (not needed now)
 
 - [ ] Other directions: Frontend, DevOps, etc.
-- [ ] Translation into other languages (EN, RU, TR) — easy because code and explanations are stored separately
+- [ ] Other site languages (e.g. EN, RU, TR) — only after a quality, reviewed translation of the existing content; easy structurally because code and explanations are stored separately (one file per locale)
 
 ---
 
 ## Where to start next session
 
 1. `node design/serve.mjs` → open http://localhost:4321/d/ and look at Variant D.
-2. Continue from the "Phase 1 → Remaining" list, or apply the user's new feedback.
-3. Once D is approved, move to Phase 2: first agree on the skeleton in plan mode.
+2. Next topic: **discussion of the platform sections** (tests, interview preparation, algorithms, live coding, visual explanations; technology vs direction choice), then the **home page redesign** in D.
+3. Continue from the "Phase 1 → Remaining" list, or apply the user's new feedback.
+4. Once D is approved, move to Phase 2: first agree on the skeleton in plan mode.
+5. Work on a branch and commit with Conventional Commits (see [CONTRIBUTING.md](../CONTRIBUTING.md)).
 
 Note: **Go is not installed** on the local machine (Node 22 is). Installing Go before Phase 3 is recommended so examples can be verified locally.

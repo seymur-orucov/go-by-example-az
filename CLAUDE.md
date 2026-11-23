@@ -15,7 +15,10 @@ Project: **Nümunələrlə Go** — an Azerbaijani-language alternative to gobye
 - The chosen variant is **D** (`design/d/`). A, B, C exist only for comparison — don't touch them.
 - D reuses shared files: `design/app.js`, `design/data.js`, `design/b/b.js`, `design/c/c.js`, `design/c/style.css` (D's `style.css` imports it). Changing them also affects A–C.
 - Animations must be disabled under `prefers-reduced-motion`.
-- Take text from roadmap.sh / itbooster.ru only when the user marks it, then translate it; write the result to `content-private/` (not tracked by git). Unless the author's consent is recorded in [DECISIONS.md](docs/DECISIONS.md), don't commit these texts to the public repo or put them on the site.
+- Code, comments, docs, commit messages, branch names and PR descriptions are in **English**. Site UI text and learning content stay in Azerbaijani.
+- Git: never commit to `main` directly — create a branch (`feat/…`, `fix/…`, `docs/…`, `chore/…`). Commit messages follow **Conventional Commits** (`docs(roadmap): …`, `feat(design): …`). Push and open PRs only after the user confirms. Details: [CONTRIBUTING.md](CONTRIBUTING.md).
+- Package manager from Phase 2 is **pnpm** (not npm/yarn).
+- Take text from roadmap.sh / itbooster.ru / hellointerview.com / algomaster.io only when the user marks it, then translate it; write the result to `content-private/` (not tracked by git). Unless the author's consent is recorded in [DECISIONS.md](docs/DECISIONS.md), don't commit these texts to the public repo or put them on the site.
 - After each iteration add a short entry to `docs/HISTORY.md` and update the checkboxes in `docs/ROADMAP.md`.
 
 ## Running the prototype
