@@ -1,6 +1,6 @@
 /* Variant D — sample roadmap node content + the shared node panel (theory · practice · visual · test · interview).
    Used by index.html (explorer) and roadmap.html. Prototype data: on the platform each node links to real
-   theory / practice / quiz / interview items. Depends on ../app.js (window.GOAZ). */
+   theory / practice / quiz / interview items. Depends on ../shared/app.js (window.GOAZ). */
 (function () {
   "use strict";
   const G = window.GOAZ;

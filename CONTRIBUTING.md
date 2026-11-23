@@ -88,8 +88,8 @@ pnpm dev
 
 ## Design prototype rules
 
-- The chosen variant is **D** (`design/d/`); A, B, C are kept for comparison only.
-- D reuses shared files (`design/app.js`, `design/data.js`, `design/b/b.js`, `design/c/c.js`, `design/c/style.css`); changing them affects A–C.
+- The chosen variant is **D** (`design/d/`); A, B, C are archived in `design/archive/` and must not be edited.
+- D uses shared files in `design/shared/` (`app.js`, `data.js`, `b.js`, `c.js`, `base.css`); changing them also affects the archived A–C.
 - Every animation must be disabled under `prefers-reduced-motion`.
 - Check both dark and light themes and narrow screens.
 

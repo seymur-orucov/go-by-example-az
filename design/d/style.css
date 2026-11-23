@@ -4,7 +4,7 @@
    A-dan: versiya nişanı, "Bütün mövzular" kartları, sidebar, tam hündürlükdə kod.
    B-dən: "Oxuma — gör." demo, "Proqram" bölməsi (trek kartları + sətirlər).
    ========================================================== */
-@import url("../c/style.css");
+@import url("../shared/base.css");
 
 /* ---------- Versiya nişanı (A) ---------- */
 .eyebrow {

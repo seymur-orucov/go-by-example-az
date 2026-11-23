@@ -38,7 +38,7 @@ Then open in a browser:
 | http://localhost:4321/d/ | **Variant D** — the chosen design (platform home page) |
 | http://localhost:4321/d/go.html | Variant D — Go technology page |
 | http://localhost:4321/d/example.html | Variant D — lesson page (pilot: Slices) |
-| http://localhost:4321/, `/b/`, `/c/` | Variants A, B, C — kept for comparison |
+| http://localhost:4321/archive/a/, `/archive/b/`, `/archive/c/` | Variants A, B, C — archived, kept for comparison |
 
 The **Variant A | B | C | D** switch in the bottom-right corner moves between variants of the same page.
 
@@ -57,7 +57,7 @@ The **Variant A | B | C | D** switch in the bottom-right corner moves between va
 ## Directory layout
 
 ```
-design/          Phase 1: static design prototype (variants A, B, C, D)
+design/          Phase 1: static design prototype (D chosen; A, B, C archived)
 docs/            Plan, history, decisions, references
 .github/         Pull request and issue templates
 .claude/         Preview server configuration for Claude Code

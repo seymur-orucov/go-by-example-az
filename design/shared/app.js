@@ -212,11 +212,12 @@
     }
   }
 
-  // ---------- A/B variant switch (yalnız dizayn müqayisəsi üçün) ----------
+  // ---------- Variant switch (design comparison only) ----------
+  // Layout: /d/ is the chosen design; /archive/{a,b,c}/ are the archived variants.
   function mountVariantSwitch() {
-    const m = location.pathname.match(/\/([bcd])\//);
-    const cur = m ? m[1] : "a";
-    const root = cur === "a" ? "" : "../";
+    const m = location.pathname.match(/\/archive\/([abc])\//);
+    const cur = m ? m[1] : "d";
+    const root = m ? "../../" : "../";
     const page = /example\.html$/.test(location.pathname) ? "example.html" + location.search : "index.html";
     const el = document.createElement("div");
     el.setAttribute("role", "navigation");
@@ -227,7 +228,7 @@
     const link = (label, href, on) => '<a href="' + href + '" style="padding:7px 12px;border-radius:999px;text-decoration:none;' +
       (on ? "background:#e8ebf2;color:#0b0e14" : "color:#adbac7") + '"' + (on ? ' aria-current="page"' : "") + ">" + label + "</a>";
     el.innerHTML = '<span style="padding:7px 4px 7px 10px;color:#7d8694">Variant</span>' +
-      link("A", root + page, cur === "a") + link("B", root + "b/" + page, cur === "b") + link("C", root + "c/" + page, cur === "c") + link("D", root + "d/" + page, cur === "d");
+      link("A", root + "archive/a/" + page, cur === "a") + link("B", root + "archive/b/" + page, cur === "b") + link("C", root + "archive/c/" + page, cur === "c") + link("D", root + "d/" + page, cur === "d");
     document.body.appendChild(el);
   }
 

@@ -1,4 +1,4 @@
-/* Variant D — UX əlavələri. Asılılıq: ../app.js (toast), ../c/c.js (menyular).
+/* Variant D — UX əlavələri. Asılılıq: ../shared/app.js (toast), ../shared/c.js (menyular).
    1) Dərs səhifəsi: görünüş rejimləri — sidebar gizlət, kontent eni (mərkəzdə / tam en), Zen.
       Vəziyyət <html> atributlarındadır: data-sidebar="off", data-width="full", data-zen.
       Sidebar və en localStorage-da, Zen isə sessionStorage-da (yalnız bu tab) saxlanılır.
