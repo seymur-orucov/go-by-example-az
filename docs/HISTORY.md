@@ -169,3 +169,8 @@ Module 1 done (branch `chore/repo-skeleton`):
 - Found while installing: Astro 7 needs Node >= 22.23.4 (system Node is 22.13) and `typescript-eslint` does not support TypeScript 7. Solved by pinning Node 24 through pnpm `devEngines.runtime` (downloaded automatically, system Node untouched) and TypeScript 6.0.
 - Checked: `pnpm lint`, `format:check`, `check`, `build` pass; the commit-msg hook rejects bad messages and scopes; the pre-commit hook rejects badly formatted / lint-failing files.
 - Docs updated (CLAUDE.md, CONTRIBUTING.md, ROADMAP, DECISIONS). Phase 1 is marked done; "Go is not installed" was stale (Go 1.26 is installed).
+
+### 26. Backend decision
+The user asked whether the backend will be written in Go and whether the database will be PostgreSQL, then asked for alternatives to Supabase, and chose the paid option: **Go API + managed PostgreSQL, paid hosting allowed**.
+
+Done: recorded in [DECISIONS.md](DECISIONS.md) (Technical architecture); the open question was narrowed to the details (sign-in method, auth approach, Postgres and API host, budget), to be compared with live prices when Phase 6 starts; [ROADMAP.md](ROADMAP.md) Phase 6 updated. Phases 2–5 are unaffected (static site).

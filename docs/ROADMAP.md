@@ -141,7 +141,7 @@ Once the Go prototype is live, the site becomes a unified platform.
 - [ ] Two kinds of roadmap:
   - **technology** roadmap — e.g. "Go": the language itself, from simple to complex;
   - **direction** roadmap — e.g. "Backend": combines nodes from several technologies (Go, SQL, HTTP, Docker…); nodes reference technology content, content is not duplicated
-- [ ] **User accounts**: sign-up / sign-in, server-side progress and sync across devices, a personal path along the roadmap. This needs a backend + database; content pages stay static. Technology choice is an open question ([DECISIONS.md](DECISIONS.md#open-questions-awaiting-decision))
+- [ ] **User accounts**: sign-up / sign-in, server-side progress and sync across devices, a personal path along the roadmap. This needs a backend + database; content pages stay static. Stack decided: Go API + managed PostgreSQL, paid hosting allowed; details (sign-in method, host, budget) are open ([DECISIONS.md](DECISIONS.md#open-questions-awaiting-decision))
 - [ ] Using the site without an account stays possible (progress in `localStorage`)
 - [ ] Roadmap page: interactive map (roadmap.sh style); clicking a node opens a panel: theory, practice, status
 - [ ] Practice expands: exercises (complete / fix the code), test-based checking, "Check yourself" questions

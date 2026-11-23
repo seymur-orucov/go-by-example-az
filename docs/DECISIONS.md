@@ -54,6 +54,7 @@ Agreed decisions and their rationale. When a decision changes, don't delete the 
 |---|---|
 | ~~**Static site**, no backend or DB~~ | ~~Free hosting, simplicity; DB only if accounts/comments are needed~~ |
 | The Go prototype (Phases 1–5) is a **static site** with no backend or DB; in the platform phase (6+) a **backend + database** is added for accounts. Content pages stay static (2026-11-23) | Accounts will be needed after the first prototype; static content gives speed and free hosting |
+| **Backend for accounts (Phase 6+):** our own **Go API** on top of a **managed PostgreSQL**. **Paid hosting is allowed** for the backend and the database; the static site stays on the free Cloudflare Pages (2026-11-23) | The user's decision: Go + PostgreSQL fits the project's own subject and the later live-coding runner, and paid hosting avoids free-tier limits (sleeping instances, quotas). Candidates for the managed Postgres and the API host (Neon, Supabase Postgres, Cloud SQL, Cloud Run, Fly.io, Render…) are compared with live prices when Phase 6 starts. Rejected for now: all-in-one hosted backends (Supabase auth/API, Firebase, Nhost) and PocketBase (SQLite) |
 | **Astro** + Content Collections + Zod | Fast HTML with zero JS, Markdown/MDX, multiple collections |
 | **Shiki** (build-time syntax highlighting) | VS Code quality, no JS needed in the browser |
 | **Pagefind** (static search) | Serverless, with a `Ctrl+K` palette |
@@ -132,7 +133,8 @@ The project follows widely used international conventions and best practices. De
 - ~~Should variants A, B, C be deleted after approval, or archived?~~ — archived under `design/archive/` (2026-11-23).
 - Which technology comes after Go?
 - Consent from the authors of roadmap.sh (Kamran Ahmed) and itbooster.ru to translate and publish texts — who reaches out, and when? Consent records: _none yet_.
-- How will the backend for accounts be built: our own API (e.g. Go + PostgreSQL — which also fits the project's own subject) or a hosted service (Supabase, etc.)? Sign-in method: GitHub / Google OAuth, email? Must hosting stay free? — Must be decided before Phase 6.
+- ~~How will the backend for accounts be built: our own API (Go + PostgreSQL) or a hosted service? Must hosting stay free?~~ — decided 2026-11-23: Go API + managed PostgreSQL, hosting may be paid (see Technical architecture).
+- Backend details for Phase 6: sign-in method (GitHub / Google OAuth, email?), session/token approach (own code or a library such as Better Auth / an OAuth library), which managed Postgres and which API host, budget. Compare with live prices before Phase 6.
 - Users without an account: does progress stay in `localStorage` and get migrated to the server when they sign up?
 - ~~**Platform sections**: how they are modelled, linked to nodes, and ordered~~ — decided 2026-11-23, see "Platform sections".
 - ~~**Home page redesign**~~ — first version done 2026-11-23 (`design/d/index.html`); awaiting the user's feedback.
