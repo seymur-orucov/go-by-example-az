@@ -65,11 +65,12 @@ Framework-free static HTML/CSS/JS in the `design/` directory.
 - [x] **Discussion of the platform sections**: node model (theory · practice · visual · test · interview), algorithms as a separate track, live coding postponed, rollout order — [DECISIONS.md](DECISIONS.md#platform-sections-2026-11-23)
 - [~] **Home page redesign** for the platform: first version done (`d/index.html`: path choice, node explorer, sections bento; Go page moved to `d/go.html`) — awaiting feedback
 - [ ] Platform name (working name "Nümunələrlə" for now)
+- [x] **Roadmap page** (`d/roadmap.html`): technology roadmap (Go) + direction roadmap preview (Backend), sticky 5-facet node panel, filter, deep links; linked from the header nav, home, Go page and lessons (2026-11-23)
 - [ ] **Final approval** of Variant D — the user's final feedback
-- [ ] Final palette choice (currently 4 options: Nebula, İndiqo, Okean, Qrafit; Nebula by default)
-- [ ] A separate review of the mobile view for D (home page animations + lesson page)
-- [~] Final check of the light theme for D — the platform home is checked in light and dark with all 4 palettes (2026-11-23); `go.html` and the lesson page still need a check
-- [ ] Optional: an **arrow/curved line** linking explanation and code (the user's idea, not done yet)
+- [x] Final palette choice: Nebula by default, İndiqo, Okean and Qrafit stay as options (2026-11-23)
+- [x] A separate review of the mobile view for D — home, Go page and lesson page (incl. the topics drawer) checked at 390px in headless Chrome, no horizontal scroll (2026-11-23); a check on a real phone is still worth doing
+- [x] Final check of the light theme for D — platform home, Go page and lesson page checked in light (and the home in dark) with the palettes (2026-11-23)
+- [ ] Optional: an **arrow/curved line** linking explanation and code (the user's idea) — moved to Phase 2, built with the real components
 - [ ] After approval, move variants A, B, C to an archive (e.g. `design/archive/`) or delete them
 
 ---
@@ -147,7 +148,8 @@ Once the Go prototype is live, the site becomes a unified platform.
   4. **interview preparation**: questions by topic and level, linked to nodes and as a standalone list; system design sub-section (reference: hellointerview.com);
   5. **algorithms and data structures**: separate, technology-independent, pattern-based track (reference: algomaster.io);
   6. **live coding** (postponed): timed in-browser tasks with automatic checks; needs a test-case runner decision first
-- [ ] Reach out to the authors of hellointerview.com and algomaster.io (texts only with written consent — [DECISIONS.md](DECISIONS.md#vision-2026-11-23))
+- [ ] Read the terms of greatfrontend.com (not verified yet) and decide what to take from it for content and design
+- [ ] Reach out to the authors of hellointerview.com, algomaster.io and greatfrontend.com (texts only with written consent — [DECISIONS.md](DECISIONS.md#vision-2026-11-23))
 - [ ] Platform structure (itbooster style): home → technologies and roadmaps → roadmap → node → lesson
 - [ ] The technology switcher becomes functional; routes take the form `/<technology>/...` (e.g. `/go/slices`), Go links don't break
 - [ ] Shared search across all technologies

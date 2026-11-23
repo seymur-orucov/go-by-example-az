@@ -128,3 +128,23 @@ Done (branch `feat/d-platform-home`):
 
 ### 20. Light theme and palette check of the platform home
 The user merged both PRs (#1, #2) and asked to continue. Checked `d/index.html` in light and dark with all four palettes (palette ids are `nebula`, `indigo`, `ocean`, `graphite`). Everything works; one fix: the dimmed "coming soon" path cards had text below WCAG AA contrast, so they are now dimmed through the icon and a dashed border only, and card descriptions use `--text-muted`.
+
+### 21. Light theme and mobile review of the Go and lesson pages
+The user merged PR #3 and asked to continue. Checked `go.html` and the lesson page in the light theme and at 390px (lesson, topics drawer, Go page sections). No problems found, so no code changes. ROADMAP items for the light theme and the mobile review are closed; remaining Phase 1 items: palette decision, optional explanation ↔ code arrow, archiving variants A–C, final approval of D.
+
+### 22. Roadmap page
+The user agreed to the proposals (Nebula default with 4 palettes kept, archive variants A–C instead of deleting, arrow idea moved to Phase 2) and added: after the last changes the **roadmap tab was not visible**, and it will be used and developed in the project.
+
+Cause: after the home page redesign the full roadmap was only the third tab inside the Go page; the home page showed a 6-node fragment.
+
+Done (branch `feat/d-roadmap-page`):
+- New `design/d/roadmap.html`: technology roadmap (Go, 9 sections / 84 topics, filter, progress) and a Backend direction preview; a sticky node panel with Theory · Practice · Visual · Test · Interview; deep links in the URL hash.
+- Sample node content and the panel moved to `design/d/nodes.js` and are shared by the home page explorer and the roadmap page.
+- “Yol xəritəsi” in the header nav of all D pages, the home page links, the Backend card/menu item (preview) and the Go hero now lead to the roadmap page.
+- Checked in headless Chrome (desktop, 390px, light theme): 84 nodes, node selection, quiz, filter, kind switch, deep links, no JS errors, no horizontal scroll.
+- [DECISIONS.md](DECISIONS.md), [ROADMAP.md](ROADMAP.md) and [design/README.md](../design/README.md) updated. Archiving A–C comes next, as a separate change.
+
+### 23. New source: greatfrontend.com
+The user asked to add https://www.greatfrontend.com/ to the sources, for both design and content.
+
+Done: added to [REFERENCES.md](REFERENCES.md) (content sources and design references), [DECISIONS.md](DECISIONS.md), [CLAUDE.md](../CLAUDE.md) and [CONTRIBUTING.md](../CONTRIBUTING.md), and a ROADMAP item. **Not verified:** the site returned HTTP 429 to the fetch tool, so its terms were not read; it is treated as all rights reserved until checked. What to take for design and content is still to be agreed.

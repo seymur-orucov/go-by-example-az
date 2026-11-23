@@ -26,6 +26,7 @@ Sources for the interview preparation, system design and algorithms sections of 
 | Resource | Used for | License |
 |---|---|---|
 | https://www.hellointerview.com/ | Interview preparation: system design, DSA, behavioral, low-level design; interview question formats; mock interview flow | All rights reserved ([terms](https://www.hellointerview.com/terms), checked 2026-11-23): copying, publishing and derivative works are prohibited without permission |
+| https://www.greatfrontend.com/ | Front-end interview preparation and practice: JavaScript/TypeScript and UI coding questions, system design for front-end, quizzes; study plans and progress. Added 2026-11-23 for both **content** (topics, question formats) and **design** (see below) | **Not verified yet** — the terms page could not be fetched on 2026-11-23 (HTTP 429). Until checked, treat as all rights reserved: use topics and structure as a reference only; no text is copied |
 | https://algomaster.io/ | Algorithms and data structures: DSA patterns and their ordering; system design, LLD, concurrency; animated explanations | All rights reserved ([terms](https://algomaster.io/policies/terms-of-service), checked 2026-11-23): content is the exclusive property of AlgoMasterIO LLC, no reuse rights granted |
 
 ## Design references
@@ -37,6 +38,7 @@ Sites sent by the user. The design must **not copy them**; the liked part of eac
 | https://frontscope.dev/ | Visualizations: step player, memory visual; scroll animations; the "Don't read — see." style | Fonts (Syne), yellow/lime color; variant B ended up too similar to it |
 | https://roadmap.sh/ | Simple and compact; dense tile grid; roadmap view (central line + branches); statuses (learned / next / upcoming) | — |
 | https://itbooster.ru/ | Interesting structure; code-style section labels (`features.Why()`); bento cards; scroll-spy dots | — |
+| https://www.greatfrontend.com/ | Added 2026-11-23 as a **design and UX reference** for the practice side: coding questions with an in-browser editor and live preview, study plans, progress tracking. What exactly to take is still to be agreed with the user; to be verified on the live site | — |
 | Stripe / Linear (general style) | Variant A's clean, editorial look | — |
 | The "FOCUS" image sent by the user | For the animated background: dark blue → purple soft gradient, slow movement | — |
 

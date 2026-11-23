@@ -50,6 +50,14 @@ D's home page now presents the **platform**, not only Go. The former Go home pag
 - **Every step — theory and practice** (`node.Open()`): a Go roadmap fragment (6 nodes with learned / next / upcoming status) and a panel with 5 tabs per node — Theory · Practice (highlighted code) · Visual (animated steps) · Test (clickable quiz) · Interview (question + revealable answer). Tabs support arrow keys.
 - **Platform sections** (`platform.Sections()`): a bento of the 6 sections in the agreed rollout order with status badges and mini-animations (roadmap nodes pulse, a quiz answer is picked, an interview answer appears, two pointers move, a live-coding timer ticks and tests pass).
 - **Don't read — see.** demo kept as the showcase of the visual explanation section.
+- The node content and the 5-tab panel are shared with the roadmap page through `d/nodes.js`.
+#### Roadmap page (`d/roadmap.html`, 2026-11-23)
+The roadmap is a first-class page, linked from the header nav (“Yol xəritəsi”) of every D page, the home page (“Tam xəritə”, the roadmaps card) and the Go page hero.
+- **Two kinds** (switch at the top): **Go · technology** — all 9 sections / 84 topics as collapsible groups with a spine and learned / next / upcoming dots, plus an All / Not learned / Learned filter; **Backend · direction (preview)** — Git → HTTP → Go → SQL → Docker → Deploy; Go nodes are real and clickable, the rest are “coming soon”.
+- **Sticky node panel** on the right (above the map on narrow screens) with the 5 facets: Theory · Practice · Visual · Test · Interview. Topics without sample content show a short “coming soon” text.
+- **Deep links:** `roadmap.html#slices`, `roadmap.html#backend`, `roadmap.html#backend/goroutines`.
+- Progress bar and counts follow the learned set in `localStorage`.
+
 - The lesson page logo links to the platform home; its Go links and breadcrumbs point to `go.html`.
 
 In all variants **explanation ↔ code highlight each other**: hovering the explanation highlights code lines, and hovering a code line highlights the matching explanation step (scrolling it into view if needed).
@@ -72,6 +80,8 @@ In all variants **explanation ↔ code highlight each other**: hovering the expl
 | `d/style.css` | Variant D: A and B components on top of `c/style.css` |
 | `d/d.js` | Variant D: lesson page view modes (panel, width, zen) and home page scroll animation |
 | `d/index.html` | Variant D: platform home (path choice, node explorer, platform sections) |
+| `d/roadmap.html` | Variant D: roadmap page (technology + direction preview, node panel) |
+| `d/nodes.js` | Variant D: sample node content and the shared 5-tab node panel (home explorer + roadmap page) |
 | `d/go.html` | Variant D: Go technology page (former home page; future `/go/`) |
 | `d/example.html` | Variant D: lesson page (reuses `b/b.js`, `c/c.js`) |
 | `serve.mjs` | Dependency-free local server |

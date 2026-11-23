@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="az">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yol xəritəsi — Nümunələrlə</title>
+  <meta name="description" content="Go yol xəritəsi: nəyi, hansı ardıcıllıqla öyrənəcəyini gör. Hər mövzuda nəzəriyyə, praktika, vizual, test və müsahibə.">
+  <!-- Roadmap page (future routes: /go/roadmap for a technology, /roadmaps/backend for a direction). -->
+  <script>try { var p = JSON.parse(localStorage.getItem("goaz:palette")); if (p && p !== "nebula") document.documentElement.setAttribute("data-palette", p); } catch (e) {}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="index.html" aria-label="Nümunələrlə — ana səhifə"><span class="logo-mark">nü</span><span class="logo-text" data-brand>Nümunələrlə</span></a>
+    <div class="dd">
+      <button class="tech-switch" data-menu-btn aria-label="Texnologiya seç"><span class="dot dot-all"></span>Texnologiya
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+      <div class="menu" hidden>
+        <div class="menu-title label">Texnologiyalar</div>
+        <a class="menu-item" href="go.html"><span class="dot" style="background:#00add8"></span>Go<small>84 nümunə ✓</small></a>
+        <span class="menu-item soon"><span class="dot" style="background:#3776ab"></span>Python<small>tezliklə</small></span>
+        <span class="menu-item soon"><span class="dot" style="background:#dea584"></span>Rust<small>tezliklə</small></span>
+        <span class="menu-item soon"><span class="dot" style="background:#3178c6"></span>TypeScript<small>tezliklə</small></span>
+        <span class="menu-item soon"><span class="dot" style="background:#94a3b8"></span>SQL<small>tezliklə</small></span>
+        <div class="menu-title label">İstiqamətlər</div>
+        <a class="menu-item" href="roadmap.html#backend"><span class="dot" style="background:#8b5cf6"></span>Backend<small>önizləmə</small></a>
+        <span class="menu-item soon"><span class="dot" style="background:#f472b6"></span>Frontend<small>tezliklə</small></span>
+      </div>
+    </div>
+    <nav class="nav" aria-label="Əsas menyu">
+      <a href="roadmap.html" aria-current="page">Yol xəritəsi</a>
+      <a href="index.html#bolmeler">Bölmələr</a>
+      <a href="go.html">Go</a>
+    </nav>
+    <div class="header-spacer"></div>
+    <div class="header-right">
+      <button class="search-trigger" data-open-search aria-label="Axtarış (Ctrl+K)"><i data-icon="search" style="display:contents"></i><span>Mövzu axtar…</span><kbd>Ctrl K</kbd></button>
+      <div class="dd palette-picker">
+        <button class="btn btn-ghost btn-icon" data-menu-btn aria-label="Rəng palitrası" title="Rəng palitrası">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r="1.5"/><circle cx="17.5" cy="10.5" r="1.5"/><circle cx="8.5" cy="7.5" r="1.5"/><circle cx="6.5" cy="12.5" r="1.5"/><path d="M12 2a10 10 0 0 0 0 20c1 0 1.7-.8 1.7-1.7 0-.4-.2-.8-.4-1.1-.3-.3-.4-.7-.4-1.1 0-.9.8-1.7 1.7-1.7H17a5 5 0 0 0 5-5c0-4.9-4.5-8.4-10-8.4Z"/></svg>
+        </button>
+        <div class="menu" data-palette-menu hidden></div>
+      </div>
+      <button class="btn btn-ghost btn-icon" data-theme-toggle></button>
+    </div>
+  </header>
+
+  <main class="container rm-page">
+    <nav class="crumbs" aria-label="Yol"><a href="index.html">Ana səhifə</a><span class="sep">/</span><a href="index.html#yol">Yol xəritələri</a><span class="sep">/</span><span id="rm-crumb">Go</span></nav>
+
+    <div class="rm-head">
+      <div>
+        <h1 id="rm-title">Go yol xəritəsi</h1>
+        <p id="rm-sub">Sadədən mürəkkəbə. Mövzu seç — nəzəriyyə, praktika, vizual, test və müsahibə sağda açılır.</p>
+      </div>
+      <div class="view-switch" role="group" aria-label="Yol xəritəsi növü" id="rm-kind">
+        <button data-kind="tech" aria-pressed="true">Go · texnologiya</button>
+        <button data-kind="dir" aria-pressed="false">Backend · istiqamət</button>
+      </div>
+    </div>
+
+    <div class="rm-stats">
+      <div class="rm-stat"><b id="rm-done">0 / 0</b><span id="rm-stat-label">mövzu öyrənilib</span></div>
+      <span class="sc-bar"><span id="rm-bar" style="width:0"></span></span>
+      <div class="map-legend"><span><i style="background:var(--green)"></i>öyrənilib</span><span><i style="background:var(--accent)"></i>növbəti</span><span><i></i>qarşıda</span></div>
+    </div>
+
+    <div class="rm-layout">
+      <div>
+        <div class="filter rm-filter" id="rm-filter">
+          <button data-f="all" aria-pressed="true">Hamısı</button>
+          <button data-f="todo" aria-pressed="false">Öyrənilməyən</button>
+          <button data-f="done" aria-pressed="false">Öyrənilən</button>
+        </div>
+        <p class="rm-note" id="rm-note" hidden></p>
+        <div class="rm-map" id="rm-map"></div>
+      </div>
+
+      <aside class="nx-panel rm-panel" id="rm-panel" aria-label="Mövzu">
+        <div class="nx-head">
+          <div><span class="label" id="nx-sec"></span><h3 id="nx-title"></h3></div>
+          <span class="nx-status" id="nx-status"></span>
+        </div>
+        <div class="nx-tabs" role="tablist" aria-label="Mövzunun hissələri" id="nx-tabs">
+          <button role="tab" data-tab="theory" aria-selected="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5V5a2 2 0 0 1 2-2h14v15H6.5A2.5 2.5 0 0 0 4 20.5 2.5 2.5 0 0 0 6.5 23H20"/></svg>Nəzəriyyə</button>
+          <button role="tab" data-tab="practice" aria-selected="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 7-5 5 5 5M16 7l5 5-5 5"/></svg>Praktika</button>
+          <button role="tab" data-tab="visual" aria-selected="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>Vizual</button>
+          <button role="tab" data-tab="quiz" aria-selected="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="m8 12 3 3 5-6"/></svg>Test</button>
+          <button role="tab" data-tab="interview" aria-selected="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/></svg>Müsahibə</button>
+        </div>
+        <div class="nx-body" id="nx-body" role="tabpanel" aria-live="polite"></div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="inner">
+      <p>Go dərsləri Mark McGranaghan və Eli Bendersky-nin <a href="https://gobyexample.com" rel="noopener">Go by Example</a> layihəsi əsasında hazırlanıb, Azərbaycan dilinə uyğunlaşdırılıb və sadələşdirilib. Kontent <a href="https://creativecommons.org/licenses/by/3.0/" rel="noopener">CC BY 3.0</a> lisenziyası ilə paylaşılır.</p>
+      <p>Go adı Google LLC-yə məxsusdur.<br>Variant D · dizayn prototipi · ad müvəqqətidir</p>
+    </div>
+  </footer>
+
+  <script src="../data.js"></script>
+  <script src="../app.js"></script>
+  <script src="../c/c.js"></script>
+  <script src="nodes.js"></script>
+  <script src="d.js"></script>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const G = window.GOAZ, C = window.GOAZ_C, GD = window.GOAZ_D;
+    const esc = G.esc, ls = G.learnedSet;
+    const next = G.FLAT.find((e) => !ls.has(e.slug));
+    const pct = (a, b) => Math.round(a / b * 100);
+    const $ = (id) => document.getElementById(id);
+
+    // Direction roadmap preview. On the platform: content/roadmaps/backend.yaml; Go nodes reference technology content.
+    const BACKEND = [
+      { tech: "Git", c: "#f05032", items: ["Git əsasları", "Branch və merge"] },
+      { tech: "HTTP", c: "#8b5cf6", items: ["HTTP əsasları", "REST API dizaynı"] },
+      { tech: "Go", c: "#00add8", slugs: ["variables", "functions", "structs", "interfaces", "errors", "goroutines", "channels", "http-server"] },
+      { tech: "SQL", c: "#64748b", items: ["SELECT və JOIN", "Index-lər", "Tranzaksiyalar"] },
+      { tech: "Docker", c: "#2496ed", items: ["Image və container", "Docker Compose"] },
+      { tech: "Deploy", c: "#22c55e", items: ["CI/CD əsasları", "Monitorinq"] },
+    ];
+
+    let kind = "tech", filter = "all";
+    const panel = GD.mountNodePanel({ sec: $("nx-sec"), title: $("nx-title"), status: $("nx-status"), tabs: $("nx-tabs"), body: $("nx-body") });
+
+    const stateOf = (slug) => (ls.has(slug) ? "done" : next && next.slug === slug ? "next" : "");
+    const nodeBtn = (slug, title, sub) =>
+      '<li><button class="nx-node ' + stateOf(slug) + '" data-slug="' + slug + '" aria-pressed="false"><i></i><span>' + esc(title) + "</span><small>" + esc(sub) + "</small></button></li>";
+    const nodeSoon = (title) => '<li><span class="nx-node soon"><i></i><span>' + esc(title) + "</span><small>tezliklə</small></span></li>";
+
+    function stats(done, total, label) {
+      $("rm-done").textContent = done + " / " + total;
+      $("rm-stat-label").textContent = label;
+      $("rm-bar").style.width = pct(done, total) + "%";
+    }
+
+    function renderTech() {
+      stats(G.FLAT.filter((e) => ls.has(e.slug)).length, G.FLAT.length, "mövzu öyrənilib");
+      $("rm-map").innerHTML = G.SECTIONS.map((s) => {
+        const sd = s.items.filter(([slug]) => ls.has(slug)).length;
+        const items = s.items.filter(([slug]) => filter === "all" || (filter === "done") === ls.has(slug));
+        if (!items.length) return "";
+        return '<details class="rm-sec" open style="--c:' + C.SECTION_COLORS[s.id] + '"><summary><span class="sc-icon">' + G.I[s.icon] + "</span>" +
+          '<span class="rm-sec-t"><b>' + esc(s.title) + "</b><small>" + sd + " / " + s.items.length + " · " + C.LEVEL[s.id] + "</small></span>" +
+          '<span class="sc-bar rm-sec-bar"><span style="width:' + pct(sd, s.items.length) + '%"></span></span></summary>' +
+          '<div class="rm-body"><ol class="nx-nodes">' + items.map(([slug, title, sub]) => nodeBtn(slug, title, sub)).join("") + "</ol></div></details>";
+      }).join("") || '<p class="rm-empty">Bu filtrdə mövzu yoxdur</p>';
+    }
+
+    function renderDir() {
+      const goSlugs = BACKEND.find((g) => g.slugs).slugs.filter((s) => G.FLAT.some((e) => e.slug === s));
+      stats(goSlugs.filter((s) => ls.has(s)).length, goSlugs.length, "Go mövzusu öyrənilib (istiqamətdə)");
+      $("rm-map").innerHTML = BACKEND.map((g, gi) => {
+        const nodes = g.slugs
+          ? g.slugs.map((slug) => G.FLAT.find((e) => e.slug === slug)).filter(Boolean).map((e) => nodeBtn(e.slug, e.title, e.sub)).join("")
+          : g.items.map(nodeSoon).join("");
+        return '<details class="rm-sec" open style="--c:' + g.c + '"><summary><span class="rm-step">' + (gi + 1) + "</span>" +
+          '<span class="rm-sec-t"><b>' + esc(g.tech) + "</b><small>" + (g.slugs ? "aktiv · Go yol xəritəsindən" : "tezliklə") + "</small></span></summary>" +
+          '<div class="rm-body"><ol class="nx-nodes">' + nodes + "</ol></div></details>";
+      }).join("");
+    }
+
+    function render() {
+      const dir = kind === "dir";
+      $("rm-title").textContent = dir ? "Backend yol xəritəsi" : "Go yol xəritəsi";
+      $("rm-crumb").textContent = dir ? "Backend" : "Go";
+      $("rm-sub").textContent = dir
+        ? "İstiqamət — bir peşə üzrə yol: bir neçə texnologiyanın mövzularını birləşdirir. Kontent təkrarlanmır, mövzular texnologiya yol xəritələrinə istinad edir."
+        : "Sadədən mürəkkəbə. Mövzu seç — nəzəriyyə, praktika, vizual, test və müsahibə sağda açılır.";
+      const note = $("rm-note");
+      note.hidden = !dir;
+      note.textContent = "Önizləmə: Go mövzuları real, digər texnologiyalar hazırlanır.";
+      $("rm-filter").hidden = dir;
+      document.querySelectorAll("#rm-kind button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.kind === kind)));
+      dir ? renderDir() : renderTech();
+      markCurrent();
+      const m = $("rm-map"); m.classList.remove("view-in"); void m.offsetWidth; m.classList.add("view-in");
+    }
+
+    function markCurrent() {
+      const cur = panel.current();
+      document.querySelectorAll("#rm-map .nx-node[data-slug]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.slug === cur)));
+    }
+
+    function select(slug, fromUser) {
+      panel.show(slug);
+      markCurrent();
+      try { history.replaceState(null, "", "#" + (kind === "dir" ? "backend/" : "") + slug); } catch (e) {}
+      if (fromUser && matchMedia("(max-width: 980px)").matches) $("rm-panel").scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    $("rm-map").addEventListener("click", (e) => {
+      const b = e.target.closest(".nx-node[data-slug]"); if (b) select(b.dataset.slug, true);
+    });
+    $("rm-filter").addEventListener("click", (e) => {
+      const b = e.target.closest("button"); if (!b) return;
+      filter = b.dataset.f;
+      document.querySelectorAll("#rm-filter button").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+      render();
+    });
+    $("rm-kind").addEventListener("click", (e) => {
+      const b = e.target.closest("button"); if (!b || b.dataset.kind === kind) return;
+      kind = b.dataset.kind; render();
+      // keep the panel in sync with the map: if the open topic isn't part of this roadmap, open the next / first one
+      const cur = panel.current();
+      if (!document.querySelector('#rm-map .nx-node[data-slug="' + cur + '"]')) {
+        const nodes = Array.from(document.querySelectorAll("#rm-map .nx-node[data-slug]"));
+        const pick = nodes.find((n) => n.classList.contains("next")) || nodes.find((n) => !n.classList.contains("done")) || nodes[0];
+        if (pick) select(pick.dataset.slug, false);
+      }
+    });
+
+    // Deep link: #slug (technology) or #backend / #backend/slug (direction)
+    let start = next ? next.slug : G.FLAT[0].slug;
+    const h = decodeURIComponent(location.hash.slice(1));
+    if (h.startsWith("backend")) { kind = "dir"; const s = h.split("/")[1]; if (s && G.FLAT.some((e) => e.slug === s)) start = s; }
+    else if (G.FLAT.some((e) => e.slug === h)) start = h;
+    render();
+    select(start, false);
+    const first = document.querySelector('#rm-map .nx-node[data-slug="' + start + '"]');
+    if (h && first && !matchMedia("(max-width: 980px)").matches) first.scrollIntoView({ block: "center" });
+  });
+  </script>
+</body>
+</html>
