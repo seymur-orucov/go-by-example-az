@@ -143,3 +143,8 @@ Done (branch `feat/d-roadmap-page`):
 - “Yol xəritəsi” in the header nav of all D pages, the home page links, the Backend card/menu item (preview) and the Go hero now lead to the roadmap page.
 - Checked in headless Chrome (desktop, 390px, light theme): 84 nodes, node selection, quiz, filter, kind switch, deep links, no JS errors, no horizontal scroll.
 - [DECISIONS.md](DECISIONS.md), [ROADMAP.md](ROADMAP.md) and [design/README.md](../design/README.md) updated. Archiving A–C comes next, as a separate change.
+
+### 23. New source: greatfrontend.com
+The user asked to add https://www.greatfrontend.com/ to the sources, for both design and content.
+
+Done: added to [REFERENCES.md](REFERENCES.md) (content sources and design references), [DECISIONS.md](DECISIONS.md), [CLAUDE.md](../CLAUDE.md) and [CONTRIBUTING.md](../CONTRIBUTING.md), and a ROADMAP item. **Not verified:** the site returned HTTP 429 to the fetch tool, so its terms were not read; it is treated as all rights reserved until checked. What to take for design and content is still to be agreed.

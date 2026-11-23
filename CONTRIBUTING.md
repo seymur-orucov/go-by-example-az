@@ -95,7 +95,7 @@ pnpm dev
 
 ## Third-party content
 
-Text from roadmap.sh, itbooster.ru, hellointerview.com and algomaster.io is **not** openly licensed. Topics and ordering may be used as a reference, but their texts must not be committed or published without the author's written consent recorded in [docs/DECISIONS.md](docs/DECISIONS.md). Translations awaiting consent live in `content-private/`, which is ignored by git.
+Text from roadmap.sh, itbooster.ru, hellointerview.com, algomaster.io and greatfrontend.com is **not** openly licensed. Topics and ordering may be used as a reference, but their texts must not be committed or published without the author's written consent recorded in [docs/DECISIONS.md](docs/DECISIONS.md). Translations awaiting consent live in `content-private/`, which is ignored by git.
 
 ## License
 

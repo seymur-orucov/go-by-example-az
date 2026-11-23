@@ -148,7 +148,8 @@ Once the Go prototype is live, the site becomes a unified platform.
   4. **interview preparation**: questions by topic and level, linked to nodes and as a standalone list; system design sub-section (reference: hellointerview.com);
   5. **algorithms and data structures**: separate, technology-independent, pattern-based track (reference: algomaster.io);
   6. **live coding** (postponed): timed in-browser tasks with automatic checks; needs a test-case runner decision first
-- [ ] Reach out to the authors of hellointerview.com and algomaster.io (texts only with written consent — [DECISIONS.md](DECISIONS.md#vision-2026-11-23))
+- [ ] Read the terms of greatfrontend.com (not verified yet) and decide what to take from it for content and design
+- [ ] Reach out to the authors of hellointerview.com, algomaster.io and greatfrontend.com (texts only with written consent — [DECISIONS.md](DECISIONS.md#vision-2026-11-23))
 - [ ] Platform structure (itbooster style): home → technologies and roadmaps → roadmap → node → lesson
 - [ ] The technology switcher becomes functional; routes take the form `/<technology>/...` (e.g. `/go/slices`), Go links don't break
 - [ ] Shared search across all technologies
