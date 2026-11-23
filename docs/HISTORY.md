@@ -128,3 +128,6 @@ Done (branch `feat/d-platform-home`):
 
 ### 20. Light theme and palette check of the platform home
 The user merged both PRs (#1, #2) and asked to continue. Checked `d/index.html` in light and dark with all four palettes (palette ids are `nebula`, `indigo`, `ocean`, `graphite`). Everything works; one fix: the dimmed "coming soon" path cards had text below WCAG AA contrast, so they are now dimmed through the icon and a dashed border only, and card descriptions use `--text-muted`.
+
+### 21. Light theme and mobile review of the Go and lesson pages
+The user merged PR #3 and asked to continue. Checked `go.html` and the lesson page in the light theme and at 390px (lesson, topics drawer, Go page sections). No problems found, so no code changes. ROADMAP items for the light theme and the mobile review are closed; remaining Phase 1 items: palette decision, optional explanation ↔ code arrow, archiving variants A–C, final approval of D.

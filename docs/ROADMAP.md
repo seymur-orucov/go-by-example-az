@@ -67,8 +67,8 @@ Framework-free static HTML/CSS/JS in the `design/` directory.
 - [ ] Platform name (working name "Nümunələrlə" for now)
 - [ ] **Final approval** of Variant D — the user's final feedback
 - [ ] Final palette choice (currently 4 options: Nebula, İndiqo, Okean, Qrafit; Nebula by default)
-- [ ] A separate review of the mobile view for D (home page animations + lesson page)
-- [~] Final check of the light theme for D — the platform home is checked in light and dark with all 4 palettes (2026-11-23); `go.html` and the lesson page still need a check
+- [x] A separate review of the mobile view for D — home, Go page and lesson page (incl. the topics drawer) checked at 390px in headless Chrome, no horizontal scroll (2026-11-23); a check on a real phone is still worth doing
+- [x] Final check of the light theme for D — platform home, Go page and lesson page checked in light (and the home in dark) with the palettes (2026-11-23)
 - [ ] Optional: an **arrow/curved line** linking explanation and code (the user's idea, not done yet)
 - [ ] After approval, move variants A, B, C to an archive (e.g. `design/archive/`) or delete them
 
