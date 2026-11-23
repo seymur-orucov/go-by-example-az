@@ -1,0 +1,22 @@
+# Generated / installed
+node_modules/
+dist/
+.astro/
+.wrangler/
+pnpm-lock.yaml
+
+# Frozen design prototype (framework-free reference, not formatted)
+design/
+
+# Tool / editor configuration
+.claude/
+
+# Text and learning content are not reformatted by Prettier (yet)
+*.md
+docs/
+content/
+content-private/
+
+# Licenses
+LICENSE
+LICENSE-CONTENT

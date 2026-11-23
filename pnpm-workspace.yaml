@@ -1,0 +1,7 @@
+packages:
+  - apps/*
+  - packages/*
+
+# Dependencies whose install scripts may run (pnpm 12: everything else is blocked by default).
+allowBuilds:
+  lefthook: true
