@@ -6,13 +6,13 @@ A framework-free static HTML/CSS prototype. Goal: approve the visual style and U
 ```
 node design/serve.mjs
 ```
-Then in a browser: http://localhost:4321/d/ (**Variant D — chosen**), http://localhost:4321 (Variant A), http://localhost:4321/b/ (Variant B), http://localhost:4321/c/ (Variant C).
+Then in a browser: http://localhost:4321/ (redirects to **Variant D — chosen**, http://localhost:4321/d/). The archived variants stay available for comparison: http://localhost:4321/archive/a/ (A), `/archive/b/` (B), `/archive/c/` (C).
 
-There are four variants. The **Variant A | B | C | D** switch in the bottom-right corner of every page jumps to the other variant of the same page.
+There are four variants; A, B and C are **archived** under `archive/` (frozen, don't edit). The **Variant A | B | C | D** switch in the bottom-right corner of every page jumps to the other variant of the same page.
 
 | | Variant A — “Clean” | Variant B — “Scope” | Variant C — “Roadmap” |
 |---|---|---|---|
-| URL | `/` | `/b/` | `/c/` |
+| URL | `/archive/a/` | `/archive/b/` | `/archive/c/` |
 | Reference | Stripe/Linear style | frontscope.dev | roadmap.sh + itbooster.ru + frontscope visuals |
 | Colors | Dark blue-black, Go blue | Black, lime `#E8FF5A` | Black/gray + blue→purple gradient; **4 palette options** |
 | Heading font | Inter | Unbounded (Syne lacks `ə/Ə`) | Inter |
@@ -63,28 +63,33 @@ The roadmap is a first-class page, linked from the header nav (“Yol xəritəsi
 In all variants **explanation ↔ code highlight each other**: hovering the explanation highlights code lines, and hovering a code line highlights the matching explanation step (scrolling it into view if needed).
 
 ## Files
+```
+design/
+  serve.mjs       dependency-free local server ("/" redirects to /d/)
+  shared/         files used by D (and by the archived A–C)
+  d/              Variant D — the chosen design
+  archive/        Variants A, B, C — frozen, kept for comparison
+```
+
 | File | Purpose |
 |---|---|
-| `tokens.css` | Colors, fonts, sizes — light and dark theme. A new technology site changes only the `--accent*` variables. |
-| `app.css` | Components: header, sidebar, search palette, code window, terminal, quiz, pager |
-| `app.js` | Theme, `Ctrl+K` search, Go syntax highlighting (prototype), progress (`localStorage`) |
-| `data.js` | List of 84 examples (9 sections) — on the real site it will be generated from `content/go/` |
-| `index.html` | Home page |
-| `example.html` | Example page (pilot: Slices) |
-| `b/style.css` | All of Variant B's styles and tokens |
-| `b/b.js` | Variant B: step player, memory visualizer, Slices lesson data |
-| `b/index.html`, `b/example.html` | Variant B pages |
-| `c/style.css` | Variant C styles, neutral tokens and 4 palettes (`data-palette`) |
-| `c/c.js` | Variant C: palette switcher, dropdown menus, section colors |
-| `c/index.html`, `c/example.html` | Variant C pages (reuse `b/b.js` for the player) |
-| `d/style.css` | Variant D: A and B components on top of `c/style.css` |
+| `shared/app.js` | Theme, `Ctrl+K` search, Go syntax highlighting (prototype), progress (`localStorage`), variant switch |
+| `shared/data.js` | List of 84 examples (9 sections) — on the real site it will be generated from `content/go/` |
+| `shared/b.js` | Step player, memory visualizer, Slices lesson data (originally Variant B) |
+| `shared/c.js` | Palette switcher, dropdown menus, section colors (originally Variant C) |
+| `shared/base.css` | Neutral tokens, 4 palettes (`data-palette`) and base components (originally Variant C's `style.css`) |
+| `d/style.css` | Variant D: imports `shared/base.css` and adds A and B components, the platform home, roadmap page and animations |
 | `d/d.js` | Variant D: lesson page view modes (panel, width, zen) and home page scroll animation |
+| `d/nodes.js` | Variant D: sample node content and the shared 5-tab node panel (home explorer + roadmap page) |
 | `d/index.html` | Variant D: platform home (path choice, node explorer, platform sections) |
 | `d/roadmap.html` | Variant D: roadmap page (technology + direction preview, node panel) |
-| `d/nodes.js` | Variant D: sample node content and the shared 5-tab node panel (home explorer + roadmap page) |
 | `d/go.html` | Variant D: Go technology page (former home page; future `/go/`) |
-| `d/example.html` | Variant D: lesson page (reuses `b/b.js`, `c/c.js`) |
-| `serve.mjs` | Dependency-free local server |
+| `d/example.html` | Variant D: lesson page |
+| `archive/a/` | Variant A: `tokens.css`, `app.css`, `index.html`, `example.html` |
+| `archive/b/` | Variant B: `style.css`, `index.html`, `example.html` |
+| `archive/c/` | Variant C: `index.html`, `example.html` (styles are `shared/base.css`) |
+
+The archived variants load `shared/` files, so changing those also affects A–C. Everything else in `archive/` must stay as it is.
 
 ## Design decisions
 - **Dark theme first**, but it opens according to the system preference; the light theme is fully supported.

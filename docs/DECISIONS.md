@@ -46,7 +46,7 @@ Agreed decisions and their rationale. When a decision changes, don't delete the 
 | **Terms stay in English** (`slice`, `goroutine`, `channel`), with a short explanation on first use | Consistency with official docs and search; translated terms confuse |
 | License **CC BY 3.0**; footer credits Mark McGranaghan and Eli Bendersky with a "based on, adapted and simplified" note | License requirement |
 | Lesson structure: explanation → run → "Remember" → "Check yourself" question → "Learned" → next | Learning loop |
-| 84 examples, 9 sections (list: `design/data.js`) | The original's structure, grouped |
+| 84 examples, 9 sections (list: `design/shared/data.js`) | The original's structure, grouped |
 
 ## Technical architecture
 
@@ -106,7 +106,7 @@ The project follows widely used international conventions and best practices. De
 | Scroll, tab switch and bento animations in the spirit of frontscope; all disabled under `prefers-reduced-motion` | The user's wish + accessibility |
 | Palettes: **Nebula is the default**; the other three (İndiqo, Okean, Qrafit) stay as user-selectable options (2026-11-23) | The user agreed to the proposal |
 | The explanation ↔ code **arrow / curved line** is moved to Phase 2 and built with the real components (2026-11-23) | The user agreed; it needs the final lesson layout |
-| Variants A, B and C are **archived** under `design/archive/`, not deleted (2026-11-23) | The user agreed; kept for reference. D's shared files must move out of `b/` and `c/` first |
+| Variants A, B and C are **archived** under `design/archive/`, not deleted (2026-11-23) | The user agreed; kept for reference. D's shared files live in `design/shared/` (done 2026-11-23) |
 | Technology switcher in the header (`Go ▾` → Python, Rust… "coming soon") and a "One platform, several languages" section | Preparation for the hub |
 | Narrow screens: < 1200px a code snippet under each step; < 980px the sidebar becomes a drawer | Mobile UX |
 

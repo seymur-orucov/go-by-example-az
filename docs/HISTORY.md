@@ -148,3 +148,13 @@ Done (branch `feat/d-roadmap-page`):
 The user asked to add https://www.greatfrontend.com/ to the sources, for both design and content.
 
 Done: added to [REFERENCES.md](REFERENCES.md) (content sources and design references), [DECISIONS.md](DECISIONS.md), [CLAUDE.md](../CLAUDE.md) and [CONTRIBUTING.md](../CONTRIBUTING.md), and a ROADMAP item. **Not verified:** the site returned HTTP 429 to the fetch tool, so its terms were not read; it is treated as all rights reserved until checked. What to take for design and content is still to be agreed.
+
+### 24. Archiving variants A, B, C
+The user asked to archive the unchosen variants.
+
+Done (branch `chore/archive-variants-a-c`, built on the roadmap page branch):
+- D's shared files moved to `design/shared/`: `app.js`, `data.js`, `b.js` (was `b/b.js`), `c.js` (was `c/c.js`), `base.css` (was `c/style.css`).
+- Variant A (`index.html`, `example.html`, `app.css`, `tokens.css`), B and C moved to `design/archive/{a,b,c}/`; moves done with `git mv`, so history is kept.
+- Paths updated in all pages; the A | B | C | D switch now points to `/archive/*` and `/d/`; `serve.mjs` redirects `/` to `/d/`.
+- Checked in headless Chrome: all 11 pages (4 in D, 2 each in A, B, C) load without JS errors or missing files.
+- Docs updated: [CLAUDE.md](../CLAUDE.md), [CONTRIBUTING.md](../CONTRIBUTING.md), both READMEs, [ROADMAP.md](ROADMAP.md), [DECISIONS.md](DECISIONS.md).

@@ -12,8 +12,8 @@ Project: **Nümunələrlə Go** — an Azerbaijani-language alternative to gobye
 ## Rules
 - Talk to the user in **Azerbaijani**. All site UI text is in Azerbaijani; Go terms stay in English.
 - The current phase is a **design prototype**: `design/` is framework-free static HTML/CSS/JS — don't add dependencies.
-- The chosen variant is **D** (`design/d/`). A, B, C exist only for comparison — don't touch them.
-- D reuses shared files: `design/app.js`, `design/data.js`, `design/b/b.js`, `design/c/c.js`, `design/c/style.css` (D's `style.css` imports it). Changing them also affects A–C.
+- The chosen variant is **D** (`design/d/`). A, B, C are archived in `design/archive/` — don't touch them.
+- D uses shared files in `design/shared/`: `app.js`, `data.js`, `b.js`, `c.js`, `base.css` (D's `style.css` imports `base.css`). The archived variants load them too, so changing them also affects A–C.
 - Animations must be disabled under `prefers-reduced-motion`.
 - Code, comments, docs, commit messages, branch names and PR descriptions are in **English**. Site UI text and learning content stay in Azerbaijani.
 - Git: never commit to `main` directly — create a branch (`feat/…`, `fix/…`, `docs/…`, `chore/…`). Commit messages follow **Conventional Commits** (`docs(roadmap): …`, `feat(design): …`). Push and open PRs only after the user confirms. Details: [CONTRIBUTING.md](CONTRIBUTING.md).

@@ -1,4 +1,4 @@
-/* Variant C — palitra seçicisi, menyular, bölmə rəngləri. Asılılıq: ../app.js */
+/* Variant C — palitra seçicisi, menyular, bölmə rəngləri. Asılılıq: app.js */
 (function () {
   "use strict";
 

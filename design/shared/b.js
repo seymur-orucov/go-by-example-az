@@ -1,5 +1,5 @@
 /* Variant B — addım pleyeri, yaddaş vizualizatoru və iki istiqamətli highlight.
-   Asılılıq: ../app.js (window.GOAZ). */
+   Asılılıq: app.js (window.GOAZ). */
 (function () {
   "use strict";
 

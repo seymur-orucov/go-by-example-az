@@ -71,7 +71,7 @@ Framework-free static HTML/CSS/JS in the `design/` directory.
 - [x] A separate review of the mobile view for D — home, Go page and lesson page (incl. the topics drawer) checked at 390px in headless Chrome, no horizontal scroll (2026-11-23); a check on a real phone is still worth doing
 - [x] Final check of the light theme for D — platform home, Go page and lesson page checked in light (and the home in dark) with the palettes (2026-11-23)
 - [ ] Optional: an **arrow/curved line** linking explanation and code (the user's idea) — moved to Phase 2, built with the real components
-- [ ] After approval, move variants A, B, C to an archive (e.g. `design/archive/`) or delete them
+- [x] Variants A, B, C archived under `design/archive/`; D's shared files moved to `design/shared/` (2026-11-23)
 
 ---
 
@@ -119,7 +119,7 @@ functions/api/run.ts   # go.dev/_/compile proxy (rate limit + size limit)
 
 ## Phase 5 — Remaining ~74 examples `[ ]`
 
-- [ ] Added section by section (84 examples in total, 9 sections — the list is in `design/data.js`)
+- [ ] Added section by section (84 examples in total, 9 sections — the list is in `design/shared/data.js`)
 
 ## Phase 6 — Moving to the platform: roadmap + theory + practice `[ ]`
 
