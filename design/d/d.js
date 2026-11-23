@@ -199,7 +199,7 @@
     heads.forEach((sh) => headIO.observe(sh));
 
     // Kartlar və bloklar — eyni anda görünənlər növbə ilə
-    const cards = document.querySelectorAll(".prog-bar, .section-card, .track, .bento-card, .tech, .map-row, .player + p");
+    const cards = document.querySelectorAll(".prog-bar, .path-bar, .section-card, .track, .bento-card, .tech, .path-card, .nx-map, .nx-panel, .map-row, .player + p");
     const cardIO = new IntersectionObserver((entries) => {
       let i = 0;
       entries.forEach((en) => {
@@ -261,8 +261,9 @@
   }
 
   // "Bütün mövzular / Bölmə üzrə / Yol xəritəsi" keçidləri + bölmə seçəndə sətirlər
+  // Platform home: "Texnologiya üzrə / İstiqamət üzrə" (tech / dir)
   function initViewSwitchFx() {
-    const targets = { cards: ["#view-cards"], tracks: ["#tracks", "#rows"], map: ["#map"] };
+    const targets = { cards: ["#view-cards"], tracks: ["#tracks", "#rows"], map: ["#map"], tech: ["#paths-tech"], dir: ["#paths-dir"] };
     document.addEventListener("click", (e) => {
       const b = e.target.closest("[data-view], [data-view-link]");
       if (!b) return;

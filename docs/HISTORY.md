@@ -111,3 +111,17 @@ Done (branch `docs/platform-scope-and-conventions`):
 - [REFERENCES.md](REFERENCES.md): "Interview and algorithms sources" and "Engineering conventions" sections.
 - [ROADMAP.md](ROADMAP.md): vision table, Phase 1 "Remaining" (sections discussion, home page redesign), pnpm and tooling in Phase 2, platform sections in Phase 6.
 - New files: [CONTRIBUTING.md](../CONTRIBUTING.md), [LICENSE](../LICENSE) (MIT), [LICENSE-CONTENT](../LICENSE-CONTENT) (CC BY 3.0), `.editorconfig`, `.gitattributes`, `.github/` PR and issue templates.
+
+### 19. Platform sections discussed, platform home page
+Proposal: every section hangs off a roadmap node (theory · practice · visual · test · interview); a model per section; rollout order roadmap → visual → tests → interview → algorithms → live coding. The user's answers:
+1. Order — agreed.
+2. Algorithms and interview as separate sections — agreed.
+3. Live coding — postpone.
+4. Home page layout — "up to you" → itbooster style chosen.
+5. Name — still thinking.
+
+Done (branch `feat/d-platform-home`):
+- [DECISIONS.md](DECISIONS.md): new "Platform sections" section; open questions updated (working name, live coding runner).
+- `design/d/index.html` is now the **platform home**: hero, choose your path (technology / direction), node explorer (Go fragment, 5 tabs, clickable quiz), platform sections bento with status and mini-animations, visual demo.
+- The former Go home moved to `design/d/go.html` (breadcrumbs, no hub section); lesson page links updated; working name "Nümunələrlə" in the logo.
+- Checked in headless Chrome at desktop and 390px widths; mobile tweaks (2-column technology cards, compact node list).
