@@ -7,7 +7,9 @@ const goSections = defineCollection({
   loader: file("../../content/go/sections.yaml"),
   schema: z.object({
     title: z.string(),
+    order: z.number().int().positive(),
     icon: z.string(),
+    color: z.string(),
     description: z.string(),
   }),
 });

@@ -1,5 +1,6 @@
 import { initMenus } from "./menus";
 import { buildPalette, type SearchEntry } from "./search";
+import { initSpy } from "./spy";
 import { initTheme } from "./theme";
 
 function readSearchIndex(): SearchEntry[] {
@@ -14,6 +15,7 @@ function readSearchIndex(): SearchEntry[] {
 function init(): void {
   initTheme();
   initMenus();
+  initSpy();
   const palette = buildPalette(readSearchIndex());
   document
     .querySelectorAll("[data-open-search]")

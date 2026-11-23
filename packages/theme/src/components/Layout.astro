@@ -18,9 +18,10 @@ interface Props {
   /** Entries for the Ctrl+K palette; the site builds them from its content collections. */
   searchIndex?: SearchEntry[];
   goCount?: number;
+  tech?: "go";
 }
 
-const { title, description, searchIndex = [], goCount } = Astro.props;
+const { title, description, searchIndex = [], goCount, tech } = Astro.props;
 ---
 
 <!doctype html>
@@ -50,7 +51,7 @@ const { title, description, searchIndex = [], goCount } = Astro.props;
     />
   </head>
   <body>
-    <Header goCount={goCount} />
+    <Header goCount={goCount} tech={tech} />
     <slot />
     <Footer />
     <script

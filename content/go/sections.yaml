@@ -1,36 +1,54 @@
 - id: basics
+  order: 1
   title: "Əsaslar"
   icon: spark
+  color: "#60a5fa"
   description: "Proqramın quruluşu, dəyişənlər və idarəetmə əmrləri."
 - id: collections
+  order: 2
   title: "Kolleksiyalar"
   icon: stack
+  color: "#818cf8"
   description: "Massivlər, slice-lar, map-lər və onların üzərində gəzinti."
 - id: functions
+  order: 3
   title: "Funksiyalar"
   icon: func
+  color: "#a78bfa"
   description: "Funksiya yazmaq, çoxlu nəticə, closure və rekursiya."
 - id: types
+  order: 4
   title: "Tiplər və strukturlar"
   icon: shape
+  color: "#c084fc"
   description: "Pointer, struct, metod, interface və generics."
 - id: errors
+  order: 5
   title: "Xətalar"
   icon: alert
+  color: "#f472b6"
   description: "Go-da xətaların idarə olunması: error, panic, defer, recover."
 - id: concurrency
+  order: 6
   title: "Konkurentlik"
   icon: flow
+  color: "#22d3ee"
   description: "Goroutine və channel-larla eyni anda bir neçə iş görmək."
 - id: text
+  order: 7
   title: "Mətn və verilənlər"
   icon: text
+  color: "#2dd4bf"
   description: "Sıralama, formatlama, JSON, vaxt və ədədlərlə iş."
 - id: files
+  order: 8
   title: "Fayllar və test"
   icon: file
+  color: "#94a3b8"
   description: "Faylları oxumaq, yazmaq, qovluqlar və testlər."
 - id: system
+  order: 9
   title: "Sistem və şəbəkə"
   icon: globe
+  color: "#7dd3fc"
   description: "Komanda sətri, mühit, HTTP, context və proseslər."

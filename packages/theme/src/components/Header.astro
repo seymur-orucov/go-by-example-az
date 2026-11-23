@@ -3,8 +3,10 @@
 // Routes follow /<technology>/...; directions live under /roadmaps/.
 interface Props {
   goCount?: number;
+  /** Technology section the page belongs to; changes the switcher label and nav. */
+  tech?: "go";
 }
-const { goCount } = Astro.props;
+const { goCount, tech } = Astro.props;
 ---
 
 <header class="site-header">
@@ -14,7 +16,8 @@ const { goCount } = Astro.props;
   </a>
   <div class="dd">
     <button class="tech-switch" data-menu-btn aria-label="Texnologiya seç">
-      <span class="dot dot-all"></span>Texnologiya
+      {tech === "go" ? <span class="dot" /> : <span class="dot dot-all" />}
+      {tech === "go" ? "Go" : "Texnologiya"}
       <svg
         viewBox="0 0 24 24"
         fill="none"
@@ -54,9 +57,23 @@ const { goCount } = Astro.props;
     </div>
   </div>
   <nav class="nav" aria-label="Əsas menyu">
-    <a href="/go/roadmap/">Yol xəritəsi</a>
-    <a href="/#bolmeler">Bölmələr</a>
-    <a href="/go/">Go</a>
+    {tech === "go" ? (
+      <>
+        <a href="/go/#proqram" aria-current={Astro.url.pathname === "/go/" ? "page" : undefined}>
+          Nümunələr
+        </a>
+        <a href="/go/roadmap/">Yol xəritəsi</a>
+        <a href="https://go.dev/play/" target="_blank" rel="noopener">
+          Playground
+        </a>
+      </>
+    ) : (
+      <>
+        <a href="/go/roadmap/">Yol xəritəsi</a>
+        <a href="/#bolmeler">Bölmələr</a>
+        <a href="/go/">Go</a>
+      </>
+    )}
   </nav>
   <div class="header-spacer"></div>
   <div class="header-right">
@@ -72,7 +89,7 @@ const { goCount } = Astro.props;
         <circle cx="11" cy="11" r="7"></circle>
         <path d="m20 20-3.5-3.5"></path>
       </svg>
-      <span>Mövzu axtar…</span>
+      <span>{tech === "go" ? "Nümunə axtar…" : "Mövzu axtar…"}</span>
       <kbd>Ctrl K</kbd>
     </button>
     <div class="dd palette-picker">
