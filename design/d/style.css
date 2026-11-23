@@ -357,7 +357,7 @@
 .path-card .pc-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
 .path-card .ic { display: grid; place-items: center; min-width: 40px; height: 40px; padding: 0 6px; border-radius: 11px; font: 700 12.5px/1 var(--font-mono); color: #fff; background: var(--c); }
 .path-card h3 { font-size: 16px; font-weight: 650; }
-.path-card p { font-size: 13px; color: var(--text-subtle); }
+.path-card p { font-size: 13px; color: var(--text-muted); }
 .path-card .pc-meta { display: flex; justify-content: space-between; margin-top: auto; padding-top: 6px; font: 500 11.5px/1 var(--font-mono); color: var(--text-subtle); }
 .path-card .sc-bar { margin-bottom: 0; }
 .path-card .pc-uses { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 6px; }
@@ -368,7 +368,8 @@
 .path-card.live:hover { transform: translateY(-3px); box-shadow: 0 20px 40px -22px var(--accent-ring); }
 .path-card.live:hover .pc-go svg { transform: translateX(3px); }
 .path-card.soon .ic { filter: saturate(0.55); opacity: 0.75; }
-.path-card.soon h3, .path-card.soon p { opacity: 0.7; }
+/* "Soon" cards are dimmed through the icon and border only; text keeps full contrast (WCAG AA) */
+.path-card.soon { border-style: dashed; }
 .pill-s.on { color: var(--green); background: var(--green-soft); }
 
 /* ---------- Node explorer: one roadmap node = 5 facets ---------- */
