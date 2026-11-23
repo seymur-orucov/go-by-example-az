@@ -158,3 +158,14 @@ Done (branch `chore/archive-variants-a-c`, built on the roadmap page branch):
 - Paths updated in all pages; the A | B | C | D switch now points to `/archive/*` and `/d/`; `serve.mjs` redirects `/` to `/d/`.
 - Checked in headless Chrome: all 11 pages (4 in D, 2 each in A, B, C) load without JS errors or missing files.
 - Docs updated: [CLAUDE.md](../CLAUDE.md), [CONTRIBUTING.md](../CONTRIBUTING.md), both READMEs, [ROADMAP.md](ROADMAP.md), [DECISIONS.md](DECISIONS.md).
+
+### 25. Phase 2 plan and module 1: repo skeleton
+The user asked to start Phase 2 in plan mode (after merging the archive PR #5) and to send PRs grouped into modules.
+
+Plan (approved): 3 PR modules — 1) repo skeleton + tooling + CI, 2) content model + theme package + the 4 pages, 3) Pagefind search, CodeMirror edit, `/api/run` proxy. Interactivity stays **vanilla TypeScript** (user's choice). Details: [DECISIONS.md](DECISIONS.md#phase-2-technical-decisions-2026-11-23).
+
+Module 1 done (branch `chore/repo-skeleton`):
+- pnpm workspace (`apps/*`, `packages/*`), Astro 7 placeholder site that builds, TypeScript 6.0, ESLint 10, Prettier, commitlint, lefthook hooks, `CHANGELOG.md`, minimal CI workflow.
+- Found while installing: Astro 7 needs Node >= 22.23.4 (system Node is 22.13) and `typescript-eslint` does not support TypeScript 7. Solved by pinning Node 24 through pnpm `devEngines.runtime` (downloaded automatically, system Node untouched) and TypeScript 6.0.
+- Checked: `pnpm lint`, `format:check`, `check`, `build` pass; the commit-msg hook rejects bad messages and scopes; the pre-commit hook rejects badly formatted / lint-failing files.
+- Docs updated (CLAUDE.md, CONTRIBUTING.md, ROADMAP, DECISIONS). Phase 1 is marked done; "Go is not installed" was stale (Go 1.26 is installed).

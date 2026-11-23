@@ -78,15 +78,30 @@ The project follows widely used international conventions and best practices. De
 | Decision | Rationale |
 |---|---|
 | **Language:** code, identifiers, code comments, technical docs, commit messages, branch names and PR descriptions are in **English**. Site UI text and learning content are in **Azerbaijani**; communication with the user is in Azerbaijani | The user's decision; open source contributors and tooling expect English |
-| Commit messages follow [**Conventional Commits 1.0**](https://www.conventionalcommits.org/en/v1.0.0/): `<type>(<scope>): <subject>`, imperative mood, subject ≤ 72 chars. Types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`. Scopes: `design`, `site`, `theme`, `content`, `docs`, `ci`, `deps` | The user's decision; enables automatic changelogs and semver |
+| Commit messages follow [**Conventional Commits 1.0**](https://www.conventionalcommits.org/en/v1.0.0/): `<type>(<scope>): <subject>`, imperative mood, subject ≤ 72 chars. Types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`. Scopes: `design`, `site`, `theme`, `content`, `docs`, `ci`, `deps`, `repo`, `api` | The user's decision; enables automatic changelogs and semver |
 | Commits made before 2026-11-23 stay as they are (Azerbaijani, free format); history is not rewritten | The repo is public; rewriting `main` would break clones |
 | **GitHub Flow:** `main` is always deployable; work happens on short-lived branches (`feat/…`, `fix/…`, `docs/…`, `chore/…`, `refactor/…`), merged through a pull request with **squash merge** | Simple, fits continuous deployment to Cloudflare Pages |
 | Versioning with [**SemVer**](https://semver.org/) and a `CHANGELOG.md` in the [**Keep a Changelog**](https://keepachangelog.com/) format, starting with the first release in Phase 2 | Standard, readable release history |
 | `.editorconfig` (UTF-8, 2 spaces, final newline) and `.gitattributes` (`* text=auto eol=lf`) | Consistent formatting across editors; Windows development must not introduce CRLF |
-| Package manager: **pnpm** (workspaces); the version is pinned via `packageManager` in `package.json` (Corepack) from Phase 2 | The user's decision |
-| From Phase 2: **commitlint** + git hooks (husky or lefthook), **Prettier** + **ESLint**, lint and type-check in CI | Conventions are enforced by tools, not by memory |
+| Package manager: **pnpm** (workspaces); the version is pinned via `packageManager` in `package.json` (Corepack), done in Phase 2 | The user's decision |
+| From Phase 2: **commitlint** + git hooks (**lefthook**), **Prettier** + **ESLint**, lint and type-check in CI | Conventions are enforced by tools, not by memory |
 | Licenses: code under **MIT** ([LICENSE](../LICENSE)), learning content under **CC BY 3.0** ([LICENSE-CONTENT](../LICENSE-CONTENT)), because it is derived from Go by Example | Code and content have different needs; CC BY 3.0 is required for the derived content |
 | GitHub templates: PR template and issue templates (bug report, feature request) in `.github/` | Consistent, reviewable contributions |
+
+## Phase 2 technical decisions (2026-11-23)
+
+| Decision | Rationale |
+|---|---|
+| Phase 2 is delivered in **3 PR modules**: 1) repo skeleton + tooling + CI, 2) content model + `packages/theme` + the 4 pages, 3) search (Pagefind), edit (CodeMirror), run (`/api/run`) | The user's rule: group PRs into modules instead of many small PRs |
+| Interactivity is **vanilla TypeScript** (the prototype's `d.js`, `nodes.js`, `b.js`, `c.js`, `app.js` are ported); no UI framework | The user's choice; zero extra dependencies, minimal JS in the browser, exact prototype behaviour |
+| Workspace packages are **private** with a neutral scope (`@platform/site`, `@platform/theme`) | The platform name is still undecided; renaming costs nothing |
+| Git hooks: **lefthook** (pre-commit: Prettier + ESLint on staged files; commit-msg: commitlint) | One config file, fast, works on Windows; picked from "husky or lefthook" |
+| Commit scopes extended with `repo` (root config and tooling) and `api` (Cloudflare functions) | Needed by Phase 2 commits |
+| **Node 24** is pinned through `devEngines.runtime` (pnpm downloads it); `engines.node >= 22.23.4`; CI uses `.node-version` | Astro 7 requires Node >= 22.23.4 while the system Node is 22.13; no system change is needed |
+| Versions: **Astro 7**, **TypeScript ~6.0** (not 7), ESLint 10, Prettier 3, pnpm 12 | `typescript-eslint` supports TypeScript < 6.1 only; revisit when it supports 7 |
+| Routes: `/` (platform home), `/go/` (technology page), `/go/<slug>/` (lesson), `/go/roadmap/` (technology roadmap), `/roadmaps/backend/` (direction roadmap) | Fits the `/<technology>/...` rule; directions live under `/roadmaps/` |
+| Content layout: `content/go/examples/<slug>/{meta.yaml, main.go, steps.yaml, az.md, output.txt}`; localized files carry a locale suffix (`az`); roadmaps in `content/roadmaps/*.yaml`; all 84 topics exist as `meta.yaml` (`status: ready | planned`) | `main.go` stays pure Go so CI can run it; i18n-ready; planned topics render as "tezliklə" |
+| `design/` stays untouched as the visual reference until the site reaches parity | Side-by-side comparison; nothing is lost |
 
 ## Design
 

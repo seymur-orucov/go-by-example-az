@@ -40,7 +40,7 @@ Details: [DECISIONS.md](DECISIONS.md).
 
 ---
 
-## Phase 1 — Design prototype `[~]` (current phase)
+## Phase 1 — Design prototype ✅
 
 Framework-free static HTML/CSS/JS in the `design/` directory.
 
@@ -66,7 +66,7 @@ Framework-free static HTML/CSS/JS in the `design/` directory.
 - [~] **Home page redesign** for the platform: first version done (`d/index.html`: path choice, node explorer, sections bento; Go page moved to `d/go.html`) — awaiting feedback
 - [ ] Platform name (working name "Nümunələrlə" for now)
 - [x] **Roadmap page** (`d/roadmap.html`): technology roadmap (Go) + direction roadmap preview (Backend), sticky 5-facet node panel, filter, deep links; linked from the header nav, home, Go page and lessons (2026-11-23)
-- [ ] **Final approval** of Variant D — the user's final feedback
+- [x] **Final approval** of Variant D — starting Phase 2 counts as the approval (2026-11-23)
 - [x] Final palette choice: Nebula by default, İndiqo, Okean and Qrafit stay as options (2026-11-23)
 - [x] A separate review of the mobile view for D — home, Go page and lesson page (incl. the topics drawer) checked at 390px in headless Chrome, no horizontal scroll (2026-11-23); a check on a real phone is still worth doing
 - [x] Final check of the light theme for D — platform home, Go page and lesson page checked in light (and the home in dark) with the palettes (2026-11-23)
@@ -75,7 +75,9 @@ Framework-free static HTML/CSS/JS in the `design/` directory.
 
 ---
 
-## Phase 2 — Project skeleton `[ ]`
+## Phase 2 — Project skeleton `[~]` (current phase)
+
+Delivered in **3 PR modules** (agreed 2026-11-23): 1) repo skeleton and tooling, 2) content model + theme + pages, 3) search, run and edit. Plan details: [DECISIONS.md](DECISIONS.md#phase-2-technical-decisions-2026-11-23).
 
 Monorepo (pnpm workspaces). The first release ships with Go content only, but the structure is built **from the start for a unified platform** (Phases 6–7): routes `/<technology>/...`, content in `content/<technology>/`, shared theme and components.
 
@@ -93,8 +95,10 @@ functions/api/run.ts   # go.dev/_/compile proxy (rate limit + size limit)
 .github/workflows/ci.yml
 ```
 
-- [ ] pnpm workspaces (version pinned via `packageManager`), Astro, Content Collections + Zod schema
-- [ ] Tooling: commitlint + git hooks (husky or lefthook), Prettier + ESLint, `CHANGELOG.md` (Keep a Changelog) and SemVer from the first release
+- [x] pnpm workspaces (version pinned via `packageManager`, Node 24 via `devEngines`), Astro 7 site skeleton — module 1
+- [ ] Content Collections + Zod schema (module 2)
+- [x] Tooling: commitlint + lefthook git hooks, Prettier + ESLint, `CHANGELOG.md` (Keep a Changelog), SemVer from the first release (`0.1.0`) — module 1
+- [x] Minimal CI (`.github/workflows/ci.yml`): lint, format check, type check, build, PR title check — module 1 (Go checks and Cloudflare stay in Phase 4)
 - [ ] Move Variant D's tokens and components into `packages/theme`
 - [ ] Build-time syntax highlighting with Shiki (replacing the prototype's simple highlighter)
 - [ ] Static search with Pagefind (`Ctrl+K` palette)
@@ -169,10 +173,9 @@ Once the Go prototype is live, the site becomes a unified platform.
 
 ## Where to start next session
 
-1. `node design/serve.mjs` → open http://localhost:4321/d/ (platform home) and http://localhost:4321/d/go.html (Go page).
-2. Next topic: the user's **feedback on the new platform home page**; the platform name is still open.
-3. Continue from the "Phase 1 → Remaining" list, or apply the user's new feedback.
-4. Once D is approved, move to Phase 2: first agree on the skeleton in plan mode.
-5. Work on a branch and commit with Conventional Commits (see [CONTRIBUTING.md](../CONTRIBUTING.md)).
+1. `pnpm install`, then `pnpm lint && pnpm format:check && pnpm check && pnpm build` to confirm the workspace is healthy. The design reference: `node design/serve.mjs` → http://localhost:4321/d/.
+2. Phase 2, **module 2** (`feat/site-content-theme`): content model, `packages/theme`, the 4 pages — see [DECISIONS.md](DECISIONS.md#phase-2-technical-decisions-2026-11-23) and the plan in HISTORY entry 25. Spike first: the Astro `glob` loader with a base outside the Astro root.
+3. The platform name is still open; nothing in Phase 2 depends on it.
+4. Work on a branch and commit with Conventional Commits (see [CONTRIBUTING.md](../CONTRIBUTING.md)); group work into module PRs.
 
-Note: **Go is not installed** on the local machine (Node 22 is). Installing Go before Phase 3 is recommended so examples can be verified locally.
+Note: Go 1.26 **is installed** locally, so examples can be verified with `go vet` / `go run`. The system Node is 22.13; the project uses Node 24 through pnpm (`devEngines`).
