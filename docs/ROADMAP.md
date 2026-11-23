@@ -1,156 +1,156 @@
-# Yol xəritəsi
+# Roadmap
 
-Son yenilənmə: 2026-11-23
+Last updated: 2026-11-23
 
-İşarələr: `[x]` görülüb · `[~]` gedir · `[ ]` qarşıdadır
+Markers: `[x]` done · `[~]` in progress · `[ ]` upcoming
 
 ---
 
-## Vizyon: öyrənmə platforması
+## Vision: learning platform
 
-**Nümunələrlə Go ilk prototipdir.** Ondan sonra layihə roadmap.sh və itbooster.ru tipində **vahid platformaya** çevrilir:
+**Nümunələrlə Go is the first prototype.** After it, the project becomes a **unified platform** in the spirit of roadmap.sh and itbooster.ru:
 
-| Prinsip | Mənası |
+| Principle | Meaning |
 |---|---|
-| **Roadmap ilə öyrənmə** | Developer nəyi, hansı ardıcıllıqla öyrənəcəyini yol xəritəsində görür; harada olduğunu və növbəti addımı bilir. Roadmap-lar iki növdür: **texnologiya** ("Go") və **istiqamət** ("Backend") |
-| **Hesablar** | Platforma mərhələsində qeydiyyat və irəliləyişin serverdə saxlanması (Go prototipində yox) |
-| **Nəzəriyyə + praktika bir yerdə** | Yol xəritəsinin hər node-u həm nəzəri izaha (konsept), həm də praktikaya (işlək nümunə, tapşırıq, sual) aparır |
-| **Bütün texnologiyalar bir saytda** | Go, Python, Rust, TypeScript, SQL və s. eyni platformada, eyni dizayn və eyni dərs formatı ilə. Ayrı saytlar **yoxdur** |
-| **Azərbaycan dilində** | Kontent Azərbaycan dilində, terminlər ingiliscə |
+| **Learning by roadmap** | Developers see what to learn and in which order on a roadmap; they know where they are and what the next step is. Roadmaps come in two kinds: **technology** ("Go") and **direction** ("Backend") |
+| **Accounts** | In the platform phase: sign-up and server-side progress (not in the Go prototype) |
+| **Theory + practice together** | Every roadmap node leads both to a theoretical explanation (concept) and to practice (working example, exercise, question) |
+| **All technologies on one site** | Go, Python, Rust, TypeScript, SQL, etc. on the same platform, with the same design and lesson format. **No** separate sites |
+| **In Azerbaijani** | Content in Azerbaijani, terms in English |
 
-Prototipdə bu vizyona hazırlıq artıq var: header-də texnologiya seçicisi, "Yol xəritəsi" görünüşü, statuslar (öyrənilib / növbəti / qarşıda), irəliləyiş, "Bir platforma, bir neçə dil" bölməsi.
+The prototype already prepares for this vision: a technology switcher in the header, the "Roadmap" view, statuses (learned / next / upcoming), progress, the "One platform, several languages" section.
 
-Mərhələlər bu vizyona görə qurulub: 1–5 Go prototipini canlı sayta çıxarır, 6–7 onu platformaya çevirir.
-
----
-
-## Mərhələ 0 — Konsept və qərarlar ✅
-
-- [x] Məqsəd: gobyexample.com-un Azərbaycan dilində, müasir dizaynlı, sadələşdirilmiş alternativi
-- [x] Lisenziya araşdırıldı: CC BY 3.0, mənbəyə istinad şərti ilə tərcümə və uyğunlaşdırma icazəlidir
-- [x] Arxitektura təklifi qəbul edildi: Astro + Shiki + Pagefind, statik sayt, hub-a hazır monorepo
-- [x] Hosting: Cloudflare Pages (domen yoxdur, `*.pages.dev`)
-- [x] Terminlər ingiliscə qalır (`slice`, `goroutine`), ilk işlənəndə qısa izah verilir
-- [x] Kod saytın içində işləyəcək (`go.dev/_/compile` proxy), alınmasa Playground linki
-
-Təfərrüat: [DECISIONS.md](DECISIONS.md).
+The phases follow this vision: 1–5 take the Go prototype to a live site, 6–7 turn it into the platform.
 
 ---
 
-## Mərhələ 1 — Dizayn prototipi `[~]` (hazırkı mərhələ)
+## Phase 0 — Concept and decisions ✅
 
-Framework-süz statik HTML/CSS/JS, `design/` qovluğunda.
+- [x] Goal: an Azerbaijani-language, modern-looking, simplified alternative to gobyexample.com
+- [x] License researched: CC BY 3.0, translation and adaptation are allowed with attribution
+- [x] Architecture proposal accepted: Astro + Shiki + Pagefind, static site, hub-ready monorepo
+- [x] Hosting: Cloudflare Pages (no domain, `*.pages.dev`)
+- [x] Terms stay in English (`slice`, `goroutine`), with a short explanation on first use
+- [x] Code runs inside the site (`go.dev/_/compile` proxy), Playground link as a fallback
 
-### Görülənlər
-- [x] Dizayn tokenləri (açıq və tünd tema), Inter + JetBrains Mono (`ə ı ş ç ğ ö ü` dəstəyi)
-- [x] **Variant A** "Clean" — Stripe/Linear üslubu, Go mavisi
-- [x] İzah ↔ kod **iki istiqamətli** işıqlanma (hover)
-- [x] **Variant B** "Scope" — frontscope.dev əsasında: addım pleyeri, yaddaş vizualı
-- [x] **Variant C** "Roadmap" — roadmap.sh + itbooster.ru: yol xəritəsi, bento, 4 palitra, hub seçicisi
-- [x] **Variant D** — A, B və C-nin bəyənilən hissələrinin birləşməsi (istifadəçi seçdi)
-- [x] D: hərəkətli qradiyent fon (palitranın iki rəngi yavaş üzür)
-- [x] D: scroll animasiyaları — başlıq sözləri maskadan qalxır, kod etiketi yazılır, rəqəmlər sayılır, kartlar növbə ilə gəlir, hero solur, demo pleyer 3D-dən düzəlir
-- [x] D: "Bütün mövzular / Bölmə üzrə / Yol xəritəsi" tab keçidlərində animasiya
-- [x] D: "Niyə bu sayt?" bento kartlarında daxili mini-animasiyalar və kursoru izləyən işıq
-- [x] D dərs səhifəsi: sidebar gizlətmə (`[`), kontent eni mərkəzdə / tam en (`F`), Zen rejimi (`Z`, `Esc`)
-- [x] Layihə üçün git repo və sənədlər (bu fayl)
-
-### Qalanlar (Mərhələ 2-yə keçməzdən əvvəl)
-- [ ] Variant D-nin **yekun təsdiqi** — istifadəçinin son rəyi
-- [ ] Palitranın yekun seçimi (hazırda 4 seçim: Nebula, İndiqo, Okean, Qrafit; standart Nebula)
-- [ ] Mobil görünüşün D üçün ayrıca nəzərdən keçirilməsi (ana səhifə animasiyaları + dərs səhifəsi)
-- [ ] Açıq temanın D üçün yekun yoxlanışı
-- [ ] İstəyə bağlı: izah ilə kod arasında **ox/əyri xətt** ilə əlaqə (istifadəçinin ideyası, hələ edilməyib)
-- [ ] Təsdiqdən sonra A, B, C variantlarını arxivə çıxarmaq (məsələn `design/archive/`) və ya silmək
+Details: [DECISIONS.md](DECISIONS.md).
 
 ---
 
-## Mərhələ 2 — Layihə skeleti `[ ]`
+## Phase 1 — Design prototype `[~]` (current phase)
 
-Monorepo (npm workspaces). İlk buraxılış yalnız Go kontenti ilə çıxır, amma struktur **əvvəldən vahid platforma** üçün qurulur (Mərhələ 6–7): marşrutlar `/<texnologiya>/...`, kontent `content/<texnologiya>/`, ortaq tema və komponentlər.
+Framework-free static HTML/CSS/JS in the `design/` directory.
+
+### Done
+- [x] Design tokens (light and dark theme), Inter + JetBrains Mono (`ə ı ş ç ğ ö ü` support)
+- [x] **Variant A** "Clean" — Stripe/Linear style, Go blue
+- [x] **Two-way** explanation ↔ code highlighting (hover)
+- [x] **Variant B** "Scope" — based on frontscope.dev: step player, memory visual
+- [x] **Variant C** "Roadmap" — roadmap.sh + itbooster.ru: roadmap, bento, 4 palettes, hub switcher
+- [x] **Variant D** — merge of the liked parts of A, B and C (chosen by the user)
+- [x] D: animated gradient background (two palette colors drift slowly)
+- [x] D: scroll animations — heading words rise from a mask, the code label types out, numbers count up, cards arrive in sequence, the hero fades, the demo player straightens from 3D
+- [x] D: animation on the "All topics / By section / Roadmap" tab switches
+- [x] D: inner mini-animations and a cursor-following glow in the "Why this site?" bento cards
+- [x] D lesson page: hide sidebar (`[`), content width centered / full (`F`), Zen mode (`Z`, `Esc`)
+- [x] Git repo and documentation for the project (this file)
+
+### Remaining (before moving to Phase 2)
+- [ ] **Final approval** of Variant D — the user's final feedback
+- [ ] Final palette choice (currently 4 options: Nebula, İndiqo, Okean, Qrafit; Nebula by default)
+- [ ] A separate review of the mobile view for D (home page animations + lesson page)
+- [ ] Final check of the light theme for D
+- [ ] Optional: an **arrow/curved line** linking explanation and code (the user's idea, not done yet)
+- [ ] After approval, move variants A, B, C to an archive (e.g. `design/archive/`) or delete them
+
+---
+
+## Phase 2 — Project skeleton `[ ]`
+
+Monorepo (npm workspaces). The first release ships with Go content only, but the structure is built **from the start for a unified platform** (Phases 6–7): routes `/<technology>/...`, content in `content/<technology>/`, shared theme and components.
 
 ```
-packages/theme/        # tokens.css + Astro komponentləri (Layout, Sidebar, CodeStep, Player, SearchPalette, RunButton)
-apps/site/             # vahid Astro sayt; ilk buraxılışda yalnız /go/...; kontent ../../content/*-dan oxunur
+packages/theme/        # tokens.css + Astro components (Layout, Sidebar, CodeStep, Player, SearchPalette, RunButton)
+apps/site/             # single Astro site; only /go/... in the first release; content read from ../../content/*
 content/go/
-  sections.yaml        # bölmələr və sıralama
+  sections.yaml        # sections and ordering
   examples/<slug>/
-    meta.yaml          # title, section, order, status, səviyyə, müddət
-    main.go            # işlək, sadələşdirilmiş kod; seqment sərhədləri şərhlərlə
-    az.md              # seqment başına kompakt izah
-    output.txt         # CI tərəfindən generasiya olunur
-functions/api/run.ts   # go.dev/_/compile proxy (rate-limit + ölçü limiti)
+    meta.yaml          # title, section, order, status, level, duration
+    main.go            # working, simplified code; segment boundaries marked with comments
+    az.md              # compact explanation per segment
+    output.txt         # generated by CI
+functions/api/run.ts   # go.dev/_/compile proxy (rate limit + size limit)
 .github/workflows/ci.yml
 ```
 
-- [ ] npm workspaces, Astro, Content Collections + Zod sxemi
-- [ ] Variant D-nin tokenlərini və komponentlərini `packages/theme`-ə köçürmək
-- [ ] Shiki ilə build vaxtı kod rənglənməsi (prototipdəki sadə rəngləyicinin yerinə)
-- [ ] Pagefind ilə statik axtarış (`Ctrl+K` palitrası)
-- [ ] CodeMirror 6 — yalnız "Redaktə" kliklənəndə lazy-load
-- [ ] `/api/run` — Cloudflare Pages Function, `go.dev/_/compile`-a proxy (CORS yoxdur, ona görə proxy lazımdır)
-- [ ] İrəliləyiş `localStorage`-də (try/catch ilə)
-- [ ] Görünüş rejimləri (sidebar, en, zen) və animasiyalar komponentlərə köçürülür; `prefers-reduced-motion` qorunur
+- [ ] npm workspaces, Astro, Content Collections + Zod schema
+- [ ] Move Variant D's tokens and components into `packages/theme`
+- [ ] Build-time syntax highlighting with Shiki (replacing the prototype's simple highlighter)
+- [ ] Static search with Pagefind (`Ctrl+K` palette)
+- [ ] CodeMirror 6 — lazy-loaded only when "Edit" is clicked
+- [ ] `/api/run` — Cloudflare Pages Function, proxy to `go.dev/_/compile` (no CORS, so a proxy is needed)
+- [ ] Progress in `localStorage` (with try/catch)
+- [ ] View modes (sidebar, width, zen) and animations move into components; `prefers-reduced-motion` is preserved
 
-## Mərhələ 3 — Pilot kontent `[ ]`
+## Phase 3 — Pilot content `[ ]`
 
-10 nümunə, hər biri orijinaldan sadə, Azərbaycan dilində kompakt izahla:
+10 examples, each simpler than the original, with a compact explanation in Azerbaijani:
 
 - [ ] hello-world · values · variables · constants · for · if-else · slices · maps · functions · goroutines
-- [ ] Terminologiya lüğəti (`docs/GLOSSARY.md`): ingiliscə termin + qısa Azərbaycan izahı
-- [ ] Vizual tələb edən mövzular üçün addım vizualları (slice, map, kanal, goroutine)
+- [ ] Terminology glossary (`docs/GLOSSARY.md`): English term + short Azerbaijani explanation
+- [ ] Step visuals for topics that need them (slice, map, channel, goroutine)
 
-## Mərhələ 4 — CI/CD `[ ]`
+## Phase 4 — CI/CD `[ ]`
 
 - [x] GitHub repo (public): https://github.com/seymur-orucov/go-by-example-az
-- [ ] GitHub Actions: `setup-go` → hər `main.go` üçün `go vet` + `go run` → `output.txt` müqayisəsi; `npm ci && npm run build`; link yoxlaması
-- [ ] Cloudflare Pages: GitHub inteqrasiyası (main → production, PR → preview URL). Hesab istifadəçi tərəfindən qoşulur
+- [ ] GitHub Actions: `setup-go` → `go vet` + `go run` for each `main.go` → compare against `output.txt`; `npm ci && npm run build`; link check
+- [ ] Cloudflare Pages: GitHub integration (main → production, PR → preview URL). The account is connected by the user
 
-## Mərhələ 5 — Qalan ~74 nümunə `[ ]`
+## Phase 5 — Remaining ~74 examples `[ ]`
 
-- [ ] Bölmə-bölmə əlavə (cəmi 84 nümunə, 9 bölmə — siyahı `design/data.js`-dədir)
+- [ ] Added section by section (84 examples in total, 9 sections — the list is in `design/data.js`)
 
-## Mərhələ 6 — Platformaya keçid: roadmap + nəzəriyyə + praktika `[ ]`
+## Phase 6 — Moving to the platform: roadmap + theory + practice `[ ]`
 
-Go prototipi canlı olduqdan sonra sayt vahid platformaya çevrilir.
+Once the Go prototype is live, the site becomes a unified platform.
 
-- [ ] Kontent modelinə **nəzəriyyə** növü əlavə etmək: konsept məqaləsi (qısa izah, diaqram, əlaqəli nümunələr). Hazırkı nümunələr **praktika** növü olur
-- [ ] **Roadmap modeli**: node-lar (mövzular), ardıcıllıq, asılılıqlar, səviyyələr; hər node nəzəriyyəyə və praktikaya bağlanır. Roadmap-lar fayl kimi saxlanılır, məsələn `content/roadmaps/<id>.yaml`
-- [ ] Roadmap-ların məzmunu **roadmap.sh və itbooster.ru resurslarının birləşməsi** əsasında təkmilləşdirilir. Hər roadmap üçün:
-  1. hər iki saytda uyğun roadmap/kursun mövzu siyahısı və ardıcıllığı toplanır;
-  2. müqayisə edilir: ortaq mövzular, yalnız birində olanlar, fərqli ardıcıllıqlar;
-  3. birləşmiş siyahı qurulur, boşluqlar doldurulur, Go prototipindəki nümunələrə bağlanır;
-  4. mətnlər: istifadəçi qeyd etdiyi mövzularda həmin resurslardan götürülür və Azərbaycan dilinə tərcümə olunur; qalanlarında özümüz yazırıq
-  5. tərcümə edilmiş mətn public repo-ya və sayta yalnız müəllifin yazılı razılığından sonra düşür; o vaxta qədər `content-private/`-də (git-ə düşmür) saxlanılır — [DECISIONS.md](DECISIONS.md#vizyon-2026-11-23)
-- [ ] roadmap.sh və itbooster.ru müəlliflərinə tərcümə və dərc üçün müraciət
-- [ ] İki növ roadmap:
-  - **texnologiya** roadmap-ı — məsələn "Go": dilin özü, sadədən mürəkkəbə;
-  - **istiqamət** roadmap-ı — məsələn "Backend": bir neçə texnologiyanın node-larını birləşdirir (Go, SQL, HTTP, Docker…), node-lar texnologiya kontentinə istinad edir, kontent təkrarlanmır
-- [ ] **İstifadəçi hesabları**: qeydiyyat / giriş, irəliləyişin serverdə saxlanması və cihazlar arasında sinxronu, roadmap üzrə şəxsi yol. Bunun üçün backend + verilənlər bazası lazımdır; kontent səhifələri statik qalır. Texnologiya seçimi açıq məsələdir ([DECISIONS.md](DECISIONS.md#açıq-məsələlər-qərar-gözləyir))
-- [ ] Hesabsız istifadə də mümkün qalır (irəliləyiş `localStorage`-də)
-- [ ] Roadmap səhifəsi: interaktiv xəritə (roadmap.sh üslubu), node kliklənəndə panel: nəzəriyyə, praktika, status
-- [ ] Praktika genişlənir: tapşırıqlar (kodu tamamla / düzəlt), testlə yoxlama, "Özünü yoxla" sualları
-- [ ] Platforma strukturu (itbooster üslubu): ana səhifə → texnologiyalar və roadmap-lar → roadmap → node → dərs
-- [ ] Texnologiya seçicisi işlək olur; marşrutlar `/<texnologiya>/...` formasında (məsələn `/go/slices`), Go linkləri qırılmır
-- [ ] Ortaq axtarış bütün texnologiyalar üzrə
+- [ ] Add a **theory** type to the content model: concept article (short explanation, diagram, related examples). The current examples become the **practice** type
+- [ ] **Roadmap model**: nodes (topics), ordering, dependencies, levels; each node links to theory and practice. Roadmaps are stored as files, e.g. `content/roadmaps/<id>.yaml`
+- [ ] Roadmap content is refined **based on a merge of roadmap.sh and itbooster.ru resources**. For each roadmap:
+  1. collect the topic list and ordering of the matching roadmap/course from both sites;
+  2. compare: shared topics, topics only in one, differing orderings;
+  3. build the merged list, fill gaps, link to the examples in the Go prototype;
+  4. texts: for topics the user marks, taken from those resources and translated into Azerbaijani; for the rest, we write them ourselves
+  5. translated text goes into the public repo and onto the site only after the author's written consent; until then it is kept in `content-private/` (not tracked by git) — [DECISIONS.md](DECISIONS.md#vision-2026-11-23)
+- [ ] Reach out to the authors of roadmap.sh and itbooster.ru about translation and publishing
+- [ ] Two kinds of roadmap:
+  - **technology** roadmap — e.g. "Go": the language itself, from simple to complex;
+  - **direction** roadmap — e.g. "Backend": combines nodes from several technologies (Go, SQL, HTTP, Docker…); nodes reference technology content, content is not duplicated
+- [ ] **User accounts**: sign-up / sign-in, server-side progress and sync across devices, a personal path along the roadmap. This needs a backend + database; content pages stay static. Technology choice is an open question ([DECISIONS.md](DECISIONS.md#open-questions-awaiting-decision))
+- [ ] Using the site without an account stays possible (progress in `localStorage`)
+- [ ] Roadmap page: interactive map (roadmap.sh style); clicking a node opens a panel: theory, practice, status
+- [ ] Practice expands: exercises (complete / fix the code), test-based checking, "Check yourself" questions
+- [ ] Platform structure (itbooster style): home → technologies and roadmaps → roadmap → node → lesson
+- [ ] The technology switcher becomes functional; routes take the form `/<technology>/...` (e.g. `/go/slices`), Go links don't break
+- [ ] Shared search across all technologies
 
-## Mərhələ 7 — Yeni texnologiyalar `[ ]`
+## Phase 7 — New technologies `[ ]`
 
-- [ ] Hər texnologiya eyni formatla əlavə olunur: roadmap + nəzəriyyə + praktika
-- [ ] Namizədlər: Python, TypeScript, Rust, SQL (sıra sonra müəyyən olunur)
-- [ ] Kod işlətmə hər dil üçün ayrıca həll tələb edir (Go-da `go.dev` proxy; digərlərində WASM və ya xarici API) — dil əlavə edərkən araşdırılır
+- [ ] Each technology is added in the same format: roadmap + theory + practice
+- [ ] Candidates: Python, TypeScript, Rust, SQL (order decided later)
+- [ ] Running code needs a separate solution per language (Go uses the `go.dev` proxy; others WASM or an external API) — researched when the language is added
 
-## Gələcək (indi lazım deyil)
+## Future (not needed now)
 
-- [ ] Digər istiqamətlər: Frontend, DevOps və s.
-- [ ] Başqa dillərə tərcümə (EN, RU, TR) — kod və izah ayrı saxlandığı üçün asandır
+- [ ] Other directions: Frontend, DevOps, etc.
+- [ ] Translation into other languages (EN, RU, TR) — easy because code and explanations are stored separately
 
 ---
 
-## Növbəti sessiyada haradan başlamaq
+## Where to start next session
 
-1. `node design/serve.mjs` → http://localhost:4321/d/ açıb Variant D-yə bax.
-2. "Mərhələ 1 → Qalanlar" siyahısından davam et, ya da istifadəçinin yeni rəyini tətbiq et.
-3. D təsdiqlənəndən sonra Mərhələ 2-yə keç: əvvəlcə plan rejimində skeleti razılaşdır.
+1. `node design/serve.mjs` → open http://localhost:4321/d/ and look at Variant D.
+2. Continue from the "Phase 1 → Remaining" list, or apply the user's new feedback.
+3. Once D is approved, move to Phase 2: first agree on the skeleton in plan mode.
 
-Qeyd: lokal kompüterdə **Go quraşdırılmayıb** (Node 22 var). Mərhələ 3-dən əvvəl Go-nu quraşdırmaq tövsiyə olunur ki, nümunələr lokal yoxlanıla bilsin.
+Note: **Go is not installed** on the local machine (Node 22 is). Installing Go before Phase 3 is recommended so examples can be verified locally.

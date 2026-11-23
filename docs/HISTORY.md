@@ -1,93 +1,93 @@
-# İş jurnalı
+# Work log
 
-Hər iterasiyada istifadəçinin istəyi və görülən iş. Ən yenisi aşağıdadır.
+The user's request and the work done in each iteration. Newest at the bottom.
 
 ---
 
-## 2026-11-22 — Sessiya 1: konsept və ilk dizaynlar
+## 2026-11-22 — Session 1: concept and first designs
 
-### 1. Başlanğıc istəyi
-gobyexample.com-un Azərbaycan dilində alternativi: müasir dizayn, rahat UX, orijinalın kompakt izah üslubu, daha sadə və aydın nümunələr. Sonra GitHub ilə CI/CD və pulsuz serverə deploy. Gələcəkdə hər texnologiya üçün ayrı sayt və ya vahid hub ola bilər. İlk etapda dizayn təsdiqlənməlidir.
+### 1. Initial request
+An Azerbaijani-language alternative to gobyexample.com: modern design, comfortable UX, the original's compact explanation style, simpler and clearer examples. Later, CI/CD with GitHub and deployment to a free server. In the future there could be a separate site per technology or a single hub. The design must be approved first.
 
-### 2. Təkliflər və razılaşma
-Lisenziya (CC BY 3.0), arxitektura (Astro, Shiki, Pagefind, Cloudflare Pages), kontent modeli, monorepo, UX təklifləri və 5 sual təqdim olundu. İstifadəçinin cavabları:
-1. Hosting — Cloudflare Pages ilə razı
-2. Dizayn istiqaməti — təkliflə razı (təmiz, tünd tema, Go mavisi)
-3. Domen yoxdur
-4. Terminlər ingiliscə qalsın — razı
-5. Kod saytın içində işləsin, çox resurs tələb edirsə Playground linki
+### 2. Proposals and agreement
+License (CC BY 3.0), architecture (Astro, Shiki, Pagefind, Cloudflare Pages), content model, monorepo, UX proposals and 5 questions were presented. The user's answers:
+1. Hosting — agreed to Cloudflare Pages
+2. Design direction — agreed to the proposal (clean, dark theme, Go blue)
+3. No domain
+4. Terms stay in English — agreed
+5. Code should run inside the site; if it's too resource-heavy, a Playground link
 
-Yoxlanıldı: `go.dev/_/compile` işləyir, amma CORS vermir → kiçik proxy lazımdır. Plan təsdiqləndi ([ROADMAP.md](ROADMAP.md)).
+Verified: `go.dev/_/compile` works but sends no CORS → a small proxy is needed. The plan was approved ([ROADMAP.md](ROADMAP.md)).
 
 ### 3. Variant A — "Clean"
-`design/index.html`, `design/example.html`. Hero + kod kartı, bölmə kartları, dərsdə solda addımlar və sağda yapışqan bütöv proqram, `Ctrl+K` axtarış, irəliləyiş, açıq/tünd tema.
+`design/index.html`, `design/example.html`. Hero + code card, section cards; in the lesson, steps on the left and a sticky full program on the right, `Ctrl+K` search, progress, light/dark theme.
 
-### 4. Rəy: iki istiqamətli işıqlanma
-İstifadəçi izah → kod işıqlanmasını çox bəyəndi və tərsini istədi: kodun üzərinə gələndə soldakı izah işıqlansın. Edildi. Ox ilə göstərmə ideyası gələcək üçün qeyd olundu.
+### 4. Feedback: two-way highlighting
+The user really liked explanation → code highlighting and asked for the reverse: hovering the code should highlight the explanation on the left. Done. The idea of showing it with an arrow was noted for the future.
 
-### 5. Variant B — "Scope" (frontscope.dev əsasında)
-Böyük hero, üzən teqlər, addım pleyeri, yaddaş vizualizatoru, "Proqram" bölməsi (trek kartları + nömrəli sətirlər + filtr). Fayllar: `design/b/`.
+### 5. Variant B — "Scope" (based on frontscope.dev)
+Large hero, floating tags, step player, memory visualizer, a "Program" section (track cards + numbered rows + filter). Files: `design/b/`.
 
-Rəy: frontscope-a çox oxşayır. Yeni referanslar verildi: itbooster.ru (struktur), roadmap.sh (sadə, kompakt), frontscope.dev (vizualizasiyalar — amma şriftləri və sarı rəngi bəyənilmədi). İstənilən rənglər: müasir göy, bənövşəyi, boz, qara.
+Feedback: too similar to frontscope. New references were given: itbooster.ru (structure), roadmap.sh (simple, compact), frontscope.dev (visualizations — but its fonts and yellow color were not liked). Desired colors: modern blue, purple, gray, black.
 
 ### 6. Variant C — "Roadmap"
-roadmap.sh-ın sıx kafel şəbəkəsi və yol xəritəsi, itbooster-in kod üslubunda bölmə etiketləri və bento kartları, scroll-spy nöqtələri, header-də texnologiya seçicisi (hub-a hazırlıq), 4 rəng palitrası. Fayllar: `design/c/`.
+roadmap.sh's dense tile grid and roadmap, itbooster's code-style section labels and bento cards, scroll-spy dots, a technology switcher in the header (hub preparation), 4 color palettes. Files: `design/c/`.
 
-### 7. Rəy: hər variantdan bəyənilənlər
-- **A:** Go versiyası ana səhifədə görünür; "Bütün mövzular" hissəsi; dərs səhifəsindəki sidebar daha aydın və solid; kod addımlara görə qısaldılmır, tam hündürlükdə görünür.
-- **B:** "Oxuma — gör." bölməsi; "Proqram — 9 bölmə. 84 nümunə." bölməsi.
-- **C:** ümumi rəng və dizayn, struktur, palitra.
+### 7. Feedback: what was liked in each variant
+- **A:** the Go version is shown on the home page; the "All topics" part; the lesson page sidebar is clearer and more solid; code isn't trimmed per step, it's shown full height.
+- **B:** the "Don't read — see." section; the "Program — 9 sections. 84 examples." section.
+- **C:** overall colors and design, structure, palette.
 
-### 8. Variant D — birləşmiş
-C-nin rəngləri, palitrası və strukturu üzərinə A-nın versiya nişanı, "Bütün mövzular" kartları, solid sidebar və tam hündürlükdə kod; B-nin "Oxuma — gör." demosu və "Proqram" bölməsi. "Proqram"-da 3 görünüş arasında keçid: Bütün mövzular · Bölmə üzrə · Yol xəritəsi. Fayllar: `design/d/`.
+### 8. Variant D — merged
+On top of C's colors, palette and structure: A's version badge, "All topics" cards, solid sidebar and full-height code; B's "Don't read — see." demo and "Program" section. "Program" switches between 3 views: All topics · By section · Roadmap. Files: `design/d/`.
 
 ---
 
-## 2026-11-23 — Sessiya 2: Variant D üzərində iterasiya
+## 2026-11-23 — Session 2: iterating on Variant D
 
-### 9. İstifadəçi D-ni seçdi, əlavə istəklər
-- Ana səhifəyə sadə animasiya (məsələn background wave).
-- Dərs səhifəsində sidebar gizlənə bilsin, Zen rejimi olsun, kontent tam en və ya mərkəzdə ola bilsin.
+### 9. The user chose D, additional requests
+- A simple animation on the home page (e.g. a background wave).
+- On the lesson page the sidebar should be hideable, there should be a Zen mode, and content should be either full width or centered.
 
-Edildi:
-- Dərs səhifəsi: header-də "Görünüş" menyusu; sidebar düyməsi və `[`; kontent eni "Mərkəzdə" (1220px) / "Tam en" və `F`; Zen rejimi (`Z`, `Esc`) — header/sidebar/footer gizlənir, kontent mərkəzdə, yuxarıda oxuma irəliləyişi, sol aşağıda çıxış paneli. Seçimlər yadda qalır (zen yalnız tab üçün). Fayl: `design/d/d.js`.
-- Ana səhifə: hero-da SVG dalğalar, giriş animasiyaları.
+Done:
+- Lesson page: a "View" menu in the header; sidebar button and `[`; content width "Centered" (1220px) / "Full width" and `F`; Zen mode (`Z`, `Esc`) — header/sidebar/footer hidden, content centered, reading progress at the top, output panel bottom-left. Choices are remembered (zen only for the tab). File: `design/d/d.js`.
+- Home page: SVG waves in the hero, entrance animations.
 
-### 10. Rəy: dalğa yox, hərəkətli qradiyent
-Nəzərdə tutulan dalğa xətləri deyil, D-dəki ilkin arxa qradiyentin yavaş-yavaş hərəkət etməsi idi (iki rəng, hazırkı palitra rəngləri ola bilər). Referans: tünd göy-bənövşəyi yumşaq qradiyent şəkli.
+### 10. Feedback: not waves, a moving gradient
+What was meant was not wave lines, but D's original background gradient moving slowly (two colors, possibly the current palette colors). Reference: a soft dark blue-purple gradient image.
 
-Edildi: dalğalar silindi; palitranın iki rəngində 3 böyük yumşaq ləkə müxtəlif yollarla 28–40 saniyəlik dövrlə üzür və qarışır. Palitra dəyişəndə rənglər də dəyişir.
+Done: waves removed; in two palette colors, 3 large soft blobs drift along different paths on 28–40 second cycles and blend. The colors change with the palette.
 
-### 11. Rəy: section-lar arası scroll animasiyası yoxdur (frontscope-dakı kimi)
-Edildi: kod etiketi hərf-hərf yazılır, h2 sözləri maskanın altından qalxır, "9 bölmə. 84 nümunə." rəqəmləri sayılır, alt mətn bulanıqdan aydınlaşır, kartlar növbə ilə gəlir, hero scroll-da solur, demo pleyer 3D əyilmədən düzəlir.
+### 11. Feedback: no scroll animations between sections (like on frontscope)
+Done: the code label types out letter by letter, h2 words rise from under a mask, the "9 sections. 84 examples." numbers count up, the subtitle sharpens from blur, cards arrive in sequence, the hero fades on scroll, the demo player straightens from a 3D tilt.
 
-### 12. Rəy: tab keçidlərində və "Niyə bu sayt?" bloklarında animasiya yoxdur
-Edildi:
-- Tab keçidləri: kartlar növbə ilə; yol xəritəsində mərkəzi xətt çəkilir, node-lar böyüyür, budaqlar kənarlardan çıxır; bölmə/filtr dəyişəndə sətirlər soldan sürüşür.
-- Bento kartları: hər birində mövzuya uyğun mini-animasiya (append, terminalda yazı, izah ↔ kod işığı, quiz seçimi, düymə basılması, zolaq dolması, parıltı). Yalnız ekrandaykən işləyir. Hover-də kart qalxır, kursoru izləyən işıq görünür.
+### 12. Feedback: no animation on tab switches or in the "Why this site?" blocks
+Done:
+- Tab switches: cards arrive in sequence; on the roadmap the central line draws, nodes grow, branches come in from the sides; on section/filter changes rows slide in from the left.
+- Bento cards: each has a topic-appropriate mini-animation (append, typing in a terminal, explanation ↔ code glow, quiz choice, button press, bar filling, shimmer). Runs only while on screen. On hover the card lifts and a cursor-following glow appears.
 
-### 13. Repo və sənədlər
-Davam etmək üçün git repo yaradıldı; `README.md`, `docs/` (yol xəritəsi, jurnal, qərarlar, referanslar) və `CLAUDE.md` yazıldı. İstifadəçinin seçimi ilə GitHub-da **public** repo açıldı: https://github.com/seymur-orucov/go-by-example-az
+### 13. Repo and documentation
+A git repo was created to continue the work; `README.md`, `docs/` (roadmap, log, decisions, references) and `CLAUDE.md` were written. By the user's choice a **public** repo was opened on GitHub: https://github.com/seymur-orucov/go-by-example-az
 
-### 14. Əsas məqsəd dəqiqləşdi: vahid öyrənmə platforması
-İstifadəçi: ilk prototipdən sonra itbooster.ru və roadmap.sh tipində sayta keçmək əsas məqsəddir. Developer düzgün roadmap ilə həm praktikanı, həm nəzəriyyəni bu resursdan alsın. Bütün texnologiyalar bir sayt üzərində olacaq.
+### 14. Main goal clarified: a unified learning platform
+The user: after the first prototype, moving to a site in the spirit of itbooster.ru and roadmap.sh is the main goal. Developers should get both practice and theory from this resource along the right roadmap. All technologies will be on one site.
 
-Edildi: vizyon README-yə və [ROADMAP.md](ROADMAP.md)-yə yazıldı; Mərhələ 6 (platformaya keçid: roadmap modeli, nəzəriyyə + praktika) və Mərhələ 7 (yeni texnologiyalar) əlavə olundu. [DECISIONS.md](DECISIONS.md)-də "ayrı saytlar / hub sonra" qərarı ləğv edildi, əvəzinə vahid sayt (`apps/site`, `/<texnologiya>/...` marşrutları) yazıldı; yeni açıq məsələlər əlavə olundu.
+Done: the vision was written into the README and [ROADMAP.md](ROADMAP.md); Phase 6 (moving to the platform: roadmap model, theory + practice) and Phase 7 (new technologies) were added. In [DECISIONS.md](DECISIONS.md) the "separate sites / hub later" decision was revoked and replaced with a single site (`apps/site`, `/<technology>/...` routes); new open questions were added.
 
-### 15. Açıq məsələlərə cavablar
-- Roadmap növü: **hər ikisi** — "Go texnologiyadır, Backend isə istiqamətdir".
-- Hesablar: **ilk prototipdən sonra lazım olacaq**.
+### 15. Answers to open questions
+- Roadmap kind: **both** — "Go is a technology, Backend is a direction".
+- Accounts: **will be needed after the first prototype**.
 
-Edildi: [DECISIONS.md](DECISIONS.md)-də iki roadmap növü və hesablar qərar kimi yazıldı; "statik sayt, backend yoxdur" qərarı dəqiqləşdirildi (prototip statik, platformada backend + DB). [ROADMAP.md](ROADMAP.md) Mərhələ 6-ya istiqamət roadmap-ı və hesablar əlavə olundu. Yeni açıq məsələ: hesablar üçün backend texnologiyası, giriş üsulu, hosting.
+Done: the two roadmap kinds and accounts were recorded as decisions in [DECISIONS.md](DECISIONS.md); the "static site, no backend" decision was refined (prototype static, backend + DB on the platform). Direction roadmaps and accounts were added to Phase 6 in [ROADMAP.md](ROADMAP.md). New open question: backend technology, sign-in method and hosting for accounts.
 
-### 16. Roadmap-ların mənbəyi
-İstifadəçi: konkret roadmap-lar roadmap.sh və itbooster.ru resurslarının birləşməsi əsasında təkmilləşdiriləcək.
+### 16. Source of the roadmaps
+The user: concrete roadmaps will be refined based on a merge of roadmap.sh and itbooster.ru resources.
 
-Edildi: [DECISIONS.md](DECISIONS.md), [ROADMAP.md](ROADMAP.md) (Mərhələ 6-da 4 addımlıq iş qaydası) və [REFERENCES.md](REFERENCES.md) (yeni "Roadmap mənbələri" bölməsi) yeniləndi. Dəqiqləşdirmə: mövzular, ardıcıllıq və asılılıqlar bu resurslardan götürülür, mətnlər və diaqramlar isə özümüz yazırıq, çünki onların kontenti açıq lisenziyalı deyil.
+Done: [DECISIONS.md](DECISIONS.md), [ROADMAP.md](ROADMAP.md) (a 4-step procedure in Phase 6) and [REFERENCES.md](REFERENCES.md) (new "Roadmap sources" section) were updated. Clarification: topics, ordering and dependencies are taken from these resources, while texts and diagrams are written by us, because their content is not openly licensed.
 
-### 17. Mətnlərin tərcüməsi
-İstifadəçi: mətnlər istifadəçi qeyd etdiyi anda həmin resurslardan götürülür və tərcümə olunur.
+### 17. Translating texts
+The user: texts are taken from those resources and translated when the user marks them.
 
-Yoxlanıldı: roadmap.sh-ın `license` faylı mətn və şəkillərin yalnız şəxsi istifadəsinə icazə verir, başqa formada dərc üçün müəllifin qabaqcadan razılığını tələb edir; itbooster.ru-da açıq lisenziya yoxdur.
+Verified: roadmap.sh's `license` file allows only personal use of text and images and requires the author's prior consent for publishing in other forms; itbooster.ru has no open license.
 
-Edildi: qayda [DECISIONS.md](DECISIONS.md)-yə yazıldı, yanına şərt əlavə olundu — tərcümələr müəllifin razılığına qədər `content-private/`-də (git-ə düşmür) saxlanılır, razılıqdan sonra repo-ya və sayta keçir. [ROADMAP.md](ROADMAP.md)-yə müəlliflərə müraciət addımı, [REFERENCES.md](REFERENCES.md)-yə lisenziya sütunu əlavə olundu.
+Done: the rule was written into [DECISIONS.md](DECISIONS.md) with a condition — translations are kept in `content-private/` (not tracked by git) until the author consents, and move into the repo and onto the site after consent. A step to reach out to the authors was added to [ROADMAP.md](ROADMAP.md), and a license column to [REFERENCES.md](REFERENCES.md).
