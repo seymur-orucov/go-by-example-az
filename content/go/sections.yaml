@@ -1,0 +1,36 @@
+- id: basics
+  title: "Əsaslar"
+  icon: spark
+  description: "Proqramın quruluşu, dəyişənlər və idarəetmə əmrləri."
+- id: collections
+  title: "Kolleksiyalar"
+  icon: stack
+  description: "Massivlər, slice-lar, map-lər və onların üzərində gəzinti."
+- id: functions
+  title: "Funksiyalar"
+  icon: func
+  description: "Funksiya yazmaq, çoxlu nəticə, closure və rekursiya."
+- id: types
+  title: "Tiplər və strukturlar"
+  icon: shape
+  description: "Pointer, struct, metod, interface və generics."
+- id: errors
+  title: "Xətalar"
+  icon: alert
+  description: "Go-da xətaların idarə olunması: error, panic, defer, recover."
+- id: concurrency
+  title: "Konkurentlik"
+  icon: flow
+  description: "Goroutine və channel-larla eyni anda bir neçə iş görmək."
+- id: text
+  title: "Mətn və verilənlər"
+  icon: text
+  description: "Sıralama, formatlama, JSON, vaxt və ədədlərlə iş."
+- id: files
+  title: "Fayllar və test"
+  icon: file
+  description: "Faylları oxumaq, yazmaq, qovluqlar və testlər."
+- id: system
+  title: "Sistem və şəbəkə"
+  icon: globe
+  description: "Komanda sətri, mühit, HTTP, context və proseslər."

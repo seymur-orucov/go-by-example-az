@@ -1,8 +1,17 @@
 import { defineCollection } from "astro:content";
-import { glob } from "astro/loaders";
+import { file, glob } from "astro/loaders";
 import { z } from "astro/zod";
 
 // Learning content lives outside the Astro root: content/<technology>/...
+const goSections = defineCollection({
+  loader: file("../../content/go/sections.yaml"),
+  schema: z.object({
+    title: z.string(),
+    icon: z.string(),
+    description: z.string(),
+  }),
+});
+
 const goExamples = defineCollection({
   loader: glob({
     base: "../../content/go/examples",
@@ -21,4 +30,4 @@ const goExamples = defineCollection({
   }),
 });
 
-export const collections = { goExamples };
+export const collections = { goSections, goExamples };
