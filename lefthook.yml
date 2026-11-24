@@ -1,0 +1,16 @@
+# Git hooks (installed by `pnpm install` through the "prepare" script).
+# Skip once with: LEFTHOOK=0 git commit ...  (avoid; CI runs the same checks)
+pre-commit:
+  parallel: true
+  commands:
+    prettier:
+      glob: "*.{js,mjs,cjs,ts,astro,json,css,yml,yaml}"
+      run: pnpm exec prettier --check --ignore-unknown {staged_files}
+    eslint:
+      glob: "*.{js,mjs,cjs,ts,astro}"
+      run: pnpm exec eslint --no-warn-ignored {staged_files}
+
+commit-msg:
+  commands:
+    commitlint:
+      run: pnpm exec commitlint --edit {1}

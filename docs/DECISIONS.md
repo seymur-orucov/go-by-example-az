@@ -54,6 +54,7 @@ Agreed decisions and their rationale. When a decision changes, don't delete the 
 |---|---|
 | ~~**Static site**, no backend or DB~~ | ~~Free hosting, simplicity; DB only if accounts/comments are needed~~ |
 | The Go prototype (Phases 1–5) is a **static site** with no backend or DB; in the platform phase (6+) a **backend + database** is added for accounts. Content pages stay static (2026-11-23) | Accounts will be needed after the first prototype; static content gives speed and free hosting |
+| **Backend for accounts (Phase 6+):** our own **Go API** on top of a **managed PostgreSQL**. **Paid hosting is allowed** for the backend and the database; the static site stays on the free Cloudflare Pages (2026-11-23) | The user's decision: Go + PostgreSQL fits the project's own subject and the later live-coding runner, and paid hosting avoids free-tier limits (sleeping instances, quotas). Candidates for the managed Postgres and the API host (Neon, Supabase Postgres, Cloud SQL, Cloud Run, Fly.io, Render…) are compared with live prices when Phase 6 starts. Rejected for now: all-in-one hosted backends (Supabase auth/API, Firebase, Nhost) and PocketBase (SQLite) |
 | **Astro** + Content Collections + Zod | Fast HTML with zero JS, Markdown/MDX, multiple collections |
 | **Shiki** (build-time syntax highlighting) | VS Code quality, no JS needed in the browser |
 | **Pagefind** (static search) | Serverless, with a `Ctrl+K` palette |
@@ -78,15 +79,30 @@ The project follows widely used international conventions and best practices. De
 | Decision | Rationale |
 |---|---|
 | **Language:** code, identifiers, code comments, technical docs, commit messages, branch names and PR descriptions are in **English**. Site UI text and learning content are in **Azerbaijani**; communication with the user is in Azerbaijani | The user's decision; open source contributors and tooling expect English |
-| Commit messages follow [**Conventional Commits 1.0**](https://www.conventionalcommits.org/en/v1.0.0/): `<type>(<scope>): <subject>`, imperative mood, subject ≤ 72 chars. Types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`. Scopes: `design`, `site`, `theme`, `content`, `docs`, `ci`, `deps` | The user's decision; enables automatic changelogs and semver |
+| Commit messages follow [**Conventional Commits 1.0**](https://www.conventionalcommits.org/en/v1.0.0/): `<type>(<scope>): <subject>`, imperative mood, subject ≤ 72 chars. Types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`. Scopes: `design`, `site`, `theme`, `content`, `docs`, `ci`, `deps`, `repo`, `api` | The user's decision; enables automatic changelogs and semver |
 | Commits made before 2026-11-23 stay as they are (Azerbaijani, free format); history is not rewritten | The repo is public; rewriting `main` would break clones |
 | **GitHub Flow:** `main` is always deployable; work happens on short-lived branches (`feat/…`, `fix/…`, `docs/…`, `chore/…`, `refactor/…`), merged through a pull request with **squash merge** | Simple, fits continuous deployment to Cloudflare Pages |
 | Versioning with [**SemVer**](https://semver.org/) and a `CHANGELOG.md` in the [**Keep a Changelog**](https://keepachangelog.com/) format, starting with the first release in Phase 2 | Standard, readable release history |
 | `.editorconfig` (UTF-8, 2 spaces, final newline) and `.gitattributes` (`* text=auto eol=lf`) | Consistent formatting across editors; Windows development must not introduce CRLF |
-| Package manager: **pnpm** (workspaces); the version is pinned via `packageManager` in `package.json` (Corepack) from Phase 2 | The user's decision |
-| From Phase 2: **commitlint** + git hooks (husky or lefthook), **Prettier** + **ESLint**, lint and type-check in CI | Conventions are enforced by tools, not by memory |
+| Package manager: **pnpm** (workspaces); the version is pinned via `packageManager` in `package.json` (Corepack), done in Phase 2 | The user's decision |
+| From Phase 2: **commitlint** + git hooks (**lefthook**), **Prettier** + **ESLint**, lint and type-check in CI | Conventions are enforced by tools, not by memory |
 | Licenses: code under **MIT** ([LICENSE](../LICENSE)), learning content under **CC BY 3.0** ([LICENSE-CONTENT](../LICENSE-CONTENT)), because it is derived from Go by Example | Code and content have different needs; CC BY 3.0 is required for the derived content |
 | GitHub templates: PR template and issue templates (bug report, feature request) in `.github/` | Consistent, reviewable contributions |
+
+## Phase 2 technical decisions (2026-11-23)
+
+| Decision | Rationale |
+|---|---|
+| Phase 2 is delivered in **3 PR modules**: 1) repo skeleton + tooling + CI, 2) content model + `packages/theme` + the 4 pages, 3) search (Pagefind), edit (CodeMirror), run (`/api/run`) | The user's rule: group PRs into modules instead of many small PRs |
+| Interactivity is **vanilla TypeScript** (the prototype's `d.js`, `nodes.js`, `b.js`, `c.js`, `app.js` are ported); no UI framework | The user's choice; zero extra dependencies, minimal JS in the browser, exact prototype behaviour |
+| Workspace packages are **private** with a neutral scope (`@platform/site`, `@platform/theme`) | The platform name is still undecided; renaming costs nothing |
+| Git hooks: **lefthook** (pre-commit: Prettier + ESLint on staged files; commit-msg: commitlint) | One config file, fast, works on Windows; picked from "husky or lefthook" |
+| Commit scopes extended with `repo` (root config and tooling) and `api` (Cloudflare functions) | Needed by Phase 2 commits |
+| **Node 24** is pinned through `devEngines.runtime` (pnpm downloads it); `engines.node >= 22.23.4`; CI uses `.node-version` | Astro 7 requires Node >= 22.23.4 while the system Node is 22.13; no system change is needed |
+| Versions: **Astro 7**, **TypeScript ~6.0** (not 7), ESLint 10, Prettier 3, pnpm 12 | `typescript-eslint` supports TypeScript < 6.1 only; revisit when it supports 7 |
+| Routes: `/` (platform home), `/go/` (technology page), `/go/<slug>/` (lesson), `/go/roadmap/` (technology roadmap), `/roadmaps/backend/` (direction roadmap) | Fits the `/<technology>/...` rule; directions live under `/roadmaps/` |
+| Content layout: `content/go/examples/<slug>/{meta.yaml, main.go, steps.yaml, az.md, output.txt}`; localized files carry a locale suffix (`az`); roadmaps in `content/roadmaps/*.yaml`; all 84 topics exist as `meta.yaml` (`status: ready | planned`) | `main.go` stays pure Go so CI can run it; i18n-ready; planned topics render as "tezliklə" |
+| `design/` stays untouched as the visual reference until the site reaches parity | Side-by-side comparison; nothing is lost |
 
 ## Design
 
@@ -117,7 +133,8 @@ The project follows widely used international conventions and best practices. De
 - ~~Should variants A, B, C be deleted after approval, or archived?~~ — archived under `design/archive/` (2026-11-23).
 - Which technology comes after Go?
 - Consent from the authors of roadmap.sh (Kamran Ahmed) and itbooster.ru to translate and publish texts — who reaches out, and when? Consent records: _none yet_.
-- How will the backend for accounts be built: our own API (e.g. Go + PostgreSQL — which also fits the project's own subject) or a hosted service (Supabase, etc.)? Sign-in method: GitHub / Google OAuth, email? Must hosting stay free? — Must be decided before Phase 6.
+- ~~How will the backend for accounts be built: our own API (Go + PostgreSQL) or a hosted service? Must hosting stay free?~~ — decided 2026-11-23: Go API + managed PostgreSQL, hosting may be paid (see Technical architecture).
+- Backend details for Phase 6: sign-in method (GitHub / Google OAuth, email?), session/token approach (own code or a library such as Better Auth / an OAuth library), which managed Postgres and which API host, budget. Compare with live prices before Phase 6.
 - Users without an account: does progress stay in `localStorage` and get migrated to the server when they sign up?
 - ~~**Platform sections**: how they are modelled, linked to nodes, and ordered~~ — decided 2026-11-23, see "Platform sections".
 - ~~**Home page redesign**~~ — first version done 2026-11-23 (`design/d/index.html`); awaiting the user's feedback.

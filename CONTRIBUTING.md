@@ -31,6 +31,7 @@ Azerbaijani is the primary language of the site. Other languages are added only 
 3. Commit using Conventional Commits (below).
 4. Open a pull request, fill in the template, and wait for review.
 5. PRs are merged with **squash merge**; the PR title becomes the commit message, so it must follow Conventional Commits too.
+6. Prefer **module PRs**: one PR per coherent theme (several commits), not one PR per small change.
 
 ## Commit messages
 
@@ -46,7 +47,7 @@ We use [Conventional Commits 1.0](https://www.conventionalcommits.org/en/v1.0.0/
 
 - **Subject:** imperative mood ("add", not "added"/"adds"), lowercase, no trailing period, ≤ 72 characters.
 - **Types:** `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`.
-- **Scopes:** `design`, `site`, `theme`, `content`, `docs`, `ci`, `deps`.
+- **Scopes** (optional): `design`, `site`, `theme`, `content`, `docs`, `ci`, `deps`, `repo` (root config and tooling), `api` (Cloudflare functions).
 - Breaking changes: `feat(site)!: …` and a `BREAKING CHANGE:` footer.
 
 Examples:
@@ -58,7 +59,7 @@ docs(roadmap): mark phase 1 palette task as done
 chore: add editorconfig and gitattributes
 ```
 
-From Phase 2 commit messages are checked automatically (commitlint).
+Commit messages are checked automatically: commitlint runs in the `commit-msg` git hook (lefthook) and on the pull request title in CI.
 
 ## Versioning
 
@@ -68,23 +69,25 @@ From Phase 2 commit messages are checked automatically (commitlint).
 
 - The repository uses [EditorConfig](https://editorconfig.org/): UTF-8, LF line endings, 2-space indentation (tabs for Go). Install the EditorConfig plugin for your editor if it doesn't support it natively.
 - Line endings are normalized to LF by `.gitattributes`. On Windows, `core.autocrlf=false` is recommended.
-- From Phase 2: Prettier + ESLint, run before committing.
+- Prettier and ESLint run on staged files in the `pre-commit` hook and again in CI. Run `pnpm format` / `pnpm lint:fix` to fix issues. The `design/` prototype, `docs/`, `content/` and Markdown files are not reformatted by Prettier.
 
 ## Running the project
 
-Current phase (design prototype) — Node.js 18+, no dependencies:
+The project is a **pnpm** workspace (`apps/*`, `packages/*`).
 
 ```sh
-node design/serve.mjs   # http://localhost:4321/d/
+corepack enable          # once; uses the pnpm version pinned in package.json
+pnpm install             # installs dependencies and git hooks
+pnpm dev                 # Astro dev server
+pnpm lint                # ESLint
+pnpm format:check        # Prettier (use `pnpm format` to fix)
+pnpm check               # Astro / TypeScript type check
+pnpm build               # production build of the site
 ```
 
-From Phase 2 the project uses **pnpm** workspaces:
+`package.json` pins Node 24 through `devEngines.runtime`; pnpm downloads it on the first `pnpm install` and uses it for all scripts, so you don't need to upgrade your system Node. A Node version of at least 22.23.4 is enough if you prefer your own.
 
-```sh
-corepack enable
-pnpm install
-pnpm dev
-```
+The frozen design prototype (no dependencies, any Node 18+): `node design/serve.mjs`, then http://localhost:4321/d/.
 
 ## Design prototype rules
 
