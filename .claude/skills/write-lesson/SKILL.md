@@ -1,6 +1,6 @@
 ---
 name: write-lesson
-description: Write or rewrite an original Go lesson in content/go/examples/<slug>/ (main.go, lesson.az.md, steps.yaml, quiz.az.yaml, output.txt, meta.yaml) and verify it with Go. Use when the user asks to write, rewrite or add a lesson, or to make an adapted lesson original.
+description: Write or rewrite an original Go lesson in content/go/examples/<slug>/ (main.go, lesson.az.md, steps.yaml, quiz.az.yaml, takeaways.az.yaml, output.txt, meta.yaml) and verify it with Go. Use when the user asks to write, rewrite or add a lesson, or to make an adapted lesson original.
 ---
 
 # Write an original lesson
@@ -71,6 +71,19 @@ format section there and one existing `source: original` lesson before starting.
   edəcək?" with a short `code`, plus "which line does not compile?" for typical mistakes.
   2–4 options, one `answer` (0-based), an `explain` of one sentence. Distractors must be
   plausible mistakes, not jokes.
+- `takeaways.az.yaml`: the "Yadda saxla" card shown left of the quiz. `rules`: 3–6 key points
+  and gotchas of **this** lesson (what a reader must remember: syntax rules, typical compile
+  errors, behaviours that surprise beginners). `practices`: 1–4 best practices (habits that
+  make the code clearer or safer). Base both on what the lesson and its quiz actually teach;
+  do not introduce new concepts, and never recommend something unsafe (for example `float64`
+  for money). One sentence each, inline Markdown (backticks) only.
+
+  ```yaml
+  rules:
+    - "`append` yeni slice qaytarır, nəticəni saxlamaq lazımdır: `s = append(s, x)`."
+  practices:
+    - "`append`-in nəticəsini həmişə eyni dəyişənə yazın."
+  ```
 - `meta.yaml`: `status: ready`, `source: original`, `duration` (minutes, honest).
 - `output.txt`: generated, never typed (step 5).
 
@@ -86,8 +99,9 @@ go run main.go > output.txt
 
 - Verify **every quiz answer** by compiling or running the snippet (a scratch file in the
   scratchpad, not in the repo); for "does not compile" questions, check the compiler error.
-- From the repo root: `pnpm content:check` (ids, `out` in order, quiz shape, `source`).
-- `pnpm build`, then look at `/go/<slug>/` (steps, highlighted lines, output, visual, quiz).
+- Check every claim in `takeaways.az.yaml` against the lesson text and the compiler.
+- From the repo root: `pnpm content:check` (ids, `out` in order, quiz and takeaways shape, `source`).
+- `pnpm build`, then look at `/go/<slug>/` (steps, highlighted lines, output, visual, summary card, quiz).
 
 ## 6. Hand-off
 
