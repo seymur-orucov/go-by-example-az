@@ -1,0 +1,65 @@
+---
+// All sections with collapsible groups and a progress bar (liked in variant A).
+// Learned marks and counts are painted from localStorage by scripts/lesson-sidebar.ts.
+import Icon from "@platform/theme/components/Icon.astro";
+import type { GoSection } from "../lib/go";
+
+interface Props {
+  sections: GoSection[];
+  total: number;
+  current: string;
+}
+
+const { sections, total, current } = Astro.props;
+---
+
+<aside class="sidebar" id="sidebar" aria-label="Mövzular" data-lesson-sidebar>
+  <div class="sb-progress">
+    <div class="row2">
+      <span>İrəliləyiş</span>
+      <span>
+        <b data-sb-done>0</b> / {total}
+      </span>
+    </div>
+    <div class="bar">
+      <span data-sb-bar style="width:0%"></span>
+    </div>
+  </div>
+  <nav aria-label="Nümunələr">
+    {sections.map((s) => (
+      <details
+        class="sb-group"
+        open={s.items.some((it) => it.slug === current) || undefined}
+        style={`--c:${s.color}`}
+      >
+        <summary>
+          <span class="dot" />
+          {s.title}
+          <span class="cnt" data-sb-count={s.items.map((it) => it.slug).join(" ")}>
+            0/{s.items.length}
+          </span>
+          <Icon name="chev" />
+        </summary>
+        <ul class="sb-list">
+          {s.items.map((it) => (
+            <li>
+              <a
+                href={it.href}
+                data-slug={it.slug}
+                class={it.status === "planned" ? "is-planned" : undefined}
+                title={it.status === "planned" ? "Hazırlanır" : undefined}
+                aria-current={it.slug === current ? "page" : undefined}
+              >
+                {it.title}
+                <span class="ok" hidden>
+                  <Icon name="check" />
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </details>
+    ))}
+  </nav>
+</aside>
+<div class="scrim"></div>

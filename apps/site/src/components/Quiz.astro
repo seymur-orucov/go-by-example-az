@@ -1,0 +1,49 @@
+---
+// "Özünü yoxla": every question of quiz.<locale>.yaml. Behavior: scripts/lesson.ts (initQuiz).
+import { highlightGo } from "../lib/highlight";
+import type { QuizQuestion } from "../lib/lesson";
+import { renderInline } from "../lib/markdown";
+
+interface Props {
+  quiz: QuizQuestion[];
+}
+
+const { quiz } = Astro.props;
+const LETTERS = "ABCDE";
+const questions = await Promise.all(
+  quiz.map(async (q) => ({
+    question: renderInline(q.question),
+    code: q.code ? await highlightGo(q.code) : undefined,
+    options: q.options.map(renderInline),
+    answer: q.answer,
+    explain: q.explain ? renderInline(q.explain) : "",
+  })),
+);
+---
+
+<section class="card quiz" id="quiz" data-quiz aria-labelledby="quiz-title">
+  <span class="label">Özünü yoxla</span>
+  <h2 id="quiz-title">{quiz.length} sual</h2>
+  <ol class="quiz-list">
+    {questions.map((q, qi) => (
+      <li class="quiz-q" data-answer={q.answer}>
+        <p class="quiz-question">
+          <span class="quiz-n">{qi + 1}.</span>
+          <span set:html={q.question} />
+        </p>
+        {q.code && <pre class="code" set:html={q.code} />}
+        <div class="quiz-options" role="group" aria-label={`Sual ${qi + 1}: cavablar`}>
+          {q.options.map((o, oi) => (
+            <button class="quiz-option" type="button" data-i={oi}>
+              <span class="letter">{LETTERS[oi]}</span>
+              <span set:html={o} />
+            </button>
+          ))}
+        </div>
+        <p class="quiz-feedback" aria-live="polite" />
+        <template set:html={q.explain} />
+      </li>
+    ))}
+  </ol>
+  <p class="quiz-score" data-quiz-score aria-live="polite" hidden></p>
+</section>

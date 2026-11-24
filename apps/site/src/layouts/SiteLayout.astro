@@ -6,6 +6,7 @@ interface Props {
   title: string;
   description?: string;
   tech?: "go";
+  lesson?: boolean;
 }
 
 const { sections, total } = await getGoCatalog();
