@@ -104,6 +104,20 @@ The project follows widely used international conventions and best practices. De
 | Content layout: `content/go/examples/<slug>/{meta.yaml, main.go, steps.yaml, az.md, output.txt}`; localized files carry a locale suffix (`az`); roadmaps in `content/roadmaps/*.yaml`; all 84 topics exist as `meta.yaml` (`status: ready | planned`) | `main.go` stays pure Go so CI can run it; i18n-ready; planned topics render as "tezliklə" |
 | `design/` stays untouched as the visual reference until the site reaches parity | Side-by-side comparison; nothing is lost |
 
+## Lesson content format (2026-11-24)
+
+Supersedes the file list in the "Content layout" row above (`az.md` becomes `lesson.az.md`; `quiz.az.yaml` is added).
+
+| Decision | Rationale |
+|---|---|
+| A lesson is `content/<technology>/examples/<slug>/` with `meta.yaml`, `main.go`, `lesson.<locale>.md`, `steps.yaml`, `quiz.<locale>.yaml` and the generated `output.txt` | Code, language-independent data and localized text are separate; a new locale only adds `*.<locale>.*` files |
+| Code ↔ step link: **marker comments** `//@step <id>` in `main.go`; a step runs until the next marker or the end of `main`. Markers are stripped at build time and line ranges are computed | Hand-written line numbers (`lines: [9, 13]` in the prototype) break on every code edit; `main.go` stays plain, runnable Go |
+| Text lives in `lesson.<locale>.md`: an intro, then one `## Title {#id}` heading per step, then optional closing text. Step ids must match the markers; a mismatch fails the build | Long prose is easier to write, review and translate in Markdown than in YAML |
+| `steps.yaml` holds per-step data keyed by step id: `out` (expected output) and optional `vis` with a `kind` (`slice`, `map`, `channel`, `goroutine`, …) | Visual data is language-independent; `kind` leaves room for new visualizers |
+| CI checks that the steps' `out` values appear in `output.txt` in order | Wrong output never reaches the site |
+| **Quiz**: required for every `status: ready` lesson, **5–10 questions** depending on the topic (the user's rule); stored in `quiz.<locale>.yaml` | Self-check on every lesson; kept in its own file because tests become a separate platform section in Phase 6 |
+| Slugs and step ids are **stable** once published | Future server-side progress and roadmap nodes (Phase 6) reference them |
+
 ## Design
 
 | Decision | Rationale |
