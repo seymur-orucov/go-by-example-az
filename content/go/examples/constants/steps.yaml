@@ -1,9 +1,7 @@
 declare: {}
-use:
-  out: "sabit"
+group:
+  out: "Bakı taksi: minimum 2 AZN"
 untyped:
-  out: "6e+11"
-convert:
-  out: |
-    600000000000
-    -0.28470407323754404
+  out: "12.5 km: 8.25 AZN"
+expr:
+  out: "gecə, 1 km: 0.75 AZN"

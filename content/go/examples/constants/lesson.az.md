@@ -1,17 +1,19 @@
-Sabit — proqram işləyərkən dəyəri dəyişməyən addır. `const` açar sözü ilə elan olunur.
+Sabit — proqram işləyərkən dəyişməyən dəyərdir: şəhərin adı, taksi tarifi, vergi faizi. `const` ilə elan olunur və dəyəri kompilyasiya zamanı məlum olmalıdır.
 
-## const ilə elan {#declare}
+## Paket səviyyəsində sabit {#declare}
 
-Sabit funksiyadan kənarda (paket səviyyəsində) də, funksiyanın içində də elan oluna bilər. Onun dəyəri kompilyasiya zamanı məlum olmalıdır.
+`city` funksiyadan kənarda elan olunub, ona görə faylın bütün funksiyalarında görünür. Bir dəfə yazılır və hər yerdə eyni qalır.
 
-## İstifadə {#use}
+## Sabitlər qrupu {#group}
 
-Sabit adi dəyişən kimi oxunur. Amma `s = "yeni"` yazsaq, proqram kompilyasiya olunmaz — sabiti dəyişmək olmaz.
+Bir-birinə aid sabitləri `const ( ... )` blokunda yığmaq rahatdır: taksi tarifinin hər iki rəqəmi bir yerdədir. Tarif dəyişəndə kodda yalnız bu iki sətri düzəldirik.
 
-## Tipsiz sabitlər {#untyped}
+> **Diqqət:** sabitə yeni dəyər yazmaq olmaz — `minFare = 3` kompilyasiya xətası verir.
 
-`n` və `d`-nin tipi yazılmayıb. Belə sabitlər dəqiq hesablanır və tipini istifadə olunduğu yerdə alır. `3e20` — 3 × 10²⁰ deməkdir; `d` kəsr ədəd kimi `6e+11` çap olunur.
+## Untyped sabitlər {#untyped}
 
-## Tipə çevirmə {#convert}
+`minFare` və `perKm`-in tipi yazılmayıb — bunlar untyped sabitlərdir. Belə sabit istifadə olunduğu yerin tipinə uyğunlaşır: `km` `float64` olduğu üçün `minFare` də `float64` kimi hesablanır. `minFare` `int` tipli dəyişən olsaydı, onu `float64` ilə toplamaq olmazdı.
 
-`int64(d)` sabiti tam ədədə çevirir. `math.Sin` `float64` gözləyir, ona görə `n` orada avtomatik `float64` olur.
+## Sabit ifadələr {#expr}
+
+Sabitdən yeni sabit qurmaq olar: gecə tarifi gündüzdən 1.5 dəfə bahadır. Bu hesablama proqram işə düşməzdən əvvəl, kompilyasiya zamanı aparılır.

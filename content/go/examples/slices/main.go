@@ -4,24 +4,26 @@ import "fmt"
 
 func main() {
 	//@step nil
-	var s []string
-	fmt.Println("boş:", s, len(s))
-
-	//@step make
-	s = make([]string, 3)
-	s[0] = "a"
-	s[1] = "b"
-	s[2] = "c"
-	fmt.Println("make:", s, len(s))
+	var cart []string
+	fmt.Println("səbət:", cart, len(cart), cart == nil)
 
 	//@step append
-	s = append(s, "d", "e")
-	fmt.Println("append:", s, len(s), cap(s))
+	cart = append(cart, "çörək")
+	cart = append(cart, "pendir", "çay")
+	fmt.Println("səbət:", cart, len(cart), cap(cart))
 
-	//@step slice
-	fmt.Println("kəsik:", s[1:3])
+	//@step index
+	cart[0] = "lavaş"
+	fmt.Println("ilk məhsul:", cart[0])
 
-	//@step literal
-	t := []int{1, 2, 3}
-	fmt.Println("qısa:", t)
+	//@step make
+	counts := make([]int, 3)
+	counts[2] = 2
+	fmt.Println("say:", counts)
+
+	//@step sub
+	first := cart[:2]
+	first[1] = "yağ"
+	fmt.Println("ilk ikisi:", first)
+	fmt.Println("səbət:", cart)
 }

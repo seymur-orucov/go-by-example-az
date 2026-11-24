@@ -1,67 +1,63 @@
 - question: Bu kod nə çap edəcək?
   code: |
     var s []int
-    fmt.Println(s == nil, len(s))
-  options: ["false 0", "true 0", "true 1"]
-  answer: 1
+    fmt.Println(len(s), s == nil)
+  options: ["0 true", "0 false", "nil true"]
+  answer: 0
   explain: Dəyər verilməmiş slice `nil`-dir və uzunluğu 0-dır.
 
 - question: Bu kod nə çap edəcək?
   code: |
-    s := make([]int, 3)
-    fmt.Println(s)
-  options: ["[]", "[0 0 0]", "[nil nil nil]"]
-  answer: 1
-  explain: "`make` massivi tipin sıfır dəyəri ilə doldurur; `int` üçün bu 0-dır."
-
-- question: Bu kod nə çap edəcək?
-  code: |
-    s := make([]int, 2, 5)
-    fmt.Println(len(s), cap(s))
-  options: ["2 5", "5 2", "2 2"]
-  answer: 0
-  explain: "`make`-in ikinci arqumenti uzunluq (`len`), üçüncüsü tutumdur (`cap`)."
-
-- question: Bu kod nə çap edəcək?
-  code: |
     var s []int
-    s = append(s, 1)
-    fmt.Println(s)
-  options: ["[1]", "[]", "panic: nil slice"]
+    s = append(s, 5, 7)
+    fmt.Println(s, len(s))
+  options: ["[5 7] 2", "[] 0", "panic: nil slice"]
   answer: 0
-  explain: "`nil` slice-a da `append` etmək olar: Go lazım olan massivi özü ayırır."
+  explain: "`nil` slice-a da `append` etmək olar — Go lazım olan yeri özü ayırır."
 
 - question: Bu kod nə çap edəcək?
   code: |
-    s := []int{10, 20, 30, 40}
-    fmt.Println(s[1:3])
-  options: ["[10 20 30]", "[20 30]", "[20 30 40]"]
+    n := make([]string, 2)
+    fmt.Println(len(n), n[0] == "")
+  options: ["0 true", "2 true", "2 false"]
   answer: 1
-  explain: "`s[1:3]` 1-ci və 2-ci indeksləri götürür; 3-cü indeks daxil deyil."
+  explain: "`make` 2 element yaradır və onları zero value ilə doldurur; `string` üçün bu boş mətndir."
 
 - question: Bu kod nə çap edəcək?
   code: |
-    a := []int{1, 2, 3}
-    b := a[:2]
-    b[0] = 9
-    fmt.Println(a)
+    t := []int{1, 2, 3, 4}
+    fmt.Println(t[1:3])
+  options: ["[1 2 3]", "[2 3]", "[2 3 4]"]
+  answer: 1
+  explain: "1-ci indeks daxildir, 3-cü daxil deyil: `t[1]` və `t[2]`."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    u := []int{1, 2, 3}
+    v := u[:2]
+    v[0] = 9
+    fmt.Println(u)
   options: ["[1 2 3]", "[9 2]", "[9 2 3]"]
   answer: 2
-  explain: Kəsik eyni massivə baxır, ona görə `b` vasitəsilə edilən dəyişiklik `a`-da da görünür.
+  explain: "`v` `u`-nun elementlərinə baxır, kopya deyil; `v`-dəki dəyişiklik `u`-da da görünür."
 
 - question: Bu kod nə çap edəcək?
   code: |
-    s := make([]int, 5)
-    t := s[1:3]
-    fmt.Println(len(t), cap(t))
-  options: ["2 2", "2 4", "2 5"]
+    m := make([]int, 2, 5)
+    fmt.Println(len(m), cap(m))
+  options: ["2 5", "5 2", "2 2"]
+  answer: 0
+  explain: "`make`-in ikinci arqumenti `len`, üçüncüsü `cap`-dir."
+
+- question: Bu kod işə salınanda nə olacaq?
+  code: |
+    var c []int
+    c[0] = 1
+  options: ["c [1] olacaq", "proqram panic ilə dayanacaq", "kompilyasiya xətası"]
   answer: 1
-  explain: Kəsiyin tutumu başlanğıc indeksdən massivin sonuna qədərdir — 5 − 1 = 4.
+  explain: "Boş slice-da 0-cı element yoxdur; əvvəlcə `append` ilə element əlavə etmək lazımdır."
 
 - question: Hansı sətir kompilyasiya olunmayacaq?
-  options:
-    - "s = append(s, 4)"
-    - "append(s, 4)"
-    - "s = append(s, 4, 5)"
+  options: ["c = append(c, 1)", "append(c, 1)", "c = append(c, 1, 2)"]
   answer: 1
   explain: "`append` yeni slice qaytarır; nəticə istifadə olunmasa, kompilyator xəta verir."

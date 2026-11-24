@@ -1,25 +1,26 @@
 package main
 
-import (
-	"fmt"
-	"math"
-)
+import "fmt"
 
 // @step declare
-const s string = "sabit"
+const city = "Bakı"
 
 //@end
 
 func main() {
-	//@step use
-	fmt.Println(s)
+	//@step group
+	const (
+		minFare = 2   // manat
+		perKm   = 0.5 // manat, 1 km üçün
+	)
+	fmt.Println(city, "taksi: minimum", minFare, "AZN")
 
 	//@step untyped
-	const n = 500000000
-	const d = 3e20 / n
-	fmt.Println(d)
+	km := 12.5
+	fare := minFare + perKm*km
+	fmt.Println(km, "km:", fare, "AZN")
 
-	//@step convert
-	fmt.Println(int64(d))
-	fmt.Println(math.Sin(n))
+	//@step expr
+	const nightPerKm = perKm * 1.5
+	fmt.Println("gecə, 1 km:", nightPerKm, "AZN")
 }
