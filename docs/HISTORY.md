@@ -277,3 +277,14 @@ Done (branch `feat/pilot-content`):
 - `write-lesson` skill and DECISIONS ("Lesson content format") updated: every new lesson ships a `takeaways.az.yaml`.
 - Verified: `pnpm content:check` (8/8), format, lint, check, build; desktop screenshot of `/go/if-else/` in headless Chrome (summary left, quiz right). Only this prototype-vs-site gap was checked; the rest of the lesson page was not re-audited against `design/d/example.html`.
 - Awaiting the user's review of the wording.
+
+### 38. "Kolleksiyalar" section completed: `arrays`, `maps`, `range`, `strings-and-runes`
+The user asked to continue with content and prepare the "Kolleksiyalar" module; `slices` was already ready, four lessons were `planned`.
+
+Done (branch `feat/pilot-content`), with the `write-lesson` skill:
+- `arrays` (a week of weather: zero value, literal and index, loop to find the warmest day, copy on assignment and `==`; 4 steps, 8 questions, slice-kind memory visual reused for the array), `maps` (a small shop's stock: literal, add/update, missing key and "comma ok", `delete`, `make` + `m[k]++` counter, `nil` map note; 5 steps, 8 questions), `range` (a metro line: index + value, `_`, map iteration with order-independent work, `range` over an integer; 4 steps, 8 questions), `strings-and-runes` (Azerbaijani city names: bytes vs letters, index gives a byte, `[]rune`, `range` jumping over 2-byte letters, rune literal; 5 steps, 8 questions). All `source: original`, `status: ready`, with `takeaways.az.yaml`.
+- Map iteration order is random, so no lesson prints inside a map `range` loop (outputs stay deterministic for the future CI comparison).
+- Term rule: "Massivlər" removed from the section description and "massiv" from the `arrays` subtitle. The `slices` intro now contrasts slices with arrays, since `arrays` comes first.
+- Verified with Go 1.26: `gofmt`, `go vet`, `go run` (`output.txt`); all 32 quiz answers checked by running the snippets or reading the compiler message (index out of bounds, `[3]int` vs `[5]int`, wrong key type, unused range variable, assigning to a string byte, `'Ş'` overflowing `byte`); `pnpm content:check` (12/12 ready), format, lint, check, build (86 pages); screenshots of `/go/arrays/` and `/go/strings-and-runes/` in headless Chrome.
+- No `map` memory visual yet (only `kind: slice` exists); still listed under Phase 3 "Step visuals".
+- Awaiting the user's review of tone and clarity.
