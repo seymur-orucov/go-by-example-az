@@ -2570,3 +2570,80 @@ html[data-zen] .zen-bar {
     display: none;
   }
 }
+
+/* ==========================================================
+   Lesson page (site): quiz list, outro, planned topics
+   ========================================================== */
+.lead > p + p {
+  margin-top: 8px;
+}
+.step-body p + p,
+.step-body .note {
+  margin-top: 6px;
+}
+.note strong {
+  color: var(--amber);
+  font-weight: 600;
+}
+.note.info strong {
+  color: var(--accent-ink);
+}
+.lesson-outro {
+  max-width: 72ch;
+  margin-top: 32px;
+  font-size: 15px;
+  color: var(--text-muted);
+}
+.lesson-outro p + p {
+  margin-top: 8px;
+}
+.after:has(> .quiz:only-child) {
+  grid-template-columns: minmax(0, 1fr);
+}
+.quiz-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 26px;
+  counter-reset: none;
+}
+.quiz-question {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  font-size: 15px;
+  font-weight: 600;
+}
+.quiz-n {
+  color: var(--text-subtle);
+  font-variant-numeric: tabular-nums;
+}
+.quiz-option code {
+  font-size: inherit;
+}
+.quiz-feedback code {
+  font-size: 0.95em;
+}
+.quiz-score {
+  margin-top: 22px;
+  padding-top: 16px;
+  font-weight: 600;
+  border-top: 1px solid var(--line);
+}
+.sb-list a.is-planned {
+  opacity: 0.55;
+}
+.sb-list a.is-planned[aria-current="page"] {
+  opacity: 1;
+}
+.lesson-soon {
+  margin-top: 24px;
+  max-width: 640px;
+}
+.lesson-soon p {
+  color: var(--text-muted);
+}
+.lesson-soon .hero-cta {
+  margin-top: 18px;
+}

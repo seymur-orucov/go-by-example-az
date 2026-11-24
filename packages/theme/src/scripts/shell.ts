@@ -2,6 +2,7 @@ import { initMenus } from "./menus";
 import { buildPalette, type SearchEntry } from "./search";
 import { initSpy } from "./spy";
 import { initTheme } from "./theme";
+import { initViewModes } from "./view-modes";
 
 function readSearchIndex(): SearchEntry[] {
   const el = document.getElementById("search-index");
@@ -16,6 +17,7 @@ function init(): void {
   initTheme();
   initMenus();
   initSpy();
+  initViewModes();
   const palette = buildPalette(readSearchIndex());
   document
     .querySelectorAll("[data-open-search]")

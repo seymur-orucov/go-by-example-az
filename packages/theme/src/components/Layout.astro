@@ -19,9 +19,11 @@ interface Props {
   searchIndex?: SearchEntry[];
   goCount?: number;
   tech?: "go";
+  /** Lesson pages: view modes (sidebar, width, Zen) in the header. */
+  lesson?: boolean;
 }
 
-const { title, description, searchIndex = [], goCount, tech } = Astro.props;
+const { title, description, searchIndex = [], goCount, tech, lesson } = Astro.props;
 ---
 
 <!doctype html>
@@ -43,6 +45,16 @@ const { title, description, searchIndex = [], goCount, tech } = Astro.props;
         /* storage unavailable: fall back to the system theme */
       }
     </script>
+    {lesson && <script is:inline>
+      try {
+        const d = document.documentElement;
+        if (localStorage.getItem("goaz:sidebar") === "off") d.setAttribute("data-sidebar", "off");
+        if (localStorage.getItem("goaz:width") === "full") d.setAttribute("data-width", "full");
+        if (sessionStorage.getItem("goaz:zen") === "1") d.setAttribute("data-zen", "");
+      } catch {
+        /* storage unavailable: default view */
+      }
+    </script>}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -51,7 +63,7 @@ const { title, description, searchIndex = [], goCount, tech } = Astro.props;
     />
   </head>
   <body>
-    <Header goCount={goCount} tech={tech} />
+    <Header goCount={goCount} tech={tech} lesson={lesson} />
     <slot />
     <Footer />
     <script
