@@ -16,6 +16,11 @@ Eli Bendersky (https://gobyexample.com,
 https://github.com/mmcgrana/gobyexample), licensed under CC BY 3.0.
 It has been translated into Azerbaijani, adapted and simplified.
 
+Lessons marked `source: original` in their meta.yaml are written from
+scratch for this project (own code and text) and are not derived from
+Go by Example; the attribution above applies to lessons marked
+`source: adapted`.
+
 When you reuse this content, credit both "Go by Example" (Mark McGranaghan,
 Eli Bendersky) and this project, link to the license, and indicate if
 changes were made.

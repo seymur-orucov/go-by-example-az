@@ -104,6 +104,19 @@ The project follows widely used international conventions and best practices. De
 | Content layout: `content/go/examples/<slug>/{meta.yaml, main.go, steps.yaml, az.md, output.txt}`; localized files carry a locale suffix (`az`); roadmaps in `content/roadmaps/*.yaml`; all 84 topics exist as `meta.yaml` (`status: ready | planned`) | `main.go` stays pure Go so CI can run it; i18n-ready; planned topics render as "tezliklə" |
 | `design/` stays untouched as the visual reference until the site reaches parity | Side-by-side comparison; nothing is lost |
 
+## Original content (2026-11-24)
+
+Supersedes the "based on, adapted and simplified" approach for lesson content (the rows on CC BY 3.0 attribution below stay valid for lessons that are still adapted).
+
+| Decision | Rationale |
+|---|---|
+| Lessons are **original**: our own code examples and our own explanations, written from scratch — not translations or adaptations of Go by Example. Topic list, order and the "learn by example" approach may still follow Go by Example, roadmap.sh and itbooster.ru (ideas and topic lists are not protected; their texts and code are) | The user's decision: clearer explanations, and content that is fully ours |
+| Every ready lesson declares `source: original` or `source: adapted` in `meta.yaml` (`pnpm content:check` requires it). The footer keeps the Go by Example CC BY 3.0 attribution while **any** ready lesson is `adapted`; when none is left it shows only an "inspired by Go by Example" credit line (a courtesy, not a license requirement) | A translation is a derivative work: removing the attribution while adapted lessons are online would breach CC BY 3.0 |
+| **Programming terms are not translated**: slice, map, struct, interface, receiver, method, pointer, goroutine, channel, closure, package, … stay in English in the text; the explanation around them is in Azerbaijani (the user's rule) | Readers meet these words in docs, errors and jobs; a translated term would have to be unlearned |
+| Explanations are **short but high quality**: 2–3 sentences per step, each sentence adds something; **real-life examples** (prices in manat, a shopping cart, a library, a bus route, exam grades, …) are welcome in code and text | The user's rule; real-life context makes the examples clearly ours and easier to remember |
+| Lessons are written with Claude Code using the project skill `.claude/skills/write-lesson/` (rules, originality guard, verification checklist); the user reviews tone and clarity before a lesson is merged | Code and quiz answers are verified by running Go; the rules apply the same way to every lesson |
+| Known risk: AI models can reproduce well-known snippets from memory (the first `constants` draft was almost Go by Example's code). The skill forbids it and requires a self-check against the topic's best-known examples | Originality has to be checked, not assumed |
+
 ## Lesson content format (2026-11-24)
 
 Supersedes the file list in the "Content layout" row above (`az.md` becomes `lesson.az.md`; `quiz.az.yaml` is added).
@@ -158,3 +171,4 @@ Supersedes the file list in the "Content layout" row above (`az.md` becomes `les
 - Consent from the authors of hellointerview.com and algomaster.io (same as for roadmap.sh and itbooster.ru). Consent records: _none yet_.
 - greatfrontend.com: read its terms (could not be fetched on 2026-11-23) and record the license here; then ask the authors for consent if texts are wanted. Consent records: _none yet_.
 - Which languages come after Azerbaijani, and who reviews translation quality?
+- Content license once every lesson is original: keep CC BY 3.0 for our own content, or move to CC BY 4.0? Until decided, `LICENSE-CONTENT` stays CC BY 3.0 and the Go by Example attribution applies to `source: adapted` lessons.
