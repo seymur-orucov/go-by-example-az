@@ -213,3 +213,13 @@ Done (branch `feat/site-content-theme`; recorded in [DECISIONS.md](DECISIONS.md#
 - The viewport follows the height of the visible slide; hidden slides are `inert`; the slide and height transitions are switched off under `prefers-reduced-motion` by the global rule.
 - Quiz logic moved from `lesson.ts` to its own `scripts/quiz.ts`.
 - Checked in headless Chrome at 1440px and 390px: navigation, dots, arrows, score, no JS errors.
+
+### 31. Lesson sources for future technologies; pilot content (part 1)
+The user agreed to start the pilot content with 2–3 lessons for review, in its own module PR, and asked where content and roadmaps for a future technology (e.g. TypeScript) would come from.
+
+Answer given: the roadmap follows the existing decision (topics and order from a merge of roadmap.sh and itbooster.ru; their texts only with the author's consent). For lesson text there is no openly licensed "by example" source like Go by Example, so the default is to write our own examples and explanations, using official docs only to check facts. The TypeScript Handbook's license is **not verified yet**; it is to be read and recorded in DECISIONS.md when that module starts. The lesson format carries over (`main.ts`, same markers); the loader needs the file name, Shiki language and run command per technology.
+
+Done (branch `feat/pilot-content`):
+- `values`, `variables`, `constants` written in the lesson format and marked `ready`: code checked with `gofmt`, `go vet`, `go run` (Go 1.26); `output.txt` is the real output; every quiz answer verified by compiling or running the snippet.
+- Found: gofmt rewrites a marker above a top-level declaration to `// @step`; the loader accepts both spellings. A multi-line `out:` no longer leaves an empty line in the terminal.
+- Checked in headless Chrome: steps, highlighted lines and output for `values` and `constants`.

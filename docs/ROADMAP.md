@@ -109,11 +109,11 @@ functions/api/run.ts   # go.dev/_/compile proxy (rate limit + size limit)
 - [x] Progress in `localStorage` (with try/catch): `/go/`, lesson sidebar and the "Öyrəndim" button (module 2)
 - [~] View modes (sidebar, width, zen) moved into the theme (`view-modes.ts`, `ViewMenu`); `prefers-reduced-motion` is preserved. Home page animations remain (module 2)
 
-## Phase 3 — Pilot content `[ ]`
+## Phase 3 — Pilot content `[~]`
 
 10 examples, each simpler than the original, with a compact explanation in Azerbaijani:
 
-- [ ] hello-world · values · variables · constants · for · if-else · slices · maps · functions · goroutines
+- [~] hello-world · values · variables · constants · for · if-else · slices · maps · functions · goroutines — done: hello-world, values, variables, constants, slices (branch `feat/pilot-content`, awaiting the user's review of tone and length); remaining: for, if-else, maps, functions, goroutines
 - [ ] Terminology glossary (`docs/GLOSSARY.md`): English term + short Azerbaijani explanation
 - [ ] Step visuals for topics that need them (slice, map, channel, goroutine)
 

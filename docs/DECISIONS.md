@@ -111,7 +111,7 @@ Supersedes the file list in the "Content layout" row above (`az.md` becomes `les
 | Decision | Rationale |
 |---|---|
 | A lesson is `content/<technology>/examples/<slug>/` with `meta.yaml`, `main.go`, `lesson.<locale>.md`, `steps.yaml`, `quiz.<locale>.yaml` and the generated `output.txt` | Code, language-independent data and localized text are separate; a new locale only adds `*.<locale>.*` files |
-| Code ↔ step link: **marker comments** `//@step <id>` in `main.go`; a step runs until the next marker or the end of `main`. Markers are stripped at build time and line ranges are computed | Hand-written line numbers (`lines: [9, 13]` in the prototype) break on every code edit; `main.go` stays plain, runnable Go |
+| Code ↔ step link: **marker comments** `//@step <id>` in `main.go`; a step runs until the next marker, an `//@end` or the end of `main`; `// @step` (with a space, as gofmt writes a marker above a top-level declaration) is accepted too. Markers are stripped at build time and line ranges are computed | Hand-written line numbers (`lines: [9, 13]` in the prototype) break on every code edit; `main.go` stays plain, runnable Go |
 | Text lives in `lesson.<locale>.md`: an intro, then one `## Title {#id}` heading per step, then optional closing text. Step ids must match the markers; a mismatch fails the build | Long prose is easier to write, review and translate in Markdown than in YAML |
 | `steps.yaml` holds per-step data keyed by step id: `out` (expected output) and optional `vis` with a `kind` (`slice`, `map`, `channel`, `goroutine`, …) | Visual data is language-independent; `kind` leaves room for new visualizers |
 | CI checks that the steps' `out` values appear in `output.txt` in order | Wrong output never reaches the site |
