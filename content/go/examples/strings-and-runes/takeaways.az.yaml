@@ -1,0 +1,11 @@
+rules:
+  - "`string` dəyişməz bayt ardıcıllığıdır və mətn UTF-8 ilə saxlanılır: `ə`, `ş`, `ı` kimi hərflər 2 bayt tutur."
+  - "`len(s)` baytları sayır; hərflərin sayı üçün `utf8.RuneCountInString(s)` istifadə edin."
+  - "`s[i]` hərf yox, bayt (`byte`) qaytarır; `s[a:b]` də baytlarla kəsir."
+  - "`rune` bir simvolun Unicode nömrəsidir; `[]rune(s)` mətni hərflərə bölür."
+  - "`range` mətni hərf-hərf gəzir: `r` `rune`-dur, `i` isə hərfin başladığı baytın indeksidir."
+  - "`'ə'` rune literal-dır, `\"ə\"` isə string; onlar fərqli tiplərdir."
+practices:
+  - "Azərbaycan dilində mətni hərf-hərf emal etmək üçün indeksli dövr əvəzinə `range` yazın."
+  - "Hərfi indekslə götürmək lazımdırsa, əvvəlcə mətni `[]rune`-a çevirin."
+  - "`rune`-u hərf kimi çap etmək üçün `string(r)` ilə çevirin, əks halda ədəd çap olunur."

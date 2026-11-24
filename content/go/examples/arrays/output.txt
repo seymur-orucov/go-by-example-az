@@ -1,0 +1,6 @@
+yağış: [0 0 0 0 0 0 0] 7
+temperatur: [12 14 11 15 17 16 18]
+çərşənbə: 11
+ən isti gün: 18 dərəcə
+proqnoz: 20 fakt: 12
+eynidir: false

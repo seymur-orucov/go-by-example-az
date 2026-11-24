@@ -1,0 +1,14 @@
+literal:
+  out: |
+    anbar: map[süd:12 un:30] 2
+    süd: 12
+set:
+  out: "anbar: map[bal:8 süd:7 un:30]"
+missing:
+  out: |
+    yağ: 0
+    yağ var? 0 false
+delete:
+  out: "anbar: map[bal:8 süd:7] 2"
+make:
+  out: "satılıb: map[bal:1 süd:2]"

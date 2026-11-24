@@ -9,7 +9,7 @@
   title: "Kolleksiyalar"
   icon: stack
   color: "#818cf8"
-  description: "Massivlər, slice-lar, map-lər və onların üzərində gəzinti."
+  description: "Array, slice, map, string və onların üzərində gəzinti."
 - id: functions
   order: 3
   title: "Funksiyalar"

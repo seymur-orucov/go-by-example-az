@@ -1,0 +1,10 @@
+rules:
+  - "Slice və array üzərində `range` iki dəyər verir: indeks və həmin elementin nüsxəsi."
+  - "Lazım olmayan dəyəri `_` ilə atın; istifadə olunmayan dəyişən kompilyasiya xətasıdır."
+  - "Dövr dəyişəni nüsxədir: onu dəyişmək kolleksiyanı dəyişmir, bunun üçün `s[i] = ...` yazın."
+  - "Map üzərində `range` açar və dəyər verir, gəzinti sırası isə təsadüfidir."
+  - "`for i := range n` (Go 1.22+) `i`-ni 0-dan `n-1`-ə qədər təkrarlayır."
+practices:
+  - "Bütün elementləri gəzmək üçün indeksli `for` əvəzinə `range` yazın: hüduddan çıxmaq riski olmur."
+  - "Yalnız indeks lazımdırsa, `for i := range s` yazın, `for i, _ := range s` yox."
+  - "Map gəzintisində sıradan asılı olmayan iş görün; sabit sıra lazımdırsa, açarları ayrıca sıralayın."

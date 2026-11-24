@@ -1,0 +1,65 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    var a [3]string
+    fmt.Println(len(a), a[0] == "")
+  options: ["0 true", "3 true", "3 false"]
+  answer: 1
+  explain: "Ölçü tipin hissəsidir, ona görə `len` 3-dür; elementlər zero value ilə, `string` üçün boş mətnlə doldurulur."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    p := [4]int{5, 10, 15, 20}
+    fmt.Println(p[1] + p[3])
+  options: ["20", "25", "30"]
+  answer: 2
+  explain: "İndeks 0-dan başlayır: `p[1]` 10, `p[3]` 20-dir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    d := [5]int{1, 2}
+    fmt.Println(d)
+  options: ["[1 2]", "[1 2 0 0 0]", "kompilyasiya xətası"]
+  answer: 1
+  explain: "Literalda yazılmayan elementlər zero value alır, ölçü isə yenə 5-dir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    w := [...]string{"b.e.", "ç.a.", "ç."}
+    fmt.Println(len(w))
+  options: ["0", "3", "kompilyasiya xətası"]
+  answer: 1
+  explain: "`[...]` yazanda kompilyator elementləri sayıb ölçünü özü qoyur."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    x := [2]int{1, 2}
+    y := x
+    y[0] = 9
+    fmt.Println(x, y)
+  options: ["[9 2] [9 2]", "[1 2] [9 2]", "[1 2] [1 2]"]
+  answer: 1
+  explain: "Mənimsətmə array-in tam nüsxəsini yaradır, `y`-dəki dəyişiklik `x`-ə təsir etmir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    m := [3]int{4, 5, 6}
+    n := [3]int{4, 5, 6}
+    fmt.Println(m == n)
+  options: ["true", "false", "kompilyasiya xətası"]
+  answer: 0
+  explain: "Eyni tipli array-lər `==` ilə element-element müqayisə olunur."
+
+- question: Hansı sətir kompilyasiya olunmayacaq?
+  code: |
+    var t [7]int
+  options: ["t[0] = 5", "t[6] = 5", "t[7] = 5"]
+  answer: 2
+  explain: "Ən böyük indeks 6-dır; ölçü məlum olduğu üçün kompilyator `t[7]`-ni əvvəlcədən tutur."
+
+- question: Hansı sətir kompilyasiya olunmayacaq?
+  code: |
+    var a [3]int
+    var b [5]int
+  options: ["a = [3]int{1, 2, 3}", "b = [5]int{}", "a = b"]
+  answer: 2
+  explain: "`[3]int` və `[5]int` fərqli tiplərdir, çünki ölçü tipin hissəsidir."

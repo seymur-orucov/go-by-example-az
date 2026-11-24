@@ -1,0 +1,10 @@
+rules:
+  - "Ölçü tipin hissəsidir: `[3]int` və `[5]int` fərqli tiplərdir və ölçü sonradan dəyişmir."
+  - "Dəyər verilməyən elementlər zero value alır; `len` array üçün həmişə tipdəki ölçüyə bərabərdir."
+  - "İndeks 0-dan `len - 1`-ə qədərdir; sabit indeks hüdudu aşırsa, kompilyator xəta verir."
+  - "`b := a` array-in tam nüsxəsini yaradır: `b`-ni dəyişmək `a`-ya təsir etmir."
+  - "Eyni tipli array-ləri `==` ilə müqayisə etmək olar."
+practices:
+  - "Ölçü dəyişməyən, əvvəlcədən məlum məlumat üçün array seçin (həftənin günləri, ilin ayları); siyahı böyüyəcəksə, slice istifadə edin."
+  - "Dövrün şərtində ölçünü təkrar yazmaq əvəzinə `len(a)` istifadə edin: array-in ölçüsü dəyişsə, dövr də düzgün qalır."
+  - "Elementləri sayıb ölçünü əllə yazmamaq üçün `[...]T{...}` literalından istifadə edin."

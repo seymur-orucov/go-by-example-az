@@ -1,0 +1,7 @@
+anbar: map[süd:12 un:30] 2
+süd: 12
+anbar: map[bal:8 süd:7 un:30]
+yağ: 0
+yağ var? 0 false
+anbar: map[bal:8 süd:7] 2
+satılıb: map[bal:1 süd:2]

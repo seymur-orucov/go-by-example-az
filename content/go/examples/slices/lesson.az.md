@@ -1,4 +1,4 @@
-Slice — eyni tipli elementlərin siyahısıdır və ölçüsü lazım olduqca böyüyür, bazar səbəti kimi. Go-da siyahılarla işləyəndə demək olar ki, həmişə slice istifadə olunur.
+Slice — eyni tipli elementlərin siyahısıdır və ölçüsü lazım olduqca böyüyür, bazar səbəti kimi. Əvvəlki dərsdəki array-dən fərqi budur: array-in ölçüsü tipin hissəsidir və dəyişmir, slice isə böyüyə bilər. Ona görə Go-da siyahılarla işləyəndə demək olar ki, həmişə slice istifadə olunur.
 
 ## Boş slice {#nil}
 

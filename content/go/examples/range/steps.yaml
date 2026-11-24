@@ -1,0 +1,14 @@
+slice:
+  out: |
+    1 - Gənclik
+    2 - Sahil
+    3 - İçərişəhər
+blank:
+  out: "yol: 9 dəqiqə"
+map:
+  out: "ən sıx: İçərişəhər 150"
+int:
+  out: |
+    vaqon 1 yoxlanıldı
+    vaqon 2 yoxlanıldı
+    vaqon 3 yoxlanıldı

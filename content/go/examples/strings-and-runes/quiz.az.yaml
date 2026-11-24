@@ -1,0 +1,64 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    fmt.Println(len("Quba"), len("Gəncə"))
+  options: ["4 5", "4 7", "8 10"]
+  answer: 1
+  explain: "`len` baytları sayır: `Quba` 4 bayt, `Gəncə`-dəki iki `ə` 2 bayt tutduğu üçün 7 bayt."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    s := "Bakı"
+    fmt.Println(len(s), utf8.RuneCountInString(s))
+  options: ["4 4", "5 4", "4 5"]
+  answer: 1
+  explain: "`ı` 2 bayt tutur: 5 bayt, amma 4 hərf."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    s := "Quba"
+    fmt.Println(s[0])
+  options: ["Q", "81", "\"Q\""]
+  answer: 1
+  explain: "İndeks bayt qaytarır və `Println` onu ədəd kimi çap edir; `Q`-nun kodu 81-dir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    r := []rune("Şuşa")
+    fmt.Println(len(r), string(r[2]))
+  options: ["4 ş", "6 ş", "4 u"]
+  answer: 0
+  explain: "`[]rune` mətni hərflərə bölür: 4 hərf, 2-ci indeksdə `ş`."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    for i := range "çay" {
+        fmt.Print(i, " ")
+    }
+  options: ["0 1 2 ", "0 2 3 ", "1 2 3 "]
+  answer: 1
+  explain: "`range` hərfin başladığı baytın indeksini verir; `ç` 2 bayt tutduğu üçün indeks 0-dan 2-yə atlayır."
+
+- question: "`'a'` ilə `\"a\"` arasındakı fərq nədir?"
+  options: ["Fərq yoxdur", "`'a'` rune-dur, `\"a\"` string-dir", "`'a'` string-dir, `\"a\"` rune-dur"]
+  answer: 1
+  explain: "Tək dırnaq rune literal, cüt dırnaq string literal yaradır."
+
+- question: Hansı sətir kompilyasiya olunmayacaq?
+  code: |
+    s := "ev"
+  options: ["b := s[0]", "s = \"iş\"", "s[0] = 'E'"]
+  answer: 2
+  explain: "String dəyişməzdir: baytını dəyişmək olmaz, amma dəyişənə yeni string yazmaq olar."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    n := 0
+    for _, r := range "Göygöl" {
+        if r == 'ö' {
+            n++
+        }
+    }
+    fmt.Println(n)
+  options: ["1", "2", "4"]
+  answer: 1
+  explain: "`range` hərf-hərf gəzir və hər `ö` bir dəfə sayılır."
