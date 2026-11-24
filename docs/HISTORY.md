@@ -186,3 +186,20 @@ Done (branch `feat/site-content-theme`, built on module 1):
 - Checked in headless Chrome over DevTools (progress, views, filter, search, no JS errors). Mobile not verified (headless minimum width).
 - Left out on purpose: demo player and the "Niyə bu sayt" bento (they promise features that do not exist yet); "Go 1.27" badge (unverified claim).
 - Tooling note: `astro preview` must be stopped with `astro preview stop`; stopping the wrapper does not stop the server.
+
+### 28. Lesson content format
+Before building the lesson page, the content format was agreed with the user (recorded in [DECISIONS.md](DECISIONS.md#lesson-content-format-2026-11-24)): `//@step` markers in `main.go`, text in `lesson.az.md`, per-step data in `steps.yaml`, a required quiz of 5–10 questions in `quiz.az.yaml` (the user's rule), and `output.txt` checked in CI.
+
+Done: lesson loader and validator (`apps/site/src/lib/lesson.ts`), `pnpm content:check` (also in CI), `hello-world` and `slices` rewritten in the new format.
+
+### 29. Phase 2, module 2 (part 2): lesson page /go/<slug>/
+The user asked to continue with the lesson page: Shiki, sidebar, steps, two-way highlighting, visual and quiz.
+
+Done (branch `feat/site-content-theme`):
+- `/go/<slug>/` for all 84 topics. Ready lessons: intro, steps with Markdown text (a blockquote becomes a note box), the full-height code window, per-step output, memory visual (`Vis`, `kind: slice`), outro, all quiz questions with a first-try score, pager. Planned topics get a short "Hazırlanır" page instead of a 404 (the `/go/` page and the sidebar link to every topic).
+- Shiki tokenizes Go at build time; TextMate scopes are mapped to the existing `tok-*` classes, so the palettes and light/dark theme keep working without a Shiki theme.
+- Two-way highlighting as in D: hover/click a step → code lines, hover/click a code line → step; scroll picks the step in the middle; `←`/`→` move between steps, `Shift ←/→` between lessons; ▶ plays the steps.
+- View modes (sidebar `[`, width `F`, Zen `Z`/`Esc`) ported from `d.js` to `packages/theme` (`view-modes.ts`, `ViewMenu`), applied before first paint.
+- Sidebar: all sections, collapsible, progress from `localStorage`; "Öyrəndim" updates it.
+- Honest labels: the run button is "Tam çıxış" and shows the recorded `output.txt`; "Redaktə" and the Playground link are left out until module 3 (CodeMirror, `/api/run`).
+- Checked in headless Chrome: steps, arrows, hover both ways, full output, quiz, learned, Zen, sidebar toggle, no JS errors; 390px without horizontal scroll. Not yet done: the explanation ↔ code arrow.
