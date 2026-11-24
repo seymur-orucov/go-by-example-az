@@ -203,3 +203,13 @@ Done (branch `feat/site-content-theme`):
 - Sidebar: all sections, collapsible, progress from `localStorage`; "Öyrəndim" updates it.
 - Honest labels: the run button is "Tam çıxış" and shows the recorded `output.txt`; "Redaktə" and the Playground link are left out until module 3 (CodeMirror, `/api/run`).
 - Checked in headless Chrome: steps, arrows, hover both ways, full output, quiz, learned, Zen, sidebar toggle, no JS errors; 390px without horizontal scroll. Not yet done: the explanation ↔ code arrow.
+
+### 30. Quiz as a slider
+The user asked for the "Özünü yoxla" quiz to be a slider instead of a list of all questions.
+
+Done (branch `feat/site-content-theme`; recorded in [DECISIONS.md](DECISIONS.md#design)):
+- One question at a time; "‹ Əvvəlki" / "Növbəti ›" and `←`/`→` while focus is inside the quiz (they do not move lesson steps or switch lessons there); clickable progress dots: green = right on the first try, amber = right after a retry; the "Növbəti" button is highlighted once the question is answered.
+- After the last question, a result slide: a ring with the first-try score, a short verdict, "Yenidən başla".
+- The viewport follows the height of the visible slide; hidden slides are `inert`; the slide and height transitions are switched off under `prefers-reduced-motion` by the global rule.
+- Quiz logic moved from `lesson.ts` to its own `scripts/quiz.ts`.
+- Checked in headless Chrome at 1440px and 390px: navigation, dots, arrows, score, no JS errors.

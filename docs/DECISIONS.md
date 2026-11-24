@@ -139,6 +139,7 @@ Supersedes the file list in the "Content layout" row above (`az.md` becomes `les
 | Variants A, B and C are **archived** under `design/archive/`, not deleted (2026-11-23) | The user agreed; kept for reference. D's shared files live in `design/shared/` (done 2026-11-23) |
 | Technology switcher in the header (`Go ▾` → Python, Rust… "coming soon") and a "One platform, several languages" section | Preparation for the hub |
 | Narrow screens: < 1200px a code snippet under each step; < 980px the sidebar becomes a drawer | Mobile UX |
+| Lesson quiz ("Özünü yoxla") is a **slider**: one question at a time, prev/next and `←`/`→`, progress dots (green = right on the first try, amber = after a retry), a result slide with the score and "Yenidən başla" (2026-11-24) | The user's wish |
 
 ## Open questions (awaiting decision)
 
