@@ -76,8 +76,9 @@ export interface Lesson {
   output: string;
 }
 
-const MARKER = /^\s*\/\/@step\s+(\S+)\s*$/;
-const END_MARKER = /^\s*\/\/@end\s*$/;
+// "// @step" is accepted too: gofmt adds the space when a marker sits right above a top-level declaration.
+const MARKER = /^\s*\/\/ ?@step\s+(\S+)\s*$/;
+const END_MARKER = /^\s*\/\/ ?@end\s*$/;
 const indentOf = (line: string): number => /^\s*/.exec(line)![0].replace(/\t/g, "    ").length;
 
 /** Strips `//@step <id>` / `//@end` markers and computes each step's line range. */
@@ -235,7 +236,10 @@ export function loadLesson(
     intro: text.intro,
     steps: codeSteps.map((s) => {
       const section = text.sections.find((t) => t.id === s.id)!;
-      return { ...s, title: section.title, body: section.body, ...stepData[s.id] };
+      const data = stepData[s.id] ?? {};
+      // YAML block scalars (`out: |`) end with a newline; the terminal shows one span per line.
+      const out = data.out?.replace(/\n$/, "");
+      return { ...s, title: section.title, body: section.body, ...data, out };
     }),
     outro: text.outro,
     quiz: quizParsed.success ? quizParsed.data : [],

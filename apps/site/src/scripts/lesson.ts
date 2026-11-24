@@ -64,9 +64,10 @@ function initWalkthrough(data: LessonData): void {
       .filter((x) => x.out !== undefined);
     term.innerHTML = outs.length
       ? outs
-          .map(
-            ({ out, k }) =>
-              `<span class="out-line${k < i ? " dim" : ""}">${escapeHtml(out!)}</span>`,
+          .flatMap(({ out, k }) =>
+            out!
+              .split("\n")
+              .map((l) => `<span class="out-line${k < i ? " dim" : ""}">${escapeHtml(l)}</span>`),
           )
           .join("")
       : '<span class="out-line dim">— bu addıma qədər heç nə çap olunmur</span>';
