@@ -1,7 +1,8 @@
-golang
-1+1 = 2
-7/2 = 3
-7.0/2 = 3.5
-false
-true
-false
+Qara çay
+iki filialda stol: 20
+50 dollar, 4 nəfər: 12
+50 dollar, 4 nəfər: 12.5
+açıqdır və boş stol var: false
+çay və ya kofe var: true
+bağlıdır: false
+stol sayı 10-dan çoxdur: true

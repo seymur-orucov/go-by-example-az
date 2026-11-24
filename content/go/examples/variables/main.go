@@ -4,22 +4,22 @@ import "fmt"
 
 func main() {
 	//@step var
-	var a = "salam"
-	fmt.Println(a)
+	var student = "Aysel"
+	fmt.Println("tələbə:", student)
 
 	//@step typed
-	var b, c int = 1, 2
-	fmt.Println(b, c)
+	var history, physics int = 80, 90
+	fmt.Println(history, physics)
 
 	//@step zero
-	var d int
-	var e bool
-	var f string
-	fmt.Println(d, e)
-	fmt.Println("f boşdur:", f == "")
+	var retakes int
+	var passed bool
+	var comment string
+	fmt.Println(retakes, passed)
+	fmt.Println("şərh boşdur:", comment == "")
 
 	//@step short
-	g := "alma"
-	g = "armud"
-	fmt.Println(g)
+	average := (history + physics) / 2
+	history = 100
+	fmt.Println(average, history)
 }

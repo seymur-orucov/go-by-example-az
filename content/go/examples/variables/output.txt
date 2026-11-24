@@ -1,5 +1,5 @@
-salam
-1 2
+tələbə: Aysel
+80 90
 0 false
-f boşdur: true
-armud
+şərh boşdur: true
+85 100

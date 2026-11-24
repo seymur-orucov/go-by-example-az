@@ -1,39 +1,46 @@
 - question: Bu kod nə çap edəcək?
   code: |
-    fmt.Println("1" + "2")
-  options: ["3", "12", "kompilyasiya xətası"]
+    fmt.Println("2" + "3")
+  options: ["5", "23", "kompilyasiya xətası"]
   answer: 1
-  explain: Dırnaq içindəki `"1"` ədəd yox, mətndir; `+` mətnləri birləşdirir.
+  explain: Dırnaq içindəki `"2"` ədəd yox, mətndir; `+` mətnləri birləşdirir.
 
 - question: Bu kod nə çap edəcək?
   code: |
-    fmt.Println(9 / 2)
-  options: ["4.5", "4", "5"]
+    fmt.Println(15 / 4)
+  options: ["3.75", "3", "4"]
   answer: 1
   explain: İki tam ədədin bölünməsi tam ədəd verir, kəsr hissə atılır.
 
 - question: Bu kod nə çap edəcək?
   code: |
-    fmt.Println(9.0 / 2)
-  options: ["4", "4.5", "4.0"]
+    fmt.Println(15.0 / 4)
+  options: ["3", "3.75", "3.0"]
   answer: 1
-  explain: "`9.0` kəsr ədəddir, ona görə nəticə də kəsr olur."
+  explain: "`15.0` kəsr ədəddir, ona görə nəticə də kəsr olur."
 
 - question: Bu kod nə çap edəcək?
   code: |
-    fmt.Println(true && !false)
+    fmt.Println(10 > 3 && 2 > 5)
+  options: ["true", "false"]
+  answer: 1
+  explain: "`10 > 3` doğrudur, amma `2 > 5` yalandır; `&&` üçün ikisi də doğru olmalıdır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    fmt.Println(false || !false)
   options: ["true", "false"]
   answer: 0
-  explain: "`!false` → `true`; `true && true` → `true`."
+  explain: "`!false` → `true`; `||` ən azı bir tərəf `true` olanda `true` verir."
 
 - question: Bu kod nə çap edəcək?
   code: |
-    fmt.Println(false || false)
-  options: ["true", "false"]
-  answer: 1
-  explain: "`||` ən azı bir tərəf `true` olanda `true` verir; burada ikisi də `false`-dur."
+    fmt.Println(7 - 10)
+  options: ["-3", "3", "0"]
+  answer: 0
+  explain: "`int` mənfi ədədləri də saxlayır."
 
 - question: Hansı ifadə kompilyasiya olunmayacaq?
-  options: ['"a" + "b"', '"a" + 1', "1 + 2"]
+  options: ['"qiymət: " + "5"', '"qiymət: " + 5', "5 + 5"]
   answer: 1
   explain: Go tipləri özü çevirmir — mətnlə ədədi toplamaq olmaz.

@@ -1,10 +1,10 @@
 var:
-  out: "salam"
+  out: "tələbə: Aysel"
 typed:
-  out: "1 2"
+  out: "80 90"
 zero:
   out: |
     0 false
-    f boşdur: true
+    şərh boşdur: true
 short:
-  out: "armud"
+  out: "85 100"

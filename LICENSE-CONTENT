@@ -22,7 +22,8 @@ https://github.com/mmcgrana/gobyexample), licensed under CC BY 3.0
 (https://creativecommons.org/licenses/by/3.0/). They have been translated
 into Azerbaijani, adapted and simplified. When you reuse an adapted
 lesson, credit "Go by Example" (Mark McGranaghan, Eli Bendersky) as well.
-These lessons are being rewritten as original content.
+At the time of writing no lesson is adapted any more; the section stays for the
+history of the repository and for the design prototype.
 
 The design prototype under design/ still contains copies of adapted
 examples; the same attribution applies to them.

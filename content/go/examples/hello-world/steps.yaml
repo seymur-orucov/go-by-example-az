@@ -1,4 +1,6 @@
 package: {}
 import: {}
 main:
-  out: "Salam, dünya!"
+  out: "Çay evi açıqdır"
+print:
+  out: "Menyu: çay, kofe, limonad"

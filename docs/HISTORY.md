@@ -244,3 +244,12 @@ Done (branch `feat/pilot-content`; recorded in [DECISIONS.md](DECISIONS.md#origi
 - Footer: the "İlham mənbəyi" line is removed; the required attribution stays while `hello-world`, `values`, `variables` are adapted, then disappears on its own; a CC BY 4.0 content line is always shown.
 - `constants`: prices in USD (output regenerated with Go 1.26); the intro is two short paragraphs (constant vs variable, compile time explained, why a named constant helps).
 - Skill `write-lesson`: money in USD; length follows the topic (intro 2–4 sentences, harder steps up to 4–5).
+
+### 34. `hello-world`, `values`, `variables` rewritten as original lessons
+The user agreed to rewrite the last three adapted lessons so the site no longer needs the Go by Example attribution.
+
+Done (branch `feat/pilot-content`), with the `write-lesson` skill:
+- `hello-world` (a café sign: `package`, `import`, `main`, `Print` vs `Println`), `values` (a café bill: strings, integer vs float division, bool), `variables` (a student's exam results: `var`, explicit type, zero value, `:=`). All have `source: original`, dollars instead of local currency, a 2-paragraph intro and 7 quiz questions each (4 steps).
+- Verified with Go 1.26: `gofmt`, `go vet`, `go run` (`output.txt`); every quiz snippet compiled or run in a scratch directory (21 snippets, compiler messages checked for the "does not compile" questions); `pnpm content:check`, lint, format, check, build; step line ranges in the built pages.
+- No ready lesson is `adapted` now, so the footer drops the Go by Example attribution by itself (checked in the build: no mention of Go by Example in any lesson page). The README, `LICENSE-CONTENT` and the design prototype still mention it.
+- Awaiting the user's review of tone and clarity.
