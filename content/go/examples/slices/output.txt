@@ -1,6 +1,6 @@
-səbət: [] 0 true
-səbət: [çörək pendir çay] 3 3
-ilk məhsul: lavaş
-say: [0 0 2]
-ilk ikisi: [lavaş yağ]
-səbət: [lavaş yağ çay]
+cart: [] 0 true
+cart: [bread cheese tea] 3 3
+first item: flatbread
+counts: [0 0 2]
+first two: [flatbread butter]
+cart: [flatbread butter tea]

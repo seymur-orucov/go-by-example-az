@@ -41,6 +41,6 @@
   explain: "`int` mənfi ədədləri də saxlayır."
 
 - question: Hansı ifadə kompilyasiya olunmayacaq?
-  options: ['"qiymət: " + "5"', '"qiymət: " + 5', "5 + 5"]
+  options: ['"price: " + "5"', '"price: " + 5', "5 + 5"]
   answer: 1
   explain: Go tipləri özü çevirmir — mətnlə ədədi toplamaq olmaz.

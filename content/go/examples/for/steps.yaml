@@ -1,0 +1,18 @@
+classic:
+  out: |
+    month 1 - 120 USD deposited
+    month 2 - 120 USD deposited
+    month 3 - 120 USD deposited
+condition:
+  out: "600 USD saved in 5 months"
+forever:
+  out: |
+    left: 400 USD
+    left: 200 USD
+    left: 0 USD
+skip:
+  out: |
+    month 1 - payment received
+    month 2 - payment received
+    month 4 - payment received
+    month 5 - payment received

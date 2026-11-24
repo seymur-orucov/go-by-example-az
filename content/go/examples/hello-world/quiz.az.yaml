@@ -10,16 +10,16 @@
 
 - question: Bu kod nə çap edəcək?
   code: |
-    fmt.Println("çay", 2, "dollar")
-  options: ["çay2dollar", "çay 2 dollar", "çay, 2, dollar"]
+    fmt.Println("tea", 2, "dollars")
+  options: ["tea2dollars", "tea 2 dollars", "tea, 2, dollars"]
   answer: 1
   explain: "`Println` arqumentlərin arasına boşluq qoyur."
 
 - question: Bu kod nə çap edəcək?
   code: |
-    fmt.Print("çay")
-    fmt.Print("kofe")
-  options: ["çaykofe", "çay kofe", "çay və kofe ayrı sətirlərdə"]
+    fmt.Print("tea")
+    fmt.Print("coffee")
+  options: ["teacoffee", "tea coffee", "tea and coffee on separate lines"]
   answer: 0
   explain: "`Print` sona yeni sətir əlavə etmir, ona görə nəticə bitişik çıxır."
 
@@ -37,7 +37,7 @@
     package main
 
     func main() {
-        fmt.Println("salam")
+        fmt.Println("hello")
     }
   options:
     - "`main` funksiyası olmamalıdır"

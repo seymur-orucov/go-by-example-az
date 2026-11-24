@@ -1,0 +1,11 @@
+rules:
+  - "`[]string` — string-lərdən ibarət slice; ölçüsü tipin hissəsi deyil. Dəyər verilməyibsə slice `nil`-dir və `len`-i 0-dır."
+  - "`len(s)` elementlərin sayı, `cap(s)` isə ayrılmış yerin həcmidir."
+  - "`append` yeni slice qaytarır, nəticəni saxlamaq lazımdır: `s = append(s, x)`. Saxlamasaq, kompilyasiya xətası alırıq."
+  - "İndeks 0-dan başlayır: `s[0]` birinci elementdir."
+  - "`s[a:b]` `a`-dan başlayır, `b` daxil deyil, və kopya yaratmır: iki slice eyni elementlərə baxır, birini dəyişəndə digəri də dəyişir."
+  - "`make([]T, n)` n elementi zero value ilə doldurur."
+practices:
+  - "`append`-in nəticəsini həmişə eyni dəyişənə yazın: `cart = append(cart, ...)`."
+  - "Boş slice üçün `var cart []string` kifayətdir: `nil` slice-a da `append` etmək olar."
+  - "Slice-ı başqa yerə ötürəndə elementləri paylaşdığını yadda saxlayın; müstəqil nüsxə lazımdırsa, yeni slice yaradıb dəyərləri köçürün."

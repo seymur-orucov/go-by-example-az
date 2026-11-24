@@ -1,0 +1,8 @@
+1 - Central
+2 - Harbor
+3 - Old Town
+ride: 9 minutes
+busiest: Old Town 150
+car 1 checked
+car 2 checked
+car 3 checked

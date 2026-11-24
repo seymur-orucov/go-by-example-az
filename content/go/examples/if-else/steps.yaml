@@ -1,0 +1,8 @@
+if:
+  out: "take a jacket and an umbrella"
+else:
+  out: "the roads are not icy"
+chain:
+  out: "cool"
+init:
+  out: "feels like: 1 C"

@@ -1,0 +1,69 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    age := map[string]int{"Anna": 24, "Ben": 31}
+    fmt.Println(age["Ben"], len(age))
+  options: ["31 2", "24 2", "31 4"]
+  answer: 0
+  explain: "`age[\"Ben\"]` həmin açarın dəyərini, `len` isə cütlərin sayını qaytarır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    p := map[string]int{"apple": 2}
+    p["apple"] = 5
+    fmt.Println(p, len(p))
+  options: ["map[apple:2 apple:5] 2", "map[apple:5] 1", "map[apple:7] 1"]
+  answer: 1
+  explain: "Açar map-də bir dəfə olur; mövcud açara yazmaq dəyəri əvəz edir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    score := map[string]int{"Lily": 90}
+    fmt.Println(score["Owen"])
+  options: ["0", "nil", "proqram panic ilə dayanacaq"]
+  answer: 0
+  explain: "Olmayan açar dəyərin zero value-sunu qaytarır, `int` üçün `0`."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    seats := map[string]int{"A1": 0}
+    n, ok := seats["A1"]
+    fmt.Println(n, ok)
+  options: ["0 false", "0 true", "1 true"]
+  answer: 1
+  explain: "Açar var, sadəcə dəyəri `0`-dır; `ok` açarın olub-olmadığını göstərir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    c := map[string]int{"x": 1, "y": 2}
+    delete(c, "z")
+    delete(c, "x")
+    fmt.Println(c)
+  options: ["map[y:2]", "map[x:1 y:2]", "proqram panic ilə dayanacaq"]
+  answer: 0
+  explain: "Olmayan açarı silmək heç nə etmir, `x` isə silinir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    votes := make(map[string]int)
+    votes["yes"]++
+    votes["yes"]++
+    votes["no"]++
+    fmt.Println(votes["yes"], len(votes))
+  options: ["2 2", "2 3", "1 2"]
+  answer: 0
+  explain: "Olmayan açar `0` ilə başlayır, `++` onu artırır; map-də iki açar var."
+
+- question: Bu kod işə salınanda nə olacaq?
+  code: |
+    var m map[string]int
+    m["a"] = 1
+  options: ["m map[a:1] olacaq", "proqram panic ilə dayanacaq", "kompilyasiya xətası"]
+  answer: 1
+  explain: "`nil` map-ə yazmaq olmaz; əvvəlcə `make` və ya literal ilə yaratmaq lazımdır."
+
+- question: Hansı sətir kompilyasiya olunmayacaq?
+  code: |
+    m := map[string]int{"a": 1}
+  options: ["m[\"b\"] = 2", "m[3] = 2", "delete(m, \"a\")"]
+  answer: 1
+  explain: "Açarın tipi `string`-dir, `3` isə `int` sabitidir."

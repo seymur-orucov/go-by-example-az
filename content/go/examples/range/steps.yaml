@@ -1,0 +1,14 @@
+slice:
+  out: |
+    1 - Central
+    2 - Harbor
+    3 - Old Town
+blank:
+  out: "ride: 9 minutes"
+map:
+  out: "busiest: Old Town 150"
+int:
+  out: |
+    car 1 checked
+    car 2 checked
+    car 3 checked

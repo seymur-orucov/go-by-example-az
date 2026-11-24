@@ -1,6 +1,6 @@
 # Roadmap
 
-Last updated: 2026-11-23
+Last updated: 2026-11-24
 
 Markers: `[x]` done · `[~]` in progress · `[ ]` upcoming
 
@@ -102,6 +102,7 @@ functions/api/run.ts   # go.dev/_/compile proxy (rate limit + size limit)
 - [x] Move Variant D's tokens and components into `packages/theme`: styles, `Layout`, `Header` (+ `ViewMenu` on lessons), `Footer`, `Icon`, shell scripts (theme, palette, menus, Ctrl+K search, spy, view modes); lesson-specific parts (`LessonSidebar`, `Vis`, `Quiz`, walkthrough script) live in `apps/site` (module 2)
 - [~] Pages: `/go/` and `/go/<slug>/` done (ready lessons: walkthrough, two-way highlighting, memory visual, quiz; planned topics: an "in preparation" page); `/go/roadmap/`, `/` and `/roadmaps/backend/` remain (module 2)
 - [x] Lesson content format: `main.go` with `//@step` markers, `lesson.az.md`, `steps.yaml`, `quiz.az.yaml`, `output.txt`; loader + `pnpm content:check` in CI (module 2)
+- [x] "Yadda saxla" summary card (key points + best practices, `takeaways.az.yaml`) at the end of every lesson, left of the quiz — restored from the design prototype (module 2)
 - [x] Build-time syntax highlighting with Shiki (replacing the prototype's simple highlighter); scopes are mapped to the theme's `--tok-*` colors, so palettes and light/dark keep working (module 2)
 - [ ] Static search with Pagefind (`Ctrl+K` palette)
 - [ ] CodeMirror 6 — lazy-loaded only when "Edit" is clicked
@@ -113,7 +114,9 @@ functions/api/run.ts   # go.dev/_/compile proxy (rate limit + size limit)
 
 10 examples, each simpler than the original, with a compact explanation in Azerbaijani:
 
-- [~] hello-world · values · variables · constants · for · if-else · slices · maps · functions · goroutines — **original** (`source: original`, awaiting the user's review): hello-world, values, variables, constants, slices; remaining: for, if-else, maps, functions, goroutines
+- [~] hello-world · values · variables · constants · for · if-else · slices · maps · functions · goroutines — **original** (`source: original`, awaiting the user's review): hello-world, values, variables, constants, for, if-else, slices, maps; remaining: functions, goroutines
+- [~] **"Əsaslar" section complete**: all 7 lessons are original and `ready` (hello-world, values, variables, constants, for, if-else, switch; `switch` is outside the 10-lesson pilot list), awaiting the user's review
+- [~] **"Kolleksiyalar" section complete**: all 5 lessons are original and `ready` (arrays, slices, maps, range, strings-and-runes), awaiting the user's review
 - [x] Project skill `.claude/skills/write-lesson/` for writing original lessons (rules, originality guard, verification checklist)
 - [x] Content license CC BY 4.0; no Go by Example credit on the site once no adapted lesson is left; money in examples in USD; intro length rule in the skill
 - [ ] Terminology glossary (`docs/GLOSSARY.md`): English term + short Azerbaijani explanation
@@ -156,8 +159,11 @@ Once the Go prototype is live, the site becomes a unified platform.
   4. **interview preparation**: questions by topic and level, linked to nodes and as a standalone list; system design sub-section (reference: hellointerview.com);
   5. **algorithms and data structures**: separate, technology-independent, pattern-based track (reference: algomaster.io);
   6. **live coding** (postponed): timed in-browser tasks with automatic checks; needs a test-case runner decision first
+- [ ] **Design gaps for the platform** (the prototype and the pages built so far are mostly Go-centric: Go hero, Go section cards, "Niyə bu sayt" bento, demo player, technology switcher with "coming soon" items). Before building each section below, do a short design pass for it directly in `packages/theme` / `apps/site` (the `design/` prototype stays frozen): technology pages that are not Go-specific, direction page (Backend), question list with filters + flashcard trainer (interview), pattern pages (algorithms), study plans / progress. Until then Phase 2 module 2 only finishes `/`, `/go/roadmap/`, `/roadmaps/backend/` from the existing D reference
+- [ ] **Source review per section** — for each platform section Claude decides what can be taken from which source (roadmap.sh, itbooster.ru, hellointerview.com, algomaster.io, greatfrontend.com, yeahub.ru): topic structure, UX ideas, or (only with consent) texts; the decision is recorded in [REFERENCES.md](REFERENCES.md)
 - [ ] Read the terms of greatfrontend.com (not verified yet) and decide what to take from it for content and design
-- [ ] Reach out to the authors of hellointerview.com, algomaster.io and greatfrontend.com (texts only with written consent — [DECISIONS.md](DECISIONS.md#vision-2026-11-23))
+- [ ] Read yeahub.ru's public offer (Google Docs linked from `/ru/docs`) and the license of its GitHub repo; record the result in [REFERENCES.md](REFERENCES.md)
+- [ ] Reach out to the authors of hellointerview.com, algomaster.io, greatfrontend.com and yeahub.ru (texts only with written consent — [DECISIONS.md](DECISIONS.md#vision-2026-11-23))
 - [ ] Platform structure (itbooster style): home → technologies and roadmaps → roadmap → node → lesson
 - [ ] The technology switcher becomes functional; routes take the form `/<technology>/...` (e.g. `/go/slices`), Go links don't break
 - [ ] Shared search across all technologies

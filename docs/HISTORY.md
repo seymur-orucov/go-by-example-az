@@ -253,3 +253,48 @@ Done (branch `feat/pilot-content`), with the `write-lesson` skill:
 - Verified with Go 1.26: `gofmt`, `go vet`, `go run` (`output.txt`); every quiz snippet compiled or run in a scratch directory (21 snippets, compiler messages checked for the "does not compile" questions); `pnpm content:check`, lint, format, check, build; step line ranges in the built pages.
 - No ready lesson is `adapted` now, so the footer drops the Go by Example attribution by itself (checked in the build: no mention of Go by Example in any lesson page). The README, `LICENSE-CONTENT` and the design prototype still mention it.
 - Awaiting the user's review of tone and clarity.
+
+### 35. New source: yeahub.ru; where the design gaps are handled
+The user asked where the remaining design gaps (home page and other parts are mostly Go-oriented) will be handled, asked to add https://yeahub.ru/ to the sources, and said that Claude decides what to take from which section in the future.
+
+Done: yeahub.ru added to [REFERENCES.md](REFERENCES.md) (interview source and design reference) and [DECISIONS.md](DECISIONS.md) (open question) with the license status: no reuse license found, "open" only means source/design can be viewed, public offer not read yet. [ROADMAP.md](ROADMAP.md) Phase 6 got three items: a design pass for the non-Go parts before each platform section, a per-section source review (Claude decides), and reading yeahub.ru's offer. Phase 2 module 2 still only finishes `/`, `/go/roadmap/` and `/roadmaps/backend/` from the D reference.
+
+### 36. "Əsaslar" section completed: `for`, `if-else`, `switch`
+The user asked to complete the "Əsaslar" module; three lessons were still `planned`.
+
+Done (branch `feat/pilot-content`), with the `write-lesson` skill:
+- `for` (monthly savings in USD: three-part loop, condition-only loop, `for { }` with `break`, `continue`; 4 steps, 8 quiz questions), `if-else` (weather: `&&`/`||`, `else`, `else if` chain, `if` with a short declaration; 4 steps, 8 questions), `switch` (a library: value `switch` with `default`, several values in one `case`, `switch` without an expression; `fallthrough` as a note; 3 steps, 7 questions). All `source: original`, `status: ready`.
+- Order note: `for` needs `if` for `break`/`continue` and `if-else` comes next in the course, so the `for` lesson explains `if` in one clause and points to the next lesson.
+- Verified with Go 1.26: `gofmt`, `go vet`, `go run` (`output.txt`); all 23 quiz answers checked by running the snippets or reading the compiler message (parenthesised `for`, out-of-scope `if` variable, `else` on a new line, non-bool condition, duplicate `case`); `pnpm content:check` (8/8 ready), format, lint, check, build (86 pages).
+- Awaiting the user's review of tone and clarity.
+
+### 37. "Yadda saxla" summary card added to every lesson
+The user noticed that the design prototype has a summary section at the end of each topic, left of the quiz, and the real lesson pages did not. They asked for a summary-type module (name may differ) holding the page's key nuances and best practices.
+
+Done (branch `feat/pilot-content`):
+- Only the CSS (`.after` two-column grid, `.takeaways`) had been ported from the prototype; the component and the content were missing. New content file `takeaways.az.yaml` (`rules` 3–6, `practices` 1–4, inline Markdown), validated by `lesson.ts` and required for ready lessons; new `Takeaways.astro` ("Yadda saxla" label, "Xülasə" heading, "Əsas məqamlar" and "Yaxşı təcrübə" groups, practices with a green check) rendered left of the quiz; one column on narrow screens.
+- Written for all 8 ready lessons (hello-world, values, variables, constants, for, if-else, switch, slices) from each lesson's own text and quiz.
+- `write-lesson` skill and DECISIONS ("Lesson content format") updated: every new lesson ships a `takeaways.az.yaml`.
+- Verified: `pnpm content:check` (8/8), format, lint, check, build; desktop screenshot of `/go/if-else/` in headless Chrome (summary left, quiz right). Only this prototype-vs-site gap was checked; the rest of the lesson page was not re-audited against `design/d/example.html`.
+- Awaiting the user's review of the wording.
+
+### 38. "Kolleksiyalar" section completed: `arrays`, `maps`, `range`, `strings-and-runes`
+The user asked to continue with content and prepare the "Kolleksiyalar" module; `slices` was already ready, four lessons were `planned`.
+
+Done (branch `feat/pilot-content`), with the `write-lesson` skill:
+- `arrays` (a week of weather: zero value, literal and index, loop to find the warmest day, copy on assignment and `==`; 4 steps, 8 questions, slice-kind memory visual reused for the array), `maps` (a small shop's stock: literal, add/update, missing key and "comma ok", `delete`, `make` + `m[k]++` counter, `nil` map note; 5 steps, 8 questions), `range` (a metro line: index + value, `_`, map iteration with order-independent work, `range` over an integer; 4 steps, 8 questions), `strings-and-runes` (Azerbaijani city names: bytes vs letters, index gives a byte, `[]rune`, `range` jumping over 2-byte letters, rune literal; 5 steps, 8 questions). All `source: original`, `status: ready`, with `takeaways.az.yaml`.
+- Map iteration order is random, so no lesson prints inside a map `range` loop (outputs stay deterministic for the future CI comparison).
+- Term rule: "Massivlər" removed from the section description and "massiv" from the `arrays` subtitle. The `slices` intro now contrasts slices with arrays, since `arrays` comes first.
+- Verified with Go 1.26: `gofmt`, `go vet`, `go run` (`output.txt`); all 32 quiz answers checked by running the snippets or reading the compiler message (index out of bounds, `[3]int` vs `[5]int`, wrong key type, unused range variable, assigning to a string byte, `'Ş'` overflowing `byte`); `pnpm content:check` (12/12 ready), format, lint, check, build (86 pages); screenshots of `/go/arrays/` and `/go/strings-and-runes/` in headless Chrome.
+- No `map` memory visual yet (only `kind: slice` exists); still listed under Phase 3 "Step visuals".
+- Awaiting the user's review of tone and clarity.
+
+### 39. Language-neutral lesson code
+The user noticed that Azerbaijani words in `main.go` (`Lənkəran`, `süd`, `Çay evi`) would clash with translated lesson texts (for example "the word has two `ə`") and that the shared `output.txt` would show Azerbaijani output to other readers. They proposed that all words and sentences in lesson code be English.
+
+Done (branch `feat/pilot-content`):
+- Rule recorded in [DECISIONS.md](DECISIONS.md) and the `write-lesson` skill: `main.go` and `output.txt` are fully English (strings, output, comments, identifiers); the real-life contexts stay, in English. Azerbaijani lives only in `*.az.*` files.
+- All 12 ready lessons rewritten accordingly (`main.go`, `output.txt`, `steps.yaml`, quoted strings in `lesson.az.md`, quiz snippets and options, takeaways). Examples: the tea house, Lisbon taxi, Central/Harbor/Old Town metro stops, milk/flour/honey stock.
+- `strings-and-runes` keeps the same five steps but uses language-neutral multi-byte words (`Zürich`, `Frühstück`); the intro says in one sentence that Azerbaijani `ə`, `ş`, `ç`, `ğ`, `ı`, `ö`, `ü` are 2 bytes too.
+- Verified with Go 1.26: `gofmt`, `go vet`, `go run` equals `output.txt` for all 12; `pnpm content:check` (12/12), format, lint, check, build (86 pages). Quiz answers for `strings-and-runes` were recomputed by running the snippets; in the other lessons only string literals changed, and the `range` snippet semantics were re-checked by hand.
+- Awaiting the user's review.

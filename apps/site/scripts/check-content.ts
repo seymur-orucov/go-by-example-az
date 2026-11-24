@@ -23,8 +23,9 @@ for (const slug of readdirSync(examplesDir).sort()) {
   }
   try {
     const lesson = loadLesson(slug);
+    const { rules, practices } = lesson.takeaways;
     console.log(
-      `ok   ${slug} (${lesson.steps.length} steps, ${lesson.quiz.length} quiz questions)`,
+      `ok   ${slug} (${lesson.steps.length} steps, ${rules.length}+${practices.length} takeaways, ${lesson.quiz.length} quiz questions)`,
     );
   } catch (e) {
     failures.push(e instanceof Error ? e.message : String(e));

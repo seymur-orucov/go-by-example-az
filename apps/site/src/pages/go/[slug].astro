@@ -3,6 +3,7 @@
 // short "in preparation" page so links from /go/ and the sidebar never 404.
 import LessonSidebar from "../../components/LessonSidebar.astro";
 import Quiz from "../../components/Quiz.astro";
+import Takeaways from "../../components/Takeaways.astro";
 import Vis from "../../components/Vis.astro";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import { getGoCatalog, LEVEL_LABEL, type GoItem } from "../../lib/go";
@@ -221,6 +222,7 @@ const nextReady = sections
           {lesson.outro && <div class="lesson-outro" set:html={renderMarkdown(lesson.outro)} />}
 
           <div class="after">
+            <Takeaways takeaways={lesson.takeaways} />
             <Quiz quiz={lesson.quiz} />
           </div>
           <script

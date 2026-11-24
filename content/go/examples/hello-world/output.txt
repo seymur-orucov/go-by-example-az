@@ -1,2 +1,2 @@
-Çay evi açıqdır
-Menyu: çay, kofe, limonad
+The tea house is open
+Menu: tea, coffee, lemonade

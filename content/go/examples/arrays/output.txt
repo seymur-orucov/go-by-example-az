@@ -1,0 +1,6 @@
+rain: [0 0 0 0 0 0 0] 7
+temperature: [12 14 11 15 17 16 18]
+Wednesday: 11
+warmest day: 18 degrees
+forecast: 20 actual: 12
+same: false

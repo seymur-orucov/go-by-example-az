@@ -1,0 +1,11 @@
+rules:
+  - "Go-da dövr üçün yalnız `for` var; digər dillərdəki `while`-ın işini də o görür."
+  - "Üç hissəli dövr: `for i := 0; i < n; i++` — başlanğıc, şərt, addım. Şərt hər təkrardan əvvəl yoxlanır, ona görə ilk yoxlamada yalandırsa dövr bir dəfə də işləmir."
+  - "Yalnız şərtlə: `for balance < 500 { ... }` — şərt doğru olduğu müddətdə təkrarlanır."
+  - "`for { ... }` sonsuz dövrdür, ondan `break` ilə çıxılır."
+  - "`break` dövrü tamam bitirir, `continue` yalnız cari təkrarı keçir."
+  - "Başlanğıcda elan olunan dəyişən (`month := 1`) yalnız dövrün içində görünür."
+practices:
+  - "Şərti dəyişdirən kod dövrün içində olmalıdır; əks halda dövr heç vaxt bitməz."
+  - "Təkrar sayı əvvəlcədən məlumdursa üç hissəli `for`, məlum deyilsə yalnız şərtli `for` seçin."
+  - "Sonsuz `for { }` yazanda çıxış şərtini (`break`) aydın göstərin ki, dövrün nə vaxt bitdiyi oxunanda görünsün."

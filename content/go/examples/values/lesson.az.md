@@ -4,7 +4,7 @@ Bu dərsdə dəyərləri birbaşa yazıb nəticələrinə baxırıq. Onları adl
 
 ## Mətn {#strings}
 
-Mətn dırnaq içində yazılır, Azərbaycan hərfləri də olar. `+` iki mətni birləşdirir, amma arada boşluq qoymur — boşluğu özümüz əlavə edirik: `"Qara" + " " + "çay"`.
+Mətn dırnaq içində yazılır, istənilən dilin hərfləri də olar. `+` iki mətni birləşdirir, amma arada boşluq qoymur — boşluğu özümüz əlavə edirik: `"Black" + " " + "tea"`.
 
 ## Tam ədədlər {#ints}
 

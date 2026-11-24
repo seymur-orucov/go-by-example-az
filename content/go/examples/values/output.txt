@@ -1,8 +1,8 @@
-Qara çay
-iki filialda stol: 20
-50 dollar, 4 nəfər: 12
-50 dollar, 4 nəfər: 12.5
-açıqdır və boş stol var: false
-çay və ya kofe var: true
-bağlıdır: false
-stol sayı 10-dan çoxdur: true
+Black tea
+tables in two branches: 20
+50 dollars, 4 people: 12
+50 dollars, 4 people: 12.5
+open and a free table: false
+tea or coffee available: true
+closed: false
+more than 10 tables: true

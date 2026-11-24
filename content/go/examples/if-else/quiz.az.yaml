@@ -1,0 +1,91 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    x := 5
+    if x > 5 {
+        fmt.Println("many")
+    } else {
+        fmt.Println("few")
+    }
+  options: ["many", "few", "heç nə"]
+  answer: 1
+  explain: "`5 > 5` yalandır (5 özündən böyük deyil), ona görə `else` bloku işləyir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    score := 75
+    if score >= 90 {
+        fmt.Println("A")
+    } else if score >= 70 {
+        fmt.Println("B")
+    } else if score >= 50 {
+        fmt.Println("C")
+    } else {
+        fmt.Println("D")
+    }
+  options: ["A", "B", "C"]
+  answer: 1
+  explain: "`75 >= 90` yalandır, `75 >= 70` doğrudur: `B` çap olunur və zəncirin qalanına baxılmır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    score := 95
+    if score >= 50 {
+        fmt.Println("C")
+    } else if score >= 90 {
+        fmt.Println("A")
+    }
+  options: ["A", "C", "C və A"]
+  answer: 1
+  explain: "İlk doğru şərt (`95 >= 50`) işləyir və zəncir dayanır. Dar həddi (`>= 90`) əvvəl yazmaq lazım idi."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    a, b := 5, 20
+    if a > 3 && b < 10 {
+        fmt.Println("yes")
+    } else {
+        fmt.Println("no")
+    }
+  options: ["yes", "no", "kompilyasiya xətası"]
+  answer: 1
+  explain: "`&&` üçün hər iki şərt doğru olmalıdır; `b < 10` yalandır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    a, b := 5, 20
+    if a > 10 || b > 10 {
+        fmt.Println("yes")
+    } else {
+        fmt.Println("no")
+    }
+  options: ["yes", "no", "kompilyasiya xətası"]
+  answer: 0
+  explain: "`||` üçün biri doğru olsa kifayətdir; `b > 10` doğrudur."
+
+- question: Bu kod nə edəcək?
+  code: |
+    if n := 4; n > 3 {
+        fmt.Println("big")
+    }
+    fmt.Println(n)
+  options: ["`big`, sonra `4` çap edəcək", "`big`, sonra `0` çap edəcək", "kompilyasiya xətası verəcək"]
+  answer: 2
+  explain: "`n` yalnız `if`-in içində görünür; kənarda `undefined: n` xətası alınır."
+
+- question: Bu kod nə edəcək?
+  code: |
+    x := 1
+    if x > 3 {
+        fmt.Println("a")
+    }
+    else {
+        fmt.Println("b")
+    }
+  options: ["b çap edəcək", "a çap edəcək", "kompilyasiya xətası verəcək"]
+  answer: 2
+  explain: "`else` bağlayan `}` ilə eyni sətirdə olmalıdır (`} else {`), yeni sətirdə yazmaq sintaksis xətasıdır."
+
+- question: Hansı sətir kompilyasiya olunmayacaq (`n` — `int`-dir)?
+  options: ["if n > 0 {", "if n {", "if n != 0 {"]
+  answer: 1
+  explain: "Go-da şərt `bool` olmalıdır; `int` özlüyündə şərt ola bilməz (`n != 0` yazmaq lazımdır)."

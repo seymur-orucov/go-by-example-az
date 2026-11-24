@@ -1,0 +1,14 @@
+literal:
+  out: |
+    stock: map[flour:30 milk:12] 2
+    milk: 12
+set:
+  out: "stock: map[flour:30 honey:8 milk:7]"
+missing:
+  out: |
+    butter: 0
+    butter in stock? 0 false
+delete:
+  out: "stock: map[honey:8 milk:7] 2"
+make:
+  out: "sold: map[honey:1 milk:2]"

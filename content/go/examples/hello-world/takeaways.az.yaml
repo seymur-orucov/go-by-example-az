@@ -1,0 +1,9 @@
+rules:
+  - "Hər Go faylı `package` elanı ilə başlayır; birbaşa işə salınan proqramın package-i həmişə `main`-dir."
+  - "`import` ilə lazım olan package-lər qoşulur. Import edib istifadə etmədiyimiz package kompilyasiya xətasıdır."
+  - "Proqram `main` funksiyasının birinci sətrindən işə düşür."
+  - "`Println` çapdan sonra yeni sətrə keçir, `Print` keçmir."
+  - "`go run main.go` faylı kompilyasiya edib dərhal işə salır."
+practices:
+  - "Kodu `gofmt` ilə formatlayın (redaktorların çoxu bunu özü edir): Go-da hamı eyni üslubda yazır, ona görə hər kod tanış görünür."
+  - "Yalnız lazım olan package-ləri import edin."

@@ -4,18 +4,18 @@ import "fmt"
 
 func main() {
 	//@step strings
-	fmt.Println("Qara" + " " + "çay")
+	fmt.Println("Black" + " " + "tea")
 
 	//@step ints
-	fmt.Println("iki filialda stol:", 12+8)
-	fmt.Println("50 dollar, 4 nəfər:", 50/4)
+	fmt.Println("tables in two branches:", 12+8)
+	fmt.Println("50 dollars, 4 people:", 50/4)
 
 	//@step floats
-	fmt.Println("50 dollar, 4 nəfər:", 50.0/4)
+	fmt.Println("50 dollars, 4 people:", 50.0/4)
 
 	//@step bools
-	fmt.Println("açıqdır və boş stol var:", true && false)
-	fmt.Println("çay və ya kofe var:", true || false)
-	fmt.Println("bağlıdır:", !true)
-	fmt.Println("stol sayı 10-dan çoxdur:", 12 > 10)
+	fmt.Println("open and a free table:", true && false)
+	fmt.Println("tea or coffee available:", true || false)
+	fmt.Println("closed:", !true)
+	fmt.Println("more than 10 tables:", 12 > 10)
 }

@@ -1,0 +1,6 @@
+value:
+  out: "the library is open from 10:00 to 14:00"
+multi:
+  out: "fiction shelf"
+cond:
+  out: "you can borrow more books"

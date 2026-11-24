@@ -1,0 +1,20 @@
+bytes:
+  out: |
+    7 bytes
+    6 letters
+index:
+  out: |
+    114 r
+    Zü
+runes:
+  out: "6 252 ü"
+range:
+  out: |
+    0 Z
+    1 ü
+    3 r
+    4 i
+    5 c
+    6 h
+literal:
+  out: "Frühstück has 2 ü"

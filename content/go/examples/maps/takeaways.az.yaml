@@ -1,0 +1,11 @@
+rules:
+  - "`map[K]V` açarı `K`, dəyəri `V` tipində olan cütləri saxlayır; hər açar yalnız bir dəfə olur."
+  - "`m[k] = v` açar yoxdursa əlavə edir, varsa dəyərini əvəz edir."
+  - "Olmayan açarı oxumaq zero value qaytarır; açarın olub-olmadığını `v, ok := m[k]` ilə yoxlayın."
+  - "`delete(m, k)` açarı silir; olmayan açarı silmək heç nə etmir."
+  - "`nil` map-dən oxumaq olar, ona yazmaq isə panic yaradır."
+  - "Map-də sıra yoxdur; `fmt` onu yalnız çap edəndə açarlara görə sıralayır."
+practices:
+  - "Yazacağınız map-i `make(map[K]V)` və ya literal ilə yaradın."
+  - "Zero value ilə \"yoxdur\"u ayırmaq lazımdırsa, \"comma ok\" yazılışından istifadə edin."
+  - "Saymaq üçün `m[k]++` yazın: olmayan açar `0`-dan başlayır, əlavə yoxlama lazım deyil."

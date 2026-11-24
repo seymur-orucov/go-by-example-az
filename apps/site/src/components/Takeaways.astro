@@ -1,0 +1,35 @@
+---
+// "Yadda saxla": the summary card at the end of a lesson, left of the quiz. Key points of the
+// topic (rules) and habits worth keeping (practices), from takeaways.<locale>.yaml.
+import type { Takeaways } from "../lib/lesson";
+import { renderInline } from "../lib/markdown";
+
+interface Props {
+  takeaways: Takeaways;
+}
+
+const { takeaways } = Astro.props;
+const rules = takeaways.rules.map(renderInline);
+const practices = takeaways.practices.map(renderInline);
+---
+
+<section class="card takeaways-card" aria-labelledby="takeaways-title">
+  <span class="label">Yadda saxla</span>
+  <h2 id="takeaways-title">{rules.length} əsas məqam</h2>
+  <ul class="takeaways">
+    {rules.map((r) => (
+      <li>
+        <span set:html={r} />
+      </li>
+    ))}
+  </ul>
+
+  <h3 class="tk-sub">Yaxşı təcrübə</h3>
+  <ul class="takeaways practices">
+    {practices.map((p) => (
+      <li>
+        <span set:html={p} />
+      </li>
+    ))}
+  </ul>
+</section>

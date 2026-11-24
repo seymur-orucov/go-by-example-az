@@ -1,6 +1,8 @@
 title: "Arrays"
-subtitle: "Sabit ölçülü massiv"
+subtitle: "Sabit ölçülü siyahı"
 section: collections
 order: 1
-status: planned
+status: ready
 level: beginner
+duration: 4
+source: original

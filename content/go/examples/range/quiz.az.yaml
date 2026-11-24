@@ -1,0 +1,78 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    days := []string{"Mon", "Tue", "Wed"}
+    for i, d := range days {
+        fmt.Print(i, d, " ")
+    }
+  options: ["0Mon 1Tue 2Wed ", "1Mon 2Tue 3Wed ", "Mon Tue Wed "]
+  answer: 0
+  explain: "`range` indeksi 0-dan başlayaraq və həmin elementi birlikdə verir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    prices := []int{5, 10, 15}
+    sum := 0
+    for _, p := range prices {
+        sum += p
+    }
+    fmt.Println(sum)
+  options: ["3", "30", "0"]
+  answer: 1
+  explain: "`_` indeksi atır, `p` isə hər elementin dəyəridir: 5 + 10 + 15."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    list := []string{"a", "b", "c", "d"}
+    for i := range list {
+        fmt.Print(i)
+    }
+  options: ["abcd", "0123", "1234"]
+  answer: 1
+  explain: "Tək dəyişən yazanda `range` yalnız indeksi verir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    nums := []int{1, 2, 3}
+    for _, n := range nums {
+        n = n * 10
+    }
+    fmt.Println(nums)
+  options: ["[10 20 30]", "[1 2 3]", "kompilyasiya xətası"]
+  answer: 1
+  explain: "`n` elementin nüsxəsidir; onu dəyişmək slice-a təsir etmir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    for i := range 4 {
+        fmt.Print(i)
+    }
+  options: ["1234", "0123", "01234"]
+  answer: 1
+  explain: "`range 4` 0-dan 3-ə qədər, yəni 4 dəfə təkrarlayır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    stock := map[string]int{"milk": 3, "flour": 5, "honey": 2}
+    total := 0
+    for _, n := range stock {
+        total += n
+    }
+    fmt.Println(total)
+  options: ["10", "3", "nəticə hər dəfə fərqli olur"]
+  answer: 0
+  explain: "Gəzinti sırası təsadüfidir, amma cəm sıradan asılı deyil."
+
+- question: Map üzərində `range` ilə elementləri çap edəndə nə doğrudur?
+  options: ["Elementlər əlavə olunma sırası ilə gəlir", "Elementlər açara görə sıralanmış gəlir", "Sıra təsadüfidir və hər işə salmada dəyişə bilər"]
+  answer: 2
+  explain: "Map-də sıra yoxdur; sıra lazımdırsa, açarları ayrıca sıralamaq lazımdır."
+
+- question: Bu kod niyə kompilyasiya olunmur?
+  code: |
+    total := 0
+    for i, m := range []int{4, 3} {
+        total += m
+    }
+  options: ["`range` slice literal qəbul etmir", "`i` elan olunub, amma istifadə olunmayıb", "`total` dövrdən əvvəl elan olunmalı deyil"]
+  answer: 1
+  explain: "Go-da istifadə olunmayan dəyişən xətadır; indeks lazım deyilsə, `_` yazın."

@@ -1,0 +1,12 @@
+rules:
+  - "Şərt `bool` olmalıdır: `n` `int`-dirsə, `if n {` yazmaq olmaz, `if n != 0 {` yazılır."
+  - "Şərt mötərizəyə alınmır, amma `{ }` həmişə məcburidir."
+  - "`else` bağlayan `}` ilə eyni sətirdə olmalıdır: `} else {`."
+  - "`else if` zəncirində şərtlər yuxarıdan aşağı yoxlanır, ilk doğru olan işləyir və qalanlarına baxılmır."
+  - "`&&` hər iki şərt doğru olanda, `||` isə biri doğru olanda `true` verir; `!` şərti tərsinə çevirir."
+  - "`if feels := ...; şərt` ilə elan olunan dəyişən yalnız həmin `if`-in və `else` hissələrinin içində görünür."
+practices:
+  - "`else if` zəncirində dar həddi əvvəl yazın (əvvəl `< 0`, sonra `< 15`), yoxsa ilk geniş şərt hər şeyi tutar."
+  - "Müvəqqəti dəyəri `if` daxilində elan edin ki, kodun qalanını çirkləndirməsin."
+  - "`bool` dəyişəni `true` ilə müqayisə etməyin: `raining == true` yox, sadəcə `raining`."
+  - "Eyni dəyişənə görə çoxlu `else if` yazırsınızsa, `switch` daha oxunaqlı ola bilər."
