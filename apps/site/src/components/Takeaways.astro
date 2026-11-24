@@ -15,9 +15,7 @@ const practices = takeaways.practices.map(renderInline);
 
 <section class="card takeaways-card" aria-labelledby="takeaways-title">
   <span class="label">Yadda saxla</span>
-  <h2 id="takeaways-title">Xülasə</h2>
-
-  <h3 class="tk-sub">Əsas məqamlar</h3>
+  <h2 id="takeaways-title">{rules.length} əsas məqam</h2>
   <ul class="takeaways">
     {rules.map((r) => (
       <li>
