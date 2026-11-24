@@ -1,0 +1,5 @@
+boş: [] 0
+make: [a b c] 3
+append: [a b c d e] 5 6
+kəsik: [b c]
+qısa: [1 2 3]

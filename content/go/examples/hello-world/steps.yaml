@@ -1,0 +1,4 @@
+package: {}
+import: {}
+main:
+  out: "Salam, dünya!"

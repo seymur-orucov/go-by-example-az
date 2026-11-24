@@ -1,0 +1,32 @@
+- question: İşə salınan Go proqramının paketi necə adlanmalıdır?
+  options: ["package app", "package main", "package fmt"]
+  answer: 1
+  explain: İşə salınan proqram həmişə `main` paketində olur.
+
+- question: Proqram hansı funksiyadan icra olunmağa başlayır?
+  options: ["init", "start", "main"]
+  answer: 2
+  explain: Go proqramı `main` paketindəki `main` funksiyasından başlayır.
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    fmt.Println("a", "b")
+  options: ["ab", "a b", "a, b"]
+  answer: 1
+  explain: "`Println` arqumentlərin arasına boşluq qoyur."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    fmt.Print("a")
+    fmt.Print("b")
+  options: ["ab", "a b", "a və b ayrı sətirlərdə"]
+  answer: 0
+  explain: "`Print` sona yeni sətir əlavə etmir, ona görə nəticə bitişik çıxır."
+
+- question: "`import \"fmt\"` sətri nə edir?"
+  options:
+    - "`fmt` paketini proqrama qoşur"
+    - "`fmt` adlı yeni paket yaradır"
+    - "Proqramı formatlayır"
+  answer: 0
+  explain: "`import` başqa paketləri qoşur; `fmt` standart kitabxanadandır."
