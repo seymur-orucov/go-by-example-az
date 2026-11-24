@@ -235,3 +235,12 @@ Done (branch `feat/pilot-content`; recorded in [DECISIONS.md](DECISIONS.md#origi
 - Rewritten with the skill as original lessons: `constants` (a Baku taxi fare: package-level constant, `const ( … )` block, untyped constants, constant expressions) and `slices` (a market cart: nil slice, `append`, index, `make`, slice of a slice sharing elements). All outputs and quiz answers verified with Go 1.26.
 - Found and fixed: memory-visual cells had a fixed width, so real words ("çörək") overflowed; cells now grow with their text. "massiv" removed from the empty-slice label and the slices subtitle (term rule).
 - Still adapted (to be rewritten): `hello-world`, `values`, `variables`.
+
+### 33. CC BY 4.0, no Go by Example credit, dollars, longer intros
+The user decided: content moves to CC BY 4.0; the site will not mention Go by Example (no courtesy credit); money in examples is in US dollars, not manat, because the content will be translated; some topics need more than one sentence of explanation — the `constants` intro was too short.
+
+Done (branch `feat/pilot-content`; recorded in [DECISIONS.md](DECISIONS.md#original-content-2026-11-24)):
+- `LICENSE-CONTENT`, README, CONTRIBUTING: CC BY 4.0; the Go by Example CC BY 3.0 attribution now covers only `source: adapted` lessons (and the prototype copies).
+- Footer: the "İlham mənbəyi" line is removed; the required attribution stays while `hello-world`, `values`, `variables` are adapted, then disappears on its own; a CC BY 4.0 content line is always shown.
+- `constants`: prices in USD (output regenerated with Go 1.26); the intro is two short paragraphs (constant vs variable, compile time explained, why a named constant helps).
+- Skill `write-lesson`: money in USD; length follows the topic (intro 2–4 sentences, harder steps up to 4–5).
