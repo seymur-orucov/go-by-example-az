@@ -1,0 +1,12 @@
+strings:
+  out: "golang"
+numbers:
+  out: |
+    1+1 = 2
+    7/2 = 3
+    7.0/2 = 3.5
+bools:
+  out: |
+    false
+    true
+    false

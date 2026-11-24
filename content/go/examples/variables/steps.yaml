@@ -1,0 +1,10 @@
+var:
+  out: "salam"
+typed:
+  out: "1 2"
+zero:
+  out: |
+    0 false
+    f boşdur: true
+short:
+  out: "armud"

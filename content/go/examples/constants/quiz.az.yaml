@@ -1,0 +1,36 @@
+- question: Bu kod nə edəcək?
+  code: |
+    const k = 10
+    k = 20
+  options: ["k 20 olacaq", "kompilyasiya xətası verəcək", "proqram işləyərkən xəta verəcək"]
+  answer: 1
+  explain: Sabitin dəyərini dəyişmək olmaz; xəta kompilyasiya zamanı tutulur.
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    const c = 7 / 2
+    fmt.Println(c)
+  options: ["3.5", "3", "4"]
+  answer: 1
+  explain: "`7` və `2` tam ədəddir, ona görə sabit üçün də tam bölmə aparılır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    fmt.Println(2e3)
+  options: ["2e3", "2000", "6"]
+  answer: 1
+  explain: "`2e3` — 2 × 10³, yəni 2000 deməkdir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    const n = 500
+    var f float64 = n
+    fmt.Println(f)
+  options: ["500", "kompilyasiya xətası", "500.0"]
+  answer: 0
+  explain: Tipsiz sabit istifadə olunduğu yerin tipini alır — burada `float64`. `Println` onu `500` kimi çap edir.
+
+- question: Hansı elan kompilyasiya olunmayacaq?
+  options: ["const a = 5", 'const b = "salam"', "const c = []int{1, 2}"]
+  answer: 2
+  explain: Slice kompilyasiya zamanı hesablanan dəyər deyil, ona görə sabit ola bilməz.

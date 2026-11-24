@@ -1,0 +1,9 @@
+declare: {}
+use:
+  out: "sabit"
+untyped:
+  out: "6e+11"
+convert:
+  out: |
+    600000000000
+    -0.28470407323754404

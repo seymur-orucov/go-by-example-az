@@ -1,0 +1,51 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    var x int
+    fmt.Println(x)
+  options: ["0", "nil", "kompilyasiya xətası"]
+  answer: 0
+  explain: Dəyər verilməyən `int` dəyişəni sıfır dəyəri — `0` alır.
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    var s string
+    fmt.Println(s == "")
+  options: ["true", "false", "nil"]
+  answer: 0
+  explain: "`string`-in sıfır dəyəri boş mətndir: `\"\"`."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    var a, b = 1, "iki"
+    fmt.Println(a, b)
+  options: ["1 iki", "kompilyasiya xətası", "1, iki"]
+  answer: 0
+  explain: Tip yazılmayanda hər dəyişən öz dəyərinin tipini alır; `Println` arqumentlərin arasına boşluq qoyur.
+
+- question: Bu kod nə edəcək?
+  code: |
+    x := 5
+    x = "beş"
+  options: ["x-in dəyəri \"beş\" olacaq", "kompilyasiya xətası verəcək", "x 0 olacaq"]
+  answer: 1
+  explain: "`x`-in tipi `int`-dir və dəyişmir; ona mətn yazmaq olmaz."
+
+- question: Bu kod nə edəcək?
+  code: |
+    x := 1
+    x := 2
+  options: ["x 2 olacaq", "kompilyasiya xətası verəcək", "iki ayrı x yaranacaq"]
+  answer: 1
+  explain: "`:=` yeni dəyişən elan edir; `x` artıq var. Dəyəri dəyişmək üçün `x = 2` yazılır."
+
+- question: Bu proqram niyə kompilyasiya olunmur?
+  code: |
+    func main() {
+        x := 1
+    }
+  options:
+    - "`:=` funksiyanın içində işləmir"
+    - "`x` elan olunub, amma istifadə olunmayıb"
+    - "`x`-in tipi göstərilməyib"
+  answer: 1
+  explain: Go istifadə olunmayan dəyişənlərə icazə vermir — bu, səhvləri erkən tutmağa kömək edir.
