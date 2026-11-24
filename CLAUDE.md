@@ -18,7 +18,7 @@ Project: **Nümunələrlə Go** — an Azerbaijani-language alternative to gobye
 - Code, comments, docs, commit messages, branch names and PR descriptions are in **English**. Site UI text and learning content stay in Azerbaijani.
 - Git: never commit to `main` directly — create a branch (`feat/…`, `fix/…`, `docs/…`, `chore/…`). Commit messages follow **Conventional Commits** (`docs(roadmap): …`, `feat(design): …`). Push and open PRs only after the user confirms. **Group work into module PRs** (one PR per theme, several commits) instead of one PR per small change. Details: [CONTRIBUTING.md](CONTRIBUTING.md).
 - Package manager is **pnpm** (not npm/yarn). Never edit `pnpm-lock.yaml` by hand. Git hooks (lefthook) run Prettier + ESLint on staged files and commitlint on the message — fix the cause, don't bypass them.
-- Take text from roadmap.sh / itbooster.ru / hellointerview.com / algomaster.io / greatfrontend.com only when the user marks it, then translate it; write the result to `content-private/` (not tracked by git). Unless the author's consent is recorded in [DECISIONS.md](docs/DECISIONS.md), don't commit these texts to the public repo or put them on the site.
+- Take text from roadmap.sh / itbooster.ru / hellointerview.com / algomaster.io / greatfrontend.com / yeahub.ru only when the user marks it, then translate it; write the result to `content-private/` (not tracked by git). Unless the author's consent is recorded in [DECISIONS.md](docs/DECISIONS.md), don't commit these texts to the public repo or put them on the site.
 - After each iteration add a short entry to `docs/HISTORY.md` and update the checkboxes in `docs/ROADMAP.md`.
 
 ## Layout

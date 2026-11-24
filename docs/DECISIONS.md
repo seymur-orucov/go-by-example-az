@@ -126,12 +126,13 @@ Supersedes the file list in the "Content layout" row above (`az.md` becomes `les
 
 | Decision | Rationale |
 |---|---|
-| A lesson is `content/<technology>/examples/<slug>/` with `meta.yaml`, `main.go`, `lesson.<locale>.md`, `steps.yaml`, `quiz.<locale>.yaml` and the generated `output.txt` | Code, language-independent data and localized text are separate; a new locale only adds `*.<locale>.*` files |
+| A lesson is `content/<technology>/examples/<slug>/` with `meta.yaml`, `main.go`, `lesson.<locale>.md`, `steps.yaml`, `quiz.<locale>.yaml`, `takeaways.<locale>.yaml` and the generated `output.txt` | Code, language-independent data and localized text are separate; a new locale only adds `*.<locale>.*` files |
 | Code ↔ step link: **marker comments** `//@step <id>` in `main.go`; a step runs until the next marker, an `//@end` or the end of `main`; `// @step` (with a space, as gofmt writes a marker above a top-level declaration) is accepted too. Markers are stripped at build time and line ranges are computed | Hand-written line numbers (`lines: [9, 13]` in the prototype) break on every code edit; `main.go` stays plain, runnable Go |
 | Text lives in `lesson.<locale>.md`: an intro, then one `## Title {#id}` heading per step, then optional closing text. Step ids must match the markers; a mismatch fails the build | Long prose is easier to write, review and translate in Markdown than in YAML |
 | `steps.yaml` holds per-step data keyed by step id: `out` (expected output) and optional `vis` with a `kind` (`slice`, `map`, `channel`, `goroutine`, …) | Visual data is language-independent; `kind` leaves room for new visualizers |
 | CI checks that the steps' `out` values appear in `output.txt` in order | Wrong output never reaches the site |
 | **Quiz**: required for every `status: ready` lesson, **5–10 questions** depending on the topic (the user's rule); stored in `quiz.<locale>.yaml` | Self-check on every lesson; kept in its own file because tests become a separate platform section in Phase 6 |
+| **Summary ("Yadda saxla")**: required for every `status: ready` lesson; `takeaways.<locale>.yaml` with `rules` (3–6 key points and gotchas of the page) and `practices` (1–4 best practices); inline Markdown only. Shown as a card at the end of the lesson, **left of the quiz** (it was in the design prototype but missing from the first site pages; added 2026-11-24) | The page's main points and good habits stay in one place after the walkthrough; separate file so it can be translated and reused later (roadmap nodes, interview prep) |
 | Slugs and step ids are **stable** once published | Future server-side progress and roadmap nodes (Phase 6) reference them |
 
 ## Design
@@ -173,5 +174,6 @@ Supersedes the file list in the "Content layout" row above (`az.md` becomes `les
 - Live coding runner: write `go test`-style checks through the `go.dev` proxy, or run our own sandbox? — Decide when the section is started (last in the order).
 - Consent from the authors of hellointerview.com and algomaster.io (same as for roadmap.sh and itbooster.ru). Consent records: _none yet_.
 - greatfrontend.com: read its terms (could not be fetched on 2026-11-23) and record the license here; then ask the authors for consent if texts are wanted. Consent records: _none yet_.
+- yeahub.ru (added 2026-11-24): read the public offer and the GitHub repo license, record them here; then ask the authors for consent if texts are wanted. Consent records: _none yet_.
 - Which languages come after Azerbaijani, and who reviews translation quality?
 - ~~Content license once every lesson is original: CC BY 3.0 or 4.0?~~ — decided 2026-11-24: CC BY 4.0, see "Original content".

@@ -253,3 +253,27 @@ Done (branch `feat/pilot-content`), with the `write-lesson` skill:
 - Verified with Go 1.26: `gofmt`, `go vet`, `go run` (`output.txt`); every quiz snippet compiled or run in a scratch directory (21 snippets, compiler messages checked for the "does not compile" questions); `pnpm content:check`, lint, format, check, build; step line ranges in the built pages.
 - No ready lesson is `adapted` now, so the footer drops the Go by Example attribution by itself (checked in the build: no mention of Go by Example in any lesson page). The README, `LICENSE-CONTENT` and the design prototype still mention it.
 - Awaiting the user's review of tone and clarity.
+
+### 35. New source: yeahub.ru; where the design gaps are handled
+The user asked where the remaining design gaps (home page and other parts are mostly Go-oriented) will be handled, asked to add https://yeahub.ru/ to the sources, and said that Claude decides what to take from which section in the future.
+
+Done: yeahub.ru added to [REFERENCES.md](REFERENCES.md) (interview source and design reference) and [DECISIONS.md](DECISIONS.md) (open question) with the license status: no reuse license found, "open" only means source/design can be viewed, public offer not read yet. [ROADMAP.md](ROADMAP.md) Phase 6 got three items: a design pass for the non-Go parts before each platform section, a per-section source review (Claude decides), and reading yeahub.ru's offer. Phase 2 module 2 still only finishes `/`, `/go/roadmap/` and `/roadmaps/backend/` from the D reference.
+
+### 36. "Əsaslar" section completed: `for`, `if-else`, `switch`
+The user asked to complete the "Əsaslar" module; three lessons were still `planned`.
+
+Done (branch `feat/pilot-content`), with the `write-lesson` skill:
+- `for` (monthly savings in USD: three-part loop, condition-only loop, `for { }` with `break`, `continue`; 4 steps, 8 quiz questions), `if-else` (weather: `&&`/`||`, `else`, `else if` chain, `if` with a short declaration; 4 steps, 8 questions), `switch` (a library: value `switch` with `default`, several values in one `case`, `switch` without an expression; `fallthrough` as a note; 3 steps, 7 questions). All `source: original`, `status: ready`.
+- Order note: `for` needs `if` for `break`/`continue` and `if-else` comes next in the course, so the `for` lesson explains `if` in one clause and points to the next lesson.
+- Verified with Go 1.26: `gofmt`, `go vet`, `go run` (`output.txt`); all 23 quiz answers checked by running the snippets or reading the compiler message (parenthesised `for`, out-of-scope `if` variable, `else` on a new line, non-bool condition, duplicate `case`); `pnpm content:check` (8/8 ready), format, lint, check, build (86 pages).
+- Awaiting the user's review of tone and clarity.
+
+### 37. "Yadda saxla" summary card added to every lesson
+The user noticed that the design prototype has a summary section at the end of each topic, left of the quiz, and the real lesson pages did not. They asked for a summary-type module (name may differ) holding the page's key nuances and best practices.
+
+Done (branch `feat/pilot-content`):
+- Only the CSS (`.after` two-column grid, `.takeaways`) had been ported from the prototype; the component and the content were missing. New content file `takeaways.az.yaml` (`rules` 3–6, `practices` 1–4, inline Markdown), validated by `lesson.ts` and required for ready lessons; new `Takeaways.astro` ("Yadda saxla" label, "Xülasə" heading, "Əsas məqamlar" and "Yaxşı təcrübə" groups, practices with a green check) rendered left of the quiz; one column on narrow screens.
+- Written for all 8 ready lessons (hello-world, values, variables, constants, for, if-else, switch, slices) from each lesson's own text and quiz.
+- `write-lesson` skill and DECISIONS ("Lesson content format") updated: every new lesson ships a `takeaways.az.yaml`.
+- Verified: `pnpm content:check` (8/8), format, lint, check, build; desktop screenshot of `/go/if-else/` in headless Chrome (summary left, quiz right). Only this prototype-vs-site gap was checked; the rest of the lesson page was not re-audited against `design/d/example.html`.
+- Awaiting the user's review of the wording.
