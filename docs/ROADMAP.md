@@ -113,7 +113,8 @@ functions/api/run.ts   # go.dev/_/compile proxy (rate limit + size limit)
 
 10 examples, each simpler than the original, with a compact explanation in Azerbaijani:
 
-- [~] hello-world · values · variables · constants · for · if-else · slices · maps · functions · goroutines — done: hello-world, values, variables, constants, slices (branch `feat/pilot-content`, awaiting the user's review of tone and length); remaining: for, if-else, maps, functions, goroutines
+- [~] hello-world · values · variables · constants · for · if-else · slices · maps · functions · goroutines — **original** (`source: original`, awaiting the user's review): constants, slices; ready but still adapted (to be rewritten): hello-world, values, variables; remaining: for, if-else, maps, functions, goroutines
+- [x] Project skill `.claude/skills/write-lesson/` for writing original lessons (rules, originality guard, verification checklist)
 - [ ] Terminology glossary (`docs/GLOSSARY.md`): English term + short Azerbaijani explanation
 - [ ] Step visuals for topics that need them (slice, map, channel, goroutine)
 

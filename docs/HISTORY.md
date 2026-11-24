@@ -223,3 +223,15 @@ Done (branch `feat/pilot-content`):
 - `values`, `variables`, `constants` written in the lesson format and marked `ready`: code checked with `gofmt`, `go vet`, `go run` (Go 1.26); `output.txt` is the real output; every quiz answer verified by compiling or running the snippet.
 - Found: gofmt rewrites a marker above a top-level declaration to `// @step`; the loader accepts both spellings. A multi-line `out:` no longer leaves an empty line in the terminal.
 - Checked in headless Chrome: steps, highlighted lines and output for `values` and `constants`.
+
+### 32. Original content; write-lesson skill
+The user decided that lessons must be original (own examples and text; topic order and approach may follow Go by Example), asked how best to write original content with AI and where the roadmap comes from, and added rules: programming terms (slice, receiver, interface, struct, …) are not translated; explanations are short but high quality; real-life examples are welcome.
+
+Answers given: Claude Code with a project skill (it sees the format, runs Go, verifies quiz answers, builds and checks the page), the user reviewing tone; official Go docs only for facts; a glossary for consistent terms. Roadmap: our own, built by comparing Go by Example's topic order, roadmap.sh and itbooster.ru (topic lists and order only), plus our own gaps; node texts written by us.
+
+Done (branch `feat/pilot-content`; recorded in [DECISIONS.md](DECISIONS.md#original-content-2026-11-24)):
+- `source: original | adapted` in `meta.yaml`, required for ready lessons by `pnpm content:check`. The footer keeps the Go by Example CC BY 3.0 attribution while any ready lesson is adapted, then switches to an "İlham mənbəyi" credit line. `LICENSE-CONTENT` and README explain the split; the final content license (CC BY 3.0 or 4.0) is an open question.
+- Skill `.claude/skills/write-lesson/SKILL.md`: brief, originality self-check against the best-known examples, real-life context, terms in English, style, file rules, verification (`gofmt`, `go vet`, `go run`, every quiz answer compiled, `content:check`, build).
+- Rewritten with the skill as original lessons: `constants` (a Baku taxi fare: package-level constant, `const ( … )` block, untyped constants, constant expressions) and `slices` (a market cart: nil slice, `append`, index, `make`, slice of a slice sharing elements). All outputs and quiz answers verified with Go 1.26.
+- Found and fixed: memory-visual cells had a fixed width, so real words ("çörək") overflowed; cells now grow with their text. "massiv" removed from the empty-slice label and the slices subtitle (term rule).
+- Still adapted (to be rewritten): `hello-world`, `values`, `variables`.
