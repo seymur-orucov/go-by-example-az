@@ -24,10 +24,13 @@ format section there and one existing `source: original` lesson before starting.
   popular tutorials: `"go" + "lang"`, `"hello world"`, `math.Sin(n)`, `3e20 / n`,
   `make([]string, 3)` with `"a", "b", "c"`, `"apple"`, `"initial"`, …). If your code
   shares values, names or structure with any of them, change it.
-- Use a **real-life context** so the example is clearly ours and easy to remember: prices
-  in manat, a shopping cart, a library, bus routes in Baku, exam grades, a phone contact
-  list, temperatures, a café menu. One context per lesson, kept consistent across steps.
-  Strings in the code may be Azerbaijani (`"Bakı"`, `"çay"`), identifiers stay English.
+- Use a **real-life context** so the example is clearly ours and easy to remember: prices,
+  a shopping cart, a library, bus routes, exam grades, a phone contact list, temperatures,
+  a café menu. One context per lesson, kept consistent across steps. Strings in the code
+  may be Azerbaijani (`"Bakı"`, `"çay"`), identifiers stay English.
+- **Money is in US dollars** (`USD` in output, "dollar" in text and comments), never manat
+  or another local currency: lessons will be translated, and readers in other countries
+  must understand the example without local knowledge.
 
 ## 3. Language and style
 
@@ -36,8 +39,19 @@ format section there and one existing `source: original` lesson before starting.
   literal, … are written in English (explain a term in Azerbaijani the first time it
   appears, then just use it). Ordinary words stay Azerbaijani: dəyişən, sabit, funksiya,
   dövr, şərt, tip, dəyər. Keywords and identifiers go in backticks.
-- **Short but high quality**: intro 1–2 sentences; each step 2–3 sentences; every sentence
-  adds something (no filler like "bu çox vacibdir"). Say *what* the code does and *why*.
+- **Short but high quality**: every sentence adds something (no filler like "bu çox
+  vacibdir"). Say *what* the code does and *why*.
+- **Length follows the topic, not a fixed count.** One sentence is rarely enough to
+  introduce a concept a beginner has not met:
+  - **Intro**: 2–4 sentences, one or two short paragraphs. Cover what the concept is (with
+    everyday examples), how it differs from the closest concept already taught (constant
+    vs variable, slice vs array, method vs function), and what it is good for. Explain any
+    new word it relies on in passing ("kompilyasiya zamanı, yəni proqram işə düşməzdən
+    əvvəl").
+  - **Steps**: usually 2–3 sentences; a harder idea (untyped constants, shared slice
+    memory, closures capturing variables, goroutine scheduling) may take 4–5 or a second
+    paragraph. Do not stretch an easy step to match.
+  - Do not repeat in the intro what a step explains, and vice versa.
 - A real-life comparison is welcome in the text when it makes the idea clearer
   ("slice — rezin çanta kimi: lazım olanda böyüyür").
 - At most one note per step: `> **Diqqət:** …` for a pitfall, `> **Bilgi:** …` for a tip.

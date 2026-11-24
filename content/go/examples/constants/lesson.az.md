@@ -1,4 +1,6 @@
-Sabit — proqram işləyərkən dəyişməyən dəyərdir: şəhərin adı, taksi tarifi, vergi faizi. `const` ilə elan olunur və dəyəri kompilyasiya zamanı məlum olmalıdır.
+Sabit — proqram işləyərkən dəyişməyən dəyərdir: şəhərin adı, taksi tarifi, vergi faizi. Dəyişəndən fərqi budur ki, sabitə sonradan yeni dəyər yazmaq olmur: onu təsadüfən dəyişmək cəhdini kompilyator özü tutur və proqram heç işə düşmür.
+
+Sabit `const` ilə elan olunur. Onun dəyəri kompilyasiya zamanı, yəni proqram işə düşməzdən əvvəl məlum olmalıdır: rəqəm, mətn, `true`/`false` və ya bunlardan qurulan ifadə. Adlı sabit kodu oxunaqlı edir — `0.5`-in nə demək olduğunu təxmin etmək lazım deyil, `perKm` adı özü deyir.
 
 ## Paket səviyyəsində sabit {#declare}
 
