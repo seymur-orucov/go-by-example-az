@@ -49,6 +49,18 @@ const quizQuestionSchema = z
 export const quizSchema = z.array(quizQuestionSchema).min(5).max(10);
 export type QuizQuestion = z.infer<typeof quizQuestionSchema>;
 
+/**
+ * "Yadda saxla" card at the end of a lesson (it sits left of the quiz): the key points of
+ * the topic (`rules`) and the habits worth keeping (`practices`). Inline Markdown only.
+ */
+export const takeawaysSchema = z
+  .object({
+    rules: z.array(z.string().min(1)).min(3).max(6),
+    practices: z.array(z.string().min(1)).min(1).max(4),
+  })
+  .strict();
+export type Takeaways = z.infer<typeof takeawaysSchema>;
+
 export interface CodeStep {
   id: string;
   /** 1-based, inclusive, in the code with markers stripped. */
@@ -73,6 +85,7 @@ export interface Lesson {
   /** Markdown after the first `##` heading without an id; may be empty. */
   outro: string;
   quiz: QuizQuestion[];
+  takeaways: Takeaways;
   output: string;
 }
 
@@ -178,6 +191,7 @@ export function loadLesson(
     text: join(dir, `lesson.${locale}.md`),
     steps: join(dir, "steps.yaml"),
     quiz: join(dir, `quiz.${locale}.yaml`),
+    takeaways: join(dir, `takeaways.${locale}.yaml`),
     output: join(dir, "output.txt"),
   };
   const problems: string[] = [];
@@ -196,6 +210,11 @@ export function loadLesson(
 
   const quizParsed = quizSchema.safeParse(readYaml(files.quiz));
   if (!quizParsed.success) problems.push(`quiz.${locale}.yaml: ${formatZod(quizParsed.error)}`);
+
+  const takeawaysParsed = takeawaysSchema.safeParse(readYaml(files.takeaways));
+  if (!takeawaysParsed.success) {
+    problems.push(`takeaways.${locale}.yaml: ${formatZod(takeawaysParsed.error)}`);
+  }
 
   // Step ids must agree across main.go, the lesson text and steps.yaml.
   const codeIds = codeSteps.map((s) => s.id).join(", ");
@@ -243,6 +262,7 @@ export function loadLesson(
     }),
     outro: text.outro,
     quiz: quizParsed.success ? quizParsed.data : [],
+    takeaways: takeawaysParsed.success ? takeawaysParsed.data : { rules: [], practices: [] },
     output,
   };
 }

@@ -2600,6 +2600,35 @@ html[data-zen] .zen-bar {
 .after:has(> .quiz:only-child) {
   grid-template-columns: minmax(0, 1fr);
 }
+/* "Yadda saxla": two groups, key points and best practices */
+.after > .card {
+  min-width: 0;
+}
+.takeaways-card h2 {
+  margin-bottom: 4px;
+}
+.tk-sub {
+  margin: 18px 0 10px;
+  font: 600 11px/1.3 var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+.takeaways-card .tk-sub:first-of-type {
+  margin-top: 14px;
+}
+.takeaways.practices li::before {
+  content: "✓";
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  margin-top: 3px;
+  border-radius: 50%;
+  background: var(--green-soft);
+  color: var(--green);
+  font: 700 10px/1 var(--font-mono);
+}
 /* Quiz slider: one question at a time (scripts/quiz.ts) */
 .quiz-slider {
   outline: none;
