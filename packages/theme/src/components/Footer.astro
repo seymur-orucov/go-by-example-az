@@ -1,0 +1,34 @@
+---
+// While any lesson is adapted from Go by Example, its CC BY 3.0 license requires the
+// attribution. Once every lesson is original, the site does not mention Go by Example
+// (docs/DECISIONS.md, "Original content").
+interface Props {
+  attribution?: boolean;
+}
+const { attribution = true } = Astro.props;
+---
+
+<footer class="site-footer">
+  <div class="inner">
+    {attribution && (
+      <p>
+        Go dərslərinin bir hissəsi Mark McGranaghan və Eli Bendersky-nin{" "}
+        <a href="https://gobyexample.com" rel="noopener">
+          Go by Example
+        </a>{" "}
+        layihəsi (
+        <a href="https://creativecommons.org/licenses/by/3.0/" rel="noopener">
+          CC BY 3.0
+        </a>
+        ) əsasında hazırlanıb, Azərbaycan dilinə uyğunlaşdırılıb və sadələşdirilib.
+      </p>
+    )}
+    <p>
+      Dərslərin mətni və kodu{" "}
+      <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">
+        CC BY 4.0
+      </a>{" "}
+      lisenziyası ilə paylaşılır. Go adı Google LLC-yə məxsusdur.
+    </p>
+  </div>
+</footer>

@@ -1,0 +1,206 @@
+/* Design tokens: palettes, light and dark themes. Ported from design/shared/base.css. */
+/* ==========================================================
+   Nümunələrlə Go — Variant C ("Roadmap")
+   UX: roadmap.sh-in yığcamlığı + itbooster-in bölmə strukturu
+   + frontscope-un vizualizasiyaları. Rənglər: göy / bənövşəyi / boz / qara.
+   Palitra data-palette atributu ilə dəyişir (nebula | indigo | ocean | graphite).
+   ========================================================== */
+
+:root {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  --r-sm: 6px;
+  --r-md: 9px;
+  --r-lg: 12px;
+  --r-xl: 16px;
+  --r-full: 999px;
+  --header-h: 58px;
+  --sidebar-w: 280px;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --dur: 170ms;
+
+  /* Neytral — açıq */
+  --bg: #f6f7fb;
+  --surface: #ffffff;
+  --surface-2: #f1f3f8;
+  --surface-3: #e6e9f1;
+  --line: rgba(15, 23, 42, 0.08);
+  --line-strong: rgba(15, 23, 42, 0.15);
+  --text: #0f172a;
+  --text-muted: #475569;
+  --text-subtle: #8792a6;
+  --on-accent: #ffffff;
+  --green: #059669;
+  --green-soft: rgba(5, 150, 105, 0.1);
+  --red: #dc2650;
+  --red-soft: rgba(220, 38, 80, 0.08);
+  --amber: #b45309;
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --shadow: 0 18px 50px rgba(15, 23, 42, 0.12);
+  --glow: 0 0 0 transparent;
+
+  --code-bg: #fbfcfe;
+  --code-text: #1e293b;
+  --code-gutter: #b6bfcc;
+  --tok-kw: #7c3aed;
+  --tok-fn: #2563eb;
+  --tok-str: #047857;
+  --tok-num: #c026d3;
+  --tok-type: #0e7490;
+  --tok-builtin: #4f46e5;
+  --tok-com: #8792a6;
+  --term-bg: #0b0e14;
+  --term-text: #e2e8f0;
+  --term-muted: #64748b;
+
+  /* Palitra: nebula (göy → bənövşəyi) */
+  --accent: #3b6ef5;
+  --accent-2: #8b5cf6;
+  --accent-ink: #3157d6;
+  --accent-soft: rgba(59, 110, 245, 0.1);
+  --accent-ring: rgba(59, 110, 245, 0.35);
+  color-scheme: light;
+}
+:root[data-palette="indigo"] {
+  --accent: #5b5bf0;
+  --accent-2: #a855f7;
+  --accent-ink: #4f46e5;
+  --accent-soft: rgba(91, 91, 240, 0.1);
+  --accent-ring: rgba(91, 91, 240, 0.35);
+}
+:root[data-palette="ocean"] {
+  --accent: #0284c7;
+  --accent-2: #4f6ef7;
+  --accent-ink: #0369a1;
+  --accent-soft: rgba(2, 132, 199, 0.1);
+  --accent-ring: rgba(2, 132, 199, 0.35);
+}
+:root[data-palette="graphite"] {
+  --accent: #334155;
+  --accent-2: #64748b;
+  --accent-ink: #1e293b;
+  --accent-soft: rgba(51, 65, 85, 0.09);
+  --accent-ring: rgba(51, 65, 85, 0.3);
+}
+
+/* ---------- Tünd ---------- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #090b10;
+    --surface: #0f1219;
+    --surface-2: #151924;
+    --surface-3: #1c2130;
+    --line: rgba(148, 163, 184, 0.11);
+    --line-strong: rgba(148, 163, 184, 0.2);
+    --text: #e8ebf2;
+    --text-muted: #a4adbd;
+    --text-subtle: #6b7488;
+    --green: #34d399;
+    --green-soft: rgba(52, 211, 153, 0.12);
+    --red: #fb7193;
+    --red-soft: rgba(251, 113, 147, 0.12);
+    --amber: #fbbf24;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
+    --code-bg: #0b0e15;
+    --code-text: #cbd5e1;
+    --code-gutter: #343c4d;
+    --tok-kw: #c4b5fd;
+    --tok-fn: #93c5fd;
+    --tok-str: #86efac;
+    --tok-num: #f0abfc;
+    --tok-type: #67e8f9;
+    --tok-builtin: #a5b4fc;
+    --tok-com: #5b6478;
+    --term-bg: #06080c;
+    --accent: #5b8cff;
+    --accent-2: #a78bfa;
+    --accent-ink: #8fb0ff;
+    --accent-soft: rgba(91, 140, 255, 0.13);
+    --accent-ring: rgba(91, 140, 255, 0.45);
+    color-scheme: dark;
+  }
+  :root:not([data-theme="light"])[data-palette="indigo"] {
+    --accent: #7c7cff;
+    --accent-2: #c084fc;
+    --accent-ink: #a5a5ff;
+    --accent-soft: rgba(124, 124, 255, 0.14);
+    --accent-ring: rgba(124, 124, 255, 0.45);
+  }
+  :root:not([data-theme="light"])[data-palette="ocean"] {
+    --accent: #38bdf8;
+    --accent-2: #818cf8;
+    --accent-ink: #7dd3fc;
+    --accent-soft: rgba(56, 189, 248, 0.12);
+    --accent-ring: rgba(56, 189, 248, 0.45);
+  }
+  :root:not([data-theme="light"])[data-palette="graphite"] {
+    --accent: #cbd5e1;
+    --accent-2: #64748b;
+    --accent-ink: #e2e8f0;
+    --accent-soft: rgba(203, 213, 225, 0.1);
+    --accent-ring: rgba(203, 213, 225, 0.35);
+    --on-accent: #0b0e14;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #090b10;
+  --surface: #0f1219;
+  --surface-2: #151924;
+  --surface-3: #1c2130;
+  --line: rgba(148, 163, 184, 0.11);
+  --line-strong: rgba(148, 163, 184, 0.2);
+  --text: #e8ebf2;
+  --text-muted: #a4adbd;
+  --text-subtle: #6b7488;
+  --green: #34d399;
+  --green-soft: rgba(52, 211, 153, 0.12);
+  --red: #fb7193;
+  --red-soft: rgba(251, 113, 147, 0.12);
+  --amber: #fbbf24;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
+  --code-bg: #0b0e15;
+  --code-text: #cbd5e1;
+  --code-gutter: #343c4d;
+  --tok-kw: #c4b5fd;
+  --tok-fn: #93c5fd;
+  --tok-str: #86efac;
+  --tok-num: #f0abfc;
+  --tok-type: #67e8f9;
+  --tok-builtin: #a5b4fc;
+  --tok-com: #5b6478;
+  --term-bg: #06080c;
+  --accent: #5b8cff;
+  --accent-2: #a78bfa;
+  --accent-ink: #8fb0ff;
+  --accent-soft: rgba(91, 140, 255, 0.13);
+  --accent-ring: rgba(91, 140, 255, 0.45);
+  color-scheme: dark;
+}
+:root[data-theme="dark"][data-palette="indigo"] {
+  --accent: #7c7cff;
+  --accent-2: #c084fc;
+  --accent-ink: #a5a5ff;
+  --accent-soft: rgba(124, 124, 255, 0.14);
+  --accent-ring: rgba(124, 124, 255, 0.45);
+}
+:root[data-theme="dark"][data-palette="ocean"] {
+  --accent: #38bdf8;
+  --accent-2: #818cf8;
+  --accent-ink: #7dd3fc;
+  --accent-soft: rgba(56, 189, 248, 0.12);
+  --accent-ring: rgba(56, 189, 248, 0.45);
+}
+:root[data-theme="dark"][data-palette="graphite"] {
+  --accent: #cbd5e1;
+  --accent-2: #64748b;
+  --accent-ink: #e2e8f0;
+  --accent-soft: rgba(203, 213, 225, 0.1);
+  --accent-ring: rgba(203, 213, 225, 0.35);
+  --on-accent: #0b0e14;
+}
+
+:root {
+  --grad: linear-gradient(100deg, var(--accent), var(--accent-2));
+}

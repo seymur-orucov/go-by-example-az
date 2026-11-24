@@ -1,0 +1,62 @@
+- question: İşə salınan Go proqramının package-i necə adlanmalıdır?
+  options: ["package app", "package main", "package fmt"]
+  answer: 1
+  explain: İşə salınan proqram həmişə `main` package-ində olur.
+
+- question: Proqram hansı funksiyadan icra olunmağa başlayır?
+  options: ["init", "start", "main"]
+  answer: 2
+  explain: Go proqramı `main` package-indəki `main` funksiyasından başlayır.
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    fmt.Println("çay", 2, "dollar")
+  options: ["çay2dollar", "çay 2 dollar", "çay, 2, dollar"]
+  answer: 1
+  explain: "`Println` arqumentlərin arasına boşluq qoyur."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    fmt.Print("çay")
+    fmt.Print("kofe")
+  options: ["çaykofe", "çay kofe", "çay və kofe ayrı sətirlərdə"]
+  answer: 0
+  explain: "`Print` sona yeni sətir əlavə etmir, ona görə nəticə bitişik çıxır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    fmt.Println("a")
+    fmt.Print("b")
+    fmt.Print("c")
+  options: ["abc", "a sətirdə, bc növbəti sətirdə", "a, b, c üç ayrı sətirdə"]
+  answer: 1
+  explain: "`Println` yalnız `a`-dan sonra yeni sətrə keçir; `b` və `c` isə eyni sətirdə qalır."
+
+- question: Bu proqram niyə kompilyasiya olunmur?
+  code: |
+    package main
+
+    func main() {
+        fmt.Println("salam")
+    }
+  options:
+    - "`main` funksiyası olmamalıdır"
+    - "`fmt` import edilməyib"
+    - "mətn tək dırnaqla yazılmalıdır"
+  answer: 1
+  explain: "`fmt`-dən istifadə etmək üçün onu `import \"fmt\"` ilə qoşmaq lazımdır."
+
+- question: Bu proqram niyə kompilyasiya olunmur?
+  code: |
+    package main
+
+    import "os"
+
+    func main() {
+    }
+  options:
+    - "`os` package-i import olunub, amma istifadə edilməyib"
+    - "`main` funksiyasının içi boşdur"
+    - "`os` standart kitabxanada yoxdur"
+  answer: 0
+  explain: Go istifadə olunmayan import-a icazə vermir.

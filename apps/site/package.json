@@ -8,13 +8,19 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "astro": "astro"
+    "astro": "astro",
+    "content:check": "node scripts/check-content.ts"
   },
   "dependencies": {
-    "astro": "^7.4.13"
+    "@platform/theme": "workspace:*",
+    "astro": "^7.4.13",
+    "marked": "^18.2.1",
+    "shiki": "^4.6.0",
+    "yaml": "^2.9.1"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
+    "@types/node": "^24.19.2",
     "typescript": "~6.0.3"
   }
 }

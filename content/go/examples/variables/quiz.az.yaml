@@ -1,0 +1,61 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    var open bool
+    fmt.Println(open)
+  options: ["true", "false", "kompilyasiya xətası"]
+  answer: 1
+  explain: Dəyər verilməyən `bool` dəyişəni zero value — `false` alır.
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    var price float64
+    fmt.Println(price)
+  options: ["0", "nil", "boş sətir"]
+  answer: 0
+  explain: "`float64`-ün zero value-su `0`-dır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    var a, b int = 4, 5
+    fmt.Println(a + b)
+  options: ["9", "45", "kompilyasiya xətası"]
+  answer: 0
+  explain: İki `int` dəyişəni toplanır; `a + b` → `9`.
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    a := 5
+    b := a
+    a = 9
+    fmt.Println(a, b)
+  options: ["9 9", "9 5", "5 5"]
+  answer: 1
+  explain: "`b := a` dəyəri kopyalayır; sonra `a`-nın dəyişməsi `b`-yə təsir etmir."
+
+- question: Bu kod nə edəcək?
+  code: |
+    score := 70
+    score = 85.5
+  options: ["score 85.5 olacaq", "score 85 olacaq", "kompilyasiya xətası verəcək"]
+  answer: 2
+  explain: "`score` `int`-dir, `85.5` isə kəsr ədəddir; tip dəyişmir və Go onu özü kəsmir."
+
+- question: Bu kod nə edəcək?
+  code: |
+    total := 10
+    total := total + 5
+  options: ["total 15 olacaq", "kompilyasiya xətası verəcək", "iki ayrı total yaranacaq"]
+  answer: 1
+  explain: "`:=` yeni dəyişən elan edir; `total` artıq var. Dəyəri dəyişmək üçün `total = total + 5` yazılır."
+
+- question: Bu proqram niyə kompilyasiya olunmur?
+  code: |
+    func main() {
+        discount := 10
+    }
+  options:
+    - "`:=` funksiyanın içində işləmir"
+    - "`discount` elan olunub, amma istifadə olunmayıb"
+    - "`discount`-un tipi göstərilməyib"
+  answer: 1
+  explain: Go istifadə olunmayan dəyişənlərə icazə vermir — bu, səhvləri erkən tutmağa kömək edir.

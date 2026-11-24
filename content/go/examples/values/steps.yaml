@@ -1,0 +1,14 @@
+strings:
+  out: "Qara çay"
+ints:
+  out: |
+    iki filialda stol: 20
+    50 dollar, 4 nəfər: 12
+floats:
+  out: "50 dollar, 4 nəfər: 12.5"
+bools:
+  out: |
+    açıqdır və boş stol var: false
+    çay və ya kofe var: true
+    bağlıdır: false
+    stol sayı 10-dan çoxdur: true

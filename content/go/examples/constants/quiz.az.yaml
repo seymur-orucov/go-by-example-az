@@ -1,0 +1,45 @@
+- question: Bu kod nə edəcək?
+  code: |
+    const price = 3
+    price = 4
+  options: ["price 4 olacaq", "kompilyasiya xətası verəcək", "proqram işləyərkən xəta verəcək"]
+  answer: 1
+  explain: Sabitə yeni dəyər yazmaq olmaz; xəta hələ kompilyasiya zamanı tutulur.
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    const a = 10
+    var b float64 = a / 4
+    fmt.Println(b)
+  options: ["2.5", "2", "kompilyasiya xətası"]
+  answer: 1
+  explain: "`a / 4` iki tam ədədin bölünməsidir: əvvəl `2` hesablanır, sonra `float64`-ə çevrilir."
+
+- question: Hansı sətir kompilyasiya olunmayacaq?
+  options: ["var x float64 = 2", "var y int = 2.0", "var z int = 2.5"]
+  answer: 2
+  explain: "`2.5` kəsr hissəsi olduğu üçün `int`-ə sığmır; `2.0` isə tam ədəddir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    const (
+        x = 1
+        y = x * 3
+    )
+    fmt.Println(x + y)
+  options: ["4", "13", "kompilyasiya xətası"]
+  answer: 0
+  explain: "`y` sabiti `x`-dən qurulur: `1 * 3 = 3`, cəmi `4`."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    const total = 7 / 2.0
+    fmt.Println(total)
+  options: ["3", "3.5", "4"]
+  answer: 1
+  explain: "`2.0` kəsr ədəd olduğu üçün bölmə kəsr nəticə verir."
+
+- question: Bunlardan hansı sabit ola bilər?
+  options: ["const now = time.Now()", "const day = 24 * 60", "const list = []int{1}"]
+  answer: 1
+  explain: Sabitin dəyəri kompilyasiya zamanı bilinməlidir; cari vaxt və slice belə dəyər deyil.

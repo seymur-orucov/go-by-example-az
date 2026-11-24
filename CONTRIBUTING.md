@@ -102,4 +102,4 @@ Text from roadmap.sh, itbooster.ru, hellointerview.com, algomaster.io and greatf
 
 ## License
 
-By contributing, you agree that code is licensed under the [MIT License](LICENSE) and learning content under [CC BY 3.0](LICENSE-CONTENT).
+By contributing, you agree that code is licensed under the [MIT License](LICENSE) and learning content under [CC BY 4.0](LICENSE-CONTENT).

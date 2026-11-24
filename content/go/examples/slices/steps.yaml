@@ -1,0 +1,17 @@
+nil:
+  out: "səbət: [] 0 true"
+  vis: { kind: slice, name: cart, nil: true, cells: [], len: 0, cap: 0 }
+append:
+  out: "səbət: [çörək pendir çay] 3 3"
+  vis: { kind: slice, name: cart, cells: [çörək, pendir, çay], len: 3, cap: 3, fresh: [0, 1, 2] }
+index:
+  out: "ilk məhsul: lavaş"
+  vis: { kind: slice, name: cart, cells: [lavaş, pendir, çay], len: 3, cap: 3, fresh: [0] }
+make:
+  out: "say: [0 0 2]"
+  vis: { kind: slice, name: counts, cells: ["0", "0", "2"], len: 3, cap: 3, fresh: [2] }
+sub:
+  out: |
+    ilk ikisi: [lavaş yağ]
+    səbət: [lavaş yağ çay]
+  vis: { kind: slice, name: "cart[:2]", cells: [lavaş, yağ, çay], len: 2, cap: 3, window: [0, 2] }

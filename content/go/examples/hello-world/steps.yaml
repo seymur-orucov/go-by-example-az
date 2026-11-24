@@ -1,0 +1,6 @@
+package: {}
+import: {}
+main:
+  out: "Çay evi açıqdır"
+print:
+  out: "Menyu: çay, kofe, limonad"

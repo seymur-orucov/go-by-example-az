@@ -1,0 +1,5 @@
+tələbə: Aysel
+80 90
+0 false
+şərh boşdur: true
+85 100

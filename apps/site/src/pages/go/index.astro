@@ -1,0 +1,330 @@
+---
+import Icon from "@platform/theme/components/Icon.astro";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import { getGoCatalog, LEVEL_LABEL } from "../../lib/go";
+
+const { sections, total } = await getGoCatalog();
+const first = sections[0]?.items[0];
+const LIMIT = 6;
+---
+
+<SiteLayout
+  title="Go — Nümunələrlə"
+  description="Go proqramlaşdırma dilini Azərbaycan dilində, qısa izah, işlək kod və vizual nümunələrlə öyrənin."
+  tech="go"
+>
+  <main class="container" data-go-index>
+    <section class="hero" id="start" data-spy="Başla">
+      <div class="hero-bg" aria-hidden="true">
+        <span class="blob b1"></span>
+        <span class="blob b2"></span>
+        <span class="blob b3"></span>
+      </div>
+      <div class="hero-grid">
+        <div>
+          <nav class="crumbs home-crumbs" aria-label="Yol">
+            <a href="/">Ana səhifə</a>
+            <span class="sep">/</span>
+            <a href="/#yol">Texnologiyalar</a>
+            <span class="sep">/</span>
+            <span>Go</span>
+          </nav>
+          <h1>
+            Go-nu <span class="grad-text">nümunələrlə</span> öyrən
+          </h1>
+          <p class="sub">
+            {total} qısa nümunə — hər biri 2–3 cümləlik izah, işlək kod və addım-addım vizual.
+            Tamamilə Azərbaycan dilində və pulsuz.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-primary btn-lg" href={first?.href}>
+              Öyrənməyə başla
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14M13 6l6 6-6 6"></path>
+              </svg>
+            </a>
+            <a class="btn btn-lg" href="#proqram">
+              Bütün mövzular
+            </a>
+            <a class="btn btn-lg" href="/go/roadmap/">
+              Yol xəritəsi
+            </a>
+          </div>
+        </div>
+        <aside class="resume" aria-label="İrəliləyiş">
+          <div class="resume-top">
+            <div class="ring">
+              <svg viewBox="0 0 54 54">
+                <defs>
+                  <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" style="stop-color:var(--accent)"></stop>
+                    <stop offset="1" style="stop-color:var(--accent-2)"></stop>
+                  </linearGradient>
+                </defs>
+                <circle class="track" cx="27" cy="27" r="23"></circle>
+                <circle
+                  class="bar"
+                  id="ring-bar"
+                  cx="27"
+                  cy="27"
+                  r="23"
+                  stroke-dasharray="144.5"
+                  stroke-dashoffset="144.5"
+                ></circle>
+              </svg>
+              <b id="ring-pct">0%</b>
+            </div>
+            <div>
+              <h3 id="r-title">Sənin irəliləyişin</h3>
+              <p>Bu brauzerdə saxlanılır</p>
+            </div>
+          </div>
+          <a class="resume-next" id="r-next" href={first?.href}>
+            <div>
+              <span class="k">NÖVBƏTİ</span>
+              <b id="r-next-title">{first?.title}</b>
+              <small id="r-next-sub">{first?.sub}</small>
+            </div>
+            <span class="go">→</span>
+          </a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="proqram" data-spy="Proqram">
+      <div class="section-head">
+        <span class="tag-code">
+          roadmap.Choose()<span class="caret"></span>
+        </span>
+        <h2>
+          {sections.length} bölmə. {total} nümunə.
+        </h2>
+        <p>Sadədən mürəkkəbə. İstənilən yerdən başla.</p>
+      </div>
+      <div class="prog-bar">
+        <button class="search-big" data-open-search>
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="11" cy="11" r="7"></circle>
+            <path d="m20 20-3.5-3.5"></path>
+          </svg>
+          Nümunə, mövzu və ya açar söz axtar…
+        </button>
+        <div class="view-switch" role="group" aria-label="Görünüş">
+          <button data-view="cards" aria-pressed="true">
+            Bütün mövzular
+          </button>
+          <button data-view="tracks" aria-pressed="false">
+            Bölmə üzrə
+          </button>
+          <button data-view="map" aria-pressed="false">
+            Yol xəritəsi
+          </button>
+        </div>
+      </div>
+
+      <!-- View 1: all topics (cards) -->
+      <div id="view-cards" class="sections-grid">
+        {sections.map((s) => (
+          <article class="section-card" style={`--c:${s.color}`} data-group>
+            <div class="sc-head">
+              <span class="sc-icon">
+                <Icon name={s.icon} />
+              </span>
+              <h3>{s.title}</h3>
+              <span class="sc-count">
+                <span data-done>0</span>/{s.items.length}
+              </span>
+            </div>
+            <p>{s.description}</p>
+            <div class="sc-bar">
+              <span data-bar style="width:0%" />
+            </div>
+            <ul class="sc-list">
+              {s.items.map((it, i) => (
+                <li
+                  hidden={i >= LIMIT}
+                  data-slug={it.slug}
+                  data-title={it.title}
+                  data-subtitle={it.sub}
+                >
+                  <a href={it.href}>
+                    <span class="check empty" data-check>
+                      <Icon name="circle" />
+                    </span>
+                    <span>{it.title}</span>
+                    <span class="sub" data-sub>
+                      {it.sub}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+            {s.items.length > LIMIT && (
+              <button class="sc-more" data-more>
+                + daha {s.items.length - LIMIT} nümunə
+              </button>
+            )}
+          </article>
+        ))}
+      </div>
+
+      <!-- View 2: by section (tracks + rows) -->
+      <div id="view-tracks" hidden>
+        <div class="tracks">
+          {sections.map((s) => (
+            <button
+              class="track"
+              data-track={s.id}
+              aria-pressed="false"
+              style={`--c:${s.color}`}
+              data-group
+            >
+              <span class="sc-icon">
+                <Icon name={s.icon} />
+              </span>
+              <h3>{s.title}</h3>
+              <p>{s.description}</p>
+              <span class="meta">
+                <span>
+                  {s.items.length} nümunə · {LEVEL_LABEL[s.level]}
+                </span>
+                <span>
+                  <span data-done>0</span>/{s.items.length}
+                </span>
+              </span>
+              <span class="sc-bar" style="margin:4px 0 0">
+                <span data-bar style="width:0%" />
+              </span>
+            </button>
+          ))}
+        </div>
+        <div class="track-view" id="track-view">
+          <div class="filter" id="filter">
+            <button data-f="all" aria-pressed="true">
+              Hamısı
+            </button>
+            <button data-f="todo" aria-pressed="false">
+              Öyrənilməyən
+            </button>
+            <button data-f="done" aria-pressed="false">
+              Öyrənilən
+            </button>
+          </div>
+          {sections.map((s) => (
+            <div data-panel={s.id} hidden>
+              <div class="tv-head">
+                <span class="sc-icon" style={`--c:${s.color}`}>
+                  <Icon name={s.icon} />
+                </span>
+                <div>
+                  <h3>{s.title}</h3>
+                  <p>{s.description}</p>
+                </div>
+              </div>
+              <div class="rows">
+                {s.items.map((it) => (
+                  <a class="row" href={it.href} data-slug={it.slug}>
+                    <span class="n">{String(it.n).padStart(2, "0")}</span>
+                    <span>
+                      <b>{it.title}</b>
+                      <span class="meta">
+                        <span>{it.sub}</span>
+                        {it.duration && (
+                          <>
+                            <span>·</span>
+                            <span>{it.duration} dəq</span>
+                          </>
+                        )}
+                        <span>·</span>
+                        <span class={`lvl ${LEVEL_LABEL[it.level]}`}>{LEVEL_LABEL[it.level]}</span>
+                      </span>
+                    </span>
+                    <span class="arrow" data-todo-mark>
+                      →
+                    </span>
+                    <span class="done" data-done-mark hidden>
+                      ✓ öyrənildi
+                    </span>
+                  </a>
+                ))}
+                <p
+                  class="rows-empty"
+                  hidden
+                  style="padding:20px;text-align:center;color:var(--text-subtle)"
+                >
+                  Bu filtrdə nümunə yoxdur
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- View 3: roadmap -->
+      <div id="view-map" hidden>
+        <div class="map-legend">
+          <span>
+            <i style="background:var(--green)"></i>öyrənilib
+          </span>
+          <span>
+            <i style="background:var(--accent)"></i>növbəti
+          </span>
+          <span>
+            <i></i>qarşıda
+          </span>
+        </div>
+        <div class="map">
+          {sections.map((s) => {
+            const half = Math.ceil(s.items.length / 2);
+            const leaf = (it: (typeof s.items)[number]) => (
+              <a class="leaf" href={it.href} data-slug={it.slug}>
+                <i />
+                {it.title}
+              </a>
+            );
+            return (
+              <div class="map-row" data-group>
+                <div class="map-branch left">{s.items.slice(0, half).map(leaf)}</div>
+                <div class="map-node">
+                  <b>{s.title}</b>
+                  <small>
+                    <span data-done>0</span> / {s.items.length} · {LEVEL_LABEL[s.level]}
+                  </small>
+                  <span class="bar">
+                    <span data-bar style="width:0%" />
+                  </span>
+                </div>
+                <div class="map-branch right">{s.items.slice(half).map(leaf)}</div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <template id="icon-check">
+    <Icon name="check" />
+  </template>
+  <template id="icon-circle">
+    <Icon name="circle" />
+  </template>
+
+  <script>
+    import "../../scripts/go-index";
+  </script>
+</SiteLayout>

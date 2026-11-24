@@ -1,0 +1,10 @@
+var:
+  out: "tələbə: Aysel"
+typed:
+  out: "80 90"
+zero:
+  out: |
+    0 false
+    şərh boşdur: true
+short:
+  out: "85 100"

@@ -104,6 +104,36 @@ The project follows widely used international conventions and best practices. De
 | Content layout: `content/go/examples/<slug>/{meta.yaml, main.go, steps.yaml, az.md, output.txt}`; localized files carry a locale suffix (`az`); roadmaps in `content/roadmaps/*.yaml`; all 84 topics exist as `meta.yaml` (`status: ready | planned`) | `main.go` stays pure Go so CI can run it; i18n-ready; planned topics render as "tezliklə" |
 | `design/` stays untouched as the visual reference until the site reaches parity | Side-by-side comparison; nothing is lost |
 
+## Original content (2026-11-24)
+
+Supersedes the "based on, adapted and simplified" approach for lesson content (the rows on CC BY 3.0 attribution below stay valid for lessons that are still adapted).
+
+| Decision | Rationale |
+|---|---|
+| Lessons are **original**: our own code examples and our own explanations, written from scratch — not translations or adaptations of Go by Example. Topic list, order and the "learn by example" approach may still follow Go by Example, roadmap.sh and itbooster.ru (ideas and topic lists are not protected; their texts and code are) | The user's decision: clearer explanations, and content that is fully ours |
+| Every ready lesson declares `source: original` or `source: adapted` in `meta.yaml` (`pnpm content:check` requires it). The footer keeps the Go by Example CC BY 3.0 attribution while **any** ready lesson is `adapted`; when none is left the site **does not mention Go by Example at all** — no courtesy credit (the user's decision, 2026-11-24) | A translation is a derivative work: removing the attribution while adapted lessons are online would breach CC BY 3.0; original lessons owe nothing to it |
+| **Programming terms are not translated**: slice, map, struct, interface, receiver, method, pointer, goroutine, channel, closure, package, … stay in English in the text; the explanation around them is in Azerbaijani (the user's rule) | Readers meet these words in docs, errors and jobs; a translated term would have to be unlearned |
+| Explanations are **short but high quality**: each sentence adds something; **real-life examples** (prices, a shopping cart, a library, a bus route, exam grades, …) are welcome in code and text | The user's rule; real-life context makes the examples clearly ours and easier to remember |
+| Length follows the topic: the lesson intro is 2–4 sentences (what the concept is, how it differs from the closest concept already taught, what it is good for); steps are usually 2–3 sentences, a harder idea may take 4–5 (2026-11-24) | The user: one sentence is not enough to introduce some concepts (the first `constants` intro) |
+| Money in examples is in **US dollars** (`USD` in output), not manat (2026-11-24) | Lessons will be translated; a local currency is unclear to readers in other countries |
+| Learning content license: **CC BY 4.0** (`LICENSE-CONTENT`); adapted lessons keep the Go by Example CC BY 3.0 attribution until rewritten (2026-11-24) | The user's decision; 4.0 is the current international version. CC BY 3.0 (without ShareAlike) does not restrict the license of an adaptation, only requires the attribution |
+| Lessons are written with Claude Code using the project skill `.claude/skills/write-lesson/` (rules, originality guard, verification checklist); the user reviews tone and clarity before a lesson is merged | Code and quiz answers are verified by running Go; the rules apply the same way to every lesson |
+| Known risk: AI models can reproduce well-known snippets from memory (the first `constants` draft was almost Go by Example's code). The skill forbids it and requires a self-check against the topic's best-known examples | Originality has to be checked, not assumed |
+
+## Lesson content format (2026-11-24)
+
+Supersedes the file list in the "Content layout" row above (`az.md` becomes `lesson.az.md`; `quiz.az.yaml` is added).
+
+| Decision | Rationale |
+|---|---|
+| A lesson is `content/<technology>/examples/<slug>/` with `meta.yaml`, `main.go`, `lesson.<locale>.md`, `steps.yaml`, `quiz.<locale>.yaml` and the generated `output.txt` | Code, language-independent data and localized text are separate; a new locale only adds `*.<locale>.*` files |
+| Code ↔ step link: **marker comments** `//@step <id>` in `main.go`; a step runs until the next marker, an `//@end` or the end of `main`; `// @step` (with a space, as gofmt writes a marker above a top-level declaration) is accepted too. Markers are stripped at build time and line ranges are computed | Hand-written line numbers (`lines: [9, 13]` in the prototype) break on every code edit; `main.go` stays plain, runnable Go |
+| Text lives in `lesson.<locale>.md`: an intro, then one `## Title {#id}` heading per step, then optional closing text. Step ids must match the markers; a mismatch fails the build | Long prose is easier to write, review and translate in Markdown than in YAML |
+| `steps.yaml` holds per-step data keyed by step id: `out` (expected output) and optional `vis` with a `kind` (`slice`, `map`, `channel`, `goroutine`, …) | Visual data is language-independent; `kind` leaves room for new visualizers |
+| CI checks that the steps' `out` values appear in `output.txt` in order | Wrong output never reaches the site |
+| **Quiz**: required for every `status: ready` lesson, **5–10 questions** depending on the topic (the user's rule); stored in `quiz.<locale>.yaml` | Self-check on every lesson; kept in its own file because tests become a separate platform section in Phase 6 |
+| Slugs and step ids are **stable** once published | Future server-side progress and roadmap nodes (Phase 6) reference them |
+
 ## Design
 
 | Decision | Rationale |
@@ -125,6 +155,7 @@ The project follows widely used international conventions and best practices. De
 | Variants A, B and C are **archived** under `design/archive/`, not deleted (2026-11-23) | The user agreed; kept for reference. D's shared files live in `design/shared/` (done 2026-11-23) |
 | Technology switcher in the header (`Go ▾` → Python, Rust… "coming soon") and a "One platform, several languages" section | Preparation for the hub |
 | Narrow screens: < 1200px a code snippet under each step; < 980px the sidebar becomes a drawer | Mobile UX |
+| Lesson quiz ("Özünü yoxla") is a **slider**: one question at a time, prev/next and `←`/`→`, progress dots (green = right on the first try, amber = after a retry), a result slide with the score and "Yenidən başla" (2026-11-24) | The user's wish |
 
 ## Open questions (awaiting decision)
 
@@ -143,3 +174,4 @@ The project follows widely used international conventions and best practices. De
 - Consent from the authors of hellointerview.com and algomaster.io (same as for roadmap.sh and itbooster.ru). Consent records: _none yet_.
 - greatfrontend.com: read its terms (could not be fetched on 2026-11-23) and record the license here; then ask the authors for consent if texts are wanted. Consent records: _none yet_.
 - Which languages come after Azerbaijani, and who reviews translation quality?
+- ~~Content license once every lesson is original: CC BY 3.0 or 4.0?~~ — decided 2026-11-24: CC BY 4.0, see "Original content".

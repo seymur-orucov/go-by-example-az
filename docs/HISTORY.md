@@ -174,3 +174,82 @@ Module 1 done (branch `chore/repo-skeleton`):
 The user asked whether the backend will be written in Go and whether the database will be PostgreSQL, then asked for alternatives to Supabase, and chose the paid option: **Go API + managed PostgreSQL, paid hosting allowed**.
 
 Done: recorded in [DECISIONS.md](DECISIONS.md) (Technical architecture); the open question was narrowed to the details (sign-in method, auth approach, Postgres and API host, budget), to be compared with live prices when Phase 6 starts; [ROADMAP.md](ROADMAP.md) Phase 6 updated. Phases 2–5 are unaffected (static site).
+
+### 27. Phase 2, module 2 (part 1): content model, theme package, /go/
+The user asked to continue with module 2, step by step: content, then theme, then the `/go/` page.
+
+Done (branch `feat/site-content-theme`, built on module 1):
+- Astro `glob`/`file` loaders read `content/go/` from outside the Astro root (the planned spike worked). `sections.yaml` + `meta.yaml` for all 84 topics (generated once from `design/shared/data.js`); `hello-world` is `ready`, the rest `planned`. Levels are provisional.
+- `packages/theme`: styles split into tokens / base / platform; `Layout`, `Header`, `Footer`, `Icon`; vanilla TypeScript shell (theme, palette picker, menus, toast, Ctrl+K search that ignores Azerbaijani diacritics, drawer, spy). The demo progress (8 topics pre-learned) was dropped; progress starts empty. `goaz:*` storage keys are kept.
+- `/go/`: statically rendered hero, section cards, tracks and roadmap views; progress painted from `localStorage`.
+- Found: the `file()` loader does not keep the yaml order, so sections carry an explicit `order`.
+- Checked in headless Chrome over DevTools (progress, views, filter, search, no JS errors). Mobile not verified (headless minimum width).
+- Left out on purpose: demo player and the "Niyə bu sayt" bento (they promise features that do not exist yet); "Go 1.27" badge (unverified claim).
+- Tooling note: `astro preview` must be stopped with `astro preview stop`; stopping the wrapper does not stop the server.
+
+### 28. Lesson content format
+Before building the lesson page, the content format was agreed with the user (recorded in [DECISIONS.md](DECISIONS.md#lesson-content-format-2026-11-24)): `//@step` markers in `main.go`, text in `lesson.az.md`, per-step data in `steps.yaml`, a required quiz of 5–10 questions in `quiz.az.yaml` (the user's rule), and `output.txt` checked in CI.
+
+Done: lesson loader and validator (`apps/site/src/lib/lesson.ts`), `pnpm content:check` (also in CI), `hello-world` and `slices` rewritten in the new format.
+
+### 29. Phase 2, module 2 (part 2): lesson page /go/<slug>/
+The user asked to continue with the lesson page: Shiki, sidebar, steps, two-way highlighting, visual and quiz.
+
+Done (branch `feat/site-content-theme`):
+- `/go/<slug>/` for all 84 topics. Ready lessons: intro, steps with Markdown text (a blockquote becomes a note box), the full-height code window, per-step output, memory visual (`Vis`, `kind: slice`), outro, all quiz questions with a first-try score, pager. Planned topics get a short "Hazırlanır" page instead of a 404 (the `/go/` page and the sidebar link to every topic).
+- Shiki tokenizes Go at build time; TextMate scopes are mapped to the existing `tok-*` classes, so the palettes and light/dark theme keep working without a Shiki theme.
+- Two-way highlighting as in D: hover/click a step → code lines, hover/click a code line → step; scroll picks the step in the middle; `←`/`→` move between steps, `Shift ←/→` between lessons; ▶ plays the steps.
+- View modes (sidebar `[`, width `F`, Zen `Z`/`Esc`) ported from `d.js` to `packages/theme` (`view-modes.ts`, `ViewMenu`), applied before first paint.
+- Sidebar: all sections, collapsible, progress from `localStorage`; "Öyrəndim" updates it.
+- Honest labels: the run button is "Tam çıxış" and shows the recorded `output.txt`; "Redaktə" and the Playground link are left out until module 3 (CodeMirror, `/api/run`).
+- Checked in headless Chrome: steps, arrows, hover both ways, full output, quiz, learned, Zen, sidebar toggle, no JS errors; 390px without horizontal scroll. Not yet done: the explanation ↔ code arrow.
+
+### 30. Quiz as a slider
+The user asked for the "Özünü yoxla" quiz to be a slider instead of a list of all questions.
+
+Done (branch `feat/site-content-theme`; recorded in [DECISIONS.md](DECISIONS.md#design)):
+- One question at a time; "‹ Əvvəlki" / "Növbəti ›" and `←`/`→` while focus is inside the quiz (they do not move lesson steps or switch lessons there); clickable progress dots: green = right on the first try, amber = right after a retry; the "Növbəti" button is highlighted once the question is answered.
+- After the last question, a result slide: a ring with the first-try score, a short verdict, "Yenidən başla".
+- The viewport follows the height of the visible slide; hidden slides are `inert`; the slide and height transitions are switched off under `prefers-reduced-motion` by the global rule.
+- Quiz logic moved from `lesson.ts` to its own `scripts/quiz.ts`.
+- Checked in headless Chrome at 1440px and 390px: navigation, dots, arrows, score, no JS errors.
+
+### 31. Lesson sources for future technologies; pilot content (part 1)
+The user agreed to start the pilot content with 2–3 lessons for review, in its own module PR, and asked where content and roadmaps for a future technology (e.g. TypeScript) would come from.
+
+Answer given: the roadmap follows the existing decision (topics and order from a merge of roadmap.sh and itbooster.ru; their texts only with the author's consent). For lesson text there is no openly licensed "by example" source like Go by Example, so the default is to write our own examples and explanations, using official docs only to check facts. The TypeScript Handbook's license is **not verified yet**; it is to be read and recorded in DECISIONS.md when that module starts. The lesson format carries over (`main.ts`, same markers); the loader needs the file name, Shiki language and run command per technology.
+
+Done (branch `feat/pilot-content`):
+- `values`, `variables`, `constants` written in the lesson format and marked `ready`: code checked with `gofmt`, `go vet`, `go run` (Go 1.26); `output.txt` is the real output; every quiz answer verified by compiling or running the snippet.
+- Found: gofmt rewrites a marker above a top-level declaration to `// @step`; the loader accepts both spellings. A multi-line `out:` no longer leaves an empty line in the terminal.
+- Checked in headless Chrome: steps, highlighted lines and output for `values` and `constants`.
+
+### 32. Original content; write-lesson skill
+The user decided that lessons must be original (own examples and text; topic order and approach may follow Go by Example), asked how best to write original content with AI and where the roadmap comes from, and added rules: programming terms (slice, receiver, interface, struct, …) are not translated; explanations are short but high quality; real-life examples are welcome.
+
+Answers given: Claude Code with a project skill (it sees the format, runs Go, verifies quiz answers, builds and checks the page), the user reviewing tone; official Go docs only for facts; a glossary for consistent terms. Roadmap: our own, built by comparing Go by Example's topic order, roadmap.sh and itbooster.ru (topic lists and order only), plus our own gaps; node texts written by us.
+
+Done (branch `feat/pilot-content`; recorded in [DECISIONS.md](DECISIONS.md#original-content-2026-11-24)):
+- `source: original | adapted` in `meta.yaml`, required for ready lessons by `pnpm content:check`. The footer keeps the Go by Example CC BY 3.0 attribution while any ready lesson is adapted, then switches to an "İlham mənbəyi" credit line. `LICENSE-CONTENT` and README explain the split; the final content license (CC BY 3.0 or 4.0) is an open question.
+- Skill `.claude/skills/write-lesson/SKILL.md`: brief, originality self-check against the best-known examples, real-life context, terms in English, style, file rules, verification (`gofmt`, `go vet`, `go run`, every quiz answer compiled, `content:check`, build).
+- Rewritten with the skill as original lessons: `constants` (a Baku taxi fare: package-level constant, `const ( … )` block, untyped constants, constant expressions) and `slices` (a market cart: nil slice, `append`, index, `make`, slice of a slice sharing elements). All outputs and quiz answers verified with Go 1.26.
+- Found and fixed: memory-visual cells had a fixed width, so real words ("çörək") overflowed; cells now grow with their text. "massiv" removed from the empty-slice label and the slices subtitle (term rule).
+- Still adapted (to be rewritten): `hello-world`, `values`, `variables`.
+
+### 33. CC BY 4.0, no Go by Example credit, dollars, longer intros
+The user decided: content moves to CC BY 4.0; the site will not mention Go by Example (no courtesy credit); money in examples is in US dollars, not manat, because the content will be translated; some topics need more than one sentence of explanation — the `constants` intro was too short.
+
+Done (branch `feat/pilot-content`; recorded in [DECISIONS.md](DECISIONS.md#original-content-2026-11-24)):
+- `LICENSE-CONTENT`, README, CONTRIBUTING: CC BY 4.0; the Go by Example CC BY 3.0 attribution now covers only `source: adapted` lessons (and the prototype copies).
+- Footer: the "İlham mənbəyi" line is removed; the required attribution stays while `hello-world`, `values`, `variables` are adapted, then disappears on its own; a CC BY 4.0 content line is always shown.
+- `constants`: prices in USD (output regenerated with Go 1.26); the intro is two short paragraphs (constant vs variable, compile time explained, why a named constant helps).
+- Skill `write-lesson`: money in USD; length follows the topic (intro 2–4 sentences, harder steps up to 4–5).
+
+### 34. `hello-world`, `values`, `variables` rewritten as original lessons
+The user agreed to rewrite the last three adapted lessons so the site no longer needs the Go by Example attribution.
+
+Done (branch `feat/pilot-content`), with the `write-lesson` skill:
+- `hello-world` (a café sign: `package`, `import`, `main`, `Print` vs `Println`), `values` (a café bill: strings, integer vs float division, bool), `variables` (a student's exam results: `var`, explicit type, zero value, `:=`). All have `source: original`, dollars instead of local currency, a 2-paragraph intro and 7 quiz questions each (4 steps).
+- Verified with Go 1.26: `gofmt`, `go vet`, `go run` (`output.txt`); every quiz snippet compiled or run in a scratch directory (21 snippets, compiler messages checked for the "does not compile" questions); `pnpm content:check`, lint, format, check, build; step line ranges in the built pages.
+- No ready lesson is `adapted` now, so the footer drops the Go by Example attribution by itself (checked in the build: no mention of Go by Example in any lesson page). The README, `LICENSE-CONTENT` and the design prototype still mention it.
+- Awaiting the user's review of tone and clarity.

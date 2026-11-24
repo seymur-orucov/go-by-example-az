@@ -96,22 +96,26 @@ functions/api/run.ts   # go.dev/_/compile proxy (rate limit + size limit)
 ```
 
 - [x] pnpm workspaces (version pinned via `packageManager`, Node 24 via `devEngines`), Astro 7 site skeleton — module 1
-- [ ] Content Collections + Zod schema (module 2)
+- [x] Content Collections + Zod schema: `goSections`, `goExamples`; `content/go/sections.yaml` and `meta.yaml` for all 84 topics (module 2)
 - [x] Tooling: commitlint + lefthook git hooks, Prettier + ESLint, `CHANGELOG.md` (Keep a Changelog), SemVer from the first release (`0.1.0`) — module 1
 - [x] Minimal CI (`.github/workflows/ci.yml`): lint, format check, type check, build, PR title check — module 1 (Go checks and Cloudflare stay in Phase 4)
-- [ ] Move Variant D's tokens and components into `packages/theme`
-- [ ] Build-time syntax highlighting with Shiki (replacing the prototype's simple highlighter)
+- [x] Move Variant D's tokens and components into `packages/theme`: styles, `Layout`, `Header` (+ `ViewMenu` on lessons), `Footer`, `Icon`, shell scripts (theme, palette, menus, Ctrl+K search, spy, view modes); lesson-specific parts (`LessonSidebar`, `Vis`, `Quiz`, walkthrough script) live in `apps/site` (module 2)
+- [~] Pages: `/go/` and `/go/<slug>/` done (ready lessons: walkthrough, two-way highlighting, memory visual, quiz; planned topics: an "in preparation" page); `/go/roadmap/`, `/` and `/roadmaps/backend/` remain (module 2)
+- [x] Lesson content format: `main.go` with `//@step` markers, `lesson.az.md`, `steps.yaml`, `quiz.az.yaml`, `output.txt`; loader + `pnpm content:check` in CI (module 2)
+- [x] Build-time syntax highlighting with Shiki (replacing the prototype's simple highlighter); scopes are mapped to the theme's `--tok-*` colors, so palettes and light/dark keep working (module 2)
 - [ ] Static search with Pagefind (`Ctrl+K` palette)
 - [ ] CodeMirror 6 — lazy-loaded only when "Edit" is clicked
 - [ ] `/api/run` — Cloudflare Pages Function, proxy to `go.dev/_/compile` (no CORS, so a proxy is needed)
-- [ ] Progress in `localStorage` (with try/catch)
-- [ ] View modes (sidebar, width, zen) and animations move into components; `prefers-reduced-motion` is preserved
+- [x] Progress in `localStorage` (with try/catch): `/go/`, lesson sidebar and the "Öyrəndim" button (module 2)
+- [~] View modes (sidebar, width, zen) moved into the theme (`view-modes.ts`, `ViewMenu`); `prefers-reduced-motion` is preserved. Home page animations remain (module 2)
 
-## Phase 3 — Pilot content `[ ]`
+## Phase 3 — Pilot content `[~]`
 
 10 examples, each simpler than the original, with a compact explanation in Azerbaijani:
 
-- [ ] hello-world · values · variables · constants · for · if-else · slices · maps · functions · goroutines
+- [~] hello-world · values · variables · constants · for · if-else · slices · maps · functions · goroutines — **original** (`source: original`, awaiting the user's review): hello-world, values, variables, constants, slices; remaining: for, if-else, maps, functions, goroutines
+- [x] Project skill `.claude/skills/write-lesson/` for writing original lessons (rules, originality guard, verification checklist)
+- [x] Content license CC BY 4.0; no Go by Example credit on the site once no adapted lesson is left; money in examples in USD; intro length rule in the skill
 - [ ] Terminology glossary (`docs/GLOSSARY.md`): English term + short Azerbaijani explanation
 - [ ] Step visuals for topics that need them (slice, map, channel, goroutine)
 
@@ -174,7 +178,7 @@ Once the Go prototype is live, the site becomes a unified platform.
 ## Where to start next session
 
 1. `pnpm install`, then `pnpm lint && pnpm format:check && pnpm check && pnpm build` to confirm the workspace is healthy. The design reference: `node design/serve.mjs` → http://localhost:4321/d/.
-2. Phase 2, **module 2** (`feat/site-content-theme`): content model, `packages/theme`, the 4 pages — see [DECISIONS.md](DECISIONS.md#phase-2-technical-decisions-2026-11-23) and the plan in HISTORY entry 25. Spike first: the Astro `glob` loader with a base outside the Astro root.
+2. Phase 2, **module 2** (`feat/site-content-theme`), continued: the lesson page `/go/<slug>/` is done; next `/go/roadmap/`, `/` and `/roadmaps/backend/`. Lesson page leftovers: the explanation ↔ code arrow/curved line (moved to Phase 2), "Redaktə" + live run (module 3: CodeMirror, `/api/run`). Also still to port: the "Oxuma — gör" demo player and the "Niyə bu sayt" bento (left out of `/go/` on purpose).
 3. The platform name is still open; nothing in Phase 2 depends on it.
 4. Work on a branch and commit with Conventional Commits (see [CONTRIBUTING.md](../CONTRIBUTING.md)); group work into module PRs.
 

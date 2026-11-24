@@ -1,0 +1,2 @@
+Çay evi açıqdır
+Menyu: çay, kofe, limonad

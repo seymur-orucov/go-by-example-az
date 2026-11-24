@@ -1,0 +1,46 @@
+---
+// Memory visual for a lesson step. One branch per `vis.kind` (see visSchema in lib/lesson.ts).
+// Markup and classes follow design/shared/b.js renderVis.
+import type { Vis } from "../lib/lesson";
+
+interface Props {
+  vis: Vis;
+}
+
+const { vis } = Astro.props;
+const shown = (v: string) => (v === "" ? "·" : /^\d+$/.test(v) ? v : `"${v}"`);
+const cellClass = (i: number) => {
+  let cls = "cell";
+  if (vis.window) cls += i >= vis.window[0] && i < vis.window[1] ? " in" : " out";
+  else if (i >= vis.len) cls += " cap";
+  if (vis.fresh?.includes(i)) cls += " fresh";
+  return cls;
+};
+---
+
+{vis.kind === "slice" && (
+  <div class="vis">
+    <div class="vis-head">
+      <span class="var">{vis.name}</span>
+      {vis.nil && <span class="field nil">nil</span>}
+      <span class="field">
+        len <b>{vis.len}</b>
+      </span>
+      <span class="field">
+        cap <b>{vis.cap}</b>
+      </span>
+    </div>
+    <div class="cells">
+      {vis.cells.length === 0 ? (
+        <div class="cells-empty">hələ yer ayrılmayıb — ilk append zamanı ayrılacaq</div>
+      ) : (
+        vis.cells.map((val, i) => (
+          <div class={cellClass(i)} style={`animation-delay:${i * 40}ms`}>
+            <span class="idx">{i}</span>
+            <span class="box">{shown(val)}</span>
+          </div>
+        ))
+      )}
+    </div>
+  </div>
+)}

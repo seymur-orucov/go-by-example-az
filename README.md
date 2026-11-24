@@ -72,6 +72,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). In short: work on a branch, use [Convent
 ## License and attribution
 
 - **Code** is licensed under the [MIT License](LICENSE).
-- **Learning content** is licensed under [CC BY 3.0](LICENSE-CONTENT). It is based on the [Go by Example](https://gobyexample.com) project by Mark McGranaghan and Eli Bendersky, adapted to Azerbaijani and simplified; the original content is shared under the same license.
+- **Learning content** is licensed under [CC BY 4.0](LICENSE-CONTENT). Lessons are original content (own code and text, `source: original`); a lesson marked `source: adapted` would be based on the [Go by Example](https://gobyexample.com) project by Mark McGranaghan and Eli Bendersky (CC BY 3.0), adapted to Azerbaijani and simplified.
 
 The Go name belongs to Google LLC.
