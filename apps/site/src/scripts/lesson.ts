@@ -1,6 +1,6 @@
 // Lesson walkthrough, ported from design/shared/b.js (createLesson) and design/d/example.html:
 // step controls, two-way explanation <-> code highlighting, step output, play, full output,
-// copy, quiz and the "Öyrəndim" button. The page renders all markup; this only adds behavior.
+// copy and the "Öyrəndim" button (the quiz lives in quiz.ts). The page renders all markup; this only adds behavior.
 import { store } from "@platform/theme/scripts/storage";
 import { escapeHtml } from "@platform/theme/scripts/text";
 import { toast } from "@platform/theme/scripts/toast";
@@ -219,6 +219,8 @@ function initWalkthrough(data: LessonData): void {
       const a = document.activeElement as HTMLElement | null;
       if (a && (/INPUT|TEXTAREA|SELECT/.test(a.tagName) || a.isContentEditable)) return;
       if (document.querySelector(".palette-backdrop.open")) return;
+      // Inside the quiz the arrows move between questions (quiz.ts stops them there).
+      if (a?.closest("[data-quiz]")) return;
       ev.stopPropagation();
       ev.preventDefault();
       stop();
@@ -286,46 +288,6 @@ async function copyText(text: string): Promise<boolean> {
   }
 }
 
-// Each question: a wrong option is marked and disabled, the right one ends the question.
-// The score counts questions answered right on the first try.
-function initQuiz(): void {
-  const quiz = $("[data-quiz]");
-  if (!quiz) return;
-  const items = Array.from(quiz.querySelectorAll<HTMLElement>(".quiz-q"));
-  const score = $("[data-quiz-score]", quiz)!;
-  let answered = 0;
-  let firstTry = 0;
-
-  items.forEach((q) => {
-    const answer = Number(q.dataset.answer);
-    const fb = $(".quiz-feedback", q)!;
-    const explain = $<HTMLTemplateElement>("template", q)!.innerHTML.trim();
-    let misses = 0;
-    q.addEventListener("click", (ev) => {
-      const b = (ev.target as Element).closest<HTMLButtonElement>(".quiz-option");
-      if (!b || b.disabled) return;
-      if (Number(b.dataset.i) === answer) {
-        b.classList.add("correct");
-        q.querySelectorAll<HTMLButtonElement>(".quiz-option").forEach((o) => (o.disabled = true));
-        fb.className = "quiz-feedback ok";
-        fb.innerHTML = "Düzdür!" + (explain ? " " + explain : "");
-        answered++;
-        if (misses === 0) firstTry++;
-        if (answered === items.length) {
-          score.hidden = false;
-          score.textContent = `Nəticə: ${firstTry} / ${items.length} sual ilk cəhddə düz.`;
-        }
-      } else {
-        misses++;
-        b.classList.add("wrong");
-        b.disabled = true;
-        fb.className = "quiz-feedback no";
-        fb.textContent = "Yox. Yenidən cəhd edin.";
-      }
-    });
-  });
-}
-
 function initLearned(data: LessonData): void {
   const btn = $<HTMLButtonElement>("[data-learned]");
   if (!btn) return;
@@ -352,6 +314,5 @@ function initLearned(data: LessonData): void {
 const data = readData();
 if (data) {
   initWalkthrough(data);
-  initQuiz();
   initLearned(data);
 }
