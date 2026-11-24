@@ -29,6 +29,12 @@ export interface GoSection {
 }
 
 /** Sections in `sections.yaml` order; examples sorted by `order` and numbered across the course. */
+/** True while any ready lesson is adapted from Go by Example: its CC BY 3.0 attribution must stay. */
+export async function hasAdaptedLessons(): Promise<boolean> {
+  const examples = await getCollection("goExamples");
+  return examples.some((e) => e.data.status === "ready" && e.data.source !== "original");
+}
+
 export async function getGoCatalog(): Promise<{ sections: GoSection[]; total: number }> {
   const [sections, examples] = await Promise.all([
     getCollection("goSections"),

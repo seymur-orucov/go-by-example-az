@@ -21,9 +21,19 @@ interface Props {
   tech?: "go";
   /** Lesson pages: view modes (sidebar, width, Zen) in the header. */
   lesson?: boolean;
+  /** Show the Go by Example CC BY 3.0 attribution (needed while adapted lessons exist). */
+  attribution?: boolean;
 }
 
-const { title, description, searchIndex = [], goCount, tech, lesson } = Astro.props;
+const {
+  title,
+  description,
+  searchIndex = [],
+  goCount,
+  tech,
+  lesson,
+  attribution = true,
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -65,7 +75,7 @@ const { title, description, searchIndex = [], goCount, tech, lesson } = Astro.pr
   <body>
     <Header goCount={goCount} tech={tech} lesson={lesson} />
     <slot />
-    <Footer />
+    <Footer attribution={attribution} />
     <script
       type="application/json"
       id="search-index"

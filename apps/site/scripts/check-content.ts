@@ -12,9 +12,15 @@ const failures: string[] = [];
 for (const slug of readdirSync(examplesDir).sort()) {
   const meta = parse(readFileSync(join(examplesDir, slug, "meta.yaml"), "utf8")) as {
     status?: string;
+    source?: string;
   };
   if (meta.status !== "ready") continue;
   ready++;
+  // docs/DECISIONS.md, "Original content": the footer attribution depends on this field.
+  if (meta.source !== "original" && meta.source !== "adapted") {
+    failures.push(`${slug}: meta.yaml needs \`source: original\` or \`source: adapted\``);
+    continue;
+  }
   try {
     const lesson = loadLesson(slug);
     console.log(

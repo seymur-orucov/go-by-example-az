@@ -29,6 +29,8 @@ const goExamples = defineCollection({
     status: z.enum(["ready", "planned"]),
     level: z.enum(["beginner", "intermediate", "advanced"]),
     duration: z.number().int().positive().optional(),
+    /** Ready lessons: "original" (written from scratch) or "adapted" (from Go by Example, CC BY 3.0). */
+    source: z.enum(["original", "adapted"]).optional(),
   }),
 });
 

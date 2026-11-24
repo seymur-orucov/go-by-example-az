@@ -1,6 +1,6 @@
 ---
 import Layout from "@platform/theme/components/Layout.astro";
-import { getGoCatalog } from "../lib/go";
+import { getGoCatalog, hasAdaptedLessons } from "../lib/go";
 
 interface Props {
   title: string;
@@ -10,6 +10,7 @@ interface Props {
 }
 
 const { sections, total } = await getGoCatalog();
+const attribution = await hasAdaptedLessons();
 
 const searchIndex = sections.flatMap((s) =>
   s.items.map((e) => ({
@@ -23,6 +24,6 @@ const searchIndex = sections.flatMap((s) =>
 );
 ---
 
-<Layout {...Astro.props} searchIndex={searchIndex} goCount={total}>
+<Layout {...Astro.props} searchIndex={searchIndex} goCount={total} attribution={attribution}>
   <slot />
 </Layout>

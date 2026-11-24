@@ -1,20 +1,37 @@
 ---
-// Attribution is required by the CC BY 3.0 license of Go by Example.
+// While any lesson is adapted from Go by Example, its CC BY 3.0 license requires the
+// attribution. Once every lesson is original, only a courtesy credit remains
+// (docs/DECISIONS.md, "Original content").
+interface Props {
+  attribution?: boolean;
+}
+const { attribution = true } = Astro.props;
 ---
 
 <footer class="site-footer">
   <div class="inner">
-    <p>
-      Go dərsləri Mark McGranaghan və Eli Bendersky-nin
-      <a href="https://gobyexample.com" rel="noopener">
-        Go by Example
-      </a>{" "}
-      layihəsi əsasında hazırlanıb, Azərbaycan dilinə uyğunlaşdırılıb və sadələşdirilib. Kontent
-      <a href="https://creativecommons.org/licenses/by/3.0/" rel="noopener">
-        CC BY 3.0
-      </a>{" "}
-      lisenziyası ilə paylaşılır.
-    </p>
+    {attribution ? (
+      <p>
+        Go dərslərinin bir hissəsi Mark McGranaghan və Eli Bendersky-nin
+        <a href="https://gobyexample.com" rel="noopener">
+          Go by Example
+        </a>{" "}
+        layihəsi əsasında hazırlanıb, Azərbaycan dilinə uyğunlaşdırılıb və sadələşdirilib. Həmin
+        kontent
+        <a href="https://creativecommons.org/licenses/by/3.0/" rel="noopener">
+          CC BY 3.0
+        </a>{" "}
+        lisenziyası ilə paylaşılır.
+      </p>
+    ) : (
+      <p>
+        İlham mənbəyi:
+        <a href="https://gobyexample.com" rel="noopener">
+          Go by Example
+        </a>{" "}
+        (Mark McGranaghan, Eli Bendersky). Dərslərin mətni və kodu bu layihə üçün yazılıb.
+      </p>
+    )}
     <p>Go adı Google LLC-yə məxsusdur.</p>
   </div>
 </footer>
