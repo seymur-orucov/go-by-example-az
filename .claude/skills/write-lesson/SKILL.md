@@ -26,8 +26,14 @@ format section there and one existing `source: original` lesson before starting.
   shares values, names or structure with any of them, change it.
 - Use a **real-life context** so the example is clearly ours and easy to remember: prices,
   a shopping cart, a library, bus routes, exam grades, a phone contact list, temperatures,
-  a café menu. One context per lesson, kept consistent across steps. Strings in the code
-  may be Azerbaijani (`"Bakı"`, `"çay"`), identifiers stay English.
+  a café menu. One context per lesson, kept consistent across steps. **Everything in
+  `main.go` and `output.txt` is English** — strings, printed text, comments, identifiers
+  (`"tea house"`, not `"çay evi"`): these files are shared by every locale, so Azerbaijani
+  there would clash with a translated lesson text. Azerbaijani goes only into the
+  `*.az.*` files. Do not tie the text to a locale-specific value ("the word has two `ə`");
+  the text may only refer to values the English code really contains. Exception: unicode
+  and rune lessons use language-neutral multi-byte characters (`café`, `Zürich`), and the
+  text may mention Azerbaijani letters such as `ə` in prose.
 - **Money is in US dollars** (`USD` in output, "dollar" in text and comments), never manat
   or another local currency: lessons will be translated, and readers in other countries
   must understand the example without local knowledge.
