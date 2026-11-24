@@ -1,0 +1,11 @@
+rules:
+  - "`var student = \"Aysel\"` dəyişən elan edir; tip yazılmayıbsa, dəyərdən təyin olunur."
+  - "Tipi açıq yazmaq da olar: `var history, physics int = 80, 90`."
+  - "Dəyər verilməyən dəyişən zero value alır: `int` üçün `0`, `bool` üçün `false`, `string` üçün `\"\"`."
+  - "`:=` yalnız funksiyanın içində işləyir və `var` ilə elanın qısa formasıdır."
+  - "Dəyişənin dəyəri `=` ilə dəyişir, tipi isə dəyişmir."
+  - "Elan olunub istifadə olunmayan dəyişən kompilyasiya xətasıdır."
+practices:
+  - "Funksiyanın içində adətən `:=` yazın: qısadır və Go kodunda ən çox rast gəlinən formadır."
+  - "Tipi yalnız Go-nun seçimi bizə uyğun gəlmədikdə yazın (məsələn, `float64` lazımdırsa)."
+  - "Dəyişənə mənasını deyən ad verin (`average`, `retakes`): kod şərhsiz oxunsun."

@@ -1,0 +1,11 @@
+rules:
+  - "`const` ilə elan olunan sabitə sonradan yeni dəyər yazmaq olmaz; belə cəhd kompilyasiya xətasıdır."
+  - "Sabitin dəyəri kompilyasiya zamanı məlum olmalıdır: ədəd, mətn, `bool` və ya bunlardan qurulan ifadə. `time.Now()` və ya slice sabit ola bilməz."
+  - "Funksiyadan kənarda elan olunan sabit faylın hər yerində görünür."
+  - "Bir-birinə aid sabitləri `const ( ... )` blokunda qruplaşdırmaq olar."
+  - "Tipi yazılmayan (untyped) sabit istifadə olunduğu yerin tipinə uyğunlaşır."
+  - "Sabitdən yeni sabit qurmaq olar; hesablama kompilyasiya zamanı aparılır."
+practices:
+  - "Kodda təkrar olunan \"sehrli\" ədədlər əvəzinə adlı sabit yazın: `perKm` adı `0.5`-dən çox şey deyir."
+  - "Bir-birinə aid sabitləri bir blokda saxlayın ki, tarif dəyişəndə düzəliş bir yerdə olsun."
+  - "Dəyişməməli dəyəri `var` yox, `const` ilə elan edin: təsadüfən dəyişdirməyin qarşısını kompilyator alır."
