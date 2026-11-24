@@ -1,0 +1,18 @@
+classic:
+  out: |
+    ay 1 - hesaba 120 USD qoyuldu
+    ay 2 - hesaba 120 USD qoyuldu
+    ay 3 - hesaba 120 USD qoyuldu
+condition:
+  out: "5 aya 600 USD yığıldı"
+forever:
+  out: |
+    qalıq: 400 USD
+    qalıq: 200 USD
+    qalıq: 0 USD
+skip:
+  out: |
+    ay 1 - ödəniş alındı
+    ay 2 - ödəniş alındı
+    ay 4 - ödəniş alındı
+    ay 5 - ödəniş alındı

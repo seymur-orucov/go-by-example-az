@@ -1,0 +1,11 @@
+ay 1 - hesaba 120 USD qoyuldu
+ay 2 - hesaba 120 USD qoyuldu
+ay 3 - hesaba 120 USD qoyuldu
+5 aya 600 USD yığıldı
+qalıq: 400 USD
+qalıq: 200 USD
+qalıq: 0 USD
+ay 1 - ödəniş alındı
+ay 2 - ödəniş alındı
+ay 4 - ödəniş alındı
+ay 5 - ödəniş alındı

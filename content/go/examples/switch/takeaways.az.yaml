@@ -1,0 +1,11 @@
+rules:
+  - "`switch` dəyəri `case`-lərlə yuxarıdan aşağı müqayisə edir; uyğun gələn ilk `case` işləyir və `switch` bitir."
+  - "`break` yazmaq lazım deyil. Növbəti `case`-in koduna keçmək üçün `fallthrough` var, amma nadir lazım olur."
+  - "`default` heç bir `case` uyğun gəlməyəndə işləyir; onu yazmaq məcburi deyil."
+  - "Bir `case`-də bir neçə dəyər vergüllə yazılır: `case \"roman\", \"povest\":`."
+  - "İfadəsiz `switch { case x < 10: ... }` hər `case`-i ayrıca şərt edir; `if / else if` zəncirinin səliqəli variantıdır."
+  - "Eyni sabit dəyəri iki `case`-də yazmaq kompilyasiya xətasıdır; mətn müqayisəsi böyük-kiçik hərfə həssasdır."
+practices:
+  - "Eyni dəyişəni çoxlu `else if` ilə yoxlamaq əvəzinə `switch` yazın."
+  - "Gözlənilməz dəyərləri tutmaq üçün `default` əlavə edin."
+  - "Eyni nəticə verən dəyərləri bir `case`-də birləşdirin, kodu təkrarlamayın."

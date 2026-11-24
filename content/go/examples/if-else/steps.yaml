@@ -1,0 +1,8 @@
+if:
+  out: "gödəkçə və çətir götür"
+else:
+  out: "yollar buz bağlamayıb"
+chain:
+  out: "sərin"
+init:
+  out: "hiss olunan: 1 dərəcə"

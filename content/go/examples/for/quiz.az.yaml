@@ -1,0 +1,77 @@
+- question: Bu kod nə çap edəcək (hər dəyər ayrı sətirdə)?
+  code: |
+    for i := 1; i <= 3; i++ {
+        fmt.Println(i)
+    }
+  options: ["1, 2, 3", "0, 1, 2", "1, 2"]
+  answer: 0
+  explain: "`i` 1-dən başlayır və `i <= 3` doğru olduğu müddətdə təkrarlanır: 1, 2, 3."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    sum := 0
+    for i := 1; i <= 4; i++ {
+        sum += i
+    }
+    fmt.Println(sum)
+  options: ["10", "6", "4"]
+  answer: 0
+  explain: "`1 + 2 + 3 + 4 = 10`: hər təkrarda `i` cəmə əlavə olunur."
+
+- question: Bu dövr neçə dəfə işləyəcək?
+  code: |
+    for i := 0; i < 5; i += 2 {
+        fmt.Println(i)
+    }
+  options: ["3 dəfə", "2 dəfə", "5 dəfə"]
+  answer: 0
+  explain: "`i` 0, 2, 4 qiymətlərini alır; 6 artıq `i < 5` şərtini pozur."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    n := 10
+    for n > 3 {
+        n -= 4
+    }
+    fmt.Println(n)
+  options: ["2", "3", "-2"]
+  answer: 0
+  explain: "`n` 10 → 6 → 2 olur; 2 artıq `n > 3` şərtini ödəmir və dövr bitir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    for i := 5; i < 3; i++ {
+        fmt.Println(i)
+    }
+  options: ["5", "heç nə", "sonsuz dövr"]
+  answer: 1
+  explain: Şərt hər təkrardan əvvəl yoxlanır; `5 < 3` ilk yoxlamada yalandır, ona görə dövr bir dəfə də işləmir.
+
+- question: Bu kod nə çap edəcək (hər dəyər ayrı sətirdə)?
+  code: |
+    for i := 1; i <= 5; i++ {
+        if i == 3 {
+            break
+        }
+        fmt.Println(i)
+    }
+  options: ["1, 2", "1, 2, 4, 5", "1, 2, 3"]
+  answer: 0
+  explain: "`i == 3` olanda `break` dövrü tamam bitirir, ona görə 3, 4 və 5 çap olunmur."
+
+- question: Bu kod nə çap edəcək (hər dəyər ayrı sətirdə)?
+  code: |
+    for i := 1; i <= 4; i++ {
+        if i == 2 {
+            continue
+        }
+        fmt.Println(i)
+    }
+  options: ["1, 3, 4", "1", "1, 2, 3, 4"]
+  answer: 0
+  explain: "`continue` yalnız `i == 2` təkrarını keçir; dövr 3 və 4 ilə davam edir."
+
+- question: Hansı sətir kompilyasiya olunmayacaq?
+  options: ["for i := 0; i < 3; i++ {", "for (i := 0; i < 3; i++) {", "for i < 3 {"]
+  answer: 1
+  explain: Go-da `for`-un hissələri mötərizəyə alınmır; mötərizəli yazılış sintaksis xətası verir.

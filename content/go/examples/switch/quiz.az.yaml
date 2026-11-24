@@ -1,0 +1,98 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    n := 2
+    switch n {
+    case 1:
+        fmt.Println("bir")
+    case 2:
+        fmt.Println("iki")
+    case 3:
+        fmt.Println("üç")
+    }
+  options: ["iki", "iki, üç", "bir, iki"]
+  answer: 0
+  explain: "Uyğun gələn `case 2` işləyir və `switch` dayanır; `break` yazmaq lazım deyil."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    city := "Gəncə"
+    switch city {
+    case "Bakı":
+        fmt.Println("paytaxt")
+    default:
+        fmt.Println("başqa şəhər")
+    }
+  options: ["paytaxt", "başqa şəhər", "heç nə"]
+  answer: 1
+  explain: "`city` heç bir `case`-ə uyğun gəlmir, ona görə `default` işləyir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    grade := "B"
+    switch grade {
+    case "A", "B":
+        fmt.Println("yaxşı")
+    case "C":
+        fmt.Println("orta")
+    default:
+        fmt.Println("zəif")
+    }
+  options: ["yaxşı", "orta", "zəif"]
+  answer: 0
+  explain: "`case \"A\", \"B\"` iki dəyəri əhatə edir; `\"B\"` onlardan biridir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    x := 15
+    switch {
+    case x < 10:
+        fmt.Println("kiçik")
+    case x < 20:
+        fmt.Println("orta")
+    case x < 30:
+        fmt.Println("böyük")
+    }
+  options: ["orta", "orta, böyük", "böyük"]
+  answer: 0
+  explain: "`15 < 20` ilk doğru şərtdir; `15 < 30` də doğrudur, amma `switch` artıq dayanıb."
+
+- question: Bu kod nə çap edəcək (hər dəyər ayrı sətirdə)?
+  code: |
+    switch 1 {
+    case 1:
+        fmt.Println("a")
+        fallthrough
+    case 2:
+        fmt.Println("b")
+    case 3:
+        fmt.Println("c")
+    }
+  options: ["a", "a, b", "a, b, c"]
+  answer: 1
+  explain: "`fallthrough` növbəti `case`-in koduna şərtsiz keçir, ancaq yalnız bir addım irəli: `b` çap olunur, `c` yox."
+
+- question: Bu kod nə edəcək?
+  code: |
+    n := 1
+    switch n {
+    case 1:
+        fmt.Println("bir")
+    case 1:
+        fmt.Println("yenə bir")
+    }
+  options: ["bir çap edəcək", "bir və yenə bir çap edəcək", "kompilyasiya xətası verəcək"]
+  answer: 2
+  explain: "Eyni sabit dəyər iki `case`-də yazıla bilməz: `duplicate case 1` xətası alınır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    city := "bakı"
+    switch city {
+    case "Bakı":
+        fmt.Println("paytaxt")
+    default:
+        fmt.Println("başqa")
+    }
+  options: ["paytaxt", "başqa", "kompilyasiya xətası"]
+  answer: 1
+  explain: "Mətn müqayisəsi böyük-kiçik hərfə həssasdır: `\"bakı\"` ilə `\"Bakı\"` fərqlidir."
