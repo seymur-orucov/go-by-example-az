@@ -4,28 +4,28 @@ import "fmt"
 
 func main() {
 	//@step literal
-	stock := map[string]int{"süd": 12, "un": 30}
-	fmt.Println("anbar:", stock, len(stock))
-	fmt.Println("süd:", stock["süd"])
+	stock := map[string]int{"milk": 12, "flour": 30}
+	fmt.Println("stock:", stock, len(stock))
+	fmt.Println("milk:", stock["milk"])
 
 	//@step set
-	stock["bal"] = 8
-	stock["süd"] -= 5
-	fmt.Println("anbar:", stock)
+	stock["honey"] = 8
+	stock["milk"] -= 5
+	fmt.Println("stock:", stock)
 
 	//@step missing
-	fmt.Println("yağ:", stock["yağ"])
-	n, ok := stock["yağ"]
-	fmt.Println("yağ var?", n, ok)
+	fmt.Println("butter:", stock["butter"])
+	n, ok := stock["butter"]
+	fmt.Println("butter in stock?", n, ok)
 
 	//@step delete
-	delete(stock, "un")
-	fmt.Println("anbar:", stock, len(stock))
+	delete(stock, "flour")
+	fmt.Println("stock:", stock, len(stock))
 
 	//@step make
 	sold := make(map[string]int)
-	sold["süd"]++
-	sold["bal"]++
-	sold["süd"]++
-	fmt.Println("satılıb:", sold)
+	sold["milk"]++
+	sold["honey"]++
+	sold["milk"]++
+	fmt.Println("sold:", sold)
 }

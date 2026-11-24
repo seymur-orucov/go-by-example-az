@@ -5,7 +5,7 @@ import "fmt"
 func main() {
 	//@step classic
 	for month := 1; month <= 3; month++ {
-		fmt.Println("ay", month, "- hesaba 120 USD qoyuldu")
+		fmt.Println("month", month, "- 120 USD deposited")
 	}
 
 	//@step condition
@@ -14,12 +14,12 @@ func main() {
 		balance += 120
 		months++
 	}
-	fmt.Println(months, "aya", balance, "USD yığıldı")
+	fmt.Println(balance, "USD saved in", months, "months")
 
 	//@step forever
 	for {
 		balance -= 200
-		fmt.Println("qalıq:", balance, "USD")
+		fmt.Println("left:", balance, "USD")
 		if balance < 200 {
 			break
 		}
@@ -30,6 +30,6 @@ func main() {
 		if month == 3 {
 			continue
 		}
-		fmt.Println("ay", month, "- ödəniş alındı")
+		fmt.Println("month", month, "- payment received")
 	}
 }

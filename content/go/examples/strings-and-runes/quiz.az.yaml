@@ -1,42 +1,42 @@
 - question: Bu kod nə çap edəcək?
   code: |
-    fmt.Println(len("Quba"), len("Gəncə"))
-  options: ["4 5", "4 7", "8 10"]
+    fmt.Println(len("Rome"), len("Zürich"))
+  options: ["4 6", "4 7", "8 12"]
   answer: 1
-  explain: "`len` baytları sayır: `Quba` 4 bayt, `Gəncə`-dəki iki `ə` 2 bayt tutduğu üçün 7 bayt."
+  explain: "`len` baytları sayır: `Rome` 4 bayt, `Zürich`-dəki `ü` 2 bayt tutduğu üçün 7 bayt."
 
 - question: Bu kod nə çap edəcək?
   code: |
-    s := "Bakı"
+    s := "café"
     fmt.Println(len(s), utf8.RuneCountInString(s))
   options: ["4 4", "5 4", "4 5"]
   answer: 1
-  explain: "`ı` 2 bayt tutur: 5 bayt, amma 4 hərf."
+  explain: "`é` 2 bayt tutur: 5 bayt, amma 4 hərf."
 
 - question: Bu kod nə çap edəcək?
   code: |
-    s := "Quba"
+    s := "Rome"
     fmt.Println(s[0])
-  options: ["Q", "81", "\"Q\""]
+  options: ["R", "82", "\"R\""]
   answer: 1
-  explain: "İndeks bayt qaytarır və `Println` onu ədəd kimi çap edir; `Q`-nun kodu 81-dir."
+  explain: "İndeks bayt qaytarır və `Println` onu ədəd kimi çap edir; `R`-nin kodu 82-dir."
 
 - question: Bu kod nə çap edəcək?
   code: |
-    r := []rune("Şuşa")
-    fmt.Println(len(r), string(r[2]))
-  options: ["4 ş", "6 ş", "4 u"]
+    r := []rune("Zürich")
+    fmt.Println(len(r), string(r[1]))
+  options: ["6 ü", "7 ü", "6 r"]
   answer: 0
-  explain: "`[]rune` mətni hərflərə bölür: 4 hərf, 2-ci indeksdə `ş`."
+  explain: "`[]rune` mətni hərflərə bölür: 6 hərf, 1-ci indeksdə `ü`."
 
 - question: Bu kod nə çap edəcək?
   code: |
-    for i := range "çay" {
+    for i := range "été" {
         fmt.Print(i, " ")
     }
   options: ["0 1 2 ", "0 2 3 ", "1 2 3 "]
   answer: 1
-  explain: "`range` hərfin başladığı baytın indeksini verir; `ç` 2 bayt tutduğu üçün indeks 0-dan 2-yə atlayır."
+  explain: "`range` hərfin başladığı baytın indeksini verir; `é` 2 bayt tutduğu üçün indeks 0-dan 2-yə, sonra 3-ə atlayır."
 
 - question: "`'a'` ilə `\"a\"` arasındakı fərq nədir?"
   options: ["Fərq yoxdur", "`'a'` rune-dur, `\"a\"` string-dir", "`'a'` string-dir, `\"a\"` rune-dur"]
@@ -45,20 +45,20 @@
 
 - question: Hansı sətir kompilyasiya olunmayacaq?
   code: |
-    s := "ev"
-  options: ["b := s[0]", "s = \"iş\"", "s[0] = 'E'"]
+    s := "hi"
+  options: ["b := s[0]", "s = \"ok\"", "s[0] = 'H'"]
   answer: 2
   explain: "String dəyişməzdir: baytını dəyişmək olmaz, amma dəyişənə yeni string yazmaq olar."
 
 - question: Bu kod nə çap edəcək?
   code: |
     n := 0
-    for _, r := range "Göygöl" {
-        if r == 'ö' {
+    for _, r := range "Düsseldorf Zürich" {
+        if r == 'ü' {
             n++
         }
     }
     fmt.Println(n)
   options: ["1", "2", "4"]
   answer: 1
-  explain: "`range` hərf-hərf gəzir və hər `ö` bir dəfə sayılır."
+  explain: "`range` hərf-hərf gəzir və hər `ü` bir dəfə sayılır."

@@ -14,8 +14,8 @@ Go-nun özündə hazır package-lər var (standart kitabxana), lazım olanı `im
 
 ## main funksiyası {#main}
 
-Proqram `main` funksiyasının birinci sətrindən işə düşür. `fmt.Println` — `fmt` package-indəki `Println` funksiyasıdır: mətni çap edir və sonuna yeni sətir əlavə edir. Mətn dırnaq içində yazılır, Azərbaycan hərfləri də olar.
+Proqram `main` funksiyasının birinci sətrindən işə düşür. `fmt.Println` — `fmt` package-indəki `Println` funksiyasıdır: mətni çap edir və sonuna yeni sətir əlavə edir. Mətn dırnaq içində yazılır, istənilən dilin hərfləri də olar.
 
 ## Print və Println {#print}
 
-`Println` çapdan sonra yeni sətrə keçir, `Print` isə keçmir — növbəti çap eyni sətirdə davam edir. Burada `Print` ilə `"Menyu: "` yazıb eyni sətirdə `Println` ilə menyunun özünü əlavə etdik.
+`Println` çapdan sonra yeni sətrə keçir, `Print` isə keçmir — növbəti çap eyni sətirdə davam edir. Burada `Print` ilə `"Menu: "` yazıb eyni sətirdə `Println` ilə menyunun özünü əlavə etdik.

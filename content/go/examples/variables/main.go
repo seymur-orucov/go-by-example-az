@@ -4,8 +4,8 @@ import "fmt"
 
 func main() {
 	//@step var
-	var student = "Aysel"
-	fmt.Println("tələbə:", student)
+	var student = "Alice"
+	fmt.Println("student:", student)
 
 	//@step typed
 	var history, physics int = 80, 90
@@ -16,7 +16,7 @@ func main() {
 	var passed bool
 	var comment string
 	fmt.Println(retakes, passed)
-	fmt.Println("şərh boşdur:", comment == "")
+	fmt.Println("comment is empty:", comment == "")
 
 	//@step short
 	average := (history + physics) / 2

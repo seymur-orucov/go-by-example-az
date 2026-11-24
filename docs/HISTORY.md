@@ -288,3 +288,13 @@ Done (branch `feat/pilot-content`), with the `write-lesson` skill:
 - Verified with Go 1.26: `gofmt`, `go vet`, `go run` (`output.txt`); all 32 quiz answers checked by running the snippets or reading the compiler message (index out of bounds, `[3]int` vs `[5]int`, wrong key type, unused range variable, assigning to a string byte, `'Ş'` overflowing `byte`); `pnpm content:check` (12/12 ready), format, lint, check, build (86 pages); screenshots of `/go/arrays/` and `/go/strings-and-runes/` in headless Chrome.
 - No `map` memory visual yet (only `kind: slice` exists); still listed under Phase 3 "Step visuals".
 - Awaiting the user's review of tone and clarity.
+
+### 39. Language-neutral lesson code
+The user noticed that Azerbaijani words in `main.go` (`Lənkəran`, `süd`, `Çay evi`) would clash with translated lesson texts (for example "the word has two `ə`") and that the shared `output.txt` would show Azerbaijani output to other readers. They proposed that all words and sentences in lesson code be English.
+
+Done (branch `feat/pilot-content`):
+- Rule recorded in [DECISIONS.md](DECISIONS.md) and the `write-lesson` skill: `main.go` and `output.txt` are fully English (strings, output, comments, identifiers); the real-life contexts stay, in English. Azerbaijani lives only in `*.az.*` files.
+- All 12 ready lessons rewritten accordingly (`main.go`, `output.txt`, `steps.yaml`, quoted strings in `lesson.az.md`, quiz snippets and options, takeaways). Examples: the tea house, Lisbon taxi, Central/Harbor/Old Town metro stops, milk/flour/honey stock.
+- `strings-and-runes` keeps the same five steps but uses language-neutral multi-byte words (`Zürich`, `Frühstück`); the intro says in one sentence that Azerbaijani `ə`, `ş`, `ç`, `ğ`, `ı`, `ö`, `ü` are 2 bytes too.
+- Verified with Go 1.26: `gofmt`, `go vet`, `go run` equals `output.txt` for all 12; `pnpm content:check` (12/12), format, lint, check, build (86 pages). Quiz answers for `strings-and-runes` were recomputed by running the snippets; in the other lessons only string literals changed, and the `range` snippet semantics were re-checked by hand.
+- Awaiting the user's review.

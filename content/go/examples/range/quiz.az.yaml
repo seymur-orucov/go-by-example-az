@@ -1,10 +1,10 @@
 - question: Bu kod nə çap edəcək?
   code: |
-    days := []string{"b.e.", "ç.a.", "ç."}
+    days := []string{"Mon", "Tue", "Wed"}
     for i, d := range days {
         fmt.Print(i, d, " ")
     }
-  options: ["0b.e. 1ç.a. 2ç. ", "1b.e. 2ç.a. 3ç. ", "b.e. ç.a. ç. "]
+  options: ["0Mon 1Tue 2Wed ", "1Mon 2Tue 3Wed ", "Mon Tue Wed "]
   answer: 0
   explain: "`range` indeksi 0-dan başlayaraq və həmin elementi birlikdə verir."
 
@@ -52,7 +52,7 @@
 
 - question: Bu kod nə çap edəcək?
   code: |
-    stock := map[string]int{"süd": 3, "un": 5, "bal": 2}
+    stock := map[string]int{"milk": 3, "flour": 5, "honey": 2}
     total := 0
     for _, n := range stock {
         total += n

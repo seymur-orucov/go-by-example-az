@@ -1,6 +1,6 @@
 value:
-  out: "kitabxana 10:00-dan 14:00-dək açıqdır"
+  out: "the library is open from 10:00 to 14:00"
 multi:
-  out: "bədii ədəbiyyat rəfi"
+  out: "fiction shelf"
 cond:
-  out: "daha kitab götürə bilərsiniz"
+  out: "you can borrow more books"

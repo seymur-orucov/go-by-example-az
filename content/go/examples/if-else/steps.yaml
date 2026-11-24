@@ -1,8 +1,8 @@
 if:
-  out: "gödəkçə və çətir götür"
+  out: "take a jacket and an umbrella"
 else:
-  out: "yollar buz bağlamayıb"
+  out: "the roads are not icy"
 chain:
-  out: "sərin"
+  out: "cool"
 init:
-  out: "hiss olunan: 1 dərəcə"
+  out: "feels like: 1 C"

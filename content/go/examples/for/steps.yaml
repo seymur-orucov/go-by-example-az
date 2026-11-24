@@ -1,18 +1,18 @@
 classic:
   out: |
-    ay 1 - hesaba 120 USD qoyuldu
-    ay 2 - hesaba 120 USD qoyuldu
-    ay 3 - hesaba 120 USD qoyuldu
+    month 1 - 120 USD deposited
+    month 2 - 120 USD deposited
+    month 3 - 120 USD deposited
 condition:
-  out: "5 aya 600 USD yığıldı"
+  out: "600 USD saved in 5 months"
 forever:
   out: |
-    qalıq: 400 USD
-    qalıq: 200 USD
-    qalıq: 0 USD
+    left: 400 USD
+    left: 200 USD
+    left: 0 USD
 skip:
   out: |
-    ay 1 - ödəniş alındı
-    ay 2 - ödəniş alındı
-    ay 4 - ödəniş alındı
-    ay 5 - ödəniş alındı
+    month 1 - payment received
+    month 2 - payment received
+    month 4 - payment received
+    month 5 - payment received

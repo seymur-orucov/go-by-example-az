@@ -1,5 +1,5 @@
-tələbə: Aysel
+student: Alice
 80 90
 0 false
-şərh boşdur: true
+comment is empty: true
 85 100

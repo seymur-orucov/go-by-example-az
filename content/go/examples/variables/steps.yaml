@@ -1,10 +1,10 @@
 var:
-  out: "tələbə: Aysel"
+  out: "student: Alice"
 typed:
   out: "80 90"
 zero:
   out: |
     0 false
-    şərh boşdur: true
+    comment is empty: true
 short:
   out: "85 100"

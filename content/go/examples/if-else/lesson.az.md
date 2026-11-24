@@ -16,7 +16,7 @@
 
 ## else if zənciri {#chain}
 
-Yol ikidən çoxdursa, `else if` ilə zəncir qurulur. Şərtlər yuxarıdan aşağı yoxlanır, ilk doğru olan işləyir, qalanlarına baxılmır: `4 < 0` yalandır, `4 < 15` doğrudur və "sərin" çap olunur. Buna görə sıra vacibdir: dar həddi əvvəl yazmaq lazımdır, əks halda ilk geniş şərt hər şeyi özünə çəkər.
+Yol ikidən çoxdursa, `else if` ilə zəncir qurulur. Şərtlər yuxarıdan aşağı yoxlanır, ilk doğru olan işləyir, qalanlarına baxılmır: `4 < 0` yalandır, `4 < 15` doğrudur və `"cool"` çap olunur. Buna görə sıra vacibdir: dar həddi əvvəl yazmaq lazımdır, əks halda ilk geniş şərt hər şeyi özünə çəkər.
 
 ## Şərtdən əvvəl qısa elan {#init}
 

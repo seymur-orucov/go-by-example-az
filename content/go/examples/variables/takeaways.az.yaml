@@ -1,5 +1,5 @@
 rules:
-  - "`var student = \"Aysel\"` dəyişən elan edir; tip yazılmayıbsa, dəyərdən təyin olunur."
+  - "`var student = \"Alice\"` dəyişən elan edir; tip yazılmayıbsa, dəyərdən təyin olunur."
   - "Tipi açıq yazmaq da olar: `var history, physics int = 80, 90`."
   - "Dəyər verilməyən dəyişən zero value alır: `int` üçün `0`, `bool` üçün `false`, `string` üçün `\"\"`."
   - "`:=` yalnız funksiyanın içində işləyir və `var` ilə elanın qısa formasıdır."

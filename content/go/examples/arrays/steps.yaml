@@ -1,15 +1,15 @@
 zero:
-  out: "yağış: [0 0 0 0 0 0 0] 7"
+  out: "rain: [0 0 0 0 0 0 0] 7"
   vis: { kind: slice, name: rain, cells: ["0", "0", "0", "0", "0", "0", "0"], len: 7, cap: 7 }
 literal:
   out: |
-    temperatur: [12 14 11 15 17 16 18]
-    çərşənbə: 11
+    temperature: [12 14 11 15 17 16 18]
+    Wednesday: 11
   vis: { kind: slice, name: temps, cells: ["12", "14", "11", "15", "17", "16", "18"], len: 7, cap: 7, fresh: [6] }
 loop:
-  out: "ən isti gün: 18 dərəcə"
+  out: "warmest day: 18 degrees"
 copy:
   out: |
-    proqnoz: 20 fakt: 12
-    eynidir: false
+    forecast: 20 actual: 12
+    same: false
   vis: { kind: slice, name: forecast, cells: ["20", "14", "11", "15", "17", "16", "18"], len: 7, cap: 7, fresh: [0] }

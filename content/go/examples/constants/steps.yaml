@@ -1,7 +1,7 @@
 declare: {}
 group:
-  out: "Bakı taksi: minimum 2 USD"
+  out: "Lisbon taxi: minimum 2 USD"
 untyped:
   out: "12.5 km: 8.25 USD"
 expr:
-  out: "gecə, 1 km: 0.75 USD"
+  out: "night, 1 km: 0.75 USD"

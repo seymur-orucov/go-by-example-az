@@ -1,6 +1,6 @@
 package: {}
 import: {}
 main:
-  out: "Çay evi açıqdır"
+  out: "The tea house is open"
 print:
-  out: "Menyu: çay, kofe, limonad"
+  out: "Menu: tea, coffee, lemonade"

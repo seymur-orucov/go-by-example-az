@@ -5,13 +5,13 @@ import "fmt"
 func main() {
 	//@step zero
 	var rain [7]int
-	fmt.Println("yağış:", rain, len(rain))
+	fmt.Println("rain:", rain, len(rain))
 
 	//@step literal
 	temps := [7]int{12, 14, 11, 15, 17, 16, 13}
 	temps[6] = 18
-	fmt.Println("temperatur:", temps)
-	fmt.Println("çərşənbə:", temps[2])
+	fmt.Println("temperature:", temps)
+	fmt.Println("Wednesday:", temps[2])
 
 	//@step loop
 	warmest := temps[0]
@@ -20,11 +20,11 @@ func main() {
 			warmest = temps[i]
 		}
 	}
-	fmt.Println("ən isti gün:", warmest, "dərəcə")
+	fmt.Println("warmest day:", warmest, "degrees")
 
 	//@step copy
 	forecast := temps
 	forecast[0] = 20
-	fmt.Println("proqnoz:", forecast[0], "fakt:", temps[0])
-	fmt.Println("eynidir:", forecast == temps)
+	fmt.Println("forecast:", forecast[0], "actual:", temps[0])
+	fmt.Println("same:", forecast == temps)
 }

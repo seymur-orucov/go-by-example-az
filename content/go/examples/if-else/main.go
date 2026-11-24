@@ -7,29 +7,29 @@ func main() {
 	temp := 4
 	raining := true
 	if temp < 10 && raining {
-		fmt.Println("gödəkçə və çətir götür")
+		fmt.Println("take a jacket and an umbrella")
 	}
 
 	//@step else
 	if temp < 0 {
-		fmt.Println("yollar buz bağlayıb")
+		fmt.Println("the roads are icy")
 	} else {
-		fmt.Println("yollar buz bağlamayıb")
+		fmt.Println("the roads are not icy")
 	}
 
 	//@step chain
 	if temp < 0 {
-		fmt.Println("dondurucu")
+		fmt.Println("freezing")
 	} else if temp < 15 {
-		fmt.Println("sərin")
+		fmt.Println("cool")
 	} else if temp < 25 {
-		fmt.Println("mülayim")
+		fmt.Println("mild")
 	} else {
-		fmt.Println("isti")
+		fmt.Println("warm")
 	}
 
 	//@step init
 	if feels := temp - 3; feels < 5 {
-		fmt.Println("hiss olunan:", feels, "dərəcə")
+		fmt.Println("feels like:", feels, "C")
 	}
 }

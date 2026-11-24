@@ -6,9 +6,9 @@ import "fmt"
 
 // @step main
 func main() {
-	fmt.Println("Çay evi açıqdır")
+	fmt.Println("The tea house is open")
 
 	//@step print
-	fmt.Print("Menyu: ")
-	fmt.Println("çay, kofe, limonad")
+	fmt.Print("Menu: ")
+	fmt.Println("tea, coffee, lemonade")
 }

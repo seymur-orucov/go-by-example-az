@@ -4,7 +4,7 @@ import "fmt"
 
 func main() {
 	//@step slice
-	stops := []string{"Gənclik", "Sahil", "İçərişəhər"}
+	stops := []string{"Central", "Harbor", "Old Town"}
 	for i, stop := range stops {
 		fmt.Println(i+1, "-", stop)
 	}
@@ -15,20 +15,20 @@ func main() {
 	for _, m := range minutes {
 		total += m
 	}
-	fmt.Println("yol:", total, "dəqiqə")
+	fmt.Println("ride:", total, "minutes")
 
 	//@step map
-	riders := map[string]int{"Gənclik": 120, "Sahil": 80, "İçərişəhər": 150}
+	riders := map[string]int{"Central": 120, "Harbor": 80, "Old Town": 150}
 	busiest, most := "", 0
 	for station, n := range riders {
 		if n > most {
 			busiest, most = station, n
 		}
 	}
-	fmt.Println("ən sıx:", busiest, most)
+	fmt.Println("busiest:", busiest, most)
 
 	//@step int
 	for car := range 3 {
-		fmt.Println("vaqon", car+1, "yoxlanıldı")
+		fmt.Println("car", car+1, "checked")
 	}
 }

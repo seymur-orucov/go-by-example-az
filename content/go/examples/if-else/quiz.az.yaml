@@ -2,11 +2,11 @@
   code: |
     x := 5
     if x > 5 {
-        fmt.Println("çox")
+        fmt.Println("many")
     } else {
-        fmt.Println("az")
+        fmt.Println("few")
     }
-  options: ["çox", "az", "heç nə"]
+  options: ["many", "few", "heç nə"]
   answer: 1
   explain: "`5 > 5` yalandır (5 özündən böyük deyil), ona görə `else` bloku işləyir."
 
@@ -42,11 +42,11 @@
   code: |
     a, b := 5, 20
     if a > 3 && b < 10 {
-        fmt.Println("hə")
+        fmt.Println("yes")
     } else {
-        fmt.Println("yox")
+        fmt.Println("no")
     }
-  options: ["hə", "yox", "kompilyasiya xətası"]
+  options: ["yes", "no", "kompilyasiya xətası"]
   answer: 1
   explain: "`&&` üçün hər iki şərt doğru olmalıdır; `b < 10` yalandır."
 
@@ -54,21 +54,21 @@
   code: |
     a, b := 5, 20
     if a > 10 || b > 10 {
-        fmt.Println("hə")
+        fmt.Println("yes")
     } else {
-        fmt.Println("yox")
+        fmt.Println("no")
     }
-  options: ["hə", "yox", "kompilyasiya xətası"]
+  options: ["yes", "no", "kompilyasiya xətası"]
   answer: 0
   explain: "`||` üçün biri doğru olsa kifayətdir; `b > 10` doğrudur."
 
 - question: Bu kod nə edəcək?
   code: |
     if n := 4; n > 3 {
-        fmt.Println("böyük")
+        fmt.Println("big")
     }
     fmt.Println(n)
-  options: ["böyük, sonra 4 çap edəcək", "böyük, sonra 0 çap edəcək", "kompilyasiya xətası verəcək"]
+  options: ["`big`, sonra `4` çap edəcək", "`big`, sonra `0` çap edəcək", "kompilyasiya xətası verəcək"]
   answer: 2
   explain: "`n` yalnız `if`-in içində görünür; kənarda `undefined: n` xətası alınır."
 

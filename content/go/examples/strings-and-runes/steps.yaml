@@ -1,18 +1,20 @@
 bytes:
   out: |
-    6 bayt
-    4 hərf
+    7 bytes
+    6 letters
 index:
   out: |
-    107 k
-    Ş
+    114 r
+    Zü
 runes:
-  out: "4 601 ə"
+  out: "6 252 ü"
 range:
   out: |
-    0 Ş
-    2 ə
-    4 k
-    5 i
+    0 Z
+    1 ü
+    3 r
+    4 i
+    5 c
+    6 h
 literal:
-  out: "Lənkəran sözündə 2 ə var"
+  out: "Frühstück has 2 ü"

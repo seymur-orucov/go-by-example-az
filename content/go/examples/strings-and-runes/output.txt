@@ -1,10 +1,12 @@
-6 bayt
-4 hərf
-107 k
-Ş
-4 601 ə
-0 Ş
-2 ə
-4 k
-5 i
-Lənkəran sözündə 2 ə var
+7 bytes
+6 letters
+114 r
+Zü
+6 252 ü
+0 Z
+1 ü
+3 r
+4 i
+5 c
+6 h
+Frühstück has 2 ü

@@ -24,7 +24,7 @@
 
 - question: Bu kod nə çap edəcək?
   code: |
-    w := [...]string{"b.e.", "ç.a.", "ç."}
+    w := [...]string{"Mon", "Tue", "Wed"}
     fmt.Println(len(w))
   options: ["0", "3", "kompilyasiya xətası"]
   answer: 1

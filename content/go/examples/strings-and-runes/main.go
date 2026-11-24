@@ -7,13 +7,13 @@ import (
 
 func main() {
 	//@step bytes
-	city := "Şəki"
-	fmt.Println(len(city), "bayt")
-	fmt.Println(utf8.RuneCountInString(city), "hərf")
+	city := "Zürich"
+	fmt.Println(len(city), "bytes")
+	fmt.Println(utf8.RuneCountInString(city), "letters")
 
 	//@step index
-	fmt.Println(city[4], string(city[4]))
-	fmt.Println(city[:2])
+	fmt.Println(city[3], string(city[3]))
+	fmt.Println(city[:3])
 
 	//@step runes
 	letters := []rune(city)
@@ -25,12 +25,12 @@ func main() {
 	}
 
 	//@step literal
-	word := "Lənkəran"
+	word := "Frühstück"
 	count := 0
 	for _, r := range word {
-		if r == 'ə' {
+		if r == 'ü' {
 			count++
 		}
 	}
-	fmt.Println(word, "sözündə", count, "ə var")
+	fmt.Println(word, "has", count, "ü")
 }

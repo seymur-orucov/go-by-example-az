@@ -1,14 +1,14 @@
 slice:
   out: |
-    1 - Gənclik
-    2 - Sahil
-    3 - İçərişəhər
+    1 - Central
+    2 - Harbor
+    3 - Old Town
 blank:
-  out: "yol: 9 dəqiqə"
+  out: "ride: 9 minutes"
 map:
-  out: "ən sıx: İçərişəhər 150"
+  out: "busiest: Old Town 150"
 int:
   out: |
-    vaqon 1 yoxlanıldı
-    vaqon 2 yoxlanıldı
-    vaqon 3 yoxlanıldı
+    car 1 checked
+    car 2 checked
+    car 3 checked

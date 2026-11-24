@@ -8,7 +8,7 @@ Bu dərsdə bir həftəlik hava məlumatını array-də saxlayırıq. Praktikada
 
 ## Literal və indeks {#literal}
 
-Elementlər əvvəlcədən məlumdursa, array literal ilə yazırıq: `[7]int{12, 14, ...}`. Elementə indekslə müraciət edirik, saymaq 0-dan başlayır: `temps[2]` üçüncü gündür, yəni çərşənbə. Eyni yolla dəyəri dəyişirik: bazar gününün temperaturunu 18-ə dəyişdik.
+Elementlər əvvəlcədən məlumdursa, array literal ilə yazırıq: `[7]int{12, 14, ...}`. Elementə indekslə müraciət edirik, saymaq 0-dan başlayır: `temps[2]` üçüncü gündür, yəni çərşənbə (`Wednesday`). Eyni yolla dəyəri dəyişirik: bazar gününün temperaturunu 18-ə dəyişdik.
 
 > **Bilgi:** ölçünü əllə saymaq istəmirsinizsə, `[...]int{12, 14, 11}` yazın — kompilyator elementləri sayıb ölçünü özü qoyur (burada 3).
 

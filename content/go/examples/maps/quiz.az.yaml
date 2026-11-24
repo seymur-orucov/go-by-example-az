@@ -1,24 +1,24 @@
 - question: Bu kod nə çap edəcək?
   code: |
-    age := map[string]int{"Aynur": 24, "Kamal": 31}
-    fmt.Println(age["Kamal"], len(age))
+    age := map[string]int{"Anna": 24, "Ben": 31}
+    fmt.Println(age["Ben"], len(age))
   options: ["31 2", "24 2", "31 4"]
   answer: 0
-  explain: "`age[\"Kamal\"]` həmin açarın dəyərini, `len` isə cütlərin sayını qaytarır."
+  explain: "`age[\"Ben\"]` həmin açarın dəyərini, `len` isə cütlərin sayını qaytarır."
 
 - question: Bu kod nə çap edəcək?
   code: |
-    p := map[string]int{"alma": 2}
-    p["alma"] = 5
+    p := map[string]int{"apple": 2}
+    p["apple"] = 5
     fmt.Println(p, len(p))
-  options: ["map[alma:2 alma:5] 2", "map[alma:5] 1", "map[alma:7] 1"]
+  options: ["map[apple:2 apple:5] 2", "map[apple:5] 1", "map[apple:7] 1"]
   answer: 1
   explain: "Açar map-də bir dəfə olur; mövcud açara yazmaq dəyəri əvəz edir."
 
 - question: Bu kod nə çap edəcək?
   code: |
-    score := map[string]int{"Leyla": 90}
-    fmt.Println(score["Orxan"])
+    score := map[string]int{"Lily": 90}
+    fmt.Println(score["Owen"])
   options: ["0", "nil", "proqram panic ilə dayanacaq"]
   answer: 0
   explain: "Olmayan açar dəyərin zero value-sunu qaytarır, `int` üçün `0`."
@@ -45,10 +45,10 @@
 - question: Bu kod nə çap edəcək?
   code: |
     votes := make(map[string]int)
-    votes["bəli"]++
-    votes["bəli"]++
-    votes["xeyr"]++
-    fmt.Println(votes["bəli"], len(votes))
+    votes["yes"]++
+    votes["yes"]++
+    votes["no"]++
+    fmt.Println(votes["yes"], len(votes))
   options: ["2 2", "2 3", "1 2"]
   answer: 0
   explain: "Olmayan açar `0` ilə başlayır, `++` onu artırır; map-də iki açar var."

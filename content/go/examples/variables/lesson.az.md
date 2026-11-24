@@ -4,7 +4,7 @@ Go-da hər dəyişənin tipi var; o, elan olunanda müəyyən olur və sonradan 
 
 ## var ilə elan {#var}
 
-`var` açar sözü dəyişən elan edir: `var student = "Aysel"`. Tip yazılmayıb — Go onu dəyərdən özü təyin edir: `"Aysel"` mətndir, deməli `student` `string`-dir.
+`var` açar sözü dəyişən elan edir: `var student = "Alice"`. Tip yazılmayıb — Go onu dəyərdən özü təyin edir: `"Alice"` mətndir, deməli `student` `string`-dir.
 
 ## Tipi göstərmək {#typed}
 

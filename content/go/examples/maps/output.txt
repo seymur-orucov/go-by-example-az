@@ -1,7 +1,7 @@
-anbar: map[süd:12 un:30] 2
-süd: 12
-anbar: map[bal:8 süd:7 un:30]
-yağ: 0
-yağ var? 0 false
-anbar: map[bal:8 süd:7] 2
-satılıb: map[bal:1 süd:2]
+stock: map[flour:30 milk:12] 2
+milk: 12
+stock: map[flour:30 honey:8 milk:7]
+butter: 0
+butter in stock? 0 false
+stock: map[honey:8 milk:7] 2
+sold: map[honey:1 milk:2]
