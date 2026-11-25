@@ -1,0 +1,89 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    func Countdown(n int) iter.Seq[int] {
+        return func(yield func(int) bool) {
+            for i := n; i > 0; i-- {
+                if !yield(i) {
+                    return
+                }
+            }
+        }
+    }
+
+    for x := range Countdown(3) {
+        fmt.Print(x)
+    }
+  options: ["321", "123", "3210"]
+  answer: 0
+  explain: "Iterator `3`, `2`, `1` dəyərlərini verir, `i > 0` şərti `0`-ı buraxmır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    for x := range Countdown(5) {
+        if x == 3 {
+            break
+        }
+        fmt.Print(x)
+    }
+  options: ["54", "543", "21"]
+  answer: 0
+  explain: "`x` `3` olanda `break` dövrü bitirir, `yield` `false` qaytarır və iterator dayanır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    fmt.Println(slices.Collect(Countdown(3)))
+  options: ["[3 2 1]", "[1 2 3]", "3 2 1"]
+  answer: 0
+  explain: "`slices.Collect` dəyərləri gəldiyi sıra ilə slice-a yığır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    for n := range Numbered([]string{"Depot", "Market"}) {
+        fmt.Print(n)
+    }
+  options: ["12", "01", "DepotMarket"]
+  answer: 0
+  explain: "`iter.Seq2` üzərində bir dəyişənlə `range` yalnız birinci dəyəri, yəni nömrəni alır."
+
+- question: Bu kod hansı sıra ilə çap edəcək?
+  code: |
+    func Loud() iter.Seq[int] {
+        return func(yield func(int) bool) {
+            fmt.Println("start")
+            yield(7)
+        }
+    }
+
+    s := Loud()
+    fmt.Println("created")
+    for x := range s {
+        fmt.Println(x)
+    }
+  options: ["created, start, 7", "start, created, 7", "start, 7, created"]
+  answer: 0
+  explain: "`Loud()` yalnız funksiya qaytarır; onun kodu `range` başlayanda işləyir."
+
+- question: Bu kod işə düşəndə nə olacaq?
+  code: |
+    func Twice() iter.Seq[int] {
+        return func(yield func(int) bool) {
+            yield(1)
+            yield(2)
+        }
+    }
+
+    for x := range Twice() {
+        fmt.Println(x)
+        break
+    }
+  options: ["`1` çap olunur, sonra panic", "yalnız `1` çap olunur", "`1` və `2` çap olunur"]
+  answer: 0
+  explain: "`break`-dən sonra `yield` `false` qaytarır, iterator isə onu yoxlamadan yenə çağırır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    m := map[string]int{"tram": 2, "bus": 1}
+    fmt.Println(slices.Sorted(maps.Keys(m)))
+  options: ["[bus tram]", "[tram bus]", "[1 2]"]
+  answer: 0
+  explain: "`maps.Keys` açarları verir, `slices.Sorted` onları əlifba sırası ilə düzür."

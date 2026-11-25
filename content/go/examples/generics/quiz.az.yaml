@@ -1,0 +1,80 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    func Count[T comparable](items []T, x T) int {
+        n := 0
+        for _, it := range items {
+            if it == x {
+                n++
+            }
+        }
+        return n
+    }
+
+    fmt.Println(Count([]int{1, 2, 1}, 1), Count([]string{"a"}, "b"))
+  options: ["2 0", "1 0", "kompilyasiya xətası"]
+  answer: 0
+  explain: "Birinci çağırışda `T` `int`, ikincidə `string` olur; funksiya bir dəfə yazılıb."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    fmt.Println(Tally([]string{"b", "a", "b"}))
+  options: ["map[a:1 b:2]", "map[b:2 a:1]", "[a b]"]
+  answer: 0
+  explain: "`fmt` map-i açarlara görə sıralayıb çap edir."
+
+- question: Bu kod niyə kompilyasiya olunmur?
+  code: |
+    func Bigger[T any](a, b T) T {
+        if a > b {
+            return a
+        }
+        return b
+    }
+  options:
+    - "`any` `>` operatorunu təmin etmir"
+    - "type parameter-in adı `T` ola bilməz"
+    - "generic funksiya iki parametr qəbul edə bilməz"
+  answer: 0
+  explain: "`>` üçün constraint `cmp.Ordered` kimi sıralanan tipləri tələb etməlidir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    x := 3
+    y := 2.5
+    fmt.Println(Clamp(x, y, 5))
+  options: ["kompilyasiya xətası", "3", "2.5"]
+  answer: 0
+  explain: "`x` `int`, `y` isə `float64` dəyişəndir; hər ikisi eyni `T` ola bilməz."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    type Celsius float64
+
+    func Abs[T int | float64](x T) T {
+        if x < 0 {
+            return -x
+        }
+        return x
+    }
+
+    fmt.Println(Abs(Celsius(-3)))
+  options: ["kompilyasiya xətası", "3", "-3"]
+  answer: 0
+  explain: "Constraint-də `~` yoxdur, ona görə `float64` üzərində qurulan `Celsius` qəbul olunmur."
+
+- question: Hansı sətir kompilyasiya olunmur?
+  options:
+    - "`var b Shortlist`"
+    - "`a := Shortlist[int]{Max: 3}`"
+    - "`c := &Shortlist[string]{}`"
+  answer: 0
+  explain: "Generic tipdən istifadə edəndə tip arqumenti yazılmalıdır: `Shortlist[int]`."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    l := Shortlist[int]{Max: 1}
+    l.Add(4)
+    fmt.Println(l.Add(9), l.Items)
+  options: ["false [4]", "true [4 9]", "false [9]"]
+  answer: 0
+  explain: "Siyahıda bir yer var və o, `4` ilə dolub, ona görə `9` əlavə olunmur."

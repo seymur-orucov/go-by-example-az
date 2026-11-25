@@ -1,0 +1,9 @@
+rules:
+  - "Metod receiver-i olan funksiyadır: `func (p Playlist) Long() bool` elan olunur, `road.Long()` kimi çağırılır."
+  - "Value receiver surət alır; metodun içindəki dəyişiklik çağıranın dəyərinə təsir etmir."
+  - "Pointer receiver (`*Playlist`) orijinalı dəyişir; dəyişən üçün `road.Add(...)` yazmaq kifayətdir, Go ünvanı özü götürür."
+  - "Literal kimi ünvanı olmayan dəyər üçün pointer receiver metodu çağırmaq olmaz: `Lamp{}.Toggle()`."
+  - "Metodu yalnız eyni package-də elan olunmuş tipə əlavə etmək olar: `int`-ə yox, `type Minutes int`-ə olar."
+practices:
+  - "Dəyəri dəyişən metodu həmişə pointer receiver ilə yazın, əks halda dəyişiklik səssizcə itir."
+  - "Receiver-ə tipin adından qısa ad verin: `p Playlist`, `m Minutes`."

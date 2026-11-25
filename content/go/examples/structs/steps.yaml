@@ -1,0 +1,16 @@
+define:
+  out: |
+    Lisbon 3 kg
+    {P-101 Lisbon 3 false}
+zero:
+  out: |
+    empty: 0 false
+    {L-7 Oslo 0 false}
+copy:
+  out: |
+    Lisbon Porto
+    same: false
+pointer:
+  out: "delivered: true"
+slice:
+  out: "route: 3 parcels, 8 kg"
