@@ -2,5 +2,7 @@ title: "Goroutines"
 subtitle: "Yüngül axınlar"
 section: concurrency
 order: 1
-status: planned
+status: ready
 level: advanced
+duration: 8
+source: original

@@ -2,5 +2,7 @@ title: "Channel Buffering"
 subtitle: "Buferli kanal"
 section: concurrency
 order: 3
-status: planned
+status: ready
 level: advanced
+duration: 7
+source: original

@@ -1,0 +1,100 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    bus := make(chan string)
+    taxi := make(chan string)
+    go func() {
+        time.Sleep(300 * time.Millisecond)
+        bus <- "bus"
+    }()
+    go func() {
+        time.Sleep(100 * time.Millisecond)
+        taxi <- "taxi"
+    }()
+    select {
+    case v := <-bus:
+        fmt.Println(v)
+    case v := <-taxi:
+        fmt.Println(v)
+    }
+  options: ["bus", "taxi", "əvvəl `taxi`, sonra `bus`"]
+  answer: 1
+  explain: "`taxi` 100 ms-də hazır olur, `select` onun `case`-ini icra edir və bitir, `bus` oxunmur."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    fast := make(chan string)
+    slow := make(chan string)
+    go func() {
+        time.Sleep(200 * time.Millisecond)
+        slow <- "S"
+    }()
+    go func() {
+        time.Sleep(50 * time.Millisecond)
+        fast <- "F"
+    }()
+    for range 2 {
+        select {
+        case v := <-slow:
+            fmt.Print(v)
+        case v := <-fast:
+            fmt.Print(v)
+        }
+    }
+  options: ["SF", "F", "FS"]
+  answer: 2
+  explain: "Dövrdə `select` hər dəfə hazır olanı götürür: əvvəl 50 ms-də `F`, sonra 200 ms-də `S`."
+
+- question: İki channel-da artıq dəyər var. Çıxış haqqında nə demək olar?
+  code: |
+    tea := make(chan string, 1)
+    coffee := make(chan string, 1)
+    tea <- "tea"
+    coffee <- "coffee"
+    select {
+    case d := <-tea:
+        fmt.Println(d)
+    case d := <-coffee:
+        fmt.Println(d)
+    }
+  options:
+    - "həmişə `tea`, çünki o, birinci yazılıb"
+    - "`tea` və ya `coffee`, hər işə salmada fərqli ola bilər"
+    - "`tea` və `coffee`, iki sətir"
+  answer: 1
+  explain: "Hər iki `case` hazırdır, `select` birini təsadüfi seçir və yalnız onu icra edir."
+
+- question: Bu kod işə düşəndə nə olacaq?
+  code: |
+    orders := make(chan int)
+    select {
+    case id := <-orders:
+        fmt.Println("order", id)
+    }
+  options:
+    - "`order 0` çap olunur"
+    - "heç nə çap olunmur, proqram normal bitir"
+    - "proqram `all goroutines are asleep - deadlock!` ilə dayanır"
+  answer: 2
+  explain: "`orders`-a heç kim göndərmir, `select` əbədi gözləyir və başqa goroutine olmadığı üçün Go deadlock xətası verir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    out := make(chan string, 1)
+    in := make(chan string)
+    select {
+    case out <- "order 7":
+        fmt.Println("sent")
+    case v := <-in:
+        fmt.Println("got", v)
+    }
+  options: ["sent", "got order 7", "deadlock xətası"]
+  answer: 0
+  explain: "`out`-un buffer-ində yer var, göndərmə dərhal mümkündür, `in`-ə isə heç kim göndərmir."
+
+- question: "`orders` `chan int` tiplidir. Hansı `case` kompilyasiya olunmur?"
+  options:
+    - "`case id := <-orders:`"
+    - "`case orders <- 5:`"
+    - "`case len(orders) > 0:`"
+  answer: 2
+  explain: "`select`-in `case`-i yalnız channel-dan qəbul və ya channel-a göndərmə ola bilər, adi şərt yox."

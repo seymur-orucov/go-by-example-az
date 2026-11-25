@@ -2,5 +2,7 @@ title: "Worker Pools"
 subtitle: "İşçi hovuzu"
 section: concurrency
 order: 13
-status: planned
+status: ready
 level: advanced
+duration: 9
+source: original

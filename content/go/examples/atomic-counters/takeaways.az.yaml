@@ -1,0 +1,10 @@
+rules:
+  - "Bir neçə goroutine eyni adi dəyişəni `n++` ilə dəyişəndə data race yaranır və artımlar itə bilər."
+  - "`atomic.Int64`-ün zero value-su 0-dır: `Add` atomik dəyişir, `Load` atomik oxuyur."
+  - "`Add` mənfi ədədlə azaldır və yeni dəyəri qaytarır; hər çağırış öz nəticəsini alır."
+  - "Atomik tipə `c++` yazmaq kompilyasiya xətasıdır, yalnız onun metodları işləyir."
+  - "Atomik dəyəri kopyalamaq olmaz: kopya ayrı sayğacdır və `go vet` bunu tutur."
+practices:
+  - "Sayğacın yekun dəyərini bütün goroutine-lər bitdikdən, `wg.Wait()`-dən sonra oxuyun."
+  - "Hədd yoxlamasını ayrıca `Load` ilə yox, `Add`-in qaytardığı dəyərlə edin."
+  - "Bir neçə addımı birlikdə yoxlayıb dəyişmək lazımdırsa, atomik sayğac yox, mutex işlədin."

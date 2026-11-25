@@ -1,0 +1,9 @@
+rules:
+  - "`time.NewTicker(d)` `C` channel-ına hər `d` müddətindən bir siqnal göndərir; birinci siqnal `d`-dən sonra gəlir."
+  - "Ticker özü dayanmır, onu `Stop` ilə dayandırmaq lazımdır."
+  - "`Stop` channel-ı bağlamır: `for range t.C` dövrü `Stop`-dan sonra bitmir."
+  - "`select`-in içindəki `break` dövrdən yox, yalnız `select`-dən çıxır."
+  - "Ticker-in müddəti müsbət olmalıdır, `NewTicker(0)` panic edir."
+practices:
+  - "Ticker-i yaradan kimi `defer t.Stop()` yazın."
+  - "Ticker dövrünü dayandırmaq üçün `select`-də ayrıca stop channel-ı gözləyin və `return` ilə çıxın."

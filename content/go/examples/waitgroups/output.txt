@@ -1,0 +1,3 @@
+health: [true true false true]
+faster than one by one: true
+updated 3 of 4 servers

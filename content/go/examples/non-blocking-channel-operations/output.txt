@@ -1,0 +1,9 @@
+frame 1 - no new messages
+frame 2 - no new messages
+frame 3 - new message: Rashad: rematch?
+queued: level up
+queued: new skin
+queue full, dropped: daily bonus
+show: level up
+show: new skin
+popups left: 0

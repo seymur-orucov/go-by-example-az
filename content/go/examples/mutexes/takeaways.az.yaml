@@ -1,0 +1,11 @@
+rules:
+  - "`Lock` və `Unlock` arasındakı koda istənilən an yalnız bir goroutine girir."
+  - "`sync.Mutex`-in zero value-su açıq kilitdir, onu yaratmaq lazım deyil."
+  - "Mutex-i kopyalamaq olmaz: mutex-li struct-ın metodları pointer receiver ilə yazılır, `go vet` kopyanı tutur."
+  - "Açılmamış kilidi yenidən `Lock` etmək goroutine-i əbədi gözlədir; Go mutex-i təkrar bağlanmır."
+  - "Paylaşılan map-i oxumaq da kilid tələb edir, yalnız yazmaq yox."
+  - "Atomik tip bir dəyəri qoruyur; \"yoxla, sonra dəyiş\" kimi bir neçə addımı isə mutex qoruyur."
+practices:
+  - "`Lock`-dan dərhal sonra `defer mu.Unlock()` yazın ki, heç bir `return` kilidi açıq unutmasın."
+  - "Mutex-i qoruduğu sahələrin yanında saxlayın və nəyi qoruduğunu şərhdə yazın."
+  - "Kilidin içində yalnız paylaşılan verilənlərə toxunan qısa kodu saxlayın."

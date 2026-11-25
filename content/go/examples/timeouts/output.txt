@@ -1,0 +1,4 @@
+paid 40 USD
+bank is not answering, please try again
+waited under 600 ms: true
+late reply: paid 75 USD - refund it

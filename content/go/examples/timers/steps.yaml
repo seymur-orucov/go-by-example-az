@@ -1,0 +1,13 @@
+new-timer:
+  out: |
+    eggs on the stove
+    ring: eggs are ready
+stop:
+  out: |
+    pasta taken out early
+    pasta timer stopped: true
+    eggs timer stopped: false
+after-func:
+  out: |
+    soup is simmering
+    reminder: stir the soup

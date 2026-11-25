@@ -1,0 +1,9 @@
+rules:
+  - "`main` goroutine-ləri gözləmir: `main` bitəndə proqram bitir, yarımçıq goroutine-lər də dayanır."
+  - "Goroutine işin sonunda `done` channel-ına siqnal göndərir, `<-done` isə həmin siqnal gələnə qədər bloklanır."
+  - "`struct{}` boş struct tipidir, `struct{}{}` onun dəyəridir; `chan struct{}` məlumat yox, yalnız siqnal daşıyır."
+  - "`time.Sleep` gözləmə deyil, təxmindir: iş gec bitsə nəticə itir, tez bitsə vaxt boşa gedir."
+  - "Siqnal heç vaxt göndərilməsə, `<-done` sonsuza qədər gözləyir və proqram `deadlock` xətası ilə dayana bilər."
+practices:
+  - "Siqnalı işin ən sonunda göndərin: ondan sonrakı kod `main` bitəndə yarımçıq qala bilər."
+  - "Siqnal channel-ı üçün `chan struct{}` seçin ki, oxucu channel-ın dəyər yox, xəbər daşıdığını dərhal görsün."

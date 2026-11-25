@@ -2,5 +2,7 @@ title: "Tickers"
 subtitle: "Təkrarlanan taymer"
 section: concurrency
 order: 12
-status: planned
+status: ready
 level: advanced
+duration: 8
+source: original

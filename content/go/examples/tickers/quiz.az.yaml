@@ -1,0 +1,82 @@
+- question: Bu kodda `tick` nə vaxt çap olunacaq?
+  code: |
+    t := time.NewTicker(time.Second)
+    fmt.Println("start")
+    <-t.C
+    fmt.Println("tick")
+  options: ["`start`-dan dərhal sonra", "`start`-dan təxminən 1 saniyə sonra", "heç vaxt"]
+  answer: 1
+  explain: "Ticker-in birinci siqnalı dərhal yox, ilk müddət bitəndə gəlir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    t := time.NewTicker(100 * time.Millisecond)
+    defer t.Stop()
+    stop := time.After(350 * time.Millisecond)
+    n := 0
+    for {
+        select {
+        case <-t.C:
+            n++
+        case <-stop:
+            fmt.Println(n)
+            return
+        }
+    }
+  options: ["`3`", "`4`", "`1`"]
+  answer: 0
+  explain: "Siqnallar 100, 200 və 300 millisaniyədə gəlir, 350-də isə `stop` dövrü bitirir."
+
+- question: Bu kod işə düşəndə nə olacaq?
+  code: |
+    t := time.NewTicker(50 * time.Millisecond)
+    n := 0
+    for range t.C {
+        n++
+        if n == 3 {
+            t.Stop()
+        }
+    }
+    fmt.Println(n)
+  options: ["`3` çap olunur", "proqram `deadlock` xətası ilə dayanır", "`4` çap olunur"]
+  answer: 1
+  explain: "`Stop` channel-ı bağlamır, ona görə `for range` yeni siqnalı əbədi gözləyir."
+
+- question: "`for` dövrünün içindəki `select`-də `case <-done: break` yazılıb. `done` bağlananda nə olur?"
+  options:
+    - "`for` dövrü bitir"
+    - "yalnız `select` bitir, `for` dövrü davam edir"
+    - "kompilyasiya xətası"
+  answer: 1
+  explain: "`select`-in içindəki `break` ən yaxın `select`-dən çıxır; dövrdən çıxmaq üçün `return` və ya etiketli `break` lazımdır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    t := time.NewTicker(100 * time.Millisecond)
+    time.Sleep(250 * time.Millisecond)
+    t.Stop()
+    select {
+    case <-t.C:
+        fmt.Println("tick")
+    default:
+        fmt.Println("quiet")
+    }
+  options: ["`tick`", "`quiet`", "`tick`, sonra `quiet`"]
+  answer: 1
+  explain: "Go 1.23-dən `Stop`-dan sonra channel-dan köhnə siqnal gəlmir, ona görə `default` işləyir."
+
+- question: Bu kod işə düşəndə nə olacaq?
+  code: |
+    t := time.NewTicker(0)
+    fmt.Println("started")
+  options: ["proqram panic ilə dayanır", "`started` çap olunur", "kompilyasiya xətası"]
+  answer: 0
+  explain: "Ticker-in müddəti müsbət olmalıdır, `NewTicker(0)` panic edir: `non-positive interval for NewTicker`."
+
+- question: Hər 10 saniyədən bir sensoru oxumaq lazımdır. Hansı daha uyğundur?
+  options:
+    - "`time.NewTimer(10 * time.Second)`"
+    - "`time.NewTicker(10 * time.Second)`"
+    - "fərqi yoxdur"
+  answer: 1
+  explain: "Taymer bir dəfə siqnal verir, ticker isə hər müddətdən bir təkrarlayır."

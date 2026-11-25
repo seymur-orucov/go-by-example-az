@@ -1,0 +1,7 @@
+the rail holds 3 tickets
+cashier took 3 orders, on the rail: 3 of 3
+the rail was full, cashier waited: true
+barista made latte
+next ticket: cappuccino
+next ticket: mocha
+next ticket: espresso

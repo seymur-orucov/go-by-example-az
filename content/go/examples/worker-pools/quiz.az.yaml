@@ -1,0 +1,110 @@
+- question: "4 iş və 2 worker var, hər iş 100 millisaniyə çəkir. Bütün işlər təxminən nə qədər vaxta bitir?"
+  options: ["400 ms", "200 ms", "100 ms"]
+  answer: 1
+  explain: "İki worker eyni anda iki iş görür, 4 iş iki dövrədə bitir: 2 × 100 ms."
+
+- question: "Üç worker nəticələri bir channel-a göndərir, `main` onları gəldiyi kimi çap edir. Çap sırası haqqında nə demək olar?"
+  options:
+    - "İşlərin göndərildiyi sıra ilədir"
+    - "Worker-lərin işə salındığı sıra ilədir"
+    - "Təyin olunmayıb, hər dəfə fərqli ola bilər"
+  answer: 2
+  explain: "Hansı worker-in əvvəl qurtaracağını planlayıcı müəyyən edir; sıra lazımdırsa, nəticəni işin nömrəsinə görə yerinə yazın."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    func price(sizes <-chan int, out chan<- int) {
+        for s := range sizes {
+            out <- s * 3
+        }
+    }
+
+    sizes := make(chan int, 4)
+    out := make(chan int, 4)
+    for range 2 {
+        go price(sizes, out)
+    }
+    for _, s := range []int{1, 2, 3, 4} {
+        sizes <- s
+    }
+    close(sizes)
+    total := 0
+    for range 4 {
+        total += <-out
+    }
+    fmt.Println(total)
+  options: ["30", "10", "Hər dəfə fərqli ədəd"]
+  answer: 0
+  explain: "Nəticələrin sırası dəyişə bilər, amma cəm sıradan asılı deyil: 3 + 6 + 9 + 12 = 30."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    func cook(orders <-chan int, finished chan<- bool) {
+        for o := range orders {
+            fmt.Println("order", o)
+        }
+        finished <- true
+    }
+
+    orders := make(chan int, 3)
+    finished := make(chan bool)
+    go cook(orders, finished)
+    orders <- 1
+    orders <- 2
+    <-finished
+  options:
+    - "`order 1`, `order 2`, proqram normal bitir"
+    - "`order 1`, `order 2`, sonra `fatal error: all goroutines are asleep - deadlock!`"
+    - "Heç nə, proqram dərhal bitir"
+  answer: 1
+  explain: "`orders` bağlanmayıb, ona görə `range` bitmir, `cook` `finished`-ə heç vaxt göndərmir və `main` sonsuza qədər gözləyir."
+
+- question: Bu kod işə düşəndə nə olacaq?
+  code: |
+    func square(in <-chan int, out chan<- int) {
+        for n := range in {
+            out <- n * n
+        }
+    }
+
+    in := make(chan int)
+    out := make(chan int)
+    go square(in, out)
+    for n := range 3 {
+        in <- n
+    }
+    close(in)
+    for range 3 {
+        fmt.Println(<-out)
+    }
+  options:
+    - "`0`, `1`, `4` çap olunur"
+    - "Yalnız `0` çap olunur"
+    - "Heç nə çap olunmur, deadlock olur"
+  answer: 2
+  explain: "Worker ilk nəticəni `out`-a verə bilmir, çünki `main` hələ göndərir; `main` isə ikinci ədədi verə bilmir, çünki worker məşğuldur."
+
+- question: "Hansı sətir kompilyasiya olunmur?"
+  code: |
+    func worker(jobs <-chan int) {
+        for j := range jobs {
+            fmt.Println(j)
+        }
+        close(jobs)
+    }
+  options: ["`for j := range jobs {`", "`close(jobs)`", "Hamısı kompilyasiya olunur"]
+  answer: 1
+  explain: "Receive-only channel-ı bağlamaq olmaz (`cannot close receive-only channel`): channel-ı onu dolduran tərəf bağlayır."
+
+- question: "3 iş və 10 worker var, hər iş 100 millisaniyə çəkir. Bütün işlər təxminən nə qədər vaxta bitir?"
+  options: ["100 ms", "30 ms", "10 ms"]
+  answer: 0
+  explain: "Hər iş yenə 100 ms çəkir; üç worker işləyir, qalan yeddisi boş dayanır."
+
+- question: "Dərsdəki `washAll` nəticələri niyə `range washes` ilə yox, düz `len(queue)` dəfə oxuyur?"
+  options:
+    - "`range` buffered channel-da işləmir"
+    - "`washes`-i heç kim bağlamır, `range` heç vaxt bitməzdi"
+    - "`range` nəticələri tərs sıra ilə verərdi"
+  answer: 1
+  explain: "`range` yalnız channel bağlananda bitir; worker-lər `washes`-i bağlaya bilməz, çünki hər biri digərlərinin hələ göndərə biləcəyini bilmir."

@@ -1,0 +1,4 @@
+counter: waiting for Margherita
+counter: got Margherita
+counter: the oven took the order, waited: true
+counter: got Pepperoni

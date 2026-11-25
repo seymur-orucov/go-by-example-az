@@ -1,0 +1,103 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    var wg sync.WaitGroup
+    sizes := make([]int, 3)
+    for i, file := range []string{"app.log", "notes.txt", "db"} {
+        wg.Go(func() {
+            sizes[i] = len(file)
+        })
+    }
+    wg.Wait()
+    fmt.Println(sizes)
+  options: ["[0 0 0]", "[7 9 2]", "Hər dəfə fərqli sıra"]
+  answer: 1
+  explain: "`Wait` bütün goroutine-lərin bitməsini gözləyir və hər biri öz indeksinə yazır, ona görə sıra sabitdir."
+
+- question: Bu kod işə düşəndə nə olacaq?
+  code: |
+    func work(wg sync.WaitGroup) {
+        defer wg.Done()
+        fmt.Println("work")
+    }
+
+    var wg sync.WaitGroup
+    wg.Add(1)
+    go work(wg)
+    wg.Wait()
+    fmt.Println("done")
+  options:
+    - "`work`, sonra `fatal error: all goroutines are asleep - deadlock!`"
+    - "`work`, `done`"
+    - "Kompilyasiya xətası"
+  answer: 0
+  explain: "`work` WaitGroup-un kopyasını alıb, `Done` kopyanı azaldır və `main`-dəki `Wait` heç vaxt bitmir; `go vet` bunu `passes lock by value` kimi göstərir."
+
+- question: Bu kod işə düşəndə nə olacaq?
+  code: |
+    var wg sync.WaitGroup
+    wg.Add(1)
+    wg.Done()
+    wg.Done()
+    fmt.Println("ok")
+  options:
+    - "`ok` çap olunur"
+    - "Deadlock"
+    - "`panic: sync: negative WaitGroup counter`"
+  answer: 2
+  explain: "İkinci `Done` sayğacı mənfi edir və WaitGroup panic verir."
+
+- question: "Bu kodda nə səhvdir?"
+  code: |
+    var wg sync.WaitGroup
+    for range 3 {
+        go func() {
+            wg.Add(1)
+            defer wg.Done()
+            fmt.Println("ping")
+        }()
+    }
+    wg.Wait()
+    fmt.Println("all done")
+  options:
+    - "Heç nə, həmişə üç `ping`, sonra `all done` çap olunur"
+    - "`Wait` heç bir `Add` olmamış qayıda bilər, `ping`-lər çap olunmaya bilər"
+    - "Kompilyasiya olunmur"
+  answer: 1
+  explain: "`Add` `go`-dan əvvəl çağırılmalıdır; goroutine-lər başlamamış `Wait` sıfır sayğac görür (`go vet`: `WaitGroup.Add called from inside new goroutine`)."
+
+- question: "`save(path string)` funksiyası heç nə qaytarmır. Hansı sətir kompilyasiya olunur?"
+  options:
+    - "`wg.Go(save(path))`"
+    - "`wg.Go(func() { save(path) })`"
+    - "Hər ikisi"
+  answer: 1
+  explain: "`wg.Go` parametrsiz `func()` gözləyir, `save(path)` isə funksiya deyil, onun çağırışıdır (`save(path) (no value) used as value`)."
+
+- question: Bu kod işə düşəndə nə olacaq?
+  code: |
+    var wg sync.WaitGroup
+    results := make(chan int)
+    for i := range 3 {
+        wg.Go(func() {
+            results <- i
+        })
+    }
+    wg.Wait()
+    close(results)
+    for r := range results {
+        fmt.Println(r)
+    }
+  options:
+    - "Heç nə çap olunmur, deadlock olur"
+    - "0, 1, 2 hansısa sıra ilə çap olunur"
+    - "Heç nə çap olunmur, proqram normal bitir"
+  answer: 0
+  explain: "Goroutine-lər buffer-siz channel-a göndərə bilmir, çünki hələ heç kim oxumur; `Wait` isə onların bitməsini gözləyir."
+
+- question: "Dərsdəki proqramdan `close(updated)` sətrini silsək, nə olar?"
+  options:
+    - "Proqram `updated 3 of 4 servers` çap edib normal bitir"
+    - "Kompilyasiya xətası"
+    - "`range` üç mesajı oxuyandan sonra gözləməyə davam edir və proqram deadlock ilə bitir"
+  answer: 2
+  explain: "`range` yalnız channel bağlananda bitir; yeni mesaj gəlməyəcək, ona görə `main` sonsuza qədər gözləyir."

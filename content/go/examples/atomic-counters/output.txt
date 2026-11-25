@@ -1,0 +1,4 @@
+at kick-off: 12000
+second half: 10800
+last fan out, lights off
+after the match: 0
