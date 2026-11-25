@@ -17,8 +17,10 @@
   const fold = (s) => String(s).toLowerCase().replace(/[əä]/g, "e").replace(/ı/g, "i").replace(/ö/g, "o").replace(/ü/g, "u").replace(/ş/g, "s").replace(/ç/g, "c").replace(/ğ/g, "g");
 
   // ---------- platform data (prototype; later from content/ and content/roadmaps/) ----------
+  // Pages live next to this file; another prototype folder (design/v3) can point here with window.W3_PAGES
+  const PAGES = window.W3_PAGES || "";
   const TECHS = [
-    { id: "go", name: "Go", ic: "Go", c: "#00add8", status: "live", href: "go.html", desc: "Sadə sintaksis, sürətli kompilyasiya, concurrency." },
+    { id: "go", name: "Go", ic: "Go", c: "#00add8", status: "live", href: PAGES + "go.html", desc: "Sadə sintaksis, sürətli kompilyasiya, concurrency." },
     { id: "python", name: "Python", ic: "Py", c: "#4b8bd4", status: "soon", desc: "Avtomatlaşdırma, data, backend." },
     { id: "typescript", name: "TypeScript", ic: "TS", c: "#3178c6", status: "soon", desc: "Tipli JavaScript: frontend və Node.js." },
     { id: "javascript", name: "JavaScript", ic: "JS", c: "#e8c32a", status: "soon", desc: "Brauzerin dili: DOM, async, modullar." },
@@ -33,7 +35,7 @@
     { id: "html", name: "HTML və CSS", ic: "</>", c: "#ef6a3a", status: "soon", desc: "Semantika, layout, responsive." },
   ];
   const DIRECTIONS = [
-    { id: "backend", name: "Backend", ic: "BE", c: "#9b7bff", status: "preview", href: "roadmap.html#backend", techs: ["git", "linux", "http", "go", "sql", "docker", "k8s"], desc: "Server, API, verilənlər bazası və deploy — sorğudan serverə qədər.", nodes: 64 },
+    { id: "backend", name: "Backend", ic: "BE", c: "#9b7bff", status: "preview", href: PAGES + "roadmap.html#backend", techs: ["git", "linux", "http", "go", "sql", "docker", "k8s"], desc: "Server, API, verilənlər bazası və deploy — sorğudan serverə qədər.", nodes: 64 },
     { id: "frontend", name: "Frontend", ic: "FE", c: "#f472b6", status: "soon", techs: ["html", "javascript", "typescript", "react", "git", "http"], desc: "İnterfeys, brauzer, komponentlər və performans.", nodes: 58 },
     { id: "devops", name: "DevOps", ic: "Ops", c: "#22c3a6", status: "soon", techs: ["linux", "git", "docker", "k8s", "http", "python"], desc: "Avtomatlaşdırma, konteynerlər, CI/CD, monitorinq.", nodes: 52 },
     { id: "data", name: "Data", ic: "DA", c: "#f5a524", status: "soon", techs: ["python", "sql", "git", "linux"], desc: "Məlumatın toplanması, təmizlənməsi və analizi.", nodes: 40 },
@@ -63,7 +65,7 @@
   if (!Array.isArray(learned)) learned = ["hello-world", "values", "variables", "constants", "for"];
   const learnedSet = new Set(learned);
   const saveLearned = () => store.set("w3:learned", Array.from(learnedSet));
-  const lessonHref = (slug) => "lesson.html?ex=" + encodeURIComponent(slug);
+  const lessonHref = (slug) => PAGES + "lesson.html?ex=" + encodeURIComponent(slug);
 
   // ---------- icons ----------
   const P = (d) => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + d + "</svg>";
