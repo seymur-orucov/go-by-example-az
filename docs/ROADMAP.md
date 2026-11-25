@@ -67,8 +67,9 @@ Framework-free static HTML/CSS/JS in the `design/` directory.
 - [~] **Design v2** (`design/v2/`, 2026-11-25): new "Aurora glass" version on top of D — home (aurora hero, ask box, stack map, node anatomy, sections rail, advantages + comparison, resume CTA), Go page, roadmap graph, lesson page — awaiting the user's review
 - [x] Design v3, first try ("Aurora editorial", 2026-11-25) — **rejected** by the user ("v2 is better") and deleted
 - [~] **Design v3** (`design/v3/`, 2026-11-26), second try with a different idea, "Order from chaos": particle-field hero (dust → roadmap → code → cube → check → bubble), before/after slider, scroll-lit manifesto, pinned exploded five-layer lesson, technology orbit, typographic section list; loads v2's shell, other pages still v2's — awaiting the user's review
-- [~] **Design v4** (`design/v4/`, 2026-11-26), "Metro": after the v3 feedback (disliked the pinned "Bir mövzu. Beş qat." section and the running "Seç · Öyrən · Yoxla · Təkrar" line) the user asked for a v4 that is completely different. Transit-map home page with its own look (no `v2.css`): map hero with trains, Go strip map + timetable, lesson demo with a turnstile, tickets, split-flap board, boarding pass; other pages still v2's — awaiting the user's review
-- [ ] Platform name (working name "Nümunələrlə" for now; candidates `w3hub.dev` / `beststack.dev`, previewed in design v2/v3/v4)
+- [~] **Design v4** (`design/v4/`, 2026-11-26), "Metro": after the v3 feedback (disliked the pinned "Bir mövzu. Beş qat." section and the running "Seç · Öyrən · Yoxla · Təkrar" line) the user asked for a v4 that is completely different. Transit-map home page with its own look (no `v2.css`): map hero with trains, Go strip map + timetable, lesson demo with a turnstile, tickets, split-flap board, boarding pass; other pages still v2's — **not liked** by the user ("maraqlıdır amma bəyənmədim")
+- [~] **Design v5** (`design/v5/`, 2026-11-26): v2 and v3 merged at the user's request — v3's particle intro, before/after slider and manifesto on top of v2's look and sections (ask box, stack map, five facets, rail, advantages, resume card), plus new ideas (the aurora lights up when the particles lock, typed text is drawn by the particles, a click scatters them); other pages still v2's — awaiting the user's review
+- [ ] Platform name (working name "Nümunələrlə" for now; candidates `w3hub.dev` / `beststack.dev`, previewed in design v2–v5)
 - [x] **Roadmap page** (`d/roadmap.html`): technology roadmap (Go) + direction roadmap preview (Backend), sticky 5-facet node panel, filter, deep links; linked from the header nav, home, Go page and lessons (2026-11-23)
 - [x] **Final approval** of Variant D — starting Phase 2 counts as the approval (2026-11-23)
 - [x] Final palette choice: Nebula by default, İndiqo, Okean and Qrafit stay as options (2026-11-23)
@@ -187,7 +188,7 @@ Once the Go prototype is live, the site becomes a unified platform.
 
 ## Where to start next session
 
-0. **Design:** if the user says to continue the design, read [DESIGN-V2.md](DESIGN-V2.md) (brief, references, v2, v3 and v4 status; next: the user's feedback on v4 "Metro", then the other pages in the chosen style).
+0. **Design:** if the user says to continue the design, read [DESIGN-V2.md](DESIGN-V2.md) (brief, references, v2–v5 status; next: the user's feedback on v5, the v2 + v3 merge, then the other pages in the chosen style).
 1. `pnpm install`, then `pnpm lint && pnpm format:check && pnpm check && pnpm build` to confirm the workspace is healthy. The design reference: `node design/serve.mjs` → http://localhost:4321/d/.
 2. Phase 2, **module 2** (`feat/site-content-theme`), continued: the lesson page `/go/<slug>/` is done; next `/go/roadmap/`, `/` and `/roadmaps/backend/`. Lesson page leftovers: the explanation ↔ code arrow/curved line (moved to Phase 2), "Redaktə" + live run (module 3: CodeMirror, `/api/run`). Also still to port: the "Oxuma — gör" demo player and the "Niyə bu sayt" bento (left out of `/go/` on purpose).
 3. The platform name is still open; nothing in Phase 2 depends on it.

@@ -93,6 +93,17 @@ A home page built from a different idea again, after the user's v3 feedback (dis
 - **Finale:** a boarding pass printed from a slot — from the last learned lesson to the next one, with the progress bar.
 - Below 1180px the headline leaves the map canvas (the map gets a title block with the line legend); below 900px the map and the Go strip scroll sideways. Under `prefers-reduced-motion` the map is shown drawn, trains are parked, the board and tickets show their final state.
 
+### Design v5 — v2 and v3 merged (`/v5/`, 2026-11-26)
+The user on v4: "Maraqlıdır amma bəyənmədim" — then asked for a new version that **mixes v2 and v3**, uses the better concepts of both, keeps **v3's intro** ("çox maraqlı idi") and may add other ideas. Open http://localhost:4321/v5/. It loads v2's shell and home styles (`../v2/v2.css`, `../v2/home.css`, `../v2/v2.js`) and adds `index.html`, `v5.css`, `v5.js`; the other pages are v2's. A **v2 | v3 | v4 | v5** switch sits bottom-right.
+- **From v3:** the hero — the canvas particle field (dust → roadmap graph → code → cube → check → bubble, tabs and caption, pointer repulsion, dissolving on scroll) with its headline "Öyrənmək çətin deyil. Azmaq asandır."; the before/after slider; the scroll-lit manifesto. Not taken: the pinned "Bir mövzu. Beş qat." view and the running line (disliked), the orbit, the typographic list, the capsule header.
+- **From v2:** the look (aurora, hairline grid, glass cards, glowing borders, wires, `kicker` labels, gradient headings), the glowing ask box, the stack map, "Bir mövzu. Beş tərəf.", the platform rail, "Niyə məhz burada?" with the comparison table, the resume card. Not taken: the three tilted showcase cards (the facet demo shows the same lesson).
+- **New in v5:**
+  - *Order brings the light:* the sky (v2's aurora and grid) stays dark while the field is chaos and fades in when the particles lock into the map.
+  - *The field answers the reader:* text typed into the ask box (or a hovered suggestion chip) is drawn by the particles; Enter still opens the search. Clearing the box returns to the five shapes.
+  - *Scatter:* a click on an empty part of the hero blows the field apart from that point; it re-forms on its own.
+  - *Tabs → demo:* "Bu tərəfi nümunədə gör" under the hero tabs scrolls to the facet demo and opens the matching facet (the map tab goes to the stack map).
+- `v5.js` has two parts: part A is v2's `home.js` without the showcase, part B is v3's hero, slider and manifesto plus the additions. Under `prefers-reduced-motion` the hero is one still frame with the sky lit, typed text still redraws the shape, nothing scatters.
+
 ## Files
 ```
 design/
@@ -103,6 +114,7 @@ design/
   v2/             Design v2 — new version built on D
   v3/             Design v3 — home page built on v2 (reuses v2's shell)
   v4/             Design v4 — "Metro" home page (own look; uses v2.js for data and search)
+  v5/             Design v5 — home page that merges v2 and v3 (uses v2's shell and home styles)
 ```
 
 | File | Purpose |
@@ -126,6 +138,7 @@ design/
 | `v2/lesson.html`, `lesson.css`, `lesson.js` | Design v2: lesson page (the real `slices` lesson) |
 | `v3/index.html`, `v3.css`, `v3.js` | Design v3: platform home (particle-field hero, before/after slider, scroll-lit manifesto, exploded five-layer lesson, technology orbit, section list); loads `v2/v2.css` + `v2/v2.js` |
 | `v4/index.html`, `v4.css`, `v4.js` | Design v4 "Metro": platform home (transit-map hero with trains, Go strip map + timetable, lesson demo with a turnstile question, tickets, split-flap board, boarding pass); loads `v2/v2.js` but not `v2.css` |
+| `v5/index.html`, `v5.css`, `v5.js` | Design v5: platform home merging v2 and v3 (v3's particle intro, slider and manifesto; v2's ask box, stack map, facets, rail, advantages, resume card; new: aurora on lock, typed text drawn by particles, click to scatter); loads `v2/v2.css`, `v2/home.css`, `v2/v2.js` |
 | `archive/a/` | Variant A: `tokens.css`, `app.css`, `index.html`, `example.html` |
 | `archive/b/` | Variant B: `style.css`, `index.html`, `example.html` |
 | `archive/c/` | Variant C: `index.html`, `example.html` (styles are `shared/base.css`) |

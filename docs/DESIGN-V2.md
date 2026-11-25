@@ -43,7 +43,9 @@ The user's request (2026-11-25): **a v3 on the basis of v2 and the same referenc
 
 **Feedback on the second try (2026-11-26):** the user named two parts they did not like — the **"Bir mövzu. Beş qat."** section (the pinned 3D exploded view) and the **running "Seç · Öyrən · Yoxla · Təkrar" line** in the finale — and asked for a v4: *"V4 hazırla. Tam fərqli."* Nothing was said about the other v3 sections.
 
-## Design v4 — `design/v4/` ("Metro", 2026-11-26, awaiting review)
+## Design v4 — `design/v4/` ("Metro", 2026-11-26) — not liked
+
+**Verdict (2026-11-26):** *"Maraqlıdır amma bəyənmədim."* The user then asked for a mix of v2 and v3 (see v5 below). v4 stays in the repo for comparison.
 
 Details in [HISTORY.md](HISTORY.md) entry 44 and [design/README.md](../design/README.md):
 - Idea and headline: "Hər peşə bir xətdir. Hər texnologiya bir stansiya." — the platform as a transit map.
@@ -53,9 +55,17 @@ Details in [HISTORY.md](HISTORY.md) entry 44 and [design/README.md](../design/RE
 - No pinned scroll scene, no marquee, no "one topic, five …" section (the v3 feedback).
 - Compare: `node design/serve.mjs 4399` → `/v2/`, `/v3/`, `/v4/` (switch bottom-right on v3 and v4).
 
+## Design v5 — `design/v5/` (v2 + v3 merged, 2026-11-26, awaiting review)
+
+The user's request: *"v2 və v3 qarışığı ilə yeni bir versiya yarat. Hər ikisində daha yaxşı olan konseptləri istifadə et. v3-ün introsu çox maraqlı idi. Maraqlı başqa ideyalar da əlavə edə bilərsən."* Details in [HISTORY.md](HISTORY.md) entry 45 and [design/README.md](../design/README.md):
+- From v3: the particle intro hero (with its headline), the before/after slider, the scroll-lit manifesto.
+- From v2: the look, the ask box, the stack map, the five facets, the rail, the advantages + comparison, the resume card.
+- New: the aurora and grid light up when the particles lock; typed text (or a hovered chip) is drawn by the particles; a click scatters the field; the hero tabs open the matching facet in the demo.
+- What is liked so far, in the user's words: v2 as a whole ("çox yaxşı alınıb", "V2 daha yaxşıdır"), v3's intro ("çox maraqlı idi"). Disliked: v3's "Bir mövzu. Beş qat" and running line, v4 as a whole.
+
 ## Where to continue
 
-1. **Get the user's feedback on v4 "Metro"** (map hero, trains, copy, board, tickets) and record it in [HISTORY.md](HISTORY.md). If v4 is the direction, do the **other pages in the v4 style** (`go.html`, `roadmap.html`, `lesson.html`) inside `design/v4/` and move the shared data out of `v2.js`. If v2 stays the favourite, the pieces the user likes from v3/v4 can be moved into v2 one by one.
+1. **Get the user's feedback on v5** (the merged hero, which v3 sections to keep, the new interactions) and record it in [HISTORY.md](HISTORY.md). If v5 is the direction, it replaces v2's `index.html` as the home reference; the Go, roadmap and lesson pages are already in the same (v2) language.
 2. If the user wants another variant instead, one earlier proposal still stands: **"Light editorial"** (light-first, large type, fewer effects). ("Roadmap-first" is what v4 became.)
 3. Decide the platform name (`w3hub.dev` / `beststack.dev` / other) — check domain availability.
 4. After a variant is approved: move it into `packages/theme` / `apps/site` (Phase 2 module 2: `/`, `/go/roadmap/`, `/roadmaps/backend/`).
