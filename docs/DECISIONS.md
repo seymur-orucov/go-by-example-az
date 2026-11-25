@@ -158,6 +158,7 @@ Supersedes the file list in the "Content layout" row above (`az.md` becomes `les
 | Technology switcher in the header (`Go ▾` → Python, Rust… "coming soon") and a "One platform, several languages" section | Preparation for the hub |
 | Narrow screens: < 1200px a code snippet under each step; < 980px the sidebar becomes a drawer | Mobile UX |
 | Lesson quiz ("Özünü yoxla") is a **slider**: one question at a time, prev/next and `←`/`→`, progress dots (green = right on the first try, amber = after a retry), a result slide with the score and "Yenidən başla" (2026-11-24) | The user's wish |
+| **Design v2** (`design/v2/`, 2026-11-25): a new, self-contained prototype version built on D at the user's request ("redesign on top of D, as a new version"). D stays frozen as it was. v2 keeps D's palette pair (blue → violet, 4 palettes), dark-first theme, Inter + JetBrains Mono, code-style section labels and the liked lesson behaviour, and adds an "Aurora glass" language from the user's references: WebGL aurora ribbons in the hero, hairline grid with crosshairs, glass cards with corner dots, rotating glowing borders, node-graph wires. It loads only `design/shared/data.js` (read-only), none of D's or the shared CSS/JS, so A–D are unaffected. Pending the user's review; once approved it replaces D as the reference for `packages/theme` / `apps/site` | The user's request with references (glass login cards and icon row, light-ribbon brand backdrop, 3D glass feature art, glowing prompt box, workflow node graph); keeping D intact allows side-by-side comparison |
 
 ## Open questions (awaiting decision)
 
@@ -171,7 +172,7 @@ Supersedes the file list in the "Content layout" row above (`az.md` becomes `les
 - Users without an account: does progress stay in `localStorage` and get migrated to the server when they sign up?
 - ~~**Platform sections**: how they are modelled, linked to nodes, and ordered~~ — decided 2026-11-23, see "Platform sections".
 - ~~**Home page redesign**~~ — first version done 2026-11-23 (`design/d/index.html`); awaiting the user's feedback.
-- **Platform and repo name:** "Nümunələrlə Go" and `go-by-example-az` no longer describe the whole platform. The prototype uses the working name "Nümunələrlə"; the user is still thinking (2026-11-23). Rename before or after Phase 2?
+- **Platform and repo name:** "Nümunələrlə Go" and `go-by-example-az` no longer describe the whole platform. The prototype uses the working name "Nümunələrlə"; the user is still thinking (2026-11-23). Rename before or after Phase 2? — **Candidates (2026-11-25):** `w3hub.dev` and `beststack.dev` (the user's proposals). Design v2 shows both (footer switch / `?brand=`), `w3hub.dev` by default. Note for the choice: "w3" is widely associated with W3Schools/W3C and with "web3"; "beststack" reads as a superlative claim. Domain availability not checked yet.
 - Live coding runner: write `go test`-style checks through the `go.dev` proxy, or run our own sandbox? — Decide when the section is started (last in the order).
 - Consent from the authors of hellointerview.com and algomaster.io (same as for roadmap.sh and itbooster.ru). Consent records: _none yet_.
 - greatfrontend.com: read its terms (could not be fetched on 2026-11-23) and record the license here; then ask the authors for consent if texts are wanted. Consent records: _none yet_.

@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="az">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>w3hub.dev — yol xəritəsi</title>
+  <meta name="description" content="Go texnologiya yol xəritəsi və Backend istiqaməti: hər mövzuda nəzəriyyə, praktika, vizual izah, test və müsahibə sualı.">
+  <!-- Design v2, roadmap page (future routes: /go/roadmap for a technology, /roadmaps/backend for a direction). -->
+  <script>try{var s=localStorage,t=JSON.parse(s.getItem("w3:theme")),p=JSON.parse(s.getItem("w3:palette"));if(t&&t!=="system")document.documentElement.setAttribute("data-theme",t);if(p&&p!=="nebula")document.documentElement.setAttribute("data-palette",p)}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="v2.css">
+  <link rel="stylesheet" href="roadmap.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="index.html" aria-label="Ana səhifə">
+      <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--cyan)"/><stop offset=".5" stop-color="var(--accent)"/><stop offset="1" stop-color="var(--accent-2)"/></linearGradient></defs><rect x="1" y="1" width="30" height="30" rx="9" fill="url(#lg)" opacity=".16"/><rect x="1" y="1" width="30" height="30" rx="9" fill="none" stroke="url(#lg)" stroke-opacity=".7"/><path d="M8 21.5 12.5 11l3.5 7 3.5-7L24 21.5" fill="none" stroke="url(#lg)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8" cy="21.5" r="1.8" fill="var(--cyan)"/><circle cx="24" cy="21.5" r="1.8" fill="var(--accent-2)"/></svg>
+      <span data-brand>w3hub<span class="logo-tld">.dev</span></span>
+    </a>
+    <nav class="nav" aria-label="Əsas menyu">
+      <a href="roadmap.html" aria-current="page">Yol xəritələri</a>
+      <div class="dd">
+        <button data-menu-btn aria-expanded="false">Texnologiyalar <i data-icon="chev"></i></button>
+        <div class="menu mega" data-tech-menu hidden></div>
+      </div>
+      <a href="index.html#bolmeler">Bölmələr</a>
+      <a href="go.html">Go</a>
+    </nav>
+    <div class="header-spacer"></div>
+    <div class="header-right">
+      <button class="search-trigger" data-open-search aria-label="Axtarış (Ctrl+K)"><i data-icon="search"></i><span>Axtar…</span><kbd>Ctrl K</kbd></button>
+      <div class="dd">
+        <button class="btn btn-ghost btn-icon" data-menu-btn aria-expanded="false" aria-label="Görünüş: tema və palitra" title="Görünüş"><span data-look-icon style="display:contents"></span></button>
+        <div class="menu right" data-look-menu hidden style="min-width:230px"></div>
+      </div>
+      <a class="btn btn-sm btn-signin" href="index.html#basla">Daxil ol</a>
+      <button class="btn btn-ghost btn-icon menu-toggle" data-nav-toggle aria-label="Menyu" aria-expanded="false"><i data-icon="menu"></i></button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= HEAD: kind switch, progress, filter ================= -->
+    <section class="rm-hero">
+      <div class="rm-sky" aria-hidden="true"><div class="grid-bg"></div></div>
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Yol">
+          <a href="index.html">Ana səhifə</a><span>/</span><span id="rm-crumb">Go · yol xəritəsi</span>
+        </nav>
+        <div class="rm-top">
+          <div class="rm-copy">
+            <div class="kicker" data-reveal>roadmap.Open()<span class="caret"></span></div>
+            <h1 data-reveal style="--i:1"><span class="title-grad" id="rm-title">Go</span> <span class="accent-grad" id="rm-title2">yol xəritəsi</span></h1>
+            <p class="rm-sub" id="rm-sub" data-reveal style="--i:2"></p>
+            <div class="rm-kind" role="tablist" aria-label="Xəritənin növü" data-reveal style="--i:3">
+              <button role="tab" data-kind="tech" aria-selected="true"><span class="mono-ic" style="--c:#00add8">Go</span><span><b>Go</b><small>texnologiya</small></span></button>
+              <button role="tab" data-kind="dir" aria-selected="false"><span class="mono-ic" style="--c:#9b7bff">BE</span><span><b>Backend</b><small>istiqamət · önizləmə</small></span></button>
+            </div>
+          </div>
+          <div class="rm-progress glass dots" data-reveal="scale" style="--i:2">
+            <div class="rm-ring">
+              <svg viewBox="0 0 100 100"><defs><linearGradient id="gRm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--cyan)"/><stop offset=".5" stop-color="var(--accent)"/><stop offset="1" stop-color="var(--accent-2)"/></linearGradient></defs><circle cx="50" cy="50" r="42" class="tr"/><circle cx="50" cy="50" r="42" class="br" id="rm-ring"/></svg>
+              <b id="rm-pct">0%</b>
+            </div>
+            <div class="rm-pinfo">
+              <b id="rm-done">0 / 0</b>
+              <small id="rm-done-label">mövzu öyrənilib</small>
+              <a class="rm-next" id="rm-next" href="#"><small>NÖVBƏTİ</small><span id="rm-next-t">—</span></a>
+            </div>
+          </div>
+        </div>
+        <div class="rm-bar glass">
+          <div class="seg rm-filter" role="group" aria-label="Filtr">
+            <button data-filter="all" aria-pressed="true">Hamısı</button>
+            <button data-filter="todo" aria-pressed="false">Öyrənilməyən</button>
+            <button data-filter="done" aria-pressed="false">Öyrənilən</button>
+          </div>
+          <ul class="rm-legend" aria-label="İşarələr">
+            <li><i class="lg done"></i>öyrənilib</li>
+            <li><i class="lg next"></i>növbəti</li>
+            <li><i class="lg ready"></i>dərs hazırdır</li>
+            <li><i class="lg soon"></i>tezliklə</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= MAP + NODE PANEL ================= -->
+    <section class="rm-main">
+      <div class="wrap rm-layout">
+        <div class="rm-map" id="rm-map" aria-live="polite"></div>
+        <aside class="rm-panel glass dots" id="rm-panel" aria-label="Mövzu paneli">
+          <button class="btn btn-ghost btn-icon rm-close" id="rm-close" aria-label="Paneli bağla">✕</button>
+          <div class="rp-head">
+            <span class="mono-ic" id="rp-ic" style="--c:#00add8">Go</span>
+            <div><small class="rp-crumb" id="rp-crumb"></small><h2 id="rp-title">—</h2></div>
+            <span id="rp-status"></span>
+          </div>
+          <div class="rp-tabs" role="tablist" aria-label="Mövzunun tərəfləri" id="rp-tabs"></div>
+          <div class="rp-body" id="rp-body" role="tabpanel" aria-live="polite"></div>
+          <div class="rp-actions">
+            <a class="btn btn-primary" id="rp-go" href="#">Dərsə keç <i class="arrow" data-icon="arrow"></i></a>
+            <button class="btn" id="rp-learn" aria-pressed="false">Öyrəndim</button>
+          </div>
+        </aside>
+      </div>
+      <div class="rm-scrim" id="rm-scrim" hidden></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <a class="logo" href="index.html"><span data-brand>w3hub<span class="logo-tld">.dev</span></span></a>
+          <p>Proqramlaşdırmanı Azərbaycan dilində, yol xəritəsi ilə öyrənmək üçün açıq platforma.</p>
+        </div>
+        <div><h4>Platforma</h4><ul><li><a href="roadmap.html">Yol xəritələri</a></li><li><a href="index.html#stack">Texnologiyalar</a></li><li><a href="index.html#bolmeler">Bölmələr</a></li><li><a href="index.html#niye">Niyə biz</a></li></ul></div>
+        <div><h4>Texnologiyalar</h4><ul><li><a href="go.html">Go</a></li><li><span class="muted">Python · tezliklə</span></li><li><span class="muted">TypeScript · tezliklə</span></li><li><a href="roadmap.html#backend">Backend</a></li></ul></div>
+        <div><h4>Layihə</h4><ul><li><a href="https://github.com/seymur-orucov/go-by-example-az" rel="noopener">GitHub</a></li><li><a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">Məzmun: CC BY 4.0</a></li><li><span class="muted">Kod: MIT</span></li></ul></div>
+      </div>
+      <div class="foot-bottom">
+        <span>Go adı Google LLC-yə məxsusdur. Dizayn v2 · prototip.</span>
+        <span>Ad variantı:
+          <span class="brand-switch" role="group" aria-label="Ad variantı"><button data-brand-pick="w3hub">w3hub.dev</button><button data-brand-pick="beststack">beststack.dev</button></span>
+        </span>
+      </div>
+      <div class="huge-brand" aria-hidden="true" data-brand-huge>w3hub</div>
+    </div>
+  </footer>
+
+  <script src="../shared/data.js"></script>
+  <script src="v2.js"></script>
+  <script src="nodes.js"></script>
+  <script src="roadmap.js"></script>
+</body>
+</html>
