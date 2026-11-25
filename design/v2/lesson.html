@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="az">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Slices · Go · w3hub.dev</title>
+  <meta name="description" content="Go-da slice: boş slice, append, indeks, make və slice-dan slice — addım-addım vizual izahla.">
+  <!-- Design v2, lesson page (future route: /go/<slug>/). Only the "slices" lesson is filled in the prototype. -->
+  <script>try{var s=localStorage,d=document.documentElement,t=JSON.parse(s.getItem("w3:theme")),p=JSON.parse(s.getItem("w3:palette"));if(t&&t!=="system")d.setAttribute("data-theme",t);if(p&&p!=="nebula")d.setAttribute("data-palette",p);if(s.getItem("w3:sidebar")==="off")d.setAttribute("data-sidebar","off");if(s.getItem("w3:width")==="full")d.setAttribute("data-width","full");if(sessionStorage.getItem("w3:zen")==="1")d.setAttribute("data-zen","")}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="v2.css">
+  <link rel="stylesheet" href="lesson.css">
+</head>
+<body class="lx">
+  <div class="read-progress" aria-hidden="true"><span id="read-bar"></span></div>
+
+  <header class="site-header solid">
+    <button class="btn btn-ghost btn-icon sb-toggle" data-sb-toggle aria-label="Mövzular panelini göstər / gizlət" title="Mövzular paneli  [">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="sb-fill" x="3" y="4" width="6" height="16" rx="2" fill="currentColor" stroke="none"/><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M9 4v16"/></svg>
+    </button>
+    <a class="logo" href="index.html" aria-label="Ana səhifə">
+      <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--cyan)"/><stop offset=".5" stop-color="var(--accent)"/><stop offset="1" stop-color="var(--accent-2)"/></linearGradient></defs><rect x="1" y="1" width="30" height="30" rx="9" fill="url(#lg)" opacity=".16"/><rect x="1" y="1" width="30" height="30" rx="9" fill="none" stroke="url(#lg)" stroke-opacity=".7"/><path d="M8 21.5 12.5 11l3.5 7 3.5-7L24 21.5" fill="none" stroke="url(#lg)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8" cy="21.5" r="1.8" fill="var(--cyan)"/><circle cx="24" cy="21.5" r="1.8" fill="var(--accent-2)"/></svg>
+      <span data-brand>w3hub<span class="logo-tld">.dev</span></span>
+    </a>
+    <nav class="nav" aria-label="Əsas menyu">
+      <a href="roadmap.html">Yol xəritələri</a>
+      <div class="dd">
+        <button data-menu-btn aria-expanded="false">Texnologiyalar <i data-icon="chev"></i></button>
+        <div class="menu mega" data-tech-menu hidden></div>
+      </div>
+      <a href="go.html" aria-current="page">Go</a>
+    </nav>
+    <div class="header-spacer"></div>
+    <div class="header-right">
+      <button class="search-trigger" data-open-search aria-label="Axtarış (Ctrl+K)"><i data-icon="search"></i><span>Axtar…</span><kbd>Ctrl K</kbd></button>
+      <div class="dd">
+        <button class="btn btn-ghost btn-icon" data-menu-btn aria-expanded="false" aria-label="Görünüş rejimləri" title="Görünüş rejimləri">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18M9 9v11"/></svg>
+        </button>
+        <div class="menu right view-menu" hidden>
+          <div class="menu-label">Görünüş</div>
+          <button class="vm-row" data-act="sidebar" role="menuitemcheckbox" aria-checked="true">
+            <span class="t">Mövzular paneli<small>soldakı siyahı</small></span><kbd>[</kbd><span class="switch" aria-hidden="true"></span>
+          </button>
+          <div class="vm-row vm-static"><span class="t">Kontent eni<small>mərkəzdə oxumaq daha rahatdır</small></span><kbd>F</kbd></div>
+          <div class="seg seg-2" role="radiogroup" aria-label="Kontent eni">
+            <button role="radio" data-width-opt="center" aria-pressed="true">Mərkəzdə</button>
+            <button role="radio" data-width-opt="full" aria-pressed="false">Tam en</button>
+          </div>
+          <button class="vm-row" data-zen-toggle>
+            <span class="t">Zen rejimi<small>yalnız dərs qalır</small></span><kbd>Z</kbd>
+          </button>
+        </div>
+      </div>
+      <div class="dd">
+        <button class="btn btn-ghost btn-icon" data-menu-btn aria-expanded="false" aria-label="Görünüş: tema və palitra" title="Tema və palitra"><span data-look-icon style="display:contents"></span></button>
+        <div class="menu right" data-look-menu hidden style="min-width:230px"></div>
+      </div>
+      <button class="btn btn-ghost btn-icon menu-toggle" data-nav-toggle aria-label="Menyu" aria-expanded="false"><i data-icon="menu"></i></button>
+    </div>
+  </header>
+
+  <div class="lx-layout">
+    <aside class="lx-side" id="lx-side" aria-label="Go mövzuları"></aside>
+    <div class="lx-scrim" data-sb-close></div>
+
+    <main class="lx-main" id="lx-main">
+      <!-- filled by lesson.js -->
+    </main>
+  </div>
+
+  <svg class="lx-link" id="lx-link" aria-hidden="true">
+    <defs><linearGradient id="linkGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="var(--accent-2)"/><stop offset="1" stop-color="var(--cyan)"/></linearGradient></defs>
+    <path id="lx-link-path"/><circle id="lx-link-a" r="3.5"/><circle id="lx-link-b" r="3.5"/>
+  </svg>
+
+  <div class="zen-bar glass" role="toolbar" aria-label="Zen rejimi">
+    <span class="mono-ic" style="--c:#00add8">Go</span><b data-zen-title>Slices</b>
+    <span class="zen-hint"><kbd>Esc</kbd> çıxış</span>
+    <button class="btn btn-sm" data-zen-toggle>Zen-dən çıx</button>
+  </div>
+
+  <footer class="site-footer lx-foot">
+    <div class="wrap foot-bottom" style="margin-top:0;border-top:0;padding-top:0">
+      <span><span data-brand-plain>w3hub.dev</span> · məzmun <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a> · Go adı Google LLC-yə məxsusdur</span>
+      <span>Dizayn v2 · prototip</span>
+    </div>
+  </footer>
+
+  <script src="../shared/data.js"></script>
+  <script src="v2.js"></script>
+  <script src="lesson.js"></script>
+</body>
+</html>
