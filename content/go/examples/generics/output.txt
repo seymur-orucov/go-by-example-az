@@ -1,6 +1,5 @@
-map[gym:1 pool:2 spa:1]
-map[4:1 5:3]
-5 1
-5 4.5
-true true false
-[late checkout bike rental]
+max temp: 22
+max temp: 22 max humidity: 55
+door opened: 2 motion: 1
+0 false
+21.5 true
