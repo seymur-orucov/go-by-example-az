@@ -62,6 +62,12 @@ The roadmap is a first-class page, linked from the header nav (“Yol xəritəsi
 
 In all variants **explanation ↔ code highlight each other**: hovering the explanation highlights code lines, and hovering a code line highlights the matching explanation step (scrolling it into view if needed).
 
+### Design v2 — "Aurora glass" (`/v2/`, 2026-11-25)
+A new, self-contained version built on D (D itself is unchanged). Open http://localhost:4321/v2/. It loads only `shared/data.js`; its own files are listed below. Brand name preview: `w3hub.dev` (default) or `beststack.dev`, switched in the footer or with `?brand=beststack`.
+- **Look:** D's blue → violet palette pair (4 palettes) plus a warm accent, dark first; WebGL aurora ribbons, hairline grid with crosshairs, glass cards with corner dots, rotating glowing borders, SVG node-graph wires.
+- **Pages:** `index.html` (platform home), `go.html` (technology page), `roadmap.html` (Go graph + Backend preview, 5-facet node panel), `lesson.html?ex=slices` (lesson page).
+- **Motion:** aurora, typing placeholder, wires, auto-cycling demos and reveals stop under `prefers-reduced-motion` (the aurora draws one still frame).
+
 ## Files
 ```
 design/
@@ -69,6 +75,7 @@ design/
   shared/         files used by D (and by the archived A–C)
   d/              Variant D — the chosen design
   archive/        Variants A, B, C — frozen, kept for comparison
+  v2/             Design v2 — new version built on D
 ```
 
 | File | Purpose |
@@ -85,6 +92,11 @@ design/
 | `d/roadmap.html` | Variant D: roadmap page (technology + direction preview, node panel) |
 | `d/go.html` | Variant D: Go technology page (former home page; future `/go/`) |
 | `d/example.html` | Variant D: lesson page |
+| `v2/v2.css`, `v2/v2.js` | Design v2 shell: tokens, glass components, header menus, search, reveal, aurora (WebGL), shared data (technologies, directions, sections) |
+| `v2/index.html`, `home.css`, `home.js` | Design v2: platform home |
+| `v2/go.html`, `go.css`, `go.js` | Design v2: Go technology page |
+| `v2/roadmap.html`, `roadmap.css`, `roadmap.js`, `nodes.js` | Design v2: roadmap page and sample node facets |
+| `v2/lesson.html`, `lesson.css`, `lesson.js` | Design v2: lesson page (the real `slices` lesson) |
 | `archive/a/` | Variant A: `tokens.css`, `app.css`, `index.html`, `example.html` |
 | `archive/b/` | Variant B: `style.css`, `index.html`, `example.html` |
 | `archive/c/` | Variant C: `index.html`, `example.html` (styles are `shared/base.css`) |

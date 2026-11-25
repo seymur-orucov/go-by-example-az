@@ -8,6 +8,7 @@ Project: **Nümunələrlə Go** — an Azerbaijani-language alternative to gobye
 1. [docs/ROADMAP.md](docs/ROADMAP.md) — which phase we're in, what's left, "Where to start next session".
 2. [docs/DECISIONS.md](docs/DECISIONS.md) — agreed decisions; don't reopen them for discussion.
 3. [docs/HISTORY.md](docs/HISTORY.md) — the user's earlier feedback (what they liked, what they rejected).
+4. [docs/DESIGN-V2.md](docs/DESIGN-V2.md) — design v2 brief, references and next steps. When the user says "design-a qaldığımız yerdən davam edək", continue from there.
 
 ## Rules
 - Talk to the user in **Azerbaijani**. All site UI text is in Azerbaijani; Go terms stay in English.

@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="az">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>w3hub.dev — Go</title>
+  <meta name="description" content="Go-nu Azərbaycan dilində, nümunələrlə öyrən: 9 bölmə, 84 mövzu, hər mövzuda izah, işlək kod, vizual və test.">
+  <!-- Design v2, technology page (future route: /go/). -->
+  <script>try{var s=localStorage,t=JSON.parse(s.getItem("w3:theme")),p=JSON.parse(s.getItem("w3:palette"));if(t&&t!=="system")document.documentElement.setAttribute("data-theme",t);if(p&&p!=="nebula")document.documentElement.setAttribute("data-palette",p)}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="v2.css">
+  <link rel="stylesheet" href="go.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="index.html" aria-label="Ana səhifə">
+      <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--cyan)"/><stop offset=".5" stop-color="var(--accent)"/><stop offset="1" stop-color="var(--accent-2)"/></linearGradient></defs><rect x="1" y="1" width="30" height="30" rx="9" fill="url(#lg)" opacity=".16"/><rect x="1" y="1" width="30" height="30" rx="9" fill="none" stroke="url(#lg)" stroke-opacity=".7"/><path d="M8 21.5 12.5 11l3.5 7 3.5-7L24 21.5" fill="none" stroke="url(#lg)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8" cy="21.5" r="1.8" fill="var(--cyan)"/><circle cx="24" cy="21.5" r="1.8" fill="var(--accent-2)"/></svg>
+      <span data-brand>w3hub<span class="logo-tld">.dev</span></span>
+    </a>
+    <nav class="nav" aria-label="Əsas menyu">
+      <a href="roadmap.html">Yol xəritələri</a>
+      <div class="dd">
+        <button data-menu-btn aria-expanded="false">Texnologiyalar <i data-icon="chev"></i></button>
+        <div class="menu mega" data-tech-menu hidden></div>
+      </div>
+      <a href="index.html#bolmeler">Bölmələr</a>
+      <a href="go.html" aria-current="page">Go</a>
+    </nav>
+    <div class="header-spacer"></div>
+    <div class="header-right">
+      <button class="search-trigger" data-open-search aria-label="Axtarış (Ctrl+K)"><i data-icon="search"></i><span>Axtar…</span><kbd>Ctrl K</kbd></button>
+      <div class="dd">
+        <button class="btn btn-ghost btn-icon" data-menu-btn aria-expanded="false" aria-label="Görünüş: tema və palitra" title="Görünüş"><span data-look-icon style="display:contents"></span></button>
+        <div class="menu right" data-look-menu hidden style="min-width:230px"></div>
+      </div>
+      <a class="btn btn-sm btn-signin" href="index.html#basla">Daxil ol</a>
+      <button class="btn btn-ghost btn-icon menu-toggle" data-nav-toggle aria-label="Menyu" aria-expanded="false"><i data-icon="menu"></i></button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= HERO ================= -->
+    <section class="go-hero">
+      <div class="go-sky" aria-hidden="true">
+        <canvas class="go-aurora" id="go-aurora"></canvas>
+        <div class="grid-bg"></div>
+      </div>
+      <div class="wrap go-hero-grid">
+        <div class="go-copy">
+          <nav class="crumbs" aria-label="Yol" data-reveal><a href="index.html">Ana səhifə</a><span>/</span><span>Texnologiyalar</span><span>/</span><span>Go</span></nav>
+          <div class="go-id" data-reveal style="--i:1">
+            <span class="go-mark" aria-hidden="true">Go</span>
+            <div>
+              <div class="kicker">tech.Go()<span class="caret"></span></div>
+              <span class="badge live">aktiv · texnologiya</span>
+            </div>
+          </div>
+          <h1 data-reveal style="--i:2"><span class="title-grad">Go — sadə sintaksis,</span><br><span class="accent-grad">güclü concurrency.</span></h1>
+          <p class="go-sub" data-reveal style="--i:3">Google-da yaranmış, server və alətlər üçün sevilən dil. Burada onu kiçik, işlək nümunələrlə öyrənirsən: hər mövzuda qısa izah, kod, vizual və test.</p>
+          <div class="go-cta" data-reveal style="--i:4">
+            <a class="btn btn-primary btn-lg" id="go-continue" href="#">Davam et <span class="arrow" data-icon="arrow"></span></a>
+            <a class="btn btn-lg" href="roadmap.html">Yol xəritəsi</a>
+          </div>
+          <ul class="go-stats" data-reveal style="--i:5" aria-label="Go rəqəmlərlə">
+            <li><b id="st-sec">9</b><span>bölmə</span></li>
+            <li><b id="st-top">84</b><span>mövzu</span></li>
+            <li><b id="st-ready">12</b><span>dərs hazırdır</span></li>
+            <li><b id="st-done">0</b><span>öyrənilib</span></li>
+          </ul>
+        </div>
+
+        <aside class="go-resume glass dots spot" data-reveal="scale" style="--i:3" aria-label="İrəliləyiş">
+          <div class="gr-top">
+            <div class="gr-ring">
+              <svg viewBox="0 0 100 100"><defs><linearGradient id="gGo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7fe3ff"/><stop offset=".5" stop-color="#00add8"/><stop offset="1" stop-color="var(--accent)"/></linearGradient></defs><circle cx="50" cy="50" r="42" class="tr"/><circle cx="50" cy="50" r="42" class="br" id="gr-bar"/></svg>
+              <b id="gr-pct">0%</b>
+            </div>
+            <div class="gr-next">
+              <small>NÖVBƏTİ DƏRS</small>
+              <a id="gr-next" href="#"><b id="gr-title">—</b><span id="gr-sub"></span></a>
+            </div>
+          </div>
+          <div class="gr-label">Bölmələr üzrə</div>
+          <ol class="gr-secs" id="gr-secs"></ol>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ================= WHERE GO FITS ================= -->
+    <section class="go-fit">
+      <div class="wrap">
+        <div class="fit glass" data-reveal>
+          <div class="fit-col">
+            <span class="fit-label">Bu texnologiya hansı istiqamətlərdə</span>
+            <div class="fit-chips" id="fit-dirs"></div>
+          </div>
+          <div class="fit-col">
+            <span class="fit-label">Backend yolunda Go-dan sonra</span>
+            <div class="fit-chips" id="fit-next"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PROGRAM ================= -->
+    <section class="go-program" id="proqram">
+      <div class="wrap">
+        <div class="prog-head">
+          <div>
+            <div class="kicker" data-reveal>go.Program()<span class="caret"></span></div>
+            <h2 data-reveal style="--i:1"><span class="title-grad"><span id="ph-sec">9</span> bölmə.</span> <span class="accent-grad"><span id="ph-top">84</span> mövzu.</span></h2>
+            <p data-reveal style="--i:2">Sadədən mürəkkəbə. Hazır dərslər açıqdır, qalanları ardıcıl əlavə olunur.</p>
+          </div>
+          <div class="seg prog-view" role="group" aria-label="Görünüş" data-reveal style="--i:3">
+            <button data-view="sections" aria-pressed="true">Bölmələr</button>
+            <button data-view="all" aria-pressed="false">Bütün mövzular</button>
+          </div>
+        </div>
+        <div class="prog-sections" id="prog-sections"></div>
+        <div class="prog-all" id="prog-all" hidden></div>
+      </div>
+    </section>
+
+    <!-- ================= FIVE FACETS STRIP ================= -->
+    <section class="go-facets">
+      <div class="wrap">
+        <a class="facet-strip glass glow-border" href="index.html#model" data-reveal>
+          <span class="fs-title"><b>Hər mövzuda 5 tərəf</b><small>Necə işləyir →</small></span>
+          <span class="fs-items" id="fs-items"></span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <a class="logo" href="index.html"><span data-brand>w3hub<span class="logo-tld">.dev</span></span></a>
+          <p>Proqramlaşdırmanı Azərbaycan dilində, yol xəritəsi ilə öyrənmək üçün açıq platforma.</p>
+        </div>
+        <div><h4>Platforma</h4><ul><li><a href="roadmap.html">Yol xəritələri</a></li><li><a href="index.html#stack">Texnologiyalar</a></li><li><a href="index.html#bolmeler">Bölmələr</a></li><li><a href="index.html#niye">Niyə biz</a></li></ul></div>
+        <div><h4>Texnologiyalar</h4><ul><li><a href="go.html">Go</a></li><li><span class="muted">Python · tezliklə</span></li><li><span class="muted">TypeScript · tezliklə</span></li><li><a href="roadmap.html#backend">Backend</a></li></ul></div>
+        <div><h4>Layihə</h4><ul><li><a href="https://github.com/seymur-orucov/go-by-example-az" rel="noopener">GitHub</a></li><li><a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">Məzmun: CC BY 4.0</a></li><li><span class="muted">Kod: MIT</span></li></ul></div>
+      </div>
+      <div class="foot-bottom">
+        <span>Go adı Google LLC-yə məxsusdur. Dizayn v2 · prototip.</span>
+        <span>Ad variantı:
+          <span class="brand-switch" role="group" aria-label="Ad variantı"><button data-brand-pick="w3hub">w3hub.dev</button><button data-brand-pick="beststack">beststack.dev</button></span>
+        </span>
+      </div>
+      <div class="huge-brand" aria-hidden="true" data-brand-huge>w3hub</div>
+    </div>
+  </footer>
+
+  <script src="../shared/data.js"></script>
+  <script src="v2.js"></script>
+  <script src="go.js"></script>
+</body>
+</html>
