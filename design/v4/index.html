@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="az">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>w3hub.dev — hər peşə bir xətdir, hər texnologiya bir stansiya</title>
+  <meta name="description" content="Proqramlaşdırmanı Azərbaycan dilində, metro xəritəsi kimi oxunan yol xəritəsi ilə öyrən: xətti seç, ilk stansiyadan min. Hər stansiyada qısa izah, işlək kod, vizual və test.">
+  <!-- Design v4 "Metro", platform home (future route: /). Its own look and shell (v4.css); it loads v2.js only for the
+       shared prototype data, the theme/palette switch and the Ctrl+K search. Go, roadmap and lesson pages are v2's (../v2/). -->
+  <script>try{var s=localStorage,t=JSON.parse(s.getItem("w3:theme")),p=JSON.parse(s.getItem("w3:palette"));if(t&&t!=="system")document.documentElement.setAttribute("data-theme",t);if(p&&p!=="nebula")document.documentElement.setAttribute("data-palette",p)}catch(e){}window.W3_PAGES="../v2/";document.documentElement.classList.add("js");</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="v4.css">
+</head>
+<body>
+  <a class="skip" href="#main">Məzmuna keç</a>
+
+  <header class="site-header">
+    <a class="logo" href="index.html" aria-label="Ana səhifə">
+      <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M3 23h10l9-13h7" fill="none" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="13" cy="23" r="4.6" fill="var(--bg)" stroke="var(--ink)" stroke-width="2.6"/></svg>
+      <span data-brand>w3hub<span class="logo-tld">.dev</span></span>
+    </a>
+    <nav class="nav" aria-label="Əsas menyu">
+      <a href="#xerite">Xətlər</a>
+      <a href="#go">Go xətti</a>
+      <a href="#bolmeler">Bölmələr</a>
+      <a href="../v2/roadmap.html">Yol xəritələri</a>
+    </nav>
+    <div class="header-right">
+      <button class="search-trigger" data-open-search aria-label="Axtarış (Ctrl+K)"><i data-icon="search"></i><span>Stansiya axtar…</span><kbd>Ctrl K</kbd></button>
+      <div class="dd">
+        <button class="icon-btn" data-menu-btn aria-expanded="false" aria-label="Görünüş: tema və palitra" title="Görünüş"><span data-look-icon style="display:contents"></span></button>
+        <div class="menu" data-look-menu hidden></div>
+      </div>
+      <a class="btn btn-sm" href="#basla">Daxil ol</a>
+      <button class="icon-btn menu-toggle" data-nav-toggle aria-label="Menyu" aria-expanded="false"><i data-icon="menu"></i></button>
+    </div>
+    <!-- the page as a line: one stop per section, the train follows the scroll -->
+    <div class="strip" id="strip" aria-hidden="true"></div>
+  </header>
+
+  <main id="main">
+    <!-- ================= HERO: the map ================= -->
+    <section class="hero" id="xerite" aria-labelledby="hero-title">
+      <div class="stage" id="stage">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="plate">Xətlər sxemi</span><span id="hero-facts">4 xətt · 13 stansiya</span></p>
+          <h1 class="hero-title" id="hero-title">
+            <span class="l"><span class="w" style="--w:0">Hər peşə bir <em class="u u-line">xətdir.</em></span></span>
+            <span class="l"><span class="w" style="--w:1">Hər texnologiya</span></span>
+            <span class="l"><span class="w" style="--w:2">bir <em class="u u-st">stansiya.</em></span></span>
+          </h1>
+          <p class="hero-sub">Xətti seç, ilk stansiyadan min. Hər stansiyada qısa izah, işlək kod, vizual və test var — Azərbaycan dilində.</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="../v2/go.html">Go stansiyasına get <i data-icon="arrow"></i></a>
+            <a class="btn" href="../v2/roadmap.html">Bütün xəritə</a>
+          </div>
+        </div>
+
+        <div class="map-wrap" id="map-wrap">
+          <div class="map-inner" id="map-inner">
+            <svg class="map" id="map" viewBox="0 0 1280 640" role="group" aria-label="Öyrənmə xəritəsi: dörd istiqamət xətti və on üç texnologiya stansiyası"></svg>
+            <div class="tip" id="tip" role="tooltip" hidden></div>
+          </div>
+        </div>
+        <p class="map-hint" aria-hidden="true">← xəritəni sürüşdür →</p>
+
+        <aside class="linebox" id="linebox" aria-label="Xətt seç"></aside>
+      </div>
+    </section>
+
+    <!-- ================= GO LINE: the open line ================= -->
+    <section class="sec" id="go">
+      <div class="wrap">
+        <header class="sec-head" data-rv>
+          <p class="sign"><span class="bullet c-go">Go</span><span>Açıq xətt</span><span class="sign-dim" id="go-sign"></span></p>
+          <h2>Go xətti açıqdır.</h2>
+          <p class="lead" id="go-lead">Doqquz dayanacaq, 84 dərs — sıra ilə düzülüb. Dayanacağı seç, cədvələ bax.</p>
+        </header>
+        <div class="goline-scroll" data-rv style="--i:1">
+          <div class="goline" id="goline" role="tablist" aria-label="Go xəttinin dayanacaqları"></div>
+        </div>
+        <div class="tt" id="tt" role="tabpanel" aria-live="polite" data-rv style="--i:2"></div>
+      </div>
+    </section>
+
+    <!-- ================= STATION: what a lesson is ================= -->
+    <section class="sec" id="stansiya">
+      <div class="wrap">
+        <header class="sec-head" data-rv>
+          <p class="sign"><span class="bullet c-go">09</span><span>Elan</span><span class="sign-dim">qapılar açılır</span></p>
+          <h2>Növbəti stansiya: Slices.</h2>
+          <p class="lead">Hər stansiya bir dərsdir. İzahı oxu — uyğun sətirlər kodda yanır, yaddaşda nə dəyişdiyi görünür. Çıxışda turniket var: sualdan keç, yol açılsın.</p>
+        </header>
+
+        <div class="stn" id="stn" data-rv style="--i:1">
+          <div class="stn-plate">
+            <span class="bullet c-go">Go</span>
+            <div class="stn-name"><b>Slices</b><span>Go xətti · Kolleksiyalar · 09/84</span></div>
+            <div class="stn-nav" role="group" aria-label="Addımlar">
+              <button class="icon-btn" id="stn-prev" aria-label="Əvvəlki addım"><i data-icon="chev"></i></button>
+              <span class="stn-count" id="stn-count" aria-live="polite">1/4</span>
+              <button class="icon-btn" id="stn-next" aria-label="Növbəti addım"><i data-icon="chev"></i></button>
+            </div>
+          </div>
+          <div class="stn-body">
+            <div class="stn-left">
+              <ol class="steps" id="steps"></ol>
+              <div class="mem" id="mem" aria-live="polite"></div>
+              <div class="out" id="out" aria-live="polite"></div>
+            </div>
+            <div class="code-win">
+              <div class="code-bar"><span>slices.go</span><span class="code-bar-dim">sətrin üstünə gəl — izahı tapır</span></div>
+              <div class="code" id="code"><i class="hl" id="hl" aria-hidden="true"></i><pre id="code-pre"></pre></div>
+            </div>
+          </div>
+
+          <div class="gate" id="gate">
+            <div class="gate-q">
+              <p class="gate-k">Turniket · 1 sual</p>
+              <p class="gate-t">Bu kod nə çap edəcək?</p>
+              <pre class="gate-code" id="gate-code"></pre>
+              <div class="opts" id="gate-opts" role="group" aria-label="Cavab variantları"></div>
+              <p class="gate-msg" id="gate-msg" role="status"></p>
+            </div>
+            <div class="gate-side">
+              <svg class="turn" id="turn" viewBox="0 0 180 150" aria-hidden="true">
+                <rect class="turn-post" x="18" y="34" width="46" height="108" rx="8"/>
+                <rect class="turn-slot" x="28" y="46" width="26" height="8" rx="4"/>
+                <circle class="turn-lamp" cx="41" cy="74" r="7"/>
+                <g class="turn-rotor">
+                  <path class="turn-arm" d="M110 88 110 30"/>
+                  <path class="turn-arm" d="M110 88 160 117"/>
+                  <path class="turn-arm" d="M110 88 60 117"/>
+                </g>
+                <circle class="turn-hub" cx="110" cy="88" r="13"/>
+                <path class="turn-floor" d="M6 143h168"/>
+              </svg>
+              <a class="btn btn-sm gate-next" id="gate-next" href="../v2/lesson.html?ex=maps" aria-disabled="true" tabindex="-1">Növbəti stansiya: Maps <i data-icon="arrow"></i></a>
+            </div>
+          </div>
+        </div>
+        <p class="after-note" data-rv>Tam dərsdə beş addım, yeddi-səkkiz sual və “Yadda saxla” xülasəsi var. <a href="../v2/lesson.html?ex=slices">Slices dərsini aç →</a></p>
+      </div>
+    </section>
+
+    <!-- ================= TICKETS: why here ================= -->
+    <section class="sec" id="bilet">
+      <div class="wrap">
+        <header class="sec-head" data-rv>
+          <p class="sign"><span class="bullet c-data">0</span><span>Kassa</span><span class="sign-dim">bağlıdır — lazım deyil</span></p>
+          <h2>Bilet lazım deyil.</h2>
+          <p class="lead">Kassa yoxdur, növbə yoxdur. Min, get — qalanını aşağıdakı dörd talon deyir.</p>
+        </header>
+        <div class="tickets" id="tickets">
+          <article class="ticket" style="--tc:var(--b-data);--i:0">
+            <div class="ticket-band"><span>Tarif</span><span>#0001</span></div>
+            <div class="ticket-main"><h3>Pulsuz</h3><p>Bütün dərslər və xəritələr açıqdır. Ödəniş divarı, sınaq müddəti yoxdur.</p></div>
+            <div class="ticket-stub"><span>Qiymət</span><b>0</b><i class="punch"></i></div>
+          </article>
+          <article class="ticket" style="--tc:var(--b-frontend);--i:1">
+            <div class="ticket-band"><span>Minik</span><span>#0002</span></div>
+            <div class="ticket-main"><h3>Qeydiyyatsız</h3><p>Hesab açmadan başla. Harada qaldığını bu brauzer xatırlayır; hesab sonra — cihazlar arası sinxron üçün.</p></div>
+            <div class="ticket-stub"><span>Hesab</span><b>tələb olunmur</b><i class="punch"></i></div>
+          </article>
+          <article class="ticket" style="--tc:var(--b-backend);--i:2">
+            <div class="ticket-band"><span>Elanlar</span><span>#0003</span></div>
+            <div class="ticket-main"><h3>Ana dilində</h3><p>İzahlar Azərbaycan dilindədir. Terminlər olduğu kimi qalır: slice, goroutine, interface.</p></div>
+            <div class="ticket-stub"><span>Dil</span><b>AZ</b><i class="punch"></i></div>
+          </article>
+          <article class="ticket" style="--tc:var(--b-devops);--i:3">
+            <div class="ticket-band"><span>Texniki baxış</span><span>#0004</span></div>
+            <div class="ticket-main"><h3>Yoxlanmış kod</h3><p>Hər nümunə Go ilə işə salınır. Ekranda gördüyün çıxış proqramın real çıxışıdır.</p></div>
+            <div class="ticket-stub"><span>go run</span><b>keçdi</b><i class="punch"></i></div>
+          </article>
+        </div>
+        <p class="after-note" data-rv>Layihə açıq mənbədir: kod MIT, məzmun CC BY 4.0. <a href="https://github.com/seymur-orucov/go-by-example-az" rel="noopener">GitHub-da bax →</a></p>
+      </div>
+    </section>
+
+    <!-- ================= BOARD: platform sections in rollout order ================= -->
+    <section class="sec" id="bolmeler">
+      <div class="wrap">
+        <header class="sec-head" data-rv>
+          <p class="sign"><span class="bullet c-backend">i</span><span>Tablo</span><span class="sign-dim">açılış sırası ilə</span></p>
+          <h2>Növbəti açılışlar tabloda.</h2>
+          <p class="lead">Bölmələr bu sıra ilə açılır və hamısı eyni xəritəyə bağlanır: mövzunun testi də, müsahibə sualı da həmin stansiyadadır.</p>
+        </header>
+        <div class="board" id="board" aria-label="Platforma bölmələri və statusları"></div>
+      </div>
+    </section>
+
+    <!-- ================= FINALE: boarding pass ================= -->
+    <section class="sec finale" id="basla">
+      <div class="wrap finale-grid">
+        <div class="finale-copy" data-rv>
+          <p class="sign"><span class="bullet c-go">Go</span><span>Platforma 1</span><span class="sign-dim">minik davam edir</span></p>
+          <h2>Qatarın platformadadır.</h2>
+          <p class="lead">Talon hazırdır: haradan minirsən, növbəti stansiya hansıdır — hamısı üstündə yazılıb.</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" id="cta-next" href="../v2/go.html">Min, davam et <i data-icon="arrow"></i></a>
+            <a class="btn" href="../v2/roadmap.html">Xəritəyə bax</a>
+          </div>
+        </div>
+        <div class="pass-slot" id="pass-slot">
+          <a class="pass" id="pass" href="../v2/go.html">
+            <div class="pass-main">
+              <div class="pass-top"><span data-brand-plain>w3hub.dev</span><span>Minik talonu</span></div>
+              <div class="pass-route">
+                <div><small>Haradan</small><b id="pass-from">—</b></div>
+                <svg viewBox="0 0 60 16" aria-hidden="true"><path d="M2 8h52M46 2l8 6-8 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div><small>Haraya</small><b id="pass-to">—</b></div>
+              </div>
+              <div class="pass-bar"><i id="pass-fill"></i></div>
+              <dl class="pass-meta">
+                <div><dt>Xətt</dt><dd>Go</dd></div>
+                <div><dt>Dayanacaq</dt><dd id="pass-sec">—</dd></div>
+                <div><dt>Stansiya</dt><dd id="pass-n">—</dd></div>
+                <div><dt>Qiymət</dt><dd>0</dd></div>
+              </dl>
+            </div>
+            <div class="pass-stub">
+              <small>Platforma</small><b>1</b>
+              <i class="barcode" aria-hidden="true"></i>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <a class="logo" href="index.html"><span data-brand>w3hub<span class="logo-tld">.dev</span></span></a>
+          <p>Proqramlaşdırmanı Azərbaycan dilində, yol xəritəsi ilə öyrənmək üçün açıq platforma.</p>
+        </div>
+        <div><h4>Platforma</h4><ul><li><a href="#xerite">Xətlər sxemi</a></li><li><a href="../v2/roadmap.html">Yol xəritələri</a></li><li><a href="#bolmeler">Bölmələr</a></li></ul></div>
+        <div><h4>Xətlər</h4><ul><li><a href="../v2/go.html">Go</a></li><li><a href="../v2/roadmap.html#backend">Backend</a></li><li><span class="dim">Frontend · tezliklə</span></li><li><span class="dim">DevOps · tezliklə</span></li></ul></div>
+        <div><h4>Layihə</h4><ul><li><a href="https://github.com/seymur-orucov/go-by-example-az" rel="noopener">GitHub</a></li><li><a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">Məzmun: CC BY 4.0</a></li><li><span class="dim">Kod: MIT</span></li></ul></div>
+      </div>
+      <div class="foot-bottom">
+        <span>Go adı Google LLC-yə məxsusdur. Dizayn v4 · prototip.</span>
+        <span>Ad variantı:
+          <span class="brand-switch" role="group" aria-label="Ad variantı"><button data-brand-pick="w3hub">w3hub.dev</button><button data-brand-pick="beststack">beststack.dev</button></span>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <nav class="variant-switch" aria-label="Dizayn versiyası"><a href="../v2/">v2</a><a href="../v3/">v3</a><a href="index.html" aria-current="page">v4</a></nav>
+
+  <script src="../shared/data.js"></script>
+  <script src="../v2/v2.js"></script>
+  <script src="v4.js"></script>
+</body>
+</html>
