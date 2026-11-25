@@ -320,3 +320,25 @@ Done (branch `feat/design-v3`, `design/v3/`; recorded in [DECISIONS.md](DECISION
 - **Sections:** technology marquee band; a scroll story with a sticky frame switching map → lesson → quiz (ghost cursor plays the quiz; two-way step ↔ code highlighting in the lesson frame; on narrow screens each frame sits under its chapter); directions with a FLIP-animated technology chain and a technology cloud; five live facet cards; four editorial claims with the 3D glass art + the comparison table; the platform timeline in rollout order; resume CTA. Reading-progress line, hero fade on scroll, pointer parallax, magnetic buttons.
 - Checked in headless Chrome over CDP at 1440px (dark, light, reduced motion) and 390px: no JS errors, no horizontal scroll. Fixed on the way: an early flash of the headline words (the hidden state must not transition), code clipped in the facet cards, a faint hero note, the gap after the story.
 - Awaiting the user's review; the other pages (Go, roadmap, lesson) are still v2's.
+
+---
+
+## 2026-11-26 — Design v3, second try
+
+### 43. Feedback: v3 rejected; a new v3 with a different idea
+The user's feedback on entry 42: **"Bəyənmədim. V2 daha yaxşıdır. V3-ü sil. Yenidən fərqli ideya ilə v3 üçün əsas səhifəni yarat. Animasiyalar filan fərqli olsun V2-dən fərqli amma daha yaxşı olmalıdır."** So: the first v3 is deleted, v2 remains the favourite, and a new v3 home page must have a different idea and animations that differ from v2 and are better.
+
+Done (branch `feat/design-v3`, `design/v3/`; [DECISIONS.md](DECISIONS.md#design), [design/README.md](../design/README.md), [DESIGN-V2.md](DESIGN-V2.md)):
+- The first v3 ("Aurora editorial") was deleted. Lesson recorded: reusing v2's look (aurora, glass) with new sections reads as a weaker v2.
+- **New v3 — "Order from chaos".** Idea and headline: "Öyrənmək çətin deyil. Azmaq asandır." The page acts it out: chaos first, order after.
+  - **Hero:** a canvas 2D particle field (~3200 points; 1500 on phones). Dust drifts while the headline rises, then snaps into a roadmap graph with a light ring; the sculpture morphs through the five sides of a topic — map, `{ }`, a rotating 3D cube, a check, a speech bubble — with tabs and a caption. Points leave light trails (frames are faded, not cleared), flee the pointer and dissolve as the hero scrolls away.
+  - **01** "Əvvəl: 47 açıq tab. Sonra: bir xəritə." — a before/after slider (drag, click, arrow keys; sweeps once on entering the view).
+  - **02** a manifesto paragraph whose words light up with the scroll ("Biz video çəkmirik. Slayd oxumuruq. …").
+  - **03** "Bir mövzu. Beş qat." — a pinned 3D exploded view of a lesson: five plates separate with the scroll, each lights up in turn.
+  - **04** "Bütün stack sənin ətrafında fırlanır." — a technology orbit; a chosen direction numbers its technologies in learning order.
+  - **05** "Hazır olanlar. Yolda olanlar." — the platform sections as a large typographic list with a cursor-following preview.
+  - **Finale** "Növbəti addım bir klik uzaqdadır." with a running outlined line and the resume card. On desktop the header is a floating capsule.
+- Not carried over from v2 on purpose: the aurora, the ask box, glass wires, the comparison table (the before/after section and the manifesto make the same point).
+- Checked in headless Chrome over CDP at 1440px (dark, light, reduced motion) and 390px: no JS errors, no horizontal scroll; all five shapes checked. Fixed on the way: the particle simulation was frame-rate dependent (now time-based sub-steps); a heading that clips itself never reports as intersecting, so the reveal mask moved to an inner span.
+- **Working-tree note:** a parallel session switched the shared checkout to `feat/content-functions` while the first v3 was being committed, so those two commits landed on that branch. They were moved to `feat/design-v3` and the content branch was returned to its base (the content files were not touched). The design work now lives in a separate git worktree (`../go-by-example-design-v3`) so the two sessions do not collide.
+- Awaiting the user's review; the other pages (Go, roadmap, lesson) are still v2's.

@@ -65,7 +65,8 @@ Framework-free static HTML/CSS/JS in the `design/` directory.
 - [x] **Discussion of the platform sections**: node model (theory · practice · visual · test · interview), algorithms as a separate track, live coding postponed, rollout order — [DECISIONS.md](DECISIONS.md#platform-sections-2026-11-23)
 - [~] **Home page redesign** for the platform: first version done (`d/index.html`: path choice, node explorer, sections bento; Go page moved to `d/go.html`) — awaiting feedback
 - [~] **Design v2** (`design/v2/`, 2026-11-25): new "Aurora glass" version on top of D — home (aurora hero, ask box, stack map, node anatomy, sections rail, advantages + comparison, resume CTA), Go page, roadmap graph, lesson page — awaiting the user's review
-- [~] **Design v3** (`design/v3/`, 2026-11-25): home page on top of v2 — drawn learning-path intro, scroll story (map → lesson → quiz), FLIP technology chain, five live facet cards, editorial claims, platform timeline; reuses v2's shell, other pages still v2's — awaiting the user's review
+- [x] Design v3, first try ("Aurora editorial", 2026-11-25) — **rejected** by the user ("v2 is better") and deleted
+- [~] **Design v3** (`design/v3/`, 2026-11-26), second try with a different idea, "Order from chaos": particle-field hero (dust → roadmap → code → cube → check → bubble), before/after slider, scroll-lit manifesto, pinned exploded five-layer lesson, technology orbit, typographic section list; loads v2's shell, other pages still v2's — awaiting the user's review
 - [ ] Platform name (working name "Nümunələrlə" for now; candidates `w3hub.dev` / `beststack.dev`, previewed in design v2/v3)
 - [x] **Roadmap page** (`d/roadmap.html`): technology roadmap (Go) + direction roadmap preview (Backend), sticky 5-facet node panel, filter, deep links; linked from the header nav, home, Go page and lessons (2026-11-23)
 - [x] **Final approval** of Variant D — starting Phase 2 counts as the approval (2026-11-23)

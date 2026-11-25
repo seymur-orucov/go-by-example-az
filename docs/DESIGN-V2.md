@@ -28,19 +28,22 @@ Single place for the design v2 work (`design/v2/`): what the user asked for, whi
 
 Home (`index.html`), Go page (`go.html`), roadmap (`roadmap.html`), lesson (`lesson.html?ex=slices`). Details: [HISTORY.md](HISTORY.md) entry 41, [design/README.md](../design/README.md), [DECISIONS.md](DECISIONS.md#design).
 
-## Design v3 (2026-11-25) — `design/v3/`
+## Design v3 — `design/v3/`
 
-The user's request: **a v3 on the basis of v2 and the same references.** On top of v2's notes, the goals: *modern but elegant, dynamic but light, a grand intro animation, headlines and copy as a real copywriter would write them.*
+The user's request (2026-11-25): **a v3 on the basis of v2 and the same references.** On top of v2's notes, the goals: *modern but elegant, dynamic but light, a grand intro animation, headlines and copy as a real copywriter would write them.*
 
-What was built (home page only; details in [HISTORY.md](HISTORY.md) entry 42 and [design/README.md](../design/README.md)):
-- Reuses v2's shell (`v2.css`, `v2.js`) — new files are `index.html`, `v3.css`, `v3.js`. The Go, roadmap and lesson pages are still v2's (`../v2/…`); `window.W3_PAGES` in `v2.js` makes that possible.
-- Intro: the headline "Hello, World-dən ilk iş gününə qədər." drawn as a learning path (burst → path draws → words rise → aurora → traveller).
-- Sections: technology band, scroll story (map → lesson → quiz), direction chain (FLIP), five live facet cards, editorial claims + comparison, platform timeline, resume CTA.
+**First try — rejected (2026-11-25).** "Aurora editorial": v2's aurora and glass, a drawn learning-path intro ("Hello, World-dən ilk iş gününə qədər."), a scroll story, a FLIP chain, live facet cards. The user's verdict: *"Bəyənmədim. V2 daha yaxşıdır. V3-ü sil. Yenidən fərqli ideya ilə v3 üçün əsas səhifəni yarat. Animasiyalar … V2-dən fərqli amma daha yaxşı olmalıdır."* Lesson: a variant that reuses v2's look reads as a weaker v2 — a new variant needs its own idea and its own motion language. The files were deleted (they remain in git history: `ab7e013`).
+
+**Second try — "Order from chaos" (2026-11-26), awaiting review.** Details in [HISTORY.md](HISTORY.md) entry 43 and [design/README.md](../design/README.md):
+- Idea and headline: "Öyrənmək çətin deyil. Azmaq asandır." — chaos first, order after.
+- Hero: a canvas particle field; dust snaps into a roadmap graph, then morphs through code, a 3D cube, a check and a speech bubble (the five sides of a topic).
+- Sections: before/after slider ("Əvvəl: 47 açıq tab. Sonra: bir xəritə."), scroll-lit manifesto, pinned 3D exploded lesson ("Bir mövzu. Beş qat."), technology orbit ("Bütün stack sənin ətrafında fırlanır."), typographic section list, finale with the resume card.
+- Loads v2's shell (`v2.css`, `v2.js`); the Go, roadmap and lesson pages are still v2's (`../v2/…`, via `window.W3_PAGES`).
 - Compare: `node design/serve.mjs 4399` → http://localhost:4399/v2/ and http://localhost:4399/v3/ (the switch bottom-right on v3).
 
 ## Where to continue
 
-1. **Get the user's feedback on v3** (hero/intro, copy, sections) and record it in [HISTORY.md](HISTORY.md). If v3 is the direction, do the **other pages in the v3 style** (`go.html`, `roadmap.html`, `lesson.html`) inside `design/v3/` — v3 can keep loading v2's shell, or absorb it once v2 is retired.
+1. **Get the user's feedback on the second v3** (hero particles, copy, sections) and record it in [HISTORY.md](HISTORY.md). If v3 is the direction, do the **other pages in the v3 style** (`go.html`, `roadmap.html`, `lesson.html`) inside `design/v3/` — v3 can keep loading v2's shell, or absorb it once v2 is retired. If v2 stays the favourite, the v3 pieces the user likes can be moved into v2 one by one.
 2. If the user wants another variant instead, the earlier proposals still stand: **"Light editorial"** (light-first, large type, fewer effects) or **"Roadmap-first"** (the hero is the interactive roadmap). Build them as `design/v3b/` etc., sharing `v2/v2.js` data.
 3. Decide the platform name (`w3hub.dev` / `beststack.dev` / other) — check domain availability.
 4. After a variant is approved: move it into `packages/theme` / `apps/site` (Phase 2 module 2: `/`, `/go/roadmap/`, `/roadmaps/backend/`).
