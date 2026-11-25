@@ -1,0 +1,6 @@
+own:
+  out: "row B: 30 USD"
+runtime:
+  out: "no row with index 5"
+crash:
+  out: "panic: unknown row Z"

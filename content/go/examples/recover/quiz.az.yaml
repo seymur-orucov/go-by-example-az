@@ -1,0 +1,89 @@
+- question: Bu kod hansı sıra ilə çap edəcək?
+  code: |
+    func safe() {
+        defer func() {
+            fmt.Println("recovered:", recover())
+        }()
+        panic("boom")
+    }
+
+    safe()
+    fmt.Println("after")
+  options: ["`recovered: boom`, `after`", "yalnız panic mesajı", "`after`, `recovered: boom`"]
+  answer: 0
+  explain: "Defer panic-i tutur, `safe` normal bitir və `main` davam edir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    func calm() {
+        defer func() {
+            fmt.Println("r:", recover())
+        }()
+        fmt.Println("work")
+    }
+
+    calm()
+  options: ["`work`, `r: <nil>`", "`r: <nil>`, `work`", "yalnız `work`"]
+  answer: 0
+  explain: "Panic olmayanda `recover` `nil` qaytarır, defer isə yenə funksiyanın sonunda işləyir."
+
+- question: Bu kod işə düşəndə nə olacaq?
+  code: |
+    func try() {
+        if r := recover(); r != nil {
+            fmt.Println("caught")
+        }
+        panic("boom")
+    }
+
+    try()
+  options: ["proqram panic ilə dayanır", "`caught` çap olunur", "heç nə çap olunmur, proqram normal bitir"]
+  answer: 0
+  explain: "`recover` defer-siz, panic-dən əvvəl çağırılıb və heç nə tutmur."
+
+- question: "`helper` funksiyası `recover()` çağırıb nəticəni çap edir. Hansı yazılış panic-i tutur?"
+  code: |
+    func helper() {
+        if r := recover(); r != nil {
+            fmt.Println("caught", r)
+        }
+    }
+  options:
+    - "`defer helper()`"
+    - "`defer func() { helper() }()`"
+    - "hər ikisi"
+  answer: 0
+  explain: "`recover` birbaşa defer olunan funksiyada işləyir; ikinci halda defer olunan funksiya literal-dır, `helper` isə onun çağırdığı funksiyadır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    func div(a, b int) (res int, err error) {
+        defer func() {
+            if r := recover(); r != nil {
+                err = errors.New("bad input")
+            }
+        }()
+        return a / b, nil
+    }
+
+    fmt.Println(div(6, 0))
+  options: ["0 bad input", "panic mesajı", "0 <nil>"]
+  answer: 0
+  explain: "Sıfıra bölmə panic edir, defer onu tutur və adlı nəticə `err`-ə xəta yazır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    func job() {
+        defer fmt.Print("A")
+        defer func() {
+            recover()
+            fmt.Print("B")
+        }()
+        panic("x")
+    }
+
+    job()
+    fmt.Print("C")
+  options: ["BAC", "ABC", "BA, sonra panic mesajı"]
+  answer: 0
+  explain: "Defer-lər tərs sıra ilə işləyir, ikincisi panic-i tutur və `main` `C`-ni çap edir."

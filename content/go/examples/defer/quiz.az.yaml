@@ -1,0 +1,80 @@
+- question: Bu kod hansı sıra ilə çap edəcək?
+  code: |
+    func main() {
+        defer fmt.Println("a")
+        fmt.Println("b")
+    }
+  options: ["b, sonra a", "a, sonra b", "yalnız b"]
+  answer: 0
+  explain: "Təxirə salınan çağırış `main` bitəndə işləyir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    for i := 1; i <= 3; i++ {
+        defer fmt.Print(i)
+    }
+  options: ["321", "123", "333"]
+  answer: 0
+  explain: "Defer-lər tərs sıra ilə işləyir, hər birinin arqumenti isə öz dövründə hesablanıb."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    x := 1
+    defer fmt.Println(x)
+    x = 2
+  options: ["1", "2", "kompilyasiya xətası"]
+  answer: 0
+  explain: "Arqument `defer` sətrində hesablanır, o an `x` `1`-dir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    x := 1
+    defer func() {
+        fmt.Println(x)
+    }()
+    x = 2
+  options: ["2", "1", "kompilyasiya xətası"]
+  answer: 0
+  explain: "Closure dəyişənin özünü tutur və funksiya bitəndə onun son dəyərini görür."
+
+- question: Bu kod niyə kompilyasiya olunmur?
+  code: |
+    defer func() {
+        fmt.Println("bye")
+    }
+  options:
+    - "sonda `()` yoxdur, `defer` funksiya çağırışı tələb edir"
+    - "`defer` function literal ilə işləmir"
+    - "`defer` yalnız `main`-də yazıla bilər"
+  answer: 0
+  explain: "`defer`-dən sonra funksiyanın özü yox, onun çağırışı gəlməlidir: `defer func() { ... }()`."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    func check(n int) {
+        defer fmt.Print("done ")
+        if n > 0 {
+            fmt.Print("pos ")
+            return
+        }
+        fmt.Print("neg ")
+    }
+
+    check(1)
+    check(-1)
+  options: ["pos done neg done ", "pos neg done ", "done pos done neg "]
+  answer: 0
+  explain: "`defer` hər çağırışda, funksiya hansı yerdən bitirsə bitsin, sonda işləyir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    func greet() {
+        defer fmt.Print("B")
+        fmt.Print("A")
+    }
+
+    greet()
+    fmt.Print("C")
+  options: ["ABC", "ACB", "BAC"]
+  answer: 0
+  explain: "Defer onu yazan funksiya, yəni `greet` bitəndə işləyir, `main` bitəndə yox."

@@ -1,0 +1,14 @@
+Nora opens the bakery
+Nora bakes bread
+Nora locks the door
+closing up
+lights off: shop
+lights off: kitchen
+lights off: oven
+now: 25
+at the end: 25
+at defer: 10
+receipt for croissant
+sold: true
+receipt for croissant
+sold: false

@@ -1,0 +1,10 @@
+rules:
+  - "`error` `Error() string` metodu olan interface-dir; funksiya onu sonuncu nəticə kimi qaytarır."
+  - "Uğurlu halda xəta `nil`-dir; çağıran dərhal `if err != nil` ilə yoxlayır."
+  - "`errors.New` hər çağırışda yeni xəta yaradır: eyni mətnli iki xəta `==` ilə bərabər deyil."
+  - "`fmt.Errorf` `%w` ilə xətanı bükür; bükülmüş xətanı `==` ilə yox, `errors.Is` ilə yoxlayın."
+  - "`%v` xətanın yalnız mətnini götürür, orijinal xəta zəncirdən itir."
+practices:
+  - "Çağıranın yoxlayacağı xətaları `ErrNotFound` kimi package dəyişənində saxlayın."
+  - "Xətanı yuxarı ötürəndə kontekst əlavə edin: `fmt.Errorf(\"borrow %s: %w\", title, err)`."
+  - "Xəta mətnini kiçik hərflə və nöqtəsiz yazın."
