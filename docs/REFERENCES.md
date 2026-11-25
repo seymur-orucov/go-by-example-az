@@ -73,3 +73,12 @@ Sites sent by the user. The design must **not copy them**; the liked part of eac
 |---|---|---|
 | Inter | https://fonts.google.com/specimen/Inter | Text; has Azerbaijani letters |
 | JetBrains Mono | https://fonts.google.com/specimen/JetBrains+Mono | Code; ligatures disabled |
+
+## Design v2 references (2026-11-25)
+
+Visual and UX references supplied by the user for design v2 (no text or assets copied). Full brief and the mapping of each reference image: [DESIGN-V2.md](DESIGN-V2.md).
+
+| Reference | Used for |
+|---|---|
+| https://itbooster.ru/ and https://roadmap.sh | Home page structure and UX (path choice, roadmap graph, sections) — structure only |
+| Five user-supplied images (glass login cards with icon row, light-ribbon brand backdrop, 3D glass feature cards, glowing prompt box, workflow node graph) | Visual language "Aurora glass" |
