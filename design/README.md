@@ -68,11 +68,17 @@ A new, self-contained version built on D (D itself is unchanged). Open http://lo
 - **Pages:** `index.html` (platform home), `go.html` (technology page), `roadmap.html` (Go graph + Backend preview, 5-facet node panel), `lesson.html?ex=slices` (lesson page).
 - **Motion:** aurora, typing placeholder, wires, auto-cycling demos and reveals stop under `prefers-reduced-motion` (the aurora draws one still frame).
 
-### Design v3 — "Aurora editorial" (`/v3/`, 2026-11-25)
-The home page redone on top of v2 at the user's request: modern but elegant, dynamic but light, a grand intro, headlines written like copy. Open http://localhost:4321/v3/. It **reuses v2's shell** (`../v2/v2.css`, `../v2/v2.js`: tokens, header, menus, search, aurora, reveal) and adds only `index.html`, `v3.css`, `v3.js`. The other pages (Go, roadmap, lesson) are still v2's and are linked with `../v2/…` (`window.W3_PAGES` tells `v2.js` where they live). A small **v2 | v3** switch sits bottom-right.
-- **Intro:** the headline "Hello, World-dən ilk iş gününə qədər." is drawn literally — eight glass nodes (Hello, World → Variables → Slices → Goroutines → HTTP → SQL → Docker → İlk iş günü) burst from the centre into a path, the path draws itself left → right, the words rise from under a mask (blur → sharp), the aurora blooms, and a traveller walks the learned part of the path and settles on the current node. A returning visitor in the same session gets a quicker version; under `prefers-reduced-motion` the final frame is shown at once.
-- **Sections:** a technology marquee band; a scroll story "Seç. Öyrən. Yoxla. Təkrar." (sticky frame that switches map → lesson → quiz as the chapters pass; the quiz is played by a ghost cursor; the lesson has real two-way step ↔ code highlighting); directions with a **FLIP-animated technology chain** and a technology cloud; five **live facet cards** (theory terms light up, code runs and prints, cells appear, an answer is picked, an interview answer un-blurs); four editorial claims + the comparison table; the platform timeline in rollout order; the resume CTA.
-- **Motion details:** reading-progress line, hero copy fades on scroll, pointer parallax on the path, magnetic buttons; everything is transform/opacity and stops under `prefers-reduced-motion`.
+### Design v3 — "Order from chaos" (`/v3/`, 2026-11-26)
+A home page with **its own idea and motion language** (the first v3 try, "Aurora editorial", was rejected and deleted — the user found v2 better). Open http://localhost:4321/v3/. It loads v2's shell (`../v2/v2.css`, `../v2/v2.js`: tokens, header, menus, search) and adds `index.html`, `v3.css`, `v3.js`; no aurora and no glass wires. The other pages (Go, roadmap, lesson) are still v2's and are linked with `../v2/…` (`window.W3_PAGES` tells `v2.js` where they live). A small **v2 | v3** switch sits bottom-right; on desktop the header is a floating capsule.
+- **Idea and copy:** "Öyrənmək çətin deyil. Azmaq asandır." — the problem is not the lack of material but the lack of order. The whole page plays that out: chaos first, order after.
+- **Hero (canvas 2D particle field):** ~3200 points drift as dust while the headline rises; then they snap into a **roadmap graph** with a light ring. The sculpture then morphs through the five sides of every topic — map, `{ }` code, a rotating 3D cube (visual), a check (test), a speech bubble (interview) — with tabs and a caption; points leave short light trails, flee the pointer, and dissolve back into dust as the hero scrolls away. The simulation is time-based (sub-steps), so it converges at the same speed at any frame rate.
+- **01 Problem:** "Əvvəl: 47 açıq tab. Sonra: bir xəritə." — a **before/after slider** (drag, click or arrow keys): jittering tab chips on one side, the clean Go roadmap with the next lesson on the other; it sweeps once when it enters the view.
+- **02 Manifesto:** one large paragraph whose words **light up with the scroll**.
+- **03 One topic, five layers:** a **pinned 3D exploded view** — five plates (theory, code, visual, test, interview) separate as you scroll and each lights up in turn; the list on the left scrolls to a layer. No pin on narrow screens or with reduced motion (the stack is shown exploded, layers switch by tap).
+- **04 Stack:** a **technology orbit** — three rings (languages / web and data / tools and infra) revolve around "sən"; choosing a direction numbers its technologies in learning order and dims the rest.
+- **05 Platform:** the eight sections as a **large typographic list** with status, and a preview card that follows the cursor.
+- **Finale:** a running line of outlined type and the resume card.
+- Under `prefers-reduced-motion` the hero draws one still frame (tabs still switch shapes), the manifesto is fully lit, nothing revolves.
 
 ## Files
 ```
@@ -104,7 +110,7 @@ design/
 | `v2/go.html`, `go.css`, `go.js` | Design v2: Go technology page |
 | `v2/roadmap.html`, `roadmap.css`, `roadmap.js`, `nodes.js` | Design v2: roadmap page and sample node facets |
 | `v2/lesson.html`, `lesson.css`, `lesson.js` | Design v2: lesson page (the real `slices` lesson) |
-| `v3/index.html`, `v3.css`, `v3.js` | Design v3: platform home (drawn-path intro, scroll story, FLIP chain, live facets, timeline); loads `v2/v2.css` + `v2/v2.js` |
+| `v3/index.html`, `v3.css`, `v3.js` | Design v3: platform home (particle-field hero, before/after slider, scroll-lit manifesto, exploded five-layer lesson, technology orbit, section list); loads `v2/v2.css` + `v2/v2.js` |
 | `archive/a/` | Variant A: `tokens.css`, `app.css`, `index.html`, `example.html` |
 | `archive/b/` | Variant B: `style.css`, `index.html`, `example.html` |
 | `archive/c/` | Variant C: `index.html`, `example.html` (styles are `shared/base.css`) |
