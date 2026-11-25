@@ -1,0 +1,9 @@
+rules:
+  - "Type parameter kvadrat mötərizədə yazılır: `func Tally[K comparable](answers []K) map[K]int`."
+  - "Constraint tipdən nə tələb olunduğunu deyir: `any` heç nə, `comparable` `==`, `cmp.Ordered` isə `<` və `>` tələb edir."
+  - "Funksiyada tip arqumenti adətən dəyərlərdən çıxarılır; generic tipdə isə yazılmalıdır: `Shortlist[string]`."
+  - "Bütün arqumentlər eyni `T`-yə uyğun gəlməlidir: `int` və `float64` dəyişənini birlikdə vermək olmaz."
+  - "`~int` constraint-ə `int` üzərində qurulan tipləri də (`type Stars int`) daxil edir."
+practices:
+  - "Generics-i eyni kodu bir neçə tip üçün təkrar yazmalı olanda istifadə edin; bir tip üçün adi funksiya daha sadədir."
+  - "Ən dar uyğun constraint-i seçin və hazır olanlardan (`comparable`, `cmp.Ordered`) istifadə edin."

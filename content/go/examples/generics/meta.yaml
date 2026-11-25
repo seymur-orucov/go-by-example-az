@@ -2,5 +2,7 @@ title: "Generics"
 subtitle: "Ümumi tiplər"
 section: types
 order: 7
-status: planned
+status: ready
 level: intermediate
+duration: 8
+source: original

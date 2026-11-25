@@ -1,0 +1,83 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    const (
+        North = iota
+        East
+        South
+    )
+    fmt.Println(North, East, South)
+  options: ["0 1 2", "1 2 3", "0 0 0"]
+  answer: 0
+  explain: "`iota` `0`-dan başlayır və hər sətirdə bir artır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    const (
+        _ = iota
+        Small
+        Medium
+        Large
+    )
+    fmt.Println(Large)
+  options: ["3", "2", "4"]
+  answer: 0
+  explain: "`_` `0`-ı tutur, ona görə `Small` `1`, `Large` `3` olur."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    const (
+        Low = iota * 10
+        Mid
+        High
+    )
+    fmt.Println(High)
+  options: ["20", "2", "10"]
+  answer: 0
+  explain: "İfadə növbəti sətirlərdə təkrarlanır: `High` `2 * 10`-dur."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    type Level int
+
+    const (
+        Low Level = iota
+        High
+    )
+
+    func (l Level) String() string {
+        if l == High {
+            return "high"
+        }
+        return "low"
+    }
+
+    var lvl Level
+    fmt.Println(High, int(High), lvl)
+  options: ["high 1 low", "1 1 0", "high high low"]
+  answer: 0
+  explain: "`Println` `String()`-i çağırır, `int(High)` isə rəqəmi verir; zero value `0`, yəni `Low`-dur."
+
+- question: Bu kod niyə kompilyasiya olunmur?
+  code: |
+    type Stage int
+    type Color int
+
+    const Washing Stage = 1
+
+    var c Color = Washing
+  options:
+    - "`Stage` tipli sabit `Color` dəyişənə yazıla bilməz"
+    - "sabitin dəyəri `iota` ilə verilməlidir"
+    - "hər iki tip `int` olduğu üçün xəta yoxdur"
+  answer: 0
+  explain: "`Stage` və `Color` fərqli tiplərdir, hər ikisi `int` üzərində qurulsa belə."
+
+- question: "`func start(s Stage)` funksiyası var. Hansı çağırış kompilyasiya olunmur?"
+  code: |
+    n := 2
+  options:
+    - "`start(n)`"
+    - "`start(2)`"
+    - "`start(Rinsing)`"
+  answer: 0
+  explain: "`n` `int` tipli dəyişəndir; tipsiz `2` isə `Stage`-ə avtomatik keçir."

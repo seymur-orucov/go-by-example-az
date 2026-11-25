@@ -1,0 +1,6 @@
+value:
+  out: "Road trip long: false"
+pointer:
+  out: "2 songs, long: true"
+own-type:
+  out: "length: 1 h 5 min"

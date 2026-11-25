@@ -2,5 +2,7 @@ title: "Iterators"
 subtitle: "İteratorlar"
 section: types
 order: 8
-status: planned
+status: ready
 level: intermediate
+duration: 8
+source: original
