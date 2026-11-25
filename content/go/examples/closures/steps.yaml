@@ -1,0 +1,12 @@
+literal:
+  out: "large latte: 5 USD"
+capture:
+  out: |
+    small with milk: 5 USD
+    after price change: 6 USD
+pass:
+  out: "lattes: 2"
+card:
+  out: |
+    paid paid free
+    other card: paid

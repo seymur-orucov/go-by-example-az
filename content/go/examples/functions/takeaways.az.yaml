@@ -1,0 +1,11 @@
+rules:
+  - "Funksiya `func ad(parametrlər) nəticəTipi { ... }` kimi elan olunur və `main`-dən kənarda yazılır."
+  - "`return` nəticəni qaytarır və funksiyanı dərhal bitirir; nəticə qaytaran funksiya hər yolda `return` ilə bitməlidir."
+  - "Ardıcıl eyni tipli parametrlərin tipini bir dəfə yazmaq olar: `adults, kids int`."
+  - "Çağırışda arqumentlərin sayı, sırası və tipləri parametrlərə uyğun olmalıdır."
+  - "Nəticə tipi olmayan funksiyanın çağırışını dəyişənə yazmaq olmaz."
+  - "Parametr arqumentin surətidir: onu funksiyanın içində dəyişmək çağıranın dəyişəninə təsir etmir."
+practices:
+  - "Funksiyaya gördüyü işi deyən ad verin: `ticketPrice`, `orderTotal`."
+  - "Dəyişdirilmiş dəyəri `return` ilə qaytarın və nəticəni çağıran tərəfdə dəyişənə yazın."
+  - "Təkrarlanan hesablamanı bir funksiyaya çıxarın ki, qayda bir yerdə dəyişsin."

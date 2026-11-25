@@ -2,5 +2,7 @@ title: "Closures"
 subtitle: "Qapanışlar"
 section: functions
 order: 4
-status: planned
+status: ready
 level: beginner
+duration: 6
+source: original

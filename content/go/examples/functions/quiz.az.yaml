@@ -1,0 +1,92 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    func double(n int) int {
+        return n * 2
+    }
+
+    fmt.Println(double(4) + 1)
+  options: ["9", "10", "8"]
+  answer: 0
+  explain: "`double(4)` `8` qaytarır, sonra ona `1` əlavə olunur."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    func size(n int) string {
+        if n > 10 {
+            return "big"
+        }
+        return "small"
+    }
+
+    fmt.Println(size(10), size(11))
+  options: ["small big", "big big", "small small"]
+  answer: 0
+  explain: "`10 > 10` yalandır, ona görə ikinci `return` işləyir; `11` üçün isə birinci `return` funksiyanı bitirir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    func reset(n int) {
+        n = 0
+    }
+
+    x := 5
+    reset(x)
+    fmt.Println(x)
+  options: ["5", "0", "kompilyasiya xətası"]
+  answer: 0
+  explain: "`reset` `x`-in surətini dəyişir, `main`-dəki `x` isə `5` qalır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    func square(n int) int {
+        return n * n
+    }
+
+    func sumOfSquares(a, b int) int {
+        return square(a) + square(b)
+    }
+
+    fmt.Println(sumOfSquares(2, 3))
+  options: ["13", "25", "10"]
+  answer: 0
+  explain: "`square(2)` `4`, `square(3)` `9` qaytarır, cəmi `13`-dür."
+
+- question: Bu funksiya niyə kompilyasiya olunmur?
+  code: |
+    func sign(n int) string {
+        if n >= 0 {
+            return "+"
+        }
+    }
+  options:
+    - "`n < 0` olanda funksiya `return` olmadan bitir"
+    - "`if`-in içində `return` yazmaq olmaz"
+    - "`string` nəticə qaytarmaq olmaz"
+  answer: 0
+  explain: "Nəticə qaytaran funksiya hər yolda `return` ilə bitməlidir, yoxsa `missing return` xətası çıxır."
+
+- question: Hansı elan kompilyasiya olunmayacaq?
+  options:
+    - "`func area(w, h int) int`"
+    - "`func label(name string, n int) string`"
+    - "`func area(w, h) int`"
+  answer: 2
+  explain: "Hər parametrin tipi olmalıdır; `w, h int` yazılışında tip hər ikisinə aiddir."
+
+- question: Hansı sətir kompilyasiya olunmayacaq?
+  code: |
+    func greet(name string) {
+        fmt.Println("Hi,", name)
+    }
+  options: ["`greet(\"Lina\")`", "`msg := greet(\"Lina\")`", "`greet(\"Li\" + \"na\")`"]
+  answer: 1
+  explain: "`greet`-in nəticəsi yoxdur, ona görə çağırışını dəyişənə yazmaq olmaz."
+
+- question: Hansı çağırış kompilyasiya olunmayacaq?
+  code: |
+    func area(w, h int) int {
+        return w * h
+    }
+  options: ["`area(3, 4)`", "`area(3)`", "`area(2+1, 4)`"]
+  answer: 1
+  explain: "Arqumentlərin sayı parametrlərin sayına bərabər olmalıdır; `area` iki dəyər gözləyir."
