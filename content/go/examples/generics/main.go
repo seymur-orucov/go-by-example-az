@@ -5,52 +5,71 @@ import (
 	"fmt"
 )
 
-// @step func
-func Tally[K comparable](answers []K) map[K]int {
-	counts := map[K]int{}
-	for _, a := range answers {
-		counts[a]++
+// @step problem
+func maxFloat(xs []float64) float64 {
+	best := xs[0]
+	for _, x := range xs {
+		if x > best {
+			best = x
+		}
 	}
-	return counts
+	return best
 }
 
-// @step constraint
-type Stars int
+// @step generic
+func Max[T cmp.Ordered](xs []T) T {
+	best := xs[0]
+	for _, x := range xs {
+		if x > best {
+			best = x
+		}
+	}
+	return best
+}
 
-func Clamp[T cmp.Ordered](v, lo, hi T) T {
-	if v < lo {
-		return lo
+// @step comparable
+func Count[T comparable](xs []T, want T) int {
+	n := 0
+	for _, x := range xs {
+		if x == want {
+			n++
+		}
 	}
-	if v > hi {
-		return hi
-	}
-	return v
+	return n
 }
 
 // @step type
-type Shortlist[T any] struct {
-	Items []T
-	Max   int
+type Log[T any] struct {
+	items []T
 }
 
-func (s *Shortlist[T]) Add(item T) bool {
-	if len(s.Items) == s.Max {
-		return false
+func (l *Log[T]) Add(v T) {
+	l.items = append(l.items, v)
+}
+
+func (l *Log[T]) Latest() (T, bool) {
+	if len(l.items) == 0 {
+		var zero T
+		return zero, false
 	}
-	s.Items = append(s.Items, item)
-	return true
+	return l.items[len(l.items)-1], true
 }
 
 //@end
 
 func main() {
-	fmt.Println(Tally([]string{"pool", "spa", "pool", "gym"}))
-	fmt.Println(Tally([]int{5, 4, 5, 5}))
+	temps := []float64{19.5, 22.0, 21.5}
+	humidity := []int{40, 55, 48}
+	fmt.Println("max temp:", maxFloat(temps))
 
-	fmt.Println(Clamp(7, 1, 5), Clamp(-2, 1, 5))
-	fmt.Println(Clamp(Stars(9), 1, 5), Clamp(4.5, 1, 5))
+	fmt.Println("max temp:", Max(temps), "max humidity:", Max(humidity))
 
-	ideas := Shortlist[string]{Max: 2}
-	fmt.Println(ideas.Add("late checkout"), ideas.Add("bike rental"), ideas.Add("sauna"))
-	fmt.Println(ideas.Items)
+	doors := []string{"open", "close", "open"}
+	motion := []bool{false, true, false, false}
+	fmt.Println("door opened:", Count(doors, "open"), "motion:", Count(motion, true))
+
+	var readings Log[float64]
+	fmt.Println(readings.Latest())
+	readings.Add(21.5)
+	fmt.Println(readings.Latest())
 }

@@ -1,15 +1,5 @@
 - question: Bu kod nə çap edəcək?
   code: |
-    func Count[T comparable](items []T, x T) int {
-        n := 0
-        for _, it := range items {
-            if it == x {
-                n++
-            }
-        }
-        return n
-    }
-
     fmt.Println(Count([]int{1, 2, 1}, 1), Count([]string{"a"}, "b"))
   options: ["2 0", "1 0", "kompilyasiya xətası"]
   answer: 0
@@ -17,10 +7,10 @@
 
 - question: Bu kod nə çap edəcək?
   code: |
-    fmt.Println(Tally([]string{"b", "a", "b"}))
-  options: ["map[a:1 b:2]", "map[b:2 a:1]", "[a b]"]
+    fmt.Println(Max([]string{"pear", "apple", "plum"}))
+  options: ["plum", "pear", "kompilyasiya xətası"]
   answer: 0
-  explain: "`fmt` map-i açarlara görə sıralayıb çap edir."
+  explain: "Sətirlər `cmp.Ordered`-ə daxildir və əlifba sırası ilə müqayisə olunur, `plum` ən sondadır."
 
 - question: Bu kod niyə kompilyasiya olunmur?
   code: |
@@ -37,14 +27,22 @@
   answer: 0
   explain: "`>` üçün constraint `cmp.Ordered` kimi sıralanan tipləri tələb etməlidir."
 
+- question: Bu kod niyə kompilyasiya olunmur?
+  code: |
+    fmt.Println(Max([]bool{true, false}))
+  options:
+    - "`bool` sıralanmır, `cmp.Ordered`-ə daxil deyil"
+    - "`Max`-a tipi açıq yazmaq lazımdır: `Max[bool]`"
+    - "slice-da ən azı üç element olmalıdır"
+  answer: 0
+  explain: "`bool` yalnız `comparable`-dir, ona görə `Count` işləyir, `Max` isə yox."
+
 - question: Bu kod nə çap edəcək?
   code: |
-    x := 3
-    y := 2.5
-    fmt.Println(Clamp(x, y, 5))
-  options: ["kompilyasiya xətası", "3", "2.5"]
+    fmt.Println(Count([]int{1, 2}, 2.5))
+  options: ["kompilyasiya xətası", "0", "1"]
   answer: 0
-  explain: "`x` `int`, `y` isə `float64` dəyişəndir; hər ikisi eyni `T` ola bilməz."
+  explain: "`T` slice-dan `int` kimi çıxarılır, `2.5` isə `int`-ə çevrilə bilmir."
 
 - question: Bu kod nə çap edəcək?
   code: |
@@ -64,17 +62,17 @@
 
 - question: Hansı sətir kompilyasiya olunmur?
   options:
-    - "`var b Shortlist`"
-    - "`a := Shortlist[int]{Max: 3}`"
-    - "`c := &Shortlist[string]{}`"
+    - "`var a Log`"
+    - "`var b Log[int]`"
+    - "`c := &Log[string]{}`"
   answer: 0
-  explain: "Generic tipdən istifadə edəndə tip arqumenti yazılmalıdır: `Shortlist[int]`."
+  explain: "Generic tipdən istifadə edəndə tip arqumenti yazılmalıdır: `Log[int]`."
 
 - question: Bu kod nə çap edəcək?
   code: |
-    l := Shortlist[int]{Max: 1}
-    l.Add(4)
-    fmt.Println(l.Add(9), l.Items)
-  options: ["false [4]", "true [4 9]", "false [9]"]
+    var notes Log[string]
+    v, ok := notes.Latest()
+    fmt.Println(len(v), ok)
+  options: ["0 false", "1 false", "panic"]
   answer: 0
-  explain: "Siyahıda bir yer var və o, `4` ilə dolub, ona görə `9` əlavə olunmur."
+  explain: "Jurnal boşdur, `Latest` `string`-in zero value-sunu, yəni boş sətri və `false` qaytarır."

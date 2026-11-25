@@ -34,6 +34,16 @@ format section there and one existing `source: original` lesson before starting.
   the text may only refer to values the English code really contains. Exception: unicode
   and rune lessons use language-neutral multi-byte characters (`café`, `Zürich`), and the
   text may mention Azerbaijani letters such as `ə` in prose.
+- **Context check:** the context must show *why* the concept is needed, not just rename
+  variables. Good: the booking error carries the room and hour because the caller needs
+  them; the photo kiosk must keep running after one bad order. Bad: one theme stretched
+  over unrelated helpers (counting answers, clamping ratings and a shortlist under "a hotel
+  survey"). If the context only renames things, pick another one. For abstract mechanics
+  (generics, iterators, `defer` order) choose a context where the problem the feature solves
+  appears naturally (the same function needed for several types), let the first step show
+  that problem, and keep the context light so the mechanism stays in focus.
+- Quizzes may use other small contexts on purpose: they check that the reader can apply
+  the idea in a new situation.
 - **Money is in US dollars** (`USD` in output, "dollar" in text and comments), never manat
   or another local currency: lessons will be translated, and readers in other countries
   must understand the example without local knowledge.

@@ -1,17 +1,19 @@
-Generics eyni funksiyanı və ya tipi bir neçə tip üçün bir dəfə yazmağa imkan verir. Cavabları saymaq sətirlər üçün də, ədədlər üçün də eyni işdir; generics olmadan bu funksiyanı hər tip üçün ayrıca yazmalı olardıq. Tip burada parametr kimi verilir: çağırış zamanı onun yerinə konkret tip, məsələn `string` və ya `int` qoyulur. Interface-dən fərqi odur ki, nəticə də həmin konkret tipdə qayıdır və onu geri çevirmək lazım olmur.
+Ağıllı ev sensorlardan müxtəlif tipli məlumat toplayır: temperatur kəsr ədəddir (`float64`), rütubət tam ədəd (`int`), qapı hadisələri sətir (`string`), hərəkət sensoru isə `bool` verir. Bu məlumatların hamısı üzərində eyni əməliyyatlar lazımdır: ən böyük dəyər, bir hadisənin neçə dəfə təkrarlandığı, sonuncu ölçmə. Generics belə funksiyanı bir dəfə yazıb bütün uyğun tiplər üçün istifadə etməyə imkan verir: tip də parametr kimi verilir. Interface-dən fərqi odur ki, nəticə də elə həmin konkret tipdə qayıdır.
 
-Bu dərsdə otel qonaqlarının sorğusunu emal edirik: cavabları sayırıq, ulduz qiymətlərini 1 ilə 5 arasında saxlayırıq və təkliflərin qısa siyahısını tuturuq.
+## Problem: eyni kod, fərqli tip {#problem}
 
-## Generic funksiya {#func}
+`maxFloat` temperaturların ən yüksəyini tapır. Rütubət üçün də eyni iş lazımdır, amma `maxFloat(humidity)` kompilyasiya olunmur: `humidity` `[]int`-dir, funksiya isə yalnız `[]float64` qəbul edir. Generics olmasaydı, `maxInt` adlı ikinci funksiya yazmalı olardıq: eyni gövdə, yalnız tip fərqli. Hər yeni tip üçün daha bir surət.
 
-`[K comparable]` funksiyanın type parameter-idir: `K` hələ bilinməyən tipin yerini tutur. `comparable` isə constraint-dir (məhdudiyyət): `K`-nın `==` ilə müqayisə oluna bilməsini tələb edir, çünki map açarı belə olmalıdır. Çağırışda tipi yazmırıq, Go onu arqumentdən çıxarır: birinci çağırışda `K` `string`, ikincidə `int` olur. `fmt` map-i açarlara görə sıralayıb çap edir, ona görə nəticə həmişə eyni görünür.
+## Generic funksiya {#generic}
 
-## Constraint {#constraint}
+`Max[T cmp.Ordered]` eyni gövdəni bir dəfə yazır, konkret tipi isə `T` adlı type parameter ilə əvəz edir. `cmp.Ordered` constraint-dir (məhdudiyyət): `T` yalnız `<` və `>` ilə müqayisə oluna bilən tip ola bilər, yəni ədədlər və sətirlər. O, standart `cmp` package-indən gəlir. Çağırışda tipi yazmırıq, Go onu arqumentdən çıxarır: `Max(temps)`-də `T` `float64`, `Max(humidity)`-də `int` olur. İndi `maxFloat`-a ehtiyac qalmır.
 
-`Clamp` dəyəri `lo` ilə `hi` arasında saxlayır: səhvən verilən 7 ulduz 5-ə, -2 isə 1-ə çevrilir. `<` və `>` hər tipdə işləmir, ona görə constraint `cmp.Ordered`-dir: standart `cmp` package-indən, sıralana bilən bütün ədəd və sətir tipləri. Üç arqument eyni `T` tipində olmalıdır; `Clamp(4.5, 1, 5)`-də tipsiz sabitlərə baxıb Go `T` üçün `float64` seçir.
+> **Bilgi:** `cmp.Ordered`-in içində tiplər `~float64` kimi yazılıb: `~` `float64` üzərində qurulan öz tiplərimizi, məsələn `type Celsius float64`-ü də qəbul edir.
 
-`cmp.Ordered` daxilində tiplər `~int` kimi yazılıb: `~` `int` üzərində qurulmuş tipləri də, məsələn `Stars`-ı qəbul edir. Ona görə `Clamp(Stars(9), 1, 5)` də işləyir.
+## comparable {#comparable}
+
+`Count` yalnız `==` istifadə edir, ona görə ona daha yumşaq constraint kifayətdir: `comparable`. `bool` `==` ilə müqayisə olunur, amma sıralanmır. Ona görə `Count(motion, true)` işləyir, `Max(motion)` isə kompilyasiya olunmur. Constraint funksiyanın tipdən həqiqətən nə istədiyini deyir, artıq heç nə.
 
 ## Generic tip {#type}
 
-Tip də type parameter ala bilər. `Shortlist[T any]` ən çox `Max` element saxlayan siyahıdır; `any` `T`-dən heç nə tələb etmir. Metodda receiver `*Shortlist[T]` kimi yazılır. Generic tipdən istifadə edəndə tip arqumenti yazılmalıdır: `Shortlist[string]{Max: 2}`. Üçüncü təklifə artıq yer qalmır və `Add` `false` qaytarır.
+Struct da type parameter ala bilər. `Log[T any]` istənilən tipli ölçmələri saxlayır, `any` isə `T`-dən heç nə tələb etmir. Metodlarda receiver `*Log[T]` kimi yazılır. Generic tipdən istifadə edəndə tip arqumenti mütləqdir: `var readings Log[float64]`. Jurnal boş olanda `Latest` `T`-nin zero value-sunu qaytarmalıdır. `T`-nin hansı tip olacağını bilmədiyimiz üçün onu `var zero T` ilə alırıq: `float64` üçün bu, `0`-dır.
