@@ -63,13 +63,23 @@ The user's request: *"v2 və v3 qarışığı ilə yeni bir versiya yarat. Hər 
 - New: the aurora and grid light up when the particles lock; typed text (or a hovered chip) is drawn by the particles; a click scatters the field; the hero tabs open the matching facet in the demo.
 - What is liked so far, in the user's words: v2 as a whole ("çox yaxşı alınıb", "V2 daha yaxşıdır"), v3's intro ("çox maraqlı idi"). Disliked: v3's "Bir mövzu. Beş qat" and running line, v4 as a whole.
 
+**Verdict on v5 (2026-11-26):** *"Biraz qarışıq olub."* — too mixed. Then v6 was requested.
+
+## Design v6 — `design/v6/` ("Liquid glass", 2026-11-26, awaiting review)
+
+The user's request: *"V6 yarat. Introda maraqlı interaktiv animasiya. Əsas səhifə həm çox informativ, həm maraqlı, həm də glass design üslubunda olmalıdır."* Details in [HISTORY.md](HISTORY.md) entry 47 and [design/README.md](../design/README.md):
+- One idea ("Proqramlaşdırmanı bir yolda öyrən."), one look (v2's glass; only v2's shell is loaded).
+- Hero: WebGL liquid glass refracting the aurora and grid; scattered source drops flow into one form; pointer drop, drag, splash.
+- Sections built from real prototype data: roadmap explorer (Go sections → lessons; Backend order), lesson demo + quiz, directions + technologies, platform sections with rollout, comparison, FAQ, resume.
+- Performance notes (Intel HD iGPU, Chrome/Windows): background shader compile, one backdrop sample per pixel, adaptive render scale, no live blur or repainting CSS animation over the canvas → ~60 fps.
+
 ## Where to continue
 
-1. **Get the user's feedback on v5** (the merged hero, which v3 sections to keep, the new interactions) and record it in [HISTORY.md](HISTORY.md). If v5 is the direction, it replaces v2's `index.html` as the home reference; the Go, roadmap and lesson pages are already in the same (v2) language.
+1. **Get the user's feedback on v6** (the liquid-glass hero and its interactions, the amount of information, the sections) and record it in [HISTORY.md](HISTORY.md). If v6 is the direction, it becomes the home reference; the Go, roadmap and lesson pages are already in the same (v2) glass language, and v6's roadmap explorer and lesson demo can feed `go.html` / `roadmap.html`.
 2. If the user wants another variant instead, one earlier proposal still stands: **"Light editorial"** (light-first, large type, fewer effects). ("Roadmap-first" is what v4 became.)
 3. Decide the platform name (`w3hub.dev` / `beststack.dev` / other) — check domain availability.
 4. After a variant is approved: move it into `packages/theme` / `apps/site` (Phase 2 module 2: `/`, `/go/roadmap/`, `/roadmaps/backend/`).
-5. Known gaps: `design/shared/data.js` says "Massivlər" in the Kolleksiyalar description (term rule); the roadmap opens on the next topic, which may have no sample facet content; check fonts, the aurora, the v3 intro and the v4 map (trains, sideways pan on a phone) on a real browser/phone.
+5. Known gaps: `design/shared/data.js` says "Massivlər" in the Kolleksiyalar description (term rule); the roadmap opens on the next topic, which may have no sample facet content; check fonts, the aurora, the v3 intro, the v4 map and the v6 liquid glass (drag on touch, frame rate) on a real browser/phone. The Google Fonts stylesheet is render-blocking in every version; on a slow connection it delays the intro scripts.
 
 ## Tooling notes
 

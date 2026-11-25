@@ -104,6 +104,14 @@ The user on v4: "Maraqlıdır amma bəyənmədim" — then asked for a new versi
   - *Tabs → demo:* "Bu tərəfi nümunədə gör" under the hero tabs scrolls to the facet demo and opens the matching facet (the map tab goes to the stack map).
 - `v5.js` has two parts: part A is v2's `home.js` without the showcase, part B is v3's hero, slider and manifesto plus the additions. Under `prefers-reduced-motion` the hero is one still frame with the sky lit, typed text still redraws the shape, nothing scatters.
 
+### Design v6 — "Liquid glass" (`/v6/`, 2026-11-26)
+The user on v5: "Biraz qarışıq olub" — then asked for a v6 with an **interesting interactive intro animation**, and a home page that is **very informative, interesting and in a glass design style**. Open http://localhost:4321/v6/. It loads only v2's shell (`../v2/v2.css`, `../v2/v2.js`: tokens, glass, header, menus, search) plus `index.html`, `v6.css`, `v6.js`; nothing from v3–v5 and not v2's `home.css`. The other pages are v2's.
+- **One idea:** "Proqramlaşdırmanı bir yolda öyrən." — scattered sources flow together into one path; the whole page then explains that path with real data.
+- **Hero (WebGL liquid glass):** glass drops refract the aurora ribbons and a hairline grid behind them (rim colour, highlight, contact shadow). Intro: nine drops are scattered, each labelled with a source (video, məqalə, forum, pdf, kurs, sənəd, 47 tab, qeyd, podkast), then they flow together into one form with orbiting drops. Afterwards a small drop follows the mouse and melts into the form, any drop can be grabbed and pulled out, and a click on an empty spot splashes the form; it always flows back. A glass card on the form shows Go progress and the next lesson.
+- **Sections (all glass, all with real prototype data):** roadmap explorer (Go: 9 sections in a serpentine with a wire and progress, the chosen section's lessons with keçilib / hazırdır / yazılır; Backend: the 7 technologies in order), a lesson demo (real `slices` steps with a sliding code highlight, memory cells and output, "Hər dərsdə" list, one quiz question), directions + technologies with numbered order, the 8 platform sections with a rollout bar, "Niyə məhz burada?" + comparison table, FAQ, resume card.
+- **Performance (measured on an Intel HD iGPU, Chrome on Windows):** the shader compiles in the background (`KHR_parallel_shader_compile`) and the canvas fades in when ready — a blocking compile froze the page for tens of seconds on a fresh profile; the shader samples the backdrop once per pixel; the render scale adapts to the frame rate; no live `backdrop-filter` over the animated canvas (hero glass panels use a tinted fill) and the ask box's rotating ring runs on the compositor. Result: ~60 fps where the first version ran at ~21.
+- No WebGL: soft CSS backdrop with CSS glass circles. `prefers-reduced-motion`: one still frame of the formed glass, everything visible at once, no drops follow the pointer.
+
 ## Files
 ```
 design/
@@ -115,6 +123,7 @@ design/
   v3/             Design v3 — home page built on v2 (reuses v2's shell)
   v4/             Design v4 — "Metro" home page (own look; uses v2.js for data and search)
   v5/             Design v5 — home page that merges v2 and v3 (uses v2's shell and home styles)
+  v6/             Design v6 — "Liquid glass" home page (uses v2's shell only)
 ```
 
 | File | Purpose |
@@ -139,6 +148,7 @@ design/
 | `v3/index.html`, `v3.css`, `v3.js` | Design v3: platform home (particle-field hero, before/after slider, scroll-lit manifesto, exploded five-layer lesson, technology orbit, section list); loads `v2/v2.css` + `v2/v2.js` |
 | `v4/index.html`, `v4.css`, `v4.js` | Design v4 "Metro": platform home (transit-map hero with trains, Go strip map + timetable, lesson demo with a turnstile question, tickets, split-flap board, boarding pass); loads `v2/v2.js` but not `v2.css` |
 | `v5/index.html`, `v5.css`, `v5.js` | Design v5: platform home merging v2 and v3 (v3's particle intro, slider and manifesto; v2's ask box, stack map, facets, rail, advantages, resume card; new: aurora on lock, typed text drawn by particles, click to scatter); loads `v2/v2.css`, `v2/home.css`, `v2/v2.js` |
+| `v6/index.html`, `v6.css`, `v6.js` | Design v6 "Liquid glass": platform home (WebGL liquid-glass hero you can pull and splash, roadmap explorer, lesson demo + quiz, stack, platform sections, comparison, FAQ, resume card); loads `v2/v2.css` + `v2/v2.js` |
 | `archive/a/` | Variant A: `tokens.css`, `app.css`, `index.html`, `example.html` |
 | `archive/b/` | Variant B: `style.css`, `index.html`, `example.html` |
 | `archive/c/` | Variant C: `index.html`, `example.html` (styles are `shared/base.css`) |
