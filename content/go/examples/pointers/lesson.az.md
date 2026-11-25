@@ -12,7 +12,7 @@ Funksiyalar dərsindən bilirik ki, parametr arqumentin surətidir. `main`-dən 
 
 ## nil pointer {#nil}
 
-Pointer-in zero value-su `nil`-dir: o, heç bir dəyişəni göstərmir. `vip` hələ heç bir ünvan almayıb, ona görə `<nil>` çap olunur və `vip == nil` `true` verir.
+Pointer-in zero value-su `nil`-dir: o, heç bir dəyişəni göstərmir. Bu, "hələ yoxdur" demək üçün faydalıdır: dayanacaqda VIP mərtəbə hələ açılmayıb, onun boş yerlərinin sayı da yoxdur. `0` yazsaq, "açıqdır, amma doludur" kimi başa düşülərdi. `vip` heç bir ünvan almadığı üçün `<nil>` çap olunur və `vip == nil` `true` verir.
 
 > **Diqqət:** `nil` pointer-in dəyərini oxumaq (`*vip`) proqramı panic ilə, yəni qəza ilə dayandırır. Pointer `nil` ola bilərsə, əvvəlcə `vip != nil` yoxlayın.
 
