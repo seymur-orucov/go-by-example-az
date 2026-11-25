@@ -2,5 +2,7 @@ title: "Stateful Goroutines"
 subtitle: "Vəziyyətli goroutine"
 section: concurrency
 order: 18
-status: planned
+status: ready
 level: advanced
+duration: 9
+source: original

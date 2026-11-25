@@ -1,0 +1,9 @@
+rules:
+  - "Channel `make(chan T)` ilə yaradılır və yalnız `T` tipli dəyərlər daşıyır."
+  - "`ch <- v` dəyəri göndərir, `<-ch` dəyəri götürür; ox dəyərin getdiyi istiqaməti göstərir."
+  - "Buffer-siz channel-da göndərən də, qəbul edən də o biri tərəf hazır olana qədər gözləyir."
+  - "Bütün goroutine-lər channel-da ilişib qalanda proqram `deadlock` xətası ilə dayanır."
+  - "`make`-siz elan olunan channel `nil`-dir: ona göndərmək və ondan almaq əbədi gözləyir."
+practices:
+  - "Goroutine-in nəticəsini channel ilə qaytarın: nəticəni almaq həm də goroutine-i gözləmək deməkdir."
+  - "Channel-ı həmişə `make` ilə yaradın."

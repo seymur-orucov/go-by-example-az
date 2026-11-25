@@ -1,0 +1,71 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    tokens := make(chan struct{}, 3)
+    for range 3 {
+        tokens <- struct{}{}
+    }
+    <-tokens
+    fmt.Println(len(tokens), cap(tokens))
+  options: ["`2 3`", "`3 3`", "`2 2`"]
+  answer: 0
+  explain: "Bir bilet götürülüb, buffer-də iki qalıb; tutum isə həmişə `3`-dür."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    limit := time.Tick(200 * time.Millisecond)
+    start := time.Now()
+    for range 3 {
+        <-limit
+    }
+    fmt.Println(time.Since(start) >= 500*time.Millisecond)
+  options: ["`true`", "`false`"]
+  answer: 0
+  explain: "Üç siqnal 200, 400 və 600 millisaniyədə gəlir, dövr təxminən 600 millisaniyə çəkir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    tokens := make(chan struct{}, 1)
+    tokens <- struct{}{}
+    for _, m := range []string{"a1", "a2"} {
+        select {
+        case <-tokens:
+            fmt.Println("sent", m)
+        default:
+            fmt.Println("rejected", m)
+        }
+    }
+  options: ["`sent a1`, `rejected a2`", "`sent a1`, `sent a2`", "`rejected a1`, `rejected a2`"]
+  answer: 0
+  explain: "Yeganə bileti `a1` götürür; `a2` gözləmək əvəzinə `default` ilə rədd olunur."
+
+- question: Bu kod işə düşəndə nə olacaq?
+  code: |
+    tokens := make(chan struct{}, 2)
+    tokens <- struct{}{}
+    <-tokens
+    <-tokens
+    fmt.Println("sent")
+  options: ["`sent` çap olunur", "proqram `deadlock` xətası ilə dayanır", "kompilyasiya xətası"]
+  answer: 1
+  explain: "Channel-da bir bilet var idi, ikinci `<-tokens` boş channel-da əbədi gözləyir, bilet qoyan isə yoxdur."
+
+- question: "Üç goroutine hər mesajdan əvvəl eyni `limit := time.Tick(100 * time.Millisecond)` channel-ından oxuyur. Bir saniyədə təxminən neçə mesaj gedər?"
+  options: ["`30`", "`10`", "`3`"]
+  answer: 1
+  explain: "Siqnallar ortaqdır: hər siqnalı yalnız bir goroutine alır, saniyədə isə 10 siqnal gəlir."
+
+- question: "`tokens`-in tutumu 2-dir və channel doludur. Bərpa goroutine-i `tokens <- struct{}{}` icra edəndə nə olur?"
+  options:
+    - "yer açılana qədər gözləyir"
+    - "channel genişlənir və üç bilet saxlayır"
+    - "panic baş verir"
+  answer: 0
+  explain: "Dolu buffered channel-a göndərmə bloklanır, ona görə biletlər tutumdan çox yığılmır."
+
+- question: "`time.Tick` haqqında hansı doğrudur?"
+  options:
+    - "yalnız bir dəfə siqnal verir"
+    - "ticker-in özünü qaytarmır, ona görə onu dayandırmaq olmur"
+    - "Go 1.23-dən sonra istifadə etmək olmaz"
+  answer: 1
+  explain: "`time.Tick` yalnız channel qaytarır; Go 1.23-dən istifadə olunmayan ticker-i garbage collector təmizləyir."

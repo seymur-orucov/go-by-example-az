@@ -1,0 +1,7 @@
+train: {}
+book: {}
+sold: {}
+desks:
+  out: |
+    seats sold: 5
+    requests refused: 4

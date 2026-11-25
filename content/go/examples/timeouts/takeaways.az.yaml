@@ -1,0 +1,9 @@
+rules:
+  - "`time.After(d)` channel qaytarır və `d` müddəti keçəndə ona bir dəyər göndərir."
+  - "`select` cavabı və `time.After`-i birlikdə gözləyir: hansı əvvəl hazır olsa, onun `case`-i işləyir."
+  - "`select`-ə girəndə bütün `case` ifadələri hesablanır, timer də elə həmin an saymağa başlayır."
+  - "`time.After` dövrdəki `select`-in içində hər təkrarda yeni limit başladır; ümumi limit üçün onu dövrdən əvvəl bir dəfə yaradın."
+  - "Timeout yalnız gözləməni dayandırır, o biri goroutine işini davam etdirir və gec də olsa cavab göndərir."
+practices:
+  - "Cavab channel-ına 1 yerlik buffer verin ki, gözləyən olmasa belə, göndərən goroutine bitə bilsin."
+  - "Timeout-dan sonra gələ biləcək gecikmiş nəticəni nəzərə alın: məsələn, keçmiş ödənişi geri qaytarın."

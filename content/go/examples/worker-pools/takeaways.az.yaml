@@ -1,0 +1,9 @@
+rules:
+  - "Worker pool: sabit sayda goroutine eyni channel-dan iş götürür və hər iş yalnız bir worker-ə çatır."
+  - "İşləri göndərən tərəf sonda channel-ı `close` edir; worker-lərin `range`-i yalnız bundan sonra bitir."
+  - "Nəticələrin gəlmə sırası təyin olunmayıb; sıra lazımdırsa, işin nömrəsini nəticəyə qoyun və slice-da öz yerinə yazın."
+  - "Nəticə sayı məlumdursa, results channel-ından düz o qədər oxuyun: onu heç kim bağlamır və `range` bitməz."
+  - "Hər iki channel buffer-siz olsa və `main` hamısını göndərəndən sonra oxusa, deadlock olur."
+practices:
+  - "Worker-ə channel-ları istiqamətli verin: işlər üçün `<-chan`, nəticələr üçün `chan<-`."
+  - "Worker sayını işlərin sayına görə yox, məhdud resursa görə seçin: bölmə, bağlantı, nüvə."

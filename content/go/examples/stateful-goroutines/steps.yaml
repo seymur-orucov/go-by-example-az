@@ -1,0 +1,7 @@
+request: {}
+keeper: {}
+ask: {}
+pickers:
+  out: "orders filled: 4 of 5"
+check:
+  out: "boots left: 0"

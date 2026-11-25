@@ -1,0 +1,8 @@
+warm-up pulse: 84
+warm-up pulse: 92
+warm-up pulse: 101
+warm-up over, watch is quiet
+workout pulse: 124
+workout pulse: 137
+workout pulse: 131
+readings saved: 3

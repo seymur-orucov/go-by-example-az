@@ -1,0 +1,9 @@
+rules:
+  - "`close(ch)` \"yeni dəyər olmayacaq\" deməkdir; əvvəl göndərilmiş dəyərləri yenə qəbul etmək olar."
+  - "`v, ok := <-ch`: `ok` `false`-dursa, channel bağlıdır və boşdur, `v` isə zero value-dur."
+  - "Bağlı channel-dan qəbul bloklanmır, hər dəfə dərhal zero value qaytarır."
+  - "Bağlı channel-a göndərmək (`send on closed channel`) və channel-ı iki dəfə bağlamaq (`close of closed channel`) panic-dir."
+  - "Receive-only (`<-chan`) channel-ı bağlamaq kompilyasiya xətasıdır."
+practices:
+  - "Channel-ı yalnız göndərən tərəf bağlasın: işin bitdiyini o bilir."
+  - "Zero value həqiqi dəyər ola bilirsə, bitməni `v == 0` ilə yox, `ok` ilə yoxlayın."

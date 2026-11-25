@@ -1,0 +1,16 @@
+worker:
+pool:
+collect:
+results:
+  out: |
+    TX-4821 washed for 10 USD
+    NY-1093 washed for 25 USD
+    CA-7756 washed for 10 USD
+    FL-3302 washed for 25 USD
+    WA-6418 washed for 10 USD
+    OH-2287 washed for 10 USD
+    total: 90 USD
+speed:
+  out: |
+    1 bay takes over 300ms: true
+    3 bays are faster: true

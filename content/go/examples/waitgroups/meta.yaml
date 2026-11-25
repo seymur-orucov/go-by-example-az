@@ -2,5 +2,7 @@ title: "WaitGroups"
 subtitle: "Gözləmə qrupu"
 section: concurrency
 order: 14
-status: planned
+status: ready
 level: advanced
+duration: 9
+source: original

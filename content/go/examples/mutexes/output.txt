@@ -1,0 +1,2 @@
+seats sold: 5
+requests refused: 4

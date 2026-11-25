@@ -1,0 +1,9 @@
+rules:
+  - "`time.NewTimer(d)` geri sayımı dərhal başladır, vaxt çatanda `t.C` channel-ına bir dəfə dəyər gəlir."
+  - "`t.Stop()` taymeri ləğv edir: hələ işləməmiş taymeri dayandırıbsa `true`, artıq işləyib və ya dayandırılıbsa `false` qaytarır."
+  - "`Stop` channel-ı bağlamır: dayandırılmış taymerin `<-t.C`-si əbədi gözləyir."
+  - "`time.AfterFunc(d, f)` `f`-i vaxt çatanda öz goroutine-ində çağırır; `main` ondan əvvəl bitsə, `f` işləmir."
+  - "`int` dəyişənini müddətə çevirmək üçün `time.Duration(n) * time.Millisecond` yazılır."
+practices:
+  - "Gözləməni ləğv etmək və ya başqa hadisə ilə yarışdırmaq lazımdırsa, `time.Sleep` yox, taymer işlədin."
+  - "Lazım olmayan taymeri `Stop` ilə dayandırın, xüsusən də `AfterFunc` ilə qurulmuş işi."

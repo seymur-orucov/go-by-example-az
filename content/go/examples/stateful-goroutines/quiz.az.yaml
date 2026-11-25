@@ -1,0 +1,78 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    adds := make(chan int)
+    total := make(chan int)
+    go func() {
+        sum := 0
+        for n := range adds {
+            sum += n
+        }
+        total <- sum
+    }()
+    for _, n := range []int{5, 10, 20} {
+        adds <- n
+    }
+    close(adds)
+    fmt.Println(<-total)
+  options: ["35", "0", "deadlock xətası"]
+  answer: 0
+  explain: "`sum`-a yalnız bir goroutine toxunur; `close` dövrü bitirir və o, cəmi `total`-a göndərir."
+
+- question: "Dərsdəki `keeper`-də `stock` map-i üçün niyə mutex lazım deyil?"
+  options:
+    - "Map-ə yalnız `keeper` goroutine-i toxunur və sorğuları bir-bir icra edir"
+    - "Map channel-ın içində saxlanır"
+    - "`range` dövrü map-i avtomatik kilidləyir"
+  answer: 0
+  explain: "Veri paylaşılmır: digər goroutine-lər yalnız mesaj göndərir, map-i isə bir goroutine dəyişir."
+
+- question: "Cavab channel-ı (`reply`) niyə sorğunun içində göndərilir?"
+  options:
+    - "Anbardar cavabı məhz sorğunu göndərən goroutine-ə qaytarsın deyə"
+    - "Channel-ı yalnız struct-ın içində göndərmək olar"
+    - "Sorğunu daha sürətli etmək üçün"
+  answer: 0
+  explain: "Çox goroutine eyni `requests`-ə yazır; hər birinin öz `reply`-ı olmasa, cavablar qarışar."
+
+- question: Dərsdəki `keeper` və `ask` ilə bu kod nə çap edəcək?
+  code: |
+    requests := make(chan request)
+    go keeper(requests)
+    fmt.Println(
+        ask(requests, "take", "helmets", 50),
+        ask(requests, "take", "helmets", 15),
+        ask(requests, "check", "helmets", 0),
+    )
+  options: ["0 15 25", "40 15 0", "0 15 40"]
+  answer: 0
+  explain: "50 dəbilqə yoxdur və ilk sorğu 0 alır, ikinci 15 alır, qalıq 40 − 15 = 25 olur."
+
+- question: Dərsdəki `keeper` ilə bu çağırış nə edəcək?
+  code: |
+    requests := make(chan request)
+    go keeper(requests)
+    fmt.Println(ask(requests, "return", "boots", 2))
+  options:
+    - "`fatal error: all goroutines are asleep - deadlock!`"
+    - "0 çap edir"
+    - "`keeper` panic edir"
+  answer: 0
+  explain: "`keeper`-in `switch`-ində `\"return\"` yoxdur və cavab göndərmir: `ask` cavabı, `keeper` isə növbəti sorğunu gözləyir."
+
+- question: Bu kod işə düşəndə nə olacaq?
+  code: |
+    requests := make(chan request)
+    go keeper(requests)
+    close(requests)
+    fmt.Println(ask(requests, "check", "boots", 0))
+  options: ["`panic: send on closed channel`", "0 çap edir", "deadlock xətası"]
+  answer: 0
+  explain: "`ask` bağlanmış channel-a göndərir, bu isə panic-dir; ona görə `requests`-i yalnız bütün sorğular bitəndən sonra bağlayırıq."
+
+- question: "Dərsin proqramında `close(requests)` yazılmasa, nə olar?"
+  options:
+    - "Bu proqramda heç nə: `main` bitəndə `keeper` də dayanır, amma uzun işləyən proqramda o, boş yerə gözləyən goroutine kimi qalar"
+    - "Deadlock xətası"
+    - "`keeper` panic edir"
+  answer: 0
+  explain: "`main` bitəndə proqram bütün goroutine-ləri ilə bitir; deadlock yalnız bütün goroutine-lər eyni anda bloklananda olur."

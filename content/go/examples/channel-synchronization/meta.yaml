@@ -2,5 +2,7 @@ title: "Channel Sync"
 subtitle: "Sinxronizasiya"
 section: concurrency
 order: 4
-status: planned
+status: ready
 level: advanced
+duration: 6
+source: original

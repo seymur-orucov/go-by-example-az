@@ -1,0 +1,80 @@
+- question: Bu proqram haqqında nə demək olar?
+  code: |
+    func main() {
+        go fmt.Println("parcel shipped")
+    }
+  options:
+    - "sətir həmişə çap olunur"
+    - "sətrin çap olunacağına zəmanət yoxdur: `main` goroutine-i gözləmədən bitir"
+    - "kompilyasiya xətası: `go` ilə `fmt.Println` çağırmaq olmaz"
+  answer: 1
+  explain: "`main` bitəndə proqram dayanır, goroutine isə çap etməyə çatmaya bilər."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    var wg sync.WaitGroup
+    start := time.Now()
+    for range 4 {
+        wg.Go(func() {
+            time.Sleep(100 * time.Millisecond)
+        })
+    }
+    wg.Wait()
+    fmt.Println(time.Since(start) < 200*time.Millisecond)
+  options: ["true", "false"]
+  answer: 0
+  explain: "Dörd goroutine eyni vaxtda gözləyir, ona görə hamısı 400 yox, təxminən 100 millisaniyəyə bitir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    var wg sync.WaitGroup
+    squares := make([]int, 4)
+    for i := range 4 {
+        wg.Go(func() {
+            squares[i] = i * i
+        })
+    }
+    wg.Wait()
+    fmt.Println(squares)
+  options: ["[0 0 0 0]", "[0 1 4 9]", "sıra hər dəfə fərqli olur"]
+  answer: 1
+  explain: "Hər goroutine öz yerinə yazır, `wg.Wait()` hamısını gözləyir, ona görə sıra goroutine-lərin bitmə sırasından asılı deyil."
+
+- question: Çap sırası haqqında nə demək olar?
+  code: |
+    var wg sync.WaitGroup
+    for _, city := range []string{"Paris", "Rome", "Oslo"} {
+        wg.Go(func() {
+            fmt.Println(city)
+        })
+    }
+    wg.Wait()
+  options:
+    - "həmişə `Paris`, `Rome`, `Oslo`"
+    - "üç dəfə `Oslo`"
+    - "üç şəhər də çap olunur, amma sıra müəyyən deyil"
+  answer: 2
+  explain: "Go 1.22-dən bəri hər goroutine öz `city` nüsxəsini alır, goroutine-lərin işləmə sırası isə müəyyən deyil."
+
+- question: "`func fare(airline string) int` verilib. Hansı sətir kompilyasiya olunmur?"
+  options:
+    - "`go fare(\"SkyJet\")`"
+    - "`price := go fare(\"SkyJet\")`"
+    - "`go func() { fare(\"SkyJet\") }()`"
+  answer: 1
+  explain: "`go` ifadə deyil, nəticə qaytarmır; funksiyanın nəticəsi isə sadəcə atılır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    func city() string {
+        fmt.Println("city")
+        return "Baku"
+    }
+
+    func forecast(c string) {}
+
+    go forecast(city())
+    fmt.Println("main")
+  options: ["yalnız `main`", "`main`, `city`", "`city`, `main`"]
+  answer: 2
+  explain: "`go` arqumentləri dərhal cari goroutine-də hesablayır, ona görə `city()` `main`-dən əvvəl çap edir."

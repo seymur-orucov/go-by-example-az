@@ -1,0 +1,6 @@
+answered a question worth 0 points
+answered a question worth 5 points
+answered a question worth 10 points
+no more questions, score: 15
+after close: 0 false
+late question: send on closed channel

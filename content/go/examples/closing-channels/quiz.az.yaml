@@ -1,0 +1,77 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    ch := make(chan int, 2)
+    ch <- 7
+    close(ch)
+    v1, ok1 := <-ch
+    v2, ok2 := <-ch
+    fmt.Println(v1, ok1, v2, ok2)
+  options: ["7 true 0 false", "0 false 0 false", "7 true 7 false"]
+  answer: 0
+  explain: "Bağlanmadan əvvəl göndərilən `7` yenə qəbul olunur, channel boşalandan sonra isə zero value və `false` gəlir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    names := make(chan string)
+    close(names)
+    name, ok := <-names
+    fmt.Println(name == "", ok)
+  options: ["true false", "false false", "heç nə, proqram `deadlock` xətası ilə dayanır"]
+  answer: 0
+  explain: "Bağlı channel-dan qəbul bloklanmır və `string`-in zero value-sunu, yəni boş mətni qaytarır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    ch := make(chan int, 3)
+    ch <- 3
+    ch <- 0
+    ch <- 4
+    close(ch)
+    for {
+        v := <-ch
+        if v == 0 {
+            break
+        }
+        fmt.Print(v, " ")
+    }
+  options: ["3", "3 4", "3 0 4"]
+  answer: 0
+  explain: "`0` həqiqi göndərilmiş dəyərdir, amma dövr onu bağlanma kimi qəbul edir; yoxlama `ok` ilə olmalıdır."
+
+- question: Bu kod işə düşəndə nə olacaq?
+  code: |
+    ch := make(chan int, 1)
+    close(ch)
+    ch <- 1
+  options: ["panic: `send on closed channel`", "`1` buffer-ə yazılır, çünki yer var", "heç nə olmur"]
+  answer: 0
+  explain: "Bağlı channel-a göndərmək həmişə panic-dir, buffer-də yer olsa belə."
+
+- question: Bu kod işə düşəndə nə olacaq?
+  code: |
+    ch := make(chan int)
+    close(ch)
+    close(ch)
+  options: ["panic: `close of closed channel`", "ikinci `close` heç nə etmir", "kompilyasiya xətası"]
+  answer: 0
+  explain: "Channel yalnız bir dəfə bağlana bilər; ikinci `close` işləmə zamanı panic edir."
+
+- question: Bu funksiya kompilyasiya olunurmu?
+  code: |
+    func reader(in <-chan int) {
+        close(in)
+    }
+  options:
+    - "Xeyr: receive-only channel-ı bağlamaq olmaz"
+    - "Bəli"
+    - "Bəli, amma işə düşəndə panic edir"
+  answer: 0
+  explain: "Bağlamaq göndərənin işidir, kompilyator qəbul edən tərəfə buna icazə vermir."
+
+- question: Channel-ı adətən kim bağlamalıdır?
+  options:
+    - "göndərən, çünki daha dəyər olmayacağını yalnız o bilir"
+    - "qəbul edən, bütün dəyərləri oxuyandan sonra"
+    - "fərqi yoxdur, hansı goroutine birinci bitirsə"
+  answer: 0
+  explain: "Qəbul edən bağlasa, göndərən sonrakı göndərişdə panic edə bilər."

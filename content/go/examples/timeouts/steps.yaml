@@ -1,0 +1,8 @@
+in-time:
+  out: "paid 40 USD"
+too-slow:
+  out: |
+    bank is not answering, please try again
+    waited under 600 ms: true
+late:
+  out: "late reply: paid 75 USD - refund it"
