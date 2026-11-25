@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="az">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>w3hub.dev — öyrənmək çətin deyil, azmaq asandır</title>
+  <meta name="description" content="Proqramlaşdırmanı Azərbaycan dilində, yol xəritəsi ilə öyrən: nəyi, hansı sırayla, niyə. Hər addımda qısa izah, işlək kod, vizual, test və müsahibə sualı.">
+  <!-- Design v5, platform home (future route: /): v2 and v3 merged at the user's request.
+       From v3: the particle intro (chaos → order), the before/after slider, the scroll-lit manifesto.
+       From v2: the look (aurora, glass, wires), the ask box, the stack map, the five facets, the rail, the advantages, the resume card.
+       New: the aurora lights up when the particles lock, typed text is drawn by the particles, a click scatters them.
+       Loads v2's shell and home styles (../v2/v2.css, ../v2/home.css, ../v2/v2.js); Go, roadmap and lesson pages are v2's. -->
+  <script>try{var s=localStorage,t=JSON.parse(s.getItem("w3:theme")),p=JSON.parse(s.getItem("w3:palette"));if(t&&t!=="system")document.documentElement.setAttribute("data-theme",t);if(p&&p!=="nebula")document.documentElement.setAttribute("data-palette",p)}catch(e){}window.W3_PAGES="../v2/";document.documentElement.classList.add("js");</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../v2/v2.css">
+  <link rel="stylesheet" href="../v2/home.css">
+  <link rel="stylesheet" href="v5.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="index.html" aria-label="Ana səhifə">
+      <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--cyan)"/><stop offset=".5" stop-color="var(--accent)"/><stop offset="1" stop-color="var(--accent-2)"/></linearGradient></defs><rect x="1" y="1" width="30" height="30" rx="9" fill="url(#lg)" opacity=".16"/><rect x="1" y="1" width="30" height="30" rx="9" fill="none" stroke="url(#lg)" stroke-opacity=".7"/><path d="M8 21.5 12.5 11l3.5 7 3.5-7L24 21.5" fill="none" stroke="url(#lg)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8" cy="21.5" r="1.8" fill="var(--cyan)"/><circle cx="24" cy="21.5" r="1.8" fill="var(--accent-2)"/></svg>
+      <span data-brand>w3hub<span class="logo-tld">.dev</span></span>
+    </a>
+    <nav class="nav" aria-label="Əsas menyu">
+      <a href="../v2/roadmap.html">Yol xəritələri</a>
+      <div class="dd">
+        <button data-menu-btn aria-expanded="false">Texnologiyalar <i data-icon="chev"></i></button>
+        <div class="menu mega" data-tech-menu hidden></div>
+      </div>
+      <a href="#bolmeler">Bölmələr</a>
+      <a href="../v2/go.html">Go</a>
+    </nav>
+    <div class="header-spacer"></div>
+    <div class="header-right">
+      <button class="search-trigger" data-open-search aria-label="Axtarış (Ctrl+K)"><i data-icon="search"></i><span>Axtar…</span><kbd>Ctrl K</kbd></button>
+      <div class="dd">
+        <button class="btn btn-ghost btn-icon" data-menu-btn aria-expanded="false" aria-label="Görünüş: tema və palitra" title="Görünüş"><span data-look-icon style="display:contents"></span></button>
+        <div class="menu right" data-look-menu hidden style="min-width:230px"></div>
+      </div>
+      <a class="btn btn-sm btn-signin" href="#basla">Daxil ol</a>
+      <button class="btn btn-ghost btn-icon menu-toggle" data-nav-toggle aria-label="Menyu" aria-expanded="false"><i data-icon="menu"></i></button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= HERO: chaos → order → light ================= -->
+    <section class="hero h5" id="start">
+      <div class="hero-sky" aria-hidden="true">
+        <div class="aurora-fallback"></div>
+        <canvas class="aurora" id="aurora"></canvas>
+        <div class="grid-bg"></div>
+      </div>
+      <canvas class="field" id="field" aria-hidden="true"></canvas>
+      <span class="lock-ring" id="lock-ring" aria-hidden="true"></span>
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <a class="announce glass" href="../v2/go.html" data-intro="1">
+            <span class="badge live">yeni</span>
+            <span><b>Go</b> xəritəsi açıqdır — 12 dərs hazırdır</span>
+            <i data-icon="arrow"></i>
+          </a>
+          <h1 class="hero-title" id="hero-title">
+            <span class="line"><span class="w" style="--w:0">Öyrənmək</span></span>
+            <span class="line l2"><span class="w" style="--w:0">çətin</span> <span class="w" style="--w:1">deyil.</span></span>
+            <span class="line l3"><span class="w accent-grad" style="--w:0">Azmaq</span> <span class="w accent-grad" style="--w:1">asandır.</span></span>
+          </h1>
+          <p class="hero-sub" data-intro="1">Ona görə bütün yolu bir xəritəyə yığdıq: nəyi, hansı sırayla, niyə. Hər addımda qısa izah, işlək kod, vizual, test və müsahibə sualı — Azərbaycan dilində.</p>
+
+          <form class="ask glow-border" id="ask" data-intro="2" role="search">
+            <label class="sr-only" for="ask-input">Nə öyrənmək istəyirsən?</label>
+            <div class="ask-row">
+              <i data-icon="spark"></i>
+              <input id="ask-input" type="text" autocomplete="off" placeholder="Nə öyrənmək istəyirsən?">
+              <button class="btn btn-primary btn-icon ask-go" aria-label="Axtar"><i data-icon="arrow"></i></button>
+            </div>
+            <div class="ask-chips" aria-label="Populyar">
+              <button type="button" class="chip" data-q="Go"><span class="mono-ic" style="--c:#00add8">Go</span>Go</button>
+              <button type="button" class="chip" data-q="Backend"><span class="mono-ic" style="--c:#9b7bff">BE</span>Backend</button>
+              <button type="button" class="chip" data-q="Slices">Slices</button>
+              <button type="button" class="chip" data-q="Müsahibə">Müsahibə</button>
+              <button type="button" class="chip" data-q="Alqoritmlər">Alqoritmlər</button>
+            </div>
+          </form>
+          <p class="ask-hint" data-intro="3"><i data-icon="spark"></i>Nəsə yaz — hissəciklər sözünü çəkəcək. Boş yerə klikləsən, dağılıb yenidən yığılacaqlar.</p>
+
+          <ul class="hero-facts" data-intro="3" aria-label="Platforma rəqəmlərlə">
+            <li><b>84</b> Go mövzusu</li>
+            <li><b>13</b> texnologiya</li>
+            <li><b>4</b> istiqamət</li>
+            <li><a href="../v2/roadmap.html">Xəritəni aç →</a></li>
+          </ul>
+        </div>
+
+        <!-- the particle sculpture is drawn on the canvas, centred on this zone -->
+        <div class="hero-sculpt" id="sculpt-zone">
+          <div class="sculpt-ui" data-intro="3">
+            <p class="sculpt-cap" id="sculpt-cap" aria-live="polite"><b></b><span></span></p>
+            <div class="sculpt-tabs" id="sculpt-tabs" role="tablist" aria-label="Hər mövzunun beş tərəfi"></div>
+            <a class="sculpt-more" id="sculpt-more" href="#model">Bu tərəfi nümunədə gör <i data-icon="arrow"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PROBLEM: before / after (from v3) ================= -->
+    <section class="section" id="problem">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker" data-reveal>chaos.Sort()<span class="caret"></span></div>
+          <h2 data-reveal style="--i:1"><span class="title-grad">Əvvəl: 47 açıq tab.</span><br><span class="accent-grad">Sonra: bir xəritə.</span></h2>
+          <p data-reveal style="--i:2">Video bir şey deyir, məqalə başqasını, sənəd üçüncüsünü. Məlumat çoxdur — sırası yoxdur. Xətti sürüşdür, fərqi gör.</p>
+        </div>
+        <div class="ba" id="ba" data-reveal="scale">
+          <div class="ba-before" id="ba-before" aria-hidden="true"><span class="ba-label">əvvəl</span></div>
+          <div class="ba-after" id="ba-after"><span class="ba-label">sonra</span><div class="ba-clean" id="ba-clean"></div></div>
+          <div class="ba-handle" id="ba-handle" role="slider" tabindex="0" aria-label="Əvvəl və sonra arasında sürüşdür" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span><i data-icon="chev"></i><i data-icon="chev"></i></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= MANIFESTO: words light up with the scroll (from v3) ================= -->
+    <section class="section manifesto-sec" id="yanasma">
+      <div class="wrap">
+        <div class="kicker" data-reveal>how.We.Teach()<span class="caret"></span></div>
+        <p class="manifesto" id="manifesto"></p>
+      </div>
+    </section>
+
+    <!-- ================= STACK MAP: technologies + directions ================= -->
+    <section class="section" id="stack">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker" data-reveal>stack.Explore()<span class="caret"></span></div>
+          <h2 data-reveal style="--i:1"><span class="title-grad">Bir dil seç — və ya</span><br><span class="accent-grad">bütöv bir peşə yolu.</span></h2>
+          <p data-reveal style="--i:2">İstiqamət bir neçə texnologiyanı doğru ardıcıllıqla birləşdirir. Birinin üzərinə gəl — hansı texnologiyalardan ibarət olduğunu gör.</p>
+        </div>
+
+        <div class="stack" id="stack-map" data-reveal="scale">
+          <svg class="stack-wires" id="stack-wires" aria-hidden="true"></svg>
+          <div class="stack-dirs" id="stack-dirs" role="tablist" aria-label="İstiqamətlər"></div>
+          <div class="stack-techs" id="stack-techs"></div>
+        </div>
+        <div class="stack-path glass" id="stack-path" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- ================= NODE MODEL: one node, five facets ================= -->
+    <section class="section section-tint" id="model">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker" data-reveal>node.Open()<span class="caret"></span></div>
+          <h2 data-reveal style="--i:1"><span class="title-grad">Bir mövzu.</span> <span class="accent-grad">Beş tərəf.</span></h2>
+          <p data-reveal style="--i:2">Xəritədə hər node izah, kod, vizual, test və müsahibə sualını bir yerdə saxlayır. Ayrı saytlar, ayrı tablar yox.</p>
+        </div>
+
+        <div class="anatomy" id="anatomy" data-reveal="scale">
+          <svg class="anatomy-wires" id="anatomy-wires" aria-hidden="true"></svg>
+          <div class="facets" role="tablist" aria-label="Mövzunun tərəfləri" id="facets"></div>
+          <div class="node-card glass dots spot" id="node-card">
+            <div class="node-top">
+              <span class="mono-ic" style="--c:#00add8">Go</span>
+              <div><small class="node-crumb">Go · Kolleksiyalar · 09</small><h3>Slices</h3></div>
+              <div class="node-ring" aria-label="İrəliləyiş 3/5">
+                <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="16" class="tr"/><circle cx="20" cy="20" r="16" class="br" id="node-ring"/></svg><b id="node-ring-n">0/5</b>
+              </div>
+            </div>
+            <div class="node-body" id="node-body" role="tabpanel" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PLATFORM SECTIONS (rollout order) ================= -->
+    <section class="section" id="bolmeler">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker" data-reveal>platform.Sections()<span class="caret"></span></div>
+          <h2 data-reveal style="--i:1"><span class="title-grad">Hər şey bir yerdə.</span><br><span class="accent-grad">Addım-addım açılır.</span></h2>
+          <p data-reveal style="--i:2">Bölmələr bu ardıcıllıqla gəlir və hamısı eyni xəritəyə bağlıdır: bir mövzunun testi də, müsahibə sualı da həmin node-dadır.</p>
+        </div>
+        <div class="rail" id="rail" data-reveal></div>
+        <div class="rail-detail glass" id="rail-detail" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- ================= WHY: advantages over the alternatives ================= -->
+    <section class="section" id="niye">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker" data-reveal>why.Here()<span class="caret"></span></div>
+          <h2 data-reveal style="--i:1"><span class="title-grad">Niyə məhz</span> <span class="accent-grad">burada?</span></h2>
+          <p data-reveal style="--i:2">Xəritə saytları yolu göstərir, kurslar dərsi verir, sənədlər faktı. Burada üçü bir yerdədir — və ana dilində.</p>
+        </div>
+
+        <div class="why">
+          <article class="why-card glass spot" data-reveal style="--i:0">
+            <div class="why-art" aria-hidden="true">
+              <svg viewBox="0 0 260 170">
+                <defs>
+                  <linearGradient id="gBub" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".45" stop-color="var(--accent)" stop-opacity=".18"/><stop offset="1" stop-color="var(--accent-2)" stop-opacity=".35"/></linearGradient>
+                  <linearGradient id="gEdge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset=".5" stop-color="#fff" stop-opacity=".1"/><stop offset="1" stop-color="var(--accent-2)" stop-opacity=".8"/></linearGradient>
+                </defs>
+                <g class="bub b1"><rect x="34" y="30" width="132" height="58" rx="22" fill="url(#gBub)" stroke="url(#gEdge)" stroke-width="1.4"/><path d="M62 88l-6 16 22-16" fill="url(#gBub)" stroke="url(#gEdge)" stroke-width="1.4"/><text x="100" y="66" text-anchor="middle" class="bub-t mono">slice</text></g>
+                <g class="bub b2"><rect x="96" y="92" width="136" height="54" rx="21" fill="url(#gBub)" stroke="url(#gEdge)" stroke-width="1.4"/><path d="M206 146l6 14-22-14" fill="url(#gBub)" stroke="url(#gEdge)" stroke-width="1.4"/><text x="164" y="125" text-anchor="middle" class="bub-t">dinamik siyahı</text></g>
+              </svg>
+            </div>
+            <h3>Ana dilində, terminlər orijinalda</h3>
+            <p>İzah Azərbaycan dilindədir, <code>slice</code>, <code>goroutine</code> kimi terminlər isə ingiliscə qalır — sənəddə, xətada və işdə rast gələcəyin kimi.</p>
+          </article>
+
+          <article class="why-card glass spot" data-reveal style="--i:1">
+            <div class="why-art" aria-hidden="true">
+              <svg viewBox="0 0 260 170" class="pyr">
+                <defs>
+                  <linearGradient id="gTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".85"/><stop offset="1" stop-color="var(--accent)" stop-opacity=".25"/></linearGradient>
+                  <linearGradient id="gFront" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--cyan)" stop-opacity=".45"/><stop offset=".55" stop-color="var(--accent)" stop-opacity=".18"/><stop offset="1" stop-color="var(--accent-2)" stop-opacity=".5"/></linearGradient>
+                </defs>
+                <g class="slab s5"><path d="M130 14 152 40H108Z" fill="url(#gTop)" stroke="#fff" stroke-opacity=".6"/></g>
+                <g class="slab s4"><path d="M104 46h52l10 10h-72Z" fill="url(#gTop)"/><path d="M94 56h72v14H94Z" fill="url(#gFront)" stroke="#fff" stroke-opacity=".35"/></g>
+                <g class="slab s3"><path d="M90 76h80l12 12H78Z" fill="url(#gTop)"/><path d="M78 88h104v14H78Z" fill="url(#gFront)" stroke="#fff" stroke-opacity=".35"/></g>
+                <g class="slab s2"><path d="M74 108h112l14 12H60Z" fill="url(#gTop)"/><path d="M60 120h140v14H60Z" fill="url(#gFront)" stroke="#fff" stroke-opacity=".35"/></g>
+                <g class="slab s1"><path d="M56 140h148l16 12H40Z" fill="url(#gTop)"/><path d="M40 152h180v12H40Z" fill="url(#gFront)" stroke="#fff" stroke-opacity=".35"/></g>
+              </svg>
+            </div>
+            <h3>Xəritə və dərs bir yerdə</h3>
+            <p>Hansı mövzunun nədən sonra gəldiyini görürsən, node-a basıb dərhal öyrənirsən. Harada qaldığın və növbəti addım həmişə görünür.</p>
+          </article>
+
+          <article class="why-card glass spot" data-reveal style="--i:2">
+            <div class="why-art" aria-hidden="true">
+              <svg viewBox="0 0 260 170" class="rings">
+                <defs>
+                  <linearGradient id="gRing" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".95"/><stop offset=".3" stop-color="var(--accent)" stop-opacity=".55"/><stop offset=".6" stop-color="#0a0f20" stop-opacity=".4"/><stop offset="1" stop-color="var(--accent-2)" stop-opacity=".9"/></linearGradient>
+                  <radialGradient id="gCore"><stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="var(--cyan)" stop-opacity=".7"/><stop offset="1" stop-color="var(--accent)" stop-opacity="0"/></radialGradient>
+                </defs>
+                <circle cx="130" cy="86" r="30" fill="url(#gCore)" class="core"/>
+                <g class="ring r1"><ellipse cx="130" cy="86" rx="86" ry="30" fill="none" stroke="url(#gRing)" stroke-width="11"/></g>
+                <g class="ring r2"><ellipse cx="130" cy="86" rx="70" ry="44" fill="none" stroke="url(#gRing)" stroke-width="7" opacity=".8"/></g>
+                <g class="ring r3"><ellipse cx="130" cy="86" rx="40" ry="62" fill="none" stroke="url(#gRing)" stroke-width="5" opacity=".7"/></g>
+              </svg>
+            </div>
+            <h3>Oxuma — gör</h3>
+            <p>Kod addım-addım işləyir: hansı sətrin işlədiyini, yaddaşda nəyin dəyişdiyini və nəticəni eyni anda görürsən.</p>
+          </article>
+
+          <article class="why-card glass spot" data-reveal style="--i:3">
+            <div class="why-art" aria-hidden="true">
+              <svg viewBox="0 0 260 170" class="cube">
+                <defs>
+                  <linearGradient id="gC1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".8"/><stop offset="1" stop-color="var(--accent)" stop-opacity=".25"/></linearGradient>
+                  <linearGradient id="gC2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--accent)" stop-opacity=".45"/><stop offset="1" stop-color="var(--accent-2)" stop-opacity=".15"/></linearGradient>
+                  <linearGradient id="gC3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--cyan)" stop-opacity=".35"/><stop offset="1" stop-color="var(--accent)" stop-opacity=".1"/></linearGradient>
+                </defs>
+                <g class="cube-g">
+                  <path d="M130 22 186 52 130 82 74 52Z" fill="url(#gC1)" stroke="#fff" stroke-opacity=".55"/>
+                  <path d="M74 52 130 82v66L74 118Z" fill="url(#gC2)" stroke="#fff" stroke-opacity=".3"/>
+                  <path d="M186 52 130 82v66l56-30Z" fill="url(#gC3)" stroke="#fff" stroke-opacity=".3"/>
+                  <path d="m112 52 12 9 24-17" fill="none" stroke="var(--green)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" class="tick"/>
+                </g>
+                <text x="206" y="140" class="cube-t mono">go run ✓</text>
+              </svg>
+            </div>
+            <h3>Kod işləyir — yoxlanılıb</h3>
+            <p>Hər nümunə Go ilə işlədilir və çıxışı yoxlanılır; test cavabları da kodla təsdiqlənir. Ekranda gördüyün nəticə real nəticədir.</p>
+          </article>
+        </div>
+
+        <div class="compare glass" data-reveal>
+          <div class="compare-head">
+            <h3>Alternativlərlə müqayisə</h3>
+            <p>Ümumi kateqoriyalar üzrə; “tezliklə” — planlaşdırılıb, hələ hazır deyil.</p>
+          </div>
+          <div class="compare-scroll">
+            <table class="cmp">
+              <thead>
+                <tr><th scope="col"><span class="sr-only">Xüsusiyyət</span></th><th scope="col" class="us"><span data-brand-plain>w3hub.dev</span></th><th scope="col">Xəritə saytları</th><th scope="col">Video kurslar</th><th scope="col">Rəsmi sənədlər</th></tr>
+              </thead>
+              <tbody id="cmp-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="section cta-section" id="basla">
+      <div class="wrap">
+        <div class="cta glass glow-border" data-reveal="scale">
+          <div class="cta-copy">
+            <div class="kicker" style="justify-content:flex-start">path.Start()<span class="caret"></span></div>
+            <h2><span class="title-grad">Harada qaldığını</span><br><span class="accent-grad">platforma xatırlayır.</span></h2>
+            <p>Hesabsız da başlaya bilərsən — irəliləyiş bu brauzerdə saxlanılır. Hesab açanda bütün cihazlarda sinxron olacaq.</p>
+            <div class="cta-btns">
+              <a class="btn btn-primary btn-lg" id="cta-next" href="../v2/go.html">Davam et <span class="arrow" data-icon="arrow"></span></a>
+              <a class="btn btn-lg" href="../v2/roadmap.html">Xəritəyə bax</a>
+            </div>
+          </div>
+          <a class="resume glass dots" id="resume" href="../v2/go.html">
+            <div class="resume-ring">
+              <svg viewBox="0 0 120 120"><defs><linearGradient id="gProg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--cyan)"/><stop offset=".5" stop-color="var(--accent)"/><stop offset="1" stop-color="var(--accent-2)"/></linearGradient></defs><circle cx="60" cy="60" r="50" class="tr"/><circle cx="60" cy="60" r="50" class="br" id="res-bar"/></svg>
+              <div><b id="res-pct">0%</b><small>Go yolu</small></div>
+            </div>
+            <div class="resume-next">
+              <small>NÖVBƏTİ DƏRS</small>
+              <b id="res-title">—</b>
+              <span id="res-sub"></span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <a class="logo" href="index.html"><span data-brand>w3hub<span class="logo-tld">.dev</span></span></a>
+          <p>Proqramlaşdırmanı Azərbaycan dilində, yol xəritəsi ilə öyrənmək üçün açıq platforma.</p>
+        </div>
+        <div><h4>Platforma</h4><ul><li><a href="../v2/roadmap.html">Yol xəritələri</a></li><li><a href="#stack">Texnologiyalar</a></li><li><a href="#bolmeler">Bölmələr</a></li><li><a href="#niye">Niyə biz</a></li></ul></div>
+        <div><h4>Texnologiyalar</h4><ul><li><a href="../v2/go.html">Go</a></li><li><span class="muted">Python · tezliklə</span></li><li><span class="muted">TypeScript · tezliklə</span></li><li><a href="../v2/roadmap.html#backend">Backend</a></li></ul></div>
+        <div><h4>Layihə</h4><ul><li><a href="https://github.com/seymur-orucov/go-by-example-az" rel="noopener">GitHub</a></li><li><a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">Məzmun: CC BY 4.0</a></li><li><span class="muted">Kod: MIT</span></li></ul></div>
+      </div>
+      <div class="foot-bottom">
+        <span>Go adı Google LLC-yə məxsusdur. Dizayn v5 · prototip.</span>
+        <span>Ad variantı:
+          <span class="brand-switch" role="group" aria-label="Ad variantı"><button data-brand-pick="w3hub">w3hub.dev</button><button data-brand-pick="beststack">beststack.dev</button></span>
+        </span>
+      </div>
+      <div class="huge-brand" aria-hidden="true" data-brand-huge>w3hub</div>
+    </div>
+  </footer>
+
+  <nav class="variant-switch" aria-label="Dizayn versiyası"><a href="../v2/">v2</a><a href="../v3/">v3</a><a href="../v4/">v4</a><a href="index.html" aria-current="page">v5</a></nav>
+
+  <script src="../shared/data.js"></script>
+  <script src="../v2/v2.js"></script>
+  <script src="v5.js"></script>
+</body>
+</html>
