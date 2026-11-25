@@ -1,0 +1,97 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    quote := make(chan string, 1)
+    go func() {
+        time.Sleep(100 * time.Millisecond)
+        quote <- "taxi: 12 USD"
+    }()
+    select {
+    case q := <-quote:
+        fmt.Println(q)
+    case <-time.After(300 * time.Millisecond):
+        fmt.Println("no quote")
+    }
+  options: ["no quote", "taxi: 12 USD", "əvvəl `taxi: 12 USD`, sonra `no quote`"]
+  answer: 1
+  explain: "Cavab 100 ms-də, limit isə 300 ms-də hazır olur; `select` birincini seçir və bitir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    quote := make(chan string, 1)
+    go func() {
+        time.Sleep(400 * time.Millisecond)
+        quote <- "taxi: 12 USD"
+    }()
+    select {
+    case q := <-quote:
+        fmt.Println(q)
+    case <-time.After(100 * time.Millisecond):
+        fmt.Println("no quote")
+    }
+  options: ["no quote", "taxi: 12 USD", "heç nə, proqram 400 ms gözləyib bitir"]
+  answer: 0
+  explain: "100 ms-də `time.After`-in channel-ı hazır olur, cavab isə hələ gəlməyib."
+
+- question: "`time.After(200 * time.Millisecond)` nə qaytarır?"
+  options:
+    - "200 ms gözləyib `true` qaytarır"
+    - "heç nə, `time.Sleep` kimi goroutine-i saxlayır"
+    - "channel; 200 ms keçəndə ona bir dəyər göndərilir"
+  answer: 2
+  explain: "`time.After` dərhal channel qaytarır, ona görə onu `select`-in `case`-ində gözləmək olur."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    deadline := time.After(250 * time.Millisecond)
+    for i := 1; i <= 5; i++ {
+        select {
+        case <-deadline:
+            fmt.Println("stopped at", i)
+            return
+        case <-time.After(100 * time.Millisecond):
+            fmt.Println("box", i, "packed")
+        }
+    }
+  options:
+    - "`box 1 packed`, `box 2 packed`, `stopped at 3`"
+    - "`box 1` ... `box 5 packed`, beş sətir"
+    - "`stopped at 1`"
+  answer: 0
+  explain: "`deadline` bir dəfə yaradılıb və 250 ms-də hazır olur; hər qutu isə 100 ms çəkir, ona görə üçüncüsü bitmir."
+
+- question: "Əvvəlki kodda `case <-deadline:` yerinə `case <-time.After(250 * time.Millisecond):` yazsaq, nə çap olunacaq?"
+  options:
+    - "`box 1 packed`, `box 2 packed`, `stopped at 3`"
+    - "`box 1 packed` ... `box 5 packed`, beş sətir"
+    - "`stopped at 1`"
+  answer: 1
+  explain: "Hər təkrarda yeni 250 ms-lik timer yaranır, 100 ms-lik isə həmişə ondan əvvəl hazır olur."
+
+- question: "`charge`-dəki channel buffer-siz (`make(chan string)`) olsaydı, timeout-dan sonra bankın goroutine-i nə edərdi?"
+  options:
+    - "Cavabı göndərməyə çalışıb əbədi ilişib qalardı"
+    - "Cavabı itirib normal bitərdi"
+    - "Panic edərdi"
+  answer: 0
+  explain: "Buffer-siz göndərmə qəbul edən olana qədər gözləyir, `select` isə artıq bitib və bu channel-ı heç kim oxumur."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    refund := make(chan string, 1)
+    go func() {
+        time.Sleep(300 * time.Millisecond)
+        refund <- "refunded"
+    }()
+    select {
+    case r := <-refund:
+        fmt.Println(r)
+    case <-time.After(100 * time.Millisecond):
+        fmt.Println("still waiting")
+    }
+    fmt.Println(<-refund)
+  options:
+    - "`still waiting`"
+    - "`refunded`"
+    - "`still waiting`, sonra `refunded`"
+  answer: 2
+  explain: "Timeout yalnız `select`-i bitirir; goroutine işini davam etdirir və son sətir onun cavabını gözləyib oxuyur."

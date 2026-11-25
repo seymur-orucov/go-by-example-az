@@ -1,0 +1,80 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    type Lamp struct {
+        On bool
+    }
+
+    func (l Lamp) Toggle() {
+        l.On = !l.On
+    }
+
+    lamp := Lamp{}
+    lamp.Toggle()
+    fmt.Println(lamp.On)
+  options: ["false", "true", "kompilyasiya xətası"]
+  answer: 0
+  explain: "Value receiver surət alır, `Toggle` yalnız surəti dəyişir."
+
+- question: "`Toggle`-ı `func (l *Lamp) Toggle()` kimi yazsaq, eyni kod nə çap edəcək?"
+  options: ["true", "false", "kompilyasiya xətası, `(&lamp).Toggle()` yazmaq lazımdır"]
+  answer: 0
+  explain: "Pointer receiver orijinalı dəyişir və Go dəyişənin ünvanını özü götürür."
+
+- question: Hansı çağırış kompilyasiya olunmur? (`Toggle` pointer receiver ilədir.)
+  code: |
+    lamp := Lamp{}
+  options:
+    - "`Lamp{}.Toggle()`"
+    - "`lamp.Toggle()`"
+    - "`(&lamp).Toggle()`"
+  answer: 0
+  explain: "Literal-ın ünvanı olan dəyişən yoxdur, Go ondan pointer götürə bilmir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    type Cart struct {
+        Items int
+    }
+
+    func (c *Cart) Put(n int) {
+        c.Items += n
+    }
+
+    func (c Cart) Empty() bool {
+        return c.Items == 0
+    }
+
+    var c Cart
+    c.Put(2)
+    c.Put(3)
+    fmt.Println(c.Items, c.Empty())
+  options: ["5 false", "0 true", "3 false"]
+  answer: 0
+  explain: "`Put` pointer receiver ilədir və hər çağırış eyni `c`-yə əlavə edir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    type Celsius int
+
+    func (c Celsius) Hot() bool {
+        return c > 30
+    }
+
+    t := Celsius(25)
+    t += 10
+    fmt.Println(t.Hot())
+  options: ["true", "false", "kompilyasiya xətası"]
+  answer: 0
+  explain: "`Celsius` `int` üzərində qurulub, `+=` işləyir və `35 > 30`-dur."
+
+- question: Bu kod niyə kompilyasiya olunmur?
+  code: |
+    func (n int) Double() int {
+        return n * 2
+    }
+  options:
+    - "metodu yalnız eyni package-də elan olunmuş tipə əlavə etmək olar"
+    - "receiver-in adı tipin adı ilə başlamalıdır"
+    - "metod nəticə qaytara bilməz"
+  answer: 0
+  explain: "`int` hazır tipdir; ona metod əlavə etmək üçün `type MyInt int` kimi öz tipimizi yaratmaq lazımdır."

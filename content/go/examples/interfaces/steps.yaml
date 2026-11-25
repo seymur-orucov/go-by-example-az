@@ -1,0 +1,12 @@
+define:
+  out: |
+    courier, 3 kg: 6 USD
+    locker, 3 kg: 4 USD
+use:
+  out: |
+    cheapest, 1 kg: 2 USD
+    cheapest, 5 kg: 4 USD
+switch:
+  out: |
+    courier: 2 USD per kg
+    parcel locker: flat price

@@ -1,0 +1,9 @@
+rules:
+  - "Vəziyyətə yalnız bir goroutine sahib olur, qalanları ona channel ilə sorğu göndərir."
+  - "Sahib sorğuları bir-bir icra etdiyi üçün \"yoxla, sonra dəyiş\" mutex olmadan bölünməzdir."
+  - "Sorğu öz `reply` channel-ını daşıyır ki, cavab məhz soruşana qayıtsın."
+  - "Sahib hər sorğuya cavab verməlidir, yoxsa soruşan goroutine əbədi gözləyir."
+  - "Sorğu channel-ını göndərən tərəf bağlayır; bağlanmış channel-a göndərmək panic-dir."
+practices:
+  - "Channel əməliyyatlarını `ask` kimi kiçik funksiyada gizlədin ki, çağıran üçün adi çağırış olsun."
+  - "Sadə paylaşılan map və ya sayğac üçün mutex seçin; vəziyyət xidmət kimi işləyəndə sahib goroutine seçin."

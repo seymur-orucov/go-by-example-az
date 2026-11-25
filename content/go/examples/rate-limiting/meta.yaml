@@ -2,5 +2,7 @@ title: "Rate Limiting"
 subtitle: "Sürət məhdudiyyəti"
 section: concurrency
 order: 15
-status: planned
+status: ready
 level: advanced
+duration: 9
+source: original

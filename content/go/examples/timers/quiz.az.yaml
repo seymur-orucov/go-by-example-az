@@ -1,0 +1,75 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    t := time.NewTimer(time.Second)
+    fmt.Println(t.Stop())
+    fmt.Println(t.Stop())
+  options: ["`true`, `false`", "`true`, `true`", "`false`, `false`"]
+  answer: 0
+  explain: "Birinci `Stop` işləməmiş taymeri dayandırır, ikincisi artıq dayandırılmış taymeri tapır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    slow := time.NewTimer(300 * time.Millisecond)
+    fast := time.NewTimer(100 * time.Millisecond)
+    select {
+    case <-slow.C:
+        fmt.Println("slow")
+    case <-fast.C:
+        fmt.Println("fast")
+    }
+  options: ["`slow`", "`fast`", "`slow`, sonra `fast`"]
+  answer: 1
+  explain: "`select` əvvəl hazır olan channel-ı seçir, `fast` taymeri 100 millisaniyədə zəng çalır."
+
+- question: Bu `main` funksiyası nə çap edəcək?
+  code: |
+    func main() {
+        time.AfterFunc(500*time.Millisecond, func() {
+            fmt.Println("reminder")
+        })
+        fmt.Println("done")
+    }
+  options: ["`done`, sonra `reminder`", "`reminder`, sonra `done`", "yalnız `done`"]
+  answer: 2
+  explain: "`AfterFunc` gözləmir: `main` dərhal bitir və proqram funksiya çağırılmamış dayanır."
+
+- question: Bu kod işə düşəndə nə olacaq?
+  code: |
+    t := time.NewTimer(100 * time.Millisecond)
+    t.Stop()
+    <-t.C
+    fmt.Println("rang")
+  options: ["100 millisaniyə sonra `rang` çap olunur", "dərhal `rang` çap olunur", "proqram `deadlock` xətası ilə dayanır"]
+  answer: 2
+  explain: "`Stop` channel-ı bağlamır, dayandırılmış taymerə isə siqnal heç vaxt gəlmir, ona görə `<-t.C` əbədi gözləyir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    r := time.AfterFunc(100*time.Millisecond, func() {
+        fmt.Println("call mom")
+    })
+    r.Stop()
+    time.Sleep(200 * time.Millisecond)
+    fmt.Println("end")
+  options: ["yalnız `end`", "`call mom`, `end`", "`end`, `call mom`"]
+  answer: 0
+  explain: "`Stop` vaxt çatmamış çağırılıb, ona görə funksiya heç vaxt işləmir."
+
+- question: Bu kod işə düşəndə nə olacaq?
+  code: |
+    t := time.NewTimer(100 * time.Millisecond)
+    <-t.C
+    fmt.Println("first")
+    <-t.C
+    fmt.Println("second")
+  options: ["`first`, sonra `deadlock` xətası", "`first`, 100 millisaniyə sonra `second`", "`first`, dərhal `second`"]
+  answer: 0
+  explain: "Taymer yalnız bir dəfə siqnal verir, ikinci `<-t.C` əbədi gözləyir."
+
+- question: "`n := 500` `int` dəyişənidir. Hansı sətir kompilyasiya olunmur?"
+  options:
+    - "`time.NewTimer(500 * time.Millisecond)`"
+    - "`time.NewTimer(n * time.Millisecond)`"
+    - "`time.NewTimer(time.Duration(n) * time.Millisecond)`"
+  answer: 1
+  explain: "`int` ilə `time.Duration` fərqli tiplərdir; tipsiz sabit `500` isə özü `time.Duration`-a çevrilir."

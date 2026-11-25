@@ -1,0 +1,6 @@
+large latte: 5 USD
+small with milk: 5 USD
+after price change: 6 USD
+lattes: 2
+paid paid free
+other card: paid

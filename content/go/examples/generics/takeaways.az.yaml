@@ -1,0 +1,9 @@
+rules:
+  - "Type parameter kvadrat mötərizədə yazılır: `func Max[T cmp.Ordered](xs []T) T`."
+  - "Constraint tipdən nə tələb olunduğunu deyir: `any` heç nə, `comparable` `==`, `cmp.Ordered` isə `<` və `>` tələb edir."
+  - "Funksiyada tip arqumenti adətən dəyərlərdən çıxarılır; generic tipdə isə yazılmalıdır: `Log[float64]`."
+  - "Bütün arqumentlər eyni `T`-yə uyğun gəlməlidir: `Count([]int{1, 2}, 2.5)` kompilyasiya olunmur."
+  - "`var zero T` istənilən `T` üçün zero value verir; `~float64` isə `float64` üzərində qurulan tipləri də qəbul edir."
+practices:
+  - "Generics-i eyni kodu bir neçə tip üçün təkrar yazmalı olanda istifadə edin; bir tip üçün adi funksiya daha sadədir."
+  - "Funksiyanın həqiqətən istifadə etdiyi ən dar constraint-i seçin: yalnız `==` lazımdırsa, `comparable`."

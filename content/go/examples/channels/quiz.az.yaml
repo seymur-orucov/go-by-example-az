@@ -1,0 +1,59 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    ch := make(chan int)
+    ch <- 7
+    fmt.Println(<-ch)
+  options: ["7", "0", "`fatal error: all goroutines are asleep - deadlock!`"]
+  answer: 2
+  explain: "Buffer-siz channel-a göndərmə qəbul edəni gözləyir, `main` isə qəbul sətrinə heç vaxt çatmır."
+
+- question: Bu kod hansı sıra ilə çap edəcək?
+  code: |
+    ch := make(chan string)
+    go func() {
+        fmt.Println("packed")
+        ch <- "box"
+    }()
+    fmt.Println(<-ch)
+    fmt.Println("shipped")
+  options: ["`packed`, `box`, `shipped`", "`box`, `packed`, `shipped`", "sıra müəyyən deyil"]
+  answer: 0
+  explain: "`main` `box`-u yalnız goroutine göndərəndən sonra alır, goroutine isə `packed`-i göndərmədən əvvəl çap edir."
+
+- question: "`ch := make(chan int)` verilib. Hansı sətir kompilyasiya olunmur?"
+  options: ["`ch <- 5`", "`ch <- \"five\"`", "`n := <-ch`"]
+  answer: 1
+  explain: "`chan int`-ə yalnız `int` göndərmək olar."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    func square(n int, out chan int) {
+        out <- n * n
+    }
+
+    out := make(chan int)
+    go square(3, out)
+    go square(4, out)
+    fmt.Println(<-out + <-out)
+  options: ["25", "9 və ya 16, hansı əvvəl gəlsə", "deadlock xətası"]
+  answer: 0
+  explain: "İki qəbul iki nəticəni də götürür; onların gəliş sırası məlum deyil, amma cəmi həmişə 25-dir."
+
+- question: Buffer-siz channel-a `ch <- v` göndərməsi nə vaxt bitir?
+  options:
+    - "dəyər channel-a qoyulan kimi, dərhal"
+    - "başqa goroutine dəyəri götürəndə"
+    - "proqram bitəndə"
+  answer: 1
+  explain: "Buffer-siz channel-da dəyəri saxlamağa yer yoxdur, ona görə göndərən qəbul edəni gözləyir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    var ch chan string
+    go func() {
+        ch <- "hi"
+    }()
+    fmt.Println(<-ch)
+  options: ["hi", "boş sətir", "`fatal error: all goroutines are asleep - deadlock!`"]
+  answer: 2
+  explain: "`ch` `make` ilə yaradılmayıb, `nil`-dir; `nil` channel-da həm göndərmə, həm qəbul əbədi gözləyir."

@@ -1,0 +1,4 @@
+Orion at 14:00: room is busy
+busy: true
+weekly plan: Lyra at 22:00: outside opening hours
+room: Lyra hour: 22

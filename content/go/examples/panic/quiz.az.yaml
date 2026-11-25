@@ -1,0 +1,59 @@
+- question: Bu kod işə düşəndə nə olacaq?
+  code: |
+    s := []int{1, 2, 3}
+    fmt.Println(s[3])
+  options: ["proqram panic ilə dayanır", "`0` çap olunur", "kompilyasiya xətası"]
+  answer: 0
+  explain: "Slice-ın uzunluğu proqram işləyəndə bilinir, `s[3]` isə onun hüdudundan kənardadır."
+
+- question: Bu kod işə düşəndə nə olacaq?
+  code: |
+    a := [3]int{1, 2, 3}
+    fmt.Println(a[3])
+  options: ["kompilyasiya xətası", "proqram panic ilə dayanır", "`0` çap olunur"]
+  answer: 0
+  explain: "Array-in uzunluğu tipin bir hissəsidir, kompilyator sabit indeksin hüdudu aşdığını əvvəlcədən görür."
+
+- question: Bu kod işə düşəndə nə olacaq?
+  code: |
+    var stock map[string]int
+    stock["tea"] = 5
+    fmt.Println(stock)
+  options: ["proqram panic ilə dayanır", "`map[tea:5]` çap olunur", "kompilyasiya xətası"]
+  answer: 0
+  explain: "`nil` map-dən oxumaq olar, ona yazmaq isə panic verir; map əvvəlcə `make` ilə yaradılmalıdır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    func check(n int) {
+        if n < 0 {
+            panic("negative")
+        }
+        fmt.Println("ok", n)
+    }
+
+    check(2)
+    check(-1)
+    check(3)
+  options: ["`ok 2`, sonra panic mesajı", "`ok 2`, `ok 3`", "yalnız panic mesajı"]
+  answer: 0
+  explain: "`check(-1)` proqramı dayandırır, `check(3)`-ə növbə çatmır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    func total() int {
+        panic("no data")
+    }
+
+    fmt.Println("total:", total())
+  options: ["yalnız panic mesajı", "`total:`, sonra panic mesajı", "`total: 0`"]
+  answer: 0
+  explain: "`Println` çap etməzdən əvvəl arqumentlərini hesablayır və `total()` orada panic edir."
+
+- question: "İstifadəçi qeydiyyat formasında e-poçtu səhv yazıb. Funksiya nə etməlidir?"
+  options:
+    - "`error` qaytarmalıdır"
+    - "`panic` çağırmalıdır"
+    - "heç nə etməməlidir"
+  answer: 0
+  explain: "Yanlış giriş gözlənilən haldır; panic yalnız proqramçı səhvləri üçündür."

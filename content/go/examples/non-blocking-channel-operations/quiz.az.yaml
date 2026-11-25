@@ -1,0 +1,88 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    inbox := make(chan string, 1)
+    select {
+    case m := <-inbox:
+        fmt.Println("got", m)
+    default:
+        fmt.Println("empty")
+    }
+  options: ["got", "empty", "deadlock xətası"]
+  answer: 1
+  explain: "`inbox` boşdur, `case` hazır deyil və `select` gözləmədən `default`-u icra edir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    inbox := make(chan string, 1)
+    inbox <- "hi"
+    select {
+    case m := <-inbox:
+        fmt.Println("got", m)
+    default:
+        fmt.Println("empty")
+    }
+  options: ["got hi", "empty", "got hi, sonra empty"]
+  answer: 0
+  explain: "Buffer-də dəyər var, `case` hazırdır və `default` yalnız heç bir `case` hazır olmayanda seçilir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    alerts := make(chan string)
+    select {
+    case alerts <- "low battery":
+        fmt.Println("sent")
+    default:
+        fmt.Println("dropped")
+    }
+  options: ["sent", "deadlock xətası", "dropped"]
+  answer: 2
+  explain: "Buffer-siz channel-a göndərmə yalnız qəbul edən gözləyəndə mümkündür, burada isə qəbul edən yoxdur."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    seats := make(chan int, 2)
+    sold, missed := 0, 0
+    for id := range 4 {
+        select {
+        case seats <- id:
+            sold++
+        default:
+            missed++
+        }
+    }
+    fmt.Println(sold, missed)
+  options: ["2 2", "4 0", "0 4"]
+  answer: 0
+  explain: "Buffer iki yerlikdir və oxuyan yoxdur: ilk iki göndərmə keçir, qalan ikisi `default`-a düşür."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    ch := make(chan string)
+    select {
+    case m := <-ch:
+        fmt.Println(m)
+    case <-time.After(100 * time.Millisecond):
+        fmt.Println("timeout")
+    default:
+        fmt.Println("busy")
+    }
+  options: ["timeout", "busy", "100 ms sonra `busy`"]
+  answer: 1
+  explain: "`select`-ə girəndə heç bir `case` hazır deyil, ona görə `default` dərhal işləyir və timer-i gözləmir."
+
+- question: "`queue`-da iki dəyər var. Bu dövr nə vaxt bitir?"
+  code: |
+    for {
+        select {
+        case v := <-queue:
+            fmt.Println(v)
+        default:
+            break
+        }
+    }
+  options:
+    - "İki dəyər çap olunandan sonra"
+    - "Heç vaxt: dəyərlər çap olunur, sonra dövr dayanmadan fırlanır"
+    - "Kompilyasiya olunmur"
+  answer: 1
+  explain: "`select`-in içindəki `break` yalnız `select`-dən çıxır; dövrü bitirmək üçün etiketli `break` lazımdır."

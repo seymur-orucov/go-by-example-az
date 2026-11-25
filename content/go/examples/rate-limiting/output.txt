@@ -1,0 +1,11 @@
+sms: order shipped
+sms: order delivered
+sms: rate your order
+sms: weekly deals
+took at least 300 ms: true
+urgent sms: login code 4821
+urgent sms: delivery code 9930
+sent without waiting: true
+tokens left: 0
+urgent sms: reset code 3307
+waited for a token: true

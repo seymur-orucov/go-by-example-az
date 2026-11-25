@@ -2,5 +2,7 @@ title: "Panic"
 subtitle: "Təcili dayanma"
 section: errors
 order: 3
-status: planned
+status: ready
 level: intermediate
+duration: 6
+source: original

@@ -1,0 +1,10 @@
+rules:
+  - "`make(chan T, n)` `n` dəyər saxlayan buffered channel yaradır; ölçü verilməsə, channel buffer-sizdir."
+  - "Buffer dolana qədər göndərmə gözləmir; dolu buffer-ə göndərmə yer açılana qədər gözləyir."
+  - "Boş buffered channel-dan almaq dəyər gələnə qədər gözləyir, zero value qaytarmır."
+  - "`len(ch)` buffer-dəki dəyərlərin sayını, `cap(ch)` isə tutumu qaytarır."
+  - "Dəyərlər göndərildiyi sırada çıxır (FIFO)."
+  - "Dolu buffer-i boşaldan goroutine yoxdursa, proqram `deadlock` xətası ilə dayanır."
+practices:
+  - "Buffer-i iki tərəfin qısa fasilələrini yumşaltmaq üçün işlədin, qəbul edənin yoxluğunu gizlətmək üçün yox."
+  - "`len`-ə baxıb gözləməyin: başqa goroutine-lər işləyəndə onun cavabı dərhal köhnəlir."

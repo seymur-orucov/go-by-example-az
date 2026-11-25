@@ -1,0 +1,9 @@
+rules:
+  - "`select` bir neçə channel əməliyyatını eyni anda gözləyir və birinci hazır olan `case`-i icra edir."
+  - "Bir `select` yalnız bir `case` icra edir; qalan channel-ları oxumaq üçün onu dövrə qoyun."
+  - "Bir neçə `case` eyni anda hazırdırsa, `select` onlardan birini təsadüfi seçir, yazılış sırası rol oynamır."
+  - "`case`-də yalnız channel əməliyyatı ola bilər: qəbul (`v := <-ch`) və ya göndərmə (`ch <- v`), adi şərt yox."
+  - "Heç bir `case` hazır olmayacaqsa, `select` əbədi gözləyir və başqa goroutine qalmayanda proqram deadlock ilə dayanır."
+practices:
+  - "Bir neçə mənbədən gələn mesajları ardıcıl `<-a`, `<-b` ilə yox, `select` ilə gözləyin ki, tez gələn yavaşı gözləməsin."
+  - "Dövrdə `select` istifadə edəndə dövrün necə bitəcəyini əvvəlcədən düşünün: neçə mesaj gələcəyini bilin və ya bitmə siqnalı nəzərdə tutun."

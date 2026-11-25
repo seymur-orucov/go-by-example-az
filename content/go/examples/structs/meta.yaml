@@ -2,5 +2,7 @@ title: "Structs"
 subtitle: "Strukturlar"
 section: types
 order: 2
-status: planned
+status: ready
 level: intermediate
+duration: 7
+source: original

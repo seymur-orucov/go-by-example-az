@@ -1,0 +1,14 @@
+address:
+  out: |
+    free spots: 12
+    after one car: 11
+param:
+  out: |
+    after parkCopy: 11
+    after park: 10
+nil:
+  out: "vip level: <nil> true"
+new:
+  out: |
+    new vip level: 0
+    vip spots: 3

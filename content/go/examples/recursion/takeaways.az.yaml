@@ -1,0 +1,8 @@
+rules:
+  - "Rekursiv funksiya özünü çağırır; hər çağırışın öz parametrləri və dəyişənləri olur."
+  - "Base case rekursiyanı dayandırır; o olmasa, proqram `stack overflow` xətası ilə dayanır."
+  - "Hər rekursiv çağırış məsələni kiçiltməli və base case-ə yaxınlaşmalıdır: `floor - 1`, `prices[1:]`."
+  - "Rekursiv çağırışdan sonra yazılan kod dərindəki çağırışlar bitəndən sonra, tərs sıra ilə işləyir."
+practices:
+  - "Rekursiv funksiyanı yazanda əvvəlcə base case-i yazın."
+  - "Ağac kimi iç-içə verilənlər üçün rekursiya, düz sıra üçün `for` dövrü seçin."

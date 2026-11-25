@@ -2,5 +2,7 @@ title: "Atomic Counters"
 subtitle: "Atomik sayğac"
 section: concurrency
 order: 16
-status: planned
+status: ready
 level: advanced
+duration: 7
+source: original

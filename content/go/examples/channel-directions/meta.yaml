@@ -2,5 +2,7 @@ title: "Channel Directions"
 subtitle: "Kanalın istiqaməti"
 section: concurrency
 order: 5
-status: planned
+status: ready
 level: advanced
+duration: 6
+source: original

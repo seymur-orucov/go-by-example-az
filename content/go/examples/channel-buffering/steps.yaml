@@ -1,0 +1,13 @@
+make:
+  out: "the rail holds 3 tickets"
+no-wait:
+  out: "cashier took 3 orders, on the rail: 3 of 3"
+full:
+  out: |
+    the rail was full, cashier waited: true
+    barista made latte
+fifo:
+  out: |
+    next ticket: cappuccino
+    next ticket: mocha
+    next ticket: espresso

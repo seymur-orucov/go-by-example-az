@@ -2,5 +2,7 @@ title: "Mutexes"
 subtitle: "Kilidlər"
 section: concurrency
 order: 17
-status: planned
+status: ready
 level: advanced
+duration: 8
+source: original

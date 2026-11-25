@@ -1,0 +1,10 @@
+two:
+  out: "each pays: 16 USD, left over: 2 USD"
+ok:
+  out: |
+    paid? true balance: 15
+    paid? false balance: 15
+named:
+  out: "tax: 5 total: 55 USD"
+blank:
+  out: "next table, each pays: 22 USD"

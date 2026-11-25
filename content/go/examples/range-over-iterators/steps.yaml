@@ -1,0 +1,19 @@
+seq:
+  out: |
+    bus at minute 5
+    bus at minute 20
+    bus at minute 35
+    bus at minute 50
+seq2:
+  out: |
+    1 Depot
+    2 Market
+    3 Library
+stop:
+  out: "first bus after minute 30: 35"
+std:
+  out: |
+    [0 20 40]
+    adult 3 USD
+    child 1 USD
+    senior 2 USD

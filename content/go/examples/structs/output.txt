@@ -1,0 +1,8 @@
+Lisbon 3 kg
+{P-101 Lisbon 3 false}
+empty: 0 false
+{L-7 Oslo 0 false}
+Lisbon Porto
+same: false
+delivered: true
+route: 3 parcels, 8 kg

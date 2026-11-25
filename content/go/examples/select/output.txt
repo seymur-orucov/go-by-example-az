@@ -1,0 +1,5 @@
+first offer: ZoomEats, Aysel
+ZoomEats: Tom takes the next order
+SwiftRide: Mark takes the next order
+SwiftRide: Nina takes the next order
+all 4 orders assigned

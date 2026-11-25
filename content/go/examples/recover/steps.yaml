@@ -1,0 +1,12 @@
+unwind:
+  out: "paper tray closed"
+recover:
+  out: |
+    skipped: unknown size poster
+    paper tray closed
+    printed small for 1 USD
+    kiosk still running
+to-error:
+  out: |
+    beach <nil>
+    pick failed: runtime error: index out of range [5] with length 3

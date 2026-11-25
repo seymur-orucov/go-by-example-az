@@ -1,0 +1,7 @@
+eggs on the stove
+ring: eggs are ready
+pasta taken out early
+pasta timer stopped: true
+eggs timer stopped: false
+soup is simmering
+reminder: stir the soup

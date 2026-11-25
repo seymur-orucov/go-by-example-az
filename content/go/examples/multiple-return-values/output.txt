@@ -1,0 +1,5 @@
+each pays: 16 USD, left over: 2 USD
+paid? true balance: 15
+paid? false balance: 15
+tax: 5 total: 55 USD
+next table, each pays: 22 USD

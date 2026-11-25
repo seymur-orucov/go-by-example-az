@@ -1,0 +1,10 @@
+rules:
+  - "`go f()` funksiyanı yeni goroutine-də işə salır və onun bitməsini gözləmədən növbəti sətrə keçir."
+  - "`main` bitəndə proqram bütün goroutine-lərlə birlikdə dayanır, onların işi yarımçıq qalır."
+  - "`wg.Go(func() { ... })` goroutine başladır, `wg.Wait()` isə hamısı bitənə qədər gözləyir."
+  - "Goroutine-lərin hansı sırada işləyib bitəcəyi müəyyən deyil."
+  - "`go` nəticə qaytarmır (`x := go f()` kompilyasiya olunmur), arqumentləri isə dərhal cari goroutine-də hesablayır."
+practices:
+  - "Hər goroutine nəticəni öz yerinə yazsın (`fares[i]`), çap isə gözləmədən sonra bir yerdən olsun."
+  - "Başlatdığınız hər goroutine-i gözləyin, əks halda onun işi itə bilər."
+  - "Bir-birini gözləməyən yavaş işləri (başqa serverlərə sorğular) goroutine-lərdə eyni vaxtda görün."

@@ -1,0 +1,8 @@
+done:
+wait:
+  out: |
+    health: [true true false true]
+    faster than one by one: true
+go:
+close:
+  out: "updated 3 of 4 servers"

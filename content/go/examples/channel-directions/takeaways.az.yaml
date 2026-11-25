@@ -1,0 +1,8 @@
+rules:
+  - "`chan<- T` yalnız göndərmək, `<-chan T` yalnız qəbul etmək üçündür; ox dəyərin hərəkət istiqamətini göstərir."
+  - "Səhv istiqamət kompilyasiya xətasıdır: `cannot receive from send-only channel`, `cannot send to receive-only channel`."
+  - "İki tərəfli `chan T` tək istiqamətli tipə özü çevrilir; əksinə çevirmək olmaz."
+  - "İstiqamət channel-ın özünü yox, yalnız həmin dəyişən və ya parametr vasitəsilə edilə bilənləri məhdudlaşdırır."
+practices:
+  - "Channel alan funksiyaların parametrlərinə istiqamət yazın: imza funksiyanın rolunu göstərir, səhvi isə kompilyator tutur."
+  - "Channel-ı onu yaradan yerdə iki tərəfli saxlayın, mərhələlərə isə yalnız lazım olan istiqaməti verin."

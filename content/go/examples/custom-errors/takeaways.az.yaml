@@ -1,0 +1,9 @@
+rules:
+  - "`Error() string` metodu olan istənilən tip xətadır; struct xəta haqqında əlavə məlumat saxlaya bilər."
+  - "`Unwrap() error` metodu daxili xətanı verir, ona görə `errors.Is` zəncirdə onu tapır."
+  - "`errors.As(err, &target)` zəncirdə hədəf tipli xətanı tapıb `target`-ə yazır."
+  - "`Error` pointer receiver ilədirsə, `error`-u yalnız pointer ödəyir: `&BookingError{...}`."
+  - "`nil` `*BookingError` `error`-a yazılanda interface `nil` olmur: `err != nil` `true` verir."
+practices:
+  - "Funksiyanın nəticə tipini `*BookingError` yox, `error` yazın və uğurda düz `nil` qaytarın."
+  - "Öz xəta tipinizi mətndən əlavə məlumat lazım olanda yaradın; qalan hallarda `errors.New` kifayətdir."

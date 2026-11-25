@@ -1,0 +1,7 @@
+free spots: 12
+after one car: 11
+after parkCopy: 11
+after park: 10
+vip level: <nil> true
+new vip level: 0
+vip spots: 3

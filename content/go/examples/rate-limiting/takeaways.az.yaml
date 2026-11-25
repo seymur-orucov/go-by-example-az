@@ -1,0 +1,9 @@
+rules:
+  - "Hər işdən əvvəl ticker-in siqnalını gözləmək işləri bərabər aralıqla buraxır."
+  - "Buffered channel-ın tutumu partlayışın ölçüsüdür: bilet olduqca `<-tokens` gözləmir."
+  - "Dolu channel-a göndərmə bloklanır, ona görə bərpa goroutine-i tutumdan çox bilet yığmır."
+  - "Bir neçə goroutine eyni ticker-dən oxuyanda limit hamısı üçün ortaqdır."
+  - "`time.Tick` yalnız channel qaytarır, onu dayandırmaq olmur."
+practices:
+  - "Proqramda bitəcək ticker üçün `time.NewTicker` və `defer t.Stop()` işlədin, `time.Tick`-i isə proqram boyu işləyən dövrlər üçün saxlayın."
+  - "Gözləmək əvəzinə dərhal rədd etmək lazımdırsa, `select`-də `default` istifadə edin."

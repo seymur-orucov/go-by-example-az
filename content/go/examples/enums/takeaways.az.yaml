@@ -1,0 +1,9 @@
+rules:
+  - "Go-da `enum` açar sözü yoxdur: sadalama öz tipi və `const` blokunda `iota` ilə yaradılır."
+  - "`iota` hər `const` blokunda `0`-dan başlayır və hər sətirdə bir artır; tip və ifadə növbəti sətirlərdə təkrarlanır."
+  - "`String() string` metodu olan dəyəri `fmt.Println` rəqəmlə yox, metodun qaytardığı mətnlə çap edir."
+  - "`Stage` tipli sabit başqa tipə yazıla bilməz, tipsiz ədəd isə (`start(2)`) yenə də keçir."
+  - "Tipin zero value-su `0`-dır, yəni ilk sabit."
+practices:
+  - "İlk sabitə `Idle` və ya `Unknown` kimi mənalı ad verin ki, unudulmuş dəyişən səhv vəziyyət kimi görünməsin."
+  - "`String()`-də naməlum dəyər üçün də nəticə qaytarın, məsələn `\"unknown\"`."

@@ -1,0 +1,9 @@
+rules:
+  - "Struct-a tipi sahə adı olmadan yazmaq onu daxil edir: `type Customer struct { Name string; Address }`."
+  - "Daxil edilmiş tipin sahələri və metodları xarici tipə keçir: `mia.City`, `mia.Label()`."
+  - "Daxil edilmiş sahənin adı elə tipin adıdır, literal-da da belə yazılır: `Address: Address{...}`."
+  - "Xarici tipin eyni adlı metodu və ya sahəsi daxilini gizlədir; daxiliyə tam yolla çatmaq olar: `depot.Address.Label()`."
+  - "Embedding varislik deyil: `Customer` `Address` dəyişənə yazılmır, amma keçən metodlar interface-i ödəyir."
+practices:
+  - "Bir neçə tipdə təkrarlanan sahə və metodları kiçik ayrıca tipə çıxarıb daxil edin."
+  - "Gizlədən metodda daxili versiyanı çağırıb nəticəni genişləndirin, kodu təkrarlamayın."

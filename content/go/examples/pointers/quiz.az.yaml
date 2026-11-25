@@ -1,0 +1,93 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    x := 5
+    p := &x
+    *p = 8
+    fmt.Println(x)
+  options: ["8", "5", "ünvan, məsələn 0xc000012345"]
+  answer: 0
+  explain: "`*p = 8` `p`-nin göstərdiyi dəyişənə, yəni `x`-ə yazır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    a := 3
+    b := a
+    p := &a
+    *p = 10
+    fmt.Println(a, b)
+  options: ["10 3", "10 10", "3 3"]
+  answer: 0
+  explain: "`b := a` surət çıxarıb; pointer yalnız `a`-nı göstərir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    func double(n int) {
+        n *= 2
+    }
+
+    func doublePtr(n *int) {
+        *n *= 2
+    }
+
+    n := 4
+    double(n)
+    doublePtr(&n)
+    fmt.Println(n)
+  options: ["8", "16", "4"]
+  answer: 0
+  explain: "`double` surəti dəyişir, yalnız `doublePtr` `n`-in özünü ikiqat edir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    var p *int
+    fmt.Println(p == nil)
+  options: ["true", "false", "kompilyasiya xətası"]
+  answer: 0
+  explain: "Pointer-in zero value-su `nil`-dir."
+
+- question: Hansı sətir kompilyasiya olunmur?
+  code: |
+    price := 20
+    p := &price
+    var q *int = price
+    fmt.Println(*p, *q)
+  options:
+    - "`p := &price`"
+    - "`var q *int = price`"
+    - "`fmt.Println(*p, *q)`"
+  answer: 1
+  explain: "`price` `int`-dir, `*int` dəyişənə isə yalnız ünvan yazmaq olar: `&price`."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    n := 1
+    p := &n
+    q := &n
+    *p = 5
+    fmt.Println(*q, p == q)
+  options: ["5 true", "1 false", "5 false"]
+  answer: 0
+  explain: "Hər iki pointer eyni dəyişəni göstərir, ona görə ünvanlar da bərabərdir."
+
+- question: Bu kod işə düşəndə nə olacaq?
+  code: |
+    var p *int
+    fmt.Println(*p)
+  options: ["proqram panic ilə dayanır", "`0` çap olunur", "`<nil>` çap olunur"]
+  answer: 0
+  explain: "`nil` pointer heç bir dəyişəni göstərmir, onun dəyərini oxumaq panic verir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    func newCounter() *int {
+        c := 0
+        return &c
+    }
+
+    a := newCounter()
+    b := newCounter()
+    *a += 2
+    fmt.Println(*a, *b)
+  options: ["2 0", "2 2", "kompilyasiya xətası"]
+  answer: 0
+  explain: "Hər çağırış öz `c` dəyişənini yaradır; lokal dəyişənin ünvanını qaytarmaq olar."

@@ -2,5 +2,7 @@ title: "Recover"
 subtitle: "Bərpa etmək"
 section: errors
 order: 5
-status: planned
+status: ready
 level: intermediate
+duration: 7
+source: original

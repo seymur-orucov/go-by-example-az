@@ -2,5 +2,7 @@ title: "Variadic Functions"
 subtitle: "Dəyişkən sayda arqument"
 section: functions
 order: 3
-status: planned
+status: ready
 level: beginner
+duration: 4
+source: original

@@ -1,0 +1,78 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    fmt.Println(Count([]int{1, 2, 1}, 1), Count([]string{"a"}, "b"))
+  options: ["2 0", "1 0", "kompilyasiya xətası"]
+  answer: 0
+  explain: "Birinci çağırışda `T` `int`, ikincidə `string` olur; funksiya bir dəfə yazılıb."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    fmt.Println(Max([]string{"pear", "apple", "plum"}))
+  options: ["plum", "pear", "kompilyasiya xətası"]
+  answer: 0
+  explain: "Sətirlər `cmp.Ordered`-ə daxildir və əlifba sırası ilə müqayisə olunur, `plum` ən sondadır."
+
+- question: Bu kod niyə kompilyasiya olunmur?
+  code: |
+    func Bigger[T any](a, b T) T {
+        if a > b {
+            return a
+        }
+        return b
+    }
+  options:
+    - "`any` `>` operatorunu təmin etmir"
+    - "type parameter-in adı `T` ola bilməz"
+    - "generic funksiya iki parametr qəbul edə bilməz"
+  answer: 0
+  explain: "`>` üçün constraint `cmp.Ordered` kimi sıralanan tipləri tələb etməlidir."
+
+- question: Bu kod niyə kompilyasiya olunmur?
+  code: |
+    fmt.Println(Max([]bool{true, false}))
+  options:
+    - "`bool` sıralanmır, `cmp.Ordered`-ə daxil deyil"
+    - "`Max`-a tipi açıq yazmaq lazımdır: `Max[bool]`"
+    - "slice-da ən azı üç element olmalıdır"
+  answer: 0
+  explain: "`bool` yalnız `comparable`-dir, ona görə `Count` işləyir, `Max` isə yox."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    fmt.Println(Count([]int{1, 2}, 2.5))
+  options: ["kompilyasiya xətası", "0", "1"]
+  answer: 0
+  explain: "`T` slice-dan `int` kimi çıxarılır, `2.5` isə `int`-ə çevrilə bilmir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    type Celsius float64
+
+    func Abs[T int | float64](x T) T {
+        if x < 0 {
+            return -x
+        }
+        return x
+    }
+
+    fmt.Println(Abs(Celsius(-3)))
+  options: ["kompilyasiya xətası", "3", "-3"]
+  answer: 0
+  explain: "Constraint-də `~` yoxdur, ona görə `float64` üzərində qurulan `Celsius` qəbul olunmur."
+
+- question: Hansı sətir kompilyasiya olunmur?
+  options:
+    - "`var a Log`"
+    - "`var b Log[int]`"
+    - "`c := &Log[string]{}`"
+  answer: 0
+  explain: "Generic tipdən istifadə edəndə tip arqumenti yazılmalıdır: `Log[int]`."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    var notes Log[string]
+    v, ok := notes.Latest()
+    fmt.Println(len(v), ok)
+  options: ["0 false", "1 false", "panic"]
+  answer: 0
+  explain: "Jurnal boşdur, `Latest` `string`-in zero value-sunu, yəni boş sətri və `false` qaytarır."
