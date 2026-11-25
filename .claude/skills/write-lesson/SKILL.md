@@ -113,6 +113,14 @@ go vet main.go
 go run main.go > output.txt
 ```
 
+- **Concurrency and timing lessons:** the output must not depend on scheduling or machine
+  speed. Collect results (a slice slot per goroutine, a fixed channel handoff, a count) and
+  print from one goroutine; never print durations or timestamps. When timing is the point,
+  print a comparison with a wide margin (at least ~100 ms; a relative one such as
+  "concurrent < sequential" is safest). A lower bound equal to the exact sum of the
+  `time.Sleep` calls can fail now and then on Windows. Run the program 20+ times, also while
+  the machine is busy, and confirm the output never changes. Never run a data race as
+  lesson code; describe it in the text or a quiz.
 - A program that ends in a panic on purpose (the `panic` lesson) exits with code 2 and its
   stack trace holds paths and addresses. Generate its `output.txt` from a built binary with
   `GOTRACEBACK=none ./lesson > output.txt 2>&1`, so the file ends with the bare
