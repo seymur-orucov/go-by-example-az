@@ -2,5 +2,7 @@ title: "Custom Errors"
 subtitle: "Öz xəta tipin"
 section: errors
 order: 2
-status: planned
+status: ready
 level: intermediate
+duration: 7
+source: original

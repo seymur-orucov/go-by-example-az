@@ -113,6 +113,10 @@ go vet main.go
 go run main.go > output.txt
 ```
 
+- A program that ends in a panic on purpose (the `panic` lesson) exits with code 2 and its
+  stack trace holds paths and addresses. Generate its `output.txt` from a built binary with
+  `GOTRACEBACK=none ./lesson > output.txt 2>&1`, so the file ends with the bare
+  `panic: <message>` line; the future CI must expect exit code 2 for such lessons.
 - Verify **every quiz answer** by compiling or running the snippet (a scratch file in the
   scratchpad, not in the repo); for "does not compile" questions, check the compiler error.
 - Check every claim in `takeaways.az.yaml` against the lesson text and the compiler.

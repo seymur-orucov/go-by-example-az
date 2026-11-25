@@ -1,0 +1,6 @@
+fee: 6 USD, error: <nil>
+error: days cannot be negative
+Dune: <nil>
+Dune again: book is on loan true
+borrow Atlas: book not found
+false true

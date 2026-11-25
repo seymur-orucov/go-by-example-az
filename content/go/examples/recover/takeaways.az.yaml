@@ -1,0 +1,9 @@
+rules:
+  - "Panic zamanı funksiyaların defer-ləri yenə işləyir, panic isə çağıranlara doğru yuxarı qalxır."
+  - "`recover()` panic-i dayandırır və `panic`-ə verilmiş dəyəri qaytarır; panic yoxdursa, `nil` qaytarır."
+  - "`recover` yalnız birbaşa defer olunan funksiyanın içində işləyir."
+  - "Panic tutulandan sonra funksiya normal bitir və çağıran işinə davam edir."
+  - "Adlı nəticə ilə defer panic-i adi `error`-a çevirə bilər."
+practices:
+  - "`recover`-i hər yerdə yox, bir hissənin səhvi bütün proqramı dayandırmamalı olan sərhəddə istifadə edin."
+  - "Tutulan panic-i səssiz udmayın: onu çap edin və ya xəta kimi qaytarın."

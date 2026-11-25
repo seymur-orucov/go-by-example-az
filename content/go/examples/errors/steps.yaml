@@ -1,0 +1,12 @@
+new:
+  out: |
+    fee: 6 USD, error: <nil>
+    error: days cannot be negative
+sentinel:
+  out: |
+    Dune: <nil>
+    Dune again: book is on loan true
+wrap:
+  out: |
+    borrow Atlas: book not found
+    false true

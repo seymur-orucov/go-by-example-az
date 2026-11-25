@@ -1,0 +1,8 @@
+rules:
+  - "`panic` funksiyanı dərhal dayandırır; onu heç kim tutmasa, proqram mesaj və çağırış izi ilə bitir."
+  - "Go özü də panic edir: slice indeksi hüdudu aşanda, `nil` map-ə yazanda, `nil` pointer oxunanda."
+  - "Panic olan yerdən sonrakı kod işləmir, çağıranın qalan kodu da."
+  - "Gözlənilən uğursuzluqlar üçün `error` qaytarılır, `panic` isə proqramçı səhvləri üçündür."
+practices:
+  - "Panic mesajına səbəbi yazın: `panic(\"unknown row \" + row)`."
+  - "İndeks proqramın çölündən gəlirsə, müraciətdən əvvəl `i < len(s)` yoxlayın."
