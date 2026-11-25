@@ -119,6 +119,7 @@ functions/api/run.ts   # go.dev/_/compile proxy (rate limit + size limit)
 - [~] **"Əsaslar" section complete**: all 7 lessons are original and `ready` (hello-world, values, variables, constants, for, if-else, switch; `switch` is outside the 10-lesson pilot list), awaiting the user's review
 - [~] **"Kolleksiyalar" section complete**: all 5 lessons are original and `ready` (arrays, slices, maps, range, strings-and-runes), awaiting the user's review
 - [~] **"Funksiyalar" section complete**: all 5 lessons are original and `ready` (functions, multiple-return-values, variadic-functions, closures, recursion), awaiting the user's review
+- [~] **"Tiplər və strukturlar" section complete**: all 8 lessons are original and `ready` (pointers, structs, methods, interfaces, enums, struct-embedding, generics, range-over-iterators), awaiting the user's review
 - [x] Project skill `.claude/skills/write-lesson/` for writing original lessons (rules, originality guard, verification checklist)
 - [x] Content license CC BY 4.0; no Go by Example credit on the site once no adapted lesson is left; money in examples in USD; intro length rule in the skill
 - [ ] Terminology glossary (`docs/GLOSSARY.md`): English term + short Azerbaijani explanation
