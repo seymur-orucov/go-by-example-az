@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>w3hub.dev loqosu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: one column brand sheet — dark aurora stage with the lead mark, then a 2×2 concept grid, anatomy, usage mocks. Tokens follow the site's design v2/v3. */
+:root {
+  --bg: #f3f5fb; --surface: #ffffff; --surface-2: #eef1f9;
+  --text: #0c1222; --muted: #556077; --subtle: #8a93a8;
+  --line: #dfe4ef; --line-strong: #c7cfdf;
+  /* brand spectrum: light-ground and dark-ground values */
+  --L1: #0ea5c6; --L2: #3b6ef5; --L3: #8b5cf6; --L4: #f97362;
+  --D1: #4fd6ff; --D2: #6d8dff; --D3: #a98bff; --D4: #ff8a6b;
+  --c1: var(--L1); --c2: var(--L2); --c3: var(--L3); --c4: var(--L4);
+  --tile: var(--surface);
+  --stage: #05070e; --stage-text: #eef2ff; --stage-muted: #98a2bb;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  --r: 18px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #05070d; --surface: #0b0f1a; --surface-2: #111727;
+    --text: #e9edf7; --muted: #9aa4ba; --subtle: #6b7489;
+    --line: #1a2133; --line-strong: #2a3348;
+    --c1: var(--D1); --c2: var(--D2); --c3: var(--D3); --c4: var(--D4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #05070d; --surface: #0b0f1a; --surface-2: #111727;
+  --text: #e9edf7; --muted: #9aa4ba; --subtle: #6b7489;
+  --line: #1a2133; --line-strong: #2a3348;
+  --c1: var(--D1); --c2: var(--D2); --c3: var(--D3); --c4: var(--D4);
+  color-scheme: dark;
+}
+:root[data-palette="indigo"] { --L2: #5b5bf0; --L3: #b062f5; --D2: #8686ff; --D3: #c98cff; }
+:root[data-palette="ocean"] { --L2: #0284c7; --L3: #4f6ef7; --L4: #14b89a; --D2: #38bdf8; --D3: #818cf8; --D4: #34e0c0; }
+
+.on-dark { --c1: var(--D1); --c2: var(--D2); --c3: var(--D3); --c4: var(--D4); --tile: #0a0f1c; background: #05070e; color: #eef2ff; }
+.on-light { --c1: var(--L1); --c2: var(--L2); --c3: var(--L3); --c4: var(--L4); --tile: #ffffff; background: #f3f5fb; color: #0c1222; }
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--text); font: 400 15px/1.6 var(--font-sans); -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-block: 28px 64px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 56px; }
+h1, h2, h3 { margin: 0; letter-spacing: -0.03em; text-wrap: balance; }
+h2 { font-size: clamp(22px, 3vw, 28px); font-weight: 750; }
+p { margin: 0; }
+.kicker { font: 500 12.5px/1 var(--font-mono); color: var(--c2); letter-spacing: 0.02em; }
+.muted { color: var(--muted); }
+.mono { font-family: var(--font-mono); }
+button { font: inherit; color: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--c2); outline-offset: 3px; border-radius: 8px; }
+svg.mk { display: block; width: 100%; height: 100%; overflow: visible; }
+
+/* top bar */
+.top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; }
+.top-l { display: grid; gap: 8px; min-width: 0; }
+.top h1 { font-size: clamp(26px, 4vw, 36px); font-weight: 800; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; }
+.pill { display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 14px; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--surface); font: 500 12.5px/1 var(--font-mono); color: var(--muted); }
+.pill:hover { color: var(--text); }
+.seg { display: inline-flex; gap: 3px; padding: 3px; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--surface); }
+.seg button { height: 28px; padding: 0 12px; border: 0; border-radius: 999px; background: none; font: 500 12px/1 var(--font-mono); color: var(--muted); display: inline-flex; align-items: center; gap: 6px; }
+.seg button[aria-pressed="true"] { background: var(--surface-2); color: var(--text); }
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+
+/* stage */
+.stage { position: relative; overflow: hidden; border-radius: 26px; padding: clamp(40px, 7vw, 84px) 24px clamp(36px, 6vw, 64px); display: grid; justify-items: center; gap: 28px; isolation: isolate; border: 1px solid #1a2133; }
+.stage::before { content: ""; position: absolute; inset: 0; z-index: -1; background-image: linear-gradient(#ffffff0a 1px, transparent 1px), linear-gradient(90deg, #ffffff0a 1px, transparent 1px); background-size: 40px 40px; mask-image: radial-gradient(ellipse at 50% 45%, #000 20%, transparent 75%); }
+.aur { position: absolute; z-index: -2; border-radius: 50%; filter: blur(60px); opacity: .55; }
+.aur.a1 { width: 46%; height: 60%; left: 8%; top: 10%; background: var(--c1); opacity: .28; animation: drift 14s ease-in-out infinite alternate; }
+.aur.a2 { width: 40%; height: 55%; left: 34%; top: 30%; background: var(--c3); opacity: .32; animation: drift 17s ease-in-out infinite alternate-reverse; }
+.aur.a3 { width: 30%; height: 45%; right: 6%; top: 4%; background: var(--c4); opacity: .22; animation: drift 12s ease-in-out infinite alternate; }
+@keyframes drift { to { transform: translate(6%, -8%) scale(1.15); } }
+.lockup-hero { display: flex; align-items: center; gap: clamp(14px, 2.4vw, 26px); flex-wrap: wrap; justify-content: center; }
+.lockup-hero .m { width: clamp(84px, 13vw, 132px); aspect-ratio: 1; max-width: 100%; }
+.wm { font-weight: 800; letter-spacing: -0.045em; line-height: 1; white-space: nowrap; }
+.wm .tld { font-family: var(--font-mono); font-weight: 500; letter-spacing: -0.02em; opacity: .5; }
+.wm sup { font-size: .5em; vertical-align: .9em; margin-left: .04em; margin-right: .02em; color: var(--c4); letter-spacing: 0; }
+.lockup-hero .wm { font-size: clamp(44px, 9vw, 92px); }
+.lockup-hero .wm .ch { display: inline-block; }
+.tagline { font: 500 13px/1.5 var(--font-mono); color: var(--stage-muted); text-align: center; }
+.tagline b { color: var(--stage-text); font-weight: 500; }
+.replay { position: absolute; right: 14px; bottom: 14px; background: #ffffff10; border-color: #ffffff24; color: #c8d0e4; }
+.replay:hover { color: #fff; }
+
+/* hero animation */
+.play .m-line { animation: draw 1.3s .25s cubic-bezier(.65, 0, .25, 1) backwards; }
+.play .m-node { transform-box: fill-box; transform-origin: center; animation: pop .45s cubic-bezier(.3, 1.6, .5, 1) backwards; }
+.play .n1 { animation-delay: .15s; }
+.play .n2 { animation-delay: .85s; }
+.play .n3 { animation-delay: 1.5s; }
+.play .m-halo { transform-box: fill-box; transform-origin: center; animation: halo 2.8s 1.9s ease-out infinite backwards; }
+.play .ch { animation: rise .6s cubic-bezier(.2, .8, .2, 1) backwards; }
+.m-line { stroke-dasharray: 1; }
+@keyframes draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes pop { from { transform: scale(0); } }
+@keyframes halo { 0% { transform: scale(.6); opacity: .45; } 70%, 100% { transform: scale(1.6); opacity: 0; } }
+@keyframes rise { from { transform: translateY(.35em); opacity: 0; filter: blur(6px); } }
+@media (prefers-reduced-motion: reduce) {
+  .play *, .aur { animation: none !important; }
+}
+
+/* concepts */
+.sec { display: grid; gap: 22px; }
+.sec-head { display: grid; gap: 8px; max-width: 68ch; }
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+@media (max-width: 860px) { .grid2 { grid-template-columns: minmax(0, 1fr); } }
+.card { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 22px; display: grid; gap: 18px; align-content: start; min-width: 0; }
+.card.lead { border-color: color-mix(in srgb, var(--c2) 55%, var(--line)); box-shadow: 0 0 0 1px color-mix(in srgb, var(--c2) 25%, transparent), 0 20px 50px -30px color-mix(in srgb, var(--c2) 60%, transparent); }
+.card-h { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.card-h h3 { font-size: 21px; font-weight: 750; }
+.card-h h3 .k { font: 600 12px/1 var(--font-mono); color: var(--subtle); margin-right: 8px; letter-spacing: 0; }
+.badge { font: 600 10.5px/1 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; padding: 6px 9px; border-radius: 999px; color: var(--c2); background: color-mix(in srgb, var(--c2) 12%, transparent); border: 1px solid color-mix(in srgb, var(--c2) 35%, transparent); }
+.idea { color: var(--muted); max-width: 60ch; }
+.previews { display: grid; grid-template-columns: 1fr 1fr 1.6fr; gap: 10px; }
+@media (max-width: 520px) { .previews { grid-template-columns: 1fr 1fr; } .previews .pv-lock { grid-column: 1 / -1; } }
+.pv { border-radius: 14px; aspect-ratio: 1; display: grid; place-items: center; border: 1px solid var(--line); min-width: 0; max-width: 100%; }
+.pv .m { width: 56%; aspect-ratio: 1; }
+.pv-lock { aspect-ratio: auto; background: var(--surface-2); padding: 14px; }
+.lock { display: inline-flex; align-items: center; gap: 10px; }
+.lock .m { width: 34px; height: 34px; flex: none; }
+.lock .wm { font-size: 23px; }
+.ladder { display: flex; align-items: end; gap: 18px; flex-wrap: wrap; padding-top: 4px; border-top: 1px dashed var(--line); padding-top: 16px; }
+.ladder figure { margin: 0; display: grid; justify-items: center; gap: 6px; }
+.ladder figcaption { font: 500 10.5px/1 var(--font-mono); color: var(--subtle); font-variant-numeric: tabular-nums; }
+.ladder .m { flex: none; }
+.pc { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; font-size: 13.5px; }
+@media (max-width: 520px) { .pc { grid-template-columns: minmax(0, 1fr); } }
+.pc div { display: grid; gap: 4px; align-content: start; }
+.pc b { font: 600 10.5px/1.4 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; }
+.pc .plus b { color: color-mix(in srgb, #16a34a 80%, var(--text)); }
+.pc .minus b { color: var(--c4); }
+.pc span { color: var(--muted); }
+
+/* anatomy */
+.anat { display: grid; grid-template-columns: minmax(0, 360px) minmax(0, 1fr); gap: clamp(20px, 4vw, 48px); align-items: center; }
+@media (max-width: 760px) { .anat { grid-template-columns: minmax(0, 1fr); } }
+.keylines { position: relative; aspect-ratio: 1; width: 100%; max-width: 360px; border-radius: var(--r); border: 1px solid var(--line); background-color: var(--surface);
+  background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: calc(100% / 12) calc(100% / 12); background-position: -0.5px -0.5px; padding: 0; }
+.keylines .m { position: absolute; inset: 0; }
+.keylines .lbl { position: absolute; font: 500 10px/1 var(--font-mono); color: var(--subtle); }
+.notes { display: grid; gap: 16px; list-style: none; margin: 0; padding: 0; }
+.notes li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 12px; align-items: start; }
+.notes .nd { width: 14px; height: 14px; border-radius: 50%; margin-top: 4px; justify-self: center; }
+.notes .nd.ring { box-shadow: inset 0 0 0 4px currentColor; background: transparent; }
+.notes b { display: block; font-weight: 650; }
+.notes span { color: var(--muted); font-size: 14px; }
+.specs { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.sw { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--surface); }
+.sw i { display: block; height: 56px; }
+.sw div { padding: 10px 12px; display: grid; gap: 2px; }
+.sw b { font-size: 13px; font-weight: 650; }
+.sw code { font: 500 11.5px/1.4 var(--font-mono); color: var(--muted); }
+.type-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; }
+.type-row > div { border: 1px solid var(--line); border-radius: 14px; padding: 16px; background: var(--surface); display: grid; gap: 6px; }
+.type-row .big { font-size: 34px; line-height: 1.1; }
+
+/* usage */
+.usage { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+@media (max-width: 860px) { .usage { grid-template-columns: minmax(0, 1fr); } }
+.u { border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; display: grid; min-width: 0; }
+.u-cap { padding: 12px 16px; font: 500 12px/1.4 var(--font-mono); color: var(--muted); background: var(--surface); border-top: 1px solid var(--line); }
+.mock-head { display: flex; align-items: center; gap: 22px; padding: 16px 20px; border-bottom: 1px solid #8881; overflow: hidden; }
+.mock-head .lock .m { width: 28px; height: 28px; }
+.mock-head .lock .wm { font-size: 17px; letter-spacing: -0.03em; }
+.mock-head nav { display: flex; gap: 18px; font-size: 13.5px; opacity: .7; white-space: nowrap; }
+@media (max-width: 520px) { .mock-head nav { display: none; } }
+.mock-body { padding: 26px 20px 30px; display: grid; gap: 8px; }
+.mock-body h4 { margin: 0; font-size: 22px; letter-spacing: -0.03em; }
+.mock-body p { opacity: .65; font-size: 13.5px; }
+.tabs { display: grid; gap: 0; }
+.tabbar { display: flex; align-items: end; gap: 2px; padding: 10px 10px 0; }
+.tab { display: flex; align-items: center; gap: 8px; height: 34px; padding: 0 14px; border-radius: 10px 10px 0 0; font-size: 12.5px; max-width: 240px; min-width: 0; }
+.tab span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tab .m { width: 16px; height: 16px; flex: none; }
+.tab.dim { opacity: .5; }
+.on-light .tabbar { background: #dde2ee; } .on-light .tab.act { background: #f3f5fb; }
+.on-dark .tabbar { background: #0e1322; } .on-dark .tab.act { background: #05070e; }
+.urlbar { margin: 8px 12px 14px; height: 30px; border-radius: 999px; display: flex; align-items: center; padding: 0 14px; font: 500 12px/1 var(--font-mono); }
+.on-light .urlbar { background: #e6eaf3; color: #556077; } .on-dark .urlbar { background: #111727; color: #98a2bb; }
+.icons { display: flex; align-items: center; justify-content: center; gap: clamp(16px, 4vw, 36px); padding: 30px 16px; flex-wrap: wrap; }
+.appicon { width: 96px; height: 96px; border-radius: 24px; display: grid; place-items: center; box-shadow: 0 16px 40px -18px #3b6ef5aa; background: linear-gradient(150deg, #101a33, #070a14); }
+.appicon .m { width: 68%; height: 68%; }
+.avatar { width: 84px; height: 84px; border-radius: 50%; display: grid; place-items: center; background: #05070e; border: 1px solid #ffffff1a; }
+.avatar .m { width: 60%; height: 60%; }
+.monos { display: flex; gap: 14px; }
+.monos > div { width: 84px; height: 84px; border-radius: 18px; display: grid; place-items: center; }
+.monos .m { width: 60%; height: 60%; }
+.mono-ink { --c1: currentColor; --c2: currentColor; --c3: currentColor; --c4: currentColor; }
+.next { border: 1px solid var(--line); border-radius: var(--r); padding: 22px; background: var(--surface); display: grid; gap: 10px; }
+.next ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; color: var(--muted); }
+.next ol b { color: var(--text); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"></svg>
+
+<div class="wrap">
+  <header class="top">
+    <div class="top-l">
+      <span class="kicker">// brend · loqo konsepsiyaları · v1</span>
+      <h1>w3hub.dev loqosu</h1>
+      <p class="muted">Saytın aurora spektri, şüşə kartları və node-xətləri əsasında dörd istiqamət. Hamısı 48-lik şəbəkədə çəkilib və iki temada işləyir.</p>
+    </div>
+    <div class="controls">
+      <div class="seg" role="group" aria-label="Palitra">
+        <button id="pal-aurora" data-pal="aurora" aria-pressed="true"><i class="dot" style="background:linear-gradient(135deg,#4fd6ff,#6d8dff,#a98bff,#ff8a6b)"></i>Aurora</button>
+        <button id="pal-indigo" data-pal="indigo" aria-pressed="false"><i class="dot" style="background:linear-gradient(135deg,#8686ff,#c98cff)"></i>Indigo</button>
+        <button id="pal-ocean" data-pal="ocean" aria-pressed="false"><i class="dot" style="background:linear-gradient(135deg,#38bdf8,#34e0c0)"></i>Ocean</button>
+      </div>
+      <button class="pill" id="theme-btn" type="button">Tema: sistem</button>
+    </div>
+  </header>
+
+  <!-- Stage: lead concept -->
+  <section class="stage on-dark play" id="stage" aria-label="Tövsiyə olunan loqo">
+    <i class="aur a1"></i><i class="aur a2"></i><i class="aur a3"></i>
+    <div class="lockup-hero">
+      <span class="m" data-mark="path" data-opts="hero"></span>
+      <span class="wm" id="hero-wm" aria-label="w3hub.dev"></span>
+    </div>
+    <p class="tagline">Hello, World-dən <b>ilk iş gününə</b> qədər — bir yol, üç node.</p>
+    <button class="pill replay" id="replay" type="button">↻ Yenidən oynat</button>
+  </section>
+
+  <!-- Concepts -->
+  <section class="sec" aria-labelledby="c-h">
+    <div class="sec-head">
+      <span class="kicker">// 4 istiqamət</span>
+      <h2 id="c-h">Konsepsiyalar</h2>
+      <p class="muted">Hər kartda: işıqlı və qaranlıq fonda işarə, sayt başlığındakı birləşmə (lockup) və 64 → 16 px ölçü pilləsi. Kiçik ölçülərdə xətləri qalınlaşmış variant işləyir.</p>
+    </div>
+    <div class="grid2">
+      <article class="card lead">
+        <div class="card-h"><h3><span class="k">A</span>Yol</h3><span class="badge">Tövsiyə</span></div>
+        <p class="idea">W hərfi yol xəritəsi kimi çəkilib, üzərində üç node var: başlanğıc, addım və hədəf. Adda olan «3» elə bu üç node-dur. Beləcə «w3» W3Schools/W3C-ni yox, öyrənmə yolunu xatırladır.</p>
+        <div class="previews" data-concept="path"></div>
+        <div class="ladder" data-ladder="path"></div>
+        <div class="pc"><div class="plus"><b>Güclü tərəfi</b><span>Platformanın əsas ideyasını, yol xəritəsi ilə öyrənməyi göstərir. Saytdakı node-xətlərlə eyni dildədir və animasiyaya çox yatır.</span></div><div class="minus"><b>Riski</b><span>16 px-də node-lar kiçilir. Ona görə favicon üçün qalın variant hazırdır (pillədə görünür).</span></div></div>
+      </article>
+
+      <article class="card">
+        <div class="card-h"><h3><span class="k">B</span>Qüvvət</h3></div>
+        <p class="idea">w3 → w³: bilik qüvvətə yüksəlir. Mərcan rəngli kiçik «3» işarəni ilk baxışdan tanınan edir və yazıda da eyni şəkildə təkrarlanır.</p>
+        <div class="previews" data-concept="cube"></div>
+        <div class="ladder" data-ladder="cube"></div>
+        <div class="pc"><div class="plus"><b>Güclü tərəfi</b><span>Ən sadə və ən tez oxunan variantdır. Adla birbaşa bağlıdır, kiçik ölçüdə də aydın qalır.</span></div><div class="minus"><b>Riski</b><span>«w³hub» yazılışı domendən bir az fərqlənir və «w kub» kimi oxuna bilər.</span></div></div>
+      </article>
+
+      <article class="card">
+        <div class="card-h"><h3><span class="k">C</span>Mərkəz</h3></div>
+        <p class="idea">«Hub» sözünün özü: üç istiqamət (frontend, backend, DevOps) bir mərkəzə bağlanır. Node-lar saytdakı şüşə node-ların kiçildilmiş formasıdır.</p>
+        <div class="previews" data-concept="hub"></div>
+        <div class="ladder" data-ladder="hub"></div>
+        <div class="pc"><div class="plus"><b>Güclü tərəfi</b><span>Bütün texnologiyaların bir yerdə toplandığını göstərir. Gələcəkdə istiqamət sayı artsa, işarə də böyüyə bilər.</span></div><div class="minus"><b>Riski</b><span>Hərfə bağlı deyil, abstraktdır. Bənzər şəbəkə işarələri çoxdur, yadda qalması çətinləşir.</span></div></div>
+      </article>
+
+      <article class="card">
+        <div class="card-h"><h3><span class="k">D</span>Qatlar</h3></div>
+        <p class="idea">Üst-üstə düşən üç şüşə kart: dizayn referansındakı kartlar və «stack» ideyası. Ön kartda W, arxa qatlar spektrin qalan rənglərini daşıyır.</p>
+        <div class="previews" data-concept="stack"></div>
+        <div class="ladder" data-ladder="stack"></div>
+        <div class="pc"><div class="plus"><b>Güclü tərəfi</b><span>Saytın şüşə estetikasına ən yaxın olanıdır. Tətbiq ikonu və sosial avatar kimi təsirli görünür.</span></div><div class="minus"><b>Riski</b><span>Ən detallı variantdır. 16 px-də arxa qatlar demək olar ki, itir.</span></div></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Anatomy of A -->
+  <section class="sec" aria-labelledby="a-h">
+    <div class="sec-head">
+      <span class="kicker">// A · anatomiya</span>
+      <h2 id="a-h">«Yol» necə qurulub</h2>
+    </div>
+    <div class="anat">
+      <div class="keylines">
+        <span class="m" data-mark="path"></span>
+        <span class="lbl" style="left:8px;top:8px">48 × 48 · addım 4</span>
+      </div>
+      <ul class="notes">
+        <li><i class="nd ring" style="color:var(--c1)"></i><div><b>Başlanğıc</b><span>İlk dərs. Yol cyan rəngdən başlayır, saytın aurora spektri kimi.</span></div></li>
+        <li><i class="nd ring" style="color:var(--c2)"></i><div><b>Addım</b><span>W-nin ortadakı zirvəsi. Hər mövzu bir yüksəliş, hər eniş isə praktikadır.</span></div></li>
+        <li><i class="nd" style="background:var(--c4);box-shadow:0 0 0 5px color-mix(in srgb, var(--c4) 22%, transparent)"></i><div><b>Hədəf</b><span>Mərcan rəngli dolu node: ilk iş günü. Saytda «növbəti addım» vurğusu ilə eyni rəngdir.</span></div></li>
+        <li><i class="nd" style="background:linear-gradient(90deg,var(--c1),var(--c2),var(--c3),var(--c4))"></i><div><b>Xətt</b><span>Qalınlıq 3.6, ucları və birləşmələri yumru. Kiçik ölçülərdə 5-ə qalxır, ara dairələr dolu olur.</span></div></li>
+      </ul>
+    </div>
+    <div class="specs" id="swatches"></div>
+    <div class="type-row">
+      <div><span class="kicker">Yazı · Inter 800</span><span class="wm big">w3hub<span class="tld">.dev</span></span><span class="muted" style="font-size:13px">hərf arası −4.5%; «.dev» JetBrains Mono 500, 50% şəffaflıq</span></div>
+      <div><span class="kicker">Mono · JetBrains Mono</span><span class="big mono" style="font-weight:500;letter-spacing:-0.03em">w3hub<span style="color:var(--c4)">/</span>go</span><span class="muted" style="font-size:13px">alt bölmələr, kicker-lər və kod etiketləri üçün</span></div>
+    </div>
+  </section>
+
+  <!-- Usage -->
+  <section class="sec" aria-labelledby="u-h">
+    <div class="sec-head">
+      <span class="kicker">// A · istifadədə</span>
+      <h2 id="u-h">Saytda və ondan kənarda</h2>
+    </div>
+    <div class="usage">
+      <div class="u">
+        <div class="on-dark">
+          <div class="mock-head"><span class="lock"><span class="m" data-mark="path" data-opts="tile small"></span><span class="wm">w3hub<span class="tld">.dev</span></span></span><nav><span>Yol xəritələri</span><span>Texnologiyalar</span><span>Go</span></nav></div>
+          <div class="mock-body"><h4>Hello, World-dən ilk iş gününə qədər.</h4><p>Yol xəritəsi, nəzəriyyə və praktika bir yerdə.</p></div>
+        </div>
+        <div class="u-cap">Sayt başlığı · qaranlıq</div>
+      </div>
+      <div class="u">
+        <div class="on-light">
+          <div class="mock-head"><span class="lock"><span class="m" data-mark="path" data-opts="tile small"></span><span class="wm">w3hub<span class="tld">.dev</span></span></span><nav><span>Yol xəritələri</span><span>Texnologiyalar</span><span>Go</span></nav></div>
+          <div class="mock-body"><h4>Hello, World-dən ilk iş gününə qədər.</h4><p>Yol xəritəsi, nəzəriyyə və praktika bir yerdə.</p></div>
+        </div>
+        <div class="u-cap">Sayt başlığı · işıqlı</div>
+      </div>
+      <div class="u">
+        <div class="tabs">
+          <div class="on-light"><div class="tabbar"><div class="tab act"><span class="m" data-mark="path" data-opts="tile small"></span><span>Slices · Go · w3hub</span></div><div class="tab dim"><span>Yeni tab</span></div></div><div class="urlbar">w3hub.dev/go/slices</div></div>
+          <div class="on-dark"><div class="tabbar"><div class="tab act"><span class="m" data-mark="path" data-opts="tile small"></span><span>Go yol xəritəsi · w3hub</span></div><div class="tab dim"><span>Yeni tab</span></div></div><div class="urlbar">w3hub.dev/go/roadmap</div></div>
+        </div>
+        <div class="u-cap">Favicon · 16 px, iki temada</div>
+      </div>
+      <div class="u">
+        <div class="icons" style="background:var(--surface-2)">
+          <div class="appicon on-dark" style="background:linear-gradient(150deg,#101a33,#070a14)"><span class="m" data-mark="path" data-opts="small"></span></div>
+          <div class="avatar on-dark"><span class="m" data-mark="path" data-opts="small"></span></div>
+          <div class="monos">
+            <div style="background:#0c1222;color:#fff"><span class="m mono-ink" data-mark="path" data-opts="small flat"></span></div>
+            <div style="background:#fff;color:#0c1222;border:1px solid #dfe4ef"><span class="m mono-ink" data-mark="path" data-opts="small flat"></span></div>
+          </div>
+        </div>
+        <div class="u-cap">Tətbiq ikonu · sosial avatar · birrəngli (çap, möhür)</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="next" aria-labelledby="n-h">
+    <span class="kicker">// növbəti addım</span>
+    <h2 id="n-h" style="font-size:20px">Seçim edəndən sonra</h2>
+    <ol>
+      <li><b>SVG faylları:</b> işarə, lockup, favicon (16/32/ICO), tətbiq ikonu və birrəngli variant.</li>
+      <li><b>Animasiya:</b> səhifə açılanda yolun çəkilməsi (yuxarıdakı kimi), <span class="mono">prefers-reduced-motion</span> zamanı statik.</li>
+      <li><b>Paylaşım şəkli</b> (OG image) və <span class="mono">packages/theme</span>-ə köçürmə.</li>
+    </ol>
+  </section>
+</div>
+
+<script>
+(function () {
+  let uid = 0;
+
+  // Each mark: 48×48 grid. `s` = small (thicker strokes for ≤32px).
+  const MARKS = {
+    path(g, s) {
+      const w = s ? 5 : 3.6, r = s ? 4.3 : 3.6, r3 = s ? 4.6 : 4;
+      return `<linearGradient id="${g}" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="38" y2="0"><stop offset="0" style="stop-color:var(--c1)"/><stop offset=".5" style="stop-color:var(--c2)"/><stop offset=".8" style="stop-color:var(--c3)"/><stop offset="1" style="stop-color:var(--c4)"/></linearGradient>|` +
+        `<path class="m-line" pathLength="1" d="M10 16 L17 33 L24 21 L31 33 L38 16" fill="none" stroke="url(#${g})" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round"/>` +
+        (s ? "" : `<circle class="m-halo" cx="38" cy="16" r="7" style="fill:var(--c4)" opacity=".2"/>`) +
+        `<g class="m-node n1"><circle cx="10" cy="16" r="${r}" style="fill:var(--c1)"/>${s ? "" : `<circle cx="10" cy="16" r="1.5" style="fill:var(--tile)"/>`}</g>` +
+        `<g class="m-node n2"><circle cx="24" cy="21" r="${r}" style="fill:var(--c2)"/>${s ? "" : `<circle cx="24" cy="21" r="1.5" style="fill:var(--tile)"/>`}</g>` +
+        `<circle class="m-node n3" cx="38" cy="16" r="${r3}" style="fill:var(--c4)"/>`;
+    },
+    cube(g, s) {
+      const w = s ? 5.4 : 4.2, w3 = s ? 3.6 : 2.8;
+      return `<linearGradient id="${g}" gradientUnits="userSpaceOnUse" x1="8" y1="0" x2="33" y2="0"><stop offset="0" style="stop-color:var(--c1)"/><stop offset=".55" style="stop-color:var(--c2)"/><stop offset="1" style="stop-color:var(--c3)"/></linearGradient>|` +
+        `<path d="M8.5 20.5 L14 36.5 L20.5 26 L27 36.5 L32.5 20.5" fill="none" stroke="url(#${g})" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round"/>` +
+        `<path d="M34.5 11 H41 L37.2 15.5 A3.9 3.9 0 1 1 33.8 21.4" fill="none" style="stroke:var(--c4)" stroke-width="${w3}" stroke-linecap="round" stroke-linejoin="round"/>`;
+    },
+    hub(g, s) {
+      const sats = [[24, 11.5, "--c1"], [38.3, 36.3, "--c3"], [9.7, 36.3, "--c4"]];
+      const wire = s ? 3 : 2, half = s ? 4.6 : 4;
+      let out = `<linearGradient id="${g}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--c1)"/><stop offset="1" style="stop-color:var(--c3)"/></linearGradient>|`;
+      sats.forEach(([x, y, c]) => { out += `<path d="M24 28 L${x} ${y}" style="stroke:var(${c})" stroke-width="${wire}" stroke-linecap="round" opacity="${s ? 0.9 : 0.6}"${s ? "" : ' stroke-dasharray="2.2 2.6"'}/>`; });
+      if (!s) out += `<circle cx="24" cy="28" r="9" fill="none" style="stroke:var(--c2)" stroke-width="1.3" opacity=".4"/>`;
+      out += `<circle cx="24" cy="28" r="${s ? 6.5 : 5.5}" fill="url(#${g})"/>`;
+      sats.forEach(([x, y, c]) => {
+        out += s
+          ? `<rect x="${x - half}" y="${y - half}" width="${half * 2}" height="${half * 2}" rx="2.6" style="fill:var(${c})"/>`
+          : `<rect x="${x - half}" y="${y - half}" width="${half * 2}" height="${half * 2}" rx="2.4" style="fill:var(--tile);stroke:var(${c})" stroke-width="2.2"/>`;
+      });
+      return out;
+    },
+    stack(g, s) {
+      return `<linearGradient id="${g}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--c1)"/><stop offset="1" style="stop-color:var(--c2)"/></linearGradient>|` +
+        `<rect x="16" y="5" width="26" height="26" rx="8" style="fill:var(--c4);stroke:var(--c4)" fill-opacity="${s ? 0.45 : 0.14}" stroke-opacity=".6" stroke-width="1.4"/>` +
+        `<rect x="11" y="10" width="26" height="26" rx="8" style="fill:var(--c3);stroke:var(--c3)" fill-opacity="${s ? 0.6 : 0.18}" stroke-opacity=".7" stroke-width="1.4"/>` +
+        `<rect x="6" y="15" width="26" height="26" rx="8" fill="url(#${g})"/>` +
+        `<path d="M10.5 17.5 H27.5" stroke="#fff" stroke-opacity=".35" stroke-width="1" stroke-linecap="round"/>` +
+        `<path d="M11.5 24 L15.8 34.5 L19 28 L22.2 34.5 L26.5 24" fill="none" stroke="#fff" stroke-width="${s ? 3.6 : 2.8}" stroke-linecap="round" stroke-linejoin="round"/>`;
+    },
+  };
+
+  function svg(kind, opts) {
+    const o = new Set((opts || "").split(/\s+/).filter(Boolean));
+    const g = "g" + (++uid), small = o.has("small");
+    let [defs, body] = MARKS[kind](g, small).split("|");
+    if (o.has("flat")) { body = body.replace(/url\(#g\d+\)/g, "currentColor"); defs = ""; }
+    let tile = "";
+    if (o.has("tile")) {
+      defs += `<linearGradient id="${g}t" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--c1)"/><stop offset=".5" style="stop-color:var(--c2)"/><stop offset="1" style="stop-color:var(--c3)"/></linearGradient>`;
+      tile = `<rect x="1" y="1" width="46" height="46" rx="13" style="fill:var(--tile)"/><rect x="1.5" y="1.5" width="45" height="45" rx="12.5" fill="none" stroke="url(#${g}t)" stroke-opacity=".6"/>`;
+      body = `<g transform="translate(24 24) scale(.82) translate(-24 -24)">${body}</g>`;
+    }
+    return `<svg class="mk" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><defs>${defs}</defs>${tile}${body}</svg>`;
+  }
+
+  const WM = {
+    path: 'w3hub<span class="tld">.dev</span>',
+    cube: 'w<sup>3</sup>hub<span class="tld">.dev</span>',
+    hub: 'w3hub<span class="tld">.dev</span>',
+    stack: 'w3hub<span class="tld">.dev</span>',
+  };
+
+  document.querySelectorAll("[data-concept]").forEach((el) => {
+    const k = el.dataset.concept;
+    el.innerHTML =
+      `<div class="pv on-light"><span class="m">${svg(k, "")}</span></div>` +
+      `<div class="pv on-dark"><span class="m">${svg(k, "")}</span></div>` +
+      `<div class="pv pv-lock"><span class="lock"><span class="m">${svg(k, "tile small")}</span><span class="wm">${WM[k]}</span></span></div>`;
+  });
+  document.querySelectorAll("[data-ladder]").forEach((el) => {
+    const k = el.dataset.ladder;
+    el.innerHTML = [[64, ""], [32, "tile small"], [24, "tile small"], [16, "tile small"]]
+      .map(([px, o]) => `<figure><span class="m" style="width:${px}px;height:${px}px">${svg(k, o)}</span><figcaption>${px}px</figcaption></figure>`).join("");
+  });
+  document.querySelectorAll("[data-mark]").forEach((el) => { el.innerHTML = svg(el.dataset.mark, el.dataset.opts); });
+
+  // hero wordmark, split for the rise animation
+  const hw = document.getElementById("hero-wm");
+  hw.innerHTML = "w3hub".split("").map((c, i) => `<span class="ch" style="animation-delay:${1.0 + i * 0.06}s">${c}</span>`).join("") +
+    `<span class="tld"><span class="ch" style="animation-delay:1.45s">.dev</span></span>`;
+
+  // swatches: read live token values so palette switches show
+  const SW = [["Cyan", "--c1", "başlanğıc"], ["Mavi", "--c2", "addım"], ["Bənövşəyi", "--c3", "keçid"], ["Mərcan", "--c4", "hədəf"]];
+  function paintSwatches() {
+    const cs = getComputedStyle(document.documentElement);
+    document.getElementById("swatches").innerHTML = SW.map(([n, v, role]) =>
+      `<div class="sw"><i style="background:var(${v})"></i><div><b>${n} · ${role}</b><code>${cs.getPropertyValue(v).trim()}</code></div></div>`).join("");
+  }
+  paintSwatches();
+
+  // replay
+  const stage = document.getElementById("stage");
+  document.getElementById("replay").addEventListener("click", () => {
+    stage.classList.remove("play"); void stage.offsetWidth; stage.classList.add("play");
+  });
+
+  // palette
+  const root = document.documentElement;
+  document.querySelectorAll("[data-pal]").forEach((b) => b.addEventListener("click", () => {
+    const p = b.dataset.pal;
+    if (p === "aurora") root.removeAttribute("data-palette"); else root.setAttribute("data-palette", p);
+    document.querySelectorAll("[data-pal]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+    paintSwatches();
+  }));
+
+  // theme: system → light → dark
+  const tb = document.getElementById("theme-btn");
+  const labels = { system: "Tema: sistem", light: "Tema: işıqlı", dark: "Tema: qaranlıq" };
+  let theme = "system";
+  try { theme = localStorage.getItem("w3logo:theme") || "system"; } catch (e) {}
+  function applyTheme() {
+    if (theme === "system") root.removeAttribute("data-theme"); else root.setAttribute("data-theme", theme);
+    tb.textContent = labels[theme] || labels.system;
+    paintSwatches();
+  }
+  applyTheme();
+  tb.addEventListener("click", () => {
+    theme = theme === "system" ? "light" : theme === "light" ? "dark" : "system";
+    try { localStorage.setItem("w3logo:theme", theme); } catch (e) {}
+    applyTheme();
+  });
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", paintSwatches);
+})();
+</script>
+</body>
+</html>
