@@ -80,6 +80,19 @@ A home page with **its own idea and motion language** (the first v3 try, "Aurora
 - **Finale:** a running line of outlined type and the resume card.
 - Under `prefers-reduced-motion` the hero draws one still frame (tabs still switch shapes), the manifesto is fully lit, nothing revolves.
 
+### Design v4 — "Metro" (`/v4/`, 2026-11-26)
+A home page built from a different idea again, after the user's v3 feedback (disliked: the pinned "Bir mövzu. Beş qat." exploded view and the running "Seç · Öyrən · Yoxla · Təkrar" line) and the request "V4 hazırla. Tam fərqli." Open http://localhost:4321/v4/. **Its own look and shell** (`v4.css` does not load `v2.css`); it loads `../v2/v2.js` only for the prototype data, the theme/palette switch and the Ctrl+K search, and restyles the pieces that script generates. The other pages (Go, roadmap, lesson) are still v2's. A **v2 | v3 | v4** switch sits bottom-right.
+- **Idea and copy:** "Hər peşə bir xətdir. Hər texnologiya bir stansiya." — the platform is a transit map: directions are lines, technologies are stations, a lesson is a stop. The copy speaks in station announcements and signage.
+- **Look:** wayfinding, not glass — flat colour, thick lines, sign plates, numbered line bullets, hairline rules, paper tickets, an always-dark board. No glass, glow, gradient text, aurora, particles or marquee. Dark = the night map, light = the printed map (warm paper). The accent pair and the 4 palettes are kept; the four line colours are fixed.
+- **Hero (SVG transit map, 1280×640, octolinear):** four lines start at Git and share a trunk (Git → Linux → HTTP), then branch; interchange stations are capsules across the lines that stop there; Rust is a dashed planned extension. On load the lines are **drawn from Git** at a constant speed and each station opens when the line reaches it; then **one train per line** runs stop to stop and back, and the station it arrives at pings. Go is the open station (pulse, "Sən buradasan" / "Buradan başla" flag). The headline shares the canvas with the map (sizes in `cqw`, so they scale together). A **line chooser** highlights one line, dims the rest and lists its stops in order; hovering a line does the same; stations have a small sign (name, description, lines, status).
+- **The page line:** the header's bottom rule carries one stop per section and a train that follows the scroll.
+- **Go xətti:** a strip map of the nine Go sections with progress and a train that moves to the chosen stop; below it a timetable of that section's lessons (keçilib / hazırdır / yazılır) linking to the lesson pages.
+- **Növbəti stansiya: Slices:** four steps of the real `slices` lesson — a station name board, steps as a vertical line, a highlight band that slides between code ranges (two-way: step ↔ code line), memory cells, output; it walks through the steps on its own until the reader takes over. A **turnstile**: one real quiz question; the right answer turns the rotor, switches the lamp to green and enables "Növbəti stansiya: Maps".
+- **Bilet lazım deyil:** four paper tickets (free, no sign-up, in Azerbaijani, verified code) printed out in thermal-printer steps and then punched.
+- **Tablo:** the eight platform sections on a **split-flap board** (rollout order, status, a clock); rows flip in on enter, "Tablonu yenilə" replays.
+- **Finale:** a boarding pass printed from a slot — from the last learned lesson to the next one, with the progress bar.
+- Below 1180px the headline leaves the map canvas (the map gets a title block with the line legend); below 900px the map and the Go strip scroll sideways. Under `prefers-reduced-motion` the map is shown drawn, trains are parked, the board and tickets show their final state.
+
 ## Files
 ```
 design/
@@ -89,6 +102,7 @@ design/
   archive/        Variants A, B, C — frozen, kept for comparison
   v2/             Design v2 — new version built on D
   v3/             Design v3 — home page built on v2 (reuses v2's shell)
+  v4/             Design v4 — "Metro" home page (own look; uses v2.js for data and search)
 ```
 
 | File | Purpose |
@@ -111,6 +125,7 @@ design/
 | `v2/roadmap.html`, `roadmap.css`, `roadmap.js`, `nodes.js` | Design v2: roadmap page and sample node facets |
 | `v2/lesson.html`, `lesson.css`, `lesson.js` | Design v2: lesson page (the real `slices` lesson) |
 | `v3/index.html`, `v3.css`, `v3.js` | Design v3: platform home (particle-field hero, before/after slider, scroll-lit manifesto, exploded five-layer lesson, technology orbit, section list); loads `v2/v2.css` + `v2/v2.js` |
+| `v4/index.html`, `v4.css`, `v4.js` | Design v4 "Metro": platform home (transit-map hero with trains, Go strip map + timetable, lesson demo with a turnstile question, tickets, split-flap board, boarding pass); loads `v2/v2.js` but not `v2.css` |
 | `archive/a/` | Variant A: `tokens.css`, `app.css`, `index.html`, `example.html` |
 | `archive/b/` | Variant B: `style.css`, `index.html`, `example.html` |
 | `archive/c/` | Variant C: `index.html`, `example.html` (styles are `shared/base.css`) |

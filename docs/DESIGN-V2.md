@@ -41,13 +41,25 @@ The user's request (2026-11-25): **a v3 on the basis of v2 and the same referenc
 - Loads v2's shell (`v2.css`, `v2.js`); the Go, roadmap and lesson pages are still v2's (`../v2/…`, via `window.W3_PAGES`).
 - Compare: `node design/serve.mjs 4399` → http://localhost:4399/v2/ and http://localhost:4399/v3/ (the switch bottom-right on v3).
 
+**Feedback on the second try (2026-11-26):** the user named two parts they did not like — the **"Bir mövzu. Beş qat."** section (the pinned 3D exploded view) and the **running "Seç · Öyrən · Yoxla · Təkrar" line** in the finale — and asked for a v4: *"V4 hazırla. Tam fərqli."* Nothing was said about the other v3 sections.
+
+## Design v4 — `design/v4/` ("Metro", 2026-11-26, awaiting review)
+
+Details in [HISTORY.md](HISTORY.md) entry 44 and [design/README.md](../design/README.md):
+- Idea and headline: "Hər peşə bir xətdir. Hər texnologiya bir stansiya." — the platform as a transit map.
+- Own look and shell (`v4.css`, no `v2.css`): flat wayfinding signage, thick lines, sign plates, paper tickets; the light theme is a warm printed map. `v2.js` is loaded only for data, theme/palette and search.
+- Hero: an SVG transit map drawn from Git on load, one train per line, a line chooser, station signs; the headline shares the map canvas.
+- Sections: Go strip map + timetable, a working `slices` lesson demo with a turnstile question, four tickets, a split-flap board of the platform sections, a boarding pass. The header rule is a page line with a train that follows the scroll.
+- No pinned scroll scene, no marquee, no "one topic, five …" section (the v3 feedback).
+- Compare: `node design/serve.mjs 4399` → `/v2/`, `/v3/`, `/v4/` (switch bottom-right on v3 and v4).
+
 ## Where to continue
 
-1. **Get the user's feedback on the second v3** (hero particles, copy, sections) and record it in [HISTORY.md](HISTORY.md). If v3 is the direction, do the **other pages in the v3 style** (`go.html`, `roadmap.html`, `lesson.html`) inside `design/v3/` — v3 can keep loading v2's shell, or absorb it once v2 is retired. If v2 stays the favourite, the v3 pieces the user likes can be moved into v2 one by one.
-2. If the user wants another variant instead, the earlier proposals still stand: **"Light editorial"** (light-first, large type, fewer effects) or **"Roadmap-first"** (the hero is the interactive roadmap). Build them as `design/v3b/` etc., sharing `v2/v2.js` data.
+1. **Get the user's feedback on v4 "Metro"** (map hero, trains, copy, board, tickets) and record it in [HISTORY.md](HISTORY.md). If v4 is the direction, do the **other pages in the v4 style** (`go.html`, `roadmap.html`, `lesson.html`) inside `design/v4/` and move the shared data out of `v2.js`. If v2 stays the favourite, the pieces the user likes from v3/v4 can be moved into v2 one by one.
+2. If the user wants another variant instead, one earlier proposal still stands: **"Light editorial"** (light-first, large type, fewer effects). ("Roadmap-first" is what v4 became.)
 3. Decide the platform name (`w3hub.dev` / `beststack.dev` / other) — check domain availability.
 4. After a variant is approved: move it into `packages/theme` / `apps/site` (Phase 2 module 2: `/`, `/go/roadmap/`, `/roadmaps/backend/`).
-5. Known gaps: `design/shared/data.js` says "Massivlər" in the Kolleksiyalar description (term rule); the roadmap opens on the next topic, which may have no sample facet content; check fonts, the aurora and the v3 intro on a real browser/phone (headless runs had no web fonts).
+5. Known gaps: `design/shared/data.js` says "Massivlər" in the Kolleksiyalar description (term rule); the roadmap opens on the next topic, which may have no sample facet content; check fonts, the aurora, the v3 intro and the v4 map (trains, sideways pan on a phone) on a real browser/phone.
 
 ## Tooling notes
 
