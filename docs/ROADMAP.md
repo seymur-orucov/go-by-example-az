@@ -118,7 +118,7 @@ functions/api/run.ts   # go.dev/_/compile proxy (rate limit + size limit)
 - [~] hello-world · values · variables · constants · for · if-else · slices · maps · functions · goroutines — **original** (`source: original`, awaiting the user's review): hello-world, values, variables, constants, for, if-else, slices, maps, functions; remaining: goroutines
 - [~] **"Əsaslar" section complete**: all 7 lessons are original and `ready` (hello-world, values, variables, constants, for, if-else, switch; `switch` is outside the 10-lesson pilot list), awaiting the user's review
 - [~] **"Kolleksiyalar" section complete**: all 5 lessons are original and `ready` (arrays, slices, maps, range, strings-and-runes), awaiting the user's review
-- [~] **"Funksiyalar" section complete**: all 5 lessons are original and `ready` (functions, multiple-return-values, variadic-functions, closures, recursion), awaiting the user's review; `pnpm check` / `pnpm build` not run yet (missing VC++ runtime on this machine, see HISTORY 42)
+- [~] **"Funksiyalar" section complete**: all 5 lessons are original and `ready` (functions, multiple-return-values, variadic-functions, closures, recursion), awaiting the user's review
 - [x] Project skill `.claude/skills/write-lesson/` for writing original lessons (rules, originality guard, verification checklist)
 - [x] Content license CC BY 4.0; no Go by Example credit on the site once no adapted lesson is left; money in examples in USD; intro length rule in the skill
 - [ ] Terminology glossary (`docs/GLOSSARY.md`): English term + short Azerbaijani explanation
@@ -191,4 +191,4 @@ Once the Go prototype is live, the site becomes a unified platform.
 3. The platform name is still open; nothing in Phase 2 depends on it.
 4. Work on a branch and commit with Conventional Commits (see [CONTRIBUTING.md](../CONTRIBUTING.md)); group work into module PRs.
 
-Note: as of 2026-11-26 Go is **not installed** on this machine (not on PATH, not on disk) and the x64 Visual C++ runtime (`vcruntime140.dll`) is missing, so Astro's native `satteri` module fails and `pnpm check` / `pnpm build` cannot run. Install Go 1.26 and the "Microsoft Visual C++ Redistributable (x64)" to restore the full verification loop. The system Node is 22.13; the project uses Node 24 through pnpm (`devEngines`).
+Note: Go 1.27.4 is installed locally (the project targets 1.26; the lessons verify on both), so examples can be checked with `go vet` / `go run`. The system Node is 22.13; the project uses Node 24 through pnpm (`devEngines`).
