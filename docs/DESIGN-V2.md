@@ -28,16 +28,23 @@ Single place for the design v2 work (`design/v2/`): what the user asked for, whi
 
 Home (`index.html`), Go page (`go.html`), roadmap (`roadmap.html`), lesson (`lesson.html?ex=slices`). Details: [HISTORY.md](HISTORY.md) entry 41, [design/README.md](../design/README.md), [DECISIONS.md](DECISIONS.md#design).
 
+## Design v3 (2026-11-25) — `design/v3/`
+
+The user's request: **a v3 on the basis of v2 and the same references.** On top of v2's notes, the goals: *modern but elegant, dynamic but light, a grand intro animation, headlines and copy as a real copywriter would write them.*
+
+What was built (home page only; details in [HISTORY.md](HISTORY.md) entry 42 and [design/README.md](../design/README.md)):
+- Reuses v2's shell (`v2.css`, `v2.js`) — new files are `index.html`, `v3.css`, `v3.js`. The Go, roadmap and lesson pages are still v2's (`../v2/…`); `window.W3_PAGES` in `v2.js` makes that possible.
+- Intro: the headline "Hello, World-dən ilk iş gününə qədər." drawn as a learning path (burst → path draws → words rise → aurora → traveller).
+- Sections: technology band, scroll story (map → lesson → quiz), direction chain (FLIP), five live facet cards, editorial claims + comparison, platform timeline, resume CTA.
+- Compare: `node design/serve.mjs 4399` → http://localhost:4399/v2/ and http://localhost:4399/v3/ (the switch bottom-right on v3).
+
 ## Where to continue
 
-1. **Prepare 1–2 more variants** of the home page (and, once one is chosen, the other pages) next to the current one, e.g. `design/v2/` stays "A: Aurora glass"; add `design/v2b/` (and optionally `v2c/`). The user did not specify the directions yet; proposals to offer:
-   - **B — "Light editorial":** light-first, large typography, soft pastel gradients, fewer effects; closest to itbooster.ru's calm layout.
-   - **C — "Roadmap-first":** the hero **is** an interactive roadmap graph (roadmap.sh style), with the pitch beside it; the least decorative, most product-like.
-   Ask the user which to build if they have a preference; otherwise build B and C for the home page only, sharing `v2/v2.js` data (technologies, directions, platform sections).
-2. Compare the variants side by side (`node design/serve.mjs 4399`; `/v2/`, `/v2b/`, `/v2c/`), record feedback in [HISTORY.md](HISTORY.md), then choose.
+1. **Get the user's feedback on v3** (hero/intro, copy, sections) and record it in [HISTORY.md](HISTORY.md). If v3 is the direction, do the **other pages in the v3 style** (`go.html`, `roadmap.html`, `lesson.html`) inside `design/v3/` — v3 can keep loading v2's shell, or absorb it once v2 is retired.
+2. If the user wants another variant instead, the earlier proposals still stand: **"Light editorial"** (light-first, large type, fewer effects) or **"Roadmap-first"** (the hero is the interactive roadmap). Build them as `design/v3b/` etc., sharing `v2/v2.js` data.
 3. Decide the platform name (`w3hub.dev` / `beststack.dev` / other) — check domain availability.
 4. After a variant is approved: move it into `packages/theme` / `apps/site` (Phase 2 module 2: `/`, `/go/roadmap/`, `/roadmaps/backend/`).
-5. Known gaps: `design/shared/data.js` says "Massivlər" in the Kolleksiyalar description (term rule); the roadmap opens on the next topic, which may have no sample facet content; check fonts and aurora performance on a real browser/phone.
+5. Known gaps: `design/shared/data.js` says "Massivlər" in the Kolleksiyalar description (term rule); the roadmap opens on the next topic, which may have no sample facet content; check fonts, the aurora and the v3 intro on a real browser/phone (headless runs had no web fonts).
 
 ## Tooling notes
 

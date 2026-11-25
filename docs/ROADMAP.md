@@ -65,7 +65,8 @@ Framework-free static HTML/CSS/JS in the `design/` directory.
 - [x] **Discussion of the platform sections**: node model (theory · practice · visual · test · interview), algorithms as a separate track, live coding postponed, rollout order — [DECISIONS.md](DECISIONS.md#platform-sections-2026-11-23)
 - [~] **Home page redesign** for the platform: first version done (`d/index.html`: path choice, node explorer, sections bento; Go page moved to `d/go.html`) — awaiting feedback
 - [~] **Design v2** (`design/v2/`, 2026-11-25): new "Aurora glass" version on top of D — home (aurora hero, ask box, stack map, node anatomy, sections rail, advantages + comparison, resume CTA), Go page, roadmap graph, lesson page — awaiting the user's review
-- [ ] Platform name (working name "Nümunələrlə" for now; candidates `w3hub.dev` / `beststack.dev`, previewed in design v2)
+- [~] **Design v3** (`design/v3/`, 2026-11-25): home page on top of v2 — drawn learning-path intro, scroll story (map → lesson → quiz), FLIP technology chain, five live facet cards, editorial claims, platform timeline; reuses v2's shell, other pages still v2's — awaiting the user's review
+- [ ] Platform name (working name "Nümunələrlə" for now; candidates `w3hub.dev` / `beststack.dev`, previewed in design v2/v3)
 - [x] **Roadmap page** (`d/roadmap.html`): technology roadmap (Go) + direction roadmap preview (Backend), sticky 5-facet node panel, filter, deep links; linked from the header nav, home, Go page and lessons (2026-11-23)
 - [x] **Final approval** of Variant D — starting Phase 2 counts as the approval (2026-11-23)
 - [x] Final palette choice: Nebula by default, İndiqo, Okean and Qrafit stay as options (2026-11-23)
@@ -184,7 +185,7 @@ Once the Go prototype is live, the site becomes a unified platform.
 
 ## Where to start next session
 
-0. **Design:** if the user says to continue the design, read [DESIGN-V2.md](DESIGN-V2.md) (brief, references, next: 1–2 more variants).
+0. **Design:** if the user says to continue the design, read [DESIGN-V2.md](DESIGN-V2.md) (brief, references, v2 and v3 status; next: the user's feedback on v3, then the other pages in the v3 style).
 1. `pnpm install`, then `pnpm lint && pnpm format:check && pnpm check && pnpm build` to confirm the workspace is healthy. The design reference: `node design/serve.mjs` → http://localhost:4321/d/.
 2. Phase 2, **module 2** (`feat/site-content-theme`), continued: the lesson page `/go/<slug>/` is done; next `/go/roadmap/`, `/` and `/roadmaps/backend/`. Lesson page leftovers: the explanation ↔ code arrow/curved line (moved to Phase 2), "Redaktə" + live run (module 3: CodeMirror, `/api/run`). Also still to port: the "Oxuma — gör" demo player and the "Niyə bu sayt" bento (left out of `/go/` on purpose).
 3. The platform name is still open; nothing in Phase 2 depends on it.
