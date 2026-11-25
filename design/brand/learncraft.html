@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>learncraft loqosu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: one column brand sheet — dark aurora stage with the lead mark, then a 2×2 concept grid, anatomy, usage mocks. Tokens follow the site's design v2/v3. */
+:root {
+  --bg: #f3f5fb; --surface: #ffffff; --surface-2: #eef1f9;
+  --text: #0c1222; --muted: #556077; --subtle: #8a93a8;
+  --line: #dfe4ef; --line-strong: #c7cfdf;
+  --L1: #0ea5c6; --L2: #3b6ef5; --L3: #8b5cf6; --L4: #f97362;
+  --D1: #4fd6ff; --D2: #6d8dff; --D3: #a98bff; --D4: #ff8a6b;
+  --c1: var(--L1); --c2: var(--L2); --c3: var(--L3); --c4: var(--L4);
+  --tile: var(--surface);
+  --stage-text: #eef2ff; --stage-muted: #98a2bb;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  --r: 18px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #05070d; --surface: #0b0f1a; --surface-2: #111727;
+    --text: #e9edf7; --muted: #9aa4ba; --subtle: #6b7489;
+    --line: #1a2133; --line-strong: #2a3348;
+    --c1: var(--D1); --c2: var(--D2); --c3: var(--D3); --c4: var(--D4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #05070d; --surface: #0b0f1a; --surface-2: #111727;
+  --text: #e9edf7; --muted: #9aa4ba; --subtle: #6b7489;
+  --line: #1a2133; --line-strong: #2a3348;
+  --c1: var(--D1); --c2: var(--D2); --c3: var(--D3); --c4: var(--D4);
+  color-scheme: dark;
+}
+:root[data-palette="indigo"] { --L2: #5b5bf0; --L3: #b062f5; --D2: #8686ff; --D3: #c98cff; }
+:root[data-palette="ocean"] { --L2: #0284c7; --L3: #4f6ef7; --L4: #14b89a; --D2: #38bdf8; --D3: #818cf8; --D4: #34e0c0; }
+
+.on-dark { --c1: var(--D1); --c2: var(--D2); --c3: var(--D3); --c4: var(--D4); --tile: #0a0f1c; background: #05070e; color: #eef2ff; }
+.on-light { --c1: var(--L1); --c2: var(--L2); --c3: var(--L3); --c4: var(--L4); --tile: #ffffff; background: #f3f5fb; color: #0c1222; }
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--text); font: 400 15px/1.6 var(--font-sans); -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-block: 28px 64px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 56px; }
+h1, h2, h3 { margin: 0; letter-spacing: -0.03em; text-wrap: balance; }
+h2 { font-size: clamp(22px, 3vw, 28px); font-weight: 750; }
+p { margin: 0; }
+.kicker { font: 500 12.5px/1 var(--font-mono); color: var(--c2); letter-spacing: 0.02em; }
+.muted { color: var(--muted); }
+.mono { font-family: var(--font-mono); }
+button { font: inherit; color: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--c2); outline-offset: 3px; border-radius: 8px; }
+svg.mk { display: block; width: 100%; height: 100%; overflow: visible; }
+
+.top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; }
+.top-l { display: grid; gap: 8px; min-width: 0; max-width: 70ch; }
+.top h1 { font-size: clamp(26px, 4vw, 36px); font-weight: 800; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; }
+.pill { display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 14px; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--surface); font: 500 12.5px/1 var(--font-mono); color: var(--muted); }
+.pill:hover { color: var(--text); }
+.seg { display: inline-flex; gap: 3px; padding: 3px; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--surface); }
+.seg button { height: 28px; padding: 0 12px; border: 0; border-radius: 999px; background: none; font: 500 12px/1 var(--font-mono); color: var(--muted); display: inline-flex; align-items: center; gap: 6px; }
+.seg button[aria-pressed="true"] { background: var(--surface-2); color: var(--text); }
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+
+/* stage */
+.stage { position: relative; overflow: hidden; border-radius: 26px; padding: clamp(44px, 7vw, 88px) 24px clamp(40px, 6vw, 68px); display: grid; justify-items: center; gap: 30px; isolation: isolate; border: 1px solid #1a2133; }
+.stage::before { content: ""; position: absolute; inset: 0; z-index: -1; background-image: linear-gradient(#ffffff0a 1px, transparent 1px), linear-gradient(90deg, #ffffff0a 1px, transparent 1px); background-size: 40px 40px; mask-image: radial-gradient(ellipse at 50% 45%, #000 20%, transparent 75%); }
+.ghost { position: absolute; z-index: -2; width: min(560px, 90%); aspect-ratio: 1; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-8deg); opacity: .16; filter: blur(26px); pointer-events: none; }
+.aur { position: absolute; z-index: -3; border-radius: 50%; filter: blur(60px); }
+.aur.a1 { width: 46%; height: 60%; left: 6%; top: 14%; background: var(--c1); opacity: .22; animation: drift 14s ease-in-out infinite alternate; }
+.aur.a2 { width: 40%; height: 55%; left: 36%; top: 34%; background: var(--c3); opacity: .28; animation: drift 17s ease-in-out infinite alternate-reverse; }
+.aur.a3 { width: 30%; height: 45%; right: 8%; top: 2%; background: var(--c4); opacity: .22; animation: drift 12s ease-in-out infinite alternate; }
+@keyframes drift { to { transform: translate(6%, -8%) scale(1.15); } }
+.lockup-hero { display: flex; align-items: center; gap: clamp(14px, 2.4vw, 28px); flex-wrap: wrap; justify-content: center; }
+.lockup-hero .m { width: clamp(96px, 15vw, 150px); aspect-ratio: 1; max-width: 100%; filter: drop-shadow(0 18px 30px rgba(0, 0, 0, .45)); }
+.wm { font-weight: 800; letter-spacing: -0.045em; line-height: 1; white-space: nowrap; }
+.wm .lt { font-weight: 450; opacity: .72; }
+.wm .tld { font-family: var(--font-mono); font-weight: 500; letter-spacing: -0.02em; opacity: .5; }
+.wm .up { display: inline-block; transform: translateY(-0.13em); color: var(--c4); }
+.wm .grad { background: linear-gradient(95deg, var(--c1), var(--c2) 60%, var(--c3)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.lockup-hero .wm { font-size: clamp(40px, 8.4vw, 88px); }
+.lockup-hero .wm .ch { display: inline-block; }
+.tagline { font: 500 13px/1.5 var(--font-mono); color: var(--stage-muted); text-align: center; }
+.tagline b { color: var(--stage-text); font-weight: 500; }
+.replay { position: absolute; right: 14px; bottom: 14px; background: #ffffff10; border-color: #ffffff24; color: #c8d0e4; }
+.replay:hover { color: #fff; }
+
+/* hero motion: pieces drop in, the lead piece floats, lines draw */
+.pc, .lift, .riseup { transform-box: fill-box; }
+.play .pc { animation: drop .55s cubic-bezier(.2, .9, .25, 1.15) backwards; }
+.play .riseup { animation: riseup .6s cubic-bezier(.2, .9, .25, 1.1) backwards; }
+.play .lift { animation-name: drop, bob; animation-duration: .6s, 3.4s; animation-timing-function: cubic-bezier(.2, .9, .25, 1.15), ease-in-out; animation-iteration-count: 1, infinite; animation-fill-mode: backwards, none; }
+.play .m-line { animation: draw 1.3s .2s cubic-bezier(.65, 0, .25, 1) backwards; }
+.m-line { stroke-dasharray: 1; }
+.play .ch { animation: rise .6s cubic-bezier(.2, .8, .2, 1) backwards; }
+@keyframes drop { from { transform: translateY(-9px); opacity: 0; } }
+@keyframes riseup { from { transform: translateY(9px); opacity: 0; } }
+@keyframes bob { 50% { transform: translateY(-1.6px); } }
+@keyframes draw { from { stroke-dashoffset: 1; } }
+@keyframes rise { from { transform: translateY(.35em); opacity: 0; filter: blur(6px); } }
+@media (prefers-reduced-motion: reduce) { .play *, .aur { animation: none !important; } }
+
+.sec { display: grid; gap: 22px; }
+.sec-head { display: grid; gap: 8px; max-width: 68ch; }
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+@media (max-width: 860px) { .grid2 { grid-template-columns: minmax(0, 1fr); } }
+.card { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 22px; display: grid; gap: 18px; align-content: start; min-width: 0; }
+.card.lead { border-color: color-mix(in srgb, var(--c2) 55%, var(--line)); box-shadow: 0 0 0 1px color-mix(in srgb, var(--c2) 25%, transparent), 0 20px 50px -30px color-mix(in srgb, var(--c2) 60%, transparent); }
+.card-h { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.card-h h3 { font-size: 21px; font-weight: 750; }
+.card-h h3 .k { font: 600 12px/1 var(--font-mono); color: var(--subtle); margin-right: 8px; letter-spacing: 0; }
+.badge { font: 600 10.5px/1 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; padding: 6px 9px; border-radius: 999px; color: var(--c2); background: color-mix(in srgb, var(--c2) 12%, transparent); border: 1px solid color-mix(in srgb, var(--c2) 35%, transparent); }
+.idea { color: var(--muted); max-width: 60ch; }
+.previews { display: grid; grid-template-columns: 1fr 1fr 1.6fr; gap: 10px; }
+@media (max-width: 560px) { .previews { grid-template-columns: 1fr 1fr; } .previews .pv-lock { grid-column: 1 / -1; } }
+.pv { border-radius: 14px; aspect-ratio: 1; display: grid; place-items: center; border: 1px solid var(--line); min-width: 0; max-width: 100%; }
+.pv .m { width: 60%; aspect-ratio: 1; }
+.pv-lock { aspect-ratio: auto; background: var(--surface-2); padding: 14px; overflow: hidden; }
+.lock { display: inline-flex; align-items: center; gap: 10px; min-width: 0; }
+.lock .m { width: 34px; height: 34px; flex: none; }
+.lock .wm { font-size: 21px; }
+.ladder { display: flex; align-items: end; gap: 18px; flex-wrap: wrap; border-top: 1px dashed var(--line); padding-top: 16px; }
+.ladder figure { margin: 0; display: grid; justify-items: center; gap: 6px; }
+.ladder figcaption { font: 500 10.5px/1 var(--font-mono); color: var(--subtle); font-variant-numeric: tabular-nums; }
+.pc2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; font-size: 13.5px; }
+@media (max-width: 520px) { .pc2 { grid-template-columns: minmax(0, 1fr); } }
+.pc2 div { display: grid; gap: 4px; align-content: start; }
+.pc2 b { font: 600 10.5px/1.4 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; }
+.pc2 .plus b { color: color-mix(in srgb, #16a34a 80%, var(--text)); }
+.pc2 .minus b { color: var(--c4); }
+.pc2 span { color: var(--muted); }
+
+.anat { display: grid; grid-template-columns: minmax(0, 360px) minmax(0, 1fr); gap: clamp(20px, 4vw, 48px); align-items: center; }
+@media (max-width: 760px) { .anat { grid-template-columns: minmax(0, 1fr); } }
+.keylines { position: relative; aspect-ratio: 1; width: 100%; max-width: 360px; border-radius: var(--r); border: 1px solid var(--line); background-color: var(--surface);
+  background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: calc(100% / 12) calc(100% / 12); background-position: -0.5px -0.5px; }
+.keylines .m { position: absolute; inset: 0; }
+.keylines .lbl { position: absolute; left: 8px; top: 8px; font: 500 10px/1 var(--font-mono); color: var(--subtle); }
+.notes { display: grid; gap: 16px; list-style: none; margin: 0; padding: 0; }
+.notes li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 12px; align-items: start; }
+.notes .nd { width: 14px; height: 14px; border-radius: 4px; margin-top: 4px; justify-self: center; }
+.notes b { display: block; font-weight: 650; }
+.notes span { color: var(--muted); font-size: 14px; }
+.specs { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.sw { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--surface); }
+.sw i { display: block; height: 56px; }
+.sw div { padding: 10px 12px; display: grid; gap: 2px; }
+.sw b { font-size: 13px; font-weight: 650; }
+.sw code { font: 500 11.5px/1.4 var(--font-mono); color: var(--muted); }
+.type-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; }
+.type-row > div { border: 1px solid var(--line); border-radius: 14px; padding: 16px; background: var(--surface); display: grid; gap: 6px; min-width: 0; overflow: hidden; }
+.type-row .big { font-size: 32px; line-height: 1.15; }
+
+.usage { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+@media (max-width: 860px) { .usage { grid-template-columns: minmax(0, 1fr); } }
+.u { border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; display: grid; min-width: 0; }
+.u-cap { padding: 12px 16px; font: 500 12px/1.4 var(--font-mono); color: var(--muted); background: var(--surface); border-top: 1px solid var(--line); }
+.mock-head { display: flex; align-items: center; gap: 22px; padding: 16px 20px; border-bottom: 1px solid #8881; overflow: hidden; }
+.mock-head .lock .m { width: 28px; height: 28px; }
+.mock-head .lock .wm { font-size: 17px; letter-spacing: -0.03em; }
+.mock-head nav { display: flex; gap: 18px; font-size: 13.5px; opacity: .7; white-space: nowrap; }
+@media (max-width: 560px) { .mock-head nav { display: none; } }
+.mock-body { padding: 26px 20px 30px; display: grid; gap: 8px; }
+.mock-body h4 { margin: 0; font-size: 22px; letter-spacing: -0.03em; }
+.mock-body p { opacity: .65; font-size: 13.5px; }
+.tabbar { display: flex; align-items: end; gap: 2px; padding: 10px 10px 0; }
+.tab { display: flex; align-items: center; gap: 8px; height: 34px; padding: 0 14px; border-radius: 10px 10px 0 0; font-size: 12.5px; max-width: 240px; min-width: 0; }
+.tab span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tab .m { width: 16px; height: 16px; flex: none; }
+.tab.dim { opacity: .5; }
+.on-light .tabbar { background: #dde2ee; } .on-light .tab.act { background: #f3f5fb; }
+.on-dark .tabbar { background: #0e1322; } .on-dark .tab.act { background: #05070e; }
+.urlbar { margin: 8px 12px 14px; height: 30px; border-radius: 999px; display: flex; align-items: center; padding: 0 14px; font: 500 12px/1 var(--font-mono); }
+.on-light .urlbar { background: #e6eaf3; color: #556077; } .on-dark .urlbar { background: #111727; color: #98a2bb; }
+.icons { display: flex; align-items: center; justify-content: center; gap: clamp(16px, 4vw, 36px); padding: 30px 16px; flex-wrap: wrap; background: var(--surface-2); }
+.appicon { width: 96px; height: 96px; border-radius: 24px; display: grid; place-items: center; box-shadow: 0 16px 40px -18px #3b6ef5aa; background: linear-gradient(150deg, #121a36, #070a14); }
+.appicon .m { width: 68%; height: 68%; }
+.avatar { width: 84px; height: 84px; border-radius: 50%; display: grid; place-items: center; background: #05070e; border: 1px solid #ffffff1a; }
+.avatar .m { width: 60%; height: 60%; }
+.monos { display: flex; gap: 14px; }
+.monos > div { width: 84px; height: 84px; border-radius: 18px; display: grid; place-items: center; }
+.monos .m { width: 62%; height: 62%; }
+.mono-ink { --c1: currentColor; --c2: currentColor; --c3: currentColor; --c4: currentColor; }
+.callout { border: 1px solid var(--line); border-radius: var(--r); padding: 22px; background: var(--surface); display: grid; gap: 10px; }
+.callout ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; color: var(--muted); }
+.callout b { color: var(--text); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="wrap" id="app"></div>
+
+<script>
+window.CFG = {
+  name: "learncraft", tld: ".dev",
+  intro: "Ad «öyrənmək» və «ustalıq» sözlərindən ibarətdir: bilik blok-blok qurulur. Formalar referanslardakı kimi həcmli və konstruktivdir. Rənglər və 48-lik şəbəkə əvvəlki variantlarla eynidir.",
+  tagline: "Bilik hazır verilmir, <b>blok-blok qurulur</b>.",
+  wm: [{ t: "learn", cls: "lt" }, { t: "craft" }, { t: ".dev", cls: "tld" }],
+  concepts: [
+    { key: "cube", name: "Kub",
+      idea: "2×2×2 kubun yeddi bloku yerindədir. Səkkizinci, mərcan blok havadadır və yerinə qoyulmaq üzrədir. Öyrənmək ustalıqdır: hər dərs bir blokdur.",
+      plus: "Həcmli və yadda qalan formadır, həm «craft», həm «stack» ideyasını daşıyır. Animasiyada bloklar bir-bir düşür, sonuncu havada yellənir.",
+      minus: "İzometrik kublar tez-tez işlənir (blockchain, oyunlar). Fərqi mərcan blok yaradır, ona görə rəng ayrımı vacibdir." },
+    { key: "brick", name: "Kərpic C", wm: [{ t: "learn", cls: "lt" }, { t: "craft", cls: "grad" }, { t: ".dev", cls: "tld" }],
+      idea: "C hərfi kvadrat bloklardan yığılıb. Yuxarı sağ küncdəki mərcan kərpic hələ yerinə oturur, qırıq xətt onun yerini göstərir.",
+      plus: "Hərflə bağlıdır və 16 px-də də aydın oxunur. Blok estetikası proqramçılara tanışdır.",
+      minus: "Düz və sakit formadır, A qədər həcmli deyil." },
+    { key: "book", name: "Açıq kitab",
+      idea: "Açıq kitabın iki səhifəsi yuxarı baxan V əmələ gətirir. Üstündəki mərcan qığılcım fikrin yarandığı andır.",
+      plus: "«Learn» sözünü dərhal oxudur, isti və dostcanlı görünür.",
+      minus: "Kitab işarəsi təhsil brendlərində çox yayılıb və proqramlaşdırma ilə birbaşa bağlı deyil." },
+    { key: "origami", name: "Qatlanmış L",
+      idea: "Kağızdan qatlanmış L: dik zolaq bükülüb sağa dönür, ucunda mərcan ox var. Origami kimi əl işidir, yəni «craft».",
+      plus: "Orijinal və zərif formadır, irəli hərəkət hissi verir.",
+      minus: "L tək hərfdir, «craft» yalnız qatlanmada hiss olunur. Kiçik ölçüdə qat xətti itir." },
+  ],
+  notes: [
+    { sw: "linear-gradient(var(--c1),var(--c2))", t: "Yeddi blok", d: "Kubun yeddi bloku yerindədir: öyrəndiyin mövzular. Üst qat cyan, alt qat mavidir." },
+    { sw: "transparent;box-shadow:inset 0 0 0 1.5px var(--subtle)", t: "Boş künc", d: "Kubun sənə ən yaxın küncü boşdur. Bu boşluq növbəti mövzunun yeridir." },
+    { sw: "var(--c4)", t: "Əldəki blok", d: "Mərcan blok yuxarıda dayanıb, onu sən yerinə qoyursan. «Craft» sözü elə budur: bilik hazır verilmir, qurulur." },
+    { sw: "linear-gradient(135deg,#fff6 0 33%,var(--c2) 33% 66%,color-mix(in srgb,var(--c2) 66%,#000) 66%)", t: "Üç üz, bir işıq", d: "Üst üz açıq, sol üz əsas rəngdə, sağ üz tünddür: işıq hər yerdə eyni tərəfdən düşür. Kiçik ölçüdə ara xətləri qalınlaşır." },
+  ],
+  swatches: [["Cyan", "--c1", "üst qat"], ["Mavi", "--c2", "alt qat"], ["Bənövşəyi", "--c3", "keçid"], ["Mərcan", "--c4", "əldəki blok"]],
+  type: { k: "Yazı · Inter 450 + 800", d: "«learn» incə, «craft» qalın: vurğu qurmaqdadır", mono: 'lc<span style="color:var(--c4)">/</span>go' },
+  marks: {
+    cube(g, s) {
+      const b = [];
+      const order = [[0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1], [1, 1, 0], [1, 0, 1], [0, 1, 1]];
+      order.forEach(([x, y, z], i) => b.push({ x, y, z, c: z ? "--c1" : "--c2", cls: "pc", d: (0.1 + i * 0.09).toFixed(2) + "s" }));
+      b.push({ x: 1, y: 1, z: 2.45, c: "--c4", cls: "lift", d: "0.85s, 1.6s" });
+      return "|" + window.ISO(b, s, s ? 4 : 5);
+    },
+    brick(g, s) {
+      const sz = 10, gap = s ? 2 : 2.5, o = (48 - 3 * sz - 2 * gap) / 2;
+      const at = (i) => o + i * (sz + gap);
+      const cells = [[0, 0], [1, 0], [0, 1], [0, 2], [1, 2], [2, 2]];
+      let out = `<linearGradient id="${g}" gradientUnits="userSpaceOnUse" x1="6" y1="6" x2="42" y2="42"><stop offset="0" style="stop-color:var(--c1)"/><stop offset=".55" style="stop-color:var(--c2)"/><stop offset="1" style="stop-color:var(--c3)"/></linearGradient>|`;
+      if (!s) out += `<rect x="${at(2)}" y="${at(0)}" width="${sz}" height="${sz}" rx="2.6" fill="none" style="stroke:var(--c4)" stroke-opacity=".55" stroke-dasharray="2 2" stroke-width="1"/>`;
+      cells.forEach(([cx, cy], i) => { out += `<rect class="pc" style="animation-delay:${(0.1 + i * 0.09).toFixed(2)}s" x="${at(cx)}" y="${at(cy)}" width="${sz}" height="${sz}" rx="2.6" fill="url(#${g})"/>`; });
+      const off = s ? 1.6 : 2.8;
+      out += `<rect class="lift" style="animation-delay:.8s, 1.5s;fill:var(--c4)" x="${at(2) + off}" y="${at(0) - off}" width="${sz}" height="${sz}" rx="2.6"/>`;
+      return out;
+    },
+    book(g, s) {
+      const l = `7,16 23.2,22 23.2,40 7,34`, r = `41,16 24.8,22 24.8,40 41,34`;
+      let out = `<linearGradient id="${g}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--c1)"/><stop offset="1" style="stop-color:var(--c2)"/></linearGradient>|<g transform="translate(0 2)">`;
+      out += `<g class="riseup" style="animation-delay:.15s"><polygon points="${l}" fill="url(#${g})" stroke-linejoin="round"/>`;
+      if (!s) out += `<path d="M10.5 22.5 L20 26 M10.5 27 L20 30.5" stroke="#fff" stroke-opacity=".4" stroke-width="1.2" stroke-linecap="round"/>`;
+      out += `</g><g class="riseup" style="animation-delay:.3s"><polygon points="${r}" style="fill:var(--c3)"/><polygon class="ov" points="${r}" fill="#000" fill-opacity=".22"/>`;
+      if (!s) out += `<path d="M37.5 22.5 L28 26 M37.5 27 L28 30.5" stroke="#fff" stroke-opacity=".3" stroke-width="1.2" stroke-linecap="round"/>`;
+      const k = s ? 1.3 : 1, cx = 24, cy = 9;
+      out += `</g><path class="lift" style="animation-delay:.7s, 1.4s;fill:var(--c4)" d="M${cx} ${cy - 5.5 * k} Q${cx + 1 * k} ${cy - 1 * k} ${cx + 5.5 * k} ${cy} Q${cx + 1 * k} ${cy + 1 * k} ${cx} ${cy + 5.5 * k} Q${cx - 1 * k} ${cy + 1 * k} ${cx - 5.5 * k} ${cy} Q${cx - 1 * k} ${cy - 1 * k} ${cx} ${cy - 5.5 * k}Z"/></g>`;
+      return out;
+    },
+    origami(g, s) {
+      const v = `11,7 20,7 20,32 11,41`, h = `11,41 20,32 37,32 37,41`;
+      return `<linearGradient id="${g}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--c1)"/><stop offset="1" style="stop-color:var(--c2)"/></linearGradient>|<g transform="translate(-2.5 0)">` +
+        `<polygon class="riseup" style="animation-delay:.1s" points="${v}" fill="url(#${g})"/>` +
+        `<g class="pc" style="animation-delay:.4s"><polygon points="${h}" style="fill:var(--c3)"/><polygon class="ov" points="${h}" fill="#000" fill-opacity=".18"/>` +
+        (s ? "" : `<path d="M11 41 L20 32" stroke="#fff" stroke-opacity=".45" stroke-width="1"/>`) + `</g>` +
+        `<polygon class="lift" style="animation-delay:.75s, 1.4s;fill:var(--c4)" points="37,32 43,36.5 37,41"/></g>`;
+    },
+  },
+};
+</script>
+<script>
+(function () {
+  const C = window.CFG;
+  let uid = 0;
+
+  // ---------- shared drawing helpers (48×48 grid) ----------
+  // Isometric boxes: draw order = array order (callers pass back-to-front).
+  // Faces: top lightened, +y (left) base, +x (right) darkened; a knockout stroke in the tile colour separates pieces.
+  function iso(boxes, s, pad) {
+    const P = (x, y, z) => [(x - y) * 0.866, (x + y) * 0.5 - z];
+    const faces = [];
+    let minX = 1e9, minY = 1e9, maxX = -1e9, maxY = -1e9;
+    boxes.forEach((b) => {
+      const { x, y, z, dx = 1, dy = 1, dz = 1 } = b;
+      const top = [P(x, y, z + dz), P(x + dx, y, z + dz), P(x + dx, y + dy, z + dz), P(x, y + dy, z + dz)];
+      const right = [P(x + dx, y, z), P(x + dx, y + dy, z), P(x + dx, y + dy, z + dz), P(x + dx, y, z + dz)];
+      const left = [P(x, y + dy, z), P(x + dx, y + dy, z), P(x + dx, y + dy, z + dz), P(x, y + dy, z + dz)];
+      [top, right, left].flat().forEach(([px, py]) => { minX = Math.min(minX, px); maxX = Math.max(maxX, px); minY = Math.min(minY, py); maxY = Math.max(maxY, py); });
+      faces.push({ b, top, right, left });
+    });
+    const p = pad == null ? 6 : pad;
+    const k = Math.min((48 - 2 * p) / (maxX - minX), (48 - 2 * p) / (maxY - minY));
+    const ox = 24 - ((minX + maxX) / 2) * k, oy = 24 - ((minY + maxY) / 2) * k;
+    const pts = (f) => f.map(([px, py]) => `${(ox + px * k).toFixed(2)},${(oy + py * k).toFixed(2)}`).join(" ");
+    const sw = s ? 1.5 : 1;
+    const poly = (f, c, ov, op) =>
+      `<polygon points="${pts(f)}" style="fill:var(${c})"/>` +
+      (ov ? `<polygon points="${pts(f)}" fill="${ov}" fill-opacity="${op}" class="ov"/>` : "") +
+      `<polygon points="${pts(f)}" fill="none" style="stroke:var(--tile)" stroke-width="${sw}" stroke-linejoin="round"/>`;
+    return faces.map(({ b, top, right, left }) =>
+      `<g class="${b.cls || ""}" style="${b.d ? "animation-delay:" + b.d : ""}">` +
+      poly(left, b.c) + poly(right, b.c, "#000", 0.34) + poly(top, b.c, "#fff", 0.22) + "</g>").join("");
+  }
+  window.ISO = iso;
+
+  function svg(kind, opts) {
+    const o = new Set((opts || "").split(/\s+/).filter(Boolean));
+    const g = "g" + (++uid), small = o.has("small");
+    let [defs, body] = C.marks[kind](g, small, o).split("|");
+    if (o.has("flat")) { body = body.replace(/url\(#g\d+\w*\)/g, "currentColor").replace(/<polygon[^>]*class="ov"[^>]*\/>/g, ""); defs = ""; }
+    let tile = "";
+    if (o.has("tile")) {
+      defs += `<linearGradient id="${g}t" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--c1)"/><stop offset=".5" style="stop-color:var(--c2)"/><stop offset="1" style="stop-color:var(--c3)"/></linearGradient>`;
+      tile = `<rect x="1" y="1" width="46" height="46" rx="13" style="fill:var(--tile)"/><rect x="1.5" y="1.5" width="45" height="45" rx="12.5" fill="none" stroke="url(#${g}t)" stroke-opacity=".6"/>`;
+      body = `<g transform="translate(24 24) scale(.84) translate(-24 -24)">${body}</g>`;
+    }
+    return `<svg class="mk" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><defs>${defs}</defs>${tile}${body}</svg>`;
+  }
+
+  // wordmark from parts: [{t, cls}]
+  const wm = (parts, extra) => `<span class="wm${extra ? " " + extra : ""}">${parts.map((p) => p.cls ? `<span class="${p.cls}">${p.t}</span>` : p.t).join("")}</span>`;
+  function wmHero(parts) {
+    let d = 1.0;
+    return parts.map((p) => {
+      const chars = p.cls === "tld" ? [p.t] : p.t.split("");
+      const inner = chars.map((c) => { const s = `<span class="ch" style="animation-delay:${d.toFixed(2)}s">${c}</span>`; d += 0.05; return s; }).join("");
+      return p.cls ? `<span class="${p.cls}">${inner}</span>` : inner;
+    }).join("");
+  }
+
+  const lead = C.concepts[0];
+  const WM = (c) => wm(c.wm || C.wm, c.wmClass);
+  const esc = (s) => s;
+
+  // ---------- page ----------
+  const app = document.getElementById("app");
+  app.innerHTML = `
+  <header class="top">
+    <div class="top-l">
+      <span class="kicker">// brend · loqo konsepsiyaları · v1</span>
+      <h1>${C.name}${C.tld} loqosu</h1>
+      <p class="muted">${C.intro}</p>
+    </div>
+    <div class="controls">
+      <div class="seg" role="group" aria-label="Palitra">
+        <button id="pal-aurora" data-pal="aurora" aria-pressed="true"><i class="dot" style="background:linear-gradient(135deg,#4fd6ff,#6d8dff,#a98bff,#ff8a6b)"></i>Aurora</button>
+        <button id="pal-indigo" data-pal="indigo" aria-pressed="false"><i class="dot" style="background:linear-gradient(135deg,#8686ff,#c98cff)"></i>Indigo</button>
+        <button id="pal-ocean" data-pal="ocean" aria-pressed="false"><i class="dot" style="background:linear-gradient(135deg,#38bdf8,#34e0c0)"></i>Ocean</button>
+      </div>
+      <button class="pill" id="theme-btn" type="button">Tema: sistem</button>
+    </div>
+  </header>
+
+  <section class="stage on-dark play" id="stage" aria-label="Tövsiyə olunan loqo">
+    <i class="aur a1"></i><i class="aur a2"></i><i class="aur a3"></i>
+    <span class="ghost">${svg(lead.key, "")}</span>
+    <div class="lockup-hero">
+      <span class="m">${svg(lead.key, "hero")}</span>
+      <span class="wm${lead.wmClass ? " " + lead.wmClass : ""}" aria-label="${C.name}${C.tld}">${wmHero(lead.wm || C.wm)}</span>
+    </div>
+    <p class="tagline">${C.tagline}</p>
+    <button class="pill replay" id="replay" type="button">↻ Yenidən oynat</button>
+  </section>
+
+  <section class="sec" aria-labelledby="c-h">
+    <div class="sec-head">
+      <span class="kicker">// 4 istiqamət</span>
+      <h2 id="c-h">Konsepsiyalar</h2>
+      <p class="muted">Hər kartda: işıqlı və qaranlıq fonda işarə, sayt başlığındakı birləşmə (lockup) və 64 → 16 px ölçü pilləsi. Kiçik ölçülərdə qalınlaşmış variant işləyir.</p>
+    </div>
+    <div class="grid2">
+      ${C.concepts.map((c, i) => `
+      <article class="card${i === 0 ? " lead" : ""}">
+        <div class="card-h"><h3><span class="k">${"ABCD"[i]}</span>${c.name}</h3>${i === 0 ? '<span class="badge">Tövsiyə</span>' : ""}</div>
+        <p class="idea">${c.idea}</p>
+        <div class="previews">
+          <div class="pv on-light"><span class="m">${svg(c.key, "")}</span></div>
+          <div class="pv on-dark"><span class="m">${svg(c.key, "")}</span></div>
+          <div class="pv pv-lock"><span class="lock"><span class="m">${svg(c.key, "tile small")}</span>${WM(c)}</span></div>
+        </div>
+        <div class="ladder">${[[64, ""], [32, "tile small"], [24, "tile small"], [16, "tile small"]].map(([px, o]) => `<figure><span class="m" style="width:${px}px;height:${px}px">${svg(c.key, o)}</span><figcaption>${px}px</figcaption></figure>`).join("")}</div>
+        <div class="pc2"><div class="plus"><b>Güclü tərəfi</b><span>${c.plus}</span></div><div class="minus"><b>Riski</b><span>${c.minus}</span></div></div>
+      </article>`).join("")}
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="a-h">
+    <div class="sec-head">
+      <span class="kicker">// A · anatomiya</span>
+      <h2 id="a-h">«${lead.name}» necə qurulub</h2>
+    </div>
+    <div class="anat">
+      <div class="keylines"><span class="m">${svg(lead.key, "")}</span><span class="lbl">48 × 48 · addım 4</span></div>
+      <ul class="notes">${C.notes.map((n) => `<li><i class="nd" style="background:${n.sw}"></i><div><b>${n.t}</b><span>${n.d}</span></div></li>`).join("")}</ul>
+    </div>
+    <div class="specs" id="swatches"></div>
+    <div class="type-row">
+      <div><span class="kicker">${C.type.k}</span><span class="big">${WM(lead)}</span><span class="muted" style="font-size:13px">${C.type.d}</span></div>
+      <div><span class="kicker">Mono · JetBrains Mono</span><span class="big mono" style="font-weight:500;letter-spacing:-0.03em">${C.type.mono}</span><span class="muted" style="font-size:13px">alt bölmələr, kicker-lər və kod etiketləri üçün</span></div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="u-h">
+    <div class="sec-head">
+      <span class="kicker">// A · istifadədə</span>
+      <h2 id="u-h">Saytda və ondan kənarda</h2>
+    </div>
+    <div class="usage">
+      ${["on-dark", "on-light"].map((t) => `
+      <div class="u">
+        <div class="${t}">
+          <div class="mock-head"><span class="lock"><span class="m">${svg(lead.key, "tile small")}</span>${WM(lead)}</span><nav><span>Yol xəritələri</span><span>Texnologiyalar</span><span>Go</span></nav></div>
+          <div class="mock-body"><h4>Hello, World-dən ilk iş gününə qədər.</h4><p>Yol xəritəsi, nəzəriyyə və praktika bir yerdə.</p></div>
+        </div>
+        <div class="u-cap">Sayt başlığı · ${t === "on-dark" ? "qaranlıq" : "işıqlı"}</div>
+      </div>`).join("")}
+      <div class="u">
+        <div>
+          <div class="on-light"><div class="tabbar"><div class="tab act"><span class="m">${svg(lead.key, "tile small")}</span><span>Slices · Go · ${C.name}</span></div><div class="tab dim"><span>Yeni tab</span></div></div><div class="urlbar">${C.name}${C.tld}/go/slices</div></div>
+          <div class="on-dark"><div class="tabbar"><div class="tab act"><span class="m">${svg(lead.key, "tile small")}</span><span>Go yol xəritəsi · ${C.name}</span></div><div class="tab dim"><span>Yeni tab</span></div></div><div class="urlbar">${C.name}${C.tld}/go/roadmap</div></div>
+        </div>
+        <div class="u-cap">Favicon · 16 px, iki temada</div>
+      </div>
+      <div class="u">
+        <div class="icons">
+          <div class="appicon on-dark"><span class="m">${svg(lead.key, "small")}</span></div>
+          <div class="avatar on-dark"><span class="m">${svg(lead.key, "small")}</span></div>
+          <div class="monos">
+            <div style="background:#0c1222;color:#fff;--tile:#0c1222"><span class="m mono-ink">${svg(lead.key, "small flat")}</span></div>
+            <div style="background:#fff;color:#0c1222;border:1px solid #dfe4ef;--tile:#fff"><span class="m mono-ink">${svg(lead.key, "small flat")}</span></div>
+          </div>
+        </div>
+        <div class="u-cap">Tətbiq ikonu · sosial avatar · birrəngli (çap, möhür)</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="callout" aria-labelledby="n-h">
+    <span class="kicker">// növbəti addım</span>
+    <h2 id="n-h" style="font-size:20px">Ad seçiləndən sonra</h2>
+    <ol>
+      <li><b>Ad:</b> w3hub.dev, beststack.dev, learncraft və stackrise arasında seçim, domenlərin yoxlanması.</li>
+      <li><b>SVG faylları:</b> işarə, lockup, favicon (16/32/ICO), tətbiq ikonu və birrəngli variant.</li>
+      <li><b>Animasiya</b> (<span class="mono">prefers-reduced-motion</span> zamanı statik), OG şəkli və <span class="mono">packages/theme</span>-ə köçürmə.</li>
+    </ol>
+  </section>`;
+
+  // ---------- swatches, replay, palette, theme ----------
+  function paintSwatches() {
+    const cs = getComputedStyle(document.documentElement);
+    document.getElementById("swatches").innerHTML = C.swatches.map(([n, v, role]) =>
+      `<div class="sw"><i style="background:var(${v})"></i><div><b>${n} · ${role}</b><code>${cs.getPropertyValue(v).trim()}</code></div></div>`).join("");
+  }
+  paintSwatches();
+
+  const stage = document.getElementById("stage");
+  document.getElementById("replay").addEventListener("click", () => { stage.classList.remove("play"); void stage.offsetWidth; stage.classList.add("play"); });
+
+  const root = document.documentElement;
+  document.querySelectorAll("[data-pal]").forEach((b) => b.addEventListener("click", () => {
+    const p = b.dataset.pal;
+    if (p === "aurora") root.removeAttribute("data-palette"); else root.setAttribute("data-palette", p);
+    document.querySelectorAll("[data-pal]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+    paintSwatches();
+  }));
+
+  const tb = document.getElementById("theme-btn");
+  const labels = { system: "Tema: sistem", light: "Tema: işıqlı", dark: "Tema: qaranlıq" };
+  const key = "logo:" + C.name + ":theme";
+  let theme = "system";
+  try { theme = localStorage.getItem(key) || "system"; } catch (e) {}
+  function applyTheme() {
+    if (theme === "system") root.removeAttribute("data-theme"); else root.setAttribute("data-theme", theme);
+    tb.textContent = labels[theme] || labels.system;
+    paintSwatches();
+  }
+  applyTheme();
+  tb.addEventListener("click", () => {
+    theme = theme === "system" ? "light" : theme === "light" ? "dark" : "system";
+    try { localStorage.setItem(key, theme); } catch (e) {}
+    applyTheme();
+  });
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", paintSwatches);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>beststack.dev loqosu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: one column brand sheet — dark aurora stage with the lead mark, then a 2×2 concept grid, anatomy, usage mocks. Tokens follow the site's design v2/v3. */
+:root {
+  --bg: #f3f5fb; --surface: #ffffff; --surface-2: #eef1f9;
+  --text: #0c1222; --muted: #556077; --subtle: #8a93a8;
+  --line: #dfe4ef; --line-strong: #c7cfdf;
+  --L1: #0ea5c6; --L2: #3b6ef5; --L3: #8b5cf6; --L4: #f97362;
+  --D1: #4fd6ff; --D2: #6d8dff; --D3: #a98bff; --D4: #ff8a6b;
+  --c1: var(--L1); --c2: var(--L2); --c3: var(--L3); --c4: var(--L4);
+  --tile: var(--surface);
+  --stage-text: #eef2ff; --stage-muted: #98a2bb;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  --r: 18px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #05070d; --surface: #0b0f1a; --surface-2: #111727;
+    --text: #e9edf7; --muted: #9aa4ba; --subtle: #6b7489;
+    --line: #1a2133; --line-strong: #2a3348;
+    --c1: var(--D1); --c2: var(--D2); --c3: var(--D3); --c4: var(--D4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #05070d; --surface: #0b0f1a; --surface-2: #111727;
+  --text: #e9edf7; --muted: #9aa4ba; --subtle: #6b7489;
+  --line: #1a2133; --line-strong: #2a3348;
+  --c1: var(--D1); --c2: var(--D2); --c3: var(--D3); --c4: var(--D4);
+  color-scheme: dark;
+}
+:root[data-palette="indigo"] { --L2: #5b5bf0; --L3: #b062f5; --D2: #8686ff; --D3: #c98cff; }
+:root[data-palette="ocean"] { --L2: #0284c7; --L3: #4f6ef7; --L4: #14b89a; --D2: #38bdf8; --D3: #818cf8; --D4: #34e0c0; }
+
+.on-dark { --c1: var(--D1); --c2: var(--D2); --c3: var(--D3); --c4: var(--D4); --tile: #0a0f1c; background: #05070e; color: #eef2ff; }
+.on-light { --c1: var(--L1); --c2: var(--L2); --c3: var(--L3); --c4: var(--L4); --tile: #ffffff; background: #f3f5fb; color: #0c1222; }
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--text); font: 400 15px/1.6 var(--font-sans); -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-block: 28px 64px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 56px; }
+h1, h2, h3 { margin: 0; letter-spacing: -0.03em; text-wrap: balance; }
+h2 { font-size: clamp(22px, 3vw, 28px); font-weight: 750; }
+p { margin: 0; }
+.kicker { font: 500 12.5px/1 var(--font-mono); color: var(--c2); letter-spacing: 0.02em; }
+.muted { color: var(--muted); }
+.mono { font-family: var(--font-mono); }
+button { font: inherit; color: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--c2); outline-offset: 3px; border-radius: 8px; }
+svg.mk { display: block; width: 100%; height: 100%; overflow: visible; }
+
+.top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; }
+.top-l { display: grid; gap: 8px; min-width: 0; }
+.top h1 { font-size: clamp(26px, 4vw, 36px); font-weight: 800; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; }
+.pill { display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 14px; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--surface); font: 500 12.5px/1 var(--font-mono); color: var(--muted); }
+.pill:hover { color: var(--text); }
+.seg { display: inline-flex; gap: 3px; padding: 3px; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--surface); }
+.seg button { height: 28px; padding: 0 12px; border: 0; border-radius: 999px; background: none; font: 500 12px/1 var(--font-mono); color: var(--muted); display: inline-flex; align-items: center; gap: 6px; }
+.seg button[aria-pressed="true"] { background: var(--surface-2); color: var(--text); }
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+
+.stage { position: relative; overflow: hidden; border-radius: 26px; padding: clamp(40px, 7vw, 84px) 24px clamp(36px, 6vw, 64px); display: grid; justify-items: center; gap: 28px; isolation: isolate; border: 1px solid #1a2133; }
+.stage::before { content: ""; position: absolute; inset: 0; z-index: -1; background-image: linear-gradient(#ffffff0a 1px, transparent 1px), linear-gradient(90deg, #ffffff0a 1px, transparent 1px); background-size: 40px 40px; mask-image: radial-gradient(ellipse at 50% 45%, #000 20%, transparent 75%); }
+.aur { position: absolute; z-index: -2; border-radius: 50%; filter: blur(60px); }
+.aur.a1 { width: 46%; height: 60%; left: 8%; top: 14%; background: var(--c2); opacity: .26; animation: drift 14s ease-in-out infinite alternate; }
+.aur.a2 { width: 40%; height: 55%; left: 36%; top: 34%; background: var(--c3); opacity: .3; animation: drift 17s ease-in-out infinite alternate-reverse; }
+.aur.a3 { width: 30%; height: 45%; right: 8%; top: 2%; background: var(--c4); opacity: .24; animation: drift 12s ease-in-out infinite alternate; }
+@keyframes drift { to { transform: translate(6%, -8%) scale(1.15); } }
+.lockup-hero { display: flex; align-items: center; gap: clamp(14px, 2.4vw, 26px); flex-wrap: wrap; justify-content: center; }
+.lockup-hero .m { width: clamp(84px, 13vw, 132px); aspect-ratio: 1; max-width: 100%; }
+.wm { font-weight: 800; letter-spacing: -0.045em; line-height: 1; white-space: nowrap; }
+.wm .lt { font-weight: 450; opacity: .72; }
+.wm .tld { font-family: var(--font-mono); font-weight: 500; letter-spacing: -0.02em; opacity: .5; }
+.wm.code { font-family: var(--font-mono); font-weight: 600; letter-spacing: -0.06em; }
+.wm.code .br { color: var(--c4); font-weight: 500; }
+.lockup-hero .wm { font-size: clamp(40px, 8.4vw, 88px); }
+.lockup-hero .wm .ch { display: inline-block; }
+.tagline { font: 500 13px/1.5 var(--font-mono); color: var(--stage-muted); text-align: center; }
+.tagline b { color: var(--stage-text); font-weight: 500; }
+.replay { position: absolute; right: 14px; bottom: 14px; background: #ffffff10; border-color: #ffffff24; color: #c8d0e4; }
+.replay:hover { color: #fff; }
+
+/* hero animation: the stem grows, the layers slide in and stack, the top layer glows */
+.play .b-stem { transform-box: fill-box; transform-origin: 50% 100%; animation: grow .6s .15s cubic-bezier(.3, 1.2, .5, 1) backwards; }
+.play .b-bar { transform-box: fill-box; animation: slide .6s cubic-bezier(.2, .9, .25, 1.15) backwards; }
+.play .bar1 { animation-delay: .55s; }
+.play .bar2 { animation-delay: .75s; }
+.play .bar3 { animation-delay: .95s; }
+.play .b-glow { animation: glow 3s 1.6s ease-in-out infinite backwards; }
+.play .ch { animation: rise .6s cubic-bezier(.2, .8, .2, 1) backwards; }
+@keyframes grow { from { transform: scaleY(0); } }
+@keyframes slide { from { transform: translate(16px, -10px); opacity: 0; } }
+@keyframes glow { 0%, 100% { opacity: 0; } 50% { opacity: .55; } }
+@keyframes rise { from { transform: translateY(.35em); opacity: 0; filter: blur(6px); } }
+.b-glow { opacity: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .play *, .aur { animation: none !important; }
+}
+
+.sec { display: grid; gap: 22px; }
+.sec-head { display: grid; gap: 8px; max-width: 68ch; }
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+@media (max-width: 860px) { .grid2 { grid-template-columns: minmax(0, 1fr); } }
+.card { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 22px; display: grid; gap: 18px; align-content: start; min-width: 0; }
+.card.lead { border-color: color-mix(in srgb, var(--c2) 55%, var(--line)); box-shadow: 0 0 0 1px color-mix(in srgb, var(--c2) 25%, transparent), 0 20px 50px -30px color-mix(in srgb, var(--c2) 60%, transparent); }
+.card-h { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.card-h h3 { font-size: 21px; font-weight: 750; }
+.card-h h3 .k { font: 600 12px/1 var(--font-mono); color: var(--subtle); margin-right: 8px; letter-spacing: 0; }
+.badge { font: 600 10.5px/1 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; padding: 6px 9px; border-radius: 999px; color: var(--c2); background: color-mix(in srgb, var(--c2) 12%, transparent); border: 1px solid color-mix(in srgb, var(--c2) 35%, transparent); }
+.idea { color: var(--muted); max-width: 60ch; }
+.previews { display: grid; grid-template-columns: 1fr 1fr 1.6fr; gap: 10px; }
+@media (max-width: 560px) { .previews { grid-template-columns: 1fr 1fr; } .previews .pv-lock { grid-column: 1 / -1; } }
+.pv { border-radius: 14px; aspect-ratio: 1; display: grid; place-items: center; border: 1px solid var(--line); min-width: 0; max-width: 100%; }
+.pv .m { width: 56%; aspect-ratio: 1; }
+.pv-lock { aspect-ratio: auto; background: var(--surface-2); padding: 14px; overflow: hidden; }
+.lock { display: inline-flex; align-items: center; gap: 10px; min-width: 0; }
+.lock .m { width: 34px; height: 34px; flex: none; }
+.lock .wm { font-size: 21px; }
+.ladder { display: flex; align-items: end; gap: 18px; flex-wrap: wrap; border-top: 1px dashed var(--line); padding-top: 16px; }
+.ladder figure { margin: 0; display: grid; justify-items: center; gap: 6px; }
+.ladder figcaption { font: 500 10.5px/1 var(--font-mono); color: var(--subtle); font-variant-numeric: tabular-nums; }
+.ladder .m { flex: none; }
+.pc { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; font-size: 13.5px; }
+@media (max-width: 520px) { .pc { grid-template-columns: minmax(0, 1fr); } }
+.pc div { display: grid; gap: 4px; align-content: start; }
+.pc b { font: 600 10.5px/1.4 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; }
+.pc .plus b { color: color-mix(in srgb, #16a34a 80%, var(--text)); }
+.pc .minus b { color: var(--c4); }
+.pc span { color: var(--muted); }
+
+.anat { display: grid; grid-template-columns: minmax(0, 360px) minmax(0, 1fr); gap: clamp(20px, 4vw, 48px); align-items: center; }
+@media (max-width: 760px) { .anat { grid-template-columns: minmax(0, 1fr); } }
+.keylines { position: relative; aspect-ratio: 1; width: 100%; max-width: 360px; border-radius: var(--r); border: 1px solid var(--line); background-color: var(--surface);
+  background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: calc(100% / 12) calc(100% / 12); background-position: -0.5px -0.5px; }
+.keylines .m { position: absolute; inset: 0; }
+.keylines .lbl { position: absolute; font: 500 10px/1 var(--font-mono); color: var(--subtle); }
+.notes { display: grid; gap: 16px; list-style: none; margin: 0; padding: 0; }
+.notes li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 12px; align-items: start; }
+.notes .nd { width: 18px; height: 8px; border-radius: 4px; margin-top: 7px; justify-self: center; }
+.notes .nd.tall { width: 8px; height: 18px; margin-top: 2px; }
+.notes b { display: block; font-weight: 650; }
+.notes span { color: var(--muted); font-size: 14px; }
+.specs { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.sw { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--surface); }
+.sw i { display: block; height: 56px; }
+.sw div { padding: 10px 12px; display: grid; gap: 2px; }
+.sw b { font-size: 13px; font-weight: 650; }
+.sw code { font: 500 11.5px/1.4 var(--font-mono); color: var(--muted); }
+.type-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; }
+.type-row > div { border: 1px solid var(--line); border-radius: 14px; padding: 16px; background: var(--surface); display: grid; gap: 6px; min-width: 0; overflow: hidden; }
+.type-row .big { font-size: 32px; line-height: 1.1; }
+
+.usage { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+@media (max-width: 860px) { .usage { grid-template-columns: minmax(0, 1fr); } }
+.u { border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; display: grid; min-width: 0; }
+.u-cap { padding: 12px 16px; font: 500 12px/1.4 var(--font-mono); color: var(--muted); background: var(--surface); border-top: 1px solid var(--line); }
+.mock-head { display: flex; align-items: center; gap: 22px; padding: 16px 20px; border-bottom: 1px solid #8881; overflow: hidden; }
+.mock-head .lock .m { width: 28px; height: 28px; }
+.mock-head .lock .wm { font-size: 17px; letter-spacing: -0.03em; }
+.mock-head nav { display: flex; gap: 18px; font-size: 13.5px; opacity: .7; white-space: nowrap; }
+@media (max-width: 560px) { .mock-head nav { display: none; } }
+.mock-body { padding: 26px 20px 30px; display: grid; gap: 8px; }
+.mock-body h4 { margin: 0; font-size: 22px; letter-spacing: -0.03em; }
+.mock-body p { opacity: .65; font-size: 13.5px; }
+.tabbar { display: flex; align-items: end; gap: 2px; padding: 10px 10px 0; }
+.tab { display: flex; align-items: center; gap: 8px; height: 34px; padding: 0 14px; border-radius: 10px 10px 0 0; font-size: 12.5px; max-width: 240px; min-width: 0; }
+.tab span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tab .m { width: 16px; height: 16px; flex: none; }
+.tab.dim { opacity: .5; }
+.on-light .tabbar { background: #dde2ee; } .on-light .tab.act { background: #f3f5fb; }
+.on-dark .tabbar { background: #0e1322; } .on-dark .tab.act { background: #05070e; }
+.urlbar { margin: 8px 12px 14px; height: 30px; border-radius: 999px; display: flex; align-items: center; padding: 0 14px; font: 500 12px/1 var(--font-mono); }
+.on-light .urlbar { background: #e6eaf3; color: #556077; } .on-dark .urlbar { background: #111727; color: #98a2bb; }
+.icons { display: flex; align-items: center; justify-content: center; gap: clamp(16px, 4vw, 36px); padding: 30px 16px; flex-wrap: wrap; background: var(--surface-2); }
+.appicon { width: 96px; height: 96px; border-radius: 24px; display: grid; place-items: center; box-shadow: 0 16px 40px -18px #8b5cf6aa; background: linear-gradient(150deg, #161433, #070a14); }
+.appicon .m { width: 66%; height: 66%; }
+.avatar { width: 84px; height: 84px; border-radius: 50%; display: grid; place-items: center; background: #05070e; border: 1px solid #ffffff1a; }
+.avatar .m { width: 58%; height: 58%; }
+.monos { display: flex; gap: 14px; }
+.monos > div { width: 84px; height: 84px; border-radius: 18px; display: grid; place-items: center; }
+.monos .m { width: 60%; height: 60%; }
+.mono-ink { --c1: currentColor; --c2: currentColor; --c3: currentColor; --c4: currentColor; }
+.callout { border: 1px solid var(--line); border-radius: var(--r); padding: 22px; background: var(--surface); display: grid; gap: 10px; }
+.callout ol, .callout ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; color: var(--muted); }
+.callout b { color: var(--text); font-weight: 600; }
+.compare { display: flex; flex-wrap: wrap; gap: 10px 28px; align-items: center; padding: 6px 0 2px; }
+.compare .wm { font-size: 26px; }
+.compare small { display: block; font: 500 11px/1.4 var(--font-mono); color: var(--subtle); margin-top: 6px; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <div class="top-l">
+      <span class="kicker">// brend · loqo konsepsiyaları · v1</span>
+      <h1>beststack.dev loqosu</h1>
+      <p class="muted">İkinci ad üçün dörd istiqamət. Rənglər, şriftlər və 48-lik şəbəkə w3hub variantındakı kimidir, ona görə iki ad yan-yana müqayisə oluna bilir.</p>
+    </div>
+    <div class="controls">
+      <div class="seg" role="group" aria-label="Palitra">
+        <button id="pal-aurora" data-pal="aurora" aria-pressed="true"><i class="dot" style="background:linear-gradient(135deg,#4fd6ff,#6d8dff,#a98bff,#ff8a6b)"></i>Aurora</button>
+        <button id="pal-indigo" data-pal="indigo" aria-pressed="false"><i class="dot" style="background:linear-gradient(135deg,#8686ff,#c98cff)"></i>Indigo</button>
+        <button id="pal-ocean" data-pal="ocean" aria-pressed="false"><i class="dot" style="background:linear-gradient(135deg,#38bdf8,#34e0c0)"></i>Ocean</button>
+      </div>
+      <button class="pill" id="theme-btn" type="button">Tema: sistem</button>
+    </div>
+  </header>
+
+  <section class="stage on-dark play" id="stage" aria-label="Tövsiyə olunan loqo">
+    <i class="aur a1"></i><i class="aur a2"></i><i class="aur a3"></i>
+    <div class="lockup-hero">
+      <span class="m" data-mark="stackb" data-opts="hero"></span>
+      <span class="wm" id="hero-wm" aria-label="beststack.dev"></span>
+    </div>
+    <p class="tagline">Stack qat-qat qurulur — <b>təməldən ən üst qata qədər</b>.</p>
+    <button class="pill replay" id="replay" type="button">↻ Yenidən oynat</button>
+  </section>
+
+  <section class="sec" aria-labelledby="c-h">
+    <div class="sec-head">
+      <span class="kicker">// 4 istiqamət</span>
+      <h2 id="c-h">Konsepsiyalar</h2>
+      <p class="muted">Hər kartda: işıqlı və qaranlıq fonda işarə, sayt başlığındakı birləşmə (lockup) və 64 → 16 px ölçü pilləsi. Kiçik ölçülərdə qalınlaşmış variant işləyir.</p>
+    </div>
+    <div class="grid2">
+      <article class="card lead">
+        <div class="card-h"><h3><span class="k">A</span>Qatlı b</h3><span class="badge">Tövsiyə</span></div>
+        <p class="idea">«b» hərfi stack-dən yığılıb: dik xətt təməldir, qarın hissəsi isə üst-üstə qoyulmuş üç qatdır. Ən üstdəki mərcan qat «best»-dir, yəni öyrənməyin çatdığı səviyyə.</p>
+        <div class="previews" data-concept="stackb"></div>
+        <div class="ladder" data-ladder="stackb"></div>
+        <div class="pc"><div class="plus"><b>Güclü tərəfi</b><span>Həm hərfdir, həm stack. Adın iki hissəsini bir işarədə birləşdirir və qatların yığılması kimi gözəl animasiya olunur.</span></div><div class="minus"><b>Riski</b><span>16 px-də qatların arası bağlanır və işarə adi «b»-yə çevrilir. Bu pis deyil, amma qat ideyası itir.</span></div></div>
+      </article>
+
+      <article class="card">
+        <div class="card-h"><h3><span class="k">B</span>Pillələr</h3></div>
+        <p class="idea">Üç qat pillə kimi sağa-yuxarı qalxır, ən yuxarıda mərcan qığılcım var. Stack eyni zamanda karyera pilləkənidir: hər qat bir səviyyə.</p>
+        <div class="previews" data-concept="steps"></div>
+        <div class="ladder" data-ladder="steps"></div>
+        <div class="pc"><div class="plus"><b>Güclü tərəfi</b><span>İnkişaf ideyasını birbaşa göstərir. Bütün ölçülərdə aydın qalır.</span></div><div class="minus"><b>Riski</b><span>Qrafik və ya analitika məhsuluna bənzəyir, hərflə bağlı deyil.</span></div></div>
+      </article>
+
+      <article class="card">
+        <div class="card-h"><h3><span class="k">C</span>İzometrik yığın</h3></div>
+        <p class="idea">Klassik «qatlar» işarəsi: üst-üstə üç plitə. Ən üstdəki plitə isti rəngdədir, yəni seçilmiş ən yaxşı qat odur.</p>
+        <div class="previews" data-concept="iso"></div>
+        <div class="ladder" data-ladder="iso"></div>
+        <div class="pc"><div class="plus"><b>Güclü tərəfi</b><span>«Stack» sözünü dərhal oxudur. Favicon kimi çox möhkəmdir.</span></div><div class="minus"><b>Riski</b><span>Bu forma çox yayılıb (Stack Overflow, layer ikonları). Ən az fərdi variant budur.</span></div></div>
+      </article>
+
+      <article class="card">
+        <div class="card-h"><h3><span class="k">D</span>Kod bloku</h3></div>
+        <p class="idea">Fiqurlu mötərizələrin içində üç qat: <span class="mono">{≡}</span>. Kod və stack bir işarədə. Yazı JetBrains Mono ilə: <span class="mono">best{stack}</span>.</p>
+        <div class="previews" data-concept="brace"></div>
+        <div class="ladder" data-ladder="brace"></div>
+        <div class="pc"><div class="plus"><b>Güclü tərəfi</b><span>Proqramçılar üçün dərhal tanışdır. Mono yazı saytdakı kicker-lərlə eyni dildədir.</span></div><div class="minus"><b>Riski</b><span>Mötərizə ideyası developer brendlərində çox işlənir. Uzaqdan baxanda «menyu» ikonuna bənzəyə bilər.</span></div></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="a-h">
+    <div class="sec-head">
+      <span class="kicker">// A · anatomiya</span>
+      <h2 id="a-h">«Qatlı b» necə qurulub</h2>
+    </div>
+    <div class="anat">
+      <div class="keylines">
+        <span class="m" data-mark="stackb"></span>
+        <span class="lbl" style="left:8px;top:8px">48 × 48 · addım 4</span>
+      </div>
+      <ul class="notes">
+        <li><i class="nd tall" style="background:linear-gradient(var(--c1),var(--c2))"></i><div><b>Təməl</b><span>Dik xətt: dil, alətlər, əsaslar. Bütün qatlar ona söykənir.</span></div></li>
+        <li><i class="nd" style="background:var(--c2)"></i><div><b>Əsas qat</b><span>Ən aşağı qat: ilk mövzular və praktika.</span></div></li>
+        <li><i class="nd" style="background:var(--c3)"></i><div><b>Orta qat</b><span>Ən geniş qat: framework-lər, verilənlər bazası, infrastruktur. «b»-nin qarnını formalaşdırır.</span></div></li>
+        <li><i class="nd" style="background:var(--c4);box-shadow:0 0 12px color-mix(in srgb, var(--c4) 60%, transparent)"></i><div><b>Ən üst qat</b><span>Mərcan rəng: «best». Saytda «növbəti addım» vurğusu ilə eyni rəngdir.</span></div></li>
+      </ul>
+    </div>
+    <div class="specs" id="swatches"></div>
+    <div class="type-row">
+      <div><span class="kicker">Yazı · Inter 450 + 800</span><span class="wm big"><span class="lt">best</span>stack<span class="tld">.dev</span></span><span class="muted" style="font-size:13px">«best» incə yazılır, vurğu «stack»-dədir</span></div>
+      <div><span class="kicker">Mono · JetBrains Mono</span><span class="big mono" style="font-weight:500;letter-spacing:-0.03em">bs<span style="color:var(--c4)">/</span>go</span><span class="muted" style="font-size:13px">alt bölmələr, kicker-lər və kod etiketləri üçün</span></div>
+    </div>
+  </section>
+
+  <section class="callout" aria-labelledby="w-h">
+    <span class="kicker">// yazı qərarı</span>
+    <h2 id="w-h" style="font-size:20px">«best» niyə incə yazılıb</h2>
+    <p class="muted" style="max-width:68ch">«beststack» adı özünü tərifləyən iddia kimi oxuna bilər. «best»-i incə, «stack»-i qalın yazanda göz əvvəlcə «stack»-i görür: ad öyünmək kimi yox, mövzunu bildirən söz kimi oxunur.</p>
+    <div class="compare">
+      <div><span class="wm">beststack<span class="tld">.dev</span></span><small>eyni qalınlıq · iddia önə çıxır</small></div>
+      <div><span class="wm"><span class="lt">best</span>stack<span class="tld">.dev</span></span><small>tövsiyə · vurğu stack-dədir</small></div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="u-h">
+    <div class="sec-head">
+      <span class="kicker">// A · istifadədə</span>
+      <h2 id="u-h">Saytda və ondan kənarda</h2>
+    </div>
+    <div class="usage">
+      <div class="u">
+        <div class="on-dark">
+          <div class="mock-head"><span class="lock"><span class="m" data-mark="stackb" data-opts="tile small"></span><span class="wm"><span class="lt">best</span>stack<span class="tld">.dev</span></span></span><nav><span>Yol xəritələri</span><span>Texnologiyalar</span><span>Go</span></nav></div>
+          <div class="mock-body"><h4>Hello, World-dən ilk iş gününə qədər.</h4><p>Yol xəritəsi, nəzəriyyə və praktika bir yerdə.</p></div>
+        </div>
+        <div class="u-cap">Sayt başlığı · qaranlıq</div>
+      </div>
+      <div class="u">
+        <div class="on-light">
+          <div class="mock-head"><span class="lock"><span class="m" data-mark="stackb" data-opts="tile small"></span><span class="wm"><span class="lt">best</span>stack<span class="tld">.dev</span></span></span><nav><span>Yol xəritələri</span><span>Texnologiyalar</span><span>Go</span></nav></div>
+          <div class="mock-body"><h4>Hello, World-dən ilk iş gününə qədər.</h4><p>Yol xəritəsi, nəzəriyyə və praktika bir yerdə.</p></div>
+        </div>
+        <div class="u-cap">Sayt başlığı · işıqlı</div>
+      </div>
+      <div class="u">
+        <div>
+          <div class="on-light"><div class="tabbar"><div class="tab act"><span class="m" data-mark="stackb" data-opts="tile small"></span><span>Slices · Go · beststack</span></div><div class="tab dim"><span>Yeni tab</span></div></div><div class="urlbar">beststack.dev/go/slices</div></div>
+          <div class="on-dark"><div class="tabbar"><div class="tab act"><span class="m" data-mark="stackb" data-opts="tile small"></span><span>Go yol xəritəsi · beststack</span></div><div class="tab dim"><span>Yeni tab</span></div></div><div class="urlbar">beststack.dev/go/roadmap</div></div>
+        </div>
+        <div class="u-cap">Favicon · 16 px, iki temada</div>
+      </div>
+      <div class="u">
+        <div class="icons">
+          <div class="appicon on-dark" style="background:linear-gradient(150deg,#161433,#070a14)"><span class="m" data-mark="stackb" data-opts="small"></span></div>
+          <div class="avatar on-dark"><span class="m" data-mark="stackb" data-opts="small"></span></div>
+          <div class="monos">
+            <div style="background:#0c1222;color:#fff"><span class="m mono-ink" data-mark="stackb" data-opts="small flat"></span></div>
+            <div style="background:#fff;color:#0c1222;border:1px solid #dfe4ef"><span class="m mono-ink" data-mark="stackb" data-opts="small flat"></span></div>
+          </div>
+        </div>
+        <div class="u-cap">Tətbiq ikonu · sosial avatar · birrəngli (çap, möhür)</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="callout" aria-labelledby="n-h">
+    <span class="kicker">// növbəti addım</span>
+    <h2 id="n-h" style="font-size:20px">Ad seçiləndən sonra</h2>
+    <ol>
+      <li><b>Ad:</b> w3hub.dev (Yol) ilə beststack.dev (Qatlı b) arasında seçim və domenlərin yoxlanması.</li>
+      <li><b>SVG faylları:</b> işarə, lockup, favicon (16/32/ICO), tətbiq ikonu və birrəngli variant.</li>
+      <li><b>Animasiya</b> (<span class="mono">prefers-reduced-motion</span> zamanı statik), OG şəkli və <span class="mono">packages/theme</span>-ə köçürmə.</li>
+    </ol>
+  </section>
+</div>
+
+<script>
+(function () {
+  let uid = 0;
+
+  // 48×48 grid. `s` = small: heavier strokes and bars for ≤32px.
+  const MARKS = {
+    stackb(g, s) {
+      const sw = s ? 7.6 : 6.4, h = s ? 5.8 : 5, x = s ? 19.4 : 19.5;
+      const bar = (cls, cy, w, c) => `<rect class="b-bar ${cls}" x="${x}" y="${cy - h / 2}" width="${w}" height="${h}" rx="${h / 2}" style="fill:var(${c})"/>`;
+      return `<linearGradient id="${g}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--c1)"/><stop offset="1" style="stop-color:var(--c2)"/></linearGradient>` +
+        `<filter id="${g}f" x="-50%" y="-200%" width="200%" height="500%"><feGaussianBlur stdDeviation="2.4"/></filter>|` +
+        `<rect class="b-stem" x="9" y="7" width="${sw}" height="34" rx="${sw / 2}" fill="url(#${g})"/>` +
+        bar("bar1", 37.5, 14, "--c2") + bar("bar2", 30, 18, "--c3") +
+        (s ? "" : `<rect class="b-glow" x="${x}" y="${22.5 - h / 2}" width="14" height="${h}" rx="${h / 2}" style="fill:var(--c4)" filter="url(#${g}f)"/>`) +
+        bar("bar3", 22.5, 14, "--c4");
+    },
+    steps(g, s) {
+      const h = s ? 7 : 6;
+      const bar = (x, y, c) => `<rect x="${x}" y="${y + (6 - h) / 2}" width="20" height="${h}" rx="${h / 2}" style="fill:var(${c})"/>`;
+      const k = s ? 1.25 : 1, cx = 38, cy = 9.5;
+      const star = `M${cx} ${cy - 4.5 * k} Q${cx + 0.8 * k} ${cy - 0.8 * k} ${cx + 4.5 * k} ${cy} Q${cx + 0.8 * k} ${cy + 0.8 * k} ${cx} ${cy + 4.5 * k} Q${cx - 0.8 * k} ${cy + 0.8 * k} ${cx - 4.5 * k} ${cy} Q${cx - 0.8 * k} ${cy - 0.8 * k} ${cx} ${cy - 4.5 * k}Z`;
+      return `|` + bar(6, 35, "--c1") + bar(12, 26, "--c2") + bar(18, 17, "--c3") + `<path d="${star}" style="fill:var(--c4)"/>`;
+    },
+    iso(g, s) {
+      const k = s ? 2.6 : 2;
+      const plate = (y, fill) => `<polygon points="24,${y - 7} 38,${y} 24,${y + 7} 10,${y}" style="${fill};stroke:var(--tile)" stroke-width="${k}" stroke-linejoin="round"/>`;
+      return `<linearGradient id="${g}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--c3)"/><stop offset="1" style="stop-color:var(--c4)"/></linearGradient>|` +
+        plate(31, "fill:var(--c1)") + plate(24, "fill:var(--c2)") + plate(17, `fill:url(#${g})`);
+    },
+    brace(g, s) {
+      const bw = s ? 4.4 : 3.2, lw = s ? 5 : 4;
+      const line = (y, x1, x2, c) => `<path d="M${x1} ${y} H${x2}" style="stroke:var(${c})" stroke-width="${lw}" stroke-linecap="round"/>`;
+      return `<linearGradient id="${g}" gradientUnits="userSpaceOnUse" x1="9" y1="0" x2="39" y2="0"><stop offset="0" style="stop-color:var(--c1)"/><stop offset=".5" style="stop-color:var(--c2)"/><stop offset="1" style="stop-color:var(--c3)"/></linearGradient>|` +
+        `<path d="M17 9 C13.5 9 13 10.5 13 14 V19.5 C13 22.5 11.8 24 9.5 24 C11.8 24 13 25.5 13 28.5 V34 C13 37.5 13.5 39 17 39" fill="none" stroke="url(#${g})" stroke-width="${bw}" stroke-linecap="round" stroke-linejoin="round"/>` +
+        `<path d="M31 9 C34.5 9 35 10.5 35 14 V19.5 C35 22.5 36.2 24 38.5 24 C36.2 24 35 25.5 35 28.5 V34 C35 37.5 34.5 39 31 39" fill="none" stroke="url(#${g})" stroke-width="${bw}" stroke-linecap="round" stroke-linejoin="round"/>` +
+        line(16.5, 21, 27, "--c4") + line(24, 19.5, 28.5, "--c2") + line(31.5, 19, 29, "--c3");
+    },
+  };
+
+  function svg(kind, opts) {
+    const o = new Set((opts || "").split(/\s+/).filter(Boolean));
+    const g = "g" + (++uid), small = o.has("small");
+    let [defs, body] = MARKS[kind](g, small).split("|");
+    if (o.has("flat")) { body = body.replace(/url\(#g\d+\)/g, "currentColor"); defs = ""; }
+    let tile = "";
+    if (o.has("tile")) {
+      defs += `<linearGradient id="${g}t" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--c1)"/><stop offset=".5" style="stop-color:var(--c2)"/><stop offset="1" style="stop-color:var(--c3)"/></linearGradient>`;
+      tile = `<rect x="1" y="1" width="46" height="46" rx="13" style="fill:var(--tile)"/><rect x="1.5" y="1.5" width="45" height="45" rx="12.5" fill="none" stroke="url(#${g}t)" stroke-opacity=".6"/>`;
+      body = `<g transform="translate(24 24) scale(.82) translate(-24 -24)">${body}</g>`;
+    }
+    return `<svg class="mk" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><defs>${defs}</defs>${tile}${body}</svg>`;
+  }
+
+  const WM_SANS = '<span class="wm"><span class="lt">best</span>stack<span class="tld">.dev</span></span>';
+  const WM = {
+    stackb: WM_SANS, steps: WM_SANS, iso: WM_SANS,
+    brace: '<span class="wm code">best<span class="br">{</span>stack<span class="br">}</span></span>',
+  };
+
+  document.querySelectorAll("[data-concept]").forEach((el) => {
+    const k = el.dataset.concept;
+    el.innerHTML =
+      `<div class="pv on-light"><span class="m">${svg(k, "")}</span></div>` +
+      `<div class="pv on-dark"><span class="m">${svg(k, "")}</span></div>` +
+      `<div class="pv pv-lock"><span class="lock"><span class="m">${svg(k, "tile small")}</span>${WM[k]}</span></div>`;
+  });
+  document.querySelectorAll("[data-ladder]").forEach((el) => {
+    const k = el.dataset.ladder;
+    el.innerHTML = [[64, ""], [32, "tile small"], [24, "tile small"], [16, "tile small"]]
+      .map(([px, o]) => `<figure><span class="m" style="width:${px}px;height:${px}px">${svg(k, o)}</span><figcaption>${px}px</figcaption></figure>`).join("");
+  });
+  document.querySelectorAll("[data-mark]").forEach((el) => { el.innerHTML = svg(el.dataset.mark, el.dataset.opts); });
+
+  const hw = document.getElementById("hero-wm");
+  const ch = (t, d, cls) => `<span class="ch${cls ? " " + cls : ""}" style="animation-delay:${d}s">${t}</span>`;
+  hw.innerHTML = `<span class="lt">${"best".split("").map((c, i) => ch(c, 1.05 + i * 0.05)).join("")}</span>` +
+    "stack".split("").map((c, i) => ch(c, 1.25 + i * 0.05)).join("") +
+    `<span class="tld">${ch(".dev", 1.6)}</span>`;
+
+  const SW = [["Cyan", "--c1", "təməl"], ["Mavi", "--c2", "əsas qat"], ["Bənövşəyi", "--c3", "orta qat"], ["Mərcan", "--c4", "ən üst qat"]];
+  function paintSwatches() {
+    const cs = getComputedStyle(document.documentElement);
+    document.getElementById("swatches").innerHTML = SW.map(([n, v, role]) =>
+      `<div class="sw"><i style="background:var(${v})"></i><div><b>${n} · ${role}</b><code>${cs.getPropertyValue(v).trim()}</code></div></div>`).join("");
+  }
+  paintSwatches();
+
+  const stage = document.getElementById("stage");
+  document.getElementById("replay").addEventListener("click", () => {
+    stage.classList.remove("play"); void stage.offsetWidth; stage.classList.add("play");
+  });
+
+  const root = document.documentElement;
+  document.querySelectorAll("[data-pal]").forEach((b) => b.addEventListener("click", () => {
+    const p = b.dataset.pal;
+    if (p === "aurora") root.removeAttribute("data-palette"); else root.setAttribute("data-palette", p);
+    document.querySelectorAll("[data-pal]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+    paintSwatches();
+  }));
+
+  const tb = document.getElementById("theme-btn");
+  const labels = { system: "Tema: sistem", light: "Tema: işıqlı", dark: "Tema: qaranlıq" };
+  let theme = "system";
+  try { theme = localStorage.getItem("bslogo:theme") || "system"; } catch (e) {}
+  function applyTheme() {
+    if (theme === "system") root.removeAttribute("data-theme"); else root.setAttribute("data-theme", theme);
+    tb.textContent = labels[theme] || labels.system;
+    paintSwatches();
+  }
+  applyTheme();
+  tb.addEventListener("click", () => {
+    theme = theme === "system" ? "light" : theme === "light" ? "dark" : "system";
+    try { localStorage.setItem("bslogo:theme", theme); } catch (e) {}
+    applyTheme();
+  });
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", paintSwatches);
+})();
+</script>
+</body>
+</html>
