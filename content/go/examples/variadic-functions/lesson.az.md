@@ -2,7 +2,7 @@ Bəzi funksiyalar əvvəlcədən bilinməyən sayda arqument qəbul edir. `fmt.P
 
 Bu dərsdə qaçış izləyicisi yazırıq: hər qaçışın məsafəsi kilometrlə tam ədəd kimi verilir.
 
-## `...` ilə elan {#declare}
+## Üç nöqtə ilə elan {#declare}
 
 `runs ...int` "istənilən sayda `int`" deməkdir. Çağıranda dəyərlər vergüllə sadalanır: `totalKm(5, 3, 8)`. Heç bir dəyər verməmək də olar: `totalKm()` `0` qaytarır, çünki dövr bir dəfə də işləmir.
 

@@ -22,7 +22,7 @@ Nəticələrə ad vermək olar: `(tax, total int)`. Belə nəticələr funksiyan
 
 > **Diqqət:** Uzun funksiyada boş `return` hansı dəyərlərin qayıtdığını gizlədir. Onu qısa funksiyalarda yazın, uzun funksiyada isə `return tax, total` yazın.
 
-## Lazımsız nəticə: `_` {#blank}
+## Lazımsız nəticə: alt xətt {#blank}
 
 Növbəti masada yalnız hər adamın payı lazımdır, qalıq yox. İstifadə olunmayan dəyişən Go-da xətadır, ona görə qalığın yerinə `_` yazırıq, `range` dərsində indeksi atdığımız kimi.
 
