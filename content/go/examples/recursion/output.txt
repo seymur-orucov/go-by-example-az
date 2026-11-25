@@ -1,0 +1,14 @@
+floor 3
+floor 2
+floor 1
+ground floor
+people under Ava: 6
+people under Ben: 3
+people under Gia: 0
+Ava
+  Ben
+    Dev
+    Emma
+    Finn
+  Cara
+    Gia

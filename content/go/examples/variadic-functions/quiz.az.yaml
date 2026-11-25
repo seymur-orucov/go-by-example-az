@@ -1,0 +1,76 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    func count(colors ...string) int {
+        return len(colors)
+    }
+
+    fmt.Println(count("red", "green", "blue"), count())
+  options: ["3 0", "3 1", "kompilyasiya xətası"]
+  answer: 0
+  explain: "Variadic parametr sıfır dəyər də qəbul edir; onda slice boşdur və `len` `0` qaytarır."
+
+- question: Hansı elan kompilyasiya olunmayacaq?
+  options:
+    - "`func f(label string, sizes ...int)`"
+    - "`func f(sizes ...int, label string)`"
+    - "`func f(sizes ...int)`"
+  answer: 1
+  explain: "Variadic parametr yalnız sonuncu ola bilər."
+
+- question: Hansı çağırış kompilyasiya olunmayacaq?
+  code: |
+    func addUp(points ...int) int {
+        total := 0
+        for _, n := range points {
+            total += n
+        }
+        return total
+    }
+
+    points := []int{2, 4}
+  options: ["`addUp(points...)`", "`addUp(points)`", "`addUp(2, 4)`"]
+  answer: 1
+  explain: "`addUp` ayrı-ayrı `int` dəyərlər gözləyir; slice-ı ötürmək üçün `points...` yazmaq lazımdır."
+
+- question: Hansı çağırış kompilyasiya olunmayacaq?
+  code: |
+    // dərsdəki funksiya: func totalKm(runs ...int) int
+    week := []int{5, 7}
+  options: ["`totalKm(week...)`", "`totalKm(1, week...)`", "`totalKm(1, 2)`"]
+  answer: 1
+  explain: "Variadic hissə ya tamamilə sadalanır, ya da tamamilə `week...` ilə slice-dan gəlir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    func show(tags ...string) {
+        fmt.Println(len(tags), tags == nil)
+    }
+
+    show()
+  options: ["0 true", "0 false", "1 false"]
+  answer: 0
+  explain: "Arqument verilməyəndə variadic parametr `nil` slice olur."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    func label(prefix string, ids ...int) {
+        fmt.Println(prefix, ids)
+    }
+
+    label("seat")
+  options: ["seat []", "seat", "kompilyasiya xətası"]
+  answer: 0
+  explain: "`\"seat\"` adi parametrə düşür, variadic hissə boş qalır və `[]` kimi çap olunur."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    func bump(points ...int) {
+        points[0] = 100
+    }
+
+    scores := []int{1, 2}
+    bump(scores...)
+    fmt.Println(scores)
+  options: ["[100 2]", "[1 2]", "kompilyasiya xətası"]
+  answer: 0
+  explain: "`scores...` yeni slice yaratmır, `bump` eyni elementləri dəyişir."

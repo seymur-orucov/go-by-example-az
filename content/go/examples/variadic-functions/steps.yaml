@@ -1,0 +1,14 @@
+declare:
+  out: |
+    total: 16 km
+    total: 0 km
+slice:
+  out: |
+    runs: [4 6] count: 2
+    runs: [] count: 0
+mixed:
+  out: "Maya ran 2 times: [5 12]"
+spread:
+  out: |
+    week: 25 km
+    Leo ran 4 times: [5 7 3 10]
