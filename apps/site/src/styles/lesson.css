@@ -1558,6 +1558,10 @@ button.vm-row:hover {
 .lx-step li + li {
   margin-top: 4px;
 }
+.lx-step ul + p,
+.lx-step ol + p {
+  margin-top: 10px;
+}
 .lx-step .note {
   margin-top: 12px;
   padding: 10px 14px;
@@ -2009,4 +2013,147 @@ button.vm-row:hover {
 .qz-fb code,
 .lx-notice code {
   white-space: pre-wrap;
+}
+
+/* ---------- Text lessons (concept, compare): one column, no code pane ---------- */
+.lx-walk.solo {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 820px;
+}
+.lx-walk.solo .lx-steps {
+  padding-bottom: 0;
+}
+
+/* ---------- Vis kind "flow": a row of boxes ---------- */
+.vis-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 8px;
+}
+.vis-flow.arrows {
+  gap: 4px;
+}
+.flow-box {
+  display: flex;
+  flex: 1 1 120px;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+  padding: 8px 10px;
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: 9px;
+}
+.flow-box b {
+  font: 600 12.5px/1.3 var(--font-mono);
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+.flow-box small {
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--text-subtle);
+}
+.flow-box.t-good {
+  border-color: var(--green);
+  background: var(--green-soft);
+}
+.flow-box.t-bad {
+  border-color: color-mix(in srgb, var(--red) 55%, transparent);
+  border-style: dashed;
+  background: var(--red-soft);
+}
+.flow-box.t-accent {
+  border-color: var(--accent-ring);
+  background: var(--accent-soft);
+}
+.flow-arrow {
+  align-self: center;
+  font: 600 14px/1 var(--font-mono);
+  color: var(--text-subtle);
+}
+/* A caption may name files and English terms ("recipes.md", "SVN və Git"): no uppercase,
+   which would turn "Git" into "GİT" under the Azerbaijani casing rules. */
+.st-vis-cap span.plain {
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-size: 11.5px;
+}
+@media (max-width: 520px) {
+  /* a sequence reads top to bottom on a phone, instead of wrapping with a dangling arrow */
+  .vis-flow.arrows {
+    flex-direction: column;
+  }
+  .vis-flow.arrows .flow-box {
+    flex-basis: auto;
+  }
+  .vis-flow.arrows .flow-arrow {
+    transform: rotate(90deg);
+  }
+}
+
+/* ---------- Vis kind "compare": two variants, aspect by aspect ---------- */
+.vis-compare {
+  display: grid;
+  gap: 4px;
+}
+.cmp-row {
+  display: grid;
+  grid-template-columns: minmax(90px, 0.7fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 4px;
+}
+.cmp-head .cmp-side {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 6px 10px;
+}
+.cmp-head b {
+  font: 650 13px/1.25 var(--font-mono);
+  color: var(--text);
+}
+.cmp-head small {
+  font-size: 11.5px;
+  color: var(--text-subtle);
+}
+.cmp-aspect {
+  padding: 8px 4px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+.cmp-cell {
+  padding: 8px 10px;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--text-muted);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.cmp-cell.win {
+  color: var(--text);
+  border-color: color-mix(in srgb, var(--green) 55%, transparent);
+  background: var(--green-soft);
+}
+@media (max-width: 520px) {
+  .cmp-head {
+    display: none;
+  }
+  .cmp-row {
+    grid-template-columns: minmax(0, 1fr);
+    margin-top: 6px;
+  }
+  .cmp-aspect {
+    padding: 0 2px;
+  }
+  /* without the header row, each cell names its side */
+  .cmp-cell::before {
+    content: attr(data-side);
+    display: block;
+    margin-bottom: 2px;
+    font: 600 11px/1.3 var(--font-mono);
+    color: var(--text-subtle);
+  }
 }

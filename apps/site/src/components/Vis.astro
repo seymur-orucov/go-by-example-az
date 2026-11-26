@@ -7,9 +7,12 @@
 // - channel: sender → buffer slots (one hand-to-hand slot when unbuffered) → receiver, with the
 //   values the receiver took and who had to wait;
 // - timeline: goroutines on a time axis (sequential vs concurrent, cut off when main returns);
-// - areas: the three areas of a Git repository, recorded by `pnpm content:run`.
+// - areas: the three areas of a Git repository, recorded by `pnpm content:run`;
+// - flow: a row of boxes, optionally joined by arrows (text lessons, hand-written);
+// - compare: two variants side by side, aspect by aspect (text lessons, hand-written).
 // The script replays the `pop` animation of `.cell.new` and `.tl-bar` when a step becomes active.
 import type { Vis, VisAreas } from "../lib/lesson";
+import { renderInline } from "../lib/markdown";
 
 interface Props {
   vis: Vis;
@@ -87,7 +90,72 @@ const INDEX_STATE: Record<VisAreas["index"][number]["state"], string> = {
 };
 const fileClass = (state: string, fresh?: boolean) =>
   `file s-${state}${fresh && state !== "clean" ? " fresh" : ""}`;
+
+// ---- flow, compare (text lessons; inline Markdown in the strings)
+const flow = vis.kind === "flow" ? vis : null;
+const cmp = vis.kind === "compare" ? vis : null;
 ---
+
+{flow && (
+  <div class="st-vis">
+    <div class="st-vis-cap">
+      <span class="plain">{flow.caption}</span>
+    </div>
+    <div class:list={["vis vis-flow", { arrows: flow.arrows }]}>
+      {flow.items.map((it, i) => (
+        <>
+          {flow.arrows && i > 0 && (
+            <span class="flow-arrow" aria-hidden="true">
+              ›
+            </span>
+          )}
+          <div class:list={["flow-box", it.tone && `t-${it.tone}`]}>
+            <b set:html={renderInline(it.label)} />
+            {it.sub && <small set:html={renderInline(it.sub)} />}
+          </div>
+        </>
+      ))}
+    </div>
+    {flow.note && <p class="vis-note" set:html={renderInline(flow.note)} />}
+  </div>
+)}
+
+{cmp && (
+  <div class="st-vis">
+    <div class="st-vis-cap">
+      <span class="plain">{cmp.caption}</span>
+    </div>
+    <div class="vis vis-compare" role="table" aria-label={cmp.caption}>
+      <div class="cmp-row cmp-head" role="row">
+        <span class="cmp-aspect" role="columnheader" />
+        {[cmp.a, cmp.b].map((side) => (
+          <span class="cmp-side" role="columnheader">
+            <b set:html={renderInline(side.title)} />
+            {side.sub && <small set:html={renderInline(side.sub)} />}
+          </span>
+        ))}
+      </div>
+      {cmp.rows.map((r) => (
+        <div class="cmp-row" role="row">
+          <span class="cmp-aspect" role="rowheader" set:html={renderInline(r.aspect)} />
+          <span
+            class:list={["cmp-cell", { win: r.better === "a" }]}
+            role="cell"
+            data-side={cmp.a.title}
+            set:html={renderInline(r.a)}
+          />
+          <span
+            class:list={["cmp-cell", { win: r.better === "b" }]}
+            role="cell"
+            data-side={cmp.b.title}
+            set:html={renderInline(r.b)}
+          />
+        </div>
+      ))}
+    </div>
+    {cmp.note && <p class="vis-note" set:html={renderInline(cmp.note)} />}
+  </div>
+)}
 
 {slice && (
   <div class="st-vis">

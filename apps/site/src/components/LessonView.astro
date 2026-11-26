@@ -54,15 +54,17 @@ const {
 } = Astro.props;
 
 // Terminal sessions have no `run` command: their output already holds the `$ cmd` lines.
-const session = lesson ? lesson.run === null : false;
+const session = lesson?.mode === "session";
+// Text lessons (concept, compare): no code pane, steps in one column, visuals inside the steps.
+const textOnly = lesson?.mode === "text";
 // Go lessons can be edited and run on the Go Playground (POST /api/run).
 const runnable = lesson?.lang === "go" && !session;
-const lines = lesson ? await highlightLines(lesson.code, lesson.lang) : [];
+const lines = lesson && !textOnly ? await highlightLines(lesson.code, lesson.lang) : [];
 const steps = (lesson?.steps ?? []).map((s) => ({
   ...s,
   title: renderInline(s.title),
   html: renderMarkdown(s.body),
-  snippet: renderLines(lines, { from: s.from, to: s.to, hl: true }),
+  snippet: textOnly ? "" : renderLines(lines, { from: s.from, to: s.to, hl: true }),
   outLines: s.out ? s.out.replace(/\n$/, "").split("\n") : [],
 }));
 const hasVis = steps.some((s) => s.vis);
@@ -70,7 +72,8 @@ const pad = (n: number) => String(n).padStart(2, "0");
 // Client data: line ranges and expected output per step.
 const clientData = {
   slug: item.slug,
-  steps: steps.map(({ from, to, out }) => ({ from, to, out })),
+  // a text lesson has no code pane, so the walkthrough script is not started
+  steps: textOnly ? [] : steps.map(({ from, to, out }) => ({ from, to, out })),
   code: lesson?.code ?? "",
   output: lesson?.output ?? "",
   run: lesson?.run ?? null,
@@ -172,20 +175,22 @@ const readyInSection = section.items.filter((it) => it.status === "ready" && it.
 
           {lesson.intro && <div class="lx-lead" set:html={renderMarkdown(lesson.intro)} />}
 
-          <div class="lx-walk">
+          <div class:list={["lx-walk", { solo: textOnly }]}>
             <div class="lx-steps" id="lx-steps">
               {steps.map((s, i) => (
                 <section class="lx-step glass" data-i={i} id={`step-${s.id}`} tabindex="-1">
                   <div class="st-head">
                     <span class="st-num">{pad(i + 1)}</span>
                     <h3 set:html={s.title} />
-                    <span class="st-lines">
-                      sətir {s.from}
-                      {s.to > s.from ? `–${s.to}` : ""}
-                    </span>
+                    {!textOnly && (
+                      <span class="st-lines">
+                        sətir {s.from}
+                        {s.to > s.from ? `–${s.to}` : ""}
+                      </span>
+                    )}
                   </div>
                   <div class="st-body" set:html={s.html} />
-                  <pre class="code st-snip" set:html={s.snippet} />
+                  {!textOnly && <pre class="code st-snip" set:html={s.snippet} />}
                   {s.vis && <Vis vis={s.vis} />}
                   {s.outLines.length > 0 && (
                     <div class="st-out">
@@ -217,161 +222,163 @@ const readyInSection = section.items.filter((it) => it.status === "ready" && it.
               ))}
             </div>
 
-            <div class="lx-pane" id="lx-pane" data-pagefind-ignore>
-              <div class="cw glass dots">
-                <div class="win-head cw-head">
-                  <span class="win-dots">
-                    <i />
-                    <i />
-                    <i />
-                  </span>
-                  <span class="cw-file">{lesson.file}</span>
-                  <div class="cw-steps">
-                    <button
-                      class="btn btn-ghost btn-sm btn-icon"
-                      id="p-prev"
-                      aria-label="Əvvəlki addım"
-                      title="Əvvəlki addım (←)"
-                    >
-                      ‹
-                    </button>
-                    <span class="cw-count" id="p-count">
-                      01 / {pad(steps.length)}
-                    </span>
-                    <button
-                      class="btn btn-ghost btn-sm btn-icon"
-                      id="p-next"
-                      aria-label="Növbəti addım"
-                      title="Növbəti addım (→)"
-                    >
-                      ›
-                    </button>
-                    <button
-                      class="btn btn-ghost btn-sm btn-icon cw-play"
-                      id="p-play"
-                      aria-label="Addımları oynat"
-                      title="Addımları oynat"
-                    >
-                      ▶
-                    </button>
-                  </div>
-                  {runnable && (
-                    <>
-                      <button
-                        class="btn btn-ghost btn-sm btn-icon"
-                        id="btn-reset"
-                        aria-label="Kodu ilkin halına qaytar"
-                        title="Sıfırla"
-                        hidden
-                      >
-                        <svg
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="1.8"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          aria-hidden="true"
-                        >
-                          <path d="M3 12a9 9 0 1 0 3-6.7L3 8" />
-                          <path d="M3 3v5h5" />
-                        </svg>
-                      </button>
-                      <button
-                        class="btn btn-ghost btn-sm btn-icon"
-                        id="btn-edit"
-                        aria-label="Kodu redaktə et"
-                        aria-pressed="false"
-                        title="Redaktə (E)"
-                      >
-                        <svg
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="1.8"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          aria-hidden="true"
-                        >
-                          <path d="M12 20h9" />
-                          <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z" />
-                        </svg>
-                      </button>
-                    </>
-                  )}
-                  <button
-                    class="btn btn-ghost btn-sm btn-icon"
-                    id="btn-copy"
-                    aria-label="Kodu kopyala"
-                    title="Kopyala"
-                  >
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.8"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      aria-hidden="true"
-                    >
-                      <rect x="9" y="9" width="12" height="12" rx="2" />
-                      <path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" />
-                    </svg>
-                  </button>
-                </div>
-                <div class="cw-progress">
-                  <span id="cw-progress" />
-                </div>
-                <pre
-                  class="code cw-code dim"
-                  id="cw-code"
-                  aria-label={lesson.file}
-                  set:html={renderLines(lines)}
-                />
-                {runnable && <div class="cw-editor" id="cw-editor" hidden />}
-                <div class="cw-term" aria-live="polite">
-                  <div class="cw-term-head">
-                    <span>Çıxış</span>
-                    <span class="cw-status" id="cw-status">
+            {!textOnly && (
+              <div class="lx-pane" id="lx-pane" data-pagefind-ignore>
+                <div class="cw glass dots">
+                  <div class="win-head cw-head">
+                    <span class="win-dots">
                       <i />
-                      addım rejimi
+                      <i />
+                      <i />
                     </span>
-                    <button class="btn btn-ghost btn-sm" id="btn-full" aria-pressed="false">
-                      Tam çıxış
-                    </button>
-                    {runnable && (
+                    <span class="cw-file">{lesson.file}</span>
+                    <div class="cw-steps">
                       <button
-                        class="btn btn-sm cw-run"
-                        id="btn-run"
-                        title="Go Playground-da işə sal (Ctrl+Enter)"
+                        class="btn btn-ghost btn-sm btn-icon"
+                        id="p-prev"
+                        aria-label="Əvvəlki addım"
+                        title="Əvvəlki addım (←)"
                       >
-                        ▶ İşə sal
+                        ‹
                       </button>
+                      <span class="cw-count" id="p-count">
+                        01 / {pad(steps.length)}
+                      </span>
+                      <button
+                        class="btn btn-ghost btn-sm btn-icon"
+                        id="p-next"
+                        aria-label="Növbəti addım"
+                        title="Növbəti addım (→)"
+                      >
+                        ›
+                      </button>
+                      <button
+                        class="btn btn-ghost btn-sm btn-icon cw-play"
+                        id="p-play"
+                        aria-label="Addımları oynat"
+                        title="Addımları oynat"
+                      >
+                        ▶
+                      </button>
+                    </div>
+                    {runnable && (
+                      <>
+                        <button
+                          class="btn btn-ghost btn-sm btn-icon"
+                          id="btn-reset"
+                          aria-label="Kodu ilkin halına qaytar"
+                          title="Sıfırla"
+                          hidden
+                        >
+                          <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                          >
+                            <path d="M3 12a9 9 0 1 0 3-6.7L3 8" />
+                            <path d="M3 3v5h5" />
+                          </svg>
+                        </button>
+                        <button
+                          class="btn btn-ghost btn-sm btn-icon"
+                          id="btn-edit"
+                          aria-label="Kodu redaktə et"
+                          aria-pressed="false"
+                          title="Redaktə (E)"
+                        >
+                          <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                          >
+                            <path d="M12 20h9" />
+                            <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z" />
+                          </svg>
+                        </button>
+                      </>
                     )}
+                    <button
+                      class="btn btn-ghost btn-sm btn-icon"
+                      id="btn-copy"
+                      aria-label="Kodu kopyala"
+                      title="Kopyala"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <rect x="9" y="9" width="12" height="12" rx="2" />
+                        <path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" />
+                      </svg>
+                    </button>
                   </div>
-                  <div class="cw-term-body" id="cw-term" />
+                  <div class="cw-progress">
+                    <span id="cw-progress" />
+                  </div>
+                  <pre
+                    class="code cw-code dim"
+                    id="cw-code"
+                    aria-label={lesson.file}
+                    set:html={renderLines(lines)}
+                  />
+                  {runnable && <div class="cw-editor" id="cw-editor" hidden />}
+                  <div class="cw-term" aria-live="polite">
+                    <div class="cw-term-head">
+                      <span>Çıxış</span>
+                      <span class="cw-status" id="cw-status">
+                        <i />
+                        addım rejimi
+                      </span>
+                      <button class="btn btn-ghost btn-sm" id="btn-full" aria-pressed="false">
+                        Tam çıxış
+                      </button>
+                      {runnable && (
+                        <button
+                          class="btn btn-sm cw-run"
+                          id="btn-run"
+                          title="Go Playground-da işə sal (Ctrl+Enter)"
+                        >
+                          ▶ İşə sal
+                        </button>
+                      )}
+                    </div>
+                    <div class="cw-term-body" id="cw-term" />
+                  </div>
+                </div>
+                <div class="cw-hint">
+                  <span>
+                    <kbd>←</kbd>
+                    <kbd>→</kbd> addımlar
+                  </span>
+                  <span>
+                    <kbd>Z</kbd> zen
+                  </span>
+                  <span>
+                    <kbd>[</kbd> panel
+                  </span>
+                  {runnable && (
+                    <span>
+                      <kbd>E</kbd> redaktə · <kbd>Ctrl</kbd>
+                      <kbd>Enter</kbd> işə sal
+                    </span>
+                  )}
+                  <span>izah ↔ kod: üzərinə gəl</span>
                 </div>
               </div>
-              <div class="cw-hint">
-                <span>
-                  <kbd>←</kbd>
-                  <kbd>→</kbd> addımlar
-                </span>
-                <span>
-                  <kbd>Z</kbd> zen
-                </span>
-                <span>
-                  <kbd>[</kbd> panel
-                </span>
-                {runnable && (
-                  <span>
-                    <kbd>E</kbd> redaktə · <kbd>Ctrl</kbd>
-                    <kbd>Enter</kbd> işə sal
-                  </span>
-                )}
-                <span>izah ↔ kod: üzərinə gəl</span>
-              </div>
-            </div>
+            )}
           </div>
 
           {lesson.outro && <div class="lx-outro" set:html={renderMarkdown(lesson.outro)} />}
