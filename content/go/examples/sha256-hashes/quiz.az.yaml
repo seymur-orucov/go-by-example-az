@@ -1,0 +1,83 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    short := sha256.Sum256([]byte("tea"))
+    long := sha256.Sum256([]byte("green tea with mint and lemon"))
+    fmt.Println(len(short), len(long))
+  options: ["3 29", "32 32", "64 64"]
+  answer: 1
+  explain: "`Sum256` həmişə `[32]byte` qaytarır, girişin uzunluğundan asılı olmayaraq."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    sum := sha256.Sum256([]byte("receipt #1042"))
+    fmt.Println(len(fmt.Sprintf("%x", sum)))
+  options: ["32", "256", "64"]
+  answer: 2
+  explain: "`%x` hər baytı iki hex rəqəmi ilə yazır: 32 bayt 64 simvol verir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    a := sha256.Sum256([]byte("Total: 12 USD"))
+    b := sha256.Sum256([]byte("Total: 12 USD "))
+    fmt.Println(a == b)
+  options: ["false", "true", "kompilyasiya xətası: array-ləri `==` ilə müqayisə etmək olmaz"]
+  answer: 0
+  explain: "Sondakı boşluq da baytdır, bir bayt fərqi isə tamamilə başqa heş verir; array-lər isə `==` ilə müqayisə olunur."
+
+- question: Bu kod niyə kompilyasiya olunmur?
+  code: |
+    sum := sha256.Sum256("invoice 77")
+    fmt.Printf("%x\n", sum)
+  options:
+    - "`Sum256` iki nəticə qaytarır"
+    - "`%x` array-i çap edə bilmir"
+    - "`[32]byte` nəticəni `:=` ilə dəyişənə yazmaq olmaz"
+    - "`Sum256` string yox, `[]byte` qəbul edir"
+  answer: 3
+  explain: "Mətni əvvəlcə çevirmək lazımdır: `sha256.Sum256([]byte(\"invoice 77\"))`."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    h := sha256.New()
+    h.Write([]byte("rent "))
+    h.Write([]byte("paid"))
+    whole := sha256.Sum256([]byte("rent paid"))
+    fmt.Println(fmt.Sprintf("%x", h.Sum(nil)) == fmt.Sprintf("%x", whole))
+  options: ["false", "true", "kompilyasiya xətası"]
+  answer: 1
+  explain: "Hissələr birlikdə eyni baytları verir, ona görə heş də eynidir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    h := sha256.New()
+    h.Write([]byte("lap"))
+    first := fmt.Sprintf("%x", h.Sum(nil))
+    h.Write([]byte("top"))
+    second := fmt.Sprintf("%x", h.Sum(nil))
+    laptop := fmt.Sprintf("%x", sha256.Sum256([]byte("laptop")))
+    fmt.Println(first == second, second == laptop)
+  options: ["false true", "true false", "false false"]
+  answer: 0
+  explain: "`Sum` vəziyyəti sıfırlamır: ikinci `Sum` `lap` və `top` baytlarının birlikdə heşini verir."
+
+- question: Bu kod niyə kompilyasiya olunmur?
+  code: |
+    h := sha256.New()
+    h.Write([]byte("map.zip"))
+    fromStream := h.Sum(nil)
+    fromSum := sha256.Sum256([]byte("map.zip"))
+    fmt.Println(fromStream == fromSum)
+  options:
+    - "`h.Sum` arqumentsiz çağırılmalıdır"
+    - "`Write`-ın qaytardığı xəta yoxlanmayıb"
+    - "`[]byte` ilə `[32]byte` fərqli tiplərdir, onları `==` ilə müqayisə etmək olmaz"
+  answer: 2
+  explain: "`Sum` slice, `Sum256` isə array qaytarır; müqayisə üçün hər ikisini, məsələn, `%x` ilə sətrə çevirmək olar."
+
+- question: SHA-256 heşindən ilkin mətni geri almaq olarmı?
+  options:
+    - "Bəli, `sha256` package-ində bunun üçün funksiya var"
+    - "Xeyr: heş birtərəflidir, ondan məlumatı geri hesablamaq mümkün deyil"
+    - "Bəli, əgər şifrələmə açarını bilirsinizsə"
+  answer: 1
+  explain: "Heş şifrələmə deyil, açarı da yoxdur; onu yalnız yenidən hesablayıb müqayisə etmək olar."

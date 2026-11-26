@@ -1,0 +1,12 @@
+rules:
+  - "String dəyişməzdir: `strings` funksiyaları mətni dəyişmir, yeni string qaytarır, nəticəni dəyişənə yazmaq lazımdır."
+  - "`strings.Index` alt sətrin bayt indeksini, tapılmasa `-1` qaytarır; `Contains`, `HasPrefix` və `HasSuffix` isə `bool` qaytarır və hərf registrini nəzərə alır."
+  - "`strings.Split` ayırıcının ətrafındakı boşluqları saxlayır və iki ardıcıl ayırıcı arasında boş element yaradır; `strings.Fields` isə ardıcıl boşluqları bir ayırıcı sayır."
+  - "`strings.Trim(s, \" #\")` ikinci arqumentdəki simvolları yalnız iki kənardan atır, ortaya toxunmur."
+  - "`strings.Replace`-in son arqumenti neçə dəfə əvəz etməyi deyir: `1` yalnız birincini, `-1` hamısını (`ReplaceAll` kimi)."
+  - "`==` hərf registrini nəzərə alır, `strings.EqualFold` isə yox."
+practices:
+  - "İstifadəçi daxil etdiyi mətni yoxlamadan əvvəl `TrimSpace` ilə təmizləyin."
+  - "Sözlərə bölmək üçün `Split(s, \" \")` əvəzinə `strings.Fields` yazın."
+  - "Böyük-kiçik hərfə baxmadan müqayisə üçün iki tərəfi `ToLower` etmək əvəzinə `strings.EqualFold` istifadə edin."
+  - "`Index`-in nəticəsini slice üçün istifadə etməzdən əvvəl `-1` olub-olmadığını yoxlayın."

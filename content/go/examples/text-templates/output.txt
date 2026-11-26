@@ -1,0 +1,12 @@
+Hi Nora, see Dr. Silva at 09:30.
+Hi Omar, see Dr. Brandt at 14:15.
+Nora: no food after midnight
+Omar: eat as usual
+Nora brings: [ID card] [lab results]
+Omar brings: nothing
+Dear Nora,
+please bring your ID card.
+please bring your lab results.
+See you at 09:30.
+Dear Omar,
+See you at 14:15.

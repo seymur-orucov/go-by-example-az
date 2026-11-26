@@ -1,0 +1,8 @@
+32 bytes, 64 hex digits
+8b2f94cb7d917ae53270de601da5aa59d6a08517a2d9bf1d443311dd5fbd0530
+same bytes: true
+one letter changed: false
+9c3bd92431d4d590537578f559f4827000bc3829fd374daf5edc56147e16d88a
+8b2f94cb7d917ae53270de601da5aa59d6a08517a2d9bf1d443311dd5fbd0530
+download OK: true
+damaged copy OK: false

@@ -1,0 +1,8 @@
+bibs: [42 96 318 555 1207]
+fastest: 198.25 slowest: 312
+registered: [Bruno Mila Zoe eva]
+podium: [Omar Lena Bruno]
+certificates: [Bruno Ines Lena Omar]
+false true
+bib 555: 3 true
+bib 100: 2 false

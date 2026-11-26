@@ -1,0 +1,75 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    u, _ := url.Parse("http://localhost:3000/admin")
+    fmt.Println(u.Host, u.Port())
+  options: ["localhost 3000", "localhost:3000 3000", "localhost:3000 :3000"]
+  answer: 1
+  explain: "`Host` adı portla birlikdə saxlayır, `Port()` isə yalnız port nömrəsini qaytarır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    u, _ := url.Parse("https://shop.example/cart")
+    fmt.Printf("%q\n", u.Port())
+  options: ["\"\"", "\"443\"", "\"0\""]
+  answer: 0
+  explain: "`Port()` yalnız URL-də yazılan portu qaytarır; protokolun standart portunu təxmin etmir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    u, _ := url.Parse("shop.example/cart")
+    fmt.Printf("%q %q\n", u.Host, u.Path)
+  options: ["\"shop.example\" \"/cart\"", "\"shop.example\" \"cart\"", "\"\" \"shop.example/cart\""]
+  answer: 2
+  explain: "Protokol olmadan `Parse` server adını tanımır və bütün mətni yol kimi oxuyur."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    u, _ := url.Parse("/posts?tag=go&tag=web")
+    q := u.Query()
+    fmt.Println(q.Get("tag"), len(q["tag"]))
+  options: ["go 2", "web 2", "go 1"]
+  answer: 0
+  explain: "`Get` ilk dəyəri qaytarır, `q[\"tag\"]` isə hər iki dəyəri saxlayan slice-dır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    v := url.Values{}
+    v.Set("sort", "price")
+    v.Set("page", "2")
+    fmt.Println(v.Encode())
+  options: ["sort=price&page=2", "page=2&sort=price", "hər işə salmada fərqli sıra"]
+  answer: 1
+  explain: "`Encode` açarları əlifba sırası ilə düzür, ona görə nəticə həmişə eynidir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    v := url.Values{}
+    v.Add("size", "M")
+    v.Set("size", "L")
+    fmt.Println(v["size"])
+  options: ["[M L]", "[M]", "[L]"]
+  answer: 2
+  explain: "`Set` açarın bütün köhnə dəyərlərini əvəz edir, `Add` isə yenisini sona əlavə edərdi."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    fmt.Println(url.QueryEscape("50% off"))
+  options: ["50%25+off", "50% off", "50%+off"]
+  answer: 0
+  explain: "`%` özü kodlaşdırma işarəsidir, ona görə `%25` olur; boşluq isə `+` olur."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    u, _ := url.Parse("https://shop.example/search?q=tea+cup&max=20")
+    fmt.Println(u.Query().Get("q"))
+  options: ["tea+cup", "tea cup", "tea"]
+  answer: 1
+  explain: "`Query()` dəyərləri açır: sorğuda `+` boşluq deməkdir. Xam mətn `RawQuery`-də qalır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    _, err := url.Parse("https://shop.example/100%")
+    fmt.Println(err != nil)
+  options: ["false", "true"]
+  answer: 1
+  explain: "`%`-dən sonra iki hex rəqəm gəlməlidir, ona görə `Parse` `invalid URL escape` xətası qaytarır."

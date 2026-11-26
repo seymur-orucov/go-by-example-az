@@ -1,0 +1,83 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    type Item struct {
+        Name string `json:"name"`
+        Qty  int    `json:"qty,omitempty"`
+    }
+
+    b, _ := json.Marshal(Item{Name: "tea"})
+    fmt.Println(string(b))
+  options: ['{"name":"tea","qty":0}', '{"name":"tea"}', '{"Name":"tea"}']
+  answer: 1
+  explain: "`Qty` zero value-dur və `omitempty` onu JSON-a yazmır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    type Seat struct {
+        Row  int
+        Code string
+    }
+
+    b, _ := json.Marshal(Seat{12, "C"})
+    fmt.Println(string(b))
+  options: ['{"row":12,"code":"C"}', '{}', '{"Row":12,"Code":"C"}']
+  answer: 2
+  explain: "Tag olmayanda açar sahənin adının özüdür, hərflərin böyüklüyü dəyişmir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    type Card struct {
+        Holder string `json:"holder"`
+        pin    string `json:"pin"`
+    }
+
+    b, _ := json.Marshal(Card{Holder: "Ann", pin: "4821"})
+    fmt.Println(string(b))
+  options: ['{"holder":"Ann"}', '{"holder":"Ann","pin":"4821"}', "kompilyasiya xətası"]
+  answer: 0
+  explain: "`pin` unexported sahədir, tag olsa belə JSON-a yazılmır; `go vet` bu tag haqqında xəbərdarlıq edir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    var s Seat // Row int, Code string
+    err := json.Unmarshal([]byte(`{"Row":7,"Deck":"upper"}`), &s)
+    fmt.Println(s.Row, s.Code == "", err)
+  options:
+    - "`0 true <nil>`"
+    - "`7 false <nil>`"
+    - "`0 true json: unknown field \"Deck\"`"
+    - "`7 true <nil>`"
+  answer: 3
+  explain: "Naməlum `Deck` açarı səssizcə atılır, JSON-da olmayan `Code` isə boş string qalır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    var m map[string]any
+    json.Unmarshal([]byte(`{"qty":3}`), &m)
+    fmt.Printf("%T\n", m["qty"])
+  options: ["int", "float64", "string", "int64"]
+  answer: 1
+  explain: "`map[string]any`-yə oxunanda bütün JSON ədədləri `float64` olur."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    var s Seat // Row int, Code string
+    err := json.Unmarshal([]byte(`{"Row":"12"}`), &s)
+    fmt.Println(err == nil)
+  options: ["false", "true"]
+  answer: 0
+  explain: "`\"12\"` JSON-da string-dir və `Unmarshal` onu özü `int`-ə çevirmir, xəta qaytarır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    var s Seat // Row int, Code string
+    err := json.Unmarshal([]byte(`{"Row":7}`), s)
+    fmt.Println(s.Row, err != nil)
+  options: ["kompilyasiya xətası", "7 false", "0 true"]
+  answer: 2
+  explain: "Kod kompilyasiya olunur, amma `s` pointer deyil: `Unmarshal` heç nə yazmır və xəta qaytarır; düzgünü `&s`-dir."
+
+- question: Hansı tag JSON açarını `qty` edir?
+  options: ["`json: \"qty\"`", "`json:'qty'`", "`json:\"qty\"`"]
+  answer: 2
+  explain: "Tag-da `:`-dan sonra boşluq olmur və dəyər cüt dırnaqda yazılır; qalanlarını paket görmür və açar `Qty` qalır."

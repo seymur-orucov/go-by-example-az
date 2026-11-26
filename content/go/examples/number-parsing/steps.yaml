@@ -1,0 +1,19 @@
+atoi:
+  out: |
+    61 7
+    heating starts at 5:00
+float-bool:
+  out: "target: 22 eco: true"
+bases:
+  out: |
+    device id: 8010
+    hex: 1f4a binary: 1111101001010
+syntax:
+  out: |
+    strconv.Atoi: parsing "twenty": invalid syntax
+    syntax error: true
+range:
+  out: |
+    127 strconv.ParseInt: parsing "300": value out of range
+    range error: true
+    bad value 300 in ParseInt

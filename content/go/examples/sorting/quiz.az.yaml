@@ -1,0 +1,84 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    floors := []int{30, 4, 112, 9}
+    slices.Sort(floors)
+    fmt.Println(floors)
+  options: ["[4 9 30 112]", "[112 30 9 4]", "[112 30 4 9]"]
+  answer: 0
+  explain: "`slices.Sort` ədədləri kiçikdən böyüyə düzür və slice-ın özünü dəyişir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    teams := []string{"delta", "Bravo", "alpha", "Charlie"}
+    slices.Sort(teams)
+    fmt.Println(teams)
+  options:
+    - "[alpha Bravo Charlie delta]"
+    - "[Bravo Charlie alpha delta]"
+    - "[alpha delta Bravo Charlie]"
+  answer: 1
+  explain: "Sətirlər hərf kodlarına görə müqayisə olunur, böyük hərflərin kodu isə kiçik hərflərdən kiçikdir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    rooms := []string{"10", "9", "100"}
+    slices.Sort(rooms)
+    fmt.Println(rooms)
+  options: ["[9 10 100]", "[100 10 9]", "[10 100 9]"]
+  answer: 2
+  explain: "Bunlar ədəd yox, sətirlərdir: `\"1\"` `\"9\"`-dan kiçik olduğu üçün `\"10\"` və `\"100\"` öndə durur."
+
+- question: Hansı sətir kompilyasiya olunmayacaq?
+  code: |
+    prices := []int{12, 5, 8}
+  options:
+    - "slices.Sort(prices)"
+    - "sorted := slices.Sort(prices)"
+    - "ok := slices.IsSorted(prices)"
+  answer: 1
+  explain: "`slices.Sort` heç nə qaytarmır, slice-ı yerində sıralayır, ona görə nəticəsini dəyişənə yazmaq olmaz."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    a := []int{3, 1, 2}
+    b := a
+    slices.Sort(b)
+    fmt.Println(a)
+  options: ["[3 1 2]", "[1 2 3]", "[]"]
+  answer: 1
+  explain: "`b := a` elementləri kopyalamır: `a` və `b` eyni elementlərə baxır, ona görə `a` da sıralanmış görünür."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    a := []int{3, 1, 2}
+    b := slices.Clone(a)
+    slices.Sort(b)
+    fmt.Println(a, b)
+  options: ["[1 2 3] [1 2 3]", "[3 1 2] [3 1 2]", "[3 1 2] [1 2 3]"]
+  answer: 2
+  explain: "`slices.Clone` ayrıca kopya yaradır, ona görə yalnız `b` sıralanır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    fmt.Println(slices.IsSorted([]int{1, 2, 2, 5}), slices.IsSorted([]string{"b", "a"}))
+  options: ["true false", "false false", "true true"]
+  answer: 0
+  explain: "Təkrarlanan `2` sıranı pozmur; `\"b\"` isə `\"a\"`-dan əvvəl gələ bilməz."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    seats := []int{10, 20, 30, 40}
+    i, ok := slices.BinarySearch(seats, 25)
+    fmt.Println(i, ok)
+  options: ["-1 false", "0 false", "3 false", "2 false"]
+  answer: 3
+  explain: "`25` tapılmadı, indeks isə onun sıranı pozmadan yerləşəcəyi yerdir: `20` ilə `30` arası."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    seats := []int{40, 10, 30, 20}
+    i, ok := slices.BinarySearch(seats, 10)
+    fmt.Println(i, ok)
+  options: ["0 false", "1 true", "-1 false"]
+  answer: 0
+  explain: "Slice sıralanmayıb: axtarış yarıları səhv atır və mövcud `10`-u tapmır."

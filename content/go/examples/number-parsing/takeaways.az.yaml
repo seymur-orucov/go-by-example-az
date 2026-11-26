@@ -1,0 +1,10 @@
+rules:
+  - "Mətni ədədə tip çevirməsi ilə çevirmək olmaz: `int(\"42\")` kompilyasiya olunmur, `strconv.Atoi` lazımdır."
+  - "`Atoi`, `ParseFloat`, `ParseBool`, `ParseInt` dəyərlə yanaşı `error` qaytarır; boşluq və nöqtə də səhv yazılışdır."
+  - "`ParseInt(s, base, bitSize)`: `base` say sistemidir (0 olanda prefiksdən götürülür), `bitSize` isə nəticənin sığmalı olduğu tip."
+  - "Xəta `*strconv.NumError`-dır; səbəbi `errors.Is(err, strconv.ErrSyntax)` və ya `strconv.ErrRange` ilə yoxlanır."
+  - "Aralıqdan kənar dəyərdə `ParseInt` ən yaxın sərhədi qaytarır (`int8` üçün 127), bu dəyər düzgün deyil."
+  - "`strconv.Itoa(65)` `\"65\"` verir, `string(rune(65))` isə `\"A\"`."
+practices:
+  - "Fayldan, formdan və ya şəbəkədən gələn hər dəyərin xətasını yoxlayın, nəticəni yalnız sonra istifadə edin."
+  - "Dəyər kiçik tipdə saxlanacaqsa, `ParseInt`-ə uyğun `bitSize` verin ki, aralıqdan kənar dəyər xəta versin."

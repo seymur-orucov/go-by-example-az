@@ -2,5 +2,7 @@ title: "Regular Expressions"
 subtitle: "Requlyar ifadələr"
 section: text
 order: 6
-status: planned
+status: ready
 level: intermediate
+duration: 10
+source: original

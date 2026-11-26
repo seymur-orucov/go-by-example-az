@@ -2,5 +2,7 @@ title: "Epoch"
 subtitle: "Unix vaxtı"
 section: text
 order: 10
-status: planned
+status: ready
 level: intermediate
+duration: 6
+source: original

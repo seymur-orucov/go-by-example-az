@@ -1,0 +1,9 @@
+rules:
+  - "XML tag-ları JSON-dakı kimi yazılır, açar `xml`-dir: `xml:\"total\"`; bir sahədə `json` və `xml` tag-ları yanaşı ola bilər."
+  - "`,attr` sahəni atribut edir, `buyer>name` isə `<buyer>` içində `<name>` elementi yaradır."
+  - "`XMLName xml.Name` kök elementin adını verir; o olmasa, struct-ın adı götürülür."
+  - "`Marshal` `<?xml ...?>` başlığını yazmır; lazımdırsa, `xml.Header`-i əvvələ özünüz əlavə edin."
+  - "`Unmarshal` pointer gözləyir, naməlum elementləri atır, kök element `XMLName`-ə uyğun gəlməyəndə isə xəta qaytarır."
+practices:
+  - "Kök elementin adını `XMLName` ilə açıq yazın: çıxış struct-ın adından asılı olmur və başqa sənəd səhvən oxunmur."
+  - "`Unmarshal`-ın xətasını həmişə yoxlayın: kənardan gələn sənəd gözlədiyiniz sənəd olmaya bilər."

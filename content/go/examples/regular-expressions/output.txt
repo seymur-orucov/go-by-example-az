@@ -1,0 +1,11 @@
+PAY-142 true
+pay-142 false
+PAY142 false
+PAY-142! false
+PAY-142
+[PAY-142 SHOP-7]
+3 parts: ["PAY-142" "PAY" "142"]
+project: PAY number: 142
+true
+fix /issues/PAY/142 and /issues/SHOP/7, tested on build A-12
+bad filter: error parsing regexp: missing closing ): `PAY-(\d+`
