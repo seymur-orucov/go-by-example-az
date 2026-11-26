@@ -487,3 +487,14 @@ Done (branch `feat/content-skills`):
 - The design prototype (`design/v2/v2.js`) still has hand-written mock statuses (Git "soon"); it is a frozen reference and was not changed.
 - Checked: `pnpm check` (0/0/0), lint, build (126 pages), the menu text on /, /go/, /git/ and a Git lesson.
 ||||||| fd4ee32
+
+### 60. The Git course on the v2 design
+The user asked for all branches to be combined so the new design and the Git course show together, then for the header/home port to be committed.
+
+Done (branch `feat/content-skills`):
+- The port was uncommitted in the main checkout (51 files, its author session closed). Claude first combined a **copy** of it with the Go and Git branches in a local preview worktree (`chore/preview-combined`, never to be pushed) and resolved the 11 conflicts there: the port replaces the old theme (`base.css`, `platform.css` and the shell scripts are deleted), and rewrites the lesson page, `Vis`, `Quiz`, the sidebar and the lesson script that the Git work also touched. Then `go-by-example-az-c3` committed the port as `feat/site-home-header` (6 commits, local, from `origin/main`); its tree matched the snapshot except one file, so the verified resolutions were reused (`git rerere` plus the preview's versions) and `feat/site-home-header` was merged into this branch.
+- `LessonView` now carries the port's lesson page for Go and Git (technology label and color, roadmap link only where a roadmap exists, session output with prompts); the sidebar is labelled by technology; `/git/` is built from the Go page's blocks; the areas visual and terminal styles live in the v2 lesson stylesheet (ligatures off in terminals, `--surface-2` replaced by `--glass`).
+- Statuses: `platform.ts` gets `started`, `TechState`, `applyTechStates` and `techState`; `Layout` embeds the computed states; the header nav lists active technologies; the mega menu, the home stack map and Ctrl+K read them. Checked in the browser-built mega menu: "Go başlanıb", "Git başlanıb", the rest "tezliklə".
+- Found on the way: a stale dev server kept port 4322 after its task was stopped, so some checks went to the old design (the new server had silently moved to 4323); the status JSON must be read before any script that imports `TECHS` runs, so it is applied when `platform.ts` loads.
+- Checked after the merge: `pnpm check` (0/0/0), lint, `content:check` (66/66), build (128 pages).
+- Not checked: Ctrl+K with Git topics, Git quiz code in the new design, the mobile layout. Open: `feat/content-files-system` (20 Go lessons) and this branch are still unpushed; the port's PR must merge first.
