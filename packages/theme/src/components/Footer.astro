@@ -1,34 +1,122 @@
 ---
-// While any lesson is adapted from Go by Example, its CC BY 3.0 license requires the
-// attribution. Once every lesson is original, the site does not mention Go by Example
-// (docs/DECISIONS.md, "Original content").
+// v2 footer. `slim` is the one-line footer of lesson pages. While any lesson is adapted from
+// Go by Example, its CC BY 3.0 license requires the attribution; once every lesson is original,
+// the site does not mention Go by Example (docs/DECISIONS.md, "Original content").
 interface Props {
   attribution?: boolean;
+  slim?: boolean;
 }
-const { attribution = true } = Astro.props;
+const { attribution = true, slim } = Astro.props;
 ---
 
-<footer class="site-footer">
-  <div class="inner">
-    {attribution && (
-      <p>
-        Go dərslərinin bir hissəsi Mark McGranaghan və Eli Bendersky-nin{" "}
-        <a href="https://gobyexample.com" rel="noopener">
-          Go by Example
+{slim ? (
+  <footer class="site-footer lx-foot">
+    <div class="wrap foot-bottom" style="margin-top:0;border-top:0;padding-top:0">
+      <span>
+        <span data-brand-plain>w3hub.dev</span> · məzmun{" "}
+        <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">
+          CC BY 4.0
         </a>{" "}
-        layihəsi (
-        <a href="https://creativecommons.org/licenses/by/3.0/" rel="noopener">
-          CC BY 3.0
-        </a>
-        ) əsasında hazırlanıb, Azərbaycan dilinə uyğunlaşdırılıb və sadələşdirilib.
-      </p>
-    )}
-    <p>
-      Dərslərin mətni və kodu{" "}
-      <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">
-        CC BY 4.0
-      </a>{" "}
-      lisenziyası ilə paylaşılır. Go adı Google LLC-yə məxsusdur.
-    </p>
-  </div>
-</footer>
+        · Go adı Google LLC-yə məxsusdur
+      </span>
+      <span>Dizayn v2</span>
+    </div>
+  </footer>
+) : (
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <a class="logo" href="/">
+            <span data-brand>
+              w3hub<span class="logo-tld">.dev</span>
+            </span>
+          </a>
+          <p>
+            Proqramlaşdırmanı Azərbaycan dilində, yol xəritəsi ilə öyrənmək üçün açıq platforma.
+          </p>
+        </div>
+        <div>
+          <h4>Platforma</h4>
+          <ul>
+            <li>
+              <a href="/go/roadmap/">Yol xəritələri</a>
+            </li>
+            <li>
+              <a href="/#stack">Texnologiyalar</a>
+            </li>
+            <li>
+              <a href="/#bolmeler">Bölmələr</a>
+            </li>
+            <li>
+              <a href="/#niye">Niyə biz</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4>Texnologiyalar</h4>
+          <ul>
+            <li>
+              <a href="/go/">Go</a>
+            </li>
+            <li>
+              <span class="muted">Python · tezliklə</span>
+            </li>
+            <li>
+              <span class="muted">TypeScript · tezliklə</span>
+            </li>
+            <li>
+              <a href="/roadmaps/backend/">Backend</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4>Layihə</h4>
+          <ul>
+            <li>
+              <a href="https://github.com/seymur-orucov/go-by-example-az" rel="noopener">
+                GitHub
+              </a>
+            </li>
+            <li>
+              <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">
+                Məzmun: CC BY 4.0
+              </a>
+            </li>
+            <li>
+              <span class="muted">Kod: MIT</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>
+          {attribution && (
+            <>
+              Go dərslərinin bir hissəsi{" "}
+              <a href="https://gobyexample.com" rel="noopener">
+                Go by Example
+              </a>{" "}
+              (
+              <a href="https://creativecommons.org/licenses/by/3.0/" rel="noopener">
+                CC BY 3.0
+              </a>
+              ) əsasında uyğunlaşdırılıb.{" "}
+            </>
+          )}
+          Go adı Google LLC-yə məxsusdur. Dizayn v2.
+        </span>
+        <span>
+          Ad variantı:
+          <span class="brand-switch" role="group" aria-label="Ad variantı">
+            <button data-brand-pick="w3hub">w3hub.dev</button>
+            <button data-brand-pick="beststack">beststack.dev</button>
+          </span>
+        </span>
+      </div>
+      <div class="huge-brand" aria-hidden="true" data-brand-huge>
+        w3hub
+      </div>
+    </div>
+  </footer>
+)}
