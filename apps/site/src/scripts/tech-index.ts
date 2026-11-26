@@ -1,5 +1,6 @@
-// /go/ — layers the visitor's progress (localStorage) on the build-time page and wires the
-// section cards and the view switch. The Go aurora is tinted toward the Go cyan.
+// Technology page (TechPage.astro): layers the visitor's progress (localStorage) on the build-time
+// page and wires the section cards and the view switch. The aurora is tinted toward the
+// technology's color (--tech-c / --tech-c-2, set on :root by TechPage).
 import { aurora, learnedSet, observe, store } from "@platform/theme/scripts/v2";
 
 const $ = <T extends Element>(sel: string, root: ParentNode = document): T | null =>
@@ -7,10 +8,11 @@ const $ = <T extends Element>(sel: string, root: ParentNode = document): T | nul
 const $$ = <T extends Element>(sel: string, root: ParentNode = document): T[] => [
   ...root.querySelectorAll<T>(sel),
 ];
+const tech = document.querySelector<HTMLElement>("[data-tech-index]")?.dataset.techIndex ?? "go";
 const pct = (a: number, b: number): number => (b ? Math.round((a / b) * 100) : 0);
 
-aurora($<HTMLCanvasElement>("#go-aurora")!, {
-  colors: () => ["--go-ice", "--go-cyan", "--accent", "--accent-2"],
+aurora($<HTMLCanvasElement>("#tech-aurora")!, {
+  colors: () => ["--tech-c-2", "--tech-c", "--accent", "--accent-2"],
   start: 30,
 });
 
@@ -28,7 +30,7 @@ requestAnimationFrame(() => {
   );
 });
 
-const cont = $<HTMLAnchorElement>("#go-continue")!;
+const cont = $<HTMLAnchorElement>("#tech-continue")!;
 if (next) {
   const title = $("b", next)!.textContent ?? "";
   const sub = $("small", next)!.textContent ?? "";
@@ -78,7 +80,7 @@ $$<HTMLElement>("[data-sec-card]").forEach((card) => {
 // ---------- section cards: expand / collapse (remembered) ----------
 const openSet = new Set(
   store.get<string[]>(
-    "w3:go-open",
+    `w3:${tech}-open`,
     $$<HTMLElement>(".sec-card.open").map((c) => c.dataset.secCard ?? ""),
   ),
 );
@@ -99,12 +101,12 @@ $("#prog-sections")!.addEventListener("click", (e) => {
   b.setAttribute("aria-expanded", String(open));
   if (open) openSet.add(b.dataset.sec ?? "");
   else openSet.delete(b.dataset.sec ?? "");
-  store.set("w3:go-open", [...openSet]);
+  store.set(`w3:${tech}-open`, [...openSet]);
 });
 
 // ---------- view: sections / all topics ----------
 function setView(v: string): void {
-  store.set("w3:go-view", v);
+  store.set(`w3:${tech}-view`, v);
   $$<HTMLElement>("[data-view]").forEach((b) =>
     b.setAttribute("aria-pressed", String(b.dataset.view === v)),
   );
@@ -115,4 +117,4 @@ function setView(v: string): void {
 $$<HTMLElement>("[data-view]").forEach((b) =>
   b.addEventListener("click", () => setView(b.dataset.view ?? "sections")),
 );
-setView(store.get("w3:go-view", "sections"));
+setView(store.get(`w3:${tech}-view`, "sections"));
