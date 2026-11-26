@@ -10,7 +10,8 @@
     "check": "astro check",
     "astro": "astro",
     "content:check": "node scripts/check-content.ts",
-    "content:run": "node scripts/run-session.ts"
+    "content:run": "node scripts/run-session.ts",
+    "content:go": "node scripts/run-go.ts"
   },
   "dependencies": {
     "@platform/theme": "workspace:*",

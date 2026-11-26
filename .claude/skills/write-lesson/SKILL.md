@@ -109,13 +109,10 @@ format section there and one existing `source: original` lesson before starting.
 
 ## 5. Verify (all of it, every time)
 
-Run from the lesson folder:
-
-```sh
-gofmt -l .            # must print nothing
-go vet main.go
-go run main.go > output.txt
-```
+From the repo root, `pnpm content:go --write <slug>` runs `gofmt -l` and `go vet`, builds the
+lesson, runs it in an empty temporary directory (stdout and stderr together,
+`GOTRACEBACK=none`) and writes `output.txt`. Without `--write` it compares instead; CI runs
+`pnpm content:go` on Linux for every lesson.
 
 - **Concurrency and timing lessons:** the output must not depend on scheduling or machine
   speed. Collect results (a slice slot per goroutine, a fixed channel handoff, a count) and
@@ -126,9 +123,11 @@ go run main.go > output.txt
   the machine is busy, and confirm the output never changes. Never run a data race as
   lesson code; describe it in the text or a quiz.
 - A program that ends in a panic on purpose (the `panic` lesson) exits with code 2 and its
-  stack trace holds paths and addresses. Generate its `output.txt` from a built binary with
-  `GOTRACEBACK=none ./lesson > output.txt 2>&1`, so the file ends with the bare
-  `panic: <message>` line; the future CI must expect exit code 2 for such lessons.
+  stack trace holds paths and addresses. `GOTRACEBACK=none` (set by `content:go`) makes the
+  file end with the bare `panic: <message>` line. Add every lesson that exits non-zero on
+  purpose to `EXIT_CODES` in `apps/site/scripts/run-go.ts`.
+- A Unix-only lesson (such as `syscall.Exec`) goes into `UNIX_ONLY` in the same script: it is
+  skipped on Windows and checked by CI on Linux.
 - Verify **every quiz answer** by compiling or running the snippet (a scratch file in the
   scratchpad, not in the repo); for "does not compile" questions, check the compiler error.
 - Check every claim in `takeaways.az.yaml` against the lesson text and the compiler.

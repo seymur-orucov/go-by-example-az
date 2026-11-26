@@ -538,3 +538,11 @@ Done (branch `feat/git-full-syllabus`):
 - `content/git/syllabus.yaml` v2: one node per roadmap topic, 146 nodes, 821 min, 25 modules in two parts — "Hissə 1 · Git" (13 modules, 78 nodes) and "Hissə 2 · GitHub" (12 modules, 68 nodes). The 39 v1 ids kept, except two without lessons renamed (`status-and-diff` → `git-status`, `install-and-config` → `git-config`). Kinds: terminal 48, ui 33, state 21, code 15, compare 12, concept 10, diagram 7. A script maps every roadmap topic to a node: all covered except 6 section headers and roadmap.sh's typo "Scheduled Worfklows".
 - Schema: `parts` (modules name their part, parts contiguous) and the `ui` kind (needs `visual`); `TechPage` shows a heading per part in both program views. Go pages unchanged.
 - `plan-syllabus` skill: full roadmap and one node per topic by default, no silent scope cuts, roadmap.sh JSON as the source of order, `ui` in the kind table.
+
+### 64. The last Go lesson and the Go check in CI
+The user asked Claude to finish all remaining Go modules. All 9 sections were already written; only `execing-processes` was still `planned`, because its `output.txt` needs Linux (`syscall.Exec` always fails on Windows) and this machine has no WSL distro or Docker.
+
+Done (branch `feat/go-ci`, in a separate worktree because a parallel session held the main checkout):
+- `apps/site/scripts/run-go.ts` (`pnpm content:go [slug…] [--write]`): for every Go lesson `gofmt -l`, `go vet`, build, then run in an empty temporary directory with `GOTRACEBACK=none`, stdout and stderr in one file, and compare with `output.txt`. Expected non-zero exit codes are listed (`panic` 2, `exit` 1); Unix-only lessons are skipped on Windows.
+- CI job `go-lessons` (Ubuntu, Go 1.26.x) runs it, so `execing-processes` is checked on Linux. Its `output.txt` holds the two lines the lesson promises (`launcher: handing over to sh`, `worker nightly-backup, same pid: yes`); the lesson is now `ready`, so all 84 Go lessons are.
+- Checked locally: 83/83 lessons match their `output.txt` (Windows, Go 1.27.4); the Windows behaviour the quiz describes (`exec failed: not supported by windows`) seen by running the lesson; lint, format, `pnpm check`, `content:check` (86/86), build (128 pages).
