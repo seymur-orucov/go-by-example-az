@@ -1,0 +1,276 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.37.3.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir portfolio",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd portfolio",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"<h1>Sam Lee</h1>\" > index.html",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"h1 { color: navy; }\" > style.css",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status",
+      "step": "status",
+      "hidden": false,
+      "fail": false,
+      "out": "On branch main\n\nNo commits yet\n\nUntracked files:\n  (use \"git add <file>...\" to include in what will be committed)\n\tindex.html\n\tstyle.css\n\nnothing added to commit but untracked files present (use \"git add\" to track)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git add index.html",
+      "step": "add-file",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status",
+      "step": "add-file",
+      "hidden": false,
+      "fail": false,
+      "out": "On branch main\n\nNo commits yet\n\nChanges to be committed:\n  (use \"git rm --cached <file>...\" to unstage)\n\tnew file:   index.html\n\nUntracked files:\n  (use \"git add <file>...\" to include in what will be committed)\n\tstyle.css\n\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git add .",
+      "step": "add-all",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status --short",
+      "step": "add-all",
+      "hidden": false,
+      "fail": false,
+      "out": "A  index.html\nA  style.css\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"Add home page\"",
+      "step": "commit",
+      "hidden": false,
+      "fail": false,
+      "out": "[main (root-commit) 0867e37] Add home page\n 2 files changed, 2 insertions(+)\n create mode 100644 index.html\n create mode 100644 style.css\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"h2 { color: teal; }\" >> style.css",
+      "step": "commit-all",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"<h1>About me</h1>\" > about.html",
+      "step": "commit-all",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -am \"Style subheadings\"",
+      "step": "commit-all",
+      "hidden": false,
+      "fail": false,
+      "out": "[main 7fd5640] Style subheadings\n 1 file changed, 1 insertion(+)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git status --short",
+      "step": "commit-all",
+      "hidden": false,
+      "fail": false,
+      "out": "?? about.html\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "status": {
+      "areas": {
+        "work": [
+          {
+            "name": "index.html",
+            "state": "untracked"
+          },
+          {
+            "name": "style.css",
+            "state": "untracked"
+          }
+        ],
+        "index": [],
+        "repo": {
+          "commit": null,
+          "count": 0,
+          "files": []
+        }
+      }
+    },
+    "add-file": {
+      "areas": {
+        "work": [
+          {
+            "name": "index.html",
+            "state": "clean"
+          },
+          {
+            "name": "style.css",
+            "state": "untracked"
+          }
+        ],
+        "index": [
+          {
+            "name": "index.html",
+            "state": "added"
+          }
+        ],
+        "repo": {
+          "commit": null,
+          "count": 0,
+          "files": []
+        }
+      }
+    },
+    "add-all": {
+      "areas": {
+        "work": [
+          {
+            "name": "index.html",
+            "state": "clean"
+          },
+          {
+            "name": "style.css",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "index.html",
+            "state": "added"
+          },
+          {
+            "name": "style.css",
+            "state": "added"
+          }
+        ],
+        "repo": {
+          "commit": null,
+          "count": 0,
+          "files": []
+        }
+      }
+    },
+    "commit": {
+      "areas": {
+        "work": [
+          {
+            "name": "index.html",
+            "state": "clean"
+          },
+          {
+            "name": "style.css",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "index.html",
+            "state": "clean"
+          },
+          {
+            "name": "style.css",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "0867e37",
+            "message": "Add home page"
+          },
+          "count": 1,
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        }
+      }
+    },
+    "commit-all": {
+      "areas": {
+        "work": [
+          {
+            "name": "about.html",
+            "state": "untracked"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          },
+          {
+            "name": "style.css",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "index.html",
+            "state": "clean"
+          },
+          {
+            "name": "style.css",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "7fd5640",
+            "message": "Style subheadings"
+          },
+          "count": 2,
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        }
+      }
+    }
+  }
+}

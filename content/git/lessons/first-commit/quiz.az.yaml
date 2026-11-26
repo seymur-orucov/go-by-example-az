@@ -1,0 +1,53 @@
+- question: "`git status` `Untracked files` bölməsində `notes.txt` göstərir. Onu növbəti commit-ə daxil etmək üçün nə lazımdır?"
+  options:
+    - "`git commit -a`"
+    - "`git status notes.txt`"
+    - "`git add notes.txt`"
+  answer: 2
+  explain: "Untracked faylı yalnız `git add` staging area-ya qoyur; `-a` yeni faylları götürmür."
+- question: "Yeni repository-də bu komandalardan sonra nə çap olunur?"
+  code: |
+    echo "draft" > plan.txt
+    echo "todo" > list.txt
+    git add .
+    git status --short
+  options:
+    - "`A  list.txt` və `A  plan.txt`"
+    - "`?? list.txt` və `?? plan.txt`"
+    - "Yalnız `A  plan.txt`"
+  answer: 0
+  explain: "`git add .` qovluqdakı bütün yeni faylları stage edir, ona görə hər ikisi `A ` ilə görünür."
+- question: "Commit çıxışındakı `create mode 100644 menu.html` sətri nə deməkdir?"
+  options:
+    - "`menu.html` bu commit-də silinib"
+    - "Bu commit-də yeni `menu.html` faylı yaranıb, o adi (icra olunmayan) faylıdır"
+    - "`menu.html`-də 100644 sətir var"
+  answer: 1
+  explain: "`create mode` yeni faylı bildirir, `100644` isə adi faylın rejimidir."
+- question: "`style.css` artıq commit olunub. Bu komandalardan sonra nə çap olunur?"
+  code: |
+    echo "p { margin: 0; }" >> style.css
+    echo "<p>Hi</p>" > contact.html
+    git commit -am "Update styles"
+    git status --short
+  options:
+    - "Heç nə çap olunmur"
+    - "` M style.css`"
+    - "`A  contact.html`"
+    - "`?? contact.html`"
+  answer: 3
+  explain: "`-a` izlənən `style.css`-i commit etdi, yeni `contact.html` isə untracked qaldı."
+- question: "`git commit`-i `-m` olmadan işə salsanız nə olur?"
+  options:
+    - "Commit mesajsız yaradılır"
+    - "Git dərhal xəta verib dayanır"
+    - "Mesaj yazmaq üçün mətn redaktoru açılır"
+  answer: 2
+  explain: "Git mesajı redaktorda soruşur; mesaj boş qalsa, commit yaranmır."
+- question: "Hələ heç bir commit olmayan repository-də `git status` hansı sətri göstərir?"
+  options:
+    - "`No commits yet`"
+    - "`nothing to commit, working tree clean`"
+    - "`Changes not staged for commit`"
+  answer: 0
+  explain: "İlk commit-ə qədər `git status` tarixçənin boş olduğunu `No commits yet` ilə bildirir."

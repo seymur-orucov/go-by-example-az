@@ -1,0 +1,9 @@
+rules:
+  - "Fayl commit-ə qədər üç sahədən keçir: working directory → staging area → repository."
+  - "`git add` faylın həmin andakı surətini staging area-ya qoyur; sonrakı dəyişiklik üçün yenidən `add` lazımdır."
+  - "`git commit` yalnız staging area-da olanı yazır; stage olunmamış dəyişiklik working directory-də qalır."
+  - "Commit-dən sonra staging area boşalmır: orada son commit-in surəti qalır."
+  - "`git status --short`: sol sütun staging area-nı son commit ilə, sağ sütun working directory-ni staging area ilə müqayisə edir; `??` untracked deməkdir."
+practices:
+  - "Commit-dən əvvəl `git status` ilə staging area-da nə olduğunu yoxlayın."
+  - "Hazır olmayan faylları stage etməyin: bir commit-də bir tamamlanmış dəyişiklik saxlayın."
