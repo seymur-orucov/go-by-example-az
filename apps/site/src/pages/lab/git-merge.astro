@@ -1,0 +1,319 @@
+---
+// Pilot of a visual lesson format for technologies with little code (Git): an animated commit
+// graph with prediction questions, a sandbox and a comparison card instead of the code/explanation
+// split. Not linked from the navigation yet; awaiting the user's review.
+import LabStage from "../../components/LabStage.astro";
+import Takeaways from "../../components/Takeaways.astro";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import { CHAPTERS, FRAMES, TAKEAWAYS } from "../../data/lab-git-merge";
+import "../../styles/lesson.css";
+import "../../styles/lab.css";
+
+const asks = FRAMES.filter((f) => f.ask).length;
+---
+
+<SiteLayout
+  title="Merge · Git · vizual dərs (pilot)"
+  description="Git merge addım-addım: fast-forward və three-way merge animasiyalı commit qrafında, proqnoz sualları və sandbox ilə."
+  current="git"
+  bodyClass="lx lab"
+>
+  <main class="lab-main" style="--tech-c:#f05033">
+    <svg class="sr-defs" aria-hidden="true" focusable="false">
+      <defs>
+        <marker
+          id="m-arr"
+          viewBox="0 0 10 10"
+          refX="8"
+          refY="5"
+          markerWidth="6"
+          markerHeight="6"
+          orient="auto-start-reverse"
+        >
+          <path d="M0 1L9 5L0 9z" class="m-arr"></path>
+        </marker>
+      </defs>
+    </svg>
+    <nav class="lx-crumbs" aria-label="Yol">
+      <a href="/">Ana səhifə</a>
+      <span>/</span>
+      <a href="/git/">Git</a>
+      <span>/</span>
+      <a href="/lab/">Laboratoriya</a>
+      <span>/</span>
+      <b>Merge</b>
+    </nav>
+
+    <p class="lab-pilot">
+      <b>Pilot</b> Yeni dərs formatının sınağı: kodu az, izahı çox olan mövzular üçün şəkil,
+      animasiya və təcrübə önə çıxır.
+    </p>
+
+    <header class="lab-head">
+      <div class="lx-meta">
+        <span class="mono-ic" style="--c:#f05033">
+          Git
+        </span>
+        <span>Branch-lər · vizual dərs</span>
+      </div>
+      <h1 class="lx-title">
+        <span class="title-grad">Merge: iki tarix birləşir</span>
+      </h1>
+      <p class="lx-sub">Fast-forward və three-way merge — commit qrafında, addım-addım</p>
+      <div class="lx-chips">
+        <span class="chip c-green">başlanğıc</span>
+        <span class="chip">10 dəq</span>
+        <span class="chip">{FRAMES.length} addım</span>
+        <span class="chip c-acc">{asks} proqnoz</span>
+        <span class="chip c-acc">sandbox</span>
+      </div>
+    </header>
+
+    <p class="lab-lead">
+      Ayrı branch-də yazdığın işi <code>main</code>-ə qaytarmaq üçün <code>git merge</code>{" "}
+      işlədirsən. Git bunu iki yolla edir və hansını seçəcəyi tarixin <b>şəklindən</b> asılıdır. Ona
+      görə bu dərsdə əsas rol terminalda yox, şəkildədir: hər komandadan sonra qrafın necə
+      dəyişdiyinə bax.
+    </p>
+
+    <section class="lab-sec" aria-labelledby="model-h">
+      <div class="lab-sec-head">
+        <span class="kicker">01 · model</span>
+        <h2 id="model-h">Əvvəlcə üç anlayış</h2>
+      </div>
+      <div class="model">
+        <article class="model-card glass">
+          <svg viewBox="0 0 200 80" aria-hidden="true" class="m-commit">
+            <path class="m-edge" d="M86 40H62" />
+            <circle cx="42" cy="40" r="14" />
+            <circle cx="100" cy="40" r="14" />
+            <g class="m-pop">
+              <path class="m-edge" d="M144 40h-24" />
+              <circle cx="158" cy="40" r="14" />
+            </g>
+          </svg>
+          <h3>Commit</h3>
+          <p>
+            Layihənin bir anlıq tam surəti. Hər commit <b>valideynini</b> göstərir, ona görə oxlar
+            geriyə baxır.
+          </p>
+        </article>
+        <article class="model-card glass">
+          <svg viewBox="0 0 200 80" aria-hidden="true" class="m-branch">
+            <path class="m-edge" d="M88 52H60" />
+            <path class="m-edge" d="M146 52h-28" />
+            <circle cx="42" cy="52" r="12" />
+            <circle cx="100" cy="52" r="12" />
+            <circle cx="158" cy="52" r="12"></circle>
+            <g class="m-hop">
+              <rect x="20" y="8" width="44" height="20" rx="10" />
+              <text x="42" y="22">
+                main
+              </text>
+            </g>
+          </svg>
+          <h3>Branch</h3>
+          <p>
+            Commit-ə yapışdırılmış <b>yarlıq</b>. Yeni commit gələndə yarlıq onun üstünə sürüşür.
+          </p>
+        </article>
+        <article class="model-card glass">
+          <svg viewBox="0 0 200 80" aria-hidden="true" class="m-head">
+            <g class="m-pill">
+              <rect x="96" y="10" width="64" height="22" rx="11" />
+              <text x="128" y="25">
+                main
+              </text>
+            </g>
+            <g class="m-pill">
+              <rect x="96" y="46" width="64" height="22" rx="11" />
+              <text x="128" y="61">
+                feature
+              </text>
+            </g>
+            <g class="m-headtag">
+              <rect x="30" y="10" width="54" height="22" rx="11" />
+              <text x="57" y="25">
+                HEAD ›
+              </text>
+            </g>
+          </svg>
+          <h3>HEAD</h3>
+          <p>«Sən buradasan» işarəsi: hazırda hansı branch-də olduğunu göstərir.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="lab-sec" aria-labelledby="stage-h">
+      <div class="lab-sec-head">
+        <span class="kicker">02 · addım-addım</span>
+        <h2 id="stage-h">Qrafa bax, sonra irəli get</h2>
+        <p>
+          Sarı nöqtəli addımlarda Git-in nə edəcəyini əvvəlcə özün təxmin et — cavabdan sonra şəkil
+          dəyişir.
+        </p>
+      </div>
+      <LabStage kind="git" chapters={CHAPTERS} frames={FRAMES} label="Merge: addım-addım">
+        <div class="g-wrap">
+          <svg class="g-svg" role="img" aria-label="Commit qrafı"></svg>
+          <span class="g-caption" data-stage-caption></span>
+          <div class="g-legend" aria-hidden="true">
+            <span>
+              <i class="lg-dot"></i>commit
+            </span>
+            <span>
+              <i class="lg-pill"></i>branch
+            </span>
+            <span>
+              <i class="lg-head"></i>HEAD
+            </span>
+            <span>ox → valideyn</span>
+          </div>
+        </div>
+      </LabStage>
+    </section>
+
+    <section class="lab-sec" aria-labelledby="sb-h">
+      <div class="lab-sec-head">
+        <span class="kicker">03 · praktika</span>
+        <h2 id="sb-h">Özün sına</h2>
+        <p>
+          Komandaları yaz və ya düymələrə bas — qraf dərhal dəyişir. Bu, brauzerdə işləyən sadə
+          modeldir: əsl Git-in yalnız bu dərsə lazım olan hissəsi.
+        </p>
+      </div>
+      <div class="sb glass" data-sandbox="git">
+        <div class="sb-graph">
+          <svg class="g-svg" role="img" aria-label="Sandbox-un commit qrafı"></svg>
+        </div>
+        <div class="sb-grid">
+          <div class="sb-term">
+            <div class="sb-term-head">
+              <span class="win-dots">
+                <i></i>
+                <i></i>
+                <i></i>
+              </span>
+              <span>terminal</span>
+              <button type="button" class="btn btn-ghost btn-sm" data-sb-reset>
+                ↺ Sıfırla
+              </button>
+            </div>
+            <div class="sb-log" data-sb-log aria-live="polite"></div>
+            <label class="sb-input">
+              <span aria-hidden="true">$</span>
+              <input
+                data-sb-input
+                type="text"
+                spellcheck="false"
+                autocomplete="off"
+                autocapitalize="off"
+                placeholder="git switch -c feature"
+                aria-label="Git komandası"
+              />
+            </label>
+            <div class="sb-sugg" data-sb-sugg></div>
+          </div>
+          <div class="sb-tasks">
+            <h3>Tapşırıqlar</h3>
+            <ol>
+              <li data-task>Yeni branch yarat və ona keç</li>
+              <li data-task>O branch-də ən azı 2 commit et</li>
+              <li data-task>
+                <code>main</code>-ə qayıt və <b>fast-forward</b> merge et
+              </li>
+              <li data-task>
+                <b>Merge commit</b> yarat — ipucu: əvvəlcə hər iki branch-də yeni commit olmalıdır
+              </li>
+            </ol>
+            <p class="sb-done" data-sb-done hidden>
+              Əla! İki növ merge-i də öz əlinlə etdin. İndi <code>git branch -d</code> ilə birləşmiş
+              branch-i silməyə çalış.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lab-sec" aria-labelledby="cmp-h">
+      <div class="lab-sec-head">
+        <span class="kicker">04 · müqayisə</span>
+        <h2 id="cmp-h">İki merge yan-yana</h2>
+      </div>
+      <div class="cmp">
+        <article class="cmp-col glass">
+          <h3>Fast-forward</h3>
+          <svg viewBox="0 0 260 70" aria-hidden="true" class="cmp-svg">
+            <path class="m-edge" d="M209 40h-20" />
+            <path class="m-edge" d="M159 40h-20" />
+            <path class="m-edge" d="M109 40H89" />
+            <path class="m-edge" d="M59 40H39" />
+            <circle cx="20" cy="40" r="11" />
+            <circle cx="70" cy="40" r="11" />
+            <circle cx="120" cy="40" r="11"></circle>
+            <circle cx="170" cy="40" r="11" class="c-new"></circle>
+            <circle cx="220" cy="40" r="11" class="c-new"></circle>
+            <g class="cmp-pill">
+              <rect x="196" y="6" width="48" height="18" rx="9" />
+              <text x="220" y="19">
+                main
+              </text>
+            </g>
+          </svg>
+          <dl>
+            <dt>Nə vaxt?</dt>
+            <dd>Sənin branch-in ayrılandan bəri irəli getməyib</dd>
+            <dt>Yeni commit?</dt>
+            <dd>Yox — yarlıq irəli sürüşür</dd>
+            <dt>Tarix</dt>
+            <dd>Düz xətt</dd>
+          </dl>
+        </article>
+        <article class="cmp-col glass">
+          <h3>Three-way merge</h3>
+          <svg viewBox="0 0 260 70" aria-hidden="true" class="cmp-svg">
+            <path class="m-edge" d="M59 22H39" />
+            <path class="m-edge" d="M109 22H89" />
+            <path class="m-edge" d="M159 22h-20" />
+            <path class="m-edge" d="M157 56c-14 0-10-34-22-34" />
+            <path class="m-edge" d="M209 22h-20" />
+            <path class="m-edge" d="M209 22c-16 0-12 34-26 34" />
+            <circle cx="20" cy="22" r="11" />
+            <circle cx="70" cy="22" r="11" />
+            <circle cx="120" cy="22" r="11"></circle>
+            <circle cx="170" cy="22" r="11"></circle>
+            <circle cx="168" cy="56" r="11"></circle>
+            <circle cx="220" cy="22" r="11" class="c-merge"></circle>
+          </svg>
+          <dl>
+            <dt>Nə vaxt?</dt>
+            <dd>Hər iki branch ayrılandan sonra irəli gedib</dd>
+            <dt>Yeni commit?</dt>
+            <dd>Bəli — iki valideynli merge commit</dd>
+            <dt>Tarix</dt>
+            <dd>Budaqlanır və yenidən birləşir</dd>
+          </dl>
+        </article>
+      </div>
+    </section>
+
+    <div class="lab-after">
+      <Takeaways takeaways={TAKEAWAYS} />
+    </div>
+
+    <nav class="lx-pager" aria-label="Pilotlar">
+      <a class="glass spot" href="/lab/">
+        <span class="dir">← Laboratoriya</span>
+        <b>Bütün pilotlar</b>
+      </a>
+      <a class="glass spot next" href="/lab/dns/">
+        <span class="dir">Növbəti pilot →</span>
+        <b>DNS: ad ünvana necə çevrilir</b>
+      </a>
+    </nav>
+  </main>
+
+  <script>
+    import "../../scripts/lab-git";
+  </script>
+</SiteLayout>

@@ -1,0 +1,156 @@
+---
+// Pilot of a visual lesson format for networking: a journey map with travelling packets, a packet
+// inspector, a latency stopwatch, cache panels with TTL bars and flip cards for record types.
+// Not linked from the navigation yet; awaiting the user's review.
+import LabStage from "../../components/LabStage.astro";
+import Takeaways from "../../components/Takeaways.astro";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import { CHAPTERS, FRAMES, RECORDS, TAKEAWAYS } from "../../data/lab-dns";
+import "../../styles/lesson.css";
+import "../../styles/lab.css";
+
+const asks = FRAMES.filter((f) => f.ask).length;
+---
+
+<SiteLayout
+  title="DNS · Şəbəkə · vizual dərs (pilot)"
+  description="DNS addım-addım: brauzerin example.com-u IP ünvanına necə çevirdiyi — resolver, root, TLD, authoritative server, keş və TTL."
+  bodyClass="lx lab"
+>
+  <main class="lab-main" style="--tech-c:#14b8a6">
+    <nav class="lx-crumbs" aria-label="Yol">
+      <a href="/">Ana səhifə</a>
+      <span>/</span>
+      <a href="/lab/">Laboratoriya</a>
+      <span>/</span>
+      <b>DNS</b>
+    </nav>
+
+    <p class="lab-pilot">
+      <b>Pilot</b> Yeni dərs formatının sınağı: şəbəkə mövzusu üçün «səyahət xəritəsi». Domen
+      <code>example.com</code>, ünvanlar sənədlər üçün ayrılmış diapazondandır, vaxtlar təxminidir.
+    </p>
+
+    <header class="lab-head">
+      <div class="lx-meta">
+        <span class="mono-ic" style="--c:#14b8a6">
+          Net
+        </span>
+        <span>Şəbəkə · vizual dərs</span>
+      </div>
+      <h1 class="lx-title">
+        <span class="title-grad">DNS: ad ünvana necə çevrilir</span>
+      </h1>
+      <p class="lx-sub">Brauzerə yazdığın ad IP ünvanına çevrilənə qədər — səyahət xəritəsində</p>
+      <div class="lx-chips">
+        <span class="chip c-green">başlanğıc</span>
+        <span class="chip">10 dəq</span>
+        <span class="chip">{FRAMES.length} addım</span>
+        <span class="chip c-acc">{asks} proqnoz</span>
+        <span class="chip c-acc">kartlar</span>
+      </div>
+    </header>
+
+    <p class="lab-lead">
+      Hər dəfə sayt açanda, hələ səhifə yüklənməmiş, kiçik bir səyahət baş verir: kompüter saytın{" "}
+      <b>adını</b> onun <b>ünvanına</b> çevirir. Aşağıdakı xəritədə paketlərin hara getdiyinə,
+      saniyəölçənə və keşdə nəyin yığıldığına bax — üç hissədə: ilk sorğu, keş və TTL.
+    </p>
+
+    <section class="lab-sec" aria-labelledby="stage-h">
+      <div class="lab-sec-head">
+        <span class="kicker">01 · səyahət</span>
+        <h2 id="stage-h">Paketin arxasınca get</h2>
+        <p>Sarı nöqtəli addımlarda əvvəlcə təxmin et: paket hara gedəcək?</p>
+      </div>
+      <LabStage kind="dns" chapters={CHAPTERS} frames={FRAMES} label="DNS: addım-addım">
+        <div class="d-map">
+          <div class="d-meters" aria-hidden="true">
+            <span class="d-watch">
+              <i>⏱</i>
+              <b data-watch>0 ms</b>
+            </span>
+            <span class="d-clock" data-clock>
+              t = 0:00
+            </span>
+          </div>
+          <svg class="d-svg" role="img" aria-label="DNS sorğusunun yolu"></svg>
+          <div class="d-legend" aria-hidden="true">
+            <span>
+              <i class="k-q"></i>sual
+            </span>
+            <span>
+              <i class="k-ref"></i>yönləndirmə
+            </span>
+            <span>
+              <i class="k-ans"></i>cavab
+            </span>
+          </div>
+        </div>
+        <div class="insp" slot="narr">
+          <span class="insp-tag">Paketin içi</span>
+          <div data-insp></div>
+        </div>
+      </LabStage>
+
+      <div class="caches">
+        <div class="cache glass">
+          <h3>
+            <span data-cache-title="pc">Kompüterin keşi</span> <small>brauzer + OS</small>
+          </h3>
+          <ul data-cache="pc"></ul>
+        </div>
+        <div class="cache glass">
+          <h3>
+            Resolver-in keşi <small>bütün istifadəçiləri üçün ortaq</small>
+          </h3>
+          <ul data-cache="res"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="lab-sec" aria-labelledby="rec-h">
+      <div class="lab-sec-head">
+        <span class="kicker">02 · kartlar</span>
+        <h2 id="rec-h">Record növləri</h2>
+        <p>A record-dan başqa da record-lar var. Karta bas — arxasında cavab var.</p>
+      </div>
+      <div class="flips">
+        {RECORDS.map((r) => (
+          <button type="button" class="flip" data-flip aria-pressed="false">
+            <span class="flip-in">
+              <span class="flip-face flip-front glass">
+                <b>{r.type}</b>
+                <small>{r.front}</small>
+              </span>
+              <span class="flip-face flip-back glass">
+                <b>{r.type}</b>
+                <span set:html={r.back} />
+                <code>{r.example}</code>
+              </span>
+            </span>
+          </button>
+        ))}
+      </div>
+    </section>
+
+    <div class="lab-after">
+      <Takeaways takeaways={TAKEAWAYS} />
+    </div>
+
+    <nav class="lx-pager" aria-label="Pilotlar">
+      <a class="glass spot" href="/lab/git-merge/">
+        <span class="dir">← Əvvəlki pilot</span>
+        <b>Merge: iki tarix birləşir</b>
+      </a>
+      <a class="glass spot next" href="/lab/">
+        <span class="dir">Laboratoriya →</span>
+        <b>Bütün pilotlar</b>
+      </a>
+    </nav>
+  </main>
+
+  <script>
+    import "../../scripts/lab-dns";
+  </script>
+</SiteLayout>

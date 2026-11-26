@@ -1,0 +1,104 @@
+---
+// The stage of a visual lesson pilot: chapter tabs, step segments, the visual (default slot),
+// the narration panel and the controls. Behavior: scripts/lab-player.ts. Every step is also
+// rendered as plain text in a <details>, so the lesson reads without JavaScript or animation.
+import type { FrameText } from "../data/lab-player";
+
+interface Props {
+  kind: string;
+  chapters: string[];
+  frames: FrameText[];
+  label: string;
+}
+
+const { kind, chapters, frames, label } = Astro.props;
+const pad = (n: number) => String(n).padStart(2, "0");
+---
+
+<section class="stage glass" data-stage={kind} aria-label={label}>
+  <div class="stage-top">
+    <div class="stage-tabs" role="tablist" aria-label="Hissələr">
+      {chapters.map((c, i) => (
+        <button type="button" role="tab" data-p-tab={i} aria-selected={i === 0 ? "true" : "false"}>
+          <span>{i + 1}</span>
+          {c}
+        </button>
+      ))}
+    </div>
+    <div class="stage-segs" aria-hidden="true">
+      {frames.map((f, i) => (
+        <button
+          type="button"
+          tabindex="-1"
+          data-p-seg
+          class={f.ask ? "has-ask" : ""}
+          title={`Addım ${i + 1}`}
+        />
+      ))}
+    </div>
+    <span class="stage-count" data-p-count>
+      01 / {pad(frames.length)}
+    </span>
+  </div>
+
+  <div class="stage-body">
+    <div class="stage-visual">
+      <slot />
+    </div>
+    <div class="stage-narr" data-p-narr aria-live="polite">
+      <span class="narr-chapter" data-p-chapter></span>
+      <h3 class="narr-title" data-p-title></h3>
+      <div class="narr-body" data-p-body></div>
+      <div class="narr-ask" data-p-ask hidden></div>
+      <div class="narr-cmd" data-p-cmd hidden>
+        <div class="cmd-line">
+          <span class="p">$</span>
+          <code data-p-cmd-text></code>
+        </div>
+        <button type="button" class="cmd-toggle" data-p-out-toggle aria-expanded="false">
+          Terminalda nə görünür?
+        </button>
+        <pre class="cmd-out" data-p-out hidden></pre>
+      </div>
+      <slot name="narr" />
+    </div>
+  </div>
+
+  <div class="stage-ctrl">
+    <button type="button" class="btn btn-sm" data-p-prev>
+      ← Əvvəlki
+    </button>
+    <button type="button" class="btn btn-sm" data-p-play aria-pressed="false">
+      ▶ Oynat
+    </button>
+    <button type="button" class="btn btn-sm btn-primary" data-p-next>
+      Növbəti →
+    </button>
+    <button type="button" class="btn btn-sm btn-ghost" data-p-reset>
+      ↺ Yenidən
+    </button>
+    <span class="stage-hint">
+      <kbd>←</kbd>
+      <kbd>→</kbd> addımlar
+    </span>
+  </div>
+
+  <details class="stage-text">
+    <summary>Bütün addımları mətn kimi oxu</summary>
+    <ol>
+      {frames.map((f) => (
+        <li>
+          {f.ask && (
+            <p class="st-ask">
+              <i>Proqnoz:</i> <span set:html={f.ask.q} /> —{" "}
+              <b set:html={f.ask.options[f.ask.answer]} />
+            </p>
+          )}
+          <b set:html={f.title} />
+          <p set:html={f.body} />
+          {f.cmd && <code>$ {f.cmd}</code>}
+        </li>
+      ))}
+    </ol>
+  </details>
+</section>

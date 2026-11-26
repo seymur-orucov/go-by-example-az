@@ -1,0 +1,62 @@
+---
+// /lab/: the list of visual lesson pilots (new lesson formats awaiting the user's review).
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import "../../styles/lesson.css";
+import "../../styles/lab.css";
+
+const pilots = [
+  {
+    href: "/lab/git-merge/",
+    tech: "Git",
+    color: "#f05033",
+    title: "Merge: iki tarix birləşir",
+    idea: "Animasiyalı commit qrafı + proqnoz sualları + sandbox (komanda yaz, qraf dəyişsin) + müqayisə kartı.",
+    fits: "Vəziyyəti dəyişən mövzular: branch, rebase, reset, stash.",
+  },
+  {
+    href: "/lab/dns/",
+    tech: "Net",
+    color: "#14b8a6",
+    title: "DNS: ad ünvana necə çevrilir",
+    idea: "Səyahət xəritəsi: paketlər server-lər arasında gedir, saniyəölçən, paketin içi, keş və TTL panelləri, record kartları.",
+    fits: "Bir neçə tərəfin danışdığı mövzular: HTTP, TCP, TLS, OAuth.",
+  },
+];
+---
+
+<SiteLayout
+  title="Laboratoriya · vizual dərs pilotları"
+  description="Kodu az, izahı çox olan mövzular üçün yeni dərs formatlarının pilotları."
+  bodyClass="lx lab"
+>
+  <main class="lab-main">
+    <nav class="lx-crumbs" aria-label="Yol">
+      <a href="/">Ana səhifə</a>
+      <span>/</span>
+      <b>Laboratoriya</b>
+    </nav>
+    <header class="lab-head">
+      <h1 class="lx-title">
+        <span class="title-grad">Laboratoriya</span>
+      </h1>
+      <p class="lx-sub">Kodu az, izahı çox olan mövzular üçün yeni dərs formatları</p>
+    </header>
+    <p class="lab-lead">
+      Go dərslərində solda izah, sağda kod var — çünki orada əsas olan koddur. Git və şəbəkə kimi
+      mövzularda isə əsas olan <b>vəziyyətin necə dəyişdiyidir</b>. Bu pilotlarda şəkil səhnənin
+      mərkəzindədir, komanda isə yalnız səbəbdir.
+    </p>
+    <div class="lab-list">
+      {pilots.map((p) => (
+        <a class="lab-card glass spot" href={p.href}>
+          <span class="mono-ic" style={`--c:${p.color}`}>
+            {p.tech}
+          </span>
+          <b>{p.title}</b>
+          <span>{p.idea}</span>
+          <small>Uyğundur: {p.fits}</small>
+        </a>
+      ))}
+    </div>
+  </main>
+</SiteLayout>

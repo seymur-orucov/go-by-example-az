@@ -163,6 +163,7 @@ Once the Go prototype is live, the site becomes a unified platform.
   - [x] **Git syllabus** approved: 7 modules, 39 nodes, ~4.5 h (`content/git/syllabus.yaml`)
   - [x] Lesson kinds `terminal` and `state` on the site: `session.sh` + `pnpm content:run` (recorded output), the `areas` visual, `/git/` and `/git/<id>/` pages, shared `LessonView`; `pnpm content:check` validates syllabi and session lessons
   - [ ] Lesson kinds `diagram`, `compare`, `concept` and the commit-graph visual (`vis: graph`, needed from `commit-snapshot` on)
+  - [~] **Visual lesson pilots** (`/lab/`, 2026-11-26): a stage layout for topics with little code — `/lab/git-merge/` (animated commit graph, predictions, sandbox, comparison) and `/lab/dns/` (journey map with packets, stopwatch, cache/TTL panels, record cards) — awaiting the user's review
   - [x] `write-content` skill (pilot lesson per kind → approval → module by module)
   - [~] Git pilot lessons `three-areas` and `first-commit` — awaiting the user's review
   - [ ] The remaining Git lessons, module by module
