@@ -403,6 +403,8 @@ pre {
 .glow-border {
   position: relative;
   isolation: isolate;
+  /* keep the outer radius equal to the inner one (::after uses --gb-r), whatever .glass sets */
+  border-radius: var(--gb-r, 22px) !important;
   border: 0 !important;
   background: conic-gradient(
     from var(--ang),
