@@ -60,15 +60,18 @@ export async function highlightLines(code: string): Promise<string[]> {
 }
 
 /**
- * Lines as `<span class="line" data-n>` with a gutter number, the markup the lesson
- * script and the theme CSS expect. `from`/`to` are 1-based and inclusive.
+ * Lines as `<span class="ln" data-n>` (the gutter number is drawn from `data-n` by the theme CSS).
+ * `from`/`to` are 1-based and inclusive; `hl` marks every line as highlighted (step snippets).
  */
-export function renderLines(html: string[], range: { from?: number; to?: number } = {}): string {
+export function renderLines(
+  html: string[],
+  range: { from?: number; to?: number; hl?: boolean } = {},
+): string {
   const from = range.from ?? 1;
   const to = range.to ?? html.length;
   let out = "";
   for (let n = from; n <= to; n++) {
-    out += `<span class="line" data-n="${n}"><span class="ln">${n}</span>${html[n - 1] || " "}</span>`;
+    out += `<span class="ln${range.hl ? " hl" : ""}" data-n="${n}">${html[n - 1] || " "}</span>`;
   }
   return out;
 }

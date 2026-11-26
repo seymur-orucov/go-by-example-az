@@ -1,6 +1,7 @@
 ---
-// "Özünü yoxla": the questions of quiz.<locale>.yaml as a slider, one question at a time,
-// with progress dots and a result slide at the end. Behavior: scripts/quiz.ts.
+// "Özünü yoxla": the questions of quiz.<locale>.yaml as a slider, one question at a time, with
+// progress dots and a result slide (design v2). Behavior: scripts/quiz.ts. The explanation of a
+// question is stored in a <template> and shown after the right answer.
 import { highlightGo } from "../lib/highlight";
 import type { QuizQuestion } from "../lib/lesson";
 import { renderInline } from "../lib/markdown";
@@ -24,80 +25,79 @@ const questions = await Promise.all(
 ---
 
 <section
-  class="card quiz quiz-slider"
-  id="quiz"
+  class="qz glass glow-border"
   data-quiz
-  aria-labelledby="quiz-title"
+  data-reveal
+  style="--i:1"
+  aria-labelledby="qz-h"
+  id="quiz"
   tabindex="-1"
 >
-  <div class="quiz-head">
+  <div class="qz-head">
     <div>
-      <span class="label">Özünü yoxla</span>
-      <h2 id="quiz-title">{total} sual</h2>
+      <div class="kicker" style="justify-content:flex-start">
+        Özünü yoxla
+      </div>
+      <h2 id="qz-h">
+        Test · <span data-quiz-n>1</span> / {total}
+      </h2>
     </div>
-    <span class="quiz-count" data-quiz-count aria-live="polite">
-      1 / {total}
-    </span>
+    <div class="qz-dots" role="tablist" aria-label="Suallar">
+      {questions.map((_, k) => (
+        <button role="tab" data-k={k} aria-label={`Sual ${k + 1}`} />
+      ))}
+      <button role="tab" data-k={total} class="qz-dot-end" aria-label="Nəticə"></button>
+    </div>
   </div>
-
-  <div class="quiz-dots" aria-label="Suallar">
-    {questions.map((_, i) => (
-      <button
-        type="button"
-        class="quiz-dot"
-        data-quiz-go={i}
-        aria-label={`Sual ${i + 1}`}
-        aria-current={i === 0 ? "step" : undefined}
-      />
-    ))}
-  </div>
-
-  <div class="quiz-viewport" data-quiz-viewport>
-    <ol class="quiz-track" data-quiz-track>
-      {questions.map((q, qi) => (
-        <li
-          class="quiz-q"
-          data-answer={q.answer}
-          aria-label={`Sual ${qi + 1} / ${total}`}
-          inert={qi > 0 || undefined}
-        >
-          <p class="quiz-question" set:html={q.question} />
-          {q.code && <pre class="code" set:html={q.code} />}
-          <div class="quiz-options" role="group" aria-label="Cavablar">
-            {q.options.map((o, oi) => (
-              <button class="quiz-option" type="button" data-i={oi}>
-                <span class="letter">{LETTERS[oi]}</span>
-                <span set:html={o} />
+  <div class="qz-view" data-quiz-view>
+    <div class="qz-track" data-quiz-track>
+      {questions.map((q, k) => (
+        <div class="qz-slide" data-k={k} data-answer={q.answer}>
+          <p class="qz-q" set:html={q.question} />
+          {q.code && <pre class="code qz-code" set:html={q.code} />}
+          <div class="qz-opts">
+            {q.options.map((o, n) => (
+              <button class="qz-opt" data-n={n}>
+                <span class="qz-letter">{LETTERS[n]}</span>
+                <span class="mono" set:html={o} />
               </button>
             ))}
           </div>
-          <p class="quiz-feedback" aria-live="polite" />
+          <p class="qz-fb" aria-live="polite" />
           <template set:html={q.explain} />
-        </li>
-      ))}
-      <li class="quiz-q quiz-result" data-quiz-result inert>
-        <div class="quiz-ring" data-quiz-ring>
-          <b data-quiz-score>0</b>
-          <small>/ {total}</small>
         </div>
-        <p class="quiz-result-title" data-quiz-verdict></p>
-        <p class="quiz-result-sub">İlk cəhddə düz cavablanan suallar.</p>
-        <button type="button" class="btn" data-quiz-restart>
+      ))}
+      <div class="qz-slide qz-result" data-k={total}>
+        <div class="qz-ring">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <defs>
+              <linearGradient id="qzGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="var(--cyan)"></stop>
+                <stop offset=".5" stop-color="var(--accent)"></stop>
+                <stop offset="1" stop-color="var(--accent-2)"></stop>
+              </linearGradient>
+            </defs>
+            <circle cx="60" cy="60" r="50" class="tr"></circle>
+            <circle cx="60" cy="60" r="50" class="br" data-quiz-bar></circle>
+          </svg>
+          <div>
+            <b data-quiz-score>0/{total}</b>
+            <small>ilk cəhddə</small>
+          </div>
+        </div>
+        <h3 data-quiz-verdict></h3>
+        <p class="muted" data-quiz-verdict-sub></p>
+        <button class="btn btn-primary" data-quiz-restart>
           Yenidən başla
         </button>
-      </li>
-    </ol>
+      </div>
+    </div>
   </div>
-
-  <div class="quiz-nav">
-    <button type="button" class="btn btn-ghost btn-sm" data-quiz-prev disabled>
+  <div class="qz-foot">
+    <button class="btn btn-sm" data-quiz-prev>
       ‹ Əvvəlki
     </button>
-    <span class="quiz-hint">
-      <kbd>←</kbd>
-      <kbd>→</kbd> suallar
-    </span>
-    <button type="button" class="btn btn-sm" data-quiz-next>
+    <button class="btn btn-sm" data-quiz-next>
       Növbəti ›
     </button>
   </div>

@@ -1,10 +1,8 @@
-// Lesson walkthrough, ported from design/shared/b.js (createLesson) and design/d/example.html:
-// step controls, two-way explanation <-> code highlighting, step output, play, full output,
-// copy and the "Öyrəndim" button (the quiz lives in quiz.ts). The page renders all markup; this only adds behavior.
-import { store } from "@platform/theme/scripts/storage";
-import { escapeHtml } from "@platform/theme/scripts/text";
-import { toast } from "@platform/theme/scripts/toast";
-import { KEY_LEARNED, readLearned } from "./lesson-sidebar";
+// Lesson page behavior (design v2): step walkthrough with two-way explanation <-> code
+// highlighting, step output, play, the curved explanation -> code link, full output, copy, the
+// "Öyrəndim" button, reading progress, view modes (sidebar, width, Zen) and keyboard shortcuts.
+// The page renders all markup at build time; the quiz lives in quiz.ts.
+import { learnedSet, reduced, saveLearned, toast } from "@platform/theme/scripts/v2";
 
 interface LessonData {
   slug: string;
@@ -12,10 +10,17 @@ interface LessonData {
   code: string;
   output: string;
   next: { title: string; href: string } | null;
+  prev: { href: string } | null;
 }
 
-const $ = <T extends Element = HTMLElement>(sel: string, root: ParentNode = document) =>
-  root.querySelector<T>(sel);
+const root = document.documentElement;
+const $ = <T extends Element = HTMLElement>(sel: string, scope: ParentNode = document): T | null =>
+  scope.querySelector<T>(sel);
+const $$ = <T extends Element = HTMLElement>(sel: string, scope: ParentNode = document): T[] => [
+  ...scope.querySelectorAll<T>(sel),
+];
+const motion = !reduced;
+const pad = (n: number): string => String(n).padStart(2, "0");
 
 function readData(): LessonData | null {
   const el = document.getElementById("lesson-data");
@@ -26,294 +31,414 @@ function readData(): LessonData | null {
   }
 }
 
-const wide = () => matchMedia("(min-width: 1201px)").matches;
-const reduced = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
-const pad = (n: number) => String(n).padStart(2, "0");
+const typing = (): boolean => {
+  const a = document.activeElement as HTMLElement | null;
+  return !!a && (/INPUT|TEXTAREA|SELECT/.test(a.tagName) || a.isContentEditable);
+};
+const paletteOpen = (): boolean => !!$(".palette-backdrop:not([hidden])");
 
-const PLAY_ICON =
-  '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15a1 1 0 0 0 1.5.9l12-7.5a1 1 0 0 0 0-1.8l-12-7.5A1 1 0 0 0 7 4.5Z"/></svg>';
-const PAUSE_ICON =
-  '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
-
-function initWalkthrough(data: LessonData): void {
-  const pre = $("#code")!;
-  const stepEls = Array.from(document.querySelectorAll<HTMLElement>(".step[data-step]"));
-  const term = $("[data-term]")!;
-  const status = $("[data-run-status]")!;
-  const count = $("[data-step-count]")!;
-  const prevBtn = $<HTMLButtonElement>("[data-prev-step]")!;
-  const nextBtn = $<HTMLButtonElement>("[data-next-step]")!;
-  const playBtn = $<HTMLButtonElement>("[data-play]")!;
-  const codeLines = Array.from(pre.querySelectorAll<HTMLElement>(".line"));
-  const n = data.steps.length;
-
-  let pinned = 0; // chosen by scroll, buttons or keys
-  let shown = -1; // currently displayed (hover may preview another step)
-  let playing: number | undefined;
-
-  const setStatus = (cls: string, text: string) => {
-    status.className = "status" + (cls ? " " + cls : "");
-    status.lastElementChild!.textContent = text;
-  };
-
-  // Output printed up to step i; earlier lines dimmed.
-  function paintTerm(i: number) {
-    const outs = data.steps
-      .slice(0, i + 1)
-      .map((s, k) => ({ out: s.out, k }))
-      .filter((x) => x.out !== undefined);
-    term.innerHTML = outs.length
-      ? outs
-          .flatMap(({ out, k }) =>
-            out!
-              .split("\n")
-              .map((l) => `<span class="out-line${k < i ? " dim" : ""}">${escapeHtml(l)}</span>`),
-          )
-          .join("")
-      : '<span class="out-line dim">— bu addıma qədər heç nə çap olunmur</span>';
-  }
-
-  // Re-insert the step's visual so its CSS entrance animation plays again.
-  function replayVis(el: HTMLElement) {
-    const vis = $(".vis", el);
-    if (vis && !reduced()) vis.replaceWith(vis.cloneNode(true));
-  }
-
-  function show(i: number) {
-    if (i === shown) return;
-    shown = i;
-    const s = data.steps[i]!;
-    pre.classList.add("has-focus");
-    for (const l of codeLines) {
-      const k = Number(l.dataset.n);
-      l.classList.toggle("hl", k >= s.from && k <= s.to);
+// ---------- view modes: sidebar [, width F, Zen Z / Esc ----------
+function initViewModes(onLayout: () => void): void {
+  const narrow = (): boolean => matchMedia("(max-width: 980px)").matches;
+  const isOff = (): boolean => root.getAttribute("data-sidebar") === "off";
+  const isFull = (): boolean => root.getAttribute("data-width") === "full";
+  const isZen = (): boolean => root.hasAttribute("data-zen");
+  const save = (st: Storage, k: string, v: string | null): void => {
+    try {
+      if (v == null) st.removeItem(k);
+      else st.setItem(k, v);
+    } catch {
+      /* private mode */
     }
-    stepEls.forEach((el, k) => el.classList.toggle("is-active", k === i));
-    count.textContent = `${pad(i + 1)} / ${pad(n)}`;
-    prevBtn.disabled = i === 0;
-    nextBtn.disabled = i === n - 1;
-    paintTerm(i);
-    setStatus("", "addım rejimi");
-    replayVis(stepEls[i]!);
-  }
-
-  // Wide screens: bring the step's explanation into view without fighting the scroll observer.
-  let lockScroll = 0;
-  const inView = (el: HTMLElement) => {
-    const r = el.getBoundingClientRect();
-    return r.top >= 70 && r.bottom <= innerHeight;
   };
-  function scrollToStep(el: HTMLElement) {
-    lockScroll = Infinity;
-    let done = false;
-    const release = () => {
-      if (done) return;
-      done = true;
-      lockScroll = Date.now() + 120;
-    };
-    addEventListener("scrollend", release, { once: true });
-    setTimeout(release, 1500);
-    el.scrollIntoView({ behavior: reduced() ? "instant" : "smooth", block: "center" });
+  function paint(): void {
+    $$('[data-act="sidebar"]').forEach((b) => b.setAttribute("aria-checked", String(!isOff())));
+    $$("[data-width-opt]").forEach((b) =>
+      b.setAttribute("aria-pressed", String((b.dataset.widthOpt === "full") === isFull())),
+    );
+    $$("[data-zen-toggle]").forEach((b) => b.setAttribute("aria-pressed", String(isZen())));
+    $$("[data-zen-label]").forEach((l) => (l.textContent = isZen() ? "Zen-dən çıx" : "Zen"));
+    $$("[data-sb-toggle]").forEach((b) =>
+      b.setAttribute(
+        "aria-expanded",
+        String(narrow() ? root.hasAttribute("data-drawer") : !isOff()),
+      ),
+    );
   }
-
-  function go(i: number, fromUser = false) {
-    i = Math.max(0, Math.min(n - 1, i));
-    pinned = i;
-    show(i);
-    if (fromUser && wide() && !inView(stepEls[i]!)) scrollToStep(stepEls[i]!);
+  const after = (): void => {
+    paint();
+    setTimeout(onLayout, 320);
+  };
+  function setZen(on: boolean): void {
+    if (on === isZen()) return;
+    if (on) root.setAttribute("data-zen", "");
+    else root.removeAttribute("data-zen");
+    root.removeAttribute("data-drawer");
+    save(sessionStorage, "w3:zen", on ? "1" : null);
+    if (on) toast("Zen rejimi — çıxmaq üçün Esc");
+    after();
   }
-  const preview = (i: number | null) => show(i ?? pinned);
-
-  function paintPlay() {
-    playBtn.innerHTML = playing ? PAUSE_ICON : PLAY_ICON;
-    playBtn.setAttribute("aria-label", playing ? "Dayandır" : "Addımları oynat");
-    playBtn.title = playing ? "Dayandır" : "Addımları oynat";
-  }
-  function stop() {
-    clearInterval(playing);
-    playing = undefined;
-    paintPlay();
-  }
-  function play() {
-    if (playing) return stop();
-    if (pinned === n - 1) go(0, true);
-    playing = window.setInterval(() => {
-      if (pinned >= n - 1) return stop();
-      go(pinned + 1, true);
-    }, 2200);
-    paintPlay();
-  }
-
-  prevBtn.addEventListener("click", () => {
-    stop();
-    go(pinned - 1, true);
-  });
-  nextBtn.addEventListener("click", () => {
-    stop();
-    go(pinned + 1, true);
-  });
-  playBtn.addEventListener("click", play);
-  paintPlay();
-
-  // Code -> explanation: hovering a line previews its step.
-  const stepForLine = (k: number) => data.steps.findIndex((s) => k >= s.from && k <= s.to);
-  let hoverTimer: number | undefined;
-  pre.addEventListener("mouseover", (e) => {
-    const line = (e.target as Element).closest<HTMLElement>(".line");
-    if (!line) return;
-    const i = stepForLine(Number(line.dataset.n));
-    if (i < 0) return;
-    preview(i);
-    clearTimeout(hoverTimer);
-    hoverTimer = window.setTimeout(() => {
-      if (wide() && !inView(stepEls[i]!)) scrollToStep(stepEls[i]!);
-    }, 350);
-  });
-  pre.addEventListener("mouseleave", () => {
-    clearTimeout(hoverTimer);
-    preview(null);
-  });
-  // Clicking a line pins its step.
-  pre.addEventListener("click", (e) => {
-    const line = (e.target as Element).closest<HTMLElement>(".line");
-    const i = line ? stepForLine(Number(line.dataset.n)) : -1;
-    if (i >= 0) {
-      stop();
-      go(i);
+  function toggleSidebar(): void {
+    if (narrow()) {
+      root.toggleAttribute("data-drawer");
+      return after();
     }
+    if (isZen()) setZen(false);
+    if (isOff()) root.removeAttribute("data-sidebar");
+    else root.setAttribute("data-sidebar", "off");
+    save(localStorage, "w3:sidebar", isOff() ? "off" : "on");
+    after();
+  }
+  function setWidth(full: boolean): void {
+    if (full) root.setAttribute("data-width", "full");
+    else root.removeAttribute("data-width");
+    save(localStorage, "w3:width", full ? "full" : "center");
+    after();
+  }
+  document.addEventListener("click", (e) => {
+    const t = e.target as Element;
+    if (t.closest("[data-sb-toggle], [data-act='sidebar']")) toggleSidebar();
+    if (t.closest("[data-sb-close]")) {
+      root.removeAttribute("data-drawer");
+      paint();
+    }
+    const w = t.closest<HTMLElement>("[data-width-opt]");
+    if (w) setWidth(w.dataset.widthOpt === "full");
+    if (t.closest("[data-zen-toggle]")) setZen(!isZen());
+    if (narrow() && t.closest(".lx-side a")) root.removeAttribute("data-drawer");
   });
-
-  // Explanation -> code: hover previews, click pins, scrolling picks the step in the middle.
-  let hovering = false;
-  stepEls.forEach((el, i) => {
-    el.addEventListener("mouseenter", () => {
-      if (!wide()) return;
-      hovering = true;
-      preview(i);
-    });
-    el.addEventListener("mouseleave", () => {
-      hovering = false;
-      preview(null);
-    });
-    el.addEventListener("click", () => {
-      if (!wide()) return;
-      stop();
-      go(i);
-    });
-  });
-  const io = new IntersectionObserver(
-    (entries) => {
-      if (hovering || Date.now() < lockScroll) return;
-      for (const en of entries)
-        if (en.isIntersecting) go(stepEls.indexOf(en.target as HTMLElement));
-    },
-    { rootMargin: "-42% 0px -50% 0px" },
-  );
-  stepEls.forEach((el) => io.observe(el));
-
-  // ← → move between steps (capture: the shell uses plain arrows for the pager; Shift+arrows still do).
+  // capture: when the search palette is open, Esc belongs to it
   addEventListener(
     "keydown",
-    (ev) => {
-      if (ev.shiftKey || ev.ctrlKey || ev.metaKey || ev.altKey) return;
-      if (ev.key !== "ArrowLeft" && ev.key !== "ArrowRight") return;
-      const a = document.activeElement as HTMLElement | null;
-      if (a && (/INPUT|TEXTAREA|SELECT/.test(a.tagName) || a.isContentEditable)) return;
-      if (document.querySelector(".palette-backdrop.open")) return;
-      // Inside the quiz the arrows move between questions (quiz.ts stops them there).
-      if (a?.closest("[data-quiz]")) return;
-      ev.stopPropagation();
-      ev.preventDefault();
-      stop();
-      go(pinned + (ev.key === "ArrowRight" ? 1 : -1), true);
+    (e) => {
+      if (e.ctrlKey || e.metaKey || e.altKey || typing() || paletteOpen()) return;
+      if (e.key === "Escape") {
+        if (isZen()) setZen(false);
+        else if (root.hasAttribute("data-drawer")) {
+          root.removeAttribute("data-drawer");
+          paint();
+        }
+        return;
+      }
+      // e.code does not depend on the keyboard layout (on the AZ layout [ is "ö")
+      if (e.code === "BracketLeft" || (!e.code && e.key === "[")) {
+        e.preventDefault();
+        toggleSidebar();
+      } else if (e.code === "KeyF" && !isZen()) {
+        e.preventDefault();
+        setWidth(!isFull());
+        toast(isFull() ? "Kontent: tam en" : "Kontent: mərkəzdə");
+      } else if (e.code === "KeyZ") {
+        e.preventDefault();
+        setZen(!isZen());
+      }
     },
     true,
   );
-
-  // A code pane taller than the screen keeps its bottom edge visible (the code is never trimmed).
-  const pane = $("#pane")!;
-  function fitSticky() {
-    const headerH =
-      (document.documentElement.hasAttribute("data-zen")
-        ? 0
-        : parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--header-h")) ||
-          58) + 16;
-    const h = pane.offsetHeight;
-    pane.style.top = `${h > innerHeight - headerH - 16 ? innerHeight - h - 16 : headerH}px`;
-  }
-  fitSticky();
-  addEventListener("resize", fitSticky);
-  addEventListener("goaz:layout", fitSticky);
-
-  // Full output: the recorded output of `go run main.go` (live runs come with the /api/run proxy).
-  const runBtn = $<HTMLButtonElement>("[data-run]")!;
-  function showOutput() {
-    stop();
-    pre.classList.remove("has-focus");
-    shown = -1;
-    term.innerHTML = '<span class="prompt">$</span> go run main.go';
-    data.output
-      .replace(/\n$/, "")
-      .split("\n")
-      .forEach((l, i) => {
-        const s = document.createElement("span");
-        s.className = "out-line";
-        s.style.animationDelay = `${i * 60}ms`;
-        s.textContent = l;
-        term.appendChild(s);
-      });
-    setStatus("ok", "proqramın tam çıxışı");
-  }
-  runBtn.addEventListener("click", showOutput);
-  document.addEventListener("keydown", (ev) => {
-    if ((ev.ctrlKey || ev.metaKey) && ev.key === "Enter") {
-      ev.preventDefault();
-      showOutput();
-    }
-  });
-
-  $("[data-copy]")!.addEventListener("click", async () => {
-    toast((await copyText(data.code)) ? "Kod kopyalandı" : "Kopyalamaq alınmadı");
-  });
-
-  go(0);
+  paint();
 }
 
-// The Clipboard API works on https and localhost, which covers every place the site runs.
-async function copyText(text: string): Promise<boolean> {
-  try {
-    await navigator.clipboard.writeText(text);
-    return true;
-  } catch {
-    return false;
-  }
-}
-
-function initLearned(data: LessonData): void {
-  const btn = $<HTMLButtonElement>("[data-learned]");
-  if (!btn) return;
-  const paint = () => {
-    const on = readLearned().has(data.slug);
-    btn.classList.toggle("is-done", on);
-    btn.setAttribute("aria-pressed", String(on));
-    btn.querySelector("span")!.textContent = on ? "Öyrənildi" : "Öyrəndim";
+// ---------- reading progress ----------
+function initReadProgress(): void {
+  const bar = $("#read-bar");
+  if (!bar) return;
+  const paint = (): void => {
+    const h = document.documentElement.scrollHeight - innerHeight;
+    bar.style.transform = `scaleX(${h > 0 ? Math.min(1, scrollY / h) : 0})`;
   };
-  btn.addEventListener("click", () => {
-    const learned = readLearned();
-    if (learned.has(data.slug)) learned.delete(data.slug);
-    else {
-      learned.add(data.slug);
+  addEventListener("scroll", paint, { passive: true });
+  paint();
+}
+
+// ---------- learned button ----------
+function initLearned(data: LessonData): void {
+  const paint = (): void => {
+    const on = learnedSet.has(data.slug);
+    $$("[data-learned]").forEach((b) => {
+      b.classList.toggle("is-done", on);
+      b.setAttribute("aria-pressed", String(on));
+    });
+    $$("[data-learned-label]").forEach((l) => (l.textContent = on ? "✓ Öyrənildi" : "✓ Öyrəndim"));
+  };
+  document.addEventListener("click", (e) => {
+    if (!(e.target as Element).closest("[data-learned]")) return;
+    if (learnedSet.has(data.slug)) {
+      learnedSet.delete(data.slug);
+      toast("Qeyd silindi");
+    } else {
+      learnedSet.add(data.slug);
       toast(data.next ? `Əla! Növbəti: ${data.next.title} →` : "Əla! Bütün mövzular bitdi.");
     }
-    store.set(KEY_LEARNED, [...learned]);
+    saveLearned();
     paint();
-    dispatchEvent(new Event("goaz:learned"));
   });
   paint();
 }
 
-const data = readData();
-if (data) {
-  initWalkthrough(data);
-  initLearned(data);
+// ---------- walkthrough ----------
+function initWalkthrough(data: LessonData): () => void {
+  const pre = $("#cw-code")!;
+  const stepEls = $$(".lx-step");
+  const codeLines = $$(".ln", pre);
+  const term = $("#cw-term")!;
+  const status = $("#cw-status")!;
+  const n = data.steps.length;
+  const prevBtn = $<HTMLButtonElement>("#p-prev")!;
+  const nextBtn = $<HTMLButtonElement>("#p-next")!;
+  const playBtn = $<HTMLButtonElement>("#p-play")!;
+
+  // terminal lines: every step's output in order, tagged with the step that prints it
+  const outLines = data.steps.flatMap((s, i) =>
+    s.out
+      ? s.out
+          .replace(/\n$/, "")
+          .split("\n")
+          .map((text) => ({ text, step: i }))
+      : [],
+  );
+  const outputLines = data.output.replace(/\n$/, "").split("\n");
+  let fullOut = false;
+  const esc = (s: string): string =>
+    s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  function paintTerm(i: number): void {
+    term.innerHTML = fullOut
+      ? outputLines.map((l) => `<span class="on">${esc(l)}</span>`).join("")
+      : outLines
+          .map((l) => {
+            const cls = l.step < i ? "on" : l.step === i ? "on cur" : "";
+            return `<span class="${cls}">${esc(l.text)}</span>`;
+          })
+          .join("") || '<span class="on">— bu addıma qədər heç nə çap olunmur</span>';
+  }
+  const setStatus = (text: string, cls = ""): void => {
+    status.className = "cw-status" + (cls ? ` ${cls}` : "");
+    status.lastChild!.textContent = text;
+  };
+
+  let cur = -1;
+  let playing = 0;
+  let lockScroll = 0;
+  const wide = (): boolean => matchMedia("(min-width: 1181px)").matches;
+  const headerH = (): number => (root.hasAttribute("data-zen") ? 0 : 64);
+
+  function popVis(el: HTMLElement): void {
+    if (!motion) return;
+    $$(".cell.new", el).forEach((c) => {
+      c.classList.remove("pop");
+      void c.offsetWidth;
+      c.classList.add("pop");
+    });
+  }
+
+  function setStep(i: number, opts: { scroll?: boolean } = {}): void {
+    i = Math.max(0, Math.min(n - 1, i));
+    const changed = i !== cur;
+    cur = i;
+    const s = data.steps[i]!;
+    stepEls.forEach((el, k) => el.classList.toggle("active", k === i));
+    codeLines.forEach((ln, k) => ln.classList.toggle("hl", k + 1 >= s.from && k + 1 <= s.to));
+    $("#p-count")!.textContent = `${pad(i + 1)} / ${pad(n)}`;
+    $("#cw-progress")!.style.width = `${((i + 1) / n) * 100}%`;
+    prevBtn.disabled = i === 0;
+    nextBtn.disabled = i === n - 1;
+    if (!fullOut) paintTerm(i);
+    if (changed) popVis(stepEls[i]!);
+    // keep the highlighted lines visible inside the code window
+    const first = codeLines[s.from - 1];
+    if (first && changed) {
+      const top = first.offsetTop - pre.clientHeight * 0.3;
+      if (
+        first.offsetTop < pre.scrollTop ||
+        first.offsetTop + (s.to - s.from + 1) * first.offsetHeight >
+          pre.scrollTop + pre.clientHeight
+      )
+        pre.scrollTo({ top: Math.max(0, top), behavior: motion ? "smooth" : "auto" });
+    }
+    if (opts.scroll) scrollToStep(stepEls[i]!);
+    queueLink();
+  }
+
+  function scrollToStep(el: HTMLElement): void {
+    const r = el.getBoundingClientRect();
+    if (r.top >= headerH() + 8 && r.bottom <= innerHeight - 8) return;
+    lockScroll = Date.now() + (motion ? 900 : 100);
+    scrollTo({
+      top: scrollY + r.top - headerH() - Math.max(24, (innerHeight - headerH() - r.height) / 3),
+      behavior: motion ? "smooth" : "auto",
+    });
+  }
+  // scrolling picks the step closest to 40% of the viewport
+  function pickByScroll(): void {
+    if (Date.now() < lockScroll || playing) return;
+    const line = headerH() + (innerHeight - headerH()) * 0.4;
+    let best = 0;
+    let bd = Infinity;
+    stepEls.forEach((el, k) => {
+      const r = el.getBoundingClientRect();
+      const d = r.top > line ? r.top - line : r.bottom < line ? line - r.bottom : 0;
+      if (d < bd) {
+        bd = d;
+        best = k;
+      }
+    });
+    if (best !== cur) setStep(best);
+  }
+  stepEls.forEach((el, k) => {
+    el.addEventListener("mouseenter", () => {
+      if (wide() && !playing) setStep(k);
+    });
+    el.addEventListener("click", (e) => {
+      if (!(e.target as Element).closest("a, button")) setStep(k);
+    });
+  });
+  let hoverTimer: number | undefined;
+  pre.addEventListener("mouseover", (e) => {
+    const ln = (e.target as Element).closest<HTMLElement>(".ln");
+    if (!ln || playing) return;
+    const num = Number(ln.dataset.n);
+    const k = data.steps.findIndex((s) => num >= s.from && num <= s.to);
+    if (k >= 0 && k !== cur) {
+      setStep(k);
+      clearTimeout(hoverTimer);
+      hoverTimer = window.setTimeout(() => {
+        if (cur === k) scrollToStep(stepEls[k]!);
+      }, 350);
+    }
+  });
+
+  function stopPlay(): void {
+    clearInterval(playing);
+    playing = 0;
+    playBtn.textContent = "▶";
+    playBtn.setAttribute("aria-label", "Addımları oynat");
+    status.classList.remove("play");
+  }
+  prevBtn.addEventListener("click", () => {
+    stopPlay();
+    setStep(cur - 1, { scroll: true });
+  });
+  nextBtn.addEventListener("click", () => {
+    stopPlay();
+    setStep(cur + 1, { scroll: true });
+  });
+  playBtn.addEventListener("click", () => {
+    if (playing) return stopPlay();
+    if (cur >= n - 1) setStep(0, { scroll: true });
+    playBtn.textContent = "❚❚";
+    playBtn.setAttribute("aria-label", "Dayandır");
+    status.classList.add("play");
+    playing = window.setInterval(() => {
+      if (cur >= n - 1) return stopPlay();
+      setStep(cur + 1, { scroll: true });
+    }, 2400);
+  });
+
+  // full output toggle + copy
+  $("#btn-full")!.addEventListener("click", (e) => {
+    fullOut = !fullOut;
+    (e.currentTarget as HTMLElement).setAttribute("aria-pressed", String(fullOut));
+    setStatus(fullOut ? "tam çıxış · output.txt" : "addım rejimi", fullOut ? "full" : "");
+    paintTerm(cur);
+  });
+  $("#btn-copy")!.addEventListener("click", () => {
+    const fail = (): void => toast("Kopyalamaq alınmadı");
+    try {
+      navigator.clipboard.writeText(data.code).then(() => toast("Kod kopyalandı"), fail);
+    } catch {
+      fail();
+    }
+  });
+
+  // curved link: active step -> its code lines
+  const link = $<SVGSVGElement>("#lx-link")!;
+  const lp = $("#lx-link-path")!;
+  const la = $("#lx-link-a")!;
+  const lb = $("#lx-link-b")!;
+  const lg = $("#linkGrad")!;
+  // user-space gradient: a bounding-box gradient vanishes on a perfectly horizontal path
+  lg.setAttribute("gradientUnits", "userSpaceOnUse");
+  let linkRaf = 0;
+  function queueLink(): void {
+    if (!linkRaf) linkRaf = requestAnimationFrame(drawLink);
+  }
+  function drawLink(): void {
+    linkRaf = 0;
+    const el = stepEls[cur];
+    if (!el || !wide()) {
+      link.classList.remove("on");
+      return;
+    }
+    const s = data.steps[cur]!;
+    const r = el.getBoundingClientRect();
+    const pr = pre.getBoundingClientRect();
+    const a = codeLines[s.from - 1]!.getBoundingClientRect();
+    const b = codeLines[s.to - 1]!.getBoundingClientRect();
+    const top = headerH();
+    const y1 = Math.min(Math.max(r.top + 30, top + 20), r.bottom - 20);
+    const y2 = Math.min(Math.max((a.top + b.bottom) / 2, pr.top + 8), pr.bottom - 8);
+    const x1 = r.right;
+    const x2 = pr.left;
+    const visible = r.bottom > top + 30 && r.top < innerHeight - 30 && x2 > x1;
+    link.classList.toggle("on", visible);
+    if (!visible) return;
+    const dx = (x2 - x1) * 0.55;
+    lp.setAttribute("d", `M${x1} ${y1} C${x1 + dx} ${y1} ${x2 - dx} ${y2} ${x2} ${y2}`);
+    la.setAttribute("cx", String(x1));
+    la.setAttribute("cy", String(y1));
+    lb.setAttribute("cx", String(x2));
+    lb.setAttribute("cy", String(y2));
+    lg.setAttribute("x1", String(x1));
+    lg.setAttribute("y1", String(y1));
+    lg.setAttribute("x2", String(x2));
+    lg.setAttribute("y2", String(y2));
+  }
+  addEventListener(
+    "scroll",
+    () => {
+      pickByScroll();
+      queueLink();
+    },
+    { passive: true },
+  );
+  addEventListener("resize", queueLink);
+  pre.addEventListener("scroll", queueLink, { passive: true });
+
+  // keyboard: left/right move between steps (Shift + arrows between lessons is global)
+  addEventListener("keydown", (e) => {
+    if (e.ctrlKey || e.metaKey || e.altKey || e.shiftKey) return;
+    if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+    const a = document.activeElement as HTMLElement | null;
+    if (typing() || a?.closest(".qz") || paletteOpen()) return;
+    e.preventDefault();
+    stopPlay();
+    setStep(cur + (e.key === "ArrowRight" ? 1 : -1), { scroll: true });
+  });
+
+  setStep(0);
+  pickByScroll();
+  if (document.fonts) void document.fonts.ready.then(queueLink);
+  return queueLink;
 }
+
+// Shift + arrows: previous / next lesson (planned pages have no walkthrough, so this is global).
+function initLessonKeys(data: LessonData): void {
+  addEventListener("keydown", (e) => {
+    if (!e.shiftKey || e.ctrlKey || e.metaKey || e.altKey) return;
+    if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+    if (typing() || paletteOpen()) return;
+    const target = e.key === "ArrowRight" ? data.next : data.prev;
+    if (!target) return;
+    e.preventDefault();
+    location.href = target.href;
+  });
+}
+
+const data = readData();
+let relayout = (): void => {};
+if (data) {
+  if (data.steps.length) relayout = initWalkthrough(data);
+  initLearned(data);
+  initLessonKeys(data);
+}
+initViewModes(() => relayout());
+initReadProgress();
