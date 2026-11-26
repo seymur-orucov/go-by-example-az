@@ -244,7 +244,7 @@ function initWalkthrough(data: LessonData): () => void {
 
   function popVis(el: HTMLElement): void {
     if (!motion) return;
-    $$(".cell.new", el).forEach((c) => {
+    $$(".cell.new, .tl-bar", el).forEach((c) => {
       c.classList.remove("pop");
       void c.offsetWidth;
       c.classList.add("pop");

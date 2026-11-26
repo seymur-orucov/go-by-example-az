@@ -2,7 +2,13 @@
 // Visual of a lesson step (design v2). One branch per `vis.kind` (see Vis in lib/lesson.ts):
 // - slice: memory cells; the script adds the `pop` animation to the cells marked `new` when the
 //   step becomes active;
+// - map: key → value rows; added or changed keys in green, deleted keys struck through, and an
+//   optional `v, ok := m[key]` read (shown as m[key] → value, ok);
+// - channel: sender → buffer slots (one hand-to-hand slot when unbuffered) → receiver, with the
+//   values the receiver took and who had to wait;
+// - timeline: goroutines on a time axis (sequential vs concurrent, cut off when main returns);
 // - areas: the three areas of a Git repository, recorded by `pnpm content:run`.
+// The script replays the `pop` animation of `.cell.new` and `.tl-bar` when a step becomes active.
 import type { Vis, VisAreas } from "../lib/lesson";
 
 interface Props {
@@ -21,6 +27,47 @@ const cells = slice
       const isNew = !!slice.fresh?.includes(k) && inLen;
       return { k, inLen, isNew, text: shown(slice.cells[k]) };
     })
+  : [];
+
+// ---- map: every key in Go's print order (sorted), deleted ones included where they were
+const map = vis.kind === "map" ? vis : null;
+const quoted = (v: string) => (/^-?\d+(\.\d+)?$|^(true|false)$/.test(v) ? v : `"${v}"`);
+const mapRows = map
+  ? [
+      ...Object.entries(map.entries).map(([k, v]) => ({
+        k,
+        v,
+        fresh: !!map.fresh?.includes(k),
+        gone: false,
+      })),
+      ...(map.gone ?? []).map((k) => ({ k, v: "", fresh: false, gone: true })),
+    ].sort((a, b) => (a.k < b.k ? -1 : a.k > b.k ? 1 : 0))
+  : [];
+
+// ---- channel
+const chan = vis.kind === "channel" ? vis : null;
+const slots = chan
+  ? Array.from({ length: Math.max(chan.cap, 1) }, (_, i) => ({
+      text: chan.buf[i],
+      isNew: !!chan.fresh?.includes(i),
+    }))
+  : [];
+
+// ---- timeline
+const tl = vis.kind === "timeline" ? vis : null;
+const pct = (ms: number) => `${tl ? (ms / tl.total) * 100 : 0}%`;
+const ticks = tl
+  ? Array.from({ length: Math.floor(tl.total / 100) + 1 }, (_, i) => i * 100).filter(
+      (t) => t <= tl.total,
+    )
+  : [];
+const TL_STATE = { work: "işləyir", wait: "gözləyir", cut: "kəsildi" } as const;
+const TL_LEGEND = { ...TL_STATE, cut: "main bitəndə kəsildi" } as const;
+// the legend lists only the states the step shows
+const tlStates = tl
+  ? (["work", "wait", "cut"] as const).filter((s) =>
+      tl.rows.some((r) => r.bars.some((b) => b.state === s)),
+    )
   : [];
 
 // ---- areas
@@ -77,6 +124,153 @@ const fileClass = (state: string, fresh?: boolean) =>
           {slice.window[1] - 1} indekslərini görür
         </p>
       )}
+    </div>
+  </div>
+)}
+
+{map && (
+  <div class="st-vis">
+    <div class="st-vis-cap">
+      <span>Map</span>
+      <small class="mono">len {Object.keys(map.entries).length}</small>
+    </div>
+    <div class="vis vis-map">
+      <div class="vis-row">
+        <span class="vis-name">{map.name}</span>
+        {mapRows.length ? (
+          <ul class="kv-list">
+            {mapRows.map((r, i) => (
+              <li class:list={["kv", { gone: r.gone }]}>
+                <span class="kv-k">{quoted(r.k)}</span>
+                <span class="kv-arrow" aria-hidden="true">
+                  →
+                </span>
+                {r.gone ? (
+                  <span class="kv-gone">silindi</span>
+                ) : (
+                  <span class:list={["cell", "on", { new: r.fresh }]} style={`--d:${i * 70}ms`}>
+                    {r.v}
+                  </span>
+                )}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <span class="cell cap">boş map</span>
+        )}
+      </div>
+      {map.lookup && (
+        <p class="vis-lookup">
+          <code>{`${map.name}[${quoted(map.lookup.key)}]`}</code>
+          <span aria-hidden="true">→</span>
+          <span>
+            dəyər <b class="mono">{map.lookup.value}</b>, ok{" "}
+            <b class:list={["mono", map.lookup.ok ? "is-ok" : "is-miss"]}>
+              {String(map.lookup.ok)}
+            </b>
+          </span>
+          <small>
+            {map.lookup.ok ? "açar var" : "belə açar yoxdur: zero value qayıdır, ok isə false olur"}
+          </small>
+        </p>
+      )}
+    </div>
+  </div>
+)}
+
+{chan && (
+  <div class="st-vis">
+    <div class="st-vis-cap">
+      <span>Channel</span>
+      <small class="mono">
+        {chan.cap === 0 ? "unbuffered" : `len ${chan.buf.length} · cap ${chan.cap}`}
+        {chan.closed ? " · closed" : ""}
+      </small>
+    </div>
+    <div class="vis vis-chan">
+      <div class="chan">
+        <div class:list={["chan-end", { waited: chan.waited === "sender" }]}>
+          <b>{chan.from ?? "—"}</b>
+          <small>{chan.waited === "sender" ? "gözlədi" : "göndərən"}</small>
+        </div>
+        <span class="chan-arrow" aria-hidden="true">
+          →
+        </span>
+        <div class="chan-pipe">
+          <span class="chan-name">{chan.name}</span>
+          <div class="cells">
+            {chan.cap === 0 ? (
+              <span class="cell cap chan-hand">əldən-ələ</span>
+            ) : (
+              slots.map((s, i) => (
+                <span
+                  class:list={["cell", s.text === undefined ? "cap" : "on", { new: s.isNew }]}
+                  style={`--d:${i * 70}ms`}
+                >
+                  {s.text === undefined ? "·" : quoted(s.text)}
+                </span>
+              ))
+            )}
+          </div>
+        </div>
+        <span class="chan-arrow" aria-hidden="true">
+          →
+        </span>
+        <div class:list={["chan-end", { waited: chan.waited === "receiver" }]}>
+          <b>{chan.to ?? "—"}</b>
+          <small>{chan.waited === "receiver" ? "gözlədi" : "qəbul edən"}</small>
+          {chan.took && chan.took.length > 0 && (
+            <span class="cells chan-took">
+              {chan.took.map((v, i) => (
+                <span class="cell on new" style={`--d:${i * 90}ms`}>
+                  {quoted(v)}
+                </span>
+              ))}
+            </span>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
+{tl && (
+  <div class="st-vis">
+    <div class="st-vis-cap">
+      <span>Zaman xətti</span>
+      <small class="mono">0–{tl.total} ms</small>
+    </div>
+    <div class="vis vis-tl" style={`--ticks:${ticks.length - 1}`}>
+      {tl.rows.map((r) => (
+        <div class="tl-row">
+          <span class="tl-name">{r.name}</span>
+          <div class="tl-track">
+            {r.bars.map((b) => (
+              <span
+                class={`tl-bar s-${b.state}`}
+                style={`left:${pct(b.from)};width:${pct(b.to - b.from)};--d:${b.from * 3}ms`}
+                title={`${r.name}: ${b.label ?? ""} ${b.from}–${b.to} ms, ${TL_STATE[b.state]}`}
+              >
+                {b.label}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+      <div class="tl-row tl-axis" aria-hidden="true">
+        <span class="tl-name" />
+        <div class="tl-track">
+          {ticks.map((t) => (
+            <small style={`left:${pct(t)}`}>{t}</small>
+          ))}
+        </div>
+      </div>
+      <p class="tl-legend">
+        {tlStates.map((s) => (
+          <span class={`s-${s}`}>{TL_LEGEND[s]}</span>
+        ))}
+      </p>
+      {tl.note && <p class="vis-note">{tl.note}</p>}
     </div>
   </div>
 )}

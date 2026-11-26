@@ -614,7 +614,7 @@ button.vm-row:hover {
   animation: pop 0.5s var(--ease-out) both;
   animation-delay: var(--d, 0ms);
 }
-.vis-note {
+.st-vis .vis-note {
   margin-top: 10px;
   font-size: 12.5px;
   color: var(--text-subtle);
@@ -1603,6 +1603,254 @@ button.vm-row:hover {
 .cw-term-body b.p {
   font-weight: 400;
   color: #8fb0ff;
+}
+
+/* ---------- Map, channel and timeline visuals (Vis kinds "map", "channel", "timeline") ---------- */
+/* Animations stop under prefers-reduced-motion through the global rule in v2.css. */
+.kv-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.kv {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font: 500 12.5px var(--font-mono);
+}
+.kv-k {
+  min-width: 72px;
+  color: var(--tok-str);
+}
+.kv-arrow {
+  color: var(--text-subtle);
+}
+.kv .cell {
+  min-width: 44px;
+}
+.kv.gone .kv-k {
+  color: var(--text-subtle);
+  text-decoration: line-through;
+}
+.kv-gone {
+  font-size: 11px;
+  color: var(--red);
+}
+.st-vis .vis-lookup {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  margin-top: 10px;
+  padding-top: 10px;
+  font-size: 12.5px;
+  border-top: 1px dashed var(--line-strong);
+}
+.vis-lookup b {
+  font-size: 12.5px;
+}
+.vis-lookup .is-ok {
+  color: var(--green);
+}
+.vis-lookup .is-miss {
+  color: var(--red);
+}
+.vis-lookup small {
+  flex-basis: 100%;
+  color: var(--text-subtle);
+}
+
+.chan {
+  display: grid;
+  grid-template-columns: minmax(0, auto) auto minmax(0, 1fr) auto minmax(0, auto);
+  align-items: center;
+  gap: 8px;
+}
+.chan-end {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 72px;
+  padding: 6px 8px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+}
+.chan-end b {
+  font: 600 12px var(--font-mono);
+  color: var(--tok-fn);
+}
+.chan-end small {
+  font-size: 11px;
+  color: var(--text-subtle);
+}
+.chan-end.waited {
+  border-color: color-mix(in srgb, #f59e0b 55%, transparent);
+}
+.chan-end.waited small {
+  color: #d97706;
+}
+.chan-arrow {
+  font: 600 13px/1 var(--font-mono);
+  color: var(--text-subtle);
+}
+.chan-pipe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+}
+.chan-name {
+  font: 600 11.5px var(--font-mono);
+  color: var(--tok-type);
+}
+.chan-pipe .cells {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.chan-hand {
+  padding-inline: 10px;
+  font-size: 11px;
+}
+.chan-took {
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+}
+
+.vis-tl {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.tl-row {
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+}
+.tl-name {
+  font: 600 12px var(--font-mono);
+  color: var(--tok-fn);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tl-track {
+  position: relative;
+  height: 26px;
+  border-radius: 7px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--line) 0 1px,
+    transparent 1px calc(100% / var(--ticks, 3))
+  );
+}
+.tl-bar {
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0 4px;
+  font: 600 10.5px var(--font-mono);
+  white-space: nowrap;
+  border-radius: 6px;
+  transform-origin: left center;
+}
+.tl-bar.s-work {
+  color: var(--green);
+  background: var(--green-soft);
+  border: 1px solid color-mix(in srgb, var(--green) 55%, transparent);
+}
+.tl-bar.s-wait {
+  color: var(--text-subtle);
+  background: repeating-linear-gradient(
+    135deg,
+    transparent 0 5px,
+    color-mix(in srgb, var(--text-subtle) 18%, transparent) 5px 7px
+  );
+  border: 1px dashed var(--line-strong);
+}
+.tl-bar.s-cut {
+  color: var(--red);
+  background: var(--red-soft);
+  border: 1px dashed color-mix(in srgb, var(--red) 55%, transparent);
+}
+.lx .tl-bar.pop {
+  animation: tlGrow 0.55s var(--ease-out) both;
+  animation-delay: var(--d, 0ms);
+}
+@keyframes tlGrow {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+}
+.tl-axis .tl-track {
+  height: 14px;
+  background: none;
+}
+.tl-axis small {
+  position: absolute;
+  transform: translateX(-50%);
+  font: 500 10px var(--font-mono);
+  color: var(--text-subtle);
+}
+.tl-axis small:last-child {
+  transform: translateX(-100%);
+}
+.tl-axis small:first-child {
+  transform: none;
+}
+.st-vis .tl-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin-top: 2px;
+  font-size: 11.5px;
+  color: var(--text-subtle);
+}
+.tl-legend span::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 6px;
+  vertical-align: -1px;
+  border-radius: 3px;
+}
+.tl-legend .s-work::before {
+  background: var(--green-soft);
+  border: 1px solid var(--green);
+}
+.tl-legend .s-wait::before {
+  border: 1px dashed var(--line-strong);
+}
+.tl-legend .s-cut::before {
+  background: var(--red-soft);
+  border: 1px dashed var(--red);
+}
+@media (max-width: 520px) {
+  .chan {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: stretch;
+  }
+  .chan-arrow {
+    justify-self: center;
+    transform: rotate(90deg);
+  }
+  .tl-row {
+    grid-template-columns: 64px minmax(0, 1fr);
+    gap: 6px;
+  }
 }
 
 /* ---------- The three areas of a Git repository (Vis kind "areas") ---------- */
