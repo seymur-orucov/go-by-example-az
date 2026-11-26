@@ -164,6 +164,7 @@ Once the Go prototype is live, the site becomes a unified platform.
   - [~] Git pilot lessons `three-areas` and `first-commit` — awaiting the user's review
   - [ ] The remaining Git lessons, module by module
   - [ ] CI: run `pnpm content:run` and fail on a diff (needs a pinned Git version: output differs slightly between versions)
+  - [~] Technology statuses computed from content (`lib/technologies.ts`: ready / started / soon): done for the plain header switcher; **after the home/header port is merged**, feed them into the port's mega menu, Ctrl+K, home stack map and roadmap page instead of the hand-written `TECHS` statuses in `data/platform.ts`
 - [ ] Two kinds of roadmap:
   - **technology** roadmap — e.g. "Go": the language itself, from simple to complex;
   - **direction** roadmap — e.g. "Backend": combines nodes from several technologies (Go, SQL, HTTP, Docker…); nodes reference technology content, content is not duplicated
