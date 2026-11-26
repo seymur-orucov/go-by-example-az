@@ -1,6 +1,6 @@
 # Roadmap
 
-Last updated: 2026-11-24
+Last updated: 2026-11-27
 
 Markers: `[x]` done · `[~]` in progress · `[ ]` upcoming
 
@@ -129,7 +129,8 @@ functions/api/run.ts   # go.dev/_/compile proxy (rate limit + size limit)
 - [~] **"Konkurentlik" section complete**: all 18 lessons are original and `ready` (goroutines, channels, channel-buffering, channel-synchronization, channel-directions, select, timeouts, non-blocking-channel-operations, closing-channels, range-over-channels, timers, tickers, worker-pools, waitgroups, rate-limiting, atomic-counters, mutexes, stateful-goroutines), awaiting the user's review
 - [~] **"Mətn və verilənlər" section complete**: all 16 lessons are original and `ready` (sorting, sorting-by-functions, string-functions, string-formatting, text-templates, regular-expressions, json, xml, time, epoch, time-formatting-parsing, random-numbers, number-parsing, url-parsing, sha256-hashes, base64-encoding), awaiting the user's review
 - [~] **"Fayllar və test" section complete**: all 8 lessons are original and `ready` (reading-files, writing-files, line-filters, file-paths, directories, temporary-files-and-directories, embed-directive, testing-and-benchmarking), awaiting the user's review
-- [~] **"Sistem və şəbəkə" section**: 11 of 12 lessons are original and `ready` (command-line-arguments, command-line-flags, command-line-subcommands, environment-variables, logging, http-client, http-server, context, spawning-processes, signals, exit), awaiting the user's review; `execing-processes` is written but stays `planned` until its `output.txt` is generated on Linux (`syscall.Exec` does not work on Windows)
+- [~] **"Sistem və şəbəkə" section complete**: all 12 lessons are original and `ready` (command-line-arguments, command-line-flags, command-line-subcommands, environment-variables, logging, http-client, http-server, context, spawning-processes, execing-processes, signals, exit), awaiting the user's review; `execing-processes` (`syscall.Exec`, Unix only) is skipped on Windows and checked on Linux by the CI job `go-lessons`
+- [~] **All 84 Go lessons are written and `ready`** (2026-11-27), every one run by `pnpm content:go` locally and in CI; awaiting the user's review
 - [x] Project skill `.claude/skills/write-lesson/` for writing original lessons (rules, originality guard, verification checklist)
 - [x] Content license CC BY 4.0; no Go by Example credit on the site once no adapted lesson is left; money in examples in USD; intro length rule in the skill
 - [ ] Terminology glossary (`docs/GLOSSARY.md`): English term + short Azerbaijani explanation
@@ -138,12 +139,13 @@ functions/api/run.ts   # go.dev/_/compile proxy (rate limit + size limit)
 ## Phase 4 — CI/CD `[ ]`
 
 - [x] GitHub repo (public): https://github.com/seymur-orucov/go-by-example-az
-- [ ] GitHub Actions: `setup-go` → `go vet` + `go run` for each `main.go` → compare against `output.txt`; `pnpm install --frozen-lockfile && pnpm build`; lint + type-check; commit message check; link check
+- [x] GitHub Actions: `setup-go` → `gofmt` + `go vet` + build and run each `main.go` → compare against `output.txt` (`pnpm content:go`, job `go-lessons`, 2026-11-27); `pnpm install --frozen-lockfile && pnpm build`; lint + type-check; commit message check
+- [ ] Link check
 - [ ] Cloudflare Pages: GitHub integration (main → production, PR → preview URL). The account is connected by the user
 
-## Phase 5 — Remaining ~74 examples `[ ]`
+## Phase 5 — Remaining ~74 examples ✅
 
-- [ ] Added section by section (84 examples in total, 9 sections — the list is in `design/shared/data.js`)
+- [x] Added section by section (84 examples in total, 9 sections): all original and `ready` (2026-11-27), awaiting the user's review
 
 ## Phase 6 — Moving to the platform: roadmap + theory + practice `[ ]`
 

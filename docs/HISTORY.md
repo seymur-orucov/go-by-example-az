@@ -529,3 +529,11 @@ Done (branch `fix/tech-page-next`):
 - Fixed: the space after "Hədəf:" on `/git/` was lost (a line break between `</b>` and an expression is dropped).
 - Seen, not changed: in the light theme the orange aurora is very faint; the heading gradient uses the site's cyan → violet on every technology page, not the technology's color.
 - Then changed (same branch): the second heading line on technology pages uses the technology's color (`--tech-c`) instead of the site-wide cyan → violet (Git is orange, Go cyan); the aurora is stronger in the light theme (opacity ~0.8 instead of ~0.39; dark theme unchanged at 0.7). This also affects the light-theme look of `/go/`.
+
+### 63. The last Go lesson and the Go check in CI
+The user asked Claude to finish all remaining Go modules. All 9 sections were already written; only `execing-processes` was still `planned`, because its `output.txt` needs Linux (`syscall.Exec` always fails on Windows) and this machine has no WSL distro or Docker.
+
+Done (branch `feat/go-ci`, in a separate worktree because a parallel session held the main checkout):
+- `apps/site/scripts/run-go.ts` (`pnpm content:go [slug…] [--write]`): for every Go lesson `gofmt -l`, `go vet`, build, then run in an empty temporary directory with `GOTRACEBACK=none`, stdout and stderr in one file, and compare with `output.txt`. Expected non-zero exit codes are listed (`panic` 2, `exit` 1); Unix-only lessons are skipped on Windows.
+- CI job `go-lessons` (Ubuntu, Go 1.26.x) runs it, so `execing-processes` is checked on Linux. Its `output.txt` holds the two lines the lesson promises (`launcher: handing over to sh`, `worker nightly-backup, same pid: yes`); the lesson is now `ready`, so all 84 Go lessons are.
+- Checked locally: 83/83 lessons match their `output.txt` (Windows, Go 1.27.4); the Windows behaviour the quiz describes (`exec failed: not supported by windows`) seen by running the lesson; lint, format, `pnpm check`, `content:check` (86/86), build (128 pages).

@@ -12,6 +12,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - GitHub Actions workflow: lint, format check, type check, build, and a pull request title check.
 - Go technology page `/go/` and lesson pages `/go/<slug>/` (Shiki highlighting, two-way explanation ↔ code highlighting, memory visual, quiz, view modes).
 - Lesson content format with `pnpm content:check`.
+- All 84 Go lessons, original and in Azerbaijani, in 9 sections.
+- `pnpm content:go` and the CI job `go-lessons`: every Go lesson passes `gofmt` and `go vet`, and its output matches `output.txt` (on Linux, so Unix-only lessons are covered).
 - Static design prototype (`design/`): platform home, Go page, roadmap page and lesson page (Variant D); variants A–C archived.
 
 [Unreleased]: https://github.com/seymur-orucov/go-by-example-az/commits/main
