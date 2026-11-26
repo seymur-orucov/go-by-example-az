@@ -1,0 +1,10 @@
+rules:
+  - "`os.Mkdir` bir qovluq yaradır və qovluq artıq varsa və ya ana qovluq yoxdursa xəta qaytarır; `os.MkdirAll` bütün yolu yaradır."
+  - "Xətanın mətni əməliyyat sistemindən asılıdır; onu `errors.Is(err, fs.ErrExist)` və ya `fs.ErrNotExist` ilə yoxlayın."
+  - "`os.ReadDir` qovluğun yalnız birbaşa içindəkiləri adlara görə sıralanmış qaytarır, alt qovluqlara girmir."
+  - "`filepath.WalkDir` kök qovluq daxil bütün ağacı gəzir; funksiyadan xəta qaytarmaq gəzintini dayandırır."
+  - "`os.Remove` yalnız boş qovluğu silir, `os.RemoveAll` isə hər şeyi soruşmadan silir."
+practices:
+  - "Yolları `filepath.Join` ilə birləşdirin, ayırıcını əllə yazmayın."
+  - "`RemoveAll`-a verilən yolu, xüsusən kənardan gələni, silməzdən əvvəl yoxlayın."
+  - "`WalkDir` funksiyasında `err` parametrini həmişə yoxlayın."

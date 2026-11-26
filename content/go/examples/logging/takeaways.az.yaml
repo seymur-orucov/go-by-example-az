@@ -1,0 +1,10 @@
+rules:
+  - "`log` paketi standart olaraq stderr-ə yazır və hər sətrə tarix ilə saat əlavə edir; `SetFlags` və `SetOutput` bunu dəyişir."
+  - "`log.Fatal` mesajdan sonra proqramı bitirir, defer-lər işləmir."
+  - "`slog` qeydi səviyyə, mesaj və açar-dəyər cütləri kimi yazır; arqumentlər cüt-cüt verilməlidir."
+  - "Standart səviyyə `Info`-dur: `Debug` qeydləri atılır; `HandlerOptions.Level` həddi dəyişir."
+  - "`With` hər qeydə eyni cütləri əlavə edən yeni logger qaytarır."
+practices:
+  - "Serverdə logda vaxtı saxlayın: problemi axtaranda hadisələrin sırası və anı lazımdır."
+  - "Axtarılacaq məlumatı mesaj mətninə qatmayın, ayrıca açar-dəyər kimi yazın (`\"order\", 1042`)."
+  - "Log yığan sistem üçün `JSONHandler`, terminalda oxumaq üçün `TextHandler` seçin."

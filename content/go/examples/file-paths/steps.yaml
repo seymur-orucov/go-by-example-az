@@ -1,0 +1,14 @@
+join:
+  out: |
+    photos/2026/summer/Beach.JPG
+    photos/2025/lake.png
+parts:
+  out: "photos/2026/summer Beach.JPG .JPG"
+thumb:
+  out: |
+    photos/2026/summer/thumbs/Beach.webp
+    true
+rel:
+  out: |
+    2026/summer/thumbs/Beach.webp <nil>
+    ../2025/lake.png

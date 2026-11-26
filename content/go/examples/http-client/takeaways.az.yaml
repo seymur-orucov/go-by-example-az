@@ -1,0 +1,11 @@
+rules:
+  - "`http.Get` və `client.Do` cavab alınanda `err == nil` qaytarır, `404` və `500` də daxil olmaqla; xəta yalnız cavab heç gəlməyəndə olur."
+  - "Cavabın uğurlu olduğunu `resp.StatusCode` ilə özünüz yoxlayın, məsələn `resp.StatusCode != http.StatusOK`."
+  - "`defer resp.Body.Close()` xəta yoxlanışından sonra yazılır: xəta olanda `resp` `nil`-dir."
+  - "Header əlavə etmək üçün sorğu `http.NewRequest` ilə qurulur və `client.Do` ilə göndərilir."
+  - "`io.ReadAll` gövdəni `[]byte` kimi qaytarır; mətn üçün `string(body)` yazın."
+  - "`http.DefaultClient`-in vaxt limiti yoxdur; `http.Client{Timeout: ...}` onu təyin edir."
+practices:
+  - "Real proqramda həmişə `Timeout`-lu bir `http.Client` yaradıb hər yerdə onu işlədin."
+  - "Xəta cavabının gövdəsini oxuyub istifadəçiyə və ya log-a yazın: səbəb adətən oradadır."
+  - "Testlərdə xarici servis yerinə `httptest.NewServer` işlədin: test internetdən asılı olmur."

@@ -1,0 +1,9 @@
+rules:
+  - "`//go:embed` paket səviyyəsindəki dəyişənin düz üstündə yazılır; `//`-dan sonra boşluq olsa, adi şərhdir."
+  - "Dəyişənin tipi `string`, `[]byte` və ya `embed.FS` olur; `embed` paketi import olunmalıdır, lazım gələrsə `import _ \"embed\"` ilə."
+  - "Fayllar kompilyasiya zamanı oxunur: fayl yoxdursa proqram kompilyasiya olunmur, build-dən sonrakı dəyişikliklər isə binary-yə düşmür."
+  - "`embed.FS`-də yollar `/` ilə yazılır və qovluğun adı ilə başlayır: `menu/drinks.txt`."
+  - "Qovluq embed olunanda `.` və `_` ilə başlayan fayllar atılır; onlar üçün `all:` prefiksi lazımdır."
+practices:
+  - "Proqramla birlikdə gedən dəyişməz faylları (şablonlar, standart ayarlar, statik fayllar) embed edin ki, bir binary kifayət etsin."
+  - "İstifadəçinin dəyişəcəyi ayarları embed etməyin, diskdən oxuyun."

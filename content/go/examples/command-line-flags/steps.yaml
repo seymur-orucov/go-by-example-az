@@ -1,0 +1,8 @@
+parse:
+  out: "Baku 1 false []"
+simulate:
+  out: "Oslo 3 true [tomorrow]"
+errors:
+  out: |
+    invalid value "many" for flag -days: parse error
+    flag provided but not defined: -hours

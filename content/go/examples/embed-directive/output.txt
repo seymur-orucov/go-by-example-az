@@ -1,0 +1,8 @@
+Corner Bean Cafe
+Order at the screen, pay at the counter.
+USD 8 <nil>
+desserts.txt
+drinks.txt
+latte 4.20
+tea 2.50
+open menu/_draft.txt: file does not exist

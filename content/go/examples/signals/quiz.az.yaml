@@ -1,0 +1,63 @@
+- question: Bu kodda nə problem var?
+  code: |
+    sigs := make(chan os.Signal)
+    signal.Notify(sigs, os.Interrupt)
+    <-sigs
+  options:
+    - "kompilyasiya xətası"
+    - "channel buffer-sizdir: siqnal itə bilər, `go vet` xəbərdarlıq edir"
+    - "problem yoxdur"
+  answer: 1
+  explain: "`signal.Notify` göndərəndə gözləmir; channel hazır deyilsə, siqnal atılır, ona görə buffer lazımdır: `make(chan os.Signal, 1)`."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    fmt.Println(os.Interrupt)
+  options: ["SIGINT", "2", "interrupt"]
+  answer: 2
+  explain: "Siqnal çap olunanda adının mətni görünür: `os.Interrupt` üçün `interrupt`."
+
+- question: '`signal.Notify(sigs, syscall.SIGKILL)` yazılıb. `kill -9 <pid>` göndəriləndə nə olacaq?'
+  options:
+    - "proses dərhal ölür, siqnal channel-a gəlmir"
+    - "siqnal channel-a gəlir və proqram səliqəli dayanır"
+  answer: 0
+  explain: "`SIGKILL` tutula bilməz: əməliyyat sistemi prosesi proqrama xəbər vermədən dayandırır."
+
+- question: Proqramda `signal.Notify` yoxdur və istifadəçi Ctrl+C basır. Nə olacaq?
+  options:
+    - "`defer`-lər işləyir, sonra proqram bitir"
+    - "proqram dərhal bitir, `defer`-lər işləmir"
+    - "heç nə olmur"
+  answer: 1
+  explain: "Siqnal tutulmayanda adi davranış işləyir: proses dərhal dayanır və Go kodu davam etmir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    sigs := make(chan os.Signal, 1)
+    sigs <- os.Interrupt
+    sig := <-sigs
+    fmt.Println(sig == os.Interrupt, sig == syscall.SIGINT)
+  options: ["true false", "false true", "false false", "true true"]
+  answer: 3
+  explain: "`os.Interrupt` elə `syscall.SIGINT`-dir, sadəcə bütün sistemlərdə eyni adla işlədilən formadır."
+
+- question: Hələ siqnal gəlməyib. Bu kod nə çap edəcək?
+  code: |
+    select {
+    case s := <-sigs:
+        fmt.Println(s)
+    default:
+        fmt.Println("no signal")
+    }
+  options: ["no signal", "deadlock", "interrupt"]
+  answer: 0
+  explain: "`default` qolu `select`-i gözləmədən keçirir, ona görə proqram işini dayandırmadan siqnalı yoxlaya bilir."
+
+- question: 'Proqram yalnız `signal.Notify(sigs, os.Interrupt)` çağırıb. `kill -TERM <pid>` göndəriləndə nə olacaq?'
+  options:
+    - "siqnal növbədə gözləyir"
+    - "handler `terminated` siqnalını alır"
+    - "proqram dərhal bitir: `SIGTERM` yönləndirilməyib"
+  answer: 2
+  explain: "`Notify` yalnız göstərilən siqnalları tutur; `SIGTERM` üçün adi davranış, yəni prosesin dayanması qalır."

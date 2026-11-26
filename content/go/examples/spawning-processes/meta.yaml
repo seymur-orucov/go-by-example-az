@@ -2,5 +2,7 @@ title: "Spawning Processes"
 subtitle: "Proses başlatmaq"
 section: system
 order: 9
-status: planned
+status: ready
 level: advanced
+duration: 13
+source: original

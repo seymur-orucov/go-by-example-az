@@ -1,0 +1,6 @@
+"tea 3 USD\n" <nil>
+13 15 <nil>
+order: tea
+order: cake
+order: tea
+0 11

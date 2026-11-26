@@ -2,5 +2,7 @@ title: "CLI Arguments"
 subtitle: "Komanda sətri arqumentləri"
 section: system
 order: 1
-status: planned
+status: ready
 level: advanced
+duration: 8
+source: original

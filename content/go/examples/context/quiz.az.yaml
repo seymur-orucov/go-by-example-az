@@ -1,0 +1,76 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    ctx, cancel := context.WithCancel(context.Background())
+    fmt.Println(ctx.Err())
+    cancel()
+    fmt.Println(ctx.Err())
+  options:
+    - "`<nil>`, sonra `context canceled`"
+    - "`context canceled` iki dəfə"
+    - "`<nil>` iki dəfə"
+  answer: 0
+  explain: "Context bitməyənə qədər `Err()` `nil` qaytarır, `cancel()`-dan sonra isə səbəbi."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    parent, stopParent := context.WithCancel(context.Background())
+    defer stopParent()
+    child, stopChild := context.WithCancel(parent)
+    stopChild()
+    fmt.Println(parent.Err())
+  options: ["context canceled", "<nil>"]
+  answer: 1
+  explain: "Siqnal yalnız valideyndən övlada gedir; övladı dayandırmaq valideynə təsir etmir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    ctx, cancel := context.WithTimeout(context.Background(), 50*time.Millisecond)
+    defer cancel()
+    <-ctx.Done()
+    fmt.Println(ctx.Err())
+  options: ["context canceled", "<nil>", "context deadline exceeded"]
+  answer: 2
+  explain: "`Done()` vaxt limiti bitəndə bağlanır və səbəb `context deadline exceeded` olur."
+
+- question: Bu kodda nə problem var?
+  code: |
+    ctx, _ := context.WithTimeout(context.Background(), time.Second)
+    fetch(ctx)
+  options:
+    - "kompilyasiya xətası"
+    - "problem yoxdur"
+    - "context heç vaxt bitmir"
+    - "`cancel` atılıb: resurs sızması, `go vet` xəbərdarlıq edir"
+  answer: 3
+  explain: "Kod işləyir, amma `cancel` çağırılmadığı üçün context-in resursları vaxtından əvvəl azad olunmur; `go vet` bunu tapır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    ctx, cancel := context.WithCancel(context.Background())
+    cancel()
+    cancel()
+    fmt.Println(ctx.Err())
+  options: ["context canceled", "panic"]
+  answer: 0
+  explain: "`cancel`-i bir neçə dəfə çağırmaq təhlükəsizdir: ilk çağırışdan sonrakılar heç nə etmir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    parent, stop1 := context.WithTimeout(context.Background(), 50*time.Millisecond)
+    defer stop1()
+    child, stop2 := context.WithTimeout(parent, time.Hour)
+    defer stop2()
+    <-child.Done()
+    fmt.Println(errors.Is(child.Err(), context.DeadlineExceeded))
+  options: ["false", "true"]
+  answer: 1
+  explain: "Övlad valideyndən uzun yaşaya bilməz: valideynin 50 ms-i bitəndə övlad da eyni səbəblə bitir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    ctx, cancel := context.WithCancel(context.Background())
+    cancel()
+    fmt.Println(errors.Is(ctx.Err(), context.DeadlineExceeded))
+  options: ["true", "kompilyasiya xətası", "false"]
+  answer: 2
+  explain: "Context əl ilə dayandırılıb, səbəb `context.Canceled`-dir, vaxt limiti yox."

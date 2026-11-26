@@ -1,0 +1,76 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    os.WriteFile("order.txt", []byte("latte mocha"), 0o644)
+    os.WriteFile("order.txt", []byte("tea"), 0o644)
+    data, _ := os.ReadFile("order.txt")
+    fmt.Println(string(data))
+  options: ["latte mochatea", "teate mocha", "tea"]
+  answer: 2
+  explain: "`WriteFile` köhnə məzmunu tamamilə silir və yerinə yenisini yazır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    os.WriteFile("drink.txt", []byte("coffee"), 0o644)
+    f, _ := os.OpenFile("drink.txt", os.O_WRONLY, 0o644)
+    f.WriteString("tea")
+    f.Close()
+    data, _ := os.ReadFile("drink.txt")
+    fmt.Println(string(data))
+  options: ["teafee", "tea", "coffeetea"]
+  answer: 0
+  explain: "`O_APPEND` və boşaltma olmadan yazı faylın əvvəlindən başlayır və yalnız ilk 3 baytın üstündən yazır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    os.WriteFile("drink.txt", []byte("coffee"), 0o644)
+    f, _ := os.OpenFile("drink.txt", os.O_APPEND|os.O_WRONLY, 0o644)
+    f.WriteString("tea")
+    f.Close()
+    data, _ := os.ReadFile("drink.txt")
+    fmt.Println(string(data))
+  options: ["teafee", "coffeetea", "tea", "teacoffee"]
+  answer: 1
+  explain: "`O_APPEND` hər yazını faylın sonuna əlavə edir, köhnə məzmun qalır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    os.WriteFile("drink.txt", []byte("coffee"), 0o644)
+    f, _ := os.Create("drink.txt")
+    f.WriteString("tea")
+    f.Close()
+    data, _ := os.ReadFile("drink.txt")
+    fmt.Println(string(data))
+  options: ["teafee", "coffeetea", "kompilyasiya xətası", "tea"]
+  answer: 3
+  explain: "`os.Create` mövcud faylı əvvəlcə boşaldır, ona görə yalnız yeni yazılan qalır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    f, _ := os.Create("note.txt")
+    w := bufio.NewWriter(f)
+    w.WriteString("tea")
+    f.Close()
+    data, _ := os.ReadFile("note.txt")
+    fmt.Println(len(data))
+  options: ["0", "3"]
+  answer: 0
+  explain: "`Flush()` çağırılmayıb: `tea` buferdə qalıb və fayla heç vaxt yazılmayıb."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    f, _ := os.Create("sales.txt")
+    defer f.Close()
+    n, _ := fmt.Fprintf(f, "%d cups\n", 12)
+    fmt.Println(n)
+  options: ["7", "2", "0", "8"]
+  answer: 3
+  explain: "`Fprintf` fayla yazılan baytların sayını qaytarır: `12 cups` 7 bayt, üstəgəl `\\n`."
+
+- question: Hansı sətir kompilyasiya olunmur?
+  code: |
+    os.WriteFile("a.txt", []byte("tea"), 0o644) // A
+    os.WriteFile("b.txt", "tea", 0o644)         // B
+    os.WriteFile("c.txt", nil, 0o644)           // C
+  options: ["A", "C", "B"]
+  answer: 2
+  explain: "`WriteFile` `[]byte` gözləyir, string-i özü çevirmir; `nil` isə boş slice kimi qəbul olunur və boş fayl yaradır."

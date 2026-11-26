@@ -1,0 +1,10 @@
+rules:
+  - "`os.MkdirTemp` və `os.CreateTemp` şablondakı `*`-ı təsadüfi simvollarla əvəz edir; `*` yoxdursa, təsadüfi hissə adın sonuna yazılır."
+  - "Birinci arqument boş string olanda fayl sistemin müvəqqəti qovluğunda (`os.TempDir()`) yaranır."
+  - "`os.CreateTemp` açıq `*os.File` qaytarır; onu `Close` etmədən adını dəyişmək Windows-da alınmır."
+  - "`os.Rename` hədəfdəki faylı əvəz edir, amma fərqli disklər arasında işləmir."
+  - "Müvəqqəti faylları sistem yox, proqram silməlidir; `os.Exit` `defer`-ləri işlətmir."
+practices:
+  - "`MkdirTemp`-dən dərhal sonra `defer os.RemoveAll(dir)` yazın."
+  - "Faylı müvəqqəti adla hazırlayıb sonra `os.Rename` ilə yerinə qoyun: oxuyan heç vaxt yarımçıq fayl görməz."
+  - "Müvəqqəti faylı hədəf faylla eyni qovluqda yaradın."

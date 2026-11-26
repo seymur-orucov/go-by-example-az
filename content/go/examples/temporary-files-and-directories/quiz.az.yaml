@@ -1,0 +1,60 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    f, _ := os.CreateTemp("", "receipt-*.pdf")
+    fmt.Println(filepath.Ext(f.Name()))
+  options: ["boş sətir", "`.pdf3815204967`", "`.pdf`"]
+  answer: 2
+  explain: "Təsadüfi hissə `*`-ın yerinə qoyulur, ondan sonrakı `.pdf` adın sonunda qalır."
+
+- question: "Şablonda `*` yoxdur. Yaranan faylın adı necə görünəcək?"
+  code: |
+    f, _ := os.CreateTemp("", "receipt.pdf")
+  options: ["`receipt.pdf`", "`receipt.pdf3815204967`", "`3815204967receipt.pdf`"]
+  answer: 1
+  explain: "`*` olmayanda təsadüfi hissə adın sonuna əlavə olunur, ona görə genişlənmə də pozulur."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    a, _ := os.MkdirTemp("", "job-*")
+    b, _ := os.MkdirTemp("", "job-*")
+    fmt.Println(a == b)
+  options: ["false", "true"]
+  answer: 0
+  explain: "Hər çağırış yeni təsadüfi adla ayrı qovluq yaradır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    _, err := os.CreateTemp("", "logs/day-*")
+    fmt.Println(err != nil)
+  options: ["false", "proqram panic edir", "true"]
+  answer: 2
+  explain: "Şablonda yol ayırıcısı ola bilməz; qovluğu birinci arqumentlə verin."
+
+- question: "Müvəqqəti qovluğa fayllar yazılacaq. `MkdirTemp`-dən dərhal sonra hansı sətir yazılmalıdır?"
+  options:
+    - "`defer os.Remove(dir)`"
+    - "`defer os.TempDir()`"
+    - "`defer f.Close()`"
+    - "`defer os.RemoveAll(dir)`"
+  answer: 3
+  explain: "`os.Remove` içində fayl olan qovluğu silmir; hamısını `os.RemoveAll` silir."
+
+- question: Bu proqram bitəndə müvəqqəti qovluq silinəcəkmi?
+  code: |
+    dir, _ := os.MkdirTemp("", "job-*")
+    defer os.RemoveAll(dir)
+    os.Exit(0)
+  options: ["Xeyr, `os.Exit` `defer`-ləri işlətmir", "Bəli, `defer` həmişə işləyir"]
+  answer: 0
+  explain: "`os.Exit` proqramı dərhal bitirir və `defer` ilə gecikdirilmiş çağırışlar işləmir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    os.WriteFile("price.txt", []byte("10"), 0o644)
+    os.WriteFile("price.tmp", []byte("12"), 0o644)
+    os.Rename("price.tmp", "price.txt")
+    b, _ := os.ReadFile("price.txt")
+    fmt.Println(string(b))
+  options: ["`10`", "`12`", "fayl artıq var xətası"]
+  answer: 1
+  explain: "`os.Rename` hədəfdə olan faylı yenisi ilə əvəz edir."

@@ -1,0 +1,4 @@
+Baku 1 false []
+Oslo 3 true [tomorrow]
+invalid value "many" for flag -days: parse error
+flag provided but not defined: -hours

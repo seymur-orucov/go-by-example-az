@@ -1,0 +1,10 @@
+os-args:
+  out: |
+    count: 1
+    given: []
+real:
+  out: "error: usage: grades SCORE..."
+simulate:
+  out: |
+    85 <nil>
+    0 bad score "ninety"

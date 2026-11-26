@@ -1,0 +1,11 @@
+rules:
+  - "`exec.Command` prosesi yalnız təsvir edir; `Run`, `Output` və ya `Start` onu işə salır."
+  - "`exec.Command` shell işlətmir: proqramın adı və hər arqument ayrıca verilir."
+  - "`Output()` yalnız stdout-u qaytarır; sıfırdan fərqli çıxış kodu `*exec.ExitError` kimi gəlir, stderr isə onun `Stderr` sahəsindədir."
+  - "`cmd.Env` verilərsə uşaq yalnız onu görür; valideynin dəyişənlərini saxlamaq üçün `append(os.Environ(), ...)` yazın."
+  - "Proqram `PATH`-da tapılmayanda xəta `exec.ErrNotFound`-dur."
+  - "Bir `Command` yalnız bir dəfə işə salına bilər."
+practices:
+  - "Xəta mətnini yox, `errors.Is` və `errors.As` ilə xəta növünü yoxlayın: mətn əməliyyat sistemindən asılıdır."
+  - "Uşaq uğursuz olanda onun stderr-ini istifadəçiyə və ya log-a göstərin."
+  - "İstifadəçidən gələn mətni shell əmrinə yapışdırmayın, ayrı arqument kimi ötürün."

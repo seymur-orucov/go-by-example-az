@@ -2,5 +2,7 @@ title: "Exit"
 subtitle: "Çıxış"
 section: system
 order: 12
-status: planned
+status: ready
 level: advanced
+duration: 7
+source: original

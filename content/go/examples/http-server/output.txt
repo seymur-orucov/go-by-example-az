@@ -1,0 +1,6 @@
+GET  /menu        -> 200 latte, espresso
+GET  /price/latte -> 200 latte costs 4 USD
+GET  /price/mocha -> 404 no such drink: mocha
+POST /menu        -> 405 Method Not Allowed
+GET  /orders      -> 404 404 page not found
+server stopped: http: Server closed

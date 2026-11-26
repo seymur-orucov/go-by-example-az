@@ -1,0 +1,7 @@
+prefix: true
+unique: true
+name: true true
+1 orders.csv <nil>
+id,total_usd
+A-17,42.50
+thumbs removed: true

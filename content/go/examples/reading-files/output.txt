@@ -1,0 +1,10 @@
+33 bytes
+Route 12
+Harbor
+Old Town
+Stadium
+true true
+5 Route <nil>
+stop 1 Harbor
+stop 2 Old Town
+stop 3 Stadium

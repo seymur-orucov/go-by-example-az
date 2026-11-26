@@ -2,5 +2,7 @@ title: "HTTP Server"
 subtitle: "HTTP server"
 section: system
 order: 7
-status: planned
+status: ready
 level: advanced
+duration: 14
+source: original

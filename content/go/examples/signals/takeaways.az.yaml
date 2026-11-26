@@ -1,0 +1,10 @@
+rules:
+  - "Ctrl+C `SIGINT` (`os.Interrupt`), `kill -TERM` isə `SIGTERM` göndərir; tutulmasalar, proses dərhal ölür və `defer`-lər işləmir."
+  - "`signal.Notify` yalnız göstərilən siqnalları channel-a yönləndirir, qalanları adi qaydada işləyir."
+  - "Siqnal channel-ı buffer-li olmalıdır, yoxsa siqnal itə bilər; `go vet` buffer-siz channel-ı göstərir."
+  - "`SIGKILL` (`kill -9`) və `SIGSTOP` tutula bilməz."
+  - "`signal.Stop` yönləndirməni ləğv edir və siqnalların adi davranışını qaytarır."
+practices:
+  - "Həm `os.Interrupt`, həm də `syscall.SIGTERM` tutun: server və konteyner proqramları adətən `SIGTERM` ilə dayandırılır."
+  - "Siqnalı iş vahidləri arasında yoxlayın ki, cari iş yarımçıq qalmasın."
+  - "Siqnalı bir neçə goroutine-ə çatdırmaq lazımdırsa, `signal.NotifyContext` ilə context işlədin."

@@ -1,0 +1,61 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    os.MkdirAll("logs/2026", 0o755)
+    err := os.MkdirAll("logs/2026", 0o755)
+    fmt.Println(err)
+  options: ["qovluq artıq var xətası", "`<nil>`", "proqram panic edir"]
+  answer: 1
+  explain: "`MkdirAll` qovluq artıq varsa xəta vermir, sadəcə `nil` qaytarır."
+
+- question: "`cache` qovluğu yoxdur. Bu kod nə çap edəcək?"
+  code: |
+    err := os.Mkdir("cache/img", 0o755)
+    fmt.Println(errors.Is(err, fs.ErrNotExist))
+  options: ["true", "false"]
+  answer: 0
+  explain: "`Mkdir` yalnız son qovluğu yaradır; ana qovluq `cache` olmadığı üçün xəta \"yoxdur\" xətasıdır."
+
+- question: "`docs` qovluğunda `cv.pdf` faylı və `old` alt qovluğu var, `old`-un içində də `cv.pdf`. Bu kod nə çap edəcək?"
+  code: |
+    entries, _ := os.ReadDir("docs")
+    fmt.Println(len(entries))
+  options: ["1", "3", "4", "2"]
+  answer: 3
+  explain: "`ReadDir` alt qovluqların içinə girmir: yalnız `cv.pdf` və `old` sayılır."
+
+- question: "Eyni `docs` qovluğu üçün funksiya neçə dəfə çağırılacaq?"
+  code: |
+    n := 0
+    filepath.WalkDir("docs", func(p string, d fs.DirEntry, err error) error {
+        n++
+        return nil
+    })
+    fmt.Println(n)
+  options: ["2", "3", "4"]
+  answer: 2
+  explain: "`WalkDir` kök qovluğun özünü də gəzir: `docs`, `docs/cv.pdf`, `docs/old`, `docs/old/cv.pdf`."
+
+- question: "`menu` qovluğunda `tea.txt`, `Soup.txt` və `cake.txt` var. Bu kod nə çap edəcək?"
+  code: |
+    entries, _ := os.ReadDir("menu")
+    for _, e := range entries {
+        fmt.Print(e.Name(), " ")
+    }
+  options:
+    - "`cake.txt Soup.txt tea.txt`"
+    - "`tea.txt Soup.txt cake.txt`"
+    - "`Soup.txt cake.txt tea.txt`"
+  answer: 2
+  explain: "`ReadDir` adları bayt-bayt sıralayır və böyük hərflər kiçik hərflərdən əvvəl gəlir."
+
+- question: Hansı çağırış içində fayllar olan `docs` qovluğunu silir?
+  options: ["`os.Remove(\"docs\")`", "`os.RemoveAll(\"docs\")`", "`os.Mkdir(\"docs\", 0)`"]
+  answer: 1
+  explain: "`os.Remove` yalnız boş qovluğu silir; içindəkilərlə birlikdə silmək üçün `os.RemoveAll` lazımdır."
+
+- question: "`tmp-report` qovluğu yoxdur. Bu kod nə çap edəcək?"
+  code: |
+    fmt.Println(os.RemoveAll("tmp-report"))
+  options: ["`<nil>`", "yoxdur xətası", "`false`"]
+  answer: 0
+  explain: "Yol yoxdursa, `RemoveAll` xəta saymır və `nil` qaytarır."

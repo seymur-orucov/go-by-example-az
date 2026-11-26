@@ -1,0 +1,48 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    err := exec.Command("no-such-tool").Run()
+    fmt.Println(errors.Is(err, exec.ErrNotFound))
+  options: ["false", "true", "panic"]
+  answer: 1
+  explain: "Proqram `PATH`-da tapılmayanda proses başlamır və xəta `exec.ErrNotFound`-dur."
+
+- question: Uşaq proses `os.Exit(3)` ilə bitir. `exitErr.ExitCode()` nə qaytaracaq?
+  code: |
+    _, err := cmd.Output()
+    var exitErr *exec.ExitError
+    if errors.As(err, &exitErr) {
+        fmt.Println(exitErr.ExitCode())
+    }
+  options: ["0", "1", "3", "-1"]
+  answer: 2
+  explain: "`ExitCode()` uşağın `os.Exit`-ə verdiyi kodu qaytarır."
+
+- question: Uşaq proses stdout-a `OUT`, stderr-ə `ERR` yazır. `cmd.Output()` nə qaytaracaq?
+  options: ['`"OUT"`', '`"OUTERR"`', '`"ERR"`']
+  answer: 0
+  explain: "`Output` yalnız stdout-u qaytarır; stderr xəta olanda `ExitError.Stderr`-ə düşür."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    cmd := exec.Command(tool)
+    cmd.Run()
+    fmt.Println(cmd.Run())
+  options: ["<nil>", "exec: already started", "panic"]
+  answer: 1
+  explain: "Bir `Command` yalnız bir dəfə işə salınır; təkrar üçün yeni `exec.Command` lazımdır."
+
+- question: Bu kod nə edəcək?
+  code: |
+    err := exec.Command("label-tool --fast").Run()
+  options:
+    - "`label-tool` proqramını `--fast` arqumenti ilə işə salır"
+    - "kompilyasiya xətası"
+    - "panic"
+    - "`exec.ErrNotFound` qaytarır: adı `label-tool --fast` olan proqram axtarılır"
+  answer: 3
+  explain: "`exec.Command` shell işlətmir, sətri bölmür; düzgünü `exec.Command(\"label-tool\", \"--fast\")`-dır."
+
+- question: Valideyn `os.Setenv("CITY", "Oslo")` çağırıb, `cmd.Env` isə verilməyib. Uşaq `os.Getenv("CITY")` çap edir. Nə görünəcək?
+  options: ["Oslo", "boş sətir"]
+  answer: 0
+  explain: "`cmd.Env` `nil` olanda uşaq valideynin bütün mühit dəyişənlərini alır."

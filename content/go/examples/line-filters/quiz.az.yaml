@@ -1,0 +1,59 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    sc := bufio.NewScanner(strings.NewReader("tea\n  \ncake"))
+    for sc.Scan() {
+        if strings.TrimSpace(sc.Text()) == "" {
+            continue
+        }
+        fmt.Print(sc.Text(), ";")
+    }
+  options: ["tea;cake;", "tea;  ;cake;", "tea;"]
+  answer: 0
+  explain: "Yalnız boşluqdan ibarət sətir `TrimSpace`-dən sonra boş olur və ötürülür; sonda `\\n` olmayan `cake` də sətir sayılır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    seen := map[string]bool{}
+    sc := bufio.NewScanner(strings.NewReader("Tea\ntea\nTEA\n"))
+    for sc.Scan() {
+        seen[sc.Text()] = true
+    }
+    fmt.Println(len(seen))
+  options: ["1", "3", "2"]
+  answer: 1
+  explain: "Map açarları hərflərin böyüklüyünü fərqləndirir; eyni məhsul saymaq üçün əvvəlcə `strings.ToLower` lazımdır."
+
+- question: Hansı dəyər `bufio.NewScanner`-ə verilə bilməz?
+  options: ["`os.Stdin`", "`strings.NewReader(\"tea\")`", "`\"tea\"`", "`os.Open`-in qaytardığı `*os.File`"]
+  answer: 2
+  explain: "String-in `Read` metodu yoxdur, yəni o `io.Reader` deyil və kod kompilyasiya olunmur."
+
+- question: "`go run main.go < list.txt > out.txt` işə salınır. Proqramın `os.Stderr`-ə yazdığı xəta mesajı harada görünəcək?"
+  options: ["`out.txt` faylında", "Terminalda", "`list.txt` faylında", "Heç yerdə"]
+  answer: 1
+  explain: "`>` yalnız standart çıxışı fayla yönləndirir, standart xəta axını terminalda qalır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    long := strings.Repeat("a", 70000)
+    sc := bufio.NewScanner(strings.NewReader(long + "\nmilk\n"))
+    n := 0
+    for sc.Scan() {
+        n++
+    }
+    fmt.Println(n, sc.Err() != nil)
+  options: ["2 false", "1 true", "1 false", "0 true"]
+  answer: 3
+  explain: "Birinci sətir 64 KB-dan uzundur: `Scan()` dərhal `false` qaytarır, `sc.Err()` isə xəta verir və `milk`-ə növbə çatmır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    count := map[string]int{}
+    sc := bufio.NewScanner(strings.NewReader("milk\neggs\nmilk\n"))
+    for sc.Scan() {
+        count[sc.Text()]++
+    }
+    fmt.Println(count["milk"], count["bread"])
+  options: ["1 0", "2 1", "0 2", "2 0"]
+  answer: 3
+  explain: "`milk` iki dəfə sayılır, olmayan `bread` açarı isə zero value, yəni `0` qaytarır."

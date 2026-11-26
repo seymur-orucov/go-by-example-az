@@ -1,0 +1,10 @@
+rules:
+  - 'Yolları `+` ilə yox, `filepath.Join` ilə yığın: ayırıcı Linux-da `/`, Windows-da `\` olur.'
+  - "`Join` nəticəni təmizləyir: təkrarlanan ayırıcılar, `.` və `..` silinir."
+  - "`filepath.Dir` qovluğu, `filepath.Base` son elementi, `filepath.Ext` isə nöqtə ilə birlikdə uzantını qaytarır."
+  - "`filepath.Rel(base, target)` nisbi yolu verir; hədəf başqa qovluqdadırsa, nəticə `..` ilə başlayır."
+  - "URL-lərdə ayırıcı həmişə `/`-dir: onlar üçün `filepath` yox, `path` paketi istifadə olunur."
+practices:
+  - "Uzantını müqayisə etməzdən əvvəl `strings.ToLower` çağırın: `.JPG` və `.jpg` eyni formatdır."
+  - "Uzantını dəyişmək üçün `strings.TrimSuffix(name, filepath.Ext(name))` + yeni uzantı yazın."
+  - "Arxiv və konfiqurasiyada yolları əsas qovluğa nisbətən saxlayın ki, köçürəndə qırılmasın."

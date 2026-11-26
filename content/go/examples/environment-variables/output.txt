@@ -1,0 +1,8 @@
+KIOSK_PORT: ""
+listening on port 8080
+9090 USD
+greeting: "" set: true
+region: "" set: false
+greeting set: false
+[KIOSK_CURRENCY=USD KIOSK_PORT=9090]
+KIOSK_CURRENCY -> USD

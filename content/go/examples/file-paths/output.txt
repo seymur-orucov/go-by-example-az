@@ -1,0 +1,7 @@
+photos/2026/summer/Beach.JPG
+photos/2025/lake.png
+photos/2026/summer Beach.JPG .JPG
+photos/2026/summer/thumbs/Beach.webp
+true
+2026/summer/thumbs/Beach.webp <nil>
+../2025/lake.png

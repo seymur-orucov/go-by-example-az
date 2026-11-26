@@ -1,0 +1,70 @@
+- question: "`hello.txt` faylında `hi` yazılıb. Bu kod nə çap edəcək?"
+  code: |
+    import _ "embed"
+
+    // go:embed hello.txt
+    var hello string
+
+    func main() {
+        fmt.Println(len(hello))
+    }
+  options: ["`3`", "kompilyasiya xətası", "`0`"]
+  answer: 2
+  explain: "`//` ilə `go:embed` arasında boşluq var, bu adi şərhdir və `hello` boş qalır."
+
+- question: Bu kod niyə kompilyasiya olunmur?
+  code: |
+    func main() {
+        //go:embed hello.txt
+        var hello string
+        fmt.Println(hello)
+    }
+  options:
+    - "`go:embed` yalnız paket səviyyəsindəki dəyişənə tətbiq olunur"
+    - "`string` tipinə embed etmək olmaz"
+    - "`hello.txt` `main.go`-dan əvvəl gəlməlidir"
+  answer: 0
+  explain: "Kompilyator `go:embed cannot apply to var inside func` deyir: dəyişən funksiyadan kənarda olmalıdır."
+
+- question: "Qovluqda `notes.txt` yoxdur. Nə baş verəcək?"
+  code: |
+    //go:embed notes.txt
+    var notes string
+  options:
+    - "`notes` boş string olur"
+    - "proqram işləyəndə panic edir"
+    - "proqram kompilyasiya olunmur"
+  answer: 2
+  explain: "Fayllar kompilyasiya zamanı axtarılır; tapılmayanda kompilyator `no matching files found` xətası verir."
+
+- question: "Kodda yalnız `//go:embed hello.txt` və `var hello string` var. Hansı import lazımdır?"
+  options: ["heç biri", "`import _ \"embed\"`", "`import \"os\"`", "`import \"io/fs\"`"]
+  answer: 1
+  explain: "Direktiv `embed` paketinin import olunmasını tələb edir; adı kodda keçmirsə, `_` ilə import olunur."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    //go:embed menu
+    var menus embed.FS
+
+    func main() {
+        _, err := menus.ReadFile("drinks.txt")
+        fmt.Println(err != nil)
+    }
+  options: ["false", "true"]
+  answer: 1
+  explain: "Yol qovluğun adı ilə başlamalıdır: `menu/drinks.txt`."
+
+- question: "Proqram `go build` ilə yığılıb. Sonra `banner.txt` dəyişdirilir və binary yenidən işə salınır. Nə çap olunur?"
+  options:
+    - "yeni mətn"
+    - "xəta, çünki fayl dəyişib"
+    - "boş sətir"
+    - "köhnə mətn"
+  answer: 3
+  explain: "Məzmun build zamanı binary-yə yazılıb; yeni mətn üçün yenidən kompilyasiya lazımdır."
+
+- question: "`menu` qovluğundakı `_draft.txt` faylını da embed etmək üçün hansı direktiv lazımdır?"
+  options: ["`//go:embed all:menu`", "`//go:embed menu`", "`//go:embed menu/`"]
+  answer: 0
+  explain: "Qovluq embed olunanda `.` və `_` ilə başlayan fayllar atılır; `all:` prefiksi onları da daxil edir."

@@ -1,0 +1,4 @@
+printed invoice-17.pdf
+printed menu.pdf
+received interrupt - shutting down
+saved for later: [poster.pdf flyer.pdf]

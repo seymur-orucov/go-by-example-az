@@ -1,0 +1,8 @@
+get:
+  out: "401 Unauthorized <nil>"
+header:
+  out: "200 OK | Oslo: 4C, light rain"
+status:
+  out: "error 404: unknown city"
+timeout:
+  out: "failed: true timeout: true"

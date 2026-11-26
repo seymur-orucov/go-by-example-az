@@ -1,0 +1,43 @@
+- question: "Proqram `./backup copy a.txt b.txt` kimi işə salınıb. Bu kod nə çap edəcək?"
+  code: |
+    fmt.Println(len(os.Args))
+  options: ["3", "4", "2"]
+  answer: 1
+  explain: "`os.Args[0]` proqramın yoludur, üstəgəl üç arqument: cəmi 4 element."
+
+- question: "Proqram `./backup copy a.txt` kimi işə salınıb. Bu kod nə çap edəcək?"
+  code: |
+    fmt.Println(os.Args[1:])
+  options: ["`[./backup copy a.txt]`", "`[a.txt]`", "`[copy a.txt]`"]
+  answer: 2
+  explain: "`os.Args[1:]` proqramın yolunu atır və yalnız istifadəçinin yazdığı arqumentləri saxlayır."
+
+- question: "Proqram arqumentsiz işə salınıb. Bu kod nə edəcək?"
+  code: |
+    fmt.Println(os.Args[1])
+  options: ["panic verəcək: index out of range", "boş sətir çap edəcək", "kompilyasiya xətası"]
+  answer: 0
+  explain: "Arqument yoxdursa, `os.Args`-ın uzunluğu 1-dir və `os.Args[1]` mövcud olmayan indeksdir."
+
+- question: "Proqram `./greet \"New York\" today` kimi işə salınıb. Bu kod nə çap edəcək?"
+  code: |
+    fmt.Println(len(os.Args[1:]))
+  options: ["3", "1", "4", "2"]
+  answer: 3
+  explain: "Dırnaq içindəki `New York` shell üçün bir arqumentdir, `today` ikincisidir."
+
+- question: "Proqram `./sum 7 8` kimi işə salınıb. Bu kod nə çap edəcək?"
+  code: |
+    fmt.Println(os.Args[1] + os.Args[2])
+  options: ["15", "78", "kompilyasiya xətası"]
+  answer: 1
+  explain: "Arqumentlər string-dir, `+` onları ədəd kimi toplamır, birləşdirir."
+
+- question: "Hansı sətir kompilyasiya olunmur?"
+  code: |
+    args := os.Args[1:]                // 1
+    fmt.Println(strconv.Atoi(args[0])) // 2
+    fmt.Println(os.Args[1] + 1)        // 3
+  options: ["1", "2", "3"]
+  answer: 2
+  explain: "`os.Args[1]` string-dir və ona ədəd əlavə etmək olmaz: `mismatched types string and untyped int`."

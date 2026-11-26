@@ -1,0 +1,62 @@
+- question: "`APP_TIMEOUT` təyin olunmayıb. Bu kod nə çap edəcək?"
+  code: |
+    fmt.Printf("%q\n", os.Getenv("APP_TIMEOUT"))
+  options: ["`<nil>`", "panic verəcək", "`\"\"`"]
+  answer: 2
+  explain: "Olmayan dəyişən üçün `os.Getenv` boş string qaytarır, xəta vermir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    os.Setenv("TAX_RATE", "18")
+    fmt.Println(os.Getenv("TAX_RATE") + "2")
+  options: ["182", "20", "kompilyasiya xətası"]
+  answer: 0
+  explain: "Mühit dəyişəninin dəyəri string-dir, `+` iki string-i birləşdirir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    os.Setenv("THEME", "")
+    v, ok := os.LookupEnv("THEME")
+    fmt.Printf("%q %v\n", v, ok)
+  options: ["`\"\" false`", "`\"\" true`", "`<nil> false`"]
+  answer: 1
+  explain: "Dəyişən təyin olunub, sadəcə dəyəri boşdur; `LookupEnv` bu halda `true` qaytarır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    os.Setenv("THEME", "dark")
+    os.Unsetenv("THEME")
+    _, ok := os.LookupEnv("THEME")
+    fmt.Println(ok)
+  options: ["true", "false"]
+  answer: 1
+  explain: "`Unsetenv` dəyişəni silir, ona görə `LookupEnv` onu tapmır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    os.Setenv("MODE", "")
+    mode := os.Getenv("MODE")
+    if mode == "" {
+        mode = "dev"
+    }
+    fmt.Println(mode)
+  options: ["dev", "boş sətir", "MODE"]
+  answer: 0
+  explain: "`Getenv` boş dəyəri olmayan dəyişəndən ayırmır; fərq lazımdırsa, `LookupEnv` işlədilir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    name, value, _ := strings.Cut("DSN=user=ann", "=")
+    fmt.Println(name, value)
+  options: ["`DSN user`", "`DSN=user ann`", "`DSN ann`", "`DSN user=ann`"]
+  answer: 3
+  explain: "`strings.Cut` yalnız ilk `=`-də bölür, dəyərin içindəki `=` toxunulmaz qalır."
+
+- question: Hansı sətir kompilyasiya olunmur?
+  code: |
+    os.Setenv("WORKERS", "4")        // 1
+    v, ok := os.LookupEnv("WORKERS") // 2
+    var workers int = v              // 3
+  options: ["1", "2", "3"]
+  answer: 2
+  explain: "`v` string-dir və `int` dəyişənə yazılmır; əvvəlcə `strconv.Atoi(v)` lazımdır."

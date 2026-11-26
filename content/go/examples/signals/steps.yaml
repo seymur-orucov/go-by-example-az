@@ -1,0 +1,8 @@
+loop:
+  out: |
+    printed invoice-17.pdf
+    printed menu.pdf
+shutdown:
+  out: |
+    received interrupt - shutting down
+    saved for later: [poster.pdf flyer.pdf]

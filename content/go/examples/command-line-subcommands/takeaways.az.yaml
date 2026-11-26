@@ -1,0 +1,8 @@
+rules:
+  - "Alt əmrin adı ilk arqumentdir; onu `switch` seçir, `flag` paketi yox."
+  - "Alt əmrin `FlagSet`-inə adı yox, qalan arqumentləri (`args[1:]`) verin, yoxsa oxuma dərhal dayanır."
+  - "Hər `FlagSet`-in öz flag-ları var: başqa alt əmrin flag-ı `flag provided but not defined` xətası verir."
+  - "Eyni `FlagSet` yenidən oxunanda flag-lar standart dəyərə qayıtmır."
+practices:
+  - "Alt əmr olmayanda və ya naməlum olanda istifadə qaydasını göstərən xəta qaytarın."
+  - "Hər alt əmri ayrıca funksiyaya yazın və `FlagSet`-i həmin funksiyanın içində yaradın."
