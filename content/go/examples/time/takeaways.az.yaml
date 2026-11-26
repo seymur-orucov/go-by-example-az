@@ -1,0 +1,11 @@
+rules:
+  - "`time.Time` konkret anı, `time.Duration` isə müddəti saxlayır; Duration nanosaniyələrin sayıdır."
+  - "`time.Date` anı yaradır; ay `time.March` kimi yazılır, həddən çıxan gün isə növbəti aya keçir."
+  - "`Add` ana müddət əlavə edir, `Sub` iki anın fərqini Duration kimi qaytarır; `time.Time` üçün `+` və `-` operatorları yoxdur."
+  - "`AddDate` təqvimlə hesablayır: 31 yanvar + 1 ay 2026-da 3 mart olur."
+  - "`int` dəyişənini Duration-a vurmaq üçün onu çevirmək lazımdır: `time.Duration(n) * time.Minute`."
+  - "Anları `Before`, `After`, `Equal` ilə müqayisə edin; `==` zonanı da müqayisə edir."
+practices:
+  - "Nümunə və testlərdə `time.Now()` əvəzinə `time.Date` ilə sabit tarix götürün ki, nəticə dəyişməsin."
+  - "Müddəti dəqiqə sayı kimi `int`-də yox, `time.Duration`-da saxlayın: vahid tipin içində olur."
+  - "Gün, ay, il əlavə edəndə `Add(24 * time.Hour)` yox, `AddDate` işlədin."

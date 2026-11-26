@@ -1,0 +1,10 @@
+rules:
+  - "`slices.Sort` struct-ı sıralamır (`cmp.Ordered` deyil); bunun üçün `slices.SortFunc` və müqayisə funksiyası lazımdır."
+  - "Müqayisə funksiyası `func(a, b T) int`-dir: `a` əvvəl gəlməlidirsə mənfi, sonra gəlməlidirsə müsbət, bərabərdirsə `0` qaytarır; `bool` qaytaran funksiya kompilyasiya olunmur."
+  - "`cmp.Compare(x, y)` `-1`, `0` və ya `1` qaytarır; arqumentlərin yerini dəyişmək azalan sıra verir."
+  - "`cmp.Or` sıfır olmayan birinci arqumenti qaytarır, ona görə ikinci açar yalnız birinci bərabər olanda nəticəyə təsir edir."
+  - "`SortFunc` bərabər elementlərin sırasını saxlamağa zəmanət vermir, `SortStableFunc` isə saxlayır."
+practices:
+  - "Müqayisəni `if`-lərlə yox, `cmp.Compare` ilə yazın."
+  - "Bir neçə açarı `cmp.Or` ilə ən vacibdən başlayaraq sıralayın."
+  - "Bərabər elementlərin əvvəlki sırası vacibdirsə, `SortStableFunc` istifadə edin."

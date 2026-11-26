@@ -1,0 +1,11 @@
+rules:
+  - "`Printf` çap edir, `Sprintf` nəticəni string kimi qaytarır, `Fprintf` isə verilən yerə (`os.Stdout`, fayl) yazır; heç biri sona `\n` qoymur."
+  - "`%v` standart forma, `%+v` sahə adları ilə, `%#v` Go sintaksisi ilə çap edir; `%T` tipi göstərir."
+  - "`%.2f` kəsrdən sonra iki rəqəm saxlayır, `%8.2f` bunu 8 simvolluq sahədə sağa düzləndirir, `%-10s` isə sola."
+  - "`%02x` hex nəticəni sıfırla iki simvola tamamlayır; sadə `%x` `0`-ı bir rəqəmlə yazır."
+  - "Səhv verb və ya çatmayan arqument kompilyasiya xətası deyil: çıxışda `%!d(string=ten)` və ya `%!s(MISSING)` görünür."
+  - "Faiz işarəsinin özü `%%` ilə yazılır."
+practices:
+  - "`go vet` işlədin: format sətri ilə arqumentlərin uyğunsuzluğunu o tapır."
+  - "İstifadəçinin yazdığı mətni log-a `%q` ilə çıxarın ki, boşluqlar və boş string görünsün."
+  - "Struct-ı debug edəndə `%+v` istifadə edin, `%p` ünvanlarını isə müqayisə olunan çıxışa qoymayın."

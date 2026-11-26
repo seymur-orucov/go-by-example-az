@@ -1,7 +1,8 @@
 ---
 import "../styles/index.css";
 import Footer from "./Footer.astro";
-import Header, { type TechMenuItem } from "./Header.astro";
+import type { TechState } from "../data/platform";
+import Header from "./Header.astro";
 
 interface SearchEntry {
   slug: string;
@@ -10,19 +11,22 @@ interface SearchEntry {
   section: string;
   n: number;
   href: string;
+  ready: boolean;
 }
 
 interface Props {
   title: string;
   description?: string;
-  /** Entries for the Ctrl+K palette; the site builds them from its content collections. */
+  /** Entries for the Ctrl+K palette and the page scripts; the site builds them from its content. */
   searchIndex?: SearchEntry[];
-  /** The technology switcher; the site computes each status from its content. */
-  technologies?: TechMenuItem[];
-  /** Technology section the page belongs to ("go", "git"). */
-  tech?: string;
-  /** Lesson pages: view modes (sidebar, width, Zen) in the header. */
+  /** Nav item shown as the current page: "roadmaps" or a technology id ("go", "git"). */
+  current?: string;
+  /** Status of every known technology, computed from the content (apps/site/src/lib/technologies.ts). */
+  technologies?: TechState[];
+  /** Lesson pages: sidebar toggle, view modes (sidebar, width, Zen), solid header, slim footer. */
   lesson?: boolean;
+  /** Class on <body> (page-specific styles hang on it). */
+  bodyClass?: string;
   /** Show the Go by Example CC BY 3.0 attribution (only while adapted lessons exist). */
   attribution?: boolean;
 }
@@ -31,9 +35,10 @@ const {
   title,
   description,
   searchIndex = [],
-  technologies,
-  tech,
+  current,
+  technologies = [],
   lesson,
+  bodyClass,
   attribution = true,
 } = Astro.props;
 ---
@@ -45,28 +50,22 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
-    <!-- Apply the saved theme and palette before first paint (no flash). -->
+    <!-- Apply the saved theme, palette and view modes before first paint (no flash). -->
     <script is:inline>
       try {
+        const s = localStorage;
         const d = document.documentElement;
-        const t = JSON.parse(localStorage.getItem("goaz:theme"));
-        if (t === "light" || t === "dark") d.setAttribute("data-theme", t);
-        const p = JSON.parse(localStorage.getItem("goaz:palette"));
+        const t = JSON.parse(s.getItem("w3:theme"));
+        const p = JSON.parse(s.getItem("w3:palette"));
+        if (t && t !== "system") d.setAttribute("data-theme", t);
         if (p && p !== "nebula") d.setAttribute("data-palette", p);
+        if (s.getItem("w3:sidebar") === "off") d.setAttribute("data-sidebar", "off");
+        if (s.getItem("w3:width") === "full") d.setAttribute("data-width", "full");
+        if (sessionStorage.getItem("w3:zen") === "1") d.setAttribute("data-zen", "");
       } catch {
-        /* storage unavailable: fall back to the system theme */
+        /* storage unavailable: system theme, default view */
       }
     </script>
-    {lesson && <script is:inline>
-      try {
-        const d = document.documentElement;
-        if (localStorage.getItem("goaz:sidebar") === "off") d.setAttribute("data-sidebar", "off");
-        if (localStorage.getItem("goaz:width") === "full") d.setAttribute("data-width", "full");
-        if (sessionStorage.getItem("goaz:zen") === "1") d.setAttribute("data-zen", "");
-      } catch {
-        /* storage unavailable: default view */
-      }
-    </script>}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -74,17 +73,28 @@ const {
       rel="stylesheet"
     />
   </head>
-  <body>
-    <Header technologies={technologies} tech={tech} lesson={lesson} />
+  <body class={bodyClass}>
+    <slot name="before-header" />
+    <Header
+      current={current}
+      active={technologies.filter((t) => t.href)}
+      solid={lesson}
+      lesson={lesson}
+    />
     <slot />
-    <Footer attribution={attribution} />
+    <Footer attribution={attribution} slim={lesson} />
     <script
       type="application/json"
       id="search-index"
       set:html={JSON.stringify(searchIndex).replace(/</g, "\\u003c")}
     />
+    <script
+      type="application/json"
+      id="tech-status"
+      set:html={JSON.stringify(technologies).replace(/</g, "\\u003c")}
+    />
     <script>
-      import "../scripts/shell";
+      import "../scripts/v2";
     </script>
   </body>
 </html>

@@ -1,0 +1,60 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    start := time.Date(2026, time.June, 18, 15, 30, 0, 0, time.UTC)
+    fmt.Println(start.Format("YYYY-MM-DD"))
+  options: ["2026-06-18", "2026-MM-DD", "YYYY-MM-DD"]
+  answer: 2
+  explain: "Go `YYYY` kimi hərfləri tanımır; layout nümunə tarixin rəqəmləri ilə yazılır: `2006-01-02`."
+
+- question: "`start` 18 iyun 2026-dırsa, bu kod nə çap edəcək?"
+  code: |
+    fmt.Println(start.Format("2006-02-01"))
+  options: ["2026-06-18", "2026-18-06", "kompilyasiya xətası"]
+  answer: 1
+  explain: "Nümunə tarixdə `02` gün, `01` ay deməkdir, ona görə ikisinin yeri dəyişib."
+
+- question: "`start` 15:30-dursa, bu kod nə çap edəcək?"
+  code: |
+    fmt.Println(start.Format("3:04 / 15:04"))
+  options: ["3:30 / 15:30", "15:30 / 15:30", "3:04 / 15:04"]
+  answer: 0
+  explain: "`3` 12 saatlıq, `15` isə 24 saatlıq saatdır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    t, err := time.Parse("2006-01-02 15:04", "2026-06-18 19:30")
+    fmt.Println(t.Location(), err)
+  options: ["Local <nil>", "UTC <nil>", "UTC zone missing"]
+  answer: 1
+  explain: "Mətndə zona yoxdursa, `Parse` vaxtı UTC sayır və xəta vermir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    d := time.Date(2026, time.February, 29, 0, 0, 0, 0, time.UTC)
+    _, err := time.Parse(time.DateOnly, "2026-02-29")
+    fmt.Println(d.Format(time.DateOnly), err == nil)
+  options: ["2026-02-29 true", "2026-02-28 false", "2026-03-01 true", "2026-03-01 false"]
+  answer: 3
+  explain: "2026 uzun il deyil: `time.Date` tarixi 1 marta düzəldir, `Parse` isə xəta qaytarır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    late := time.Date(2026, time.June, 18, 22, 0, 0, 0, time.UTC)
+    baku := time.FixedZone("UTC+4", 4*60*60)
+    fmt.Println(late.In(baku).Format(time.DateOnly))
+  options: ["2026-06-18", "2026-06-18 02:00", "2026-06-19"]
+  answer: 2
+  explain: "UTC ilə 22:00 Bakıda ertəsi günün 02:00-ıdır, ona görə tarix də dəyişir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    t := time.Date(2026, time.January, 5, 9, 0, 0, 0, time.UTC)
+    fmt.Println(t.Format(time.RFC3339))
+  options: ["2026-01-05T09:00:00Z", "2026-01-05T09:00:00+00:00", "2026-01-05 09:00:00 UTC"]
+  answer: 0
+  explain: "RFC3339 layout-unda zona `Z07:00` ilə yazılıb: UTC-də fərq əvəzinə `Z` çap olunur."
+
+- question: "`\"18/06/2026 19:30\"` mətnini hansı layout xətasız oxuyur?"
+  options: ["\"DD/MM/YYYY HH:mm\"", "\"02/01/2006 15:04\"", "\"18/06/2026 19:30\"", "\"2006/01/02 15:04\""]
+  answer: 1
+  explain: "Layout nümunə tarixin, 2 yanvar 2006 15:04-ün eyni formatda yazılışıdır."

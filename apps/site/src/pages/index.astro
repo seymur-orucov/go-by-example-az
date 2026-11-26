@@ -1,11 +1,648 @@
 ---
-// Placeholder: the real home page is ported from design/d/index.html in a later step.
+import "../styles/home.css";
 import SiteLayout from "../layouts/SiteLayout.astro";
+import { getGoCatalog } from "../lib/go";
+
+const { total, sections } = await getGoCatalog();
+const ready = sections.reduce((n, s) => n + s.items.filter((i) => i.status === "ready").length, 0);
 ---
 
-<SiteLayout title="Nümunələrlə — proqramlaşdırmanı yol xəritəsi ilə öyrən">
-  <main class="container">
-    <h1>Nümunələrlə</h1>
-    <p>Sayt hazırlanır.</p>
+<SiteLayout
+  title="w3hub.dev — proqramlaşdırmanı yol xəritəsi ilə öyrən"
+  description="Proqramlaşdırmanı Azərbaycan dilində, yol xəritəsi ilə öyrən: hər addımda nəzəriyyə, işlək kod, vizual izah, test və müsahibə sualları."
+>
+  <main>
+    <!-- ================= HERO ================= -->
+    <section class="hero" id="start">
+      <div class="hero-sky" aria-hidden="true">
+        <div class="aurora-fallback"></div>
+        <canvas class="aurora" id="aurora"></canvas>
+        <div class="grid-bg"></div>
+        <div class="hero-beam"></div>
+      </div>
+      <div class="wrap hero-inner">
+        <span class="cross" style="left:-11px;top:-11px" aria-hidden="true"></span>
+        <span class="cross" style="right:-11px;top:-11px" aria-hidden="true"></span>
+        <a class="announce glass" href="/go/" data-reveal>
+          <span class="badge live">yeni</span>
+          <span>
+            <b>Go</b> yol xəritəsi açıqdır — {ready} dərs hazırdır
+          </span>
+          <i data-icon="arrow"></i>
+        </a>
+        <h1 class="hero-title" data-reveal style="--i:1">
+          <span class="title-grad">Proqramlaşdırmanı</span>
+          <br />
+          <span class="accent-grad">yol xəritəsi</span> <span class="title-grad">ilə öyrən</span>
+        </h1>
+        <p class="hero-sub" data-reveal style="--i:2">
+          Nəyi, hansı ardıcıllıqla öyrənəcəyini gör. Hər addımda qısa izah, işlək kod, vizual izah
+          və test — Azərbaycan dilində, bir platformada.
+        </p>
+
+        <form class="ask glow-border" id="ask" data-reveal style="--i:3" role="search">
+          <label class="sr-only" for="ask-input">
+            Nə öyrənmək istəyirsən?
+          </label>
+          <div class="ask-row">
+            <i data-icon="spark"></i>
+            <input
+              id="ask-input"
+              type="text"
+              autocomplete="off"
+              placeholder="Nə öyrənmək istəyirsən?"
+            />
+            <button class="btn btn-primary btn-icon ask-go" aria-label="Axtar">
+              <i data-icon="arrow"></i>
+            </button>
+          </div>
+          <div class="ask-chips" aria-label="Populyar">
+            <button type="button" class="chip" data-q="Go">
+              <span class="mono-ic" style="--c:#00add8">
+                Go
+              </span>
+              Go
+            </button>
+            <button type="button" class="chip" data-q="Backend">
+              <span class="mono-ic" style="--c:#9b7bff">
+                BE
+              </span>
+              Backend
+            </button>
+            <button type="button" class="chip" data-q="Slices">
+              Slices
+            </button>
+            <button type="button" class="chip" data-q="Müsahibə">
+              Müsahibə
+            </button>
+            <button type="button" class="chip" data-q="Alqoritmlər">
+              Alqoritmlər
+            </button>
+          </div>
+        </form>
+
+        <ul class="hero-stats" data-reveal style="--i:4" aria-label="Platforma rəqəmlərlə">
+          <li>
+            <b data-count="13">0</b>
+            <span>texnologiya</span>
+          </li>
+          <li>
+            <b data-count="4">0</b>
+            <span>istiqamət</span>
+          </li>
+          <li>
+            <b data-count={total}>0</b>
+            <span>Go mövzusu</span>
+          </li>
+          <li>
+            <b>5</b>
+            <span>tərəf hər mövzuda</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Product preview: three glass cards (roadmap · lesson · quiz) -->
+      <div class="showcase wrap" id="showcase" aria-label="Platformadan görüntülər">
+        <article class="sc-card sc-left glass dots" data-reveal="scale" style="--i:5">
+          <div class="sc-head">
+            <span class="mono-ic" style="--c:#9b7bff">
+              BE
+            </span>
+            <div>
+              <b>Backend</b>
+              <small>istiqamət · yol xəritəsi</small>
+            </div>
+          </div>
+          <ol class="sc-road">
+            <li class="done">
+              <span class="mono-ic" style="--c:#f05033">
+                Git
+              </span>
+              Git<em>✓</em>
+            </li>
+            <li class="done">
+              <span class="mono-ic" style="--c:#22c3a6">
+                Net
+              </span>
+              HTTP<em>✓</em>
+            </li>
+            <li class="now">
+              <span class="mono-ic" style="--c:#00add8">
+                Go
+              </span>
+              Go<em>38%</em>
+            </li>
+            <li>
+              <span class="mono-ic" style="--c:#7b8cff">
+                SQL
+              </span>
+              SQL<em></em>
+            </li>
+            <li>
+              <span class="mono-ic" style="--c:#2496ed">
+                Dkr
+              </span>
+              Docker<em></em>
+            </li>
+          </ol>
+        </article>
+
+        <article class="sc-card sc-main glass dots" data-reveal="scale" style="--i:4">
+          <div class="sc-head">
+            <span class="mono-ic" style="--c:#00add8">
+              Go
+            </span>
+            <div>
+              <b>Slices</b>
+              <small>
+                Kolleksiyalar · addım <span id="sc-step">2</span>/4
+              </small>
+            </div>
+            <span class="badge live" style="margin-left:auto">
+              vizual
+            </span>
+          </div>
+          <pre class="code sc-code dim" id="sc-code" aria-label="Go kodu"></pre>
+          <div class="sc-mem" aria-label="Yaddaş">
+            <div class="sc-mem-label">
+              <span>cart</span>
+              <small id="sc-lc">len 2 · cap 2</small>
+            </div>
+            <div class="cells" id="sc-cells"></div>
+          </div>
+        </article>
+
+        <article class="sc-card sc-right glass dots" data-reveal="scale" style="--i:6">
+          <div class="sc-head">
+            <span class="mono-ic" style="--c:#34d399">
+              ?
+            </span>
+            <div>
+              <b>Özünü yoxla</b>
+              <small>sual 3 / 8</small>
+            </div>
+          </div>
+          <p class="sc-q">Bu kod nə çap edir?</p>
+          <code class="sc-snip">fmt.Println(len(cart[1:]))</code>
+          <ul class="sc-opts">
+            <li>1</li>
+            <li class="ok">
+              2 <em>✓</em>
+            </li>
+            <li>3</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= STACK MAP: technologies + directions ================= -->
+    <section class="section" id="stack">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker" data-reveal>
+            stack.Explore()<span class="caret"></span>
+          </div>
+          <h2 data-reveal style="--i:1">
+            <span class="title-grad">Bir dil seç — və ya</span>
+            <br />
+            <span class="accent-grad">bütöv bir peşə yolu.</span>
+          </h2>
+          <p data-reveal style="--i:2">
+            İstiqamət bir neçə texnologiyanı doğru ardıcıllıqla birləşdirir. Birinin üzərinə gəl —
+            hansı texnologiyalardan ibarət olduğunu gör.
+          </p>
+        </div>
+
+        <div class="stack" id="stack-map" data-reveal="scale">
+          <svg class="stack-wires" id="stack-wires" aria-hidden="true"></svg>
+          <div class="stack-dirs" id="stack-dirs" role="tablist" aria-label="İstiqamətlər"></div>
+          <div class="stack-techs" id="stack-techs"></div>
+        </div>
+        <div class="stack-path glass" id="stack-path" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- ================= NODE MODEL: one node, five facets ================= -->
+    <section class="section section-tint" id="model">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker" data-reveal>
+            node.Open()<span class="caret"></span>
+          </div>
+          <h2 data-reveal style="--i:1">
+            <span class="title-grad">Bir mövzu.</span> <span class="accent-grad">Beş tərəf.</span>
+          </h2>
+          <p data-reveal style="--i:2">
+            Xəritədə hər node izah, kod, vizual, test və müsahibə sualını bir yerdə saxlayır. Ayrı
+            saytlar, ayrı tablar yox.
+          </p>
+        </div>
+
+        <div class="anatomy" id="anatomy" data-reveal="scale">
+          <svg class="anatomy-wires" id="anatomy-wires" aria-hidden="true"></svg>
+          <div class="facets" role="tablist" aria-label="Mövzunun tərəfləri" id="facets"></div>
+          <div class="node-card glass dots spot" id="node-card">
+            <div class="node-top">
+              <span class="mono-ic" style="--c:#00add8">
+                Go
+              </span>
+              <div>
+                <small class="node-crumb">Go · Kolleksiyalar · 09</small>
+                <h3>Slices</h3>
+              </div>
+              <div class="node-ring" aria-label="İrəliləyiş 3/5">
+                <svg viewBox="0 0 40 40">
+                  <circle cx="20" cy="20" r="16" class="tr" />
+                  <circle cx="20" cy="20" r="16" class="br" id="node-ring" />
+                </svg>
+                <b id="node-ring-n">0/5</b>
+              </div>
+            </div>
+            <div class="node-body" id="node-body" role="tabpanel" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PLATFORM SECTIONS (rollout order) ================= -->
+    <section class="section" id="bolmeler">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker" data-reveal>
+            platform.Sections()<span class="caret"></span>
+          </div>
+          <h2 data-reveal style="--i:1">
+            <span class="title-grad">Hər şey bir yerdə.</span>
+            <br />
+            <span class="accent-grad">Addım-addım açılır.</span>
+          </h2>
+          <p data-reveal style="--i:2">
+            Bölmələr bu ardıcıllıqla gəlir və hamısı eyni xəritəyə bağlıdır: bir mövzunun testi də,
+            müsahibə sualı da həmin node-dadır.
+          </p>
+        </div>
+        <div class="rail" id="rail" data-reveal></div>
+        <div class="rail-detail glass" id="rail-detail" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- ================= WHY: advantages over the alternatives ================= -->
+    <section class="section" id="niye">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker" data-reveal>
+            why.Here()<span class="caret"></span>
+          </div>
+          <h2 data-reveal style="--i:1">
+            <span class="title-grad">Niyə məhz</span> <span class="accent-grad">burada?</span>
+          </h2>
+          <p data-reveal style="--i:2">
+            Xəritə saytları yolu göstərir, kurslar dərsi verir, sənədlər faktı. Burada üçü bir
+            yerdədir — və ana dilində.
+          </p>
+        </div>
+
+        <div class="why">
+          <article class="why-card glass spot" data-reveal style="--i:0">
+            <div class="why-art" aria-hidden="true">
+              <svg viewBox="0 0 260 170">
+                <defs>
+                  <linearGradient id="gBub" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stop-color="#fff" stop-opacity=".55" />
+                    <stop offset=".45" stop-color="var(--accent)" stop-opacity=".18" />
+                    <stop offset="1" stop-color="var(--accent-2)" stop-opacity=".35" />
+                  </linearGradient>
+                  <linearGradient id="gEdge" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stop-color="#fff" stop-opacity=".9" />
+                    <stop offset=".5" stop-color="#fff" stop-opacity=".1" />
+                    <stop offset="1" stop-color="var(--accent-2)" stop-opacity=".8" />
+                  </linearGradient>
+                </defs>
+                <g class="bub b1">
+                  <rect
+                    x="34"
+                    y="30"
+                    width="132"
+                    height="58"
+                    rx="22"
+                    fill="url(#gBub)"
+                    stroke="url(#gEdge)"
+                    stroke-width="1.4"
+                  />
+                  <path
+                    d="M62 88l-6 16 22-16"
+                    fill="url(#gBub)"
+                    stroke="url(#gEdge)"
+                    stroke-width="1.4"
+                  />
+                  <text x="100" y="66" text-anchor="middle" class="bub-t mono">
+                    slice
+                  </text>
+                </g>
+                <g class="bub b2">
+                  <rect
+                    x="96"
+                    y="92"
+                    width="136"
+                    height="54"
+                    rx="21"
+                    fill="url(#gBub)"
+                    stroke="url(#gEdge)"
+                    stroke-width="1.4"
+                  />
+                  <path
+                    d="M206 146l6 14-22-14"
+                    fill="url(#gBub)"
+                    stroke="url(#gEdge)"
+                    stroke-width="1.4"
+                  />
+                  <text x="164" y="125" text-anchor="middle" class="bub-t">
+                    dinamik siyahı
+                  </text>
+                </g>
+              </svg>
+            </div>
+            <h3>Ana dilində, terminlər orijinalda</h3>
+            <p>
+              İzah Azərbaycan dilindədir, <code>slice</code>, <code>goroutine</code> kimi terminlər
+              isə ingiliscə qalır — sənəddə, xətada və işdə rast gələcəyin kimi.
+            </p>
+          </article>
+
+          <article class="why-card glass spot" data-reveal style="--i:1">
+            <div class="why-art" aria-hidden="true">
+              <svg viewBox="0 0 260 170" class="pyr">
+                <defs>
+                  <linearGradient id="gTop" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#fff" stop-opacity=".85" />
+                    <stop offset="1" stop-color="var(--accent)" stop-opacity=".25" />
+                  </linearGradient>
+                  <linearGradient id="gFront" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stop-color="var(--cyan)" stop-opacity=".45" />
+                    <stop offset=".55" stop-color="var(--accent)" stop-opacity=".18" />
+                    <stop offset="1" stop-color="var(--accent-2)" stop-opacity=".5" />
+                  </linearGradient>
+                </defs>
+                <g class="slab s5">
+                  <path
+                    d="M130 14 152 40H108Z"
+                    fill="url(#gTop)"
+                    stroke="#fff"
+                    stroke-opacity=".6"
+                  />
+                </g>
+                <g class="slab s4">
+                  <path d="M104 46h52l10 10h-72Z" fill="url(#gTop)" />
+                  <path
+                    d="M94 56h72v14H94Z"
+                    fill="url(#gFront)"
+                    stroke="#fff"
+                    stroke-opacity=".35"
+                  />
+                </g>
+                <g class="slab s3">
+                  <path d="M90 76h80l12 12H78Z" fill="url(#gTop)" />
+                  <path
+                    d="M78 88h104v14H78Z"
+                    fill="url(#gFront)"
+                    stroke="#fff"
+                    stroke-opacity=".35"
+                  />
+                </g>
+                <g class="slab s2">
+                  <path d="M74 108h112l14 12H60Z" fill="url(#gTop)" />
+                  <path
+                    d="M60 120h140v14H60Z"
+                    fill="url(#gFront)"
+                    stroke="#fff"
+                    stroke-opacity=".35"
+                  />
+                </g>
+                <g class="slab s1">
+                  <path d="M56 140h148l16 12H40Z" fill="url(#gTop)" />
+                  <path
+                    d="M40 152h180v12H40Z"
+                    fill="url(#gFront)"
+                    stroke="#fff"
+                    stroke-opacity=".35"
+                  />
+                </g>
+              </svg>
+            </div>
+            <h3>Xəritə və dərs bir yerdə</h3>
+            <p>
+              Hansı mövzunun nədən sonra gəldiyini görürsən, node-a basıb dərhal öyrənirsən. Harada
+              qaldığın və növbəti addım həmişə görünür.
+            </p>
+          </article>
+
+          <article class="why-card glass spot" data-reveal style="--i:2">
+            <div class="why-art" aria-hidden="true">
+              <svg viewBox="0 0 260 170" class="rings">
+                <defs>
+                  <linearGradient id="gRing" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stop-color="#fff" stop-opacity=".95" />
+                    <stop offset=".3" stop-color="var(--accent)" stop-opacity=".55" />
+                    <stop offset=".6" stop-color="#0a0f20" stop-opacity=".4" />
+                    <stop offset="1" stop-color="var(--accent-2)" stop-opacity=".9" />
+                  </linearGradient>
+                  <radialGradient id="gCore">
+                    <stop offset="0" stop-color="#fff" />
+                    <stop offset=".4" stop-color="var(--cyan)" stop-opacity=".7" />
+                    <stop offset="1" stop-color="var(--accent)" stop-opacity="0" />
+                  </radialGradient>
+                </defs>
+                <circle cx="130" cy="86" r="30" fill="url(#gCore)" class="core" />
+                <g class="ring r1">
+                  <ellipse
+                    cx="130"
+                    cy="86"
+                    rx="86"
+                    ry="30"
+                    fill="none"
+                    stroke="url(#gRing)"
+                    stroke-width="11"
+                  />
+                </g>
+                <g class="ring r2">
+                  <ellipse
+                    cx="130"
+                    cy="86"
+                    rx="70"
+                    ry="44"
+                    fill="none"
+                    stroke="url(#gRing)"
+                    stroke-width="7"
+                    opacity=".8"
+                  />
+                </g>
+                <g class="ring r3">
+                  <ellipse
+                    cx="130"
+                    cy="86"
+                    rx="40"
+                    ry="62"
+                    fill="none"
+                    stroke="url(#gRing)"
+                    stroke-width="5"
+                    opacity=".7"
+                  />
+                </g>
+              </svg>
+            </div>
+            <h3>Oxuma — gör</h3>
+            <p>
+              Kod addım-addım işləyir: hansı sətrin işlədiyini, yaddaşda nəyin dəyişdiyini və
+              nəticəni eyni anda görürsən.
+            </p>
+          </article>
+
+          <article class="why-card glass spot" data-reveal style="--i:3">
+            <div class="why-art" aria-hidden="true">
+              <svg viewBox="0 0 260 170" class="cube">
+                <defs>
+                  <linearGradient id="gC1" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stop-color="#fff" stop-opacity=".8" />
+                    <stop offset="1" stop-color="var(--accent)" stop-opacity=".25" />
+                  </linearGradient>
+                  <linearGradient id="gC2" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="var(--accent)" stop-opacity=".45" />
+                    <stop offset="1" stop-color="var(--accent-2)" stop-opacity=".15" />
+                  </linearGradient>
+                  <linearGradient id="gC3" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="var(--cyan)" stop-opacity=".35" />
+                    <stop offset="1" stop-color="var(--accent)" stop-opacity=".1" />
+                  </linearGradient>
+                </defs>
+                <g class="cube-g">
+                  <path
+                    d="M130 22 186 52 130 82 74 52Z"
+                    fill="url(#gC1)"
+                    stroke="#fff"
+                    stroke-opacity=".55"
+                  />
+                  <path
+                    d="M74 52 130 82v66L74 118Z"
+                    fill="url(#gC2)"
+                    stroke="#fff"
+                    stroke-opacity=".3"
+                  />
+                  <path
+                    d="M186 52 130 82v66l56-30Z"
+                    fill="url(#gC3)"
+                    stroke="#fff"
+                    stroke-opacity=".3"
+                  />
+                  <path
+                    d="m112 52 12 9 24-17"
+                    fill="none"
+                    stroke="var(--green)"
+                    stroke-width="5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="tick"
+                  />
+                </g>
+                <text x="206" y="140" class="cube-t mono">
+                  go run ✓
+                </text>
+              </svg>
+            </div>
+            <h3>Kod işləyir — yoxlanılıb</h3>
+            <p>
+              Hər nümunə Go ilə işlədilir və çıxışı yoxlanılır; test cavabları da kodla təsdiqlənir.
+              Ekranda gördüyün nəticə real nəticədir.
+            </p>
+          </article>
+        </div>
+
+        <div class="compare glass" data-reveal>
+          <div class="compare-head">
+            <h3>Alternativlərlə müqayisə</h3>
+            <p>Ümumi kateqoriyalar üzrə; “tezliklə” — planlaşdırılıb, hələ hazır deyil.</p>
+          </div>
+          <div class="compare-scroll">
+            <table class="cmp">
+              <thead>
+                <tr>
+                  <th scope="col">
+                    <span class="sr-only">Xüsusiyyət</span>
+                  </th>
+                  <th scope="col" class="us">
+                    <span data-brand-plain>w3hub.dev</span>
+                  </th>
+                  <th scope="col">Xəritə saytları</th>
+                  <th scope="col">Video kurslar</th>
+                  <th scope="col">Rəsmi sənədlər</th>
+                </tr>
+              </thead>
+              <tbody id="cmp-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="section cta-section" id="basla">
+      <div class="wrap">
+        <div class="cta glass glow-border" data-reveal="scale">
+          <div class="cta-copy">
+            <div class="kicker" style="justify-content:flex-start">
+              path.Start()<span class="caret"></span>
+            </div>
+            <h2>
+              <span class="title-grad">Harada qaldığını</span>
+              <br />
+              <span class="accent-grad">platforma xatırlayır.</span>
+            </h2>
+            <p>
+              Hesabsız da başlaya bilərsən — irəliləyiş bu brauzerdə saxlanılır. Hesab açanda bütün
+              cihazlarda sinxron olacaq.
+            </p>
+            <div class="cta-btns">
+              <a class="btn btn-primary btn-lg" id="cta-next" href="/go/">
+                Davam et <span class="arrow" data-icon="arrow"></span>
+              </a>
+              <a class="btn btn-lg" href="/go/roadmap/">
+                Xəritəyə bax
+              </a>
+            </div>
+          </div>
+          <a class="resume glass dots" id="resume" href="/go/">
+            <div class="resume-ring">
+              <svg viewBox="0 0 120 120">
+                <defs>
+                  <linearGradient id="gProg" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stop-color="var(--cyan)" />
+                    <stop offset=".5" stop-color="var(--accent)" />
+                    <stop offset="1" stop-color="var(--accent-2)" />
+                  </linearGradient>
+                </defs>
+                <circle cx="60" cy="60" r="50" class="tr" />
+                <circle cx="60" cy="60" r="50" class="br" id="res-bar" />
+              </svg>
+              <div>
+                <b id="res-pct">0%</b>
+                <small>Go yolu</small>
+              </div>
+            </div>
+            <div class="resume-next">
+              <small>NÖVBƏTİ DƏRS</small>
+              <b id="res-title">—</b>
+              <span id="res-sub"></span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
+  <script
+    type="application/json"
+    id="home-data"
+    set:html={JSON.stringify({ total, sections: sections.length, ready })}
+  />
+  <script>
+    import "../scripts/home";
+  </script>
 </SiteLayout>

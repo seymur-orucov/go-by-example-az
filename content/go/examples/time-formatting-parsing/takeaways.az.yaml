@@ -1,0 +1,10 @@
+rules:
+  - "Layout nümunə tarixin, `Mon Jan 2 15:04:05 MST 2006`-nın yazılışıdır: ay `01`, gün `02`, saat `15` (və ya `3`), dəqiqə `04`, saniyə `05`, il `2006`."
+  - "`YYYY-MM-DD` kimi hərfləri Go tanımır, onlar olduğu kimi çap olunur."
+  - "`time.RFC3339`, `time.DateOnly`, `time.DateTime`, `time.Kitchen` hazır layout-lardır; RFC3339 UTC-ni `Z` ilə yazır."
+  - "`In` anı dəyişmir, yalnız başqa zonada göstərir; `time.FixedZone` sabit fərqli zonadır və yay vaxtını bilmir."
+  - "`time.Parse` `error` qaytarır: mövcud olmayan tarix və layout-a uymayan mətn xətadır; zona yoxdursa, vaxt UTC sayılır."
+practices:
+  - "API və fayllarda vaxtı `time.RFC3339` ilə yazın və oxuyun."
+  - "Layout-u əl ilə yazmaq əvəzinə mümkün olanda hazır sabitləri işlədin."
+  - "İstifadəçidən gələn tarixi `time.Parse` ilə oxuyun və xətanı həmişə yoxlayın."

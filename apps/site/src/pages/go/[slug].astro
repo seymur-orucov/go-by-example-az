@@ -30,7 +30,8 @@ const lesson = item.status === "ready" ? loadLesson(item.slug) : undefined;
   techId="go"
   techTitle="Go"
   techHref="/go/"
-  title={`${item.title} · Go — Nümunələrlə`}
+  techColor="#00add8"
+  title={`${item.title} · Go · w3hub.dev`}
   description={`Go-da ${item.title}: ${item.sub}. Azərbaycan dilində qısa izah, işlək kod və addım-addım vizual.`}
   item={item}
   section={section}
@@ -39,4 +40,6 @@ const lesson = item.status === "ready" ? loadLesson(item.slug) : undefined;
   prev={prev}
   next={next}
   lesson={lesson}
+  roadmapHref="/go/roadmap/"
+  soonText="Bu dərs hələ yazılır. Hər dərs orijinal nümunə ilə hazırlanır, kod Go ilə işlədilib yoxlanılır — ona görə bir az vaxt aparır."
 />

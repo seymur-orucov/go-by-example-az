@@ -1,0 +1,19 @@
+clean:
+  out: |
+    [lena.park@uni-mail.edu]
+    26 22
+search:
+  out: |
+    true 9
+    domain: uni-mail.edu
+    student: true
+split:
+  out: |
+    3 go / cloud / databases
+    2 LENA PARK
+replace:
+  out: |
+    5550104477 555 010-4477
+    phone: ******4477
+fold:
+  out: "false true"

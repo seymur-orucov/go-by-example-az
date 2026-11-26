@@ -1,0 +1,13 @@
+scheme: https
+host: staging.stayfinder.example:8443
+hostname: staging.stayfinder.example port: 8443
+user: tester has password: true
+log: https://tester:xxxxx@staging.stayfinder.example:8443/search/baku?nights=3&room=double&room=single#map
+path: /search/baku
+raw query: nights=3&room=double&room=single
+fragment: map
+nights: 3
+rooms: [double single] first: double
+pets: "" false
+https://stayfinder.example/search?city=New+York&nights=2&room=double&room=single
+note=sea+view+%26+late+check-in

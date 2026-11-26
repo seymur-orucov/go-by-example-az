@@ -1,0 +1,70 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    s := base64.StdEncoding.EncodeToString([]byte("table 4"))
+    fmt.Println(len(s), s[len(s)-2:])
+  options: ["7 NA", "10 A=", "12 =="]
+  answer: 2
+  explain: "7 bayt iki tam qrup və bir artıq bayt edir: 8 + 4 = 12 simvol, son qrupda 1 bayt olduğu üçün iki `=` əlavə olunur."
+
+- question: Bu kod niyə kompilyasiya olunmur?
+  code: |
+    text := base64.StdEncoding.DecodeString("b2s=")
+    fmt.Println(string(text))
+  options:
+    - "`DecodeString` iki nəticə qaytarır: baytlar və `error`"
+    - "`DecodeString` `StdEncoding`-də yoxdur"
+    - "`string(...)` baytları mətnə çevirə bilmir"
+  answer: 0
+  explain: "Hər mətn düzgün base64 olmadığı üçün `DecodeString` xəta da qaytarır: `text, err := ...` yazmaq lazımdır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    b, err := base64.StdEncoding.DecodeString("U2VhdCBCNw==")
+    fmt.Println(string(b), err)
+  options: ["U2VhdCBCNw== <nil>", "Seat B7 <nil>", "Seat B7=="]
+  answer: 1
+  explain: "`DecodeString` ilkin baytları qaytarır, `=` isə yalnız padding-dir və nəticəyə düşmür."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    data := []byte{0xfb, 0xff}
+    fmt.Println(
+        base64.StdEncoding.EncodeToString(data),
+        base64.URLEncoding.EncodeToString(data),
+    )
+  options: ["+/8= +/8=", "-_8= -_8=", "+/8= -_8", "+/8= -_8="]
+  answer: 3
+  explain: "`URLEncoding` yalnız `+`-nı `-`, `/`-ni `_` ilə əvəz edir; padding `=` qalır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    fmt.Println(base64.RawURLEncoding.EncodeToString([]byte("table 4")))
+  options: ["dGFibGUgNA", "dGFibGUgNA==", "dGFibGUgNA--"]
+  answer: 0
+  explain: "`Raw...` encoding-lər `=` padding yazmır, qalan simvollar eynidir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    _, err1 := base64.URLEncoding.DecodeString("dGFibGUgNA==")
+    _, err2 := base64.RawURLEncoding.DecodeString("dGFibGUgNA==")
+    fmt.Println(err1 == nil, err2 == nil)
+  options: ["true true", "false true", "true false"]
+  answer: 2
+  explain: "`RawURLEncoding` `=` simvolunu tanımır və xəta verir: decode edəndə kodlaşdırmadakı encoding seçilməlidir."
+
+- question: Linkdə `?ref=` dəyəri base64 ilə kodlaşdırılıb. Bu nə deməkdir?
+  options:
+    - "Məlumat şifrələnib, açar olmadan oxumaq olmaz"
+    - "Linki görən hər kəs onu decode edib oxuya bilər"
+    - "Məlumat heşlənib, onu geri almaq olmaz"
+  answer: 1
+  explain: "Base64 şifrələmə deyil, sadəcə kodlaşdırmadır: açarı yoxdur və hər kəs geri çevirə bilər."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    order := []byte("order 1001 ready at counter 12") // 30 bayt
+    s := base64.StdEncoding.EncodeToString(order)
+    fmt.Println(len(s), strings.HasSuffix(s, "="))
+  options: ["40 true", "30 false", "40 false"]
+  answer: 2
+  explain: "30 bayt düz 10 qrupdur, hər qrup 4 simvol verir; natamam qrup olmadığı üçün `=` də yoxdur."

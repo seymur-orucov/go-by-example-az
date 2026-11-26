@@ -1,0 +1,17 @@
+layout:
+  out: |
+    18.06.2026 15:30
+    Thursday, June 18
+predefined:
+  out: |
+    2026-06-18T15:30:00Z
+    2026-06-18 3:30PM
+zone:
+  out: |
+    Baku: 19:30 +04:00
+    New York: Jun 18, 11:30 AM
+parse:
+  out: |
+    2026-06-18 15:30:00 +0000 UTC <nil> true
+    parsing time "2026-06-31": day out of range
+    parsing time "18.06.2026" as "2006-01-02": cannot parse "18.06.2026" as "2006"

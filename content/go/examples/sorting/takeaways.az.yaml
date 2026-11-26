@@ -1,0 +1,11 @@
+rules:
+  - "`slices.Sort` slice-ı yerində sıralayır və heç nə qaytarmır: `s = slices.Sort(s)` kompilyasiya olunmur."
+  - "`slices.Sort` `cmp.Ordered` tiplərlə işləyir: ədədlər kiçikdən böyüyə, sətirlər bayt kodlarına görə düzülür."
+  - "Sətir sırasında böyük hərflər kiçiklərdən əvvəl gəlir: `\"Zoe\"` `\"eva\"`-dan öndədir; `\"10\"` də `\"9\"`-dan öndədir."
+  - "`b := a` elementləri kopyalamır; ayrıca kopya üçün `slices.Clone(a)` lazımdır."
+  - "`slices.BinarySearch` indeks və `bool` qaytarır; tapılmayanda indeks elementin yerləşəcəyi yerdir."
+  - "`BinarySearch` sırasız slice-da etibarsızdır: mövcud elementi də tapmaya bilər."
+practices:
+  - "Orijinal sıra lazımdırsa, sıralamadan əvvəl `slices.Clone` ilə kopya götürün."
+  - "Yeni kodda `sort.Ints` və `sort.Strings` əvəzinə `slices.Sort` yazın."
+  - "Sıralanmış slice-da elementi dövrlə yox, `slices.BinarySearch` ilə axtarın."

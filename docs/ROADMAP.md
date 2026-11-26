@@ -127,6 +127,7 @@ functions/api/run.ts   # go.dev/_/compile proxy (rate limit + size limit)
 - [~] **"Tiplər və strukturlar" section complete**: all 8 lessons are original and `ready` (pointers, structs, methods, interfaces, enums, struct-embedding, generics, range-over-iterators), awaiting the user's review
 - [~] **"Xətalar" section complete**: all 5 lessons are original and `ready` (errors, custom-errors, panic, defer, recover), awaiting the user's review
 - [~] **"Konkurentlik" section complete**: all 18 lessons are original and `ready` (goroutines, channels, channel-buffering, channel-synchronization, channel-directions, select, timeouts, non-blocking-channel-operations, closing-channels, range-over-channels, timers, tickers, worker-pools, waitgroups, rate-limiting, atomic-counters, mutexes, stateful-goroutines), awaiting the user's review
+- [~] **"Mətn və verilənlər" section complete**: all 16 lessons are original and `ready` (sorting, sorting-by-functions, string-functions, string-formatting, text-templates, regular-expressions, json, xml, time, epoch, time-formatting-parsing, random-numbers, number-parsing, url-parsing, sha256-hashes, base64-encoding), awaiting the user's review
 - [x] Project skill `.claude/skills/write-lesson/` for writing original lessons (rules, originality guard, verification checklist)
 - [x] Content license CC BY 4.0; no Go by Example credit on the site once no adapted lesson is left; money in examples in USD; intro length rule in the skill
 - [ ] Terminology glossary (`docs/GLOSSARY.md`): English term + short Azerbaijani explanation

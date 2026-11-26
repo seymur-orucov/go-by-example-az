@@ -2,5 +2,7 @@ title: "String Formatting"
 subtitle: "Formatlama"
 section: text
 order: 4
-status: planned
+status: ready
 level: intermediate
+duration: 9
+source: original

@@ -1,0 +1,100 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    type Room struct {
+        XMLName xml.Name `xml:"room"`
+        Floor   int      `xml:"floor,attr"`
+        Name    string   `xml:"name"`
+    }
+
+    b, _ := xml.Marshal(Room{Floor: 3, Name: "Lotus"})
+    fmt.Println(string(b))
+  options:
+    - "`<room><floor>3</floor><name>Lotus</name></room>`"
+    - "`<room floor=\"3\"><name>Lotus</name></room>`"
+    - "`<Room floor=\"3\"><name>Lotus</name></Room>`"
+  answer: 1
+  explain: "`,attr` sahəni atribut edir, kök elementin adını isə `XMLName` tag-ı verir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    type Seat struct {
+        Row int `xml:"row"`
+    }
+
+    b, _ := xml.Marshal(Seat{4})
+    fmt.Println(string(b))
+  options: ["`<row>4</row>`", "`<seat><row>4</row></seat>`", "`<Seat><row>4</row></Seat>`"]
+  answer: 2
+  explain: "`XMLName` olmayanda kök elementin adı struct-ın adından olduğu kimi götürülür."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    type Guest struct {
+        XMLName xml.Name `xml:"guest"`
+        City    string   `xml:"address>city"`
+    }
+
+    b, _ := xml.Marshal(Guest{City: "Oslo"})
+    fmt.Println(string(b))
+  options:
+    - "`<guest><address><city>Oslo</city></address></guest>`"
+    - "`<guest><address>Oslo</address></guest>`"
+    - "`<guest><city>Oslo</city></guest>`"
+  answer: 0
+  explain: "`address>city` `<address>` elementinin içində `<city>` yaradır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    type Room struct {
+        XMLName xml.Name `xml:"room"`
+        Tags    []string `xml:"tag"`
+    }
+
+    b, _ := xml.Marshal(Room{Tags: []string{"quiet", "sea view"}})
+    fmt.Println(string(b))
+  options:
+    - "`<room><tag>quiet sea view</tag></room>`"
+    - "`<room><tags><tag>quiet</tag><tag>sea view</tag></tags></room>`"
+    - "`<room tag=\"quiet,sea view\"></room>`"
+    - "`<room><tag>quiet</tag><tag>sea view</tag></room>`"
+  answer: 3
+  explain: "Slice-ın hər elementi ayrıca `<tag>` elementi olur, onları əhatə edən element əlavə olunmur."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    var r Room // XMLName "room", Floor int `xml:"floor,attr"`
+    err := xml.Unmarshal([]byte(`<suite floor="9"></suite>`), &r)
+    fmt.Println(r.Floor, err != nil)
+  options: ["0 true", "9 false", "9 true"]
+  answer: 0
+  explain: "Kök element `<room>` deyil, ona görə `Unmarshal` heç nə doldurmadan xəta qaytarır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    var r Room // XMLName "room", Floor attr, Name `xml:"name"`
+    err := xml.Unmarshal([]byte(`<room floor="5"><name>Iris</name><view>sea</view></room>`), &r)
+    fmt.Println(r.Floor, r.Name, err)
+  options: ["`0 Iris <nil>`", "`5 Iris unknown element view`", "`5 Iris <nil>`"]
+  answer: 2
+  explain: "Atribut da, element də tag-lara görə oxunur, struct-da olmayan `<view>` isə səssizcə atılır."
+
+- question: "`xml.MarshalIndent` nəticəsi `<?xml version=\"1.0\" ...?>` başlığı ilə başlayırmı?"
+  options:
+    - "Bəli, həmişə"
+    - "Xeyr, lazımdırsa, `xml.Header`-i özümüz əlavə edirik"
+    - "Yalnız `XMLName` sahəsi olanda"
+  answer: 1
+  explain: "`Marshal` və `MarshalIndent` yalnız elementləri yazır, başlıq `xml.Header` sabitindədir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    type Room struct {
+        XMLName xml.Name `xml:"room"`
+        Note    string   `xml:"note,omitempty"`
+    }
+
+    b, _ := xml.Marshal(Room{})
+    fmt.Println(string(b))
+  options: ["`<room><note></note></room>`", "`<room/>`", "`<room></room>`"]
+  answer: 2
+  explain: "`omitempty` XML-də də JSON-dakı kimi işləyir: boş `Note` yazılmır, boş element isə `<room></room>` kimi çıxır."

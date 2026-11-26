@@ -1,0 +1,74 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    d := 90 * time.Minute
+    fmt.Println(d)
+  options: ["90m", "1h30m0s", "1.5h"]
+  answer: 1
+  explain: "Duration çap olunanda saat, dəqiqə və saniyəyə bölünür."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    t := time.Date(2026, time.January, 31, 9, 0, 0, 0, time.UTC)
+    next := t.AddDate(0, 1, 0)
+    fmt.Println(next.Month(), next.Day())
+  options: ["February 28", "February 31", "March 3"]
+  answer: 2
+  explain: "2026-da fevralda 31 gün yoxdur, artıq 3 gün marta keçir."
+
+- question: Bu kod niyə kompilyasiya olunmur?
+  code: |
+    n := 15
+    wait := n * time.Minute
+    fmt.Println(wait)
+  options:
+    - "`n` `int`-dir, `time.Minute` isə `time.Duration`; `time.Duration(n) * time.Minute` yazmaq lazımdır"
+    - "`time.Minute` sabit deyil, funksiyadır"
+    - "Duration-u ümumiyyətlə vurmaq olmaz"
+  answer: 0
+  explain: "Go fərqli tipləri özü çevirmir; tipsiz sabit `15` olsaydı, kod işləyərdi."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    open := time.Date(2026, time.May, 1, 10, 0, 0, 0, time.UTC)
+    early := open.Add(-30 * time.Minute)
+    fmt.Println(early.Before(open), open.Sub(early))
+  options: ["false 30m0s", "true -30m0s", "false -30m0s", "true 30m0s"]
+  answer: 3
+  explain: "Mənfi müddət anı geri çəkir; sonrakı andan əvvəlkini çıxanda fərq müsbətdir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    shift := 7*time.Hour + 30*time.Minute
+    fmt.Println(shift.Hours())
+  options: ["7", "7.5", "7h30m0s"]
+  answer: 1
+  explain: "`Hours()` müddəti saatla `float64` kimi qaytarır, yarım saat da daxil olmaqla."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    t := time.Date(2026, time.February, 30, 12, 0, 0, 0, time.UTC)
+    fmt.Println(t.Month(), t.Day())
+  options: ["February 30", "February 28", "March 2"]
+  answer: 2
+  explain: "`time.Date` xəta vermir, artıq günləri növbəti aya keçirir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    a := time.Date(2026, time.March, 14, 8, 45, 0, 0, time.UTC)
+    b := a.In(time.FixedZone("UTC+4", 4*60*60)) // eyni an, başqa zonada
+    fmt.Println(a == b, a.Equal(b))
+  options: ["true true", "false true", "false false"]
+  answer: 1
+  explain: "`==` zonanı da müqayisə edir, `Equal` isə yalnız anı."
+
+- question: Bu kod niyə kompilyasiya olunmur?
+  code: |
+    t := time.Date(2026, time.March, 14, 8, 45, 0, 0, time.UTC)
+    later := t + time.Hour
+    fmt.Println(later)
+  options:
+    - "`time.Time`-a `+` ilə müddət əlavə etmək olmaz, `t.Add(time.Hour)` lazımdır"
+    - "`time.Hour` ilə `time.Minute` qarışdırılıb"
+    - "`later` dəyişəni istifadə olunmayıb"
+  answer: 0
+  explain: "`time.Time` struct-dır, onun üçün `+` operatoru yoxdur; vaxt metodlarla dəyişir."

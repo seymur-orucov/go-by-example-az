@@ -2,5 +2,7 @@ title: "Time"
 subtitle: "Vaxt"
 section: text
 order: 9
-status: planned
+status: ready
 level: intermediate
+duration: 8
+source: original

@@ -1,22 +1,14 @@
 // The technologies the platform knows, with a status computed from the content — never set by
 // hand: "ready" when every lesson is ready, "started" when at least one is, "soon" otherwise.
 // Started and ready technologies are active (linked) everywhere they are listed.
+import type { TechState } from "@platform/theme/data/platform";
 import { getGoCatalog } from "./go";
 import { getSyllabusCatalog, hasSyllabus } from "./syllabus";
 
-export type TechStatus = "ready" | "started" | "soon";
+export type TechStatus = TechState["status"];
 
-export interface Technology {
-  id: string;
-  name: string;
-  color: string;
-  status: TechStatus;
-  /** Ready lessons and all lessons (0 / 0 before a course exists). */
-  ready: number;
-  total: number;
-  /** Only for active technologies. */
-  href?: string;
-}
+/** The state the theme embeds in every page (ready / total are 0 before a course exists). */
+export type Technology = TechState & { color: string };
 
 /** Known technologies in display order; a course appears by adding content, not by editing this. */
 const REGISTRY: { id: string; name: string; color: string }[] = [

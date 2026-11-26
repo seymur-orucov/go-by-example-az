@@ -1,0 +1,14 @@
+intn:
+  out: "operator is valid: true"
+range:
+  out: "1000 operands, all two-digit: true"
+shuffle:
+  out: |
+    4 options, correct one kept: true
+    question order, sorted: [0 1 2 3 4]
+seeded:
+  out: |
+    36 + 77 = ?
+    33 + 18 = ?
+    24 + 95 = ?
+    reprint starts with 36

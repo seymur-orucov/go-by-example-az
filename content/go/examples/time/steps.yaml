@@ -1,0 +1,17 @@
+date:
+  out: |
+    departs: 2026-03-14 08:45:00 +0000 UTC
+    2026 March 14 Saturday
+duration:
+  out: "journey: 2h35m0s = 155 minutes"
+add-sub:
+  out: |
+    arrives: 2026-03-14 11:20:00 +0000 UTC
+    delay: 12m0s
+add-date:
+  out: "next train: 2026-03-21 08:45:00 +0000 UTC Saturday"
+compare:
+  out: |
+    caught the train: false
+    late by: 2m0s
+    arrived on time: false

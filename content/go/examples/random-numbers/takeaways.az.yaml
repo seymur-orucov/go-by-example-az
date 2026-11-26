@@ -1,0 +1,9 @@
+rules:
+  - "`rand.IntN(n)` `[0, n)` aralığından seçir: `n` özü heç vaxt çıxmır."
+  - "`[min, max)` aralığı üçün `min + rand.IntN(max-min)` yazılır."
+  - "`rand.IntN(0)` panic edir, ona görə boş slice-dan təsadüfi element seçmək olmaz."
+  - "`rand.Shuffle` slice-ı yerində qarışdırır, `rand.Perm(n)` isə 0..n-1 ədədlərinin qarışıq sırasını qaytarır."
+  - "Eyni seed ilə `rand.New(rand.NewPCG(s1, s2))` hər dəfə eyni ardıcıllığı verir; v2-də `rand.Seed` yoxdur."
+practices:
+  - "Təkrarlanmalı nəticə (vərəq, test) lazımdırsa, seed ilə ayrıca generator yaradın."
+  - "Parol, token və açarlar üçün `math/rand/v2` yox, `crypto/rand` istifadə edin."

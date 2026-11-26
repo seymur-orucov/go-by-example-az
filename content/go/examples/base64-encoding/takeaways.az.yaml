@@ -1,0 +1,11 @@
+rules:
+  - "Base64 hər 3 baytı 4 simvola çevirir, ona görə nəticə təxminən üçdə bir uzun olur."
+  - "Bayt sayı 3-ə bölünmürsə, standart və URL encoding-lər sona bir və ya iki `=` (padding) əlavə edir."
+  - "`DecodeString` `([]byte, error)` qaytarır: əlifbada olmayan simvolda xəta verir."
+  - "`URLEncoding` `+` və `/` əvəzinə `-` və `_` yazır; `RawURLEncoding` bundan əlavə `=` yazmır."
+  - "Decode edəndə kodlaşdırmadakı eyni encoding seçilməlidir, əks halda xəta alınır."
+  - "Base64 şifrələmə deyil: açarı yoxdur, hər kəs mətni geri çevirə bilər."
+practices:
+  - "Linkə və ya query-yə qoyulan base64 üçün `RawURLEncoding` seçin."
+  - "`DecodeString`-in xətasını həmişə yoxlayın: gələn mətn düzgün base64 olmaya bilər."
+  - "Gizli məlumatı base64 ilə gizlətməyə çalışmayın."

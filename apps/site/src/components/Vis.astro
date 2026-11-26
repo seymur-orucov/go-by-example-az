@@ -1,6 +1,7 @@
 ---
-// Step visual. One branch per `vis.kind` (see Vis in lib/lesson.ts):
-// - slice: memory cells (markup and classes follow design/shared/b.js renderVis);
+// Visual of a lesson step (design v2). One branch per `vis.kind` (see Vis in lib/lesson.ts):
+// - slice: memory cells; the script adds the `pop` animation to the cells marked `new` when the
+//   step becomes active;
 // - areas: the three areas of a Git repository, recorded by `pnpm content:run`.
 import type { Vis, VisAreas } from "../lib/lesson";
 
@@ -11,16 +12,19 @@ interface Props {
 const { vis } = Astro.props;
 
 // ---- slice
-const shown = (v: string) => (v === "" ? "·" : /^\d+$/.test(v) ? v : `"${v}"`);
-const cellClass = (v: Extract<Vis, { kind: "slice" }>, i: number) => {
-  let cls = "cell";
-  if (v.window) cls += i >= v.window[0] && i < v.window[1] ? " in" : " out";
-  else if (i >= v.len) cls += " cap";
-  if (v.fresh?.includes(i)) cls += " fresh";
-  return cls;
-};
+const slice = vis.kind === "slice" ? vis : null;
+const shown = (v: string | undefined) =>
+  v === undefined || v === "" ? "·" : /^\d+$/.test(v) ? v : `"${v}"`;
+const cells = slice
+  ? Array.from({ length: Math.max(slice.cap, slice.cells.length) }, (_, k) => {
+      const inLen = slice.window ? k >= slice.window[0] && k < slice.window[1] : k < slice.len;
+      const isNew = !!slice.fresh?.includes(k) && inLen;
+      return { k, inLen, isNew, text: shown(slice.cells[k]) };
+    })
+  : [];
 
 // ---- areas
+const areas = vis.kind === "areas" ? vis : null;
 const WORK_STATE: Record<VisAreas["work"][number]["state"], string> = {
   clean: "",
   untracked: "izlənmir",
@@ -38,99 +42,117 @@ const fileClass = (state: string, fresh?: boolean) =>
   `file s-${state}${fresh && state !== "clean" ? " fresh" : ""}`;
 ---
 
-{vis.kind === "slice" && (
-  <div class="vis">
-    <div class="vis-head">
-      <span class="var">{vis.name}</span>
-      {vis.nil && <span class="field nil">nil</span>}
-      <span class="field">
-        len <b>{vis.len}</b>
-      </span>
-      <span class="field">
-        cap <b>{vis.cap}</b>
-      </span>
+{slice && (
+  <div class="st-vis">
+    <div class="st-vis-cap">
+      <span>Yaddaş</span>
+      <small class="mono">
+        len {slice.len} · cap {slice.cap}
+      </small>
     </div>
-    <div class="cells">
-      {vis.cells.length === 0 ? (
-        <div class="cells-empty">hələ yer ayrılmayıb — ilk append zamanı ayrılacaq</div>
-      ) : (
-        vis.cells.map((val, i) => (
-          <div class={cellClass(vis, i)} style={`animation-delay:${i * 40}ms`}>
-            <span class="idx">{i}</span>
-            <span class="box">{shown(val)}</span>
-          </div>
-        ))
+    <div class="vis">
+      <div class="vis-row">
+        <span class="vis-name">{slice.name}</span>
+        <div class="cells">
+          {slice.nil ? (
+            <span class="cell cap">nil</span>
+          ) : (
+            cells.map((c) => (
+              <span class="vcell">
+                <span
+                  class:list={["cell", c.inLen ? "on" : "cap", { new: c.isNew }]}
+                  style={`--d:${c.k * 70}ms`}
+                >
+                  {c.text}
+                </span>
+                <small>{c.k}</small>
+              </span>
+            ))
+          )}
+        </div>
+      </div>
+      {slice.window && (
+        <p class="vis-note">
+          eyni array, fərqli pəncərə: <code>{slice.name}</code> {slice.window[0]}–
+          {slice.window[1] - 1} indekslərini görür
+        </p>
       )}
     </div>
   </div>
 )}
 
-{vis.kind === "areas" && (
-  <div class="vis vis-areas">
-    <div class="areas">
-      <section class="area" aria-label="Working directory">
-        <header class="area-head">
-          <b>Working directory</b>
-          <small>iş qovluğu</small>
-        </header>
-        <ul class="files">
-          {vis.work.map((f, i) => (
-            <li class={fileClass(f.state, f.fresh)} style={`animation-delay:${i * 50}ms`}>
-              <span class="fname">{f.name}</span>
-              {WORK_STATE[f.state] && <span class="fstate">{WORK_STATE[f.state]}</span>}
-            </li>
-          ))}
-        </ul>
-        {vis.work.length === 0 && <p class="area-empty">boş</p>}
-      </section>
+{areas && (
+  <div class="st-vis">
+    <div class="st-vis-cap">
+      <span>Üç sahə</span>
+      <small class="mono">{areas.repo.count} commit</small>
+    </div>
+    <div class="vis vis-areas">
+      <div class="areas">
+        <section class="area" aria-label="Working directory">
+          <header class="area-head">
+            <b>Working directory</b>
+            <small>iş qovluğu</small>
+          </header>
+          <ul class="files">
+            {areas.work.map((f, i) => (
+              <li class={fileClass(f.state, f.fresh)} style={`animation-delay:${i * 50}ms`}>
+                <span class="fname">{f.name}</span>
+                {WORK_STATE[f.state] && <span class="fstate">{WORK_STATE[f.state]}</span>}
+              </li>
+            ))}
+          </ul>
+          {areas.work.length === 0 && <p class="area-empty">boş</p>}
+        </section>
 
-      <span class="area-arrow" aria-hidden="true">
-        ›
-      </span>
+        <span class="area-arrow" aria-hidden="true">
+          ›
+        </span>
 
-      <section class="area" aria-label="Staging area">
-        <header class="area-head">
-          <b>Staging area</b>
-          <small>növbəti snapshot</small>
-        </header>
-        <ul class="files">
-          {vis.index.map((f, i) => (
-            <li class={fileClass(f.state, f.fresh)} style={`animation-delay:${i * 50}ms`}>
-              <span class="fname">{f.name}</span>
-              {INDEX_STATE[f.state] && <span class="fstate">{INDEX_STATE[f.state]}</span>}
-            </li>
-          ))}
-        </ul>
-        {vis.index.length === 0 && <p class="area-empty">boş</p>}
-      </section>
+        <section class="area" aria-label="Staging area">
+          <header class="area-head">
+            <b>Staging area</b>
+            <small>növbəti snapshot</small>
+          </header>
+          <ul class="files">
+            {areas.index.map((f, i) => (
+              <li class={fileClass(f.state, f.fresh)} style={`animation-delay:${i * 50}ms`}>
+                <span class="fname">{f.name}</span>
+                {INDEX_STATE[f.state] && <span class="fstate">{INDEX_STATE[f.state]}</span>}
+              </li>
+            ))}
+          </ul>
+          {areas.index.length === 0 && <p class="area-empty">boş</p>}
+        </section>
 
-      <span class="area-arrow" aria-hidden="true">
-        ›
-      </span>
+        <span class="area-arrow" aria-hidden="true">
+          ›
+        </span>
 
-      <section class="area" aria-label="Repository">
-        <header class="area-head">
-          <b>Repository</b>
-          <small>{vis.repo.count} commit</small>
-        </header>
-        {vis.repo.commit ? (
-          <>
-            <p class={`commit${vis.repo.fresh ? " fresh" : ""}`}>
-              <span class="hash">{vis.repo.commit.hash}</span>
-              <span class="msg">{vis.repo.commit.message}</span>
-            </p>
-            <ul class="files">
-              {vis.repo.files.map((name) => (
-                <li class="file s-clean">
-                  <span class="fname">{name}</span>
-                </li>
-              ))}
-            </ul>
-          </>
-        ) : (
-          <p class="area-empty">hələ commit yoxdur</p>
-        )}
-      </section>
+        <section class="area" aria-label="Repository">
+          <header class="area-head">
+            <b>Repository</b>
+            <small>{areas.repo.count} commit</small>
+          </header>
+          {areas.repo.commit ? (
+            <>
+              <p class={`commit${areas.repo.fresh ? " fresh" : ""}`}>
+                <span class="hash">{areas.repo.commit.hash}</span>
+                <span class="msg">{areas.repo.commit.message}</span>
+              </p>
+              <ul class="files">
+                {areas.repo.files.map((name) => (
+                  <li class="file s-clean">
+                    <span class="fname">{name}</span>
+                  </li>
+                ))}
+              </ul>
+            </>
+          ) : (
+            <p class="area-empty">hələ commit yoxdur</p>
+          )}
+        </section>
+      </div>
     </div>
   </div>
 )}

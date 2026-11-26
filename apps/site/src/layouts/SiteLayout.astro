@@ -7,16 +7,18 @@ import { getTechnologies } from "../lib/technologies";
 interface Props {
   title: string;
   description?: string;
-  /** Technology section the page belongs to ("go", "git"). */
-  tech?: string;
+  /** Nav item shown as the current page: "roadmaps" or a technology id ("go", "git"). */
+  current?: string;
   lesson?: boolean;
+  bodyClass?: string;
 }
 
 const { sections } = await getGoCatalog();
 const attribution = await hasAdaptedLessons();
 const technologies = await getTechnologies();
 
-// Ctrl+K: every Go topic, plus the topics of other active technologies (section shows "Git · …").
+// Ctrl+K: every Go topic, plus the topics of the other active technologies (section "Git · …");
+// page scripts read the same JSON (progress, ready flags).
 const searchIndex = [
   ...sections.flatMap((s) =>
     s.items.map((e) => ({
@@ -26,6 +28,7 @@ const searchIndex = [
       section: s.title,
       n: e.n,
       href: e.href,
+      ready: e.status === "ready",
     })),
   ),
   ...technologies
@@ -39,6 +42,7 @@ const searchIndex = [
           section: `${t.name} · ${s.title}`,
           n: e.n,
           href: e.href,
+          ready: e.status === "ready",
         })),
       ),
     ),
@@ -51,5 +55,6 @@ const searchIndex = [
   technologies={technologies}
   attribution={attribution}
 >
+  <slot name="before-header" slot="before-header" />
   <slot />
 </Layout>

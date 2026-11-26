@@ -1,0 +1,184 @@
+---
+// Roadmap page (design v2): technology roadmap (/go/roadmap/) and direction preview
+// (/roadmaps/backend/). The script draws the map from the embedded Go catalog.
+import "../styles/roadmap.css";
+import SiteLayout from "../layouts/SiteLayout.astro";
+import { getGoCatalog, LEVEL_LABEL } from "../lib/go";
+
+interface Props {
+  kind: "tech" | "dir";
+}
+const { kind } = Astro.props;
+
+const { sections } = await getGoCatalog();
+const data = {
+  kind,
+  sections: sections.map((s) => ({
+    id: s.id,
+    title: s.title,
+    level: LEVEL_LABEL[s.level],
+    items: s.items.map((e) => ({
+      slug: e.slug,
+      title: e.title,
+      sub: e.sub,
+      ready: e.status === "ready",
+    })),
+  })),
+};
+const tech = kind === "tech";
+---
+
+<SiteLayout
+  title="w3hub.dev — yol xəritəsi"
+  description="Go texnologiya yol xəritəsi və Backend istiqaməti: hər mövzuda nəzəriyyə, praktika, vizual izah, test və müsahibə sualı."
+  current="roadmaps"
+>
+  <main>
+    <section class="rm-hero">
+      <div class="rm-sky" aria-hidden="true">
+        <div class="grid-bg"></div>
+      </div>
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Yol">
+          <a href="/">Ana səhifə</a>
+          <span>/</span>
+          <span id="rm-crumb">{tech ? "Go · yol xəritəsi" : "Backend · istiqamət"}</span>
+        </nav>
+        <div class="rm-top">
+          <div class="rm-copy">
+            <div class="kicker" data-reveal>
+              roadmap.Open()<span class="caret"></span>
+            </div>
+            <h1 data-reveal style="--i:1">
+              <span class="title-grad" id="rm-title">
+                {tech ? "Go" : "Backend"}
+              </span>{" "}
+              <span class="accent-grad" id="rm-title2">
+                {tech ? "yol xəritəsi" : "istiqaməti"}
+              </span>
+            </h1>
+            <p class="rm-sub" id="rm-sub" data-reveal style="--i:2"></p>
+            <div
+              class="rm-kind"
+              role="tablist"
+              aria-label="Xəritənin növü"
+              data-reveal
+              style="--i:3"
+            >
+              <a href="/go/roadmap/" role="tab" aria-selected={tech ? "true" : "false"}>
+                <span class="mono-ic" style="--c:#00add8">
+                  Go
+                </span>
+                <span>
+                  <b>Go</b>
+                  <small>texnologiya</small>
+                </span>
+              </a>
+              <a href="/roadmaps/backend/" role="tab" aria-selected={tech ? "false" : "true"}>
+                <span class="mono-ic" style="--c:#9b7bff">
+                  BE
+                </span>
+                <span>
+                  <b>Backend</b>
+                  <small>istiqamət · önizləmə</small>
+                </span>
+              </a>
+            </div>
+          </div>
+          <div class="rm-progress glass dots" data-reveal="scale" style="--i:2">
+            <div class="rm-ring">
+              <svg viewBox="0 0 100 100">
+                <defs>
+                  <linearGradient id="gRm" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stop-color="var(--cyan)"></stop>
+                    <stop offset=".5" stop-color="var(--accent)"></stop>
+                    <stop offset="1" stop-color="var(--accent-2)"></stop>
+                  </linearGradient>
+                </defs>
+                <circle cx="50" cy="50" r="42" class="tr"></circle>
+                <circle cx="50" cy="50" r="42" class="br" id="rm-ring"></circle>
+              </svg>
+              <b id="rm-pct">0%</b>
+            </div>
+            <div class="rm-pinfo">
+              <b id="rm-done">0 / 0</b>
+              <small id="rm-done-label">mövzu öyrənilib</small>
+              <a class="rm-next" id="rm-next" href="#">
+                <small>NÖVBƏTİ</small>
+                <span id="rm-next-t">—</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="rm-bar glass">
+          <div class="seg rm-filter" role="group" aria-label="Filtr">
+            <button data-filter="all" aria-pressed="true">
+              Hamısı
+            </button>
+            <button data-filter="todo" aria-pressed="false">
+              Öyrənilməyən
+            </button>
+            <button data-filter="done" aria-pressed="false">
+              Öyrənilən
+            </button>
+          </div>
+          <ul class="rm-legend" aria-label="İşarələr">
+            <li>
+              <i class="lg done"></i>öyrənilib
+            </li>
+            <li>
+              <i class="lg next"></i>növbəti
+            </li>
+            <li>
+              <i class="lg ready"></i>dərs hazırdır
+            </li>
+            <li>
+              <i class="lg soon"></i>tezliklə
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="rm-main">
+      <div class="wrap rm-layout">
+        <div class="rm-map" id="rm-map" aria-live="polite"></div>
+        <aside class="rm-panel glass dots" id="rm-panel" aria-label="Mövzu paneli">
+          <button class="btn btn-ghost btn-icon rm-close" id="rm-close" aria-label="Paneli bağla">
+            ✕
+          </button>
+          <div class="rp-head">
+            <span class="mono-ic" id="rp-ic" style="--c:#00add8">
+              Go
+            </span>
+            <div>
+              <small class="rp-crumb" id="rp-crumb"></small>
+              <h2 id="rp-title">—</h2>
+            </div>
+            <span id="rp-status"></span>
+          </div>
+          <div class="rp-tabs" role="tablist" aria-label="Mövzunun tərəfləri" id="rp-tabs"></div>
+          <div class="rp-body" id="rp-body" role="tabpanel" aria-live="polite"></div>
+          <div class="rp-actions">
+            <a class="btn btn-primary" id="rp-go" href="#">
+              Dərsə keç <i class="arrow" data-icon="arrow"></i>
+            </a>
+            <button class="btn" id="rp-learn" aria-pressed="false">
+              Öyrəndim
+            </button>
+          </div>
+        </aside>
+      </div>
+      <div class="rm-scrim" id="rm-scrim" hidden></div>
+    </section>
+  </main>
+
+  <script
+    type="application/json"
+    id="roadmap-data"
+    set:html={JSON.stringify(data).replace(/</g, "\u003c")}
+  />
+  <script>
+    import "../scripts/roadmap";
+  </script>
+</SiteLayout>

@@ -1,0 +1,10 @@
+rules:
+  - "`url.Parse` `*url.URL` və `error` qaytarır; protokolsuz sətir xətasız oxunur, amma hamısı `Path`-a düşür."
+  - "`Host` adı portla birlikdə saxlayır; ayrıca `Hostname()` və `Port()` lazımdır, port yazılmayıbsa `Port()` boş sətirdir."
+  - "`RawQuery` xam mətndir, `Query()` isə onu açılmış dəyərlərlə `url.Values`-a çevirir."
+  - "`url.Values` `map[string][]string`-dir: `Get` ilk dəyəri verir, olmayan açar üçün boş sətir qaytarır."
+  - "`Set` dəyəri əvəz edir, `Add` əlavə edir; `Encode` açarları əlifba sırası ilə düzür."
+practices:
+  - "Sorğu parametrlərini string yapışdırmaqla yox, `url.Values` və `Encode` ilə qurun."
+  - "Tək dəyəri linkə qoymazdan əvvəl `url.QueryEscape` ilə kodlaşdırın."
+  - "Parolu olan linki loga yazmaq lazımdırsa, `u.Redacted()` istifadə edin."

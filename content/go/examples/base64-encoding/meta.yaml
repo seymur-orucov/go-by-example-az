@@ -2,5 +2,7 @@ title: "Base64"
 subtitle: "Base64 kodlaşdırma"
 section: text
 order: 16
-status: planned
+status: ready
 level: intermediate
+duration: 7
+source: original

@@ -1,38 +1,21 @@
 ---
-import ViewMenu from "./ViewMenu.astro";
-// Site header: logo, technology switcher, main nav, search trigger, palette picker, theme toggle.
-// Routes follow /<technology>/...; directions live under /roadmaps/.
-/** A technology in the switcher; the site computes `status` from its content. */
-export interface TechMenuItem {
-  id: string;
-  name: string;
-  color: string;
-  status: "ready" | "started" | "soon";
-  ready: number;
-  total: number;
-  /** Set for active (ready or started) technologies. */
-  href?: string;
-}
+// v2 site header: logo, main nav with the technology mega menu, search trigger, look menu.
+// Lesson pages add the sidebar toggle and the view-mode menu (sidebar, width, Zen).
+import type { TechState } from "../data/platform";
 
 interface Props {
-  /** The switcher's list: active technologies are links, the rest show "tezliklə". */
-  technologies?: TechMenuItem[];
-  /** Technology section the page belongs to ("go", "git"); changes the switcher label and nav. */
-  tech?: string;
-  /** Lesson pages: sidebar toggle and the view-mode menu (sidebar, width, Zen). */
+  /** Nav item shown as the current page: "roadmaps" or a technology id ("go", "git"). */
+  current?: string;
+  /** Technologies that have started or finished; each gets a nav link. */
+  active?: TechState[];
+  /** Solid glass from the start (lesson pages). */
+  solid?: boolean;
   lesson?: boolean;
 }
-const { technologies = [], tech, lesson } = Astro.props;
-const current = technologies.find((t) => t.id === tech);
-const statusLabel = (t: TechMenuItem) =>
-  t.status === "ready"
-    ? "hazırdır"
-    : t.status === "started"
-      ? `başlanıb · ${t.ready}/${t.total}`
-      : "tezliklə";
+const { current, active = [], solid, lesson } = Astro.props;
 ---
 
-<header class="site-header">
+<header class:list={["site-header", { solid }]}>
   {lesson && (
     <button
       class="btn btn-ghost btn-icon sb-toggle"
@@ -44,9 +27,10 @@ const statusLabel = (t: TechMenuItem) =>
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        stroke-width="2"
+        stroke-width="1.8"
         stroke-linecap="round"
         stroke-linejoin="round"
+        aria-hidden="true"
       >
         <rect
           class="sb-fill"
@@ -58,140 +42,148 @@ const statusLabel = (t: TechMenuItem) =>
           fill="currentColor"
           stroke="none"
         />
-        <rect x="3" y="4" width="18" height="16" rx="2" />
+        <rect x="3" y="4" width="18" height="16" rx="3" />
         <path d="M9 4v16" />
       </svg>
     </button>
   )}
-  <a class="logo" href="/" aria-label="Nümunələrlə — ana səhifə">
-    <span class="logo-mark">nü</span>
-    <span class="logo-text">Nümunələrlə</span>
-  </a>
-  <div class="dd">
-    <button class="tech-switch" data-menu-btn aria-label="Texnologiya seç">
-      {current ? (
-        <span class="dot" style={`background:${current.color}`} />
-      ) : (
-        <span class="dot dot-all" />
-      )}
-      {current ? current.name : "Texnologiya"}
-      <svg
-        viewBox="0 0 24 24"
+  <a class="logo" href="/" aria-label="Ana səhifə">
+    <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true">
+      <defs>
+        <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="var(--cyan)"></stop>
+          <stop offset=".5" stop-color="var(--accent)"></stop>
+          <stop offset="1" stop-color="var(--accent-2)"></stop>
+        </linearGradient>
+      </defs>
+      <rect x="1" y="1" width="30" height="30" rx="9" fill="url(#lg)" opacity=".16"></rect>
+      <rect
+        x="1"
+        y="1"
+        width="30"
+        height="30"
+        rx="9"
         fill="none"
-        stroke="currentColor"
-        stroke-width="2.2"
+        stroke="url(#lg)"
+        stroke-opacity=".7"
+      ></rect>
+      <path
+        d="M8 21.5 12.5 11l3.5 7 3.5-7L24 21.5"
+        fill="none"
+        stroke="url(#lg)"
+        stroke-width="2.4"
         stroke-linecap="round"
         stroke-linejoin="round"
-      >
-        <path d="m6 9 6 6 6-6"></path>
-      </svg>
-    </button>
-    <div class="menu" hidden>
-      <div class="menu-title label">Texnologiyalar</div>
-      {technologies.map((t) =>
-        t.href ? (
-          <a
-            class="menu-item"
-            href={t.href}
-            aria-current={t.id === tech ? "page" : undefined}
-            title={`${t.ready} / ${t.total} dərs hazırdır`}
-          >
-            <span class="dot" style={`background:${t.color}`} />
-            {t.name}
-            <small>{statusLabel(t)}</small>
-          </a>
-        ) : (
-          <span class="menu-item soon">
-            <span class="dot" style={`background:${t.color}`} />
-            {t.name}
-            <small>{statusLabel(t)}</small>
-          </span>
-        ),
-      )}
-      <div class="menu-title label">İstiqamətlər</div>
-      <a class="menu-item" href="/roadmaps/backend/">
-        <span class="dot" style="background:#8b5cf6"></span>Backend<small>önizləmə</small>
-      </a>
-      <span class="menu-item soon">
-        <span class="dot" style="background:#f472b6"></span>Frontend<small>tezliklə</small>
-      </span>
-    </div>
-  </div>
+      ></path>
+      <circle cx="8" cy="21.5" r="1.8" fill="var(--cyan)"></circle>
+      <circle cx="24" cy="21.5" r="1.8" fill="var(--accent-2)"></circle>
+    </svg>
+    <span data-brand>
+      w3hub<span class="logo-tld">.dev</span>
+    </span>
+  </a>
   <nav class="nav" aria-label="Əsas menyu">
-    {tech === "go" ? (
-      <>
-        <a href="/go/#proqram" aria-current={Astro.url.pathname === "/go/" ? "page" : undefined}>
-          Nümunələr
-        </a>
-        <a href="/go/roadmap/">Yol xəritəsi</a>
-        <a href="https://go.dev/play/" target="_blank" rel="noopener">
-          Playground
-        </a>
-      </>
-    ) : current ? (
-      <>
-        <a
-          href={`/${current.id}/#proqram`}
-          aria-current={Astro.url.pathname === `/${current.id}/` ? "page" : undefined}
-        >
-          Mövzular
-        </a>
-        <a href="/#bolmeler">Bölmələr</a>
-      </>
-    ) : (
-      <>
-        <a href="/go/roadmap/">Yol xəritəsi</a>
-        <a href="/#bolmeler">Bölmələr</a>
-        {technologies
-          .filter((t) => t.href)
-          .map((t) => (
-            <a href={t.href}>{t.name}</a>
-          ))}
-      </>
-    )}
+    <a href="/go/roadmap/" aria-current={current === "roadmaps" ? "page" : undefined}>
+      Yol xəritələri
+    </a>
+    <div class="dd">
+      <button data-menu-btn aria-expanded="false">
+        Texnologiyalar <i data-icon="chev"></i>
+      </button>
+      <div class="menu mega" data-tech-menu hidden></div>
+    </div>
+    {!lesson && <a href="/#bolmeler">Bölmələr</a>}
+    {active.map((t) => (
+      <a href={t.href} aria-current={current === t.id ? "page" : undefined}>
+        {t.name}
+      </a>
+    ))}
   </nav>
   <div class="header-spacer"></div>
   <div class="header-right">
     <button class="search-trigger" data-open-search aria-label="Axtarış (Ctrl+K)">
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <circle cx="11" cy="11" r="7"></circle>
-        <path d="m20 20-3.5-3.5"></path>
-      </svg>
-      <span>{tech === "go" ? "Nümunə axtar…" : "Mövzu axtar…"}</span>
+      <i data-icon="search"></i>
+      <span>Axtar…</span>
       <kbd>Ctrl K</kbd>
     </button>
-    {lesson && <ViewMenu />}
-    <div class="dd palette-picker">
+    {lesson && (
+      <div class="dd">
+        <button
+          class="btn btn-ghost btn-icon"
+          data-menu-btn
+          aria-expanded="false"
+          aria-label="Görünüş rejimləri"
+          title="Görünüş rejimləri"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <rect x="3" y="4" width="18" height="16" rx="3" />
+            <path d="M3 9h18M9 9v11" />
+          </svg>
+        </button>
+        <div class="menu right view-menu" hidden>
+          <div class="menu-label">Görünüş</div>
+          <button class="vm-row" data-act="sidebar" role="menuitemcheckbox" aria-checked="true">
+            <span class="t">
+              Mövzular paneli<small>soldakı siyahı</small>
+            </span>
+            <kbd>[</kbd>
+            <span class="switch" aria-hidden="true" />
+          </button>
+          <div class="vm-row vm-static">
+            <span class="t">
+              Kontent eni<small>mərkəzdə oxumaq daha rahatdır</small>
+            </span>
+            <kbd>F</kbd>
+          </div>
+          <div class="seg seg-2" role="radiogroup" aria-label="Kontent eni">
+            <button role="radio" data-width-opt="center" aria-pressed="true">
+              Mərkəzdə
+            </button>
+            <button role="radio" data-width-opt="full" aria-pressed="false">
+              Tam en
+            </button>
+          </div>
+          <button class="vm-row" data-zen-toggle>
+            <span class="t">
+              Zen rejimi<small>yalnız dərs qalır</small>
+            </span>
+            <kbd>Z</kbd>
+          </button>
+        </div>
+      </div>
+    )}
+    <div class="dd">
       <button
         class="btn btn-ghost btn-icon"
         data-menu-btn
-        aria-label="Rəng palitrası"
-        title="Rəng palitrası"
+        aria-expanded="false"
+        aria-label="Görünüş: tema və palitra"
+        title="Tema və palitra"
       >
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <circle cx="13.5" cy="6.5" r="1.5"></circle>
-          <circle cx="17.5" cy="10.5" r="1.5"></circle>
-          <circle cx="8.5" cy="7.5" r="1.5"></circle>
-          <circle cx="6.5" cy="12.5" r="1.5"></circle>
-          <path d="M12 2a10 10 0 0 0 0 20c1 0 1.7-.8 1.7-1.7 0-.4-.2-.8-.4-1.1-.3-.3-.4-.7-.4-1.1 0-.9.8-1.7 1.7-1.7H17a5 5 0 0 0 5-5c0-4.9-4.5-8.4-10-8.4Z"></path>
-        </svg>
+        <span data-look-icon style="display:contents"></span>
       </button>
-      <div class="menu" data-palette-menu hidden></div>
+      <div class="menu right" data-look-menu hidden style="min-width:230px"></div>
     </div>
-    <button class="btn btn-ghost btn-icon" data-theme-toggle></button>
+    {!lesson && (
+      <a class="btn btn-sm btn-signin" href="/#basla">
+        Daxil ol
+      </a>
+    )}
+    <button
+      class="btn btn-ghost btn-icon menu-toggle"
+      data-nav-toggle
+      aria-label="Menyu"
+      aria-expanded="false"
+    >
+      <i data-icon="menu"></i>
+    </button>
   </div>
 </header>

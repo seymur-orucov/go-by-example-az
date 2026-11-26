@@ -1,0 +1,9 @@
+rules:
+  - "Unix vaxtı 1 yanvar 1970, 00:00:00 UTC-dən (epoch) keçən saniyələrin sayıdır və saat qurşağından asılı deyil."
+  - "`Unix()` saniyəni, `UnixMilli()` millisaniyəni `int64` kimi qaytarır; `time.Unix` də `int64` gözləyir."
+  - "`time.Unix(sec, 0)` anı kompüterin yerli zonasında qaytarır; hər yerdə eyni çıxış üçün `.UTC()` çağırın."
+  - "İki Unix vaxtının fərqi saniyədir: Duration üçün `time.Duration(s) * time.Second` yazın, yoxsa nanosaniyə alınır."
+  - "`time.Time`-ın zero value-su epoch deyil, 1-ci ildir: onun `Unix()` mənfi ədəddir, boşluğu `IsZero()` ilə yoxlayın."
+practices:
+  - "Vaxtı ədəd kimi saxlayanda vahidi bilin və adda göstərin (`paidAtMs`), saniyə ilə millisaniyəni qarışdırmayın."
+  - "Unix vaxtını insana göstərməzdən əvvəl `time.Time`-a çevirin və zonanı açıq seçin, məsələn `.UTC()`."

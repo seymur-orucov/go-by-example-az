@@ -13,23 +13,17 @@ const rules = takeaways.rules.map(renderInline);
 const practices = takeaways.practices.map(renderInline);
 ---
 
-<section class="card takeaways-card" aria-labelledby="takeaways-title">
-  <span class="label">Yadda saxla</span>
-  <h2 id="takeaways-title">{rules.length} əsas məqam</h2>
-  <ul class="takeaways">
+<section class="tk glass dots" data-reveal aria-labelledby="tk-h">
+  <h2 id="tk-h">Xülasə</h2>
+  <ul class="tk-rules">
     {rules.map((r) => (
-      <li>
-        <span set:html={r} />
-      </li>
+      <li set:html={r} />
     ))}
   </ul>
-
   <h3 class="tk-sub">Yaxşı təcrübə</h3>
-  <ul class="takeaways practices">
+  <ul class="tk-good">
     {practices.map((p) => (
-      <li>
-        <span set:html={p} />
-      </li>
+      <li set:html={p} />
     ))}
   </ul>
 </section>
