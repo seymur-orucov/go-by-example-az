@@ -158,9 +158,12 @@ Once the Go prototype is live, the site becomes a unified platform.
 - [~] **Content pipeline for new technologies** ([DECISIONS.md](DECISIONS.md#content-pipeline-syllabus--lessons-2026-11-26)):
   - [x] `plan-syllabus` skill (research → proposal → `content/<technology>/syllabus.yaml`)
   - [x] **Git syllabus** approved: 7 modules, 39 nodes, ~4.5 h (`content/git/syllabus.yaml`)
-  - [ ] Lesson kinds on the site: `terminal`, `state`, `compare`, `diagram`, `concept` (schema + components); `pnpm content:check` validates syllabi
-  - [ ] `write-content` skill (pilot lesson per kind → approval → module by module)
-  - [ ] Git pilot lessons, then the remaining Git modules
+  - [x] Lesson kinds `terminal` and `state` on the site: `session.sh` + `pnpm content:run` (recorded output), the `areas` visual, `/git/` and `/git/<id>/` pages, shared `LessonView`; `pnpm content:check` validates syllabi and session lessons
+  - [ ] Lesson kinds `diagram`, `compare`, `concept` and the commit-graph visual (`vis: graph`, needed from `commit-snapshot` on)
+  - [x] `write-content` skill (pilot lesson per kind → approval → module by module)
+  - [~] Git pilot lessons `three-areas` and `first-commit` — awaiting the user's review
+  - [ ] The remaining Git lessons, module by module
+  - [ ] CI: run `pnpm content:run` and fail on a diff (needs a pinned Git version: output differs slightly between versions)
 - [ ] Two kinds of roadmap:
   - **technology** roadmap — e.g. "Go": the language itself, from simple to complex;
   - **direction** roadmap — e.g. "Backend": combines nodes from several technologies (Go, SQL, HTTP, Docker…); nodes reference technology content, content is not duplicated
