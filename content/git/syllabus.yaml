@@ -110,7 +110,7 @@ modules:
         duration: 5
         topics: [git status, untracked, modified, staged, git status -s]
       - id: diff-unstaged
-        title: "Unstage dəyişikliklərə baxmaq"
+        title: "Stage edilməmiş dəyişikliklərə baxmaq"
         outcome: "Oxucu git diff ilə hələ stage edilməmiş dəyişiklikləri oxuya bilir."
         kind: terminal
         facets: [theory, practice, test]
