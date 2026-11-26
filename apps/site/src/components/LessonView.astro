@@ -1,0 +1,441 @@
+---
+// The lesson page of any technology (/go/<slug>/, /git/<id>/), design v2. Ready lessons get the
+// full walkthrough; planned topics get a short "in preparation" page so links never 404.
+import LessonSidebar from "./LessonSidebar.astro";
+import Quiz from "./Quiz.astro";
+import Takeaways from "./Takeaways.astro";
+import Vis from "./Vis.astro";
+import SiteLayout from "../layouts/SiteLayout.astro";
+import { LEVEL_LABEL, type CatalogItem, type CatalogSection } from "../lib/catalog";
+import { highlightLines, renderLines } from "../lib/highlight";
+import type { Lesson } from "../lib/lesson";
+import { renderInline, renderMarkdown } from "../lib/markdown";
+import "../styles/lesson.css";
+
+interface Props {
+  /** "go", "git": the nav item that is current and the zen bar mark. */
+  techId: string;
+  techTitle: string;
+  techHref: string;
+  techColor: string;
+  title: string;
+  description: string;
+  item: CatalogItem;
+  section: CatalogSection;
+  sections: CatalogSection[];
+  total: number;
+  prev?: CatalogItem;
+  next?: CatalogItem;
+  lesson?: Lesson;
+  /** Base of the technology's roadmap page; the chip and button are hidden when it has none. */
+  roadmapHref?: string;
+  /** Text of the "in preparation" page. */
+  soonText?: string;
+  kicker?: string;
+}
+
+const {
+  techId,
+  techTitle,
+  techHref,
+  techColor,
+  title,
+  description,
+  item,
+  section,
+  sections,
+  total,
+  prev,
+  next,
+  lesson,
+  roadmapHref,
+  soonText = "Bu dərs hələ yazılır. Hər dərs orijinal nümunə ilə hazırlanır, nümunələr işlədilib yoxlanılır — ona görə bir az vaxt aparır.",
+  kicker = "lesson.Write()",
+} = Astro.props;
+
+// Terminal sessions have no `run` command: their output already holds the `$ cmd` lines.
+const session = lesson ? lesson.run === null : false;
+const lines = lesson ? await highlightLines(lesson.code, lesson.lang) : [];
+const steps = (lesson?.steps ?? []).map((s) => ({
+  ...s,
+  title: renderInline(s.title),
+  html: renderMarkdown(s.body),
+  snippet: renderLines(lines, { from: s.from, to: s.to, hl: true }),
+  outLines: s.out ? s.out.replace(/\n$/, "").split("\n") : [],
+}));
+const hasVis = steps.some((s) => s.vis);
+const pad = (n: number) => String(n).padStart(2, "0");
+// Client data: line ranges and expected output per step.
+const clientData = {
+  slug: item.slug,
+  steps: steps.map(({ from, to, out }) => ({ from, to, out })),
+  code: lesson?.code ?? "",
+  output: lesson?.output ?? "",
+  run: lesson?.run ?? null,
+  copied: lesson?.lang === "bash" ? "Komandalar kopyalandı" : "Kod kopyalandı",
+  next: next ? { title: next.title, href: next.href } : null,
+  prev: prev ? { href: prev.href } : null,
+};
+// The nearest ready lesson after this one, for the "in preparation" page.
+const nextReady = sections
+  .flatMap((s) => s.items)
+  .find((it) => it.n > item.n && it.status === "ready");
+const readyInSection = section.items.filter((it) => it.status === "ready" && it.slug !== item.slug);
+---
+
+<SiteLayout title={title} description={description} current={techId} lesson bodyClass="lx">
+  <div class="read-progress" aria-hidden="true" slot="before-header">
+    <span id="read-bar"></span>
+  </div>
+
+  <div class="lx-layout">
+    <LessonSidebar
+      sections={sections}
+      total={total}
+      current={item.slug}
+      techName={techTitle}
+      techColor={techColor}
+      roadmapHref={roadmapHref}
+    />
+    <div class="lx-scrim" data-sb-close></div>
+
+    <main class="lx-main" id="lx-main" data-slug={item.slug}>
+      <nav class="lx-crumbs" aria-label="Yol">
+        <a href="/">Ana səhifə</a>
+        <span>/</span>
+        <a href={techHref}>{techTitle}</a>
+        <span>/</span>
+        <a href={`${techHref}#proqram`}>{section.title}</a>
+        <span>/</span>
+        <b>{item.title}</b>
+      </nav>
+
+      {lesson ? (
+        <>
+          <header class="lx-head">
+            <div class="lx-meta">
+              <span class="mono-ic" style={`--c:${techColor}`}>
+                {techTitle}
+              </span>
+              <span>
+                {section.title} · #{pad(item.n)} / {total}
+              </span>
+            </div>
+            <h1 class="lx-title">
+              <span class="title-grad">{item.title}</span>
+            </h1>
+            <p class="lx-sub">{item.sub}</p>
+            <div class="lx-chips">
+              <span class="chip c-green">{LEVEL_LABEL[item.level]}</span>
+              {item.duration && <span class="chip">{item.duration} dəq</span>}
+              <span class="chip">{steps.length} addım</span>
+              {hasVis && <span class="chip c-acc">vizual</span>}
+              <span class="chip">{lesson.quiz.length} sual</span>
+              {roadmapHref && (
+                <a class="chip c-link" href={`${roadmapHref}#${item.slug}`}>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2Z" />
+                    <path d="M9 4v14M15 6v14" />
+                  </svg>
+                  Bu mövzu yol xəritəsində
+                </a>
+              )}
+            </div>
+            <div class="lx-actions">
+              <button class="btn btn-sm" data-zen-toggle title="Zen rejimi (Z)">
+                <span data-zen-label>Zen</span>
+              </button>
+              <button class="btn btn-sm" data-learned>
+                <span data-learned-label>✓ Öyrəndim</span>
+              </button>
+            </div>
+          </header>
+
+          {lesson.intro && <div class="lx-lead" set:html={renderMarkdown(lesson.intro)} />}
+
+          <div class="lx-walk">
+            <div class="lx-steps" id="lx-steps">
+              {steps.map((s, i) => (
+                <section class="lx-step glass" data-i={i} id={`step-${s.id}`} tabindex="-1">
+                  <div class="st-head">
+                    <span class="st-num">{pad(i + 1)}</span>
+                    <h3 set:html={s.title} />
+                    <span class="st-lines">
+                      sətir {s.from}
+                      {s.to > s.from ? `–${s.to}` : ""}
+                    </span>
+                  </div>
+                  <div class="st-body" set:html={s.html} />
+                  <pre class="code st-snip" set:html={s.snippet} />
+                  {s.vis && <Vis vis={s.vis} />}
+                  {s.outLines.length > 0 && (
+                    <div class="st-out">
+                      {session ? (
+                        <div>
+                          {s.outLines.map((o) =>
+                            o.startsWith("$ ") ? (
+                              <span>
+                                <b class="p">$</b> {o.slice(2)}
+                              </span>
+                            ) : (
+                              <span>{o || " "}</span>
+                            ),
+                          )}
+                        </div>
+                      ) : (
+                        <>
+                          <span class="p">$</span>
+                          <div>
+                            {s.outLines.map((o) => (
+                              <span>{o}</span>
+                            ))}
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  )}
+                </section>
+              ))}
+            </div>
+
+            <div class="lx-pane" id="lx-pane">
+              <div class="cw glass dots">
+                <div class="win-head cw-head">
+                  <span class="win-dots">
+                    <i />
+                    <i />
+                    <i />
+                  </span>
+                  <span class="cw-file">{lesson.file}</span>
+                  <div class="cw-steps">
+                    <button
+                      class="btn btn-ghost btn-sm btn-icon"
+                      id="p-prev"
+                      aria-label="Əvvəlki addım"
+                      title="Əvvəlki addım (←)"
+                    >
+                      ‹
+                    </button>
+                    <span class="cw-count" id="p-count">
+                      01 / {pad(steps.length)}
+                    </span>
+                    <button
+                      class="btn btn-ghost btn-sm btn-icon"
+                      id="p-next"
+                      aria-label="Növbəti addım"
+                      title="Növbəti addım (→)"
+                    >
+                      ›
+                    </button>
+                    <button
+                      class="btn btn-ghost btn-sm btn-icon cw-play"
+                      id="p-play"
+                      aria-label="Addımları oynat"
+                      title="Addımları oynat"
+                    >
+                      ▶
+                    </button>
+                  </div>
+                  <button
+                    class="btn btn-ghost btn-sm btn-icon"
+                    id="btn-copy"
+                    aria-label="Kodu kopyala"
+                    title="Kopyala"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <rect x="9" y="9" width="12" height="12" rx="2" />
+                      <path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" />
+                    </svg>
+                  </button>
+                </div>
+                <div class="cw-progress">
+                  <span id="cw-progress" />
+                </div>
+                <pre
+                  class="code cw-code dim"
+                  id="cw-code"
+                  aria-label={lesson.file}
+                  set:html={renderLines(lines)}
+                />
+                <div class="cw-term" aria-live="polite">
+                  <div class="cw-term-head">
+                    <span>Çıxış</span>
+                    <span class="cw-status" id="cw-status">
+                      <i />
+                      addım rejimi
+                    </span>
+                    <button class="btn btn-ghost btn-sm" id="btn-full" aria-pressed="false">
+                      Tam çıxış
+                    </button>
+                  </div>
+                  <div class="cw-term-body" id="cw-term" />
+                </div>
+              </div>
+              <div class="cw-hint">
+                <span>
+                  <kbd>←</kbd>
+                  <kbd>→</kbd> addımlar
+                </span>
+                <span>
+                  <kbd>Z</kbd> zen
+                </span>
+                <span>
+                  <kbd>[</kbd> panel
+                </span>
+                <span>izah ↔ kod: üzərinə gəl</span>
+              </div>
+            </div>
+          </div>
+
+          {lesson.outro && <div class="lx-outro" set:html={renderMarkdown(lesson.outro)} />}
+
+          <div class="lx-after">
+            <Takeaways takeaways={lesson.takeaways} />
+            <Quiz quiz={lesson.quiz} lang={lesson.lang} />
+          </div>
+
+          <div class="lx-done glass" id="lx-done">
+            <div>
+              <b>Dərsi bitirdin?</b>
+              <small>İrəliləyiş bu brauzerdə saxlanılır</small>
+            </div>
+            <button class="btn btn-primary" data-learned>
+              <span data-learned-label>✓ Öyrəndim</span>
+            </button>
+          </div>
+          <script
+            type="application/json"
+            id="lesson-data"
+            set:html={JSON.stringify(clientData).replace(/</g, "\\u003c")}
+          />
+        </>
+      ) : (
+        <>
+          <section class="lx-soon glass dots" data-reveal>
+            <div class="soon-orb" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+            </div>
+            <div class="kicker" style="justify-content:flex-start">
+              {kicker}
+              <span class="caret" />
+            </div>
+            <h1 class="lx-title">
+              <span class="title-grad">{item.title}</span>
+            </h1>
+            <p class="lx-sub">
+              {item.sub} · {section.title}
+            </p>
+            <p class="soon-text">{soonText}</p>
+            <div class="soon-btns">
+              {nextReady && (
+                <a class="btn btn-primary" href={nextReady.href}>
+                  Hazır dərs: {nextReady.title}
+                  <i class="arrow" data-icon="arrow" />
+                </a>
+              )}
+              <a class="btn" href={`${techHref}#proqram`}>
+                Bütün mövzular
+              </a>
+              {roadmapHref && (
+                <a class="btn btn-ghost" href={`${roadmapHref}#${item.slug}`}>
+                  Yol xəritəsində bax
+                </a>
+              )}
+            </div>
+            {readyInSection.length > 0 && (
+              <div class="soon-ready">
+                <span class="menu-label">Bu bölmədə hazırdır</span>
+                <div>
+                  {readyInSection.map((it) => (
+                    <a class="chip" href={it.href}>
+                      {it.title}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+          </section>
+          <script
+            type="application/json"
+            id="lesson-data"
+            set:html={JSON.stringify({ ...clientData, steps: [] }).replace(/</g, "\\u003c")}
+          />
+        </>
+      )}
+
+      <nav class="lx-pager" aria-label="Dərslər arasında keçid">
+        {prev ? (
+          <a class="glass spot" href={prev.href} data-prev>
+            <span class="dir">
+              ← Əvvəlki <kbd>Shift ←</kbd>
+            </span>
+            <b>{prev.title}</b>
+            <small>{prev.sub}</small>
+          </a>
+        ) : (
+          <span />
+        )}
+        {next ? (
+          <a class="glass spot next" href={next.href} data-next>
+            <span class="dir">
+              Növbəti → <kbd>Shift →</kbd>
+            </span>
+            <b>{next.title}</b>
+            <small>{next.sub}</small>
+          </a>
+        ) : (
+          <span />
+        )}
+      </nav>
+    </main>
+  </div>
+
+  <svg class="lx-link" id="lx-link" aria-hidden="true">
+    <defs>
+      <linearGradient id="linkGrad" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="var(--accent-2)"></stop>
+        <stop offset="1" stop-color="var(--cyan)"></stop>
+      </linearGradient>
+    </defs>
+    <path id="lx-link-path"></path>
+    <circle id="lx-link-a" r="3.5"></circle>
+    <circle id="lx-link-b" r="3.5"></circle>
+  </svg>
+
+  <div class="zen-bar glass" role="toolbar" aria-label="Zen rejimi">
+    <span class="mono-ic" style={`--c:${techColor}`}>
+      {techTitle}
+    </span>
+    <b>{item.title}</b>
+    <span class="zen-hint">
+      <kbd>Esc</kbd> çıxış
+    </span>
+    <button class="btn btn-sm" data-zen-toggle>
+      Zen-dən çıx
+    </button>
+  </div>
+
+  <script>
+    import "../scripts/lesson-sidebar";
+    import "../scripts/lesson";
+    import "../scripts/quiz";
+  </script>
+</SiteLayout>

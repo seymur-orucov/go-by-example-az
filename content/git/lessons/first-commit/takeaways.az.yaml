@@ -1,0 +1,9 @@
+rules:
+  - "`git status` vəziyyəti və növbəti addımı göstərir: `Untracked files` və `Changes to be committed` bölmələrini oxuyun."
+  - "`git add <fayl>` bir faylı, `git add .` isə cari qovluqdakı bütün yeni və dəyişmiş faylları stage edir."
+  - "`git commit -m \"mesaj\"` staging area-nı snapshot kimi yazır; `-m` olmadan redaktor açılır."
+  - "`git commit -a` yalnız izlənən faylların dəyişikliyini götürür; yeni fayl üçün əvvəlcə `git add` lazımdır."
+  - "Commit çıxışında branch, qısa hash, mesaj, dəyişən faylların və sətirlərin sayı var."
+practices:
+  - "`git add .`-dan əvvəl `git status` ilə nəyin əlavə olunacağını yoxlayın."
+  - "Commit mesajında nə etdiyinizi qısa yazın: `Add home page`, `Fix typo in title`."

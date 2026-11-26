@@ -208,7 +208,13 @@ interface PaletteItem {
   c: string;
 }
 const statusText = (s: string): string =>
-  s === "live" ? "hazırdır" : s === "preview" ? "önizləmə" : "tezliklə";
+  s === "live"
+    ? "hazırdır"
+    : s === "started"
+      ? "başlanıb"
+      : s === "preview"
+        ? "önizləmə"
+        : "tezliklə";
 const INDEX: PaletteItem[] = [
   ...TECHS.map((t) => ({
     g: "Texnologiyalar",

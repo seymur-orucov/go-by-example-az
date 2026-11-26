@@ -1,6 +1,6 @@
 // Home page interactions (v2 design): aurora, ask box, showcase, stack map, node anatomy,
 // platform rail, comparison table and the resume card.
-import { DIRECTIONS, PLATFORM, TECHS, badge } from "@platform/theme/data/platform";
+import { DIRECTIONS, PLATFORM, TECHS, badge, techState } from "@platform/theme/data/platform";
 import {
   FLAT,
   I,
@@ -145,8 +145,12 @@ dirsEl.innerHTML = DIRECTIONS.map(
     `<span class="n">${d.techs.length} tex.<br>~${d.nodes} node</span></button>`,
 ).join("");
 techsEl.innerHTML = TECHS.map((t) => {
-  const live = t.status === "live";
-  const inner = `<span class="mono-ic" style="--c:${t.c}">${esc(t.ic)}</span><span><b>${esc(t.name)}</b><small>${live ? `${goTotal} mövzu · hazırdır` : "tezliklə"}</small></span>`;
+  const st = techState(t.id);
+  const live = t.status === "live" || t.status === "started";
+  const label = live
+    ? `${st?.total ?? goTotal} mövzu · ${t.status === "live" ? "hazırdır" : `başlanıb, ${st?.ready}/${st?.total}`}`
+    : "tezliklə";
+  const inner = `<span class="mono-ic" style="--c:${t.c}">${esc(t.ic)}</span><span><b>${esc(t.name)}</b><small>${label}</small></span>`;
   return live
     ? `<a class="tech glass live" href="${t.href}" data-tech="${t.id}" style="--c:${t.c}">${inner}</a>`
     : `<div class="tech glass" data-tech="${t.id}" style="--c:${t.c}" title="${esc(t.desc)}">${inner}</div>`;

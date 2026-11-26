@@ -1,4 +1,4 @@
-// Build-time Go highlighting with Shiki. Shiki tokenizes; colors come from the theme's
+// Build-time Go and shell highlighting with Shiki. Shiki tokenizes; colors come from the theme's
 // --tok-* CSS variables (so palettes and light/dark keep working), not from a Shiki theme.
 import { createHighlighterCore, type HighlighterCore, type ThemeRegistrationRaw } from "shiki/core";
 import { createJavaScriptRegexEngine } from "shiki/engine/javascript";
@@ -11,12 +11,14 @@ let highlighter: Promise<HighlighterCore> | undefined;
 const getHighlighter = () =>
   (highlighter ??= createHighlighterCore({
     themes: [PLAIN],
-    langs: [import("shiki/langs/go.mjs")],
+    langs: [import("shiki/langs/go.mjs"), import("shiki/langs/shellscript.mjs")],
     engine: createJavaScriptRegexEngine(),
   }));
 
+export type Lang = "go" | "bash";
+
 /** TextMate scope (innermost first) -> token class suffix. Order matters. */
-const RULES: [RegExp, string][] = [
+const GO_RULES: [RegExp, string][] = [
   [/^comment\./, "com"],
   [/^(string\.|constant\.other\.rune)/, "str"],
   [/^constant\.numeric/, "num"],
@@ -26,27 +28,44 @@ const RULES: [RegExp, string][] = [
   [/^keyword\.(?!operator)/, "kw"],
 ];
 
-function classFor(scopes: string[]): string | undefined {
+/** Shell sessions: the command, its options and quoted text stand out; plain arguments stay plain. */
+const BASH_RULES: [RegExp, string][] = [
+  [/^comment\./, "com"],
+  [/^string\.quoted/, "str"],
+  [/^constant\.other\.option/, "type"],
+  [/^(entity\.name\.command|support\.function\.builtin)/, "fn"],
+  [/^keyword\.operator\.(redirect|pipe)/, "kw"],
+];
+
+function classFor(scopes: string[], rules: [RegExp, string][]): string | undefined {
   for (let i = scopes.length - 1; i >= 0; i--) {
-    for (const [re, cls] of RULES) if (re.test(scopes[i]!)) return cls;
+    for (const [re, cls] of rules) if (re.test(scopes[i]!)) return cls;
   }
   return undefined;
 }
 
 /** Highlighted HTML for each line of `code` (no trailing newline handling needed by callers). */
-export async function highlightLines(code: string): Promise<string[]> {
+export async function highlightLines(code: string, lang: Lang = "go"): Promise<string[]> {
   const hl = await getHighlighter();
   const src = code.replace(/\n$/, "");
   const lines = hl.codeToTokens(src, {
-    lang: "go",
+    lang: lang === "bash" ? "shellscript" : "go",
     theme: "plain",
     includeExplanation: "scopeName",
+    // No per-line time limit: with explanations Shiki tokenizes each line twice, and if only one
+    // pass hits the limit (a busy build machine) the two token lists disagree and it throws
+    // "Cannot read properties of undefined (reading 'startIndex')". Build time has no deadline.
+    tokenizeTimeLimit: 0,
   }).tokens;
+  const rules = lang === "bash" ? BASH_RULES : GO_RULES;
   return lines.map((line) => {
     // Merge neighbours with the same class ("fmt" with its quotes becomes one string token).
     const runs: { cls: string | undefined; text: string }[] = [];
     for (const e of line.flatMap((t) => t.explanation ?? [{ content: t.content, scopes: [] }])) {
-      const cls = classFor(e.scopes.map((s) => s.scopeName));
+      const cls = classFor(
+        e.scopes.map((s) => s.scopeName),
+        rules,
+      );
       const last = runs.at(-1);
       if (last && last.cls === cls) last.text += e.content;
       else runs.push({ cls, text: e.content });
@@ -74,9 +93,4 @@ export function renderLines(
     out += `<span class="ln${range.hl ? " hl" : ""}" data-n="${n}">${html[n - 1] || " "}</span>`;
   }
   return out;
-}
-
-/** Convenience: highlight and render a whole snippet (quiz code). */
-export async function highlightGo(code: string): Promise<string> {
-  return renderLines(await highlightLines(code));
 }

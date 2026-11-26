@@ -1,0 +1,23 @@
+$ echo "passport" > packing.txt
+$ echo "hotel: 120 USD" > budget.txt
+$ git status --short
+?? budget.txt
+?? packing.txt
+$ git add packing.txt
+$ git status --short
+A  packing.txt
+?? budget.txt
+$ git commit -m "Add packing list"
+[main (root-commit) 945edb5] Add packing list
+ 1 file changed, 1 insertion(+)
+ create mode 100644 packing.txt
+$ git status --short
+?? budget.txt
+$ echo "charger" >> packing.txt
+$ git status --short
+ M packing.txt
+?? budget.txt
+$ git add packing.txt
+$ git status --short
+M  packing.txt
+?? budget.txt

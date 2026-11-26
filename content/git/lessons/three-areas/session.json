@@ -1,0 +1,255 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.37.3.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir trip",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd trip",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"passport\" > packing.txt",
+      "step": "untracked",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"hotel: 120 USD\" > budget.txt",
+      "step": "untracked",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status --short",
+      "step": "untracked",
+      "hidden": false,
+      "fail": false,
+      "out": "?? budget.txt\n?? packing.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git add packing.txt",
+      "step": "stage",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status --short",
+      "step": "stage",
+      "hidden": false,
+      "fail": false,
+      "out": "A  packing.txt\n?? budget.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"Add packing list\"",
+      "step": "commit",
+      "hidden": false,
+      "fail": false,
+      "out": "[main (root-commit) 945edb5] Add packing list\n 1 file changed, 1 insertion(+)\n create mode 100644 packing.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git status --short",
+      "step": "commit",
+      "hidden": false,
+      "fail": false,
+      "out": "?? budget.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"charger\" >> packing.txt",
+      "step": "modify",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status --short",
+      "step": "modify",
+      "hidden": false,
+      "fail": false,
+      "out": " M packing.txt\n?? budget.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git add packing.txt",
+      "step": "stage-again",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status --short",
+      "step": "stage-again",
+      "hidden": false,
+      "fail": false,
+      "out": "M  packing.txt\n?? budget.txt\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "untracked": {
+      "areas": {
+        "work": [
+          {
+            "name": "budget.txt",
+            "state": "untracked"
+          },
+          {
+            "name": "packing.txt",
+            "state": "untracked"
+          }
+        ],
+        "index": [],
+        "repo": {
+          "commit": null,
+          "count": 0,
+          "files": []
+        }
+      }
+    },
+    "stage": {
+      "areas": {
+        "work": [
+          {
+            "name": "budget.txt",
+            "state": "untracked"
+          },
+          {
+            "name": "packing.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "packing.txt",
+            "state": "added"
+          }
+        ],
+        "repo": {
+          "commit": null,
+          "count": 0,
+          "files": []
+        }
+      }
+    },
+    "commit": {
+      "areas": {
+        "work": [
+          {
+            "name": "budget.txt",
+            "state": "untracked"
+          },
+          {
+            "name": "packing.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "packing.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "945edb5",
+            "message": "Add packing list"
+          },
+          "count": 1,
+          "files": [
+            "packing.txt"
+          ]
+        }
+      }
+    },
+    "modify": {
+      "areas": {
+        "work": [
+          {
+            "name": "budget.txt",
+            "state": "untracked"
+          },
+          {
+            "name": "packing.txt",
+            "state": "modified"
+          }
+        ],
+        "index": [
+          {
+            "name": "packing.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "945edb5",
+            "message": "Add packing list"
+          },
+          "count": 1,
+          "files": [
+            "packing.txt"
+          ]
+        }
+      }
+    },
+    "stage-again": {
+      "areas": {
+        "work": [
+          {
+            "name": "budget.txt",
+            "state": "untracked"
+          },
+          {
+            "name": "packing.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "packing.txt",
+            "state": "modified"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "945edb5",
+            "message": "Add packing list"
+          },
+          "count": 1,
+          "files": [
+            "packing.txt"
+          ]
+        }
+      }
+    }
+  }
+}

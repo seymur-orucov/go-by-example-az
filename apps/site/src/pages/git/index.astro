@@ -1,0 +1,161 @@
+---
+// /git/: the Git course from content/git/syllabus.yaml — modules and their lessons (design v2).
+// Built from the Go page's blocks (hero, section cards, topic rows); progress marks and the
+// "all topics" view come later with a shared technology page.
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import { LEVEL_LABEL } from "../../lib/catalog";
+import { getSyllabusCatalog } from "../../lib/syllabus";
+import "../../styles/go.css";
+
+const { syllabus, sections, total } = getSyllabusCatalog("git");
+const all = sections.flatMap((s) => s.items);
+const readyCount = all.filter((it) => it.status === "ready").length;
+const minutes = all.reduce((m, it) => m + (it.duration ?? 0), 0);
+// 267 minutes -> "4,5" (nearest half hour, Azerbaijani decimal comma)
+const hours = (Math.round((minutes / 60) * 2) / 2).toString().replace(".", ",");
+const first = all.find((it) => it.status === "ready") ?? all[0];
+const pad = (i: number): string => String(i + 1).padStart(2, "0");
+---
+
+<SiteLayout
+  title="w3hub.dev — Git"
+  description={`Git-i Azərbaycan dilində, real komandalar və addım-addım vizual nümunələrlə öyrən: ${sections.length} modul, ${total} mövzu.`}
+  current="git"
+>
+  <main>
+    <section class="go-hero">
+      <div class="go-sky" aria-hidden="true">
+        <div class="grid-bg"></div>
+      </div>
+      <div class="wrap go-hero-grid">
+        <div class="go-copy">
+          <nav class="crumbs" aria-label="Yol" data-reveal>
+            <a href="/">Ana səhifə</a>
+            <span>/</span>
+            <a href="/#stack">Texnologiyalar</a>
+            <span>/</span>
+            <span>Git</span>
+          </nav>
+          <div class="go-id" data-reveal style="--i:1">
+            <span class="go-mark" aria-hidden="true" style="--c:#f05033">
+              Git
+            </span>
+            <div>
+              <div class="kicker">
+                tech.Git()<span class="caret"></span>
+              </div>
+              <span class="badge live">
+                {readyCount < total ? "başlanıb" : "aktiv"} · texnologiya
+              </span>
+            </div>
+          </div>
+          <h1 data-reveal style="--i:2">
+            <span class="title-grad">Git — dəyişikliklərin</span>
+            <br />
+            <span class="accent-grad">tarixçəsi, görünən.</span>
+          </h1>
+          <p class="go-sub" data-reveal style="--i:3">
+            {syllabus.audience} Hər mövzu real komandalar, onların çıxışı və repository-nin
+            addım-addım vəziyyəti ilə izah olunur. <b>Hədəf:</b> {syllabus.level}
+          </p>
+          <div class="go-cta" data-reveal style="--i:4">
+            {first && (
+              <a class="btn btn-primary btn-lg" href={first.href}>
+                <span>Başla: {first.title}</span>
+                <i class="arrow" data-icon="arrow"></i>
+              </a>
+            )}
+            <a class="btn btn-lg" href="#proqram">
+              Bütün mövzular
+            </a>
+          </div>
+          <ul class="go-stats" data-reveal style="--i:5" aria-label="Git rəqəmlərlə">
+            <li>
+              <b>{sections.length}</b>
+              <span>modul</span>
+            </li>
+            <li>
+              <b>{total}</b>
+              <span>mövzu</span>
+            </li>
+            <li>
+              <b>{readyCount}</b>
+              <span>dərs hazırdır</span>
+            </li>
+            <li>
+              <b>~{hours}</b>
+              <span>saat</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="go-program" id="proqram">
+      <div class="wrap">
+        <div class="prog-head">
+          <div>
+            <div class="kicker" data-reveal>
+              git.Program()<span class="caret"></span>
+            </div>
+            <h2 data-reveal style="--i:1">
+              <span class="title-grad">{sections.length} modul.</span>{" "}
+              <span class="accent-grad">{total} mövzu.</span>
+            </h2>
+            <p data-reveal style="--i:2">
+              Əsaslardan başlayıb Git-in içinə qədər. Hazır dərslər açıqdır, qalanları ardıcıl əlavə
+              olunur.
+            </p>
+          </div>
+        </div>
+
+        <div class="prog-sections">
+          {sections.map((s, i) => {
+            const ready = s.items.filter((it) => it.status === "ready").length;
+            return (
+              <article class="sec-card glass spot open" data-reveal style={`--i:${i % 3}`}>
+                <div class="sc-top">
+                  <span class="sc-n">{pad(i)}</span>
+                  <span class="sc-lvl">{LEVEL_LABEL[s.level]}</span>
+                  {ready ? (
+                    <span class="badge live">{ready} hazır</span>
+                  ) : (
+                    <span class="badge later">tezliklə</span>
+                  )}
+                </div>
+                <h3>{s.title}</h3>
+                <p>{s.description}</p>
+                <div class="sc-prog">
+                  <span class="sc-bar">
+                    <i class="r" style={`width:${Math.round((ready / s.items.length) * 100)}%`} />
+                  </span>
+                  <small>
+                    {ready} / {s.items.length} hazırdır
+                  </small>
+                </div>
+                <ul class="sc-topics">
+                  {s.items.map((it) => (
+                    <li>
+                      <a
+                        class={`topic ${it.status === "ready" ? "ready" : "soon"}`}
+                        href={it.href}
+                        data-slug={it.slug}
+                      >
+                        <i class="td" />
+                        <span>
+                          <b>{it.title}</b>
+                          <small>{it.sub || `${it.duration} dəq`}</small>
+                        </span>
+                        <em>{it.status === "ready" ? "hazır" : "tezliklə"}</em>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  </main>
+</SiteLayout>

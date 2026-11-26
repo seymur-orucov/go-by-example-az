@@ -1,0 +1,48 @@
+---
+// Lesson page /git/<id>/: nodes of content/git/syllabus.yaml; ready ones are terminal-session
+// lessons (content/git/lessons/<id>/), rendered by LessonView.
+import LessonView from "../../components/LessonView.astro";
+import type { CatalogItem } from "../../lib/catalog";
+import { loadSessionLesson } from "../../lib/lesson";
+import { getSyllabusCatalog } from "../../lib/syllabus";
+
+export function getStaticPaths() {
+  const { sections } = getSyllabusCatalog("git");
+  const flat = sections.flatMap((s) => s.items.map((item) => ({ item, sectionId: s.id })));
+  return flat.map(({ item, sectionId }, i) => ({
+    params: { slug: item.slug.slice("git/".length) },
+    props: { item, sectionId, prev: flat[i - 1]?.item, next: flat[i + 1]?.item },
+  }));
+}
+
+interface Props {
+  item: CatalogItem;
+  sectionId: string;
+  prev?: CatalogItem;
+  next?: CatalogItem;
+}
+
+const { item, sectionId, prev, next } = Astro.props;
+const { sections, total } = getSyllabusCatalog("git");
+const section = sections.find((s) => s.id === sectionId)!;
+const id = item.slug.slice("git/".length);
+const lesson = item.status === "ready" ? loadSessionLesson("git", id) : undefined;
+---
+
+<LessonView
+  techId="git"
+  techTitle="Git"
+  techHref="/git/"
+  techColor="#f05033"
+  title={`${item.title} · Git · w3hub.dev`}
+  description={`Git: ${item.title}. Azərbaycan dilində qısa izah, real komandalar və addım-addım vizual.`}
+  item={item}
+  section={section}
+  sections={sections}
+  total={total}
+  prev={prev}
+  next={next}
+  lesson={lesson}
+  kicker="git commit"
+  soonText="Bu dərs hələ yazılır. Hər dərsin komandaları real Git ilə işlədilib yoxlanılır — ona görə bir az vaxt aparır."
+/>

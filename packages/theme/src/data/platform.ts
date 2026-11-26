@@ -2,7 +2,7 @@
 // Later this comes from content/ and content/roadmaps/. Hrefs follow the route plan:
 // /<technology>/, /<technology>/roadmap/, /roadmaps/<direction>/.
 
-export type Status = "live" | "preview" | "next" | "plan" | "soon" | "later";
+export type Status = "live" | "started" | "preview" | "next" | "plan" | "soon" | "later";
 
 export interface Tech {
   id: string;
@@ -242,6 +242,7 @@ export const PLATFORM: PlatformSection[] = [
 /** CSS class and Azerbaijani label per status. */
 export const STATUS: Record<Status, [string, string]> = {
   live: ["live", "aktiv"],
+  started: ["live", "başlanıb"],
   preview: ["next", "önizləmə"],
   next: ["next", "növbəti"],
   plan: ["plan", "planlaşdırılır"],
@@ -251,6 +252,54 @@ export const STATUS: Record<Status, [string, string]> = {
 
 export const badge = (s: Status): string =>
   `<span class="badge ${STATUS[s][0]}">${STATUS[s][1]}</span>`;
+
+/**
+ * What the content says about a technology, computed at build time (apps/site/src/lib/technologies.ts):
+ * "ready" when every lesson is ready, "started" when at least one is, "soon" otherwise.
+ */
+export interface TechState {
+  id: string;
+  name: string;
+  status: "ready" | "started" | "soon";
+  ready: number;
+  total: number;
+  /** Only for started and ready technologies. */
+  href?: string;
+}
+
+const states = new Map<string, TechState>();
+
+/** The computed state of a technology (lesson counts), once the page's states are applied. */
+export const techState = (id: string): TechState | undefined => states.get(id);
+
+/** Overrides the hand-written statuses above with the computed ones: started and ready technologies become active. */
+export function applyTechStates(list: TechState[]): void {
+  for (const s of list) {
+    states.set(s.id, s);
+    const t = TECHS.find((x) => x.id === s.id);
+    if (!t) continue;
+    if (s.status === "soon" || !s.href) {
+      t.status = "soon";
+      delete t.href;
+    } else {
+      t.status = s.status === "ready" ? "live" : "started";
+      t.href = s.href;
+    }
+  }
+  // Active technologies first (the mega menu shows the first seven); the rest keep their order.
+  const rank = (t: Tech): number => (t.status === "live" || t.status === "started" ? 0 : 1);
+  TECHS.sort((a, b) => rank(a) - rank(b));
+}
+
+// Pages embed the states as JSON (Layout); every script that imports this module sees them.
+if (typeof document !== "undefined") {
+  try {
+    const el = document.getElementById("tech-status");
+    if (el?.textContent) applyTechStates(JSON.parse(el.textContent) as TechState[]);
+  } catch {
+    /* no states on this page: keep the hand-written statuses */
+  }
+}
 
 /** Name previews of the platform (undecided: w3hub.dev / beststack.dev). */
 export const BRANDS: Record<string, [string, string]> = {

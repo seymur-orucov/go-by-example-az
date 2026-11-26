@@ -1,42 +1,55 @@
 ---
 // Lesson sidebar (design v2): progress card and collapsible section groups. Learned marks,
 // counts and the progress bar are painted from localStorage by scripts/lesson-sidebar.ts.
-import type { GoSection } from "../lib/go";
+import type { CatalogSection } from "../lib/catalog";
 
 interface Props {
-  sections: GoSection[];
+  sections: CatalogSection[];
   total: number;
   current: string;
+  /** The technology the course belongs to: label, color and its roadmap page (if it has one). */
+  techName?: string;
+  techColor?: string;
+  roadmapHref?: string;
 }
 
-const { sections, total, current } = Astro.props;
+const {
+  sections,
+  total,
+  current,
+  techName = "Go",
+  techColor = "#00add8",
+  roadmapHref,
+} = Astro.props;
 ---
 
-<aside class="lx-side" id="lx-side" aria-label="Go mövzuları" data-lesson-sidebar>
+<aside class="lx-side" id="lx-side" aria-label={`${techName} mövzuları`} data-lesson-sidebar>
   <div class="sb-card glass dots">
-    <span class="mono-ic" style="--c:#00add8">
-      Go
+    <span class="mono-ic" style={`--c:${techColor}`}>
+      {techName}
     </span>
     <div>
-      <b>Go yolu</b>
+      <b>{techName} yolu</b>
       <small>
         <b data-sb-done>0</b> / {total} dərs · <span data-sb-pct>0</span>%
       </small>
     </div>
-    <a class="sb-map" href="/go/roadmap/" title="Yol xəritəsi" aria-label="Yol xəritəsi">
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="1.8"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        aria-hidden="true"
-      >
-        <path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2Z"></path>
-        <path d="M9 4v14M15 6v14"></path>
-      </svg>
-    </a>
+    {roadmapHref && (
+      <a class="sb-map" href={roadmapHref} title="Yol xəritəsi" aria-label="Yol xəritəsi">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2Z"></path>
+          <path d="M9 4v14M15 6v14"></path>
+        </svg>
+      </a>
+    )}
     <div class="sb-bar">
       <span data-sb-bar style="width:0%"></span>
     </div>

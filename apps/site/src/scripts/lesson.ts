@@ -9,6 +9,10 @@ interface LessonData {
   steps: { from: number; to: number; out?: string }[];
   code: string;
   output: string;
+  /** `go run main.go` for Go; null for a terminal session, whose output already holds the `$ cmd` lines. */
+  run: string | null;
+  /** Toast after copying the code pane. */
+  copied: string;
   next: { title: string; href: string } | null;
   prev: { href: string } | null;
 }
@@ -200,13 +204,21 @@ function initWalkthrough(data: LessonData): () => void {
   let fullOut = false;
   const esc = (s: string): string =>
     s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  // In a terminal session the `$ cmd` lines get the prompt color; an empty line keeps a line's height.
+  const session = data.run === null;
+  const lineHtml = (s: string): string =>
+    s === ""
+      ? " "
+      : session && s.startsWith("$ ")
+        ? `<b class="p">$</b> ${esc(s.slice(2))}`
+        : esc(s);
   function paintTerm(i: number): void {
     term.innerHTML = fullOut
-      ? outputLines.map((l) => `<span class="on">${esc(l)}</span>`).join("")
+      ? outputLines.map((l) => `<span class="on">${lineHtml(l)}</span>`).join("")
       : outLines
           .map((l) => {
             const cls = l.step < i ? "on" : l.step === i ? "on cur" : "";
-            return `<span class="${cls}">${esc(l.text)}</span>`;
+            return `<span class="${cls}">${lineHtml(l.text)}</span>`;
           })
           .join("") || '<span class="on">— bu addıma qədər heç nə çap olunmur</span>';
   }
@@ -343,7 +355,7 @@ function initWalkthrough(data: LessonData): () => void {
   $("#btn-copy")!.addEventListener("click", () => {
     const fail = (): void => toast("Kopyalamaq alınmadı");
     try {
-      navigator.clipboard.writeText(data.code).then(() => toast("Kod kopyalandı"), fail);
+      navigator.clipboard.writeText(data.code).then(() => toast(data.copied), fail);
     } catch {
       fail();
     }

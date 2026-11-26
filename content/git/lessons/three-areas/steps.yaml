@@ -1,0 +1,11 @@
+# The visuals are recorded from the real repository by `pnpm content:run`.
+untracked:
+  vis: areas
+stage:
+  vis: areas
+commit:
+  vis: areas
+modify:
+  vis: areas
+stage-again:
+  vis: areas

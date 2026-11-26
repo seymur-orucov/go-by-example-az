@@ -156,6 +156,16 @@ Once the Go prototype is live, the site becomes a unified platform.
   4. texts: for topics the user marks, taken from those resources and translated into Azerbaijani; for the rest, we write them ourselves
   5. translated text goes into the public repo and onto the site only after the author's written consent; until then it is kept in `content-private/` (not tracked by git) — [DECISIONS.md](DECISIONS.md#vision-2026-11-23)
 - [ ] Reach out to the authors of roadmap.sh and itbooster.ru about translation and publishing
+- [~] **Content pipeline for new technologies** ([DECISIONS.md](DECISIONS.md#content-pipeline-syllabus--lessons-2026-11-26)):
+  - [x] `plan-syllabus` skill (research → proposal → `content/<technology>/syllabus.yaml`)
+  - [x] **Git syllabus** approved: 7 modules, 39 nodes, ~4.5 h (`content/git/syllabus.yaml`)
+  - [x] Lesson kinds `terminal` and `state` on the site: `session.sh` + `pnpm content:run` (recorded output), the `areas` visual, `/git/` and `/git/<id>/` pages, shared `LessonView`; `pnpm content:check` validates syllabi and session lessons
+  - [ ] Lesson kinds `diagram`, `compare`, `concept` and the commit-graph visual (`vis: graph`, needed from `commit-snapshot` on)
+  - [x] `write-content` skill (pilot lesson per kind → approval → module by module)
+  - [~] Git pilot lessons `three-areas` and `first-commit` — awaiting the user's review
+  - [ ] The remaining Git lessons, module by module
+  - [ ] CI: run `pnpm content:run` and fail on a diff (needs a pinned Git version: output differs slightly between versions)
+  - [x] Technology statuses computed from content (`lib/technologies.ts`: ready / started / soon) feed the v2 header nav, mega menu, Ctrl+K and the home stack map (`applyTechStates`); the hand-written `TECHS` statuses only remain as the fallback for technologies without content
 - [ ] Two kinds of roadmap:
   - **technology** roadmap — e.g. "Go": the language itself, from simple to complex;
   - **direction** roadmap — e.g. "Backend": combines nodes from several technologies (Go, SQL, HTTP, Docker…); nodes reference technology content, content is not duplicated

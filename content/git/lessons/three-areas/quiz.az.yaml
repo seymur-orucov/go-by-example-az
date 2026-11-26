@@ -1,0 +1,64 @@
+- question: "`git status --short` faylın qarşısında `??` göstərir. Bu nə deməkdir?"
+  options:
+    - "Git faylı izləmir: o yalnız working directory-dədir"
+    - "Faylda konflikt var"
+    - "Fayl staging area-dadır, amma hələ commit olunmayıb"
+    - "Fayl working directory-dən silinib"
+  answer: 0
+  explain: "`??` untracked deməkdir: fayl nə staging area-da, nə də heç bir commit-dədir."
+- question: "Yeni, boş repository-də bu komandalardan sonra nə çap olunur?"
+  code: |
+    echo "map" > notes.txt
+    git add notes.txt
+    git status --short
+  options:
+    - "`?? notes.txt`"
+    - "`A  notes.txt`"
+    - "` A notes.txt`"
+    - "`M  notes.txt`"
+  answer: 1
+  explain: "Fayl staging area-dadır, son commit-də isə yoxdur, ona görə sol sütunda `A` görünür."
+- question: "Commit-dən dərhal sonra staging area-da nə olur?"
+  options:
+    - "Boşalır, növbəti `git add`-a qədər içində heç nə olmur"
+    - "Yalnız commit-ə düşməyən fayllar qalır"
+    - "Son commit-in surəti qalır və növbəti commit-in əsası olur"
+  answer: 2
+  explain: "Staging area həmişə növbəti commit-in qaralamasıdır; commit-dən sonra o, yeni commit ilə eyni olur."
+- question: "`packing.txt` artıq commit olunub. Bu komandalardan sonra nə çap olunur?"
+  code: |
+    echo "towel" >> packing.txt
+    git status --short
+  options:
+    - "`M  packing.txt`"
+    - "`A  packing.txt`"
+    - "`?? packing.txt`"
+    - "` M packing.txt`"
+  answer: 3
+  explain: "Dəyişiklik yalnız working directory-dədir, ona görə `M` sağ sütundadır."
+- question: "`packing.txt` artıq commit olunub. Bu komandalardan sonra nə çap olunur?"
+  code: |
+    echo "towel" >> packing.txt
+    git add packing.txt
+    echo "hat" >> packing.txt
+    git status --short
+  options:
+    - "`M  packing.txt`"
+    - "`MM packing.txt`"
+    - "` M packing.txt`"
+  answer: 1
+  explain: "Staging area-dakı versiya (`towel` ilə) son commit-dən, diskdəki versiya (`hat` ilə) isə staging area-dakından fərqlidir."
+- question: "İki faylı dəyişmisiniz, amma yalnız birini commit etmək istəyirsiniz. Bunu nə mümkün edir?"
+  options:
+    - "Staging area: commit-ə yalnız `git add` etdiyiniz fayl düşür"
+    - "Working directory: Git yalnız son dəyişən faylı commit edir"
+    - "Heç nə: `git commit` həmişə bütün dəyişmiş faylları yazır"
+  answer: 0
+  explain: "`git commit` staging area-nı yazır; stage olunmamış dəyişiklik working directory-də qalır."
+- question: "`git status --short` heç nə çap etmir. Bu nə deməkdir?"
+  options:
+    - "Bütün dəyişikliklər staging area-dadır, amma hələ commit olunmayıb"
+    - "Fayllar yalnız repository-də qalıb, working directory boşdur"
+    - "Commit olunmamış dəyişiklik də, izlənməyən fayl da yoxdur"
+  answer: 2
+  explain: "Üç sahə eynidir və untracked fayl yoxdur; stage olunmuş dəyişiklik olsaydı, `--short` onu göstərərdi."

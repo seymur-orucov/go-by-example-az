@@ -1,14 +1,18 @@
 ---
 // v2 site header: logo, main nav with the technology mega menu, search trigger, look menu.
 // Lesson pages add the sidebar toggle and the view-mode menu (sidebar, width, Zen).
+import type { TechState } from "../data/platform";
+
 interface Props {
-  /** Nav item shown as the current page. */
-  current?: "roadmaps" | "go";
+  /** Nav item shown as the current page: "roadmaps" or a technology id ("go", "git"). */
+  current?: string;
+  /** Technologies that have started or finished; each gets a nav link. */
+  active?: TechState[];
   /** Solid glass from the start (lesson pages). */
   solid?: boolean;
   lesson?: boolean;
 }
-const { current, solid, lesson } = Astro.props;
+const { current, active = [], solid, lesson } = Astro.props;
 ---
 
 <header class:list={["site-header", { solid }]}>
@@ -89,9 +93,11 @@ const { current, solid, lesson } = Astro.props;
       <div class="menu mega" data-tech-menu hidden></div>
     </div>
     {!lesson && <a href="/#bolmeler">Bölmələr</a>}
-    <a href="/go/" aria-current={current === "go" ? "page" : undefined}>
-      Go
-    </a>
+    {active.map((t) => (
+      <a href={t.href} aria-current={current === t.id ? "page" : undefined}>
+        {t.name}
+      </a>
+    ))}
   </nav>
   <div class="header-spacer"></div>
   <div class="header-right">

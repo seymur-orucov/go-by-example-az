@@ -22,6 +22,7 @@
     "preview": "pnpm --filter @platform/site preview",
     "check": "pnpm -r --if-present check",
     "content:check": "pnpm --filter @platform/site content:check",
+    "content:run": "pnpm --filter @platform/site content:run",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",

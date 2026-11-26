@@ -1,6 +1,7 @@
 ---
 import "../styles/index.css";
 import Footer from "./Footer.astro";
+import type { TechState } from "../data/platform";
 import Header from "./Header.astro";
 
 interface SearchEntry {
@@ -18,8 +19,10 @@ interface Props {
   description?: string;
   /** Entries for the Ctrl+K palette and the page scripts; the site builds them from its content. */
   searchIndex?: SearchEntry[];
-  /** Nav item shown as the current page. */
-  current?: "roadmaps" | "go";
+  /** Nav item shown as the current page: "roadmaps" or a technology id ("go", "git"). */
+  current?: string;
+  /** Status of every known technology, computed from the content (apps/site/src/lib/technologies.ts). */
+  technologies?: TechState[];
   /** Lesson pages: sidebar toggle, view modes (sidebar, width, Zen), solid header, slim footer. */
   lesson?: boolean;
   /** Class on <body> (page-specific styles hang on it). */
@@ -33,6 +36,7 @@ const {
   description,
   searchIndex = [],
   current,
+  technologies = [],
   lesson,
   bodyClass,
   attribution = true,
@@ -71,13 +75,23 @@ const {
   </head>
   <body class={bodyClass}>
     <slot name="before-header" />
-    <Header current={current} solid={lesson} lesson={lesson} />
+    <Header
+      current={current}
+      active={technologies.filter((t) => t.href)}
+      solid={lesson}
+      lesson={lesson}
+    />
     <slot />
     <Footer attribution={attribution} slim={lesson} />
     <script
       type="application/json"
       id="search-index"
       set:html={JSON.stringify(searchIndex).replace(/</g, "\\u003c")}
+    />
+    <script
+      type="application/json"
+      id="tech-status"
+      set:html={JSON.stringify(technologies).replace(/</g, "\\u003c")}
     />
     <script>
       import "../scripts/v2";
