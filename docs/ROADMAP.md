@@ -133,8 +133,8 @@ functions/api/run.ts   # go.dev/_/compile proxy (rate limit + size limit)
 - [~] **All 84 Go lessons are written and `ready`** (2026-11-27), every one run by `pnpm content:go` locally and in CI; awaiting the user's review
 - [x] Project skill `.claude/skills/write-lesson/` for writing original lessons (rules, originality guard, verification checklist)
 - [x] Content license CC BY 4.0; no Go by Example credit on the site once no adapted lesson is left; money in examples in USD; intro length rule in the skill
-- [ ] Terminology glossary (`docs/GLOSSARY.md`): English term + short Azerbaijani explanation
-- [ ] Step visuals for topics that need them (slice, map, channel, goroutine)
+- [x] Terminology glossary ([GLOSSARY.md](GLOSSARY.md)): ~90 terms by section — kept or translated, short Azerbaijani explanation, the lesson that introduces it; the `write-lesson` skill follows it (2026-11-27)
+- [x] Step visuals for topics that need them: `slice` (arrays, slices, sorting), new `map` (maps), `channel` (channels, channel-buffering) and `timeline` (goroutines) kinds, checked by `pnpm content:check` (2026-11-27). More lessons can get them later (closing-channels, select, waitgroups, worker-pools)
 
 ## Phase 4 — CI/CD `[ ]`
 
@@ -213,7 +213,7 @@ Once the Go prototype is live, the site becomes a unified platform.
 
 0. **Design:** if the user says to continue the design, read [DESIGN-V2.md](DESIGN-V2.md) (brief, references, v2–v6 status; next: the user's feedback on v6 "Liquid glass", then the other pages in the chosen style).
 1. `pnpm install`, then `pnpm lint && pnpm format:check && pnpm check && pnpm build` to confirm the workspace is healthy. The design reference: `node design/serve.mjs` → http://localhost:4321/d/.
-2. Phase 2 modules 2 and 3 are done (pages, search, edit, run). Go leftovers: the terminology glossary and step visuals (Phase 3), Cloudflare Pages + a check of `/api/run` there (Phase 4). Still not ported on purpose: the "Oxuma — gör" demo player and the "Niyə bu sayt" bento.
+2. Phase 2 modules 2 and 3 are done (pages, search, edit, run). Phase 3 is done apart from the user's review of the lessons. Go leftovers: Cloudflare Pages + a check of `/api/run` there and a link check (Phase 4); optionally visuals for more concurrency lessons. Still not ported on purpose: the "Oxuma — gör" demo player and the "Niyə bu sayt" bento.
 3. The platform name is still open; nothing in Phase 2 depends on it.
 4. Work on a branch and commit with Conventional Commits (see [CONTRIBUTING.md](../CONTRIBUTING.md)); group work into module PRs.
 

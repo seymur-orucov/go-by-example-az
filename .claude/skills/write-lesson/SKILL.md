@@ -55,6 +55,9 @@ format section there and one existing `source: original` lesson before starting.
   literal, … are written in English (explain a term in Azerbaijani the first time it
   appears, then just use it). Ordinary words stay Azerbaijani: dəyişən, sabit, funksiya,
   dövr, şərt, tip, dəyər. Keywords and identifiers go in backticks.
+  [docs/GLOSSARY.md](../../../docs/GLOSSARY.md) lists how every term is written in the
+  lessons and where it is first explained: follow it, link back instead of explaining a
+  term again, and add a row when a lesson introduces a new term.
 - **Short but high quality**: every sentence adds something (no filler like "bu çox
   vacibdir"). Say *what* the code does and *why*.
 - **Length follows the topic, not a fixed count.** One sentence is rarely enough to
@@ -81,9 +84,12 @@ format section there and one existing `source: original` lesson before starting.
 - `lesson.az.md`: intro, then `## Title {#id}` per step in the same order, optional outro.
   Step headings are plain text: backticks there render literally.
 - `steps.yaml`: per step `out` (exactly what that step prints; use `|` for several lines)
-  and optional `vis` (see `visSchema` in `apps/site/src/lib/lesson.ts`; only `kind: slice`
-  exists today — adding a kind means a schema entry and a branch in
-  `apps/site/src/components/Vis.astro`).
+  and optional `vis` (see `visSchema` in `apps/site/src/lib/lesson.ts`): `slice` (memory
+  cells, `len`/`cap`), `map` (entries in print order, `fresh` / `gone` keys, a `lookup`),
+  `channel` (`cap`, `buf`, `from` → `to`, `took`, who `waited`), `timeline` (goroutines as
+  bars in ms: `work`, `wait`, `cut`). A visual shows the state **after** the step and must
+  match what the code really does; `pnpm content:check` rejects inconsistent data. Adding a
+  kind means a schema entry and a branch in `apps/site/src/components/Vis.astro`.
 - `quiz.az.yaml`: **5–10 questions** depending on the topic; mostly "Bu kod nə çap
   edəcək?" with a short `code`, plus "which line does not compile?" for typical mistakes.
   2–4 options, one `answer` (0-based), an `explain` of one sentence. Distractors must be
