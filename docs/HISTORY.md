@@ -528,3 +528,4 @@ Done (branch `fix/tech-page-next`):
 - Fixed: the "next lesson" in the progress card and the start button picked the first unlearned topic even if it had no lesson yet, so Git said "Başla: Version control nədir" (a planned topic) — `tech-index.ts` now skips planned topics. The build-time HTML was already right; only the browser script was wrong.
 - Fixed: the space after "Hədəf:" on `/git/` was lost (a line break between `</b>` and an expression is dropped).
 - Seen, not changed: in the light theme the orange aurora is very faint; the heading gradient uses the site's cyan → violet on every technology page, not the technology's color.
+- Then changed (same branch): the second heading line on technology pages uses the technology's color (`--tech-c`) instead of the site-wide cyan → violet (Git is orange, Go cyan); the aurora is stronger in the light theme (opacity ~0.8 instead of ~0.39; dark theme unchanged at 0.7). This also affects the light-theme look of `/go/`.
