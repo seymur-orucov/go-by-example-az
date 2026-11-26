@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="az">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>w3hub.dev — öyrənmək çətin deyil, azmaq asandır</title>
+  <meta name="description" content="Proqramlaşdırmanı Azərbaycan dilində, yol xəritəsi ilə öyrən: nəyi, hansı sırayla, niyə. Hər addımda qısa izah, işlək kod, vizual, test və müsahibə sualı.">
+  <!-- Design v3 "Order from chaos", platform home (future route: /). Loads v2's shell (v2.css + v2.js) for the
+       header, menus, search and tokens; everything else is its own. Go, roadmap and lesson pages are v2's (../v2/). -->
+  <script>try{var s=localStorage,t=JSON.parse(s.getItem("w3:theme")),p=JSON.parse(s.getItem("w3:palette"));if(t&&t!=="system")document.documentElement.setAttribute("data-theme",t);if(p&&p!=="nebula")document.documentElement.setAttribute("data-palette",p)}catch(e){}window.W3_PAGES="../v2/";document.documentElement.classList.add("js");</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../v2/v2.css">
+  <link rel="stylesheet" href="v3.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="index.html" aria-label="Ana səhifə">
+      <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--cyan)"/><stop offset=".5" stop-color="var(--accent)"/><stop offset="1" stop-color="var(--accent-2)"/></linearGradient></defs><rect x="1" y="1" width="30" height="30" rx="9" fill="url(#lg)" opacity=".16"/><rect x="1" y="1" width="30" height="30" rx="9" fill="none" stroke="url(#lg)" stroke-opacity=".7"/><path d="M8 21.5 12.5 11l3.5 7 3.5-7L24 21.5" fill="none" stroke="url(#lg)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8" cy="21.5" r="1.8" fill="var(--cyan)"/><circle cx="24" cy="21.5" r="1.8" fill="var(--accent-2)"/></svg>
+      <span data-brand>w3hub<span class="logo-tld">.dev</span></span>
+    </a>
+    <nav class="nav" aria-label="Əsas menyu">
+      <a href="../v2/roadmap.html">Yol xəritələri</a>
+      <div class="dd">
+        <button data-menu-btn aria-expanded="false">Texnologiyalar <i data-icon="chev"></i></button>
+        <div class="menu mega" data-tech-menu hidden></div>
+      </div>
+      <a href="#bolmeler">Bölmələr</a>
+      <a href="../v2/go.html">Go</a>
+    </nav>
+    <div class="header-spacer"></div>
+    <div class="header-right">
+      <button class="search-trigger" data-open-search aria-label="Axtarış (Ctrl+K)"><i data-icon="search"></i><span>Axtar…</span><kbd>Ctrl K</kbd></button>
+      <div class="dd">
+        <button class="btn btn-ghost btn-icon" data-menu-btn aria-expanded="false" aria-label="Görünüş: tema və palitra" title="Görünüş"><span data-look-icon style="display:contents"></span></button>
+        <div class="menu right" data-look-menu hidden style="min-width:230px"></div>
+      </div>
+      <a class="btn btn-sm btn-signin" href="#basla">Daxil ol</a>
+      <button class="btn btn-ghost btn-icon menu-toggle" data-nav-toggle aria-label="Menyu" aria-expanded="false"><i data-icon="menu"></i></button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= HERO: chaos → order ================= -->
+    <section class="hero" id="start">
+      <canvas class="field" id="field" aria-hidden="true"></canvas>
+      <span class="lock-ring" id="lock-ring" aria-hidden="true"></span>
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <a class="announce" href="../v2/go.html" data-intro="1">
+            <span class="badge live">yeni</span>
+            <span><b>Go</b> xəritəsi açıqdır — 12 dərs hazırdır</span>
+            <i data-icon="arrow"></i>
+          </a>
+          <h1 class="hero-title" id="hero-title">
+            <span class="line"><span class="w" style="--w:0">Öyrənmək</span></span>
+            <span class="line l2"><span class="w" style="--w:0">çətin</span> <span class="w" style="--w:1">deyil.</span></span>
+            <span class="line l3"><span class="w accent-grad" style="--w:0">Azmaq</span> <span class="w accent-grad" style="--w:1">asandır.</span></span>
+          </h1>
+          <p class="hero-sub" data-intro="1">Ona görə bütün yolu bir xəritəyə yığdıq: nəyi, hansı sırayla, niyə. Hər addımda qısa izah, işlək kod, vizual, test və müsahibə sualı — Azərbaycan dilində.</p>
+          <div class="hero-cta" data-intro="2">
+            <a class="btn btn-primary btn-lg" id="hero-go" href="../v2/roadmap.html">Xəritəni aç <span class="arrow" data-icon="arrow"></span></a>
+            <a class="btn btn-lg" href="../v2/go.html">Go ilə başla</a>
+          </div>
+          <ul class="hero-facts" data-intro="3" aria-label="Platforma rəqəmlərlə">
+            <li><b data-n="84">84</b> Go mövzusu</li>
+            <li><b data-n="13">13</b> texnologiya</li>
+            <li><b data-n="4">4</b> istiqamət</li>
+            <li>pulsuz · hesabsız</li>
+          </ul>
+        </div>
+
+        <!-- the particle sculpture is drawn on the canvas, centred on this zone -->
+        <div class="hero-sculpt" id="sculpt-zone">
+          <div class="sculpt-ui" data-intro="3">
+            <p class="sculpt-cap" id="sculpt-cap" aria-live="polite"><b></b><span></span></p>
+            <div class="sculpt-tabs" id="sculpt-tabs" role="tablist" aria-label="Hər mövzunun beş tərəfi"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 01 PROBLEM: before / after ================= -->
+    <section class="section" id="problem">
+      <div class="wrap">
+        <div class="head">
+          <div class="tag" data-reveal>// 01 · problem</div>
+          <h2 data-reveal>Əvvəl: 47 açıq tab.<br><span class="accent-grad">Sonra: bir xəritə.</span></h2>
+          <p data-reveal style="--i:1">Video bir şey deyir, məqalə başqasını, sənəd üçüncüsünü. Məlumat çoxdur — sırası yoxdur. Xətti sürüşdür, fərqi gör.</p>
+        </div>
+        <div class="ba" id="ba" data-reveal="scale">
+          <div class="ba-before" id="ba-before" aria-hidden="true"><span class="ba-label">əvvəl</span></div>
+          <div class="ba-after" id="ba-after"><span class="ba-label">sonra</span><div class="ba-clean" id="ba-clean"></div></div>
+          <div class="ba-handle" id="ba-handle" role="slider" tabindex="0" aria-label="Əvvəl və sonra arasında sürüşdür" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span><i data-icon="chev"></i><i data-icon="chev"></i></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 02 MANIFESTO: words light up with the scroll ================= -->
+    <section class="section manifesto-sec" id="yanasma">
+      <div class="wrap">
+        <div class="tag" data-reveal>// 02 · yanaşma</div>
+        <p class="manifesto" id="manifesto"></p>
+      </div>
+    </section>
+
+    <!-- ================= 03 ONE TOPIC, FIVE LAYERS: exploded view ================= -->
+    <section class="xp" id="qatlar">
+      <div class="xp-sticky">
+        <div class="wrap xp-grid">
+          <div class="xp-copy">
+            <div class="tag">// 03 · bir mövzu</div>
+            <h2>Bir mövzu.<br><span class="accent-grad">Beş qat.</span></h2>
+            <p>Hər dərs bir səhifədir, amma içində beş qat var. <span id="xp-hint">Sürüşdür — qatlar ayrılsın.</span></p>
+            <ol class="xp-list" id="xp-list"></ol>
+          </div>
+          <div class="xp-scene" aria-hidden="true">
+            <div class="xp-stack" id="xp-stack"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 04 STACK: the orbit ================= -->
+    <section class="section" id="stack">
+      <div class="wrap orbit-grid">
+        <div class="orbit-copy">
+          <div class="tag" data-reveal>// 04 · stack</div>
+          <h2 data-reveal>Bütün stack<br><span class="accent-grad">sənin ətrafında fırlanır.</span></h2>
+          <p data-reveal style="--i:1">Bir dil seç, ya da bütöv bir istiqamət. İstiqamət texnologiyaları doğru sıraya düzür — sən sadəcə birincidən başlayırsan.</p>
+          <div class="dirs" id="dirs" role="tablist" aria-label="İstiqamətlər" data-reveal style="--i:2"></div>
+          <div class="dir-path" id="dir-path" aria-live="polite" data-reveal style="--i:3"></div>
+        </div>
+        <div class="orbit-box" data-reveal="scale">
+          <div class="orbit" id="orbit"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 05 PLATFORM: what is ready, what is coming ================= -->
+    <section class="section" id="bolmeler">
+      <div class="wrap">
+        <div class="head">
+          <div class="tag" data-reveal>// 05 · platforma</div>
+          <h2 data-reveal>Hazır olanlar.<br><span class="accent-grad">Yolda olanlar.</span></h2>
+          <p data-reveal style="--i:1">Bölmələr bu sırayla açılır. Hamısı eyni xəritəyə bağlıdır: mövzunun testi də, müsahibə sualı da həmin node-dadır.</p>
+        </div>
+        <ol class="pl" id="pl"></ol>
+      </div>
+      <div class="pl-preview" id="pl-preview" aria-hidden="true"><span class="pp-ic"></span><b></b><small></small></div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="finale" id="basla">
+      <div class="bigline" aria-hidden="true"><div class="bigline-track"><span>Seç · Öyrən · Yoxla · Təkrar · </span><span>Seç · Öyrən · Yoxla · Təkrar · </span><span>Seç · Öyrən · Yoxla · Təkrar · </span><span>Seç · Öyrən · Yoxla · Təkrar · </span></div></div>
+      <div class="wrap finale-grid">
+        <div class="finale-copy" data-reveal>
+          <div class="tag">// başla</div>
+          <h2>Növbəti addım<br><span class="accent-grad">bir klik uzaqdadır.</span></h2>
+          <p>Hesab lazım deyil — harada qaldığını bu brauzer xatırlayır. Hesab açanda hər cihazda sinxron olur.</p>
+          <div class="cta-btns">
+            <a class="btn btn-primary btn-lg" id="cta-next" href="../v2/go.html">Davam et <span class="arrow" data-icon="arrow"></span></a>
+            <a class="btn btn-lg" href="../v2/roadmap.html">Xəritəni aç</a>
+          </div>
+        </div>
+        <a class="resume" id="resume" href="../v2/go.html" data-reveal style="--i:1">
+          <div class="resume-ring">
+            <svg viewBox="0 0 120 120"><defs><linearGradient id="gProg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--cyan)"/><stop offset=".5" stop-color="var(--accent)"/><stop offset="1" stop-color="var(--accent-2)"/></linearGradient></defs><circle cx="60" cy="60" r="50" class="tr"/><circle cx="60" cy="60" r="50" class="br" id="res-bar"/></svg>
+            <div><b id="res-pct">0%</b><small>Go yolu</small></div>
+          </div>
+          <div class="resume-next">
+            <small>NÖVBƏTİ DƏRS</small>
+            <b id="res-title">—</b>
+            <span id="res-sub"></span>
+          </div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <a class="logo" href="index.html"><span data-brand>w3hub<span class="logo-tld">.dev</span></span></a>
+          <p>Proqramlaşdırmanı Azərbaycan dilində, yol xəritəsi ilə öyrənmək üçün açıq platforma.</p>
+        </div>
+        <div><h4>Platforma</h4><ul><li><a href="../v2/roadmap.html">Yol xəritələri</a></li><li><a href="#stack">Texnologiyalar</a></li><li><a href="#bolmeler">Bölmələr</a></li><li><a href="#qatlar">Bir mövzu, beş qat</a></li></ul></div>
+        <div><h4>Texnologiyalar</h4><ul><li><a href="../v2/go.html">Go</a></li><li><span class="muted">Python · tezliklə</span></li><li><span class="muted">TypeScript · tezliklə</span></li><li><a href="../v2/roadmap.html#backend">Backend</a></li></ul></div>
+        <div><h4>Layihə</h4><ul><li><a href="https://github.com/seymur-orucov/go-by-example-az" rel="noopener">GitHub</a></li><li><a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">Məzmun: CC BY 4.0</a></li><li><span class="muted">Kod: MIT</span></li></ul></div>
+      </div>
+      <div class="foot-bottom">
+        <span>Go adı Google LLC-yə məxsusdur. Dizayn v3 · prototip.</span>
+        <span>Ad variantı:
+          <span class="brand-switch" role="group" aria-label="Ad variantı"><button data-brand-pick="w3hub">w3hub.dev</button><button data-brand-pick="beststack">beststack.dev</button></span>
+        </span>
+      </div>
+      <div class="huge-brand" aria-hidden="true" data-brand-huge>w3hub</div>
+    </div>
+  </footer>
+
+  <nav class="variant-switch" aria-label="Dizayn versiyası"><a href="../v2/">v2</a><a href="index.html" aria-current="page">v3</a><a href="../v4/">v4</a><a href="../v5/">v5</a><a href="../v6/">v6</a></nav>
+
+  <script src="../shared/data.js"></script>
+  <script src="../v2/v2.js"></script>
+  <script src="v3.js"></script>
+</body>
+</html>
