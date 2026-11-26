@@ -1,0 +1,292 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir budget-app",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd budget-app",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"# Budget app\" > README.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo 'console.log(\"food: 300 USD\");' > app.js",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add .",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add first version\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status",
+      "step": "clean",
+      "hidden": false,
+      "fail": false,
+      "out": "On branch main\nnothing to commit, working tree clean\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo 'console.log(\"rent: 900 USD\");' >> app.js",
+      "step": "modified",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status",
+      "step": "modified",
+      "hidden": false,
+      "fail": false,
+      "out": "On branch main\nChanges not staged for commit:\n  (use \"git add <file>...\" to update what will be committed)\n  (use \"git restore <file>...\" to discard changes in working directory)\n\tmodified:   app.js\n\nno changes added to commit (use \"git add\" and/or \"git commit -a\")\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Ask the bank for a CSV export\" > notes.txt",
+      "step": "sections",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Tracks monthly spending.\" >> README.md",
+      "step": "sections",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add README.md",
+      "step": "sections",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status",
+      "step": "sections",
+      "hidden": false,
+      "fail": false,
+      "out": "On branch main\nChanges to be committed:\n  (use \"git restore --staged <file>...\" to unstage)\n\tmodified:   README.md\n\nChanges not staged for commit:\n  (use \"git add <file>...\" to update what will be committed)\n  (use \"git restore <file>...\" to discard changes in working directory)\n\tmodified:   app.js\n\nUntracked files:\n  (use \"git add <file>...\" to include in what will be committed)\n\tnotes.txt\n\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git status -s",
+      "step": "short",
+      "hidden": false,
+      "fail": false,
+      "out": "M  README.md\n M app.js\n?? notes.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Runs in the browser.\" >> README.md",
+      "step": "short",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status -s",
+      "step": "short",
+      "hidden": false,
+      "fail": false,
+      "out": "MM README.md\n M app.js\n?? notes.txt\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "clean": {
+      "areas": {
+        "work": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "app.js",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "app.js",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "c22e05a",
+            "message": "Add first version"
+          },
+          "count": 1,
+          "files": [
+            "README.md",
+            "app.js"
+          ]
+        }
+      }
+    },
+    "modified": {
+      "areas": {
+        "work": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "app.js",
+            "state": "modified"
+          }
+        ],
+        "index": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "app.js",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "c22e05a",
+            "message": "Add first version"
+          },
+          "count": 1,
+          "files": [
+            "README.md",
+            "app.js"
+          ]
+        }
+      }
+    },
+    "sections": {
+      "areas": {
+        "work": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "app.js",
+            "state": "modified"
+          },
+          {
+            "name": "notes.txt",
+            "state": "untracked"
+          }
+        ],
+        "index": [
+          {
+            "name": "README.md",
+            "state": "modified"
+          },
+          {
+            "name": "app.js",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "c22e05a",
+            "message": "Add first version"
+          },
+          "count": 1,
+          "files": [
+            "README.md",
+            "app.js"
+          ]
+        }
+      }
+    },
+    "short": {
+      "areas": {
+        "work": [
+          {
+            "name": "README.md",
+            "state": "modified"
+          },
+          {
+            "name": "app.js",
+            "state": "modified"
+          },
+          {
+            "name": "notes.txt",
+            "state": "untracked"
+          }
+        ],
+        "index": [
+          {
+            "name": "README.md",
+            "state": "modified"
+          },
+          {
+            "name": "app.js",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "c22e05a",
+            "message": "Add first version"
+          },
+          "count": 1,
+          "files": [
+            "README.md",
+            "app.js"
+          ]
+        }
+      }
+    }
+  }
+}

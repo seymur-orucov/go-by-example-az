@@ -1,0 +1,35 @@
+$ git status --short
+?? .env
+?? build/
+$ echo ".env" > .gitignore
+$ echo "build/" >> .gitignore
+$ echo "*.log" >> .gitignore
+$ git status --short
+?? .gitignore
+$ git add .gitignore
+$ git commit -m "Ignore secrets, logs and build output"
+[main 75b5f1d] Ignore secrets, logs and build output
+ 1 file changed, 3 insertions(+)
+ create mode 100644 .gitignore
+$ echo "404 /about" > error.log
+$ git status --short
+$ git check-ignore -v .env build/index.html error.log
+.gitignore:1:.env	.env
+.gitignore:2:build/	build/index.html
+.gitignore:3:*.log	error.log
+$ echo "build finished" >> debug.log
+$ git status --short
+ M debug.log
+$ git rm --cached debug.log
+rm 'debug.log'
+$ git status --short
+D  debug.log
+$ git commit -m "Stop tracking debug.log"
+[main 88b9965] Stop tracking debug.log
+ 1 file changed, 1 deletion(-)
+ delete mode 100644 debug.log
+$ ls
+build
+debug.log
+error.log
+index.html

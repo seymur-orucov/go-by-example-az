@@ -1,0 +1,9 @@
+rules:
+  - "`.gitignore`-dakı hər sətir bir pattern-dir: `.env` fayl adı, `build/` qovluq, `*.log` `.log` ilə bitən bütün fayllar."
+  - "`.gitignore` yalnız untracked fayllara təsir edir; artıq izlənən fayl izlənməyə davam edir."
+  - "`git rm --cached <file>` faylı izləməkdən çıxarır və diskdə saxlayır; `--cached` olmadan fayl diskdən də silinir."
+  - "`git check-ignore -v <file>` faylı hansı qaydanın kənarda saxladığını göstərir."
+  - "Köhnə commit-lərə düşmüş fayl orada qalır: `.gitignore` tarixçəni təmizləmir."
+practices:
+  - "`.gitignore`-u layihənin əvvəlində yazıb commit edin."
+  - "Açar və parolları `.env` kimi ayrıca faylda saxlayıb `.gitignore`-a əlavə edin; commit olunubsa, açarı dəyişin."

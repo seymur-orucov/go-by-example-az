@@ -1,0 +1,224 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir cafe",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd cafe",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"Tea 2 USD\" \"Coffee 3 USD\" \"Espresso 3 USD\" \"Latte 4 USD\" \"Cappuccino 4 USD\" \"Hot chocolate 4 USD\" \"Orange juice 3 USD\" \"Croissant 3 USD\" \"Cheesecake 5 USD\" \"Brownie 4 USD\" > menu.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add menu.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add menu\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "sed -i 's/Coffee 3 USD/Coffee 4 USD/' menu.txt",
+      "step": "one-change",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git diff",
+      "step": "one-change",
+      "hidden": false,
+      "fail": false,
+      "out": "diff --git a/menu.txt b/menu.txt\nindex d2cfa46..17dd2c7 100644\n--- a/menu.txt\n+++ b/menu.txt\n@@ -1,5 +1,5 @@\n Tea 2 USD\n-Coffee 3 USD\n+Coffee 4 USD\n Espresso 3 USD\n Latte 4 USD\n Cappuccino 4 USD\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Lemonade 3 USD\" >> menu.txt",
+      "step": "two-hunks",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git diff",
+      "step": "two-hunks",
+      "hidden": false,
+      "fail": false,
+      "out": "diff --git a/menu.txt b/menu.txt\nindex d2cfa46..1ebff03 100644\n--- a/menu.txt\n+++ b/menu.txt\n@@ -1,5 +1,5 @@\n Tea 2 USD\n-Coffee 3 USD\n+Coffee 4 USD\n Espresso 3 USD\n Latte 4 USD\n Cappuccino 4 USD\n@@ -8,3 +8,4 @@ Orange juice 3 USD\n Croissant 3 USD\n Cheesecake 5 USD\n Brownie 4 USD\n+Lemonade 3 USD\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git add menu.txt",
+      "step": "after-add",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git diff",
+      "step": "after-add",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Muffin 3 USD\" >> menu.txt",
+      "step": "change-again",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git diff",
+      "step": "change-again",
+      "hidden": false,
+      "fail": false,
+      "out": "diff --git a/menu.txt b/menu.txt\nindex 1ebff03..5859192 100644\n--- a/menu.txt\n+++ b/menu.txt\n@@ -9,3 +9,4 @@ Croissant 3 USD\n Cheesecake 5 USD\n Brownie 4 USD\n Lemonade 3 USD\n+Muffin 3 USD\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "one-change": {
+      "areas": {
+        "work": [
+          {
+            "name": "menu.txt",
+            "state": "modified"
+          }
+        ],
+        "index": [
+          {
+            "name": "menu.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "27e5e15",
+            "message": "Add menu"
+          },
+          "count": 1,
+          "files": [
+            "menu.txt"
+          ]
+        }
+      }
+    },
+    "two-hunks": {
+      "areas": {
+        "work": [
+          {
+            "name": "menu.txt",
+            "state": "modified"
+          }
+        ],
+        "index": [
+          {
+            "name": "menu.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "27e5e15",
+            "message": "Add menu"
+          },
+          "count": 1,
+          "files": [
+            "menu.txt"
+          ]
+        }
+      }
+    },
+    "after-add": {
+      "areas": {
+        "work": [
+          {
+            "name": "menu.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "menu.txt",
+            "state": "modified"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "27e5e15",
+            "message": "Add menu"
+          },
+          "count": 1,
+          "files": [
+            "menu.txt"
+          ]
+        }
+      }
+    },
+    "change-again": {
+      "areas": {
+        "work": [
+          {
+            "name": "menu.txt",
+            "state": "modified"
+          }
+        ],
+        "index": [
+          {
+            "name": "menu.txt",
+            "state": "modified"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "27e5e15",
+            "message": "Add menu"
+          },
+          "count": 1,
+          "files": [
+            "menu.txt"
+          ]
+        }
+      }
+    }
+  }
+}

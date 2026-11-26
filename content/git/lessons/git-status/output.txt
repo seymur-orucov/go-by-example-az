@@ -1,0 +1,39 @@
+$ git status
+On branch main
+nothing to commit, working tree clean
+$ echo 'console.log("rent: 900 USD");' >> app.js
+$ git status
+On branch main
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   app.js
+
+no changes added to commit (use "git add" and/or "git commit -a")
+$ echo "Ask the bank for a CSV export" > notes.txt
+$ echo "Tracks monthly spending." >> README.md
+$ git add README.md
+$ git status
+On branch main
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   README.md
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   app.js
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	notes.txt
+
+$ git status -s
+M  README.md
+ M app.js
+?? notes.txt
+$ echo "Runs in the browser." >> README.md
+$ git status -s
+MM README.md
+ M app.js
+?? notes.txt

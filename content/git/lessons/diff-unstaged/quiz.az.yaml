@@ -1,0 +1,59 @@
+- question: "Diff-də `-Tea 2 USD` sətri nə deməkdir?"
+  options:
+    - "Bu sətir yeni əlavə olunub"
+    - "Bu sətir yeni versiyada yoxdur: silinib və ya dəyişib"
+    - "Bu sətir dəyişməyib, kontekstdir"
+  answer: 1
+  explain: "`-` köhnə versiyada olub yenidə olmayan sətirdir; dəyişmiş sətrin yeni forması `+` ilə gəlir."
+- question: "`@@ -4,3 +4,4 @@` nə deməkdir?"
+  options:
+    - "4-cü sətir 3 dəfə dəyişib"
+    - "3 sətir silinib, 4 sətir əlavə olunub"
+    - "4-cü sətirdən başlayan hissə köhnədə 3, yenidə 4 sətirdir"
+  answer: 2
+  explain: "Hər tərəf `başlanğıc,say` yazılır; burada hunk-da bir sətir artıb."
+- question: "`todo.txt` artıq commit olunub. Bu komandalardan sonra nə çap olunur?"
+  code: |
+    echo "call the bank" >> todo.txt
+    git add todo.txt
+    git diff
+  options:
+    - "Heç nə"
+    - "`+call the bank` olan diff"
+    - "`-call the bank` olan diff"
+  answer: 0
+  explain: "Arqumentsiz `git diff` working directory-ni staging area ilə müqayisə edir; `add`-dan sonra ikisi eynidir."
+- question: "`notes.txt` artıq commit olunub. Bu komandalardan sonra `git diff` hansı əlavə sətri göstərir?"
+  code: |
+    echo "first" >> notes.txt
+    git add notes.txt
+    echo "second" >> notes.txt
+    git diff
+  options:
+    - "`+first` və `+second`"
+    - "Yalnız `+first`"
+    - "Heç birini"
+    - "Yalnız `+second`"
+  answer: 3
+  explain: "`first` artıq staging area-dadır; `git diff` yalnız ondan sonrakı dəyişikliyi göstərir."
+- question: "Diff-də boşluqla başlayan sətirlər nədir?"
+  options:
+    - "Dəyişməmiş kontekst sətirləri"
+    - "Boş sətirlər"
+    - "Stage edilmiş sətirlər"
+  answer: 0
+  explain: "Kontekst sətirləri dəyişikliyin yerini tapmağa kömək edir, onlar dəyişməyib."
+- question: "Yeni, hələ `git add` edilməmiş `draft.txt` faylı `git diff`-də görünürmü?"
+  options:
+    - "Bəli, bütün sətirləri `+` ilə"
+    - "Xeyr: Git untracked faylları müqayisə etmir"
+    - "Yalnız birinci sətri"
+  answer: 1
+  explain: "`git diff` yalnız Git-in izlədiyi fayllara baxır."
+- question: "Faylda bir sətrin qiymətini dəyişdiniz. Diff bunu necə göstərir?"
+  options:
+    - "Bir `~` sətri kimi"
+    - "Yalnız `+` sətri kimi"
+    - "Köhnə forması `-`, yeni forması `+` ilə"
+  answer: 2
+  explain: "Git sətirləri müqayisə edir: dəyişmiş sətir bir silinmə və bir əlavədir."

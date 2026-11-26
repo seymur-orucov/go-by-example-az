@@ -588,3 +588,13 @@ Done (branch `feat/git-basics-lessons`):
 - `git-config` (`terminal`): the session removes the sandbox's preset config (hidden) and sets `user.name`, `user.email` and `init.defaultBranch` itself; reading values, `--global --list` (keys printed in lower case), a local email in `client-site` that wins over the global one (`--show-origin`); 4 steps, 8 questions.
 - `git-init` (`terminal`): a CV folder with an existing file, `ls -A`, what `.git` holds, `HEAD` → `refs/heads/main`, re-running `git init`, deleting `.git` (files stay, history goes); 4 steps, 7 questions.
 - Checked: `content:run` twice (identical `session.json`), every quiz answer in a scratch sandbox (Git 2.56.1), `content:check`, build, pages at 1440px. The session lessons were recorded with Git 2.56.1 (the pilots still carry 2.37.3).
+
+### 69. Git module 2 "İlk commit-lər"
+The second module of the same request (`first-commit` was already written as the `terminal` pilot).
+
+Done (branch `feat/git-first-commits-lessons`):
+- `git-status`: a budget app — a clean tree, `modified` with the `git add` / `git restore` hints, the three sections side by side, `git status -s` and `MM`; 4 steps, 7 questions.
+- `diff-unstaged`: a café menu of ten lines — reading the header and a hunk (`@@ -1,5 +1,5 @@`, `-`/`+`, context), two hunks, an empty `git diff` after `git add`, then only the newer change; 4 steps, 7 questions.
+- `diff-staged`: a party plan — `git diff --staged` vs plain `git diff`, a new file (`new file mode`, `--- /dev/null`), `--cached` with a path, both diffs after the commit; a note on `git diff HEAD`; 4 steps, 7 questions.
+- `gitignore`: a small site with `.env`, `build/` and logs — three patterns, `git check-ignore -v`, a tracked log that the rule does not hide, `git rm --cached`; 5 steps, 8 questions.
+- Checked: `content:run` twice (identical), every quiz answer and the `git diff HEAD` note in a scratch sandbox, `content:check` (96/96), build, `gitignore` at 1440px and `diff-unstaged` at 390px (iframe). The next module ("Tarixçə") needs the commit-graph visual first.

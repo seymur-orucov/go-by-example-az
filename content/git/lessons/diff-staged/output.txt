@@ -1,0 +1,61 @@
+$ echo "Lena" >> guests.txt
+$ git add guests.txt
+$ git diff
+$ git diff --staged
+diff --git a/guests.txt b/guests.txt
+index 67d8b28..a4a8149 100644
+--- a/guests.txt
++++ b/guests.txt
+@@ -1,2 +1,3 @@
+ Nora
+ Omar
++Lena
+$ echo "balloons: 15 USD" >> budget.txt
+$ git diff
+diff --git a/budget.txt b/budget.txt
+index 23805d0..d2b9ce7 100644
+--- a/budget.txt
++++ b/budget.txt
+@@ -1 +1,2 @@
+ cake: 40 USD
++balloons: 15 USD
+$ echo "Bring board games" > notes.txt
+$ git add notes.txt
+$ git diff --staged
+diff --git a/guests.txt b/guests.txt
+index 67d8b28..a4a8149 100644
+--- a/guests.txt
++++ b/guests.txt
+@@ -1,2 +1,3 @@
+ Nora
+ Omar
++Lena
+diff --git a/notes.txt b/notes.txt
+new file mode 100644
+index 0000000..09116f9
+--- /dev/null
++++ b/notes.txt
+@@ -0,0 +1 @@
++Bring board games
+$ git diff --cached guests.txt
+diff --git a/guests.txt b/guests.txt
+index 67d8b28..a4a8149 100644
+--- a/guests.txt
++++ b/guests.txt
+@@ -1,2 +1,3 @@
+ Nora
+ Omar
++Lena
+$ git commit -m "Invite Lena, add notes"
+[main 9121008] Invite Lena, add notes
+ 2 files changed, 2 insertions(+)
+ create mode 100644 notes.txt
+$ git diff --staged
+$ git diff
+diff --git a/budget.txt b/budget.txt
+index 23805d0..d2b9ce7 100644
+--- a/budget.txt
++++ b/budget.txt
+@@ -1 +1,2 @@
+ cake: 40 USD
++balloons: 15 USD

@@ -1,0 +1,57 @@
+- question: "`menu.txt` artıq commit olunub. Bu komandalardan sonra nə çap olunur?"
+  code: |
+    echo "Soup 5 USD" >> menu.txt
+    git add menu.txt
+    git diff --staged
+  options:
+    - "Heç nə"
+    - "Xəta: `--staged` yalnız commit-dən sonra işləyir"
+    - "`+Soup 5 USD` olan diff"
+  answer: 2
+  explain: "Dəyişiklik staging area-dadır, son commit-də isə yoxdur; `--staged` məhz bu fərqi göstərir."
+- question: "Heç nə stage edilməyib. Bu komandalardan sonra nə çap olunur?"
+  code: |
+    echo "Tea 2 USD" >> menu.txt
+    git diff --staged
+  options:
+    - "Heç nə"
+    - "`+Tea 2 USD` olan diff"
+    - "`?? menu.txt`"
+  answer: 0
+  explain: "Dəyişiklik yalnız diskdədir; staging area son commit ilə eynidir."
+- question: "Adi `git diff` ilə `git diff --staged` arasında fərq nədir?"
+  options:
+    - "Fərq yoxdur, ikisi eynidir"
+    - "Adi `git diff` stage edilməmiş, `--staged` isə stage edilmiş dəyişiklikləri göstərir"
+    - "`--staged` yalnız yeni faylları göstərir"
+  answer: 1
+  explain: "Adi `git diff` working directory-ni staging area ilə, `--staged` isə staging area-nı son commit ilə müqayisə edir."
+- question: "`git diff --cached` nə edir?"
+  options:
+    - "Diff-i yadda saxlayır"
+    - "Yalnız untracked faylları göstərir"
+    - "Köhnə commit-ləri göstərir"
+    - "`git diff --staged` ilə eyni işi görür"
+  answer: 3
+  explain: "`--cached` və `--staged` eyni seçimin iki adıdır."
+- question: "Yeni `plan.txt` faylı yaratdınız, amma `git add` etmədiniz. `git diff --staged` onu göstərirmi?"
+  options:
+    - "Bəli, `new file mode` ilə"
+    - "Xeyr: untracked fayl heç bir diff-də görünmür"
+    - "Bəli, amma yalnız faylın adını"
+  answer: 1
+  explain: "Fayl `git add`-dan sonra staging area-ya düşür və yalnız onda `--staged`-də görünür."
+- question: "Diff-də `--- /dev/null` sətri nə deməkdir?"
+  options:
+    - "Fayl silinib"
+    - "Fayl boşdur"
+    - "Faylın köhnə versiyası yoxdur, yəni fayl yenidir"
+  answer: 2
+  explain: "Yeni faylın müqayisə ediləcək köhnə versiyası olmadığı üçün Git onun yerinə `/dev/null` yazır."
+- question: "Staged dəyişiklikləri commit etdiniz. İndi `git diff --staged` nə çap edir?"
+  options:
+    - "Heç nə"
+    - "Son commit-in diff-ini"
+    - "Xəta"
+  answer: 0
+  explain: "Commit-dən sonra staging area son commit ilə eynidir, fərq yoxdur."

@@ -1,0 +1,71 @@
+- question: "`.tmp` ilə bitən bütün faylları hansı pattern kənarda saxlayır?"
+  options:
+    - "`.tmp`"
+    - "`tmp/`"
+    - "`*.tmp`"
+  answer: 2
+  explain: "`*` istənilən simvollar deməkdir; `.tmp` yalnız məhz bu adda faylı, `tmp/` isə `tmp` qovluğunu tutur."
+- question: "Yeni repository-də bu komandalardan sonra nə çap olunur?"
+  code: |
+    echo "*.log" > .gitignore
+    echo "started" > app.log
+    echo "buy milk" > notes.txt
+    git status --short
+  options:
+    - "`?? .gitignore` və `?? notes.txt`"
+    - "`?? .gitignore`, `?? app.log` və `?? notes.txt`"
+    - "Yalnız `?? notes.txt`"
+  answer: 0
+  explain: "`app.log` qaydaya uyğundur və görünmür; `.gitignore`-un özü isə adi untracked fayldır."
+- question: "`.gitignore`-dakı `cache/` sətri nəyi kənarda saxlayır?"
+  options:
+    - "Yalnız `cache` adlı faylı"
+    - "`cache` qovluğunu və içindəki hər şeyi"
+    - "Adında `cache` olan bütün faylları"
+  answer: 1
+  explain: "Sondakı `/` pattern-i qovluğa bağlayır; qovluğun bütün məzmunu kənarda qalır."
+- question: "`server.log` artıq commit olunub. Bu komandalardan sonra nə çap olunur?"
+  code: |
+    echo "*.log" > .gitignore
+    git add .gitignore
+    git commit -q -m "Ignore logs"
+    echo "restarted" >> server.log
+    git status --short
+  options:
+    - "Heç nə"
+    - "`?? server.log`"
+    - "`A  server.log`"
+    - "` M server.log`"
+  answer: 3
+  explain: "`.gitignore` izlənən fayllara təsir etmir; Git `server.log`-un dəyişikliyini göstərməyə davam edir."
+- question: "Hansı komanda faylı izləməkdən çıxarır, amma diskdə saxlayır?"
+  options:
+    - "`git rm --cached secret.txt`"
+    - "`git rm secret.txt`"
+    - "`git restore secret.txt`"
+  answer: 0
+  explain: "`--cached` yalnız staging area-ya təsir edir; `--cached` olmadan `git rm` faylı diskdən də silir."
+- question: "`secret.txt` commit olunub və heç bir `.gitignore` qaydası ona uyğun deyil. Bu komandalardan sonra nə çap olunur?"
+  code: |
+    git rm --cached secret.txt
+    git status --short
+  options:
+    - "Yalnız `D  secret.txt`"
+    - "`D  secret.txt` və `?? secret.txt`"
+    - "Heç nə"
+  answer: 1
+  explain: "Fayl repository-dən silinmək üçün stage olunub, diskdə isə qalıb və indi untracked-dir."
+- question: "`.gitignore` faylını commit etmək lazımdırmı?"
+  options:
+    - "Xeyr, o yalnız sizin kompüteriniz üçündür"
+    - "Xeyr, Git onu özü kənarda saxlayır"
+    - "Bəli, belə qaydalar repository-ni istifadə edən hər kəsdə işləyir"
+  answer: 2
+  explain: "`.gitignore` adi fayldır; commit olunanda qaydalar bütün komandaya keçir."
+- question: "`git check-ignore -v error.log` nə göstərir?"
+  options:
+    - "`error.log`-un məzmununu"
+    - "Faylı kənarda saxlayan qaydanı: fayl, sətir nömrəsi və pattern"
+    - "Bütün kənarda saxlanan faylların siyahısını"
+  answer: 1
+  explain: "`-v` qaydanın harada yazıldığını göstərir, məsələn `.gitignore:3:*.log`."
