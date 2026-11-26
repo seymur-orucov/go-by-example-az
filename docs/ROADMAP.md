@@ -163,6 +163,8 @@ Once the Go prototype is live, the site becomes a unified platform.
 - [~] **Content pipeline for new technologies** ([DECISIONS.md](DECISIONS.md#content-pipeline-syllabus--lessons-2026-11-26)):
   - [x] `plan-syllabus` skill (research → proposal → `content/<technology>/syllabus.yaml`)
   - [x] **Git syllabus** approved: 7 modules, 39 nodes, ~4.5 h (`content/git/syllabus.yaml`)
+  - [x] **Git syllabus v2**: full roadmap.sh/git-github scope, one node per topic — 2 parts (Git 13 modules / 78 nodes, GitHub 12 modules / 68 nodes), 146 nodes, ~13.7 h; `parts` in the syllabus schema and on `/git/`; new kind `ui` (planned)
+  - [ ] Lesson kind `ui` on the site (needed by the GitHub part)
   - [x] Lesson kinds `terminal` and `state` on the site: `session.sh` + `pnpm content:run` (recorded output), the `areas` visual, `/git/` and `/git/<id>/` pages, shared `LessonView`; `pnpm content:check` validates syllabi and session lessons
   - [ ] Lesson kinds `diagram`, `compare`, `concept` and the commit-graph visual (`vis: graph`, needed from `commit-snapshot` on)
   - [x] `write-content` skill (pilot lesson per kind → approval → module by module)

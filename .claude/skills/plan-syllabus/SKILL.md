@@ -24,10 +24,11 @@ may be taken from other sites, the five node facets, the rollout order.
 
 Collect **topic lists, ordering and depth** — never texts. Sources, in this order:
 
-1. roadmap.sh — the roadmap for the technology. The page is rendered by JavaScript; the topic
-   names are the file names in the `kamranahmedse/developer-roadmap` repo
-   (`src/data/roadmaps/<id>/content/<topic>@<hash>.md`, list them through the GitHub API
-   tree). The repo does not store the order; take order from the other sources.
+1. roadmap.sh — the roadmap for the technology. The page is rendered by JavaScript, but
+   `https://roadmap.sh/<id>.json` (e.g. `git-github.json`) serves its graph: `nodes` with
+   `type` (`topic` = section, `subtopic`), `data.label` and `position` — the topic names
+   **and** the order. Fallback: the file names in the `kamranahmedse/developer-roadmap` repo
+   (`src/data/roadmaps/<id>/content/`), which carry no order.
 2. itbooster.ru — also rendered by JavaScript, its topic list cannot be fetched. Ask the user
    to paste it if they want it in the merge; do not probe the site's private API.
 3. The official documentation or the canonical book of the technology (for Git: the Pro Git
@@ -83,6 +84,7 @@ by what the reader must *see* to understand the idea:
 | `diagram` | actors and messages, frame by frame | the idea is a protocol or a flow between parts (HTTP, TCP, CI pipeline) |
 | `compare` | two variants side by side | the node exists to choose between two approaches (merge vs rebase) |
 | `concept` | text with one static illustration | a principle with no runnable form |
+| `ui` | screenshots of a web interface with numbered callouts, step by step | the idea is done in a product's web UI (GitHub settings, issues, Projects) |
 
 Only `code` exists on the site today; the others are planned and are built when the first
 syllabus needs them. If no kind fits, propose a new one in the proposal with one sentence on
@@ -100,12 +102,17 @@ Per node, list the facets it gets (docs/DECISIONS.md "Platform sections"):
 
 ## 5b. Coverage check
 
-Map **every** topic of the main source (roadmap.sh) to one of: covered by a node (directly or
-folded into its `topics`), out of scope (with the reason), or a section header. Small topics
-are folded into the node they belong to (`--soft`, `--mixed`, `--hard` → one `reset-modes`
-node) and listed in that node's `topics`, so nothing silently disappears. Report the counts in
-the proposal, e.g. "155 topics: 74 covered in 39 nodes, 65 GitHub platform, 7 left out, 9
-headers".
+**Default: the full roadmap, one node per roadmap topic** (the user's rule, 2026-11-26: the
+first Git syllabus folded 155 topics into 39 nodes and dropped the GitHub part, and the user
+asked "why did you shorten it?"). Do not cut scope or fold topics on your own; if the roadmap
+looks too large, propose a split into `parts` and ask. Fold only true fragments of one idea
+that cannot stand as a lesson. Put the roadmap topic name first in the node's `topics`.
+
+Map **every** topic of the main source (roadmap.sh) to a node or a section header, and list
+anything else by name with the reason. Check it with a script against roadmap.sh's
+`https://roadmap.sh/<id>.json` (`nodes` of type `topic` / `subtopic`; their `position.y` gives
+the order). Report the counts in the proposal, e.g. "156 topics: 149 in 146 nodes, 6 headers,
+1 typo".
 
 ## 6. Proposal (stop and wait)
 
@@ -137,8 +144,12 @@ outOfScope:
 sources:
   - { name: roadmap.sh, url: "https://roadmap.sh/git-github", used: "topic list" }
   - { name: Pro Git, url: "https://git-scm.com/book/en/v2", used: "order, fact checking" }
+parts:                      # optional, for a large syllabus (2+ parts); every module then names one
+  - { id: git, title: "Hissə 1 · Git", description: "…" }
+  - { id: github, title: "Hissə 2 · GitHub", description: "…" }
 modules:
   - id: basics
+    part: git                 # only with `parts`; a part's modules are contiguous
     title: "Əsaslar"
     description: "…"
     nodes:

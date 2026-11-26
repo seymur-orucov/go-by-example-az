@@ -530,7 +530,16 @@ Done (branch `fix/tech-page-next`):
 - Seen, not changed: in the light theme the orange aurora is very faint; the heading gradient uses the site's cyan → violet on every technology page, not the technology's color.
 - Then changed (same branch): the second heading line on technology pages uses the technology's color (`--tech-c`) instead of the site-wide cyan → violet (Git is orange, Go cyan); the aurora is stronger in the light theme (opacity ~0.8 instead of ~0.39; dark theme unchanged at 0.7). This also affects the light-theme look of `/go/`.
 
-### 63. The last Go lesson and the Go check in CI
+### 63. Git syllabus v2: the full roadmap
+The user asked why the Git syllabus did not follow the roadmap the way itbooster.ru does (roadmap 22, which mirrors roadmap.sh/git-github) and why it was shortened. Claude explained that v1 folded roadmap.sh's 155 topics into 39 nodes and left the GitHub part out. The user chose the full scope, a new `ui` lesson kind for GitHub interface topics, GitHub as a separate part, and left the outcomes to Claude.
+
+Done (branch `feat/git-full-syllabus`):
+- Topic names and order read from `https://roadmap.sh/git-github.json` (the graph behind the page; node positions give the order), so nothing was guessed.
+- `content/git/syllabus.yaml` v2: one node per roadmap topic, 146 nodes, 821 min, 25 modules in two parts — "Hissə 1 · Git" (13 modules, 78 nodes) and "Hissə 2 · GitHub" (12 modules, 68 nodes). The 39 v1 ids kept, except two without lessons renamed (`status-and-diff` → `git-status`, `install-and-config` → `git-config`). Kinds: terminal 48, ui 33, state 21, code 15, compare 12, concept 10, diagram 7. A script maps every roadmap topic to a node: all covered except 6 section headers and roadmap.sh's typo "Scheduled Worfklows".
+- Schema: `parts` (modules name their part, parts contiguous) and the `ui` kind (needs `visual`); `TechPage` shows a heading per part in both program views. Go pages unchanged.
+- `plan-syllabus` skill: full roadmap and one node per topic by default, no silent scope cuts, roadmap.sh JSON as the source of order, `ui` in the kind table.
+
+### 64. The last Go lesson and the Go check in CI
 The user asked Claude to finish all remaining Go modules. All 9 sections were already written; only `execing-processes` was still `planned`, because its `output.txt` needs Linux (`syscall.Exec` always fails on Windows) and this machine has no WSL distro or Docker.
 
 Done (branch `feat/go-ci`, in a separate worktree because a parallel session held the main checkout):

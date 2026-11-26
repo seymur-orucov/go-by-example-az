@@ -358,6 +358,34 @@ a.fit-chip:hover {
 .prog-all[hidden] {
   display: none;
 }
+/* Part heading of a large syllabus (Git / GitHub): spans the whole grid. */
+.prog-part {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 14px;
+  margin-top: 18px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+.prog-part:first-child {
+  margin-top: 0;
+}
+.prog-part h3 {
+  margin: 0;
+  font-size: 20px;
+}
+.prog-part p {
+  margin: 0;
+  flex: 1 1 320px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+.prog-part small {
+  color: var(--text-subtle);
+  font-size: 12.5px;
+}
 .sec-card {
   padding: 18px 18px 12px;
   border-radius: 20px;
