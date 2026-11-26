@@ -62,8 +62,8 @@ format section there and one existing `source: original` lesson before starting.
   vacibdir"). Say *what* the code does and *why*.
 - **Length follows the topic, not a fixed count.** One sentence is rarely enough to
   introduce a concept a beginner has not met:
-  - **Intro**: 2–4 sentences, one or two short paragraphs. Cover what the concept is (with
-    everyday examples), how it differs from the closest concept already taught (constant
+  - **Intro**: 2–4 sentences, one or two short paragraphs. Cover what the concept is (one
+    plain example at most), how it differs from the closest concept already taught (constant
     vs variable, slice vs array, method vs function), and what it is good for. Explain any
     new word it relies on in passing ("kompilyasiya zamanı, yəni proqram işə düşməzdən
     əvvəl").
@@ -71,8 +71,17 @@ format section there and one existing `source: original` lesson before starting.
     memory, closures capturing variables, goroutine scheduling) may take 4–5 or a second
     paragraph. Do not stretch an easy step to match.
   - Do not repeat in the intro what a step explains, and vice versa.
-- A real-life comparison is welcome in the text when it makes the idea clearer
-  ("slice — rezin çanta kimi: lazım olanda böyüyür").
+- **Plain voice, no AI tone** (the user's review of the first 84 lessons, 2026-11-27: some
+  explanations read like AI text, some examples are convoluted):
+  - At most **one short comparison per lesson**, and only if it explains something the
+    code cannot. No running metaphor (a kitchen, a café, a pizzeria) carried through every
+    step; name what the code does in programming terms.
+  - Short sentences, one idea each. Split a sentence that needs two commas and a colon.
+    No ornate or solemn wording, no filler openers ("Təsəvvür edin ki…"), no summary
+    sentence that repeats the step.
+  - The example is the simplest data that shows the idea: few fields, plain names, no
+    story to keep in mind. If the reader must follow the scenario to follow the code, cut
+    the scenario.
 - At most one note per step: `> **Diqqət:** …` for a pitfall, `> **Bilgi:** …` for a tip.
 - 3–5 steps. Code stays short: the whole `main.go` should fit on one screen (~30 lines).
 
