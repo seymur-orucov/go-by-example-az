@@ -1,0 +1,20 @@
+# Hand-written visuals (text lesson): the copies problem, then the same work as a history.
+copies:
+  vis:
+    kind: flow
+    caption: "Qovluq: recipes/"
+    items:
+      - { label: "recipes.md", sub: "ilk variant", tone: bad }
+      - { label: "recipes_final.md", sub: "bəs bu?", tone: bad }
+      - { label: "recipes_final_v2.md", sub: "kim dəyişib?", tone: bad }
+      - { label: "recipes_final_REAL.md", sub: "hansı sonuncudur?", tone: bad }
+history:
+  vis:
+    kind: flow
+    caption: "Tarixçə: recipes.md"
+    arrows: true
+    items:
+      - { label: "Add soup recipes", sub: "Sam · bazar ertəsi" }
+      - { label: "Add cake recipe", sub: "Ayla · çərşənbə" }
+      - { label: "Reduce sugar in cake", sub: "Sam · cümə", tone: accent }
+    note: "Qovluqda bir fayl qalır; köhnə versiyalar tarixçədədir və hər birinə qayıtmaq olur."

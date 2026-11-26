@@ -131,7 +131,59 @@ const visTimeline = z
           });
   });
 
-export const visSchema = z.discriminatedUnion("kind", [visSlice, visMap, visChannel, visTimeline]);
+/** Tone of a box: plain, the good / bad side of a choice, or the point of the step. */
+const tone = z.enum(["good", "bad", "accent"]).optional();
+
+/**
+ * A row of boxes (text lessons, hand-written): versions on a timeline, copies of a file, the
+ * parts of something. `arrows` draws › between the boxes.
+ */
+const visFlow = z
+  .object({
+    kind: z.literal("flow"),
+    caption: z.string().min(1),
+    arrows: z.boolean().optional(),
+    items: z
+      .array(z.object({ label: z.string().min(1), sub: z.string().optional(), tone }).strict())
+      .min(1)
+      .max(8),
+    note: z.string().optional(),
+  })
+  .strict();
+
+/** Two variants side by side, compared aspect by aspect (text lessons, hand-written). */
+const visCompare = z
+  .object({
+    kind: z.literal("compare"),
+    caption: z.string().min(1),
+    a: z.object({ title: z.string().min(1), sub: z.string().optional() }).strict(),
+    b: z.object({ title: z.string().min(1), sub: z.string().optional() }).strict(),
+    rows: z
+      .array(
+        z
+          .object({
+            aspect: z.string().min(1),
+            a: z.string().min(1),
+            b: z.string().min(1),
+            /** Which side wins on this aspect, if any. */
+            better: z.enum(["a", "b"]).optional(),
+          })
+          .strict(),
+      )
+      .min(1)
+      .max(8),
+    note: z.string().optional(),
+  })
+  .strict();
+
+export const visSchema = z.discriminatedUnion("kind", [
+  visSlice,
+  visMap,
+  visChannel,
+  visTimeline,
+  visFlow,
+  visCompare,
+]);
 
 type Fresh<T> = T & { fresh?: boolean };
 /**
@@ -198,6 +250,8 @@ export interface LessonStep extends CodeStep {
 
 export interface Lesson {
   slug: string;
+  /** `code`: Go program; `session`: recorded terminal session; `text`: no code pane (concept, compare). */
+  mode: "code" | "session" | "text";
   /** The code pane: `main.go` (Go) or `session.sh` (terminal sessions), markers removed. */
   code: string;
   lang: "go" | "bash";
@@ -376,6 +430,7 @@ export function loadLesson(
 
   return {
     slug,
+    mode: "code",
     code,
     lang: "go",
     file: "main.go",
@@ -506,6 +561,7 @@ export function loadSessionLesson(
   let prev: AreasFrame | null = null;
   return {
     slug,
+    mode: "session",
     code: session.code,
     lang: "bash",
     file: "terminal",
@@ -524,5 +580,100 @@ export function loadSessionLesson(
     quiz: quizParsed.data!,
     takeaways: takeawaysParsed.data!,
     output,
+  };
+}
+
+/** steps.yaml of a text lesson: an optional hand-written visual per step (no slice: it is Go's). */
+const textStepsSchema = z.record(
+  z.string().regex(ID),
+  z
+    .object({ vis: visSchema.optional() })
+    .strict()
+    .nullable()
+    .transform((v) => v ?? {}),
+);
+
+/**
+ * Loads and validates a ready text lesson (kinds `concept` and `compare`): content/<technology>/
+ * lessons/<slug>/ with `lesson.<locale>.md`, `steps.yaml` (optional `vis` per step: `flow` or
+ * `compare`), `quiz.<locale>.yaml` and `takeaways.<locale>.yaml` — no code, no session.
+ * `requireCompare` (compare lessons) demands a `compare` visual in at least one step.
+ */
+export function loadTextLesson(
+  technology: string,
+  slug: string,
+  opts: { locale?: string; requireCompare?: boolean } = {},
+): Lesson {
+  const { locale = "az", requireCompare = false } = opts;
+  const dir = join(CONTENT_ROOT, technology, "lessons", slug);
+  const files = {
+    text: join(dir, `lesson.${locale}.md`),
+    steps: join(dir, "steps.yaml"),
+    quiz: join(dir, `quiz.${locale}.yaml`),
+    takeaways: join(dir, `takeaways.${locale}.yaml`),
+  };
+  const missing = Object.values(files).filter((f) => !existsSync(f));
+  if (missing.length) {
+    const names = missing.map((f) => f.slice(dir.length + 1)).join(", ");
+    throw new Error(`${technology}/${slug}: missing ${names}`);
+  }
+  for (const stray of ["session.sh", "main.go"]) {
+    if (existsSync(join(dir, stray))) {
+      throw new Error(`${technology}/${slug}: a text lesson has no ${stray} (check the node kind)`);
+    }
+  }
+
+  const problems: string[] = [];
+  const text = parseLessonText(readFileSync(files.text, "utf8"));
+  const stepsParsed = textStepsSchema.safeParse(readYaml(files.steps) ?? {});
+  if (!stepsParsed.success) problems.push(`steps.yaml: ${formatZod(stepsParsed.error)}`);
+  const stepData = stepsParsed.success ? stepsParsed.data : {};
+  const quizParsed = quizSchema.safeParse(readYaml(files.quiz));
+  if (!quizParsed.success) problems.push(`quiz.${locale}.yaml: ${formatZod(quizParsed.error)}`);
+  const takeawaysParsed = takeawaysSchema.safeParse(readYaml(files.takeaways));
+  if (!takeawaysParsed.success) {
+    problems.push(`takeaways.${locale}.yaml: ${formatZod(takeawaysParsed.error)}`);
+  }
+
+  if (text.sections.length < 2 || text.sections.length > 6) {
+    problems.push(`lesson.${locale}.md: ${text.sections.length} steps, expected 2–6`);
+  }
+  const ids = text.sections.map((s) => s.id);
+  const dup = ids.find((id, i) => ids.indexOf(id) !== i);
+  if (dup) problems.push(`lesson.${locale}.md: duplicate step id "${dup}"`);
+  for (const id of Object.keys(stepData)) {
+    if (!ids.includes(id)) problems.push(`steps.yaml: unknown step "${id}"`);
+  }
+  const vises = Object.values(stepData).map((d) => d.vis);
+  const goOnly = vises.find((v) => v && v.kind !== "flow" && v.kind !== "compare");
+  if (goOnly) {
+    problems.push(`steps.yaml: "${goOnly.kind}" is a Go visual; text lessons use flow or compare`);
+  }
+  if (requireCompare && !vises.some((v) => v?.kind === "compare")) {
+    problems.push("steps.yaml: a compare lesson needs a `compare` visual in at least one step");
+  }
+
+  if (problems.length) throw new Error(`${technology}/${slug}:\n  - ${problems.join("\n  - ")}`);
+
+  return {
+    slug,
+    mode: "text",
+    code: "",
+    lang: "bash",
+    file: "",
+    run: null,
+    intro: text.intro,
+    steps: text.sections.map((s) => ({
+      id: s.id,
+      from: 0,
+      to: 0,
+      title: s.title,
+      body: s.body,
+      vis: stepData[s.id]?.vis,
+    })),
+    outro: text.outro,
+    quiz: quizParsed.data!,
+    takeaways: takeawaysParsed.data!,
+    output: "",
   };
 }

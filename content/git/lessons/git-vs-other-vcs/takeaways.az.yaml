@@ -1,0 +1,9 @@
+rules:
+  - "SVN və Perforce mərkəzləşmişdir: tarixçə serverdədir, commit serverə yazılır."
+  - "Git və Mercurial paylanmışdır: hər iştirakçıda tam tarixçə var, commit lokal yazılır və `push` ilə paylaşılır."
+  - "Git-də commit, tarixçə və müqayisə internetsiz işləyir və sürətlidir."
+  - "Git-də branch bir commit-ə göstəricidir; buna görə hər kiçik iş üçün branch açmaq adidir."
+  - "Çox böyük binary fayllar və fayl kilidləmə üçün Perforce və SVN hələ istifadə olunur; Git-də buna Git LFS lazımdır."
+practices:
+  - "Yeni layihə üçün Git seçin; başqa sistem yalnız konkret səbəb olanda (məsələn, nəhəng binary fayllar) lazımdır."
+  - "Ortaq server olsa da, lokal commit-lərinizi müntəzəm `push` edin: paylaşılmayan iş yalnız sizin kompüterinizdədir."

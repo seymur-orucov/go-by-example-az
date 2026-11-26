@@ -1,0 +1,38 @@
+# Hand-written visuals (text lesson).
+two-models:
+  vis:
+    kind: compare
+    caption: "SVN və Git"
+    a: { title: "SVN", sub: "mərkəzləşmiş" }
+    b: { title: "Git", sub: "paylanmış" }
+    rows:
+      - aspect: "Tarixçə harada"
+        a: "Yalnız serverdə"
+        b: "Hər iştirakçıda tam surət"
+        better: b
+      - aspect: "Commit"
+        a: "Birbaşa serverə yazılır"
+        b: "Lokal yazılır, sonra `push`"
+        better: b
+      - aspect: "İnternetsiz"
+        a: "Commit və tarixçə əlçatmaz"
+        b: "Commit, tarixçə, müqayisə işləyir"
+        better: b
+      - aspect: "Server sıradan çıxsa"
+        a: "Tarixçə ehtiyat surətdən bərpa olunmalıdır"
+        b: "İstənilən iştirakçının surəti tam tarixçədir"
+        better: b
+      - aspect: "Böyük binary fayllar"
+        a: "Fayl kilidləmə (`lock`) və hissəvi checkout daxilidir"
+        b: "Əlavə alət lazımdır (Git LFS)"
+        better: a
+offline:
+  vis:
+    kind: flow
+    caption: "Git: qatarda iş"
+    arrows: true
+    items:
+      - { label: "commit", sub: "internetsiz, lokal" }
+      - { label: "commit", sub: "internetsiz, lokal" }
+      - { label: "commit", sub: "internetsiz, lokal" }
+      - { label: "push", sub: "internet gələndə, hamısı birlikdə", tone: accent }

@@ -1,10 +1,9 @@
 ---
-// Lesson page /git/<id>/: nodes of content/git/syllabus.yaml; ready ones are terminal-session
-// lessons (content/git/lessons/<id>/), rendered by LessonView.
+// Lesson page /git/<id>/: nodes of content/git/syllabus.yaml; ready ones (content/git/lessons/<id>/)
+// are loaded by their kind (terminal session or text lesson) and rendered by LessonView.
 import LessonView from "../../components/LessonView.astro";
 import type { CatalogItem } from "../../lib/catalog";
-import { loadSessionLesson } from "../../lib/lesson";
-import { getSyllabusCatalog } from "../../lib/syllabus";
+import { getSyllabusCatalog, loadNodeLesson } from "../../lib/syllabus";
 
 export function getStaticPaths() {
   const { sections } = getSyllabusCatalog("git");
@@ -23,10 +22,11 @@ interface Props {
 }
 
 const { item, sectionId, prev, next } = Astro.props;
-const { sections, total } = getSyllabusCatalog("git");
+const { syllabus, sections, total } = getSyllabusCatalog("git");
 const section = sections.find((s) => s.id === sectionId)!;
 const id = item.slug.slice("git/".length);
-const lesson = item.status === "ready" ? loadSessionLesson("git", id) : undefined;
+const node = syllabus.modules.flatMap((m) => m.nodes).find((n) => n.id === id)!;
+const lesson = item.status === "ready" ? loadNodeLesson("git", node) : undefined;
 ---
 
 <LessonView
