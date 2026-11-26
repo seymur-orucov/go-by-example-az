@@ -531,3 +531,5 @@ Done (branch `feat/visual-pilots`, pages not linked from the navigation):
 - Shared parts: `LabStage.astro` (chapter tabs, step segments with prediction dots, narration, controls, every step also readable as text in a `<details>`), `scripts/lab-player.ts` (steps, predictions, autoplay, ← →), frames as plain data in `src/data/lab-*.ts` so they can move to YAML later. Animations stop under `prefers-reduced-motion`.
 - Checked: `astro check` (0/0/0), ESLint, Prettier, build (131 pages); both pages in headless Chrome at 1440px and 390px, dark and light, no console errors and no horizontal scroll.
 - Not done: the Git outputs and hashes are illustrative, not recorded with `pnpm content:run`; no quiz on the pilots; no decision recorded yet on which lesson kinds use the new stage.
+
+Feedback: the user found the pilots interesting but "mixed up" (too many ideas on one page). Decision: keep the HTML/pages as an example on the unmerged branch `feat/visual-pilots`, do not use or link them now; Git lessons keep the current format. The stage idea may come back for networking topics later.
