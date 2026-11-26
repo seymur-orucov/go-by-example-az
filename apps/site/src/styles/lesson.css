@@ -1686,3 +1686,15 @@ button.vm-row:hover {
     display: none;
   }
 }
+
+/* Spaces in inline code are meaningful (`M  file` vs ` M file` in `git status --short`), so they
+   are kept; pre-wrap still lets a long snippet wrap on a narrow screen. */
+.lx-main code,
+.st-note code,
+.vis-note code,
+.qz-q code,
+.qz-opt code,
+.qz-fb code,
+.lx-notice code {
+  white-space: pre-wrap;
+}
