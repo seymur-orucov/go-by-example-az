@@ -1,0 +1,80 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    city := "baku"
+    strings.ToUpper(city)
+    fmt.Println(city)
+  options: ["BAKU", "baku", "kompilyasiya xətası: nəticə istifadə olunmayıb"]
+  answer: 1
+  explain: "String dəyişməzdir: `ToUpper` yeni string qaytarır, nəticə isə heç yerə yazılmayıb."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    file := "report-2026.pdf"
+    fmt.Println(strings.HasPrefix(file, "report"), strings.HasSuffix(file, ".PDF"))
+  options: ["true true", "false true", "true false"]
+  answer: 2
+  explain: "`HasSuffix` hərf registrini nəzərə alır: `.pdf` ilə `.PDF` fərqli sətirlərdir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    route := "Gate B12"
+    fmt.Println(strings.Index(route, "B"), strings.Index(route, "C"))
+  options: ["5 -1", "6 -1", "5 0"]
+  answer: 0
+  explain: "`B` 5-ci indeksdədir (sayma 0-dan başlayır), tapılmayan alt sətir üçün isə `-1` qaytarılır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    parts := strings.Split("tea,,milk", ",")
+    fmt.Println(len(parts))
+  options: ["2", "3", "4"]
+  answer: 1
+  explain: "İki vergül arasında boş sətir var, o da ayrıca element olur: `tea`, boş sətir, `milk`."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    words := strings.Fields("  pay   at   the desk ")
+    fmt.Println(len(words), strings.Join(words, "_"))
+  options:
+    - "4 pay_at_the_desk"
+    - "8 __pay___at___the_desk_"
+    - "4 _pay_at_the_desk_"
+  answer: 0
+  explain: "`Fields` ardıcıl boşluqları bir ayırıcı sayır və kənarlardakı boşluqları atır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    fmt.Println(strings.Trim("--sale--off--", "-"))
+  options: ["saleoff", "sale--off--", "sale--off"]
+  answer: 2
+  explain: "`Trim` simvolları yalnız iki kənardan atır, ortadakı tirelərə toxunmur."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    date := "2026.11.26"
+    fmt.Println(strings.Replace(date, ".", "/", 1), strings.Replace(date, ".", "/", -1))
+  options:
+    - "2026/11/26 2026/11/26"
+    - "2026/11.26 2026.11.26"
+    - "2026.11/26 2026/11/26"
+    - "2026/11.26 2026/11/26"
+  answer: 3
+  explain: "`1` yalnız birinci rastlaşmanı əvəz edir, `-1` isə hamısını, `ReplaceAll` kimi."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    fmt.Println(strings.Repeat("ab", 3), strings.EqualFold("Go", "GO"))
+  options: ["ababab true", "ab3 true", "ababab false"]
+  answer: 0
+  explain: "`Repeat` mətni 3 dəfə yan-yana yazır, `EqualFold` isə hərf registrinə baxmır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    guests := []string{"omar", "Lena", "bruno"}
+    slices.SortFunc(guests, func(a, b string) int {
+        return cmp.Compare(strings.ToLower(a), strings.ToLower(b))
+    })
+    fmt.Println(guests)
+  options: ["[Lena bruno omar]", "[bruno Lena omar]", "[bruno omar Lena]"]
+  answer: 1
+  explain: "Müqayisə kiçik hərfli nüsxələrlə aparılır, ona görə `Lena` artıq kiçik hərflərdən əvvələ keçmir, slice-da isə orijinal adlar qalır."

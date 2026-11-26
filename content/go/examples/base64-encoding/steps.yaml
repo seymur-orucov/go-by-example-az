@@ -1,0 +1,15 @@
+encode:
+  out: |
+    29 bytes -> 40 characters
+    RnJlZSBGcmlkYXk/IEFsaWVuICh+MTE3IG1pbik=
+decode:
+  out: |
+    Free Friday? Alien (~117 min) <nil>
+    error: illegal base64 data at input byte 4
+url:
+  out: "https://cinema.example.com/invite/RnJlZSBGcmlkYXk_IEFsaWVuICh-MTE3IG1pbik="
+raw:
+  out: |
+    RnJlZSBGcmlkYXk_IEFsaWVuICh-MTE3IG1pbik
+    wrong decoder: illegal base64 data at input byte 36
+    Free Friday? Alien (~117 min) <nil>

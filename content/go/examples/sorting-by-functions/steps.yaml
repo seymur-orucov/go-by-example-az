@@ -1,0 +1,8 @@
+by-field:
+  out: "cheapest first: [{W6117 199 2} {LH902 385 1} {J2064 455 0} {QR218 510 0} {TK341 540 1}]"
+keys:
+  out: "fewest stops: [{J2064 455 0} {QR218 510 0} {LH902 385 1} {TK341 540 1} {W6117 199 2}]"
+desc:
+  out: "priciest first: [{TK341 540 1} {QR218 510 0} {J2064 455 0} {LH902 385 1} {W6117 199 2}]"
+stable:
+  out: "direct first: [{QR218 510 0} {J2064 455 0} {TK341 540 1} {LH902 385 1} {W6117 199 2}]"

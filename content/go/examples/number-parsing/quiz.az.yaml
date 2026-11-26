@@ -1,0 +1,67 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    n, err := strconv.Atoi("6.5")
+    fmt.Println(n, err != nil)
+  options: ["6 false", "0 true", "6 true"]
+  answer: 1
+  explain: "`Atoi` yalnız tam ədəd oxuyur: `6.5` səhv yazılışdır, nəticə `0` və xətadır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    a := "4"
+    b, _ := strconv.Atoi(a)
+    fmt.Println(a+a, b+b)
+  options: ["44 8", "8 8", "44 44"]
+  answer: 0
+  explain: "String-lərdə `+` yapışdırır, ədədlərdə isə toplayır."
+
+- question: Hansı sətir kompilyasiya olunmur?
+  options: ["`n, err := strconv.Atoi(\"42\")`", "`s := strconv.Itoa(42)`", "`n := int(\"42\")`"]
+  answer: 2
+  explain: "Mətni tip çevirməsi ilə ədədə çevirmək olmaz (`cannot convert`), bunun üçün `strconv` lazımdır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    n, _ := strconv.ParseInt("ff", 16, 64)
+    fmt.Println(n)
+  options: ["ff", "15", "255"]
+  answer: 2
+  explain: "Hex-də `f` 15-dir: 15·16 + 15 = 255."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    fmt.Println(strconv.FormatInt(10, 2))
+  options: ["1010", "2", "0101"]
+  answer: 0
+  explain: "`FormatInt` 10-u ikilik say sistemində yazır: 8 + 2, yəni `1010`."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    n, err := strconv.ParseInt("200", 10, 8)
+    fmt.Println(n, errors.Is(err, strconv.ErrRange))
+  options: ["200 false", "0 true", "127 true"]
+  answer: 2
+  explain: "200 `int8`-ə sığmır: `ParseInt` ən yaxın sərhədi, 127-ni və `ErrRange` xətasını qaytarır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    b, err := strconv.ParseBool("yes")
+    fmt.Println(b, err == nil)
+  options: ["true true", "false false", "false true"]
+  answer: 1
+  explain: "`ParseBool` `yes`-i tanımır: nəticə `false`, xəta isə `nil` deyil."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    fmt.Println(string(rune(65)), strconv.Itoa(65))
+  options: ["65 65", "A 65", "A A"]
+  answer: 1
+  explain: "`string(rune(65))` Unicode nömrəsi 65 olan hərfi verir, `Itoa` isə ədədin yazılışını."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    n, err := strconv.ParseInt("0b101", 0, 64)
+    fmt.Println(n, err)
+  options: ["5 <nil>", "101 <nil>", "0 strconv.ParseInt: parsing \"0b101\": invalid syntax"]
+  answer: 0
+  explain: "`base` 0 olanda say sistemi prefiksdən götürülür: `0b` ikilikdir və `101` 5-dir."

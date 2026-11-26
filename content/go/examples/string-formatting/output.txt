@@ -1,0 +1,12 @@
+{Sea Green 2.5 true}
+{Name:Sea Green Liters:2.5 InStock:true}
+main.Paint{Name:"Sea Green", Liters:2.5, InStock:true}
+main.Paint
+3 cans of Sea Green, 2.50 L each
+in stock: true, note: "matte finish "
+#0080 #000080 7
+PAINT     |  LITERS|
+Sea Green |    2.50|
+Ivory     |   10.00|
+Coral     |    0.75|
+discount for 3 cans: 15%

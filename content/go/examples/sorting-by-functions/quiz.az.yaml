@@ -1,0 +1,99 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    fmt.Println(cmp.Compare(3, 7), cmp.Compare("b", "a"), cmp.Compare(2.5, 2.5))
+  options: ["1 -1 0", "-1 1 0", "-4 1 0"]
+  answer: 1
+  explain: "`cmp.Compare` fərqi yox, yalnız işarəni qaytarır: kiçikdirsə `-1`, böyükdürsə `1`, bərabərdirsə `0`."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    lines := []string{"tram", "bus", "ferry"}
+    slices.SortFunc(lines, func(a, b string) int {
+        return cmp.Compare(len(a), len(b))
+    })
+    fmt.Println(lines)
+  options: ["[bus ferry tram]", "[ferry tram bus]", "[bus tram ferry]"]
+  answer: 2
+  explain: "Müqayisə sətirlərin özünü yox, uzunluqlarını götürür: 3, 4, 5 hərf."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    scores := []int{5, 20, 15}
+    slices.SortFunc(scores, func(a, b int) int {
+        return cmp.Compare(b, a)
+    })
+    fmt.Println(scores)
+  options: ["[20 15 5]", "[5 15 20]", "[5 20 15]"]
+  answer: 0
+  explain: "`a` ilə `b`-nin yeri dəyişdirilib, ona görə sıra azalandır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    fmt.Println(cmp.Or(0, -1, 1), cmp.Or(0, 0))
+  options: ["0 0", "1 0", "-1 0"]
+  answer: 2
+  explain: "`cmp.Or` sıfır olmayan birinci arqumenti qaytarır, belə arqument yoxdursa, `0`."
+
+- question: Hansı sətir kompilyasiya olunmayacaq?
+  code: |
+    byPrice := func(a, b Flight) int {
+        return cmp.Compare(a.Price, b.Price)
+    }
+  options:
+    - "slices.Sort(flights)"
+    - "slices.SortFunc(flights, byPrice)"
+    - "slices.SortStableFunc(flights, byPrice)"
+  answer: 0
+  explain: "`Flight` struct-dır və `cmp.Ordered` deyil, ona görə `slices.Sort` onu qəbul etmir."
+
+- question: Bu kod niyə kompilyasiya olunmur?
+  code: |
+    slices.SortFunc(scores, func(a, b int) bool {
+        return a < b
+    })
+  options:
+    - "`SortFunc` yalnız struct-ları sıralaya bilər"
+    - "müqayisə funksiyası `bool` yox, `int` qaytarmalıdır"
+    - "funksiyanı arqument kimi birbaşa yazmaq olmaz"
+  answer: 1
+  explain: "`SortFunc` `func(a, b T) int` gözləyir: bərabərlik halı üçün üç cavab lazımdır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    type Task struct {
+        Name     string
+        Priority int
+    }
+    tasks := []Task{{"wash", 2}, {"cook", 1}, {"shop", 2}, {"read", 1}}
+    slices.SortStableFunc(tasks, func(a, b Task) int {
+        return cmp.Compare(a.Priority, b.Priority)
+    })
+    fmt.Println(tasks)
+  options:
+    - "[{cook 1} {read 1} {shop 2} {wash 2}]"
+    - "[{read 1} {cook 1} {wash 2} {shop 2}]"
+    - "[{wash 2} {shop 2} {cook 1} {read 1}]"
+    - "[{cook 1} {read 1} {wash 2} {shop 2}]"
+  answer: 3
+  explain: "Sabit sıralama eyni prioritetli tapşırıqları əvvəlki sırada saxlayır: `cook` `read`-dən, `wash` `shop`-dan öndədir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    type Item struct {
+        Name string
+        Qty  int
+    }
+    stock := []Item{{"pens", 3}, {"cups", 5}, {"bags", 3}}
+    slices.SortFunc(stock, func(a, b Item) int {
+        return cmp.Or(
+            cmp.Compare(b.Qty, a.Qty),
+            cmp.Compare(a.Name, b.Name),
+        )
+    })
+    fmt.Println(stock)
+  options:
+    - "[{cups 5} {bags 3} {pens 3}]"
+    - "[{bags 3} {pens 3} {cups 5}]"
+    - "[{cups 5} {pens 3} {bags 3}]"
+  answer: 0
+  explain: "Əvvəl miqdar azalan sıra ilə müqayisə olunur, bərabər miqdarda isə ad həll edir."

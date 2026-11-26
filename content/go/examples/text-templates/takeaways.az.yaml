@@ -1,0 +1,11 @@
+rules:
+  - "`{{.}}` `Execute`-a verilən verilənin özüdür, `{{.Patient}}` isə onun sahəsidir."
+  - "`template.Must` `Parse` xəta qaytaranda panic edir; şablonu bir dəfə parse edib çox dəfə `Execute` etmək olar."
+  - "Şablon yalnız exported (böyük hərflə başlayan) sahələri görür; səhv sahə adı kompilyasiyada yox, `Execute` zamanı xəta verir."
+  - "`{{if}}`-də `false`, `0`, boş string, `nil` və boş slice yalan sayılır; blok `{{end}}` ilə bağlanır."
+  - "`{{range}}`-in içində nöqtə cari elementdir; bütün verilənə `$` ilə müraciət olunur, boş slice üçün `{{else}}` işləyir."
+  - "`{{-` və `-}}` action-un əvvəlindəki və sonundakı boşluqları və sətir keçidlərini silir; tiredən sonra boşluq lazımdır."
+practices:
+  - "`Execute`-un qaytardığı xətanı həmişə yoxlayın."
+  - "Kodda sabit yazılmış şablonları `template.Must` ilə parse edin ki, səhv dərhal üzə çıxsın."
+  - "Çox sətirli şablonu raw string literal-da oxunaqlı yazın və artıq sətir keçidlərini `{{-` ilə kəsin."

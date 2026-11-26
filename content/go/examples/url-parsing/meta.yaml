@@ -2,5 +2,7 @@ title: "URL Parsing"
 subtitle: "URL təhlili"
 section: text
 order: 14
-status: planned
+status: ready
 level: intermediate
+duration: 8
+source: original

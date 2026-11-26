@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<invoice number="INV-0318" currency="USD">
+  <buyer>
+    <name>Maple Street Books</name>
+    <country>Canada</country>
+  </buyer>
+  <item>desk lamp</item>
+  <item>office chair</item>
+  <total>240</total>
+</invoice>
+INV-0319 Harbor Cafe 95 0 <nil>
+expected element type <invoice> but have <receipt>

@@ -1,0 +1,8 @@
+operator is valid: true
+1000 operands, all two-digit: true
+4 options, correct one kept: true
+question order, sorted: [0 1 2 3 4]
+36 + 77 = ?
+33 + 18 = ?
+24 + 95 = ?
+reprint starts with 36

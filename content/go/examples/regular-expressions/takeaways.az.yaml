@@ -1,0 +1,10 @@
+rules:
+  - "Pattern backtick-lər içində (raw string literal) yazılır: orada `\\d` olduğu kimi qalır, adi dırnaqda isə `\"\\d\"` kompilyasiya olunmur."
+  - "`regexp.MustCompile` səhv pattern-də panic edir, `regexp.Compile` isə `error` qaytarır."
+  - "`^` və `$` olmadan `MatchString` mətnin istənilən hissəsi uyğun gələndə `true` qaytarır."
+  - "`FindStringSubmatch` əvvəl bütün uyğunluğu, sonra qrupları qaytarır; uyğunluq yoxdursa, `nil` qaytarır."
+  - "`ReplaceAllString`-də `$1` birinci qrupdur; ardınca hərf, rəqəm və ya `_` gəlirsə, `${1}` yazılır."
+practices:
+  - "Pattern-i bir dəfə kompilyasiya edib dəfələrlə istifadə edin, dövrün içində yenidən kompilyasiya etməyin."
+  - "Kodda yazılmış pattern üçün `MustCompile`, istifadəçidən gələn pattern üçün `Compile` seçin."
+  - "Sabit mətni axtarmaq üçün regexp yox, `strings.Contains` kimi funksiyalardan istifadə edin."

@@ -1,0 +1,75 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    re := regexp.MustCompile(`\d+`)
+    fmt.Println(re.FindString("gate 14, row 7"))
+  options: ["14 7", "gate 14", "14", "1"]
+  answer: 2
+  explain: "`FindString` yalnız ilk uyğunluğu qaytarır, `\\d+` isə yan-yana duran bütün rəqəmləri götürür."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    re := regexp.MustCompile(`\d+`)
+    fmt.Println(re.FindAllString("3 bags, 21 kg, 1 pet", 2))
+  options: ["[3 21]", "[3 21 1]", "[3]"]
+  answer: 0
+  explain: "İkinci arqument nəticələrin ən çox sayıdır: `2` ilk iki uyğunluğu verir, hamısı üçün `-1` yazılır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    re := regexp.MustCompile(`[0-9]{4}`)
+    fmt.Println(re.MatchString("PIN 12345"))
+  options: ["false", "true"]
+  answer: 1
+  explain: "`^` və `$` olmadığı üçün mətnin bir hissəsinin (`1234`) uyğun gəlməsi kifayətdir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    re := regexp.MustCompile(`([a-z]+)-(\d+)`)
+    m := re.FindStringSubmatch("seat row-12")
+    fmt.Println(len(m), m[2])
+  options: ["2 12", "3 row", "2 row", "3 12"]
+  answer: 3
+  explain: "Slice-da bütün uyğunluq (`row-12`) və iki qrup var; `m[2]` ikinci qrupdur."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    re := regexp.MustCompile(`([a-z]+)-(\d+)`)
+    m := re.FindStringSubmatch("no seat")
+    fmt.Println(m == nil, len(m))
+  options: ["true 0", "false 0", "false 1"]
+  answer: 0
+  explain: "Uyğunluq olmayanda `FindStringSubmatch` `nil` qaytarır, `nil` slice-ın uzunluğu isə 0-dır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    re := regexp.MustCompile(`(\d{2})/(\d{2})`)
+    fmt.Println(re.ReplaceAllString("due 25/12", "$2.$1"))
+  options: ["due 25.12", "due 12.25", "due $2.$1"]
+  answer: 1
+  explain: "`$2` ikinci qrupu (`12`), `$1` birincini (`25`) qoyur; uyğun gəlməyən `due ` hissəsi olduğu kimi qalır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    re := regexp.MustCompile(`(\d+)`)
+    fmt.Printf("%q\n", re.ReplaceAllString("5 kg", "$1kg"))
+  options: ["\"5kg kg\"", "\"5 kg\"", "\" kg\""]
+  answer: 2
+  explain: "`$1kg` `1kg` adlı qrup kimi oxunur, belə qrup yoxdur və yerinə boş string qoyulur; düzgün yazılış `${1}kg`-dir."
+
+- question: Bu kod niyə kompilyasiya olunmur?
+  code: |
+    re := regexp.MustCompile("\d{3}")
+  options:
+    - "`MustCompile` iki nəticə qaytarır"
+    - "Adi dırnaq içində `\\d` tanınmayan escape-dir, pattern-i backtick-lərlə yazmaq lazımdır"
+    - "`{3}` Go pattern-lərində icazəli deyil"
+  answer: 1
+  explain: "Kompilyator `unknown escape` xətası verir; raw string literal-da isə `\\` xüsusi simvol deyil."
+
+- question: Commit mesajında `revert` sözünün olub-olmadığını yoxlamaq lazımdır. Hansı ən uyğundur?
+  options:
+    - "`strings.Contains(msg, \"revert\")`"
+    - "`regexp.MustCompile(\"revert\").MatchString(msg)`"
+    - "`regexp.MustCompile(\"^revert$\").MatchString(msg)`"
+  answer: 0
+  explain: "Sabit söz üçün `strings` funksiyası kifayətdir və daha sadədir; `^revert$` isə yalnız bütün mətn `revert` olanda uyğun gəlir."

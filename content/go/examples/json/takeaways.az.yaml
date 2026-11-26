@@ -1,0 +1,11 @@
+rules:
+  - "`json.Marshal` `[]byte` və `error` qaytarır; mətn kimi çap etmək üçün `string(data)` lazımdır."
+  - "Yalnız exported (böyük hərflə başlayan) sahələr JSON-a yazılır və JSON-dan oxunur."
+  - "Tag açarın adını təyin edir (`json:\"weight_g\"`), `omitempty` isə zero value olan sahəni çıxarır; `:`-dan sonra boşluq olmamalıdır."
+  - "`json.Unmarshal`-a pointer verilir (`&got`); struct-da olmayan açarlar atılır, JSON-da olmayan sahələr zero value qalır."
+  - "Tip uyğun gəlməyəndə (ədəd sahəsinə mətn) `Unmarshal` xəta qaytarır."
+  - "`map[string]any`-yə oxunanda bütün JSON ədədləri `float64` olur."
+practices:
+  - "`Unmarshal`-ın xətasını həmişə yoxlayın: kənardan gələn JSON səhv ola bilər."
+  - "Quruluş bəllidirsə, `map[string]any` yox, tag-lı struct istifadə edin."
+  - "Proqramlar arası ötürmə üçün `Marshal`, insanın oxuyacağı yerlər üçün `MarshalIndent` seçin."

@@ -1,0 +1,16 @@
+numbers:
+  out: |
+    bibs: [42 96 318 555 1207]
+    fastest: 198.25 slowest: 312
+  vis: { kind: slice, name: bibs, cells: ["42", "96", "318", "555", "1207"], len: 5, cap: 5 }
+strings:
+  out: "registered: [Bruno Mila Zoe eva]"
+clone:
+  out: |
+    podium: [Omar Lena Bruno]
+    certificates: [Bruno Ines Lena Omar]
+    false true
+search:
+  out: |
+    bib 555: 3 true
+    bib 100: 2 false

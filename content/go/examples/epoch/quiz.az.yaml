@@ -1,0 +1,76 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    fmt.Println(time.Unix(86400, 0).UTC())
+  options:
+    - "1970-01-01 00:00:00 +0000 UTC"
+    - "86400"
+    - "1970-01-02 00:00:00 +0000 UTC"
+  answer: 2
+  explain: "86400 saniyə düz bir gündür, ona görə epoch-dan bir gün sonrası alınır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    t := time.Date(1970, time.January, 1, 0, 1, 0, 0, time.UTC)
+    fmt.Println(t.Unix(), t.UnixMilli())
+  options: ["60 60000", "1 1000", "60 60"]
+  answer: 0
+  explain: "Epoch-dan 1 dəqiqə, yəni 60 saniyə və ya 60000 millisaniyə keçib."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    start := int64(1_800_000_000)
+    end := start + 5400
+    fmt.Println(time.Duration(end - start))
+  options: ["1h30m0s", "5.4µs", "5400s"]
+  answer: 1
+  explain: "Duration nanosaniyə sayır: saniyə almaq üçün `time.Second`-a vurmaq lazımdır."
+
+- question: Bu kod niyə kompilyasiya olunmur?
+  code: |
+    var sec int = 1778350800
+    t := time.Unix(sec, 0)
+    fmt.Println(t)
+  options:
+    - "ədəd `time.Unix` üçün çox böyükdür"
+    - "`time.Unix` yalnız bir arqument alır"
+    - "nəticəyə `.UTC()` çağırılmayıb"
+    - "`time.Unix` `int64` gözləyir, `int` isə başqa tipdir"
+  answer: 3
+  explain: "Go tipləri özü çevirmir: `time.Unix(int64(sec), 0)` yazmaq lazımdır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    var paidAt time.Time
+    fmt.Println(paidAt.Unix() == 0, paidAt.IsZero())
+  options: ["false true", "true true", "true false"]
+  answer: 0
+  explain: "Zero value 1-ci ilin 1 yanvarıdır, onun Unix vaxtı `0` yox, mənfi ədəddir."
+
+- question: Bu kod hər kompüterdə nə çap edəcək?
+  code: |
+    t := time.Date(2026, time.January, 1, 12, 0, 0, 0, time.UTC)
+    fmt.Println(t.Local().Unix() == t.Unix())
+  options:
+    - "kompüterin saat qurşağından asılıdır"
+    - "true"
+    - "false"
+  answer: 1
+  explain: "`Local()` anı yalnız başqa zonada göstərir, Unix vaxtı isə zonadan asılı deyil."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    fmt.Println(time.UnixMilli(1500).UTC())
+  options:
+    - "1970-01-01 00:25:00 +0000 UTC"
+    - "1970-01-01 00:00:01 +0000 UTC"
+    - "1970-01-01 00:00:01.5 +0000 UTC"
+  answer: 2
+  explain: "1500 millisaniyə 1.5 saniyədir; `Println` kəsr hissəni də göstərir."
+
+- question: "`fmt.Println(time.Unix(0, 0))` niyə müxtəlif kompüterlərdə fərqli nəticə verir?"
+  options:
+    - "`time.Unix` anı kompüterin yerli saat qurşağında qaytarır"
+    - "epoch hər kompüterdə başqa tarixdir"
+    - "`time.Unix(0, 0)` hər dəfə indiki vaxtı qaytarır"
+  answer: 0
+  explain: "An eynidir, sadəcə yerli zonada göstərilir; hər yerdə eyni çıxış üçün `.UTC()` çağırılır."

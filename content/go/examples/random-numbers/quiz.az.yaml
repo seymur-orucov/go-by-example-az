@@ -1,0 +1,58 @@
+- question: "`rand.IntN(6)` hansı dəyərləri qaytara bilər?"
+  options: ["1-dən 6-ya qədər", "0-dan 5-ə qədər", "0-dan 6-ya qədər"]
+  answer: 1
+  explain: "`IntN(n)` `[0, n)` aralığından seçir: yuxarı sərhəd daxil deyil."
+
+- question: Zər atmaq (1-dən 6-ya qədər) üçün hansı ifadə doğrudur?
+  options: ["`rand.IntN(6)`", "`rand.IntN(7)`", "`1 + rand.IntN(6)`"]
+  answer: 2
+  explain: "`rand.IntN(6)` 0–5 verir, üstünə 1 gələndə 1–6 alınır; `rand.IntN(7)` isə 0 da qaytara bilər."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    a := rand.New(rand.NewPCG(1, 2))
+    b := rand.New(rand.NewPCG(1, 2))
+    fmt.Println(a.IntN(1000) == b.IntN(1000))
+  options: ["true", "false", "hər işə salmada fərqli"]
+  answer: 0
+  explain: "Eyni seed ilə yaradılmış generatorlar eyni ardıcıllığı verir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    p := rand.Perm(3)
+    slices.Sort(p)
+    fmt.Println(p)
+  options: ["[1 2 3]", "[0 1 2]", "hər işə salmada fərqli"]
+  answer: 1
+  explain: "`Perm(3)` 0, 1, 2 ədədlərini qarışıq sırada qaytarır; sıralayanda sıra həmişə eyni olur."
+
+- question: "`math/rand/v2` ilə hansı sətir kompilyasiya olunmur?"
+  options: ["`n := rand.IntN(10)`", "`p := rand.Perm(4)`", "`rand.Seed(7)`"]
+  answer: 2
+  explain: "v2-də `rand.Seed` yoxdur (`undefined: rand.Seed`); təkrarlanan ardıcıllıq üçün `rand.New(rand.NewPCG(...))` yaradılır."
+
+- question: Bu kod işə düşəndə nə olacaq?
+  code: |
+    var names []string
+    fmt.Println(names[rand.IntN(len(names))])
+  options: ["panic: `invalid argument to IntN`", "boş sətir çap olunur", "panic: `index out of range`"]
+  answer: 0
+  explain: "İndeksə çatmamış `rand.IntN(0)` özü panic edir: boş aralıqdan seçmək mümkün deyil."
+
+- question: Şifrəni bərpa etmək üçün təsadüfi token lazımdır. Hansını seçmək lazımdır?
+  options: ["seed ilə yaradılmış `math/rand/v2` generatoru", "`crypto/rand`", "`math/rand/v2`-nin global generatoru"]
+  answer: 1
+  explain: "`math/rand/v2` proqnozlaşdırıla biləndir, gizli dəyərlər üçün `crypto/rand` istifadə olunur."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    x := []string{"A", "B", "C", "D"}
+    y := slices.Clone(x)
+    r1 := rand.New(rand.NewPCG(9, 9))
+    r2 := rand.New(rand.NewPCG(9, 9))
+    r1.Shuffle(len(x), func(i, j int) { x[i], x[j] = x[j], x[i] })
+    r2.Shuffle(len(y), func(i, j int) { y[i], y[j] = y[j], y[i] })
+    fmt.Println(slices.Equal(x, y))
+  options: ["true", "false", "hər işə salmada fərqli"]
+  answer: 0
+  explain: "Eyni seed eyni qarışdırma verir, ona görə iki slice eyni sırada olur."

@@ -1,0 +1,74 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    t := template.Must(template.New("gate").Parse("Gate {{.}}\n"))
+    t.Execute(os.Stdout, "B12")
+  options: ["Gate {{.}}", "Gate B12", "Gate .B12"]
+  answer: 1
+  explain: "Nöqtə `Execute`-a verilən verilənin özüdür, burada `\"B12\"` string-i."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    type Bus struct {
+        Line  int
+        Stops []string
+    }
+    t := template.Must(template.New("bus").Parse(
+        "{{range .Stops}}{{.}}>{{end}}\n"))
+    t.Execute(os.Stdout, Bus{7, []string{"Port", "Mall", "Zoo"}})
+  options: ["Port>Mall>Zoo>", "Port>Mall>Zoo", "[Port Mall Zoo]>"]
+  answer: 0
+  explain: "`range` blokun içini hər element üçün təkrarlayır, `>` da hər dəfə, sonuncudan sonra da çap olunur."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    t := template.Must(template.New("bus").Parse(
+        "{{if .Stops}}has stops{{else}}no stops{{end}}\n"))
+    t.Execute(os.Stdout, Bus{7, []string{}})
+  options: ["has stops", "heç nə, `Execute` xəta qaytarır", "no stops"]
+  answer: 2
+  explain: "Şablonda boş slice, `0`, boş string və `nil` yalan sayılır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    t := template.Must(template.New("bus").Parse(
+        "{{range .Stops}}{{.Line}} {{end}}\n"))
+    err := t.Execute(os.Stdout, Bus{7, []string{"Port"}})
+    fmt.Println(err != nil)
+  options: ["7 və `false`", "`true`: `range`-in içində nöqtə string-dir və `Line` sahəsi yoxdur", "kompilyasiya xətası"]
+  answer: 1
+  explain: "`range`-in içində nöqtə cari elementdir; bütün verilənə `{{$.Line}}` ilə müraciət olunur."
+
+- question: Struct-da `name string` (kiçik hərflə) sahəsi var, şablonda isə `{{.name}}` yazılıb. Nə baş verəcək?
+  options: ["`Execute` xəta qaytarır", "boş mətn çap olunur", "kompilyasiya xətası"]
+  answer: 0
+  explain: "Şablon yalnız exported sahələri görür; bu yoxlama kompilyasiyada yox, `Execute` zamanı olur."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    t := template.Must(template.New("list").Parse(`Stops:
+    {{range .Stops}}
+    - {{.}}
+    {{end}}`))
+    t.Execute(os.Stdout, Bus{7, []string{"Port"}})
+  options:
+    - "`Stops:`, `- Port`"
+    - "`Stops:`, boş sətir, `- Port`, boş sətir"
+    - "`Stops:`, boş sətir, `- Port`"
+  answer: 2
+  explain: "`{{range .Stops}}`-dən sonrakı sətir keçidi də blokun içinə düşür və elementdən əvvəl boş sətir yaradır; dərsdəki kimi `{{- range` və `{{- end` yazsaq, boş sətir qalmazdı."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    t := template.Must(template.New("n").Parse("a {{- 3}} b|a {{-3}} b\n"))
+    t.Execute(os.Stdout, nil)
+  options: ["a3 b|a3 b", "a 3 b|a -3 b", "a3 b|a -3 b"]
+  answer: 2
+  explain: "`{{- ` (tire və boşluq) əvvəlki boşluqları kəsir, `{{-3}}` isə mənfi üç ədədidir."
+
+- question: "`template.Must` nə edir?"
+  options:
+    - "şablonu icra edir və nəticəni ekrana yazır"
+    - "`Parse` xəta qaytarsa, panic edir, yoxsa şablonu qaytarır"
+    - "xətanı gizlədir və boş şablon qaytarır"
+  answer: 1
+  explain: "Kodda sabit yazılmış şablondakı səhv belə proqram başlayan kimi üzə çıxır."

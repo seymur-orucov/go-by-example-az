@@ -1,0 +1,11 @@
+rules:
+  - "`sha256.Sum256` `[]byte` qəbul edir və `[32]byte` array qaytarır: giriş nə qədər uzun olsa da, heş 32 baytdır."
+  - "`%x` heşi 64 hex rəqəmi ilə yazır; yükləmə səhifələrindəki checksum məhz budur."
+  - "Eyni baytlar həmişə eyni heşi verir, bir bayt fərqi isə tamamilə başqa heş verir."
+  - "`sha256.New()`, `Write` və `Sum(nil)` heşi hissə-hissə hesablayır və `[]byte` qaytarır; `Sum` vəziyyəti sıfırlamır."
+  - "İki `[32]byte` array-i `==` ilə müqayisə etmək olar, `[]byte` ilə `[32]byte`-ı isə yox."
+  - "Heş birtərəflidir və şifrələmə deyil: ondan ilkin məlumatı geri almaq olmur."
+practices:
+  - "Yüklənmiş faylın heşini özünüz hesablayın və etibarlı mənbədən götürülmüş checksum ilə müqayisə edin."
+  - "Böyük məlumatı `sha256.New()` ilə hissə-hissə heşləyin, hamısını yaddaşa yığmayın."
+  - "Parolları tək SHA-256 ilə saxlamayın; onlar üçün qəsdən yavaş, xüsusi alqoritmlər var."

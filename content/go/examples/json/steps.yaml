@@ -1,0 +1,21 @@
+marshal:
+  out: '{"id":"PX-2207","status":"in transit","weight_g":1250,"stops":["Warsaw","Vienna"]} <nil>'
+indent:
+  out: |
+    {
+      "id": "PX-2207",
+      "status": "in transit",
+      "weight_g": 1250,
+      "stops": [
+        "Warsaw",
+        "Vienna"
+      ]
+    }
+unmarshal:
+  out: |
+    PX-2207 delivered 1250 [] <nil>
+    json: cannot unmarshal string into Go struct field Parcel.weight_g of type int
+map:
+  out: |
+    R. Stone <nil>
+    1250 float64

@@ -1,0 +1,10 @@
+[lena.park@uni-mail.edu]
+26 22
+true 9
+domain: uni-mail.edu
+student: true
+3 go / cloud / databases
+2 LENA PARK
+5550104477 555 010-4477
+phone: ******4477
+false true
