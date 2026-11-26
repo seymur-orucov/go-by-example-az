@@ -71,7 +71,7 @@ content/<technology>/lessons/<id>/
 
 ### Files of a text lesson (`concept`, `compare`)
 
-No code pane and no session: the steps run in one column and each visual sits inside its step.
+No code pane and no session: the steps are on the left and a sticky panel on the right shows the visual of the step being read (below 1180px each visual sits inside its step). A step without a visual keeps the previous visual in the panel.
 
 ```
 content/<technology>/lessons/<id>/

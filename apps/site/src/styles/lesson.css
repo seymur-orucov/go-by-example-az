@@ -2016,12 +2016,44 @@ button.vm-row:hover {
 }
 
 /* ---------- Text lessons (concept, compare): one column, no code pane ---------- */
-.lx-walk.solo {
-  grid-template-columns: minmax(0, 1fr);
-  max-width: 820px;
+/* Desktop: the visuals live in the sticky side panel (.lx-stage), one at a time; the copy
+   inside the step is shown only when the layout is one column. */
+.lx-walk.text .st-vis-inline {
+  display: none;
 }
-.lx-walk.solo .lx-steps {
-  padding-bottom: 0;
+.stage-item {
+  padding: 14px 16px 16px;
+  border-radius: 18px;
+}
+.stage-item:not([hidden]) {
+  animation: stageIn 0.35s var(--ease-out) both;
+}
+.stage-item .st-vis {
+  margin-top: 0;
+}
+.stage-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.stage-head b {
+  font-size: 15px;
+  color: var(--text);
+}
+@keyframes stageIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+@media (max-width: 1180px) {
+  .lx-walk.text .st-vis-inline {
+    display: block;
+  }
+  .lx-stage {
+    display: none;
+  }
 }
 
 /* ---------- Vis kind "flow": a row of boxes ---------- */
@@ -2032,7 +2064,12 @@ button.vm-row:hover {
   gap: 8px;
 }
 .vis-flow.arrows {
+  flex-wrap: nowrap;
   gap: 4px;
+}
+/* a sequence stays on one line: the boxes share the width instead of wrapping */
+.vis-flow.arrows .flow-box {
+  flex: 1 1 0;
 }
 .flow-box {
   display: flex;

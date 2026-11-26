@@ -68,6 +68,8 @@ const steps = (lesson?.steps ?? []).map((s) => ({
   outLines: s.out ? s.out.replace(/\n$/, "").split("\n") : [],
 }));
 const hasVis = steps.some((s) => s.vis);
+// Text lessons show the first visual in the side panel until the reader scrolls (scripts/text-stage).
+const firstVis = steps.findIndex((s) => s.vis);
 const pad = (n: number) => String(n).padStart(2, "0");
 // Client data: line ranges and expected output per step.
 const clientData = {
@@ -175,7 +177,7 @@ const readyInSection = section.items.filter((it) => it.status === "ready" && it.
 
           {lesson.intro && <div class="lx-lead" set:html={renderMarkdown(lesson.intro)} />}
 
-          <div class:list={["lx-walk", { solo: textOnly }]}>
+          <div class:list={["lx-walk", { text: textOnly }]}>
             <div class="lx-steps" id="lx-steps">
               {steps.map((s, i) => (
                 <section class="lx-step glass" data-i={i} id={`step-${s.id}`} tabindex="-1">
@@ -191,7 +193,14 @@ const readyInSection = section.items.filter((it) => it.status === "ready" && it.
                   </div>
                   <div class="st-body" set:html={s.html} />
                   {!textOnly && <pre class="code st-snip" set:html={s.snippet} />}
-                  {s.vis && <Vis vis={s.vis} />}
+                  {s.vis &&
+                    (textOnly ? (
+                      <div class="st-vis-inline">
+                        <Vis vis={s.vis} />
+                      </div>
+                    ) : (
+                      <Vis vis={s.vis} />
+                    ))}
                   {s.outLines.length > 0 && (
                     <div class="st-out">
                       {session ? (
@@ -222,6 +231,22 @@ const readyInSection = section.items.filter((it) => it.status === "ready" && it.
               ))}
             </div>
 
+            {textOnly && (
+              <div class="lx-pane lx-stage" data-pagefind-ignore aria-hidden="true">
+                {steps.map(
+                  (s, i) =>
+                    s.vis && (
+                      <div class="stage-item glass" data-for={i} hidden={i !== firstVis}>
+                        <div class="stage-head">
+                          <span class="st-num">{pad(i + 1)}</span>
+                          <b set:html={s.title} />
+                        </div>
+                        <Vis vis={s.vis} />
+                      </div>
+                    ),
+                )}
+              </div>
+            )}
             {!textOnly && (
               <div class="lx-pane" id="lx-pane" data-pagefind-ignore>
                 <div class="cw glass dots">
@@ -515,5 +540,6 @@ const readyInSection = section.items.filter((it) => it.status === "ready" && it.
     import "../scripts/lesson-sidebar";
     import "../scripts/lesson";
     import "../scripts/quiz";
+    import "../scripts/text-stage";
   </script>
 </SiteLayout>
