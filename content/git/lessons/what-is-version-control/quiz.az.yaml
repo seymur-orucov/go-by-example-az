@@ -1,0 +1,42 @@
+- question: "Version control hansı problemi həll edir?"
+  options:
+    - "Faylları daha az yer tutsun deyə sıxır"
+    - "Hər dəyişikliyi kim, nə vaxt və niyə etdiyi ilə yadda saxlayır, köhnə vəziyyətə qayıtmağa imkan verir"
+    - "Kodu avtomatik olaraq səhvlərdən təmizləyir"
+  answer: 1
+  explain: "Version control-un əsas işi tarixçədir: dəyişikliklər, müəllifləri, vaxtı və izahı."
+- question: "Qovluqda `essay.docx`, `essay_final.docx` və `essay_final2.docx` var. Version control olsaydı, qovluqda nə olardı?"
+  options:
+    - "Yalnız `essay.docx`; köhnə versiyalar tarixçədə saxlanardı"
+    - "Eyni üç fayl, sadəcə adları tarixlə"
+    - "Hər versiya üçün ayrıca qovluq"
+  answer: 0
+  explain: "Fayl bir dənə qalır, hər yadda saxlanmış vəziyyət isə tarixçəyə düşür."
+- question: "Git-də dəyişikliyi tarixçəyə yazmağa nə deyilir?"
+  options:
+    - "Surət (copy)"
+    - "Server"
+    - "Commit"
+  answer: 2
+  explain: "Commit layihənin həmin andakı snapshot-unu müəllif, vaxt və izahla tarixçəyə yazır."
+- question: "Snapshot nədir?"
+  options:
+    - "Faylda dəyişən sətirlərin siyahısı"
+    - "Layihənin müəyyən andakı tam vəziyyəti"
+    - "Ekranın şəkli"
+  answer: 1
+  explain: "Snapshot layihənin həmin anda necə göründüyüdür; tarixçə snapshot-ların zənciridir."
+- question: "Mərkəzləşmiş sistemdə tarixçə harada saxlanır?"
+  options:
+    - "Hər iştirakçının kompüterində tam surət kimi"
+    - "Yalnız serverdə"
+    - "Heç yerdə, yalnız son versiya saxlanır"
+  answer: 1
+  explain: "Mərkəzləşmiş sistemdə tarixçə serverdədir, iştirakçılarda isə faylların son versiyası olur."
+- question: "Git-də internet olmayanda commit etmək olarmı?"
+  options:
+    - "Bəli: Git paylanmışdır, bütün tarixçə kompüterinizdədir"
+    - "Xeyr: commit həmişə serverə yazılır"
+    - "Yalnız ilk commit-i"
+  answer: 0
+  explain: "Paylanmış sistemdə tarixçənin tam surəti lokaldır; server yalnız paylaşmaq üçün lazımdır."

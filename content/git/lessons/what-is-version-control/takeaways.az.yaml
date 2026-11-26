@@ -1,0 +1,7 @@
+rules:
+  - "Version control hər dəyişikliyi kim, nə vaxt və niyə etdiyi ilə yadda saxlayır."
+  - "Fayl bir dənə qalır; köhnə versiyalar surət kimi yox, tarixçədə saxlanır."
+  - "Git-də dəyişikliyi tarixçəyə yazmaq *commit*, layihənin həmin andakı vəziyyəti *snapshot* adlanır."
+  - "Mərkəzləşmiş sistemdə tarixçə serverdədir; paylanmış sistemdə (Git) hər kəsdə tam surət var."
+practices:
+  - "`_final`, `_v2` kimi surətlər çıxarmaq istəyəndə bunun əvəzinə commit edin."

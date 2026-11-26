@@ -1,0 +1,49 @@
+- question: "SVN ilə Git arasındakı əsas fərq nədir?"
+  options:
+    - "SVN tarixçəni yalnız serverdə saxlayır, Git-də isə hər iştirakçıda tam tarixçə var"
+    - "Git tarixçə saxlamır, SVN saxlayır"
+    - "SVN yalnız şəkillər üçündür"
+  answer: 0
+  explain: "SVN mərkəzləşmiş, Git paylanmış sistemdir: tarixçənin harada durduğu digər fərqlərin çoxunu müəyyən edir."
+- question: "Təyyarədə internet yoxdur. Hansı əməliyyat Git-də işləyir, SVN-də işləmir?"
+  options:
+    - "Faylı redaktə etmək"
+    - "Commit etmək və tarixçəyə baxmaq"
+    - "Faylı silmək"
+  answer: 1
+  explain: "Git-də tarixçə lokaldır; SVN-də commit və tarixçə serverə müraciət tələb edir. Faylı redaktə etmək hər ikisində olur."
+- question: "Git-də lokal commit-ləri başqaları ilə paylaşmaq üçün hansı addım lazımdır?"
+  options:
+    - "`checkout`"
+    - "Heç bir addım: commit avtomatik paylaşılır"
+    - "`push`"
+  answer: 2
+  explain: "Commit lokal tarixçəyə yazılır; `push` onu ortaq repository-yə göndərir."
+- question: "Komandanın ortaq Git serveri xarab oldu və ehtiyat surəti yoxdur. Tarixçə itirmi?"
+  options:
+    - "Bəli, tarixçə yalnız serverdə idi"
+    - "Xeyr, hər iştirakçının repository-si tam tarixçədir və serveri ondan bərpa etmək olar"
+    - "Yalnız son commit qalır"
+  answer: 1
+  explain: "Paylanmış sistemdə serverin surəti yeganə deyil: serverə göndərilmiş hər şey iştirakçılarda da var."
+- question: "Oyun studiyası yüzlərlə gigabaytlıq qrafik faylla işləyir və faylları kilidləmək istəyir. Hansı sistem ənənəvi olaraq bu iş üçün seçilir?"
+  options:
+    - "Perforce"
+    - "Mercurial"
+    - "Heç biri, belə fayllar version control-da saxlanmır"
+  answer: 0
+  explain: "Perforce və SVN fayl kilidləməni daxildən dəstəkləyir; Git-də buna Git LFS kimi əlavə alət lazımdır."
+- question: "Git-də branch-lar nə üçün gündəlik vərdişdir?"
+  options:
+    - "Çünki Git hər commit-də avtomatik branch yaradır"
+    - "Çünki SVN branch-ları qadağan edir"
+    - "Çünki Git-də branch bir commit-ə göstəricidir: bir anda yaranır, Git isə birləşdirmə üçün qurulub"
+  answer: 2
+  explain: "Branch yaratmaq və birləşdirmək ucuz olanda hər kiçik iş üçün ayrıca branch açmaq rahatdır."
+- question: "Mercurial haqqında hansı doğrudur?"
+  options:
+    - "Mərkəzləşmiş sistemdir"
+    - "Git kimi paylanmış sistemdir və 2005-də yaranıb"
+    - "Git-in köhnə adıdır"
+  answer: 1
+  explain: "Mercurial paylanmışdır və Git ilə eyni ildə yaranıb, amma Git-dən çox az yayılıb."
