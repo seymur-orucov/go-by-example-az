@@ -519,3 +519,13 @@ Done (branch `feat/tech-page`):
 - `styles/go.css` → `styles/tech.css` (`go-*` classes → `tech-*`, `--go-cyan` / `--go-ice` → `--tech-c` / `--tech-c-2`, set on `:root` by the page so the aurora can read them); `scripts/go-index.ts` → `scripts/tech-index.ts` (storage keys `w3:<tech>-open` / `w3:<tech>-view`, so Go keeps its keys).
 - `/go/` and `/git/` are now a few lines each. Git gains the orange aurora, the progress card ("öyrənilib" marks work with the `git/<id>` slugs), the fit section, collapsible cards and the "all topics" view; a topic without a subtitle shows its duration.
 - Checked: `pnpm check` (0/0/0), lint, format, build (128 pages); the built HTML of both pages (colors, aurora canvas, "Backend yolunda Git-dən sonra", 39 Git topics in both views). Not checked in a browser by Claude: the look of the orange aurora in light/dark themes and on mobile.
+
+### 62. The technology page in a browser
+The user asked Claude to check `/git/` in a browser (light and dark themes, mobile) after PR #19 was merged.
+
+Done (branch `fix/tech-page-next`):
+- Screenshots of `/git/` at 1440px and 390px in both themes and `/go/` at 1440px, taken through the Chrome DevTools Protocol (device metrics override, so 390px works in headless Chrome); no console errors, no horizontal scroll on phones, every section shows after scrolling (the reveal animations need a scroll, so an unscrolled full-page capture looks empty).
+- Fixed: the "next lesson" in the progress card and the start button picked the first unlearned topic even if it had no lesson yet, so Git said "Başla: Version control nədir" (a planned topic) — `tech-index.ts` now skips planned topics. The build-time HTML was already right; only the browser script was wrong.
+- Fixed: the space after "Hədəf:" on `/git/` was lost (a line break between `</b>` and an expression is dropped).
+- Seen, not changed: in the light theme the orange aurora is very faint; the heading gradient uses the site's cyan → violet on every technology page, not the technology's color.
+- Then changed (same branch): the second heading line on technology pages uses the technology's color (`--tech-c`) instead of the site-wide cyan → violet (Git is orange, Go cyan); the aurora is stronger in the light theme (opacity ~0.8 instead of ~0.39; dark theme unchanged at 0.7). This also affects the light-theme look of `/go/`.

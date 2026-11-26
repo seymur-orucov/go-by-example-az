@@ -30,7 +30,8 @@
   mask-image: linear-gradient(180deg, #000 30%, transparent 95%);
 }
 .tech-aurora.on {
-  opacity: calc(var(--aurora-op) * 0.7);
+  /* Dark theme (--aurora-op: 1) keeps 0.7; the light theme (0.55) is lifted to ~0.8 so it shows. */
+  opacity: calc(var(--aurora-op) * (0.7 + (1 - var(--aurora-op)) * 1.7));
 }
 .tech-sky::after {
   content: "";
@@ -97,6 +98,14 @@
   font-size: clamp(36px, 5.2vw, 64px);
   letter-spacing: -0.045em;
   line-height: 1.04;
+}
+/* The second line takes the technology's color instead of the site-wide cyan → violet. */
+.tech-copy h1 .accent-grad {
+  background-image: linear-gradient(
+    100deg,
+    var(--tech-c),
+    color-mix(in srgb, var(--tech-c) 55%, var(--accent-2)) 100%
+  );
 }
 .tech-sub {
   max-width: 560px;
