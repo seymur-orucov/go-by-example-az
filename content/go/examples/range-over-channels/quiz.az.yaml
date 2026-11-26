@@ -1,0 +1,74 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    ch := make(chan string, 3)
+    ch <- "N"
+    ch <- "E"
+    close(ch)
+    for d := range ch {
+        fmt.Print(d)
+    }
+    fmt.Println(" done")
+  options: ["NE done", " done", "heç nə, proqram `deadlock` xətası ilə dayanır"]
+  answer: 0
+  explain: "Bağlı channel-ın buffer-indəki dəyərlər əvvəlcə verilir, dövr yalnız channel boşalanda bitir."
+
+- question: Bu kod işə düşəndə nə olacaq?
+  code: |
+    ch := make(chan int, 2)
+    ch <- 1
+    ch <- 2
+    for v := range ch {
+        fmt.Println(v)
+    }
+  options:
+    - "`1` və `2` çap olunur, sonra proqram `deadlock` xətası ilə dayanır"
+    - "`1` və `2` çap olunur və proqram normal bitir"
+    - "heç nə çap olunmur"
+  answer: 0
+  explain: "Channel bağlanmayıb, ona görə dövr üçüncü dəyəri gözləyir, onu göndərəcək goroutine isə yoxdur."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    func count(n int, out chan<- int) {
+        for i := range n {
+            out <- i
+        }
+        close(out)
+    }
+
+    ch := make(chan int)
+    go count(4, ch)
+    sum := 0
+    for v := range ch {
+        sum += v
+    }
+    fmt.Println(sum)
+  options: ["6", "10", "proqram `deadlock` xətası ilə dayanır"]
+  answer: 0
+  explain: "`count` 0, 1, 2, 3 göndərib channel-ı bağlayır, dövr cəmi 6 alıb bitir."
+
+- question: "`ch` `chan int` tiplidir. Hansı sətir kompilyasiya olunmur?"
+  options: ["`for i, v := range ch {`", "`for v := range ch {`", "`for range ch {`"]
+  answer: 0
+  explain: "Channel üzərində `range` yalnız bir dəyişən verir, indeks yoxdur."
+
+- question: Channel üzərində `range` dövrü nə vaxt bitir?
+  options:
+    - "channel bağlanıb boşalanda"
+    - "channel boşalanda, bağlanmasa belə"
+    - "channel bağlananda, buffer-də dəyər qalsa belə"
+  answer: 0
+  explain: "Boş, amma açıq channel-da dövr gözləyir, bağlı channel-da isə əvvəlcə qalan dəyərləri verir."
+
+- question: Bu funksiya kompilyasiya olunurmu?
+  code: |
+    func show(out chan<- int) {
+        for v := range out {
+            fmt.Println(v)
+        }
+    }
+  options:
+    - "Xeyr: send-only channel-dan qəbul etmək olmaz"
+    - "Bəli, dövr `out` bağlananda bitir"
+  answer: 0
+  explain: "`range` channel-dan qəbul edir, `chan<- int` isə yalnız göndərmək üçündür."

@@ -1,0 +1,10 @@
+problem:
+  out: "max temp: 22"
+generic:
+  out: "max temp: 22 max humidity: 55"
+comparable:
+  out: "door opened: 2 motion: 1"
+type:
+  out: |
+    0 false
+    21.5 true

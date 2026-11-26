@@ -1,0 +1,13 @@
+new-ticker:
+  out: |
+    warm-up pulse: 84
+    warm-up pulse: 92
+    warm-up pulse: 101
+stop:
+  out: "warm-up over, watch is quiet"
+stop-channel:
+  out: |
+    workout pulse: 124
+    workout pulse: 137
+    workout pulse: 131
+    readings saved: 3

@@ -2,5 +2,7 @@ title: "Defer"
 subtitle: "Sonraya saxlamaq"
 section: errors
 order: 4
-status: planned
+status: ready
 level: intermediate
+duration: 6
+source: original

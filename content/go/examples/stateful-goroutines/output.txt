@@ -1,0 +1,2 @@
+orders filled: 4 of 5
+boots left: 0

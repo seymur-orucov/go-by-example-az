@@ -1,0 +1,7 @@
+total: 16 km
+total: 0 km
+runs: [4 6] count: 2
+runs: [] count: 0
+Maya ran 2 times: [5 12]
+week: 25 km
+Leo ran 4 times: [5 7 3 10]

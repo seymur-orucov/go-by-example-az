@@ -1,0 +1,5 @@
+max temp: 22
+max temp: 22 max humidity: 55
+door opened: 2 motion: 1
+0 false
+21.5 true

@@ -1,0 +1,9 @@
+rules:
+  - "`for v := range ch` hər təkrarda channel-dan bir dəyər qəbul edir, dəyər hələ yoxdursa gözləyir."
+  - "Dövr yalnız channel bağlanıb boşalanda bitir; buffer-də qalan dəyərlər əvvəlcə verilir."
+  - "Channel heç bağlanmasa, dövr sonsuza qədər gözləyir; başqa işləyən goroutine yoxdursa, proqram `deadlock` xətası ilə dayanır."
+  - "Channel üzərində `range` yalnız bir dəyişən verir: `for i, v := range ch` kompilyasiya olunmur."
+  - "Send-only (`chan<-`) channel üzərində `range` kompilyasiya xətasıdır."
+practices:
+  - "Dəyərlərin sayını yalnız göndərən bilirsə, qəbul edəndə saymaq əvəzinə channel-ı bağlayın və `range` işlədin."
+  - "Göndərən funksiyada `close`-u bütün göndərişlərdən sonra, bir yerdə yazın ki, unudulmasın və təkrar bağlanmasın."

@@ -34,6 +34,16 @@ format section there and one existing `source: original` lesson before starting.
   the text may only refer to values the English code really contains. Exception: unicode
   and rune lessons use language-neutral multi-byte characters (`café`, `Zürich`), and the
   text may mention Azerbaijani letters such as `ə` in prose.
+- **Context check:** the context must show *why* the concept is needed, not just rename
+  variables. Good: the booking error carries the room and hour because the caller needs
+  them; the photo kiosk must keep running after one bad order. Bad: one theme stretched
+  over unrelated helpers (counting answers, clamping ratings and a shortlist under "a hotel
+  survey"). If the context only renames things, pick another one. For abstract mechanics
+  (generics, iterators, `defer` order) choose a context where the problem the feature solves
+  appears naturally (the same function needed for several types), let the first step show
+  that problem, and keep the context light so the mechanism stays in focus.
+- Quizzes may use other small contexts on purpose: they check that the reader can apply
+  the idea in a new situation.
 - **Money is in US dollars** (`USD` in output, "dollar" in text and comments), never manat
   or another local currency: lessons will be translated, and readers in other countries
   must understand the example without local knowledge.
@@ -103,6 +113,18 @@ go vet main.go
 go run main.go > output.txt
 ```
 
+- **Concurrency and timing lessons:** the output must not depend on scheduling or machine
+  speed. Collect results (a slice slot per goroutine, a fixed channel handoff, a count) and
+  print from one goroutine; never print durations or timestamps. When timing is the point,
+  print a comparison with a wide margin (at least ~100 ms; a relative one such as
+  "concurrent < sequential" is safest). A lower bound equal to the exact sum of the
+  `time.Sleep` calls can fail now and then on Windows. Run the program 20+ times, also while
+  the machine is busy, and confirm the output never changes. Never run a data race as
+  lesson code; describe it in the text or a quiz.
+- A program that ends in a panic on purpose (the `panic` lesson) exits with code 2 and its
+  stack trace holds paths and addresses. Generate its `output.txt` from a built binary with
+  `GOTRACEBACK=none ./lesson > output.txt 2>&1`, so the file ends with the bare
+  `panic: <message>` line; the future CI must expect exit code 2 for such lessons.
 - Verify **every quiz answer** by compiling or running the snippet (a scratch file in the
   scratchpad, not in the repo); for "does not compile" questions, check the compiler error.
 - Check every claim in `takeaways.az.yaml` against the lesson text and the compiler.

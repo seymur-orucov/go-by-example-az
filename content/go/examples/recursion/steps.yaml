@@ -1,0 +1,20 @@
+base:
+  out: |
+    floor 3
+    floor 2
+    floor 1
+    ground floor
+result:
+  out: |
+    people under Ava: 6
+    people under Ben: 3
+    people under Gia: 0
+tree:
+  out: |
+    Ava
+      Ben
+        Dev
+        Emma
+        Finn
+      Cara
+        Gia

@@ -2,5 +2,7 @@ title: "Non-Blocking Ops"
 subtitle: "Bloklamayan əməliyyatlar"
 section: concurrency
 order: 8
-status: planned
+status: ready
 level: advanced
+duration: 7
+source: original

@@ -1,0 +1,3 @@
+row B: 30 USD
+no row with index 5
+panic: unknown row Z

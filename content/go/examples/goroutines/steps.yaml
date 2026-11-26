@@ -1,0 +1,12 @@
+one-by-one:
+  out: |
+    AirNova 240 USD
+    BlueWing 195 USD
+    SkyJet 310 USD
+    one by one, over 250ms: true
+together:
+  out: |
+    [240 195 310]
+    at the same time, faster: true
+no-wait:
+  out: "search finished"

@@ -1,0 +1,89 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    func sumTo(n int) int {
+        if n == 0 {
+            return 0
+        }
+        return n + sumTo(n-1)
+    }
+
+    fmt.Println(sumTo(4))
+  options: ["10", "4", "24"]
+  answer: 0
+  explain: "`4 + 3 + 2 + 1 + 0 = 10`; `n == 0` olanda rekursiya dayanır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    func show(n int) {
+        if n == 0 {
+            return
+        }
+        show(n - 1)
+        fmt.Print(n, " ")
+    }
+
+    show(3)
+  options: ["1 2 3", "3 2 1", "3 2 1 0"]
+  answer: 0
+  explain: "Çap rekursiv çağırışdan sonradır, ona görə ən dərindəki çağırış (`n == 1`) birinci çap edir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    func digits(n int) int {
+        if n < 10 {
+            return 1
+        }
+        return 1 + digits(n/10)
+    }
+
+    fmt.Println(digits(2026))
+  options: ["4", "3", "2026"]
+  answer: 0
+  explain: "Hər çağırış son rəqəmi atır: `2026`, `202`, `20`, `2`; dörd çağırış, dörd rəqəm."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    func total(prices []int) int {
+        if len(prices) == 0 {
+            return 0
+        }
+        return prices[0] + total(prices[1:])
+    }
+
+    fmt.Println(total([]int{4, 5, 2}))
+  options: ["11", "4", "2"]
+  answer: 0
+  explain: "Hər çağırış birinci elementi götürüb qalanını özünə verir; boş slice base case-dir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    func size(tree map[string][]string, node string) int {
+        n := 1
+        for _, child := range tree[node] {
+            n += size(tree, child)
+        }
+        return n
+    }
+
+    t := map[string][]string{"A": {"B", "C"}, "B": {"D"}}
+    fmt.Println(size(t, "A"), size(t, "D"))
+  options: ["4 1", "3 0", "4 0"]
+  answer: 0
+  explain: "`size` düyünün özünü də sayır: `A` altında `B`, `C`, `D` ilə birlikdə 4, `D`-nin isə yalnız özü."
+
+- question: Bu kod işə salınanda nə olacaq?
+  code: |
+    func down(n int) {
+        if n == 0 {
+            return
+        }
+        down(n - 2)
+    }
+
+    down(5)
+  options:
+    - "proqram `stack overflow` xətası ilə dayanacaq"
+    - "funksiya üç dəfə çağırılıb bitəcək"
+    - "kompilyasiya xətası"
+  answer: 0
+  explain: "`5, 3, 1, -1, …` heç vaxt `0` olmur, base case-ə çatılmır və call stack dolur."

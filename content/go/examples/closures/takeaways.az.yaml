@@ -1,0 +1,9 @@
+rules:
+  - "Funksiya dəyərdir: function literal-ı dəyişənə yazmaq, arqument kimi vermək və funksiyadan qaytarmaq olar."
+  - "Funksiyanın tipi parametr və nəticə tipləri ilə yazılır: `func(string) bool`."
+  - "Closure xarici dəyişənin dəyərini yox, özünü tutur: dəyişən sonra dəyişsə, closure yeni dəyəri görür."
+  - "Funksiyadan qaytarılan closure öz dəyişənlərini saxlayır; hər yeni çağırış ayrıca vəziyyət yaradır."
+  - "Function literal saxlayan dəyişən yalnız elandan sonra istifadə oluna bilər, yuxarı səviyyədəki funksiyalar isə faylın istənilən yerindən görünür."
+practices:
+  - "Qısa şərti birbaşa çağırışın içində function literal kimi yazın; uzunlaşırsa, adlı funksiyaya çıxarın."
+  - "Sayğac kimi vəziyyəti closure-da gizlədin ki, onu yalnız bir funksiya dəyişə bilsin."

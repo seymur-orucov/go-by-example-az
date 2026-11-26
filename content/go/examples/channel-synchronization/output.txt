@@ -1,0 +1,3 @@
+till: waited 50 ms, close now?
+backup: saved 4 receipts, 95 USD
+till: backup confirmed, till closed

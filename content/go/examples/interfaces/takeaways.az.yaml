@@ -1,0 +1,9 @@
+rules:
+  - "Interface metodların siyahısıdır; bu metodları olan istənilən tip onu avtomatik ödəyir, `implements` yazılmır."
+  - "Interface dəyişəni fərqli konkret tipləri saxlaya bilər və yalnız interface-in metodlarını çağırmağa imkan verir."
+  - "Metod pointer receiver ilə yazılıbsa, interface-i `T` yox, `*T` ödəyir."
+  - "`v, ok := s.(Courier)` konkret tipi yoxlayır; `ok`-suz yanlış assertion panic verir."
+  - "Interface-in zero value-su `nil`-dir; `any` metodsuz interface-dir və istənilən dəyəri saxlayır."
+practices:
+  - "Interface-ləri kiçik saxlayın, bir-iki metodla; funksiya parametrində konkret tip əvəzinə interface qəbul edin."
+  - "Bir neçə tipi ayırmaq lazımdırsa, ardıcıl assertion-lar əvəzinə type switch yazın."

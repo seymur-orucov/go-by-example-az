@@ -1,0 +1,76 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    type TimeoutError struct {
+        Seconds int
+    }
+
+    func (e TimeoutError) Error() string {
+        return "timeout"
+    }
+
+    var err error = TimeoutError{Seconds: 5}
+    fmt.Println(err)
+  options: ["timeout", "{5}", "kompilyasiya xətası"]
+  answer: 0
+  explain: "`fmt` xətanı onun `Error()` metodunun mətni ilə çap edir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    err := fmt.Errorf("fetch: %w", TimeoutError{Seconds: 5})
+    var te TimeoutError
+    fmt.Println(errors.As(err, &te), te.Seconds)
+  options: ["true 5", "false 0", "true 0"]
+  answer: 0
+  explain: "`errors.As` bükülmüş zəncirdə `TimeoutError` tapır və onu `te`-yə yazır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    type WrapError struct {
+        Err error
+    }
+
+    func (w WrapError) Error() string {
+        return "wrap: " + w.Err.Error()
+    }
+
+    err := WrapError{Err: ErrBusy}
+    fmt.Println(errors.Is(err, ErrBusy))
+  options: ["false", "true"]
+  answer: 0
+  explain: "`WrapError`-un `Unwrap` metodu yoxdur, ona görə `errors.Is` içəridəki xətanı görmür."
+
+- question: "`Error` metodu `func (e *BookingError) Error() string` kimi yazılıb. Hansı sətir kompilyasiya olunur?"
+  options:
+    - "`var err error = &BookingError{Room: \"Orion\"}`"
+    - "`var err error = BookingError{Room: \"Orion\"}`"
+    - "hər ikisi"
+  answer: 0
+  explain: "Pointer receiver-li metod yalnız `*BookingError`-a aiddir, `error`-u da yalnız o ödəyir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    func find() *BookingError {
+        return nil
+    }
+
+    var err error = find()
+    fmt.Println(err == nil)
+  options: ["false", "true"]
+  answer: 0
+  explain: "Interface-in içində tip (`*BookingError`) var, yalnız dəyəri `nil`-dir, ona görə interface `nil` deyil."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    var be *BookingError
+    fmt.Println(errors.As(ErrBusy, &be))
+  options: ["false", "true", "panic"]
+  answer: 0
+  explain: "`ErrBusy` `errors.New` ilə yaradılıb, zəncirdə `*BookingError` yoxdur."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    err := &BookingError{Room: "Vega", Hour: 9, Err: ErrBusy}
+    fmt.Println(fmt.Errorf("plan: %w", err))
+  options: ["plan: Vega at 9:00: room is busy", "plan: room is busy", "plan: &{Vega 9 room is busy}"]
+  answer: 0
+  explain: "`%w` xətanın `Error()` mətnini qoyur, o da öz növbəsində `Err`-in mətnini əlavə edir."

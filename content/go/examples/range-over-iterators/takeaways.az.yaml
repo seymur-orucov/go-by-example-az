@@ -1,0 +1,9 @@
+rules:
+  - "`iter.Seq[V]` `func(yield func(V) bool)` tipli funksiyadır və `for v := range seq` ilə gəzilir."
+  - "Iterator hər `yield(v)` çağırışında dövrün gövdəsini bir dəfə işlədir; `break` olanda `yield` `false` qaytarır."
+  - "`yield` `false` qaytarandan sonra onu yenə çağırmaq panic verir."
+  - "`iter.Seq2[K, V]` hər addımda iki dəyər verir: `for k, v := range seq2`."
+  - "Iterator-u qaytaran çağırış heç nə hesablamır; kod yalnız `range` başlayanda işləyir."
+practices:
+  - "`yield`-i həmişə `if !yield(v) { return }` formasında çağırın."
+  - "Map-i sabit sırada gəzmək üçün `slices.Sorted(maps.Keys(m))` istifadə edin."

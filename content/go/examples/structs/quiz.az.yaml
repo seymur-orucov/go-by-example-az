@@ -1,0 +1,80 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    type Seat struct {
+        Row    int
+        Number int
+    }
+
+    s := Seat{Row: 4}
+    fmt.Println(s.Number)
+  options: ["0", "4", "kompilyasiya xətası"]
+  answer: 0
+  explain: "Literal-da yazılmayan `Number` sahəsi zero value, yəni `0` alır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    a := Seat{Row: 1, Number: 2}
+    b := a
+    b.Row = 9
+    fmt.Println(a.Row)
+  options: ["1", "9", "kompilyasiya xətası"]
+  answer: 0
+  explain: "`b := a` struct-ın surətini çıxarır, `b`-ni dəyişmək `a`-ya toxunmur."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    a := Seat{Row: 1}
+    p := &a
+    p.Row = 9
+    fmt.Println(a.Row)
+  options: ["9", "1", "kompilyasiya xətası, `(*p).Row` yazmaq lazımdır"]
+  answer: 0
+  explain: "`p.Row` pointer-in göstərdiyi struct-ın, yəni `a`-nın sahəsidir; `*` yazmaq lazım deyil."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    fmt.Println(Seat{1, 2} == Seat{Number: 2, Row: 1})
+  options: ["true", "false", "kompilyasiya xətası"]
+  answer: 0
+  explain: "Hər iki literal eyni sahə dəyərlərini verir, struct-lar sahə-sahə müqayisə olunur."
+
+- question: Bu kod niyə kompilyasiya olunmur?
+  code: |
+    s := Seat{Row: 3, Number: 5, Zone: "A"}
+  options:
+    - "`Seat`-də `Zone` sahəsi yoxdur"
+    - "bütün sahələri sıra ilə yazmaq lazımdır"
+    - "struct literal-da sahə adları yazılmır"
+  answer: 0
+  explain: "Literal-da yalnız tipdə elan olunmuş sahələrdən istifadə etmək olar."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    fmt.Println(Seat{4})
+  options: ["kompilyasiya xətası", "{4 0}", "{0 4}"]
+  answer: 0
+  explain: "Adsız literal-da bütün sahələr yazılmalıdır; çatışmayanı zero value ilə doldurmaq yalnız adlı literal-da olur."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    seats := []Seat{{Row: 1}, {Row: 2}}
+    for _, s := range seats {
+        s.Row = 0
+    }
+    fmt.Println(seats[0].Row, seats[1].Row)
+  options: ["1 2", "0 0", "0 2"]
+  answer: 0
+  explain: "`range` `s`-ə elementin surətini verir, slice-ın özü dəyişmir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    func moveBack(s Seat) {
+        s.Row++
+    }
+
+    s := Seat{Row: 5}
+    moveBack(s)
+    fmt.Println(s.Row)
+  options: ["5", "6", "kompilyasiya xətası"]
+  answer: 0
+  explain: "Funksiya struct-ın surətini alır; orijinalı dəyişmək üçün `*Seat` ötürmək lazımdır."

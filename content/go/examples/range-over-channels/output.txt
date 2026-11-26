@@ -1,0 +1,9 @@
+display: 14 C
+display: 16 C
+display: 15 C
+display: 19 C
+display: 18 C
+station off after 5 readings
+night log: 12 C
+night log: 10 C
+night log: 9 C

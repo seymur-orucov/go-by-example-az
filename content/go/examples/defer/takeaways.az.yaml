@@ -1,0 +1,8 @@
+rules:
+  - "`defer` çağırışı onu yazan funksiya bitəndə icra olunur, `return` hansı yerdə olursa olsun."
+  - "Bir neçə defer tərs sıra ilə işləyir: sonuncu yazılan birinci."
+  - "Təxirə salınan çağırışın arqumentləri `defer` sətrində dərhal hesablanır."
+  - "`defer func() { ... }()` closure-dır və dəyişənin son dəyərini görür; sondakı `()` mütləqdir."
+practices:
+  - "Təmizlik işini başlanğıcın yanına, `defer` ilə yazın ki, heç bir `return` onu ötürməsin."
+  - "Funksiya bitəndəki dəyər lazımdırsa, `defer`-də function literal istifadə edin."

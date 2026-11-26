@@ -1,0 +1,6 @@
+iota:
+  out: "0 2 4"
+string:
+  out: "rinsing unknown"
+next:
+  out: "idle -> washing -> rinsing -> spinning -> done"

@@ -1,0 +1,7 @@
+paper tray closed
+skipped: unknown size poster
+paper tray closed
+printed small for 1 USD
+kiosk still running
+beach <nil>
+pick failed: runtime error: index out of range [5] with length 3

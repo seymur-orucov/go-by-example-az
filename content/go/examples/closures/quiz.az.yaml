@@ -1,0 +1,79 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    double := func(n int) int {
+        return n * 2
+    }
+    fmt.Println(double(double(3)))
+  options: ["12", "6", "9"]
+  answer: 0
+  explain: "İçəridəki çağırış `6`, xaricdəki isə `12` qaytarır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    rate := 10
+    fee := func() int {
+        return rate
+    }
+    rate = 15
+    fmt.Println(fee())
+  options: ["15", "10", "kompilyasiya xətası"]
+  answer: 0
+  explain: "Closure dəyişənin özünü tutur, dəyərini yox; çağırış anında `rate` `15`-dir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    count := 0
+    add := func() {
+        count++
+    }
+    add()
+    add()
+    fmt.Println(count)
+  options: ["2", "0", "1"]
+  answer: 0
+  explain: "Closure xarici `count` dəyişəninə yazır, ona görə dəyişiklik çöldən də görünür."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    func newPiggyBank() func() int {
+        coins := 0
+        return func() int {
+            coins += 5
+            return coins
+        }
+    }
+
+    a := newPiggyBank()
+    b := newPiggyBank()
+    a()
+    a()
+    fmt.Println(a(), b())
+  options: ["15 5", "15 15", "5 5"]
+  answer: 0
+  explain: "Hər `newPiggyBank()` çağırışı öz `coins` dəyişənini yaradır; `a` üç dəfə, `b` bir dəfə çağırılıb."
+
+- question: Bu kod niyə kompilyasiya olunmur?
+  code: |
+    total := add(1, 2)
+    add := func(a, b int) int {
+        return a + b
+    }
+    fmt.Println(total)
+  options:
+    - "`add` istifadə olunanda hələ elan olunmayıb"
+    - "funksiyanı dəyişənə yazmaq olmaz"
+    - "function literal-ın adı olmalıdır"
+  answer: 0
+  explain: "Function literal-ı saxlayan dəyişən də adi dəyişəndir və yalnız elandan sonra istifadə oluna bilər."
+
+- question: Hansı çağırış kompilyasiya olunmayacaq?
+  code: |
+    func apply(n int, f func(int) int) int {
+        return f(n)
+    }
+  options:
+    - "`apply(2, func(x int) int { return -x })`"
+    - "`apply(2, func(x string) int { return 0 })`"
+    - "`apply(2, func(y int) int { return y * y })`"
+  answer: 1
+  explain: "`f` `func(int) int` tipindədir; `string` qəbul edən funksiya bu tipə uyğun gəlmir, parametrin adı isə önəmli deyil."

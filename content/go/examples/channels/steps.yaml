@@ -1,0 +1,9 @@
+send: {}
+make:
+  out: "counter: waiting for Margherita"
+receive:
+  out: "counter: got Margherita"
+send-waits:
+  out: |
+    counter: the oven took the order, waited: true
+    counter: got Pepperoni
