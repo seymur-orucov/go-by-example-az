@@ -240,10 +240,11 @@
     let cells = "";
     for (let k = 0; k < Math.max(v.cap, v.cells.length); k++) {
       const inLen = win ? k >= win[0] && k < win[1] : k < v.len;
-      const fresh = animate && v.fresh && v.fresh.includes(k);
+      const isNew = !!(v.fresh && v.fresh.includes(k)); // added / changed in this step
+      const fresh = animate && isNew;
       const val = v.cells[k];
       const show = val == null ? "·" : /^\d+$/.test(val) ? val : '"' + val + '"';
-      cells += '<span class="vcell"><span class="cell' + (inLen ? " on" : " cap") + (fresh ? " pop" : "") + '" style="--d:' + k * 70 + 'ms">' + esc(show) + '</span><small>' + k + "</small></span>";
+      cells += '<span class="vcell"><span class="cell' + (inLen ? " on" : " cap") + (isNew && inLen ? " new" : "") + (fresh ? " pop" : "") + '" style="--d:' + k * 70 + 'ms">' + esc(show) + '</span><small>' + k + "</small></span>";
     }
     box.innerHTML = '<div class="vis-row"><span class="vis-name">' + esc(v.name) + '</span><div class="cells">' + cells + "</div></div>" +
       (win ? '<p class="vis-note">eyni array, fərqli pəncərə: <code>cart[:2]</code> 0 və 1-ci elementləri görür</p>' : "");
