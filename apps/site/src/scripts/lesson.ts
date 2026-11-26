@@ -3,6 +3,7 @@
 // "Öyrəndim" button, reading progress, view modes (sidebar, width, Zen) and keyboard shortcuts.
 // The page renders all markup at build time; the quiz lives in quiz.ts.
 import { learnedSet, reduced, saveLearned, toast } from "@platform/theme/scripts/v2";
+import type { CodeEditor } from "./editor";
 
 interface LessonData {
   slug: string;
@@ -11,6 +12,8 @@ interface LessonData {
   output: string;
   /** `go run main.go` for Go; null for a terminal session, whose output already holds the `$ cmd` lines. */
   run: string | null;
+  /** Go lessons: the code can be edited and run through POST /api/run. */
+  runnable: boolean;
   /** Toast after copying the code pane. */
   copied: string;
   next: { title: string; href: string } | null;
@@ -212,7 +215,13 @@ function initWalkthrough(data: LessonData): () => void {
       : session && s.startsWith("$ ")
         ? `<b class="p">$</b> ${esc(s.slice(2))}`
         : esc(s);
+  // While set, the terminal shows the result of "İşə sal" instead of the recorded output.
+  let runHtml: string | null = null;
   function paintTerm(i: number): void {
+    if (runHtml !== null) {
+      term.innerHTML = runHtml;
+      return;
+    }
     term.innerHTML = fullOut
       ? outputLines.map((l) => `<span class="on">${lineHtml(l)}</span>`).join("")
       : outLines
@@ -346,16 +355,36 @@ function initWalkthrough(data: LessonData): () => void {
   });
 
   // full output toggle + copy
-  $("#btn-full")!.addEventListener("click", (e) => {
-    fullOut = !fullOut;
-    (e.currentTarget as HTMLElement).setAttribute("aria-pressed", String(fullOut));
+  const fullBtn = $("#btn-full")!;
+  const paintFullBtn = (): void => {
+    fullBtn.setAttribute("aria-pressed", String(fullOut && runHtml === null));
+    fullBtn.textContent = runHtml !== null ? "Dərsin çıxışı" : "Tam çıxış";
+  };
+  fullBtn.addEventListener("click", () => {
+    // after a run, the button brings back the lesson's own output
+    if (runHtml !== null) runHtml = null;
+    else fullOut = !fullOut;
+    paintFullBtn();
     setStatus(fullOut ? "tam çıxış · output.txt" : "addım rejimi", fullOut ? "full" : "");
     paintTerm(cur);
   });
+  const play = data.runnable
+    ? initPlayground(
+        data,
+        pre,
+        (html, text, cls) => {
+          runHtml = html;
+          paintFullBtn();
+          setStatus(text, cls);
+          paintTerm(cur);
+        },
+        queueLink,
+      )
+    : null;
   $("#btn-copy")!.addEventListener("click", () => {
     const fail = (): void => toast("Kopyalamaq alınmadı");
     try {
-      navigator.clipboard.writeText(data.code).then(() => toast(data.copied), fail);
+      navigator.clipboard.writeText(play?.code() ?? data.code).then(() => toast(data.copied), fail);
     } catch {
       fail();
     }
@@ -376,7 +405,7 @@ function initWalkthrough(data: LessonData): () => void {
   function drawLink(): void {
     linkRaf = 0;
     const el = stepEls[cur];
-    if (!el || !wide()) {
+    if (!el || !wide() || pre.hidden) {
       link.classList.remove("on");
       return;
     }
@@ -430,6 +459,143 @@ function initWalkthrough(data: LessonData): () => void {
   pickByScroll();
   if (document.fonts) void document.fonts.ready.then(queueLink);
   return queueLink;
+}
+
+// ---------- edit + run (Go lessons) ----------
+interface RunResult {
+  errors: string;
+  vet: string;
+  events: { kind: "stdout" | "stderr"; text: string }[];
+}
+const escHtml = (s: string): string =>
+  s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+/** One <span> per line; the terminal styles `.err`, `.warn` and `.note` lines. */
+const termLines = (text: string, cls = ""): string =>
+  text
+    .replace(/\n$/, "")
+    .split("\n")
+    .map((l) => `<span class="on${cls ? ` ${cls}` : ""}">${escHtml(l) || " "}</span>`)
+    .join("");
+
+/**
+ * "Redaktə" swaps the highlighted code for a CodeMirror editor (loaded on the first click),
+ * "Sıfırla" restores the lesson's code, "İşə sal" (or Ctrl+Enter) sends the current code to
+ * /api/run and shows the result through `show`. Returns the code that copy should take.
+ */
+function initPlayground(
+  data: LessonData,
+  pre: HTMLElement,
+  show: (html: string, status: string, cls: string) => void,
+  relayout: () => void,
+): { code: () => string } {
+  const editBtn = $<HTMLButtonElement>("#btn-edit")!;
+  const resetBtn = $<HTMLButtonElement>("#btn-reset")!;
+  const runBtn = $<HTMLButtonElement>("#btn-run")!;
+  const host = $("#cw-editor")!;
+  const cw = pre.closest<HTMLElement>(".cw")!;
+  let editor: CodeEditor | null = null;
+  let editing = false;
+  let running = false;
+
+  const code = (): string => editor?.getCode() ?? data.code;
+  const edited = (): boolean => code() !== data.code;
+  const paintEdited = (): void => {
+    resetBtn.hidden = !edited();
+    cw.classList.toggle("is-edited", edited());
+  };
+
+  async function setEditing(on: boolean): Promise<void> {
+    if (on && !editor) {
+      editBtn.disabled = true;
+      try {
+        const { createEditor } = await import("./editor");
+        editor = createEditor(host, data.code, paintEdited);
+      } catch {
+        toast("Redaktoru yükləmək alınmadı");
+        return;
+      } finally {
+        editBtn.disabled = false;
+      }
+    }
+    editing = on;
+    host.hidden = !on;
+    pre.hidden = on;
+    cw.classList.toggle("is-editing", on);
+    editBtn.setAttribute("aria-pressed", String(on));
+    editBtn.title = on ? "Addımlara qayıt (E)" : "Redaktə (E)";
+    relayout(); // the explanation -> code link hides while the editor is shown
+    if (on) editor?.focus();
+    else if (edited()) toast("Dəyişikliklər saxlanılır — «İşə sal» sənin kodunu işlədir");
+  }
+
+  async function run(): Promise<void> {
+    if (running) return;
+    running = true;
+    runBtn.disabled = true;
+    runBtn.textContent = "İşləyir…";
+    const mine = edited();
+    show('<span class="on note">Go Playground-a göndərilir…</span>', "işləyir · go.dev", "play");
+    try {
+      const res = await fetch("/api/run", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ code: code() }),
+      });
+      const body = (await res.json().catch(() => null)) as (RunResult & { error?: string }) | null;
+      if (!res.ok || !body || body.error) throw new Error(body?.error ?? `HTTP ${res.status}`);
+      if (body.errors) {
+        show(termLines(body.errors, "err"), "kompilyasiya xətası", "err");
+        return;
+      }
+      let html = body.vet ? termLines(`go vet: ${body.vet}`, "warn") : "";
+      html += body.events.map((e) => termLines(e.text, e.kind === "stderr" ? "err" : "")).join("");
+      if (!body.events.length) html += '<span class="on note">— proqram heç nə çap etmədi</span>';
+      const printed = body.events.map((e) => e.text).join("");
+      if (!mine && printed.replace(/\n$/, "") !== data.output.replace(/\n$/, "")) {
+        html +=
+          '<span class="on note">— nəticə dərsdəkindən fərqlidir: Playground-da saat 2009-11-10-da dayanıb, şəbəkə, fayl sistemi və proseslər məhduddur</span>';
+      }
+      show(html, mine ? "sənin kodun · go.dev" : "işlədi · go.dev", "ran");
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : String(e);
+      show(
+        termLines(`İşə salmaq alınmadı: ${msg}`, "err") +
+          '<span class="on note">Kodu kopyalayıb <a href="https://go.dev/play/" target="_blank" rel="noopener">go.dev/play</a>-da işlədə bilərsiniz</span>',
+        "işə salınmadı",
+        "err",
+      );
+    } finally {
+      running = false;
+      runBtn.disabled = false;
+      runBtn.textContent = "▶ İşə sal";
+    }
+  }
+
+  editBtn.addEventListener("click", () => void setEditing(!editing));
+  resetBtn.addEventListener("click", () => {
+    editor?.setCode(data.code);
+    paintEdited();
+    toast("Kod ilkin halına qaytarıldı");
+  });
+  runBtn.addEventListener("click", () => void run());
+  // capture: Ctrl+Enter must reach us before the editor inserts a line
+  addEventListener(
+    "keydown",
+    (e) => {
+      if (paletteOpen() || e.altKey) return;
+      if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
+        if ((document.activeElement as HTMLElement | null)?.closest(".qz")) return;
+        e.preventDefault();
+        e.stopPropagation();
+        void run();
+      } else if (e.code === "KeyE" && !e.ctrlKey && !e.metaKey && !e.shiftKey && !typing()) {
+        e.preventDefault();
+        void setEditing(!editing);
+      }
+    },
+    true,
+  );
+  return { code };
 }
 
 // Shift + arrows: previous / next lesson (planned pages have no walkthrough, so this is global).
