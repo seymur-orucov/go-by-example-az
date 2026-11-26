@@ -72,8 +72,8 @@
 /* Dark (default when the system is dark, or forced) */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #04060c;
-    --bg-2: #070a13;
+    --bg: #070a14;
+    --bg-2: #0a0e1b;
     --surface: #0b0f1a;
     --glass: rgba(140, 160, 255, 0.045);
     --glass-2: rgba(140, 160, 255, 0.075);
@@ -116,8 +116,8 @@
   }
 }
 :root[data-theme="dark"] {
-  --bg: #04060c;
-  --bg-2: #070a13;
+  --bg: #070a14;
+  --bg-2: #0a0e1b;
   --surface: #0b0f1a;
   --glass: rgba(140, 160, 255, 0.045);
   --glass-2: rgba(140, 160, 255, 0.075);

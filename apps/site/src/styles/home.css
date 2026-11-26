@@ -626,6 +626,58 @@ a.tech:hover {
 }
 
 /* ================= NODE ANATOMY ================= */
+/* Ambient light: a soft, static glow behind each home section so the aurora
+   from the hero carries down the page and glass cards have something to blur. */
+#stack,
+#model,
+#bolmeler,
+#niye,
+#basla {
+  isolation: isolate;
+}
+#stack::before,
+#model::before,
+#bolmeler::before,
+#niye::before,
+#basla::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  width: min(900px, 90vw);
+  aspect-ratio: 1.6;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, var(--glow), transparent);
+  opacity: calc(var(--aurora-op) * 0.9);
+  filter: blur(40px);
+}
+#stack::before {
+  --glow: color-mix(in srgb, var(--accent) 16%, transparent);
+  top: 30%;
+  left: 50%;
+  translate: -50% 0;
+}
+#model::before {
+  --glow: color-mix(in srgb, var(--accent-2) 15%, transparent);
+  top: 20%;
+  left: -15%;
+}
+#bolmeler::before {
+  --glow: color-mix(in srgb, var(--cyan) 12%, transparent);
+  top: 15%;
+  right: -15%;
+}
+#niye::before {
+  --glow: color-mix(in srgb, var(--accent-2) 13%, transparent);
+  top: 40%;
+  left: 20%;
+}
+#basla::before {
+  --glow: color-mix(in srgb, var(--cyan) 14%, transparent);
+  top: 0;
+  left: 50%;
+  translate: -50% 0;
+}
 .section-tint {
   background: linear-gradient(
     180deg,
@@ -1277,19 +1329,21 @@ a.tech:hover {
   color: var(--text);
 }
 .cmp .us {
-  background: linear-gradient(
-    180deg,
-    var(--accent-soft),
-    color-mix(in srgb, var(--accent) 5%, transparent)
-  );
+  /* solid, flat column: one calm tint + hairline sides, no gradient */
+  background: color-mix(in srgb, var(--accent) 7%, transparent);
+  border-left: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+  border-right: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+  border-bottom-color: color-mix(in srgb, var(--accent) 12%, transparent);
 }
 .cmp thead .us {
   border-radius: 14px 14px 0 0;
+  border-top: 2px solid var(--accent);
   color: var(--text);
   font-family: var(--font-mono);
 }
 .cmp tbody tr:last-child .us {
   border-radius: 0 0 14px 14px;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
 }
 .mk {
   display: inline-grid;
