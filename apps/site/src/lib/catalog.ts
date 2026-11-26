@@ -30,4 +30,6 @@ export interface CatalogSection {
   description: string;
   level: Level;
   items: CatalogItem[];
+  /** The syllabus part the section belongs to (large syllabi only, e.g. Git / GitHub). */
+  part?: { id: string; title: string; description: string };
 }

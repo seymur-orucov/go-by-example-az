@@ -10,7 +10,17 @@ import { CONTENT_ROOT } from "./lesson.ts";
 
 const ID = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 
-export const LESSON_KINDS = ["code", "terminal", "state", "diagram", "compare", "concept"] as const;
+export const LESSON_KINDS = [
+  "code",
+  "terminal",
+  "state",
+  "diagram",
+  "compare",
+  "concept",
+  "ui",
+] as const;
+/** Kinds whose stage is a picture, so the node must list the "visual" facet. */
+const VISUAL_KINDS: readonly string[] = ["state", "diagram", "compare", "ui"];
 export const FACETS = ["theory", "practice", "visual", "test", "interview"] as const;
 
 const nodeSchema = z
@@ -26,9 +36,19 @@ const nodeSchema = z
   })
   .strict();
 
+const partSchema = z
+  .object({
+    id: z.string().regex(ID),
+    title: z.string().min(1),
+    description: z.string().min(1),
+  })
+  .strict();
+
 const moduleSchema = z
   .object({
     id: z.string().regex(ID),
+    /** Part id; required when the syllabus has `parts`. */
+    part: z.string().regex(ID).optional(),
     title: z.string().min(1),
     description: z.string().min(1),
     nodes: z.array(nodeSchema).min(1),
@@ -46,21 +66,42 @@ export const syllabusSchema = z
     syntax: z.string().optional(),
     outOfScope: z.array(z.string()).optional(),
     sources: z.array(z.object({ name: z.string(), url: z.url(), used: z.string() }).strict()),
+    /** Optional top-level split of a large syllabus (e.g. Git / GitHub); modules name their part. */
+    parts: z.array(partSchema).min(2).optional(),
     modules: z.array(moduleSchema).min(1),
   })
   .strict();
 
 export type Syllabus = z.infer<typeof syllabusSchema>;
 export type SyllabusNode = z.infer<typeof nodeSchema>;
+export type SyllabusPart = z.infer<typeof partSchema>;
 
-/** Rules the schema cannot express: unique ids, prerequisites exist and come earlier (so no cycles). */
+/**
+ * Rules the schema cannot express: unique ids, prerequisites exist and come earlier (so no
+ * cycles), and with `parts` every module names a known part and each part's modules are contiguous.
+ */
 function checkGraph(s: Syllabus): string[] {
   const problems: string[] = [];
   const seen = new Set<string>();
   const modules = new Set<string>();
+  const partIds = new Set((s.parts ?? []).map((p) => p.id));
+  if (partIds.size !== (s.parts ?? []).length) problems.push("duplicate part id");
+  const closedParts = new Set<string>();
+  let currentPart: string | undefined;
   for (const m of s.modules) {
     if (modules.has(m.id)) problems.push(`duplicate module id "${m.id}"`);
     modules.add(m.id);
+    if (s.parts) {
+      if (!m.part || !partIds.has(m.part)) {
+        problems.push(`module "${m.id}": part "${m.part ?? ""}" is missing or unknown`);
+      } else if (m.part !== currentPart) {
+        if (closedParts.has(m.part)) problems.push(`module "${m.id}": part "${m.part}" is split`);
+        if (currentPart) closedParts.add(currentPart);
+        currentPart = m.part;
+      }
+    } else if (m.part) {
+      problems.push(`module "${m.id}": has a part, but the syllabus has no parts`);
+    }
     for (const n of m.nodes) {
       if (seen.has(n.id)) problems.push(`duplicate node id "${n.id}"`);
       for (const r of n.requires) {
@@ -68,7 +109,7 @@ function checkGraph(s: Syllabus): string[] {
           problems.push(`${n.id}: requires "${r}", which is missing or comes later`);
       }
       if (!n.facets.includes("test")) problems.push(`${n.id}: every node needs the "test" facet`);
-      if (["state", "diagram", "compare"].includes(n.kind) && !n.facets.includes("visual")) {
+      if (VISUAL_KINDS.includes(n.kind) && !n.facets.includes("visual")) {
         problems.push(`${n.id}: kind "${n.kind}" needs the "visual" facet`);
       }
       seen.add(n.id);
@@ -166,10 +207,12 @@ export function getSyllabusCatalog(technology: string): {
       };
     });
     const look = MODULE_LOOK[i % MODULE_LOOK.length]!;
+    const part = syllabus.parts?.find((p) => p.id === m.part);
     return {
       id: m.id,
       title: m.title,
       description: m.description,
+      ...(part && { part }),
       ...look,
       level: items[0]?.level ?? "beginner",
       items,

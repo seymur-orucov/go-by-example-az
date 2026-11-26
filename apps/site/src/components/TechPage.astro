@@ -70,6 +70,14 @@ const hours = minutes
   : "";
 const pad = (i: number): string => String(i + 1).padStart(2, "0");
 
+/** The part heading to show before section i: only where a new part starts (large syllabi). */
+const partStart = (i: number) => {
+  const part = sections[i]?.part;
+  if (!part || part.id === sections[i - 1]?.part?.id) return null;
+  const own = sections.filter((s) => s.part?.id === part.id);
+  return { ...part, modules: own.length, topics: own.reduce((n, s) => n + s.items.length, 0) };
+};
+
 const dirs = DIRECTIONS.filter((d) => d.techs.includes(tech));
 const path = dirs[0];
 const after = path
@@ -299,36 +307,89 @@ const techVars = `:root{--tech-c:${color};--tech-c-2:${ice}}`;
           {sections.map((s, i) => {
             const ready = s.items.filter((it) => it.status === "ready").length;
             const open = i < 2;
+            const part = partStart(i);
             return (
-              <article
-                class:list={["sec-card glass spot", { open }]}
-                data-reveal
-                data-sec-card={s.id}
-                style={`--i:${i % 3}`}
-              >
-                <div class="sc-top">
+              <>
+                {part && (
+                  <div class="prog-part" data-reveal>
+                    <h3>{part.title}</h3>
+                    <p>{part.description}</p>
+                    <small>
+                      {part.modules} {unit} · {part.topics} mövzu
+                    </small>
+                  </div>
+                )}
+                <article
+                  class:list={["sec-card glass spot", { open }]}
+                  data-reveal
+                  data-sec-card={s.id}
+                  style={`--i:${i % 3}`}
+                >
+                  <div class="sc-top">
+                    <span class="sc-n">{pad(i)}</span>
+                    <span class="sc-lvl">{LEVEL_LABEL[s.level]}</span>
+                    {ready ? (
+                      <span class="badge live">{ready} hazır</span>
+                    ) : (
+                      <span class="badge later">tezliklə</span>
+                    )}
+                  </div>
+                  <h3>{s.title}</h3>
+                  <p>{s.description}</p>
+                  <div class="sc-prog">
+                    <span class="sc-bar">
+                      <i style="width:0%" data-bar-done />
+                      <i class="r" style={`width:${Math.round((ready / s.items.length) * 100)}%`} />
+                    </span>
+                    <small data-done-text>0 / {s.items.length} öyrənilib</small>
+                  </div>
+                  <button class="sc-toggle" data-sec={s.id} aria-expanded={open}>
+                    {s.items.length} mövzu
+                    <i data-icon="chev" />
+                  </button>
+                  <ul class="sc-topics" hidden={!open}>
+                    {s.items.map((it) => {
+                      const [st, tag] = topicState(it);
+                      return (
+                        <li>
+                          <a
+                            class={`topic ${st}`}
+                            href={it.href}
+                            data-slug={it.slug}
+                            data-state={it.status}
+                          >
+                            <i class="td" />
+                            <span>
+                              <b>{it.title}</b>
+                              <small>{it.sub || (it.duration ? `${it.duration} dəq` : "")}</small>
+                            </span>
+                            <em>{tag}</em>
+                          </a>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </article>
+              </>
+            );
+          })}
+        </div>
+
+        <div class="prog-all" id="prog-all" hidden>
+          {sections.map((s, i) => (
+            <>
+              {partStart(i) && (
+                <div class="prog-part" data-reveal>
+                  <h3>{partStart(i)!.title}</h3>
+                </div>
+              )}
+              <div class="all-group" data-reveal>
+                <div class="all-head">
                   <span class="sc-n">{pad(i)}</span>
-                  <span class="sc-lvl">{LEVEL_LABEL[s.level]}</span>
-                  {ready ? (
-                    <span class="badge live">{ready} hazır</span>
-                  ) : (
-                    <span class="badge later">tezliklə</span>
-                  )}
+                  <b>{s.title}</b>
+                  <small>{s.items.length} mövzu</small>
                 </div>
-                <h3>{s.title}</h3>
-                <p>{s.description}</p>
-                <div class="sc-prog">
-                  <span class="sc-bar">
-                    <i style="width:0%" data-bar-done />
-                    <i class="r" style={`width:${Math.round((ready / s.items.length) * 100)}%`} />
-                  </span>
-                  <small data-done-text>0 / {s.items.length} öyrənilib</small>
-                </div>
-                <button class="sc-toggle" data-sec={s.id} aria-expanded={open}>
-                  {s.items.length} mövzu
-                  <i data-icon="chev" />
-                </button>
-                <ul class="sc-topics" hidden={!open}>
+                <ul class="all-grid">
                   {s.items.map((it) => {
                     const [st, tag] = topicState(it);
                     return (
@@ -350,42 +411,8 @@ const techVars = `:root{--tech-c:${color};--tech-c-2:${ice}}`;
                     );
                   })}
                 </ul>
-              </article>
-            );
-          })}
-        </div>
-
-        <div class="prog-all" id="prog-all" hidden>
-          {sections.map((s, i) => (
-            <div class="all-group" data-reveal>
-              <div class="all-head">
-                <span class="sc-n">{pad(i)}</span>
-                <b>{s.title}</b>
-                <small>{s.items.length} mövzu</small>
               </div>
-              <ul class="all-grid">
-                {s.items.map((it) => {
-                  const [st, tag] = topicState(it);
-                  return (
-                    <li>
-                      <a
-                        class={`topic ${st}`}
-                        href={it.href}
-                        data-slug={it.slug}
-                        data-state={it.status}
-                      >
-                        <i class="td" />
-                        <span>
-                          <b>{it.title}</b>
-                          <small>{it.sub || (it.duration ? `${it.duration} dəq` : "")}</small>
-                        </span>
-                        <em>{tag}</em>
-                      </a>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
+            </>
           ))}
         </div>
       </div>
