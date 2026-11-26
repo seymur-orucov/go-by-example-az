@@ -1,0 +1,7 @@
+rules:
+  - "Repository layihənin faylları və onların bütün tarixçəsidir."
+  - "Tarixçə layihənin kökündəki gizli `.git` qovluğunda saxlanır; qovluqla birlikdə köçür."
+  - "Lokal repository kompüterinizdədir və internetsiz işləyir; remote repository serverdəki ortaq surətdir."
+  - "`git init` yeni, boş repository yaradır; `git clone` remote repository-ni tarixçəsi ilə köçürür."
+practices:
+  - "Hər layihə üçün ayrıca repository yaradın."

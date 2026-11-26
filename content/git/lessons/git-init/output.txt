@@ -1,0 +1,25 @@
+$ mkdir cv
+$ cd cv
+$ echo "# Sam Lee" > cv.md
+$ git init
+Initialized empty Git repository in /home/sam/cv/.git/
+$ ls -A
+.git
+cv.md
+$ ls .git
+HEAD
+config
+description
+hooks
+info
+objects
+refs
+$ cat .git/HEAD
+ref: refs/heads/main
+$ git init
+Reinitialized existing Git repository in /home/sam/cv/.git/
+$ rm -rf .git
+$ git status
+fatal: not a git repository (or any of the parent directories): .git
+$ ls -A
+cv.md

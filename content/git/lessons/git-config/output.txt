@@ -1,0 +1,17 @@
+$ git config --global user.name "Sam Lee"
+$ git config --global user.email "sam@example.com"
+$ git config --global init.defaultBranch main
+$ git config user.name
+Sam Lee
+$ git config --global --list
+user.name=Sam Lee
+user.email=sam@example.com
+init.defaultbranch=main
+$ mkdir client-site
+$ cd client-site
+$ git config user.email "sam@work.example"
+$ git config --show-origin user.email
+file:.git/config	sam@work.example
+$ cd ..
+$ git config --show-origin user.email
+file:/home/sam/.gitconfig	sam@example.com

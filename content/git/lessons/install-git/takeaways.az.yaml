@@ -1,0 +1,8 @@
+rules:
+  - "`git --version` Git-in quraşdırıldığını və versiyasını göstərir."
+  - "`command not found` və ya `is not recognized` xətası Git-in olmadığını və ya terminalın onu tapmadığını bildirir."
+  - "Bu kurs üçün Git 2.23 və ya daha yeni versiya lazımdır: `git switch` və `git restore` orada gəlib."
+  - "`git <komanda> -h` qısa yardımı terminala çap edir, `git help <komanda>` isə tam sənədi açır."
+practices:
+  - "Quraşdırmadan sonra terminalı yenidən açıb `git --version` ilə yoxlayın."
+  - "Windows-da kursun komandalarını Git Bash-da işə salın: `echo` və `ls` orada da işləyir."

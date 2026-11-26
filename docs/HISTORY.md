@@ -578,3 +578,13 @@ Done (branch `feat/git-concept-compare`):
 - **Pilots** (`source: original`): `what-is-version-control` (`concept`: a family recipe book — the `recipes_final_v2.md` copies problem, then the same work as a history of snapshots; why it helps; centralized vs distributed in brief; 4 steps, 6 questions) and `git-vs-other-vcs` (`compare`: SVN vs Git aspect by aspect, working on a train without internet, branches, Mercurial and Perforce, why Git won; 4 steps, 7 questions).
 - Checked in headless Chrome at 1440px (both themes) and 390px: fixed the caption casing ("GİT"), the arrow row wrapping on phones (now vertical) and the missing space after a list.
 - Layout: the first version capped the column at 820px and the user asked why the right side was empty; a sticky side panel (like code lessons) was tried and rejected — "full width, one under another, not sticky for this template". Text lessons now run full width with the visuals inside the steps; a sequence with arrows stays on one line.
+
+### 68. Git module 1 "Əsaslar"
+The user approved the four Git pilots (`what-is-version-control`, `git-vs-other-vcs`, `first-commit`, `three-areas`) without notes and asked for modules 1 and 2, one PR each, merged without further questions.
+
+Done (branch `feat/git-basics-lessons`):
+- `what-is-a-repository` (`concept`): files plus the history in `.git` (a `blog/` folder), the history travels with the folder, local vs remote (Sam → GitHub → Ayla), `git init` vs `git clone`; 4 steps, two `flow` visuals, 7 questions.
+- `install-git` (`terminal`): `git --version`, install commands per OS as comments (Git for Windows / winget, Command Line Tools / Homebrew, apt / dnf), `git init -h` and how to read a usage line; 3 steps, 6 questions.
+- `git-config` (`terminal`): the session removes the sandbox's preset config (hidden) and sets `user.name`, `user.email` and `init.defaultBranch` itself; reading values, `--global --list` (keys printed in lower case), a local email in `client-site` that wins over the global one (`--show-origin`); 4 steps, 8 questions.
+- `git-init` (`terminal`): a CV folder with an existing file, `ls -A`, what `.git` holds, `HEAD` → `refs/heads/main`, re-running `git init`, deleting `.git` (files stay, history goes); 4 steps, 7 questions.
+- Checked: `content:run` twice (identical `session.json`), every quiz answer in a scratch sandbox (Git 2.56.1), `content:check`, build, pages at 1440px. The session lessons were recorded with Git 2.56.1 (the pilots still carry 2.37.3).

@@ -1,0 +1,9 @@
+rules:
+  - "`git config --global` ayarı ev qovluğundakı `.gitconfig` faylına yazır və bütün repository-lərə aiddir."
+  - "Repository-nin içində `--global` olmadan yazılan ayar yalnız həmin repository-nin `.git/config` faylına düşür."
+  - "Eyni ayar həm lokal, həm qlobal olanda lokal dəyər qalib gəlir."
+  - "`git config <ad>` dəyəri oxuyur, `--show-origin` isə onun hansı fayldan gəldiyini göstərir."
+  - "Ayar adlarında hərf ölçüsü fərq etmir: `init.defaultBranch` və `init.defaultbranch` eyni ayardır."
+practices:
+  - "Yeni kompüterdə əvvəlcə `user.name`, `user.email` və `init.defaultBranch`-ı qlobal təyin edin."
+  - "İş üçün ayrıca email lazımdırsa, onu iş repository-sində lokal təyin edin."

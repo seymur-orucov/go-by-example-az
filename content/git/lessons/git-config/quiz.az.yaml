@@ -1,0 +1,63 @@
+- question: "Bu komandalardan sonra nə çap olunur?"
+  code: |
+    git config --global user.name "Nora Smith"
+    git config user.name
+  options:
+    - "`Nora Smith`"
+    - "`user.name=Nora Smith`"
+    - "Heç nə: ikinci komanda dəyəri silir"
+  answer: 0
+  explain: "Dəyərsiz `git config <ad>` ayarın cari dəyərini çap edir."
+- question: "Bütün repository-lər üçün adı hansı komanda təyin edir?"
+  options:
+    - "`git config user.name \"Nora Smith\"` (repository-nin içində)"
+    - "`git config user.name`"
+    - "`git config --global user.name \"Nora Smith\"`"
+  answer: 2
+  explain: "`--global` ayarı ev qovluğundakı `.gitconfig` faylına yazır; o, bütün repository-lərə aiddir."
+- question: "Qlobal email `nora@home.example`-dir. Repository-nin içində bu komandalardan sonra nə çap olunur?"
+  code: |
+    git config user.email "nora@shop.example"
+    git config user.email
+  options:
+    - "`nora@home.example`"
+    - "`nora@shop.example`"
+    - "Hər iki email, iki sətirdə"
+  answer: 1
+  explain: "Lokal ayar qlobalı üstələyir, ona görə repository-də `nora@shop.example` görünür."
+- question: "Əvvəlki sualdakı repository-dən `cd ..` ilə çıxırsınız. İndi `git config user.email` nə çap edir?"
+  options:
+    - "`nora@shop.example`"
+    - "Xəta: email təyin olunmayıb"
+    - "`nora@home.example`"
+  answer: 2
+  explain: "Lokal ayar yalnız öz repository-sinin içində işləyir; kənarda qlobal dəyər qalır."
+- question: "Lokal ayarlar harada saxlanır?"
+  options:
+    - "Ev qovluğundakı `.gitconfig` faylında"
+    - "Repository-nin `.git/config` faylında"
+    - "Layihə qovluğundakı `config.txt` faylında"
+  answer: 1
+  explain: "`--global` olmadan yazılan ayar repository-nin `.git/config` faylına düşür."
+- question: "`git config --global init.defaultBranch main`-dən sonra `git config --global --list` `init.defaultbranch=main` göstərir. Niyə kiçik hərflə?"
+  options:
+    - "Ayar adlarında hərf ölçüsü fərq etmir, Git onları kiçik hərflə çap edir"
+    - "Ayar səhv yazılıb və saxlanmayıb"
+    - "`--list` yalnız köhnə ayarları göstərir"
+  answer: 0
+  explain: "`init.defaultBranch` və `init.defaultbranch` eyni ayardır."
+- question: "`init.defaultBranch` təyin olunmayıbsa, `git init` ilk branch-ı necə adlandırır?"
+  options:
+    - "`main`"
+    - "`default`"
+    - "`master`"
+    - "`trunk`"
+  answer: 2
+  explain: "Ayar olmadan Git köhnə adı, `master`-i götürür və bu barədə xəbərdarlıq çap edir."
+- question: "`git config --show-origin user.email` nə göstərir?"
+  options:
+    - "Email-i və onun hansı fayldan gəldiyini"
+    - "Email-in nə vaxt dəyişdiyini"
+    - "Bu email ilə edilmiş bütün commit-ləri"
+  answer: 0
+  explain: "`--show-origin` dəyərin yanında onun gəldiyi faylı yazır: `file:.git/config` və ya qlobal fayl."
