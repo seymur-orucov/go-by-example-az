@@ -441,6 +441,12 @@ Done (branch `feat/content-concurrency`, started from `feat/content-errors`, non
 - Known: several `main.go` files are 40–70 lines (over the ~30-line guide) where a lesson needs a worker plus two runs or a full request/owner pair. Quiz answers are mostly at index 0 across the whole course (212 of 335) and the quiz does not shuffle options, so a reader can guess; to be decided (shuffle at render time or rebalance).
 - Awaiting the user's review of tone and clarity.
 
+### 53. Design v2 lesson page: D-style highlight and "new element" colour
+The user chose v2 as the base. Feedback: v2's step walkthrough and code pane stay as they are (a first "Sakit / Canlı" switch was tried and rejected — wording and idea; reverted). Two changes asked for:
+- Highlighted code lines fade out to the right like in Variant D (`linear-gradient(90deg, accent-soft, transparent 85%)`), no glow.
+- In the memory visual, elements added or changed by the current step get a different colour (green, `.cell.new`), as in the user's screenshot from D.
+- Open: elements that disappear (removed) are not shown yet; the `slices` data has no removal step.
+
 ### 54. "Mətn və verilənlər" section: 16 lessons
 The user asked to continue the Go content from where it stopped and to use the content skills in the background; the next section was "Mətn və verilənlər", all 16 lessons `planned`.
 
@@ -453,6 +459,14 @@ Done (branch `feat/content-text`, from `main` after the concurrency PR was merge
 - Verified with Go 1.26.5: `gofmt`, `go vet`, each program run several times against `output.txt`; every quiz answer checked by the agents by running snippets or reading the compiler message; `pnpm content:check` (64/64), lint, format, check (0 errors), build (86 pages); `/go/json/` checked in headless Chrome at 1440px. One agent saw intermittent `fork/exec ... Access is denied` on the go-build cache binary (antivirus or file locking on this machine, not the lesson).
 - Known: most `main.go` files are 30–53 lines (over the ~30-line guide).
 - Awaiting the user's review of tone and clarity.
+
+### 55. Design v2 implemented in the Astro app
+The user chose v2 as the current design and asked to implement it fully in `apps/site`; sections with no content yet stay as v2's static variants (not hidden).
+- Theme: `packages/theme` now carries v2 only — `styles/v2.css`, `Layout`/`Header`/`Footer` (full and slim lesson footer), `data/platform.ts` (technologies, directions, platform sections, brand previews) and one runtime `scripts/v2.ts` (theme + palette, brand switch, menus, Ctrl+K search, reveal/count-up, toast, aurora). D's tokens, base/platform CSS and shell scripts were deleted. Storage keys are `w3:*` (theme, palette, brand, view modes); progress stays `goaz:learned` and starts empty (no demo progress).
+- Pages: `/` (static v2 home, real Go numbers), `/go/` (build-time render, progress painted by script), `/go/roadmap/` and `/roadmaps/backend/` (one `RoadmapPage` component, sample node facets in `data/roadmap-nodes.ts`), `/go/<slug>/` (v2 walkthrough fed by the real lesson loader: step engine, curved explanation→code link, output, memory visual with green "new" cells, takeaways, quiz slider, view modes, Zen; planned topics get v2's "in preparation" page).
+- Page styles live in `apps/site/src/styles/` (copies of v2's CSS), page scripts in `apps/site/src/scripts/`.
+- Verified: lint, format, check, build (88 pages); headless Chrome at 1440 and 390px (no console errors, no horizontal scroll). Not checked: light theme and palettes on every page, a real phone.
+- Known: roadmap/home samples are still v2's static data; `/go/roadmap/` is linked as "Yol xəritələri" in the nav; the "Daxil ol" button points to `/#basla`.
 
 ### 56. "Fayllar və test" and "Sistem və şəbəkə" sections: 20 lessons
 The user asked to complete the remaining Go modules: "Fayllar və test" (8 lessons) and "Sistem və şəbəkə" (12 lessons), all `planned`.

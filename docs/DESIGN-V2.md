@@ -78,7 +78,7 @@ The user's request: *"V6 yarat. Introda maraqlı interaktiv animasiya. Əsas sə
 1. **Get the user's feedback on v6** (the liquid-glass hero and its interactions, the amount of information, the sections) and record it in [HISTORY.md](HISTORY.md). If v6 is the direction, it becomes the home reference; the Go, roadmap and lesson pages are already in the same (v2) glass language, and v6's roadmap explorer and lesson demo can feed `go.html` / `roadmap.html`.
 2. If the user wants another variant instead, one earlier proposal still stands: **"Light editorial"** (light-first, large type, fewer effects). ("Roadmap-first" is what v4 became.)
 3. Decide the platform name (`w3hub.dev` / `beststack.dev` / other) — check domain availability.
-4. After a variant is approved: move it into `packages/theme` / `apps/site` (Phase 2 module 2: `/`, `/go/roadmap/`, `/roadmaps/backend/`).
+4. **Done (2026-11-26):** v2 is the current design and is implemented in `packages/theme` / `apps/site` (HISTORY entry 55). Further design changes are made on top of v2 there and in `design/v2/` as the reference.
 5. Known gaps: `design/shared/data.js` says "Massivlər" in the Kolleksiyalar description (term rule); the roadmap opens on the next topic, which may have no sample facet content; check fonts, the aurora, the v3 intro, the v4 map and the v6 liquid glass (drag on touch, frame rate) on a real browser/phone. The Google Fonts stylesheet is render-blocking in every version; on a slow connection it delays the intro scripts.
 
 ## Tooling notes

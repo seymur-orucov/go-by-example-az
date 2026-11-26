@@ -87,12 +87,12 @@ pnpm build               # production build of the site
 
 `package.json` pins Node 24 through `devEngines.runtime`; pnpm downloads it on the first `pnpm install` and uses it for all scripts, so you don't need to upgrade your system Node. A Node version of at least 22.23.4 is enough if you prefer your own.
 
-The frozen design prototype (no dependencies, any Node 18+): `node design/serve.mjs`, then http://localhost:4321/d/.
+The frozen design prototype (no dependencies, any Node 18+): `node design/serve.mjs`, then http://localhost:4321/v2/ (the current design).
 
 ## Design prototype rules
 
-- The chosen variant is **D** (`design/d/`); A, B, C are archived in `design/archive/` and must not be edited.
-- D uses shared files in `design/shared/` (`app.js`, `data.js`, `b.js`, `c.js`, `base.css`); changing them also affects the archived A–C.
+- The current design is **v2** (`design/v2/`), implemented in `apps/site` and `packages/theme`; D (`design/d/`) is the previous reference; A, B, C are archived in `design/archive/` and must not be edited.
+- v2 loads only `design/shared/data.js`; D uses more shared files in `design/shared/` (`app.js`, `data.js`, `b.js`, `c.js`, `base.css`); changing them also affects D and the archived A–C.
 - Every animation must be disabled under `prefers-reduced-motion`.
 - Check both dark and light themes and narrow screens.
 

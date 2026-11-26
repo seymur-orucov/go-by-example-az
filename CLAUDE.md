@@ -13,8 +13,8 @@ Project: **Nümunələrlə Go** — an Azerbaijani-language alternative to gobye
 ## Rules
 - Talk to the user in **Azerbaijani**. All site UI text is in Azerbaijani; Go terms stay in English.
 - Phase 2 is the **project skeleton**: the real site lives in `apps/` and `packages/` (pnpm workspace, Astro, TypeScript). `design/` is the **frozen, framework-free prototype** and the visual reference — don't add dependencies to it and don't change it, except to fix the reference itself.
-- The chosen variant is **D** (`design/d/`). A, B, C are archived in `design/archive/` — don't touch them.
-- D uses shared files in `design/shared/`: `app.js`, `data.js`, `b.js`, `c.js`, `base.css` (D's `style.css` imports `base.css`). The archived variants load them too, so changing them also affects A–C.
+- The current design is **v2** ("Aurora glass", `design/v2/`); `apps/site` and `packages/theme` implement it. Sections that have no real content yet keep v2's static variants on the page (don't hide them). v3–v6 are exploratory home-page variants, not chosen. D (`design/d/`) is the previous reference; A, B, C are archived in `design/archive/` — don't touch them.
+- v2 loads only `design/shared/data.js` (read-only). D and the archived variants load `design/shared/` files too (`app.js`, `data.js`, `b.js`, `c.js`, `base.css`), so changing them also affects A–D.
 - Animations must be disabled under `prefers-reduced-motion`.
 - Code, comments, docs, commit messages, branch names and PR descriptions are in **English**. Site UI text and learning content stay in Azerbaijani.
 - Git: never commit to `main` directly — create a branch (`feat/…`, `fix/…`, `docs/…`, `chore/…`). Commit messages follow **Conventional Commits** (`docs(roadmap): …`, `feat(design): …`). Push and open PRs only after the user confirms. **Group work into module PRs** (one PR per theme, several commits) instead of one PR per small change. Details: [CONTRIBUTING.md](CONTRIBUTING.md).
@@ -27,7 +27,7 @@ Project: **Nümunələrlə Go** — an Azerbaijani-language alternative to gobye
 apps/site/        Astro site (static)
 packages/theme/   shared tokens, CSS, components (module 2)
 content/          learning content: content/<technology>/, content/roadmaps/ (module 2)
-design/           frozen design prototype (d/ = chosen variant, archive/ = A–C)
+design/           frozen design prototype (v2/ = current design, d/ = previous reference, archive/ = A–C)
 ```
 
 ## Running the project
