@@ -6,6 +6,7 @@
   "exports": {
     "./styles/*": "./src/styles/*",
     "./components/*": "./src/components/*",
-    "./scripts/*": "./src/scripts/*.ts"
+    "./scripts/*": "./src/scripts/*.ts",
+    "./data/*": "./src/data/*.ts"
   }
 }

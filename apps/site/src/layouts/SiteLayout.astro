@@ -5,13 +5,15 @@ import { getGoCatalog, hasAdaptedLessons } from "../lib/go";
 interface Props {
   title: string;
   description?: string;
-  tech?: "go";
+  current?: "roadmaps" | "go";
   lesson?: boolean;
+  bodyClass?: string;
 }
 
-const { sections, total } = await getGoCatalog();
+const { sections } = await getGoCatalog();
 const attribution = await hasAdaptedLessons();
 
+// Go lessons for the Ctrl+K palette; page scripts read the same JSON (progress, ready flags).
 const searchIndex = sections.flatMap((s) =>
   s.items.map((e) => ({
     slug: e.slug,
@@ -20,10 +22,12 @@ const searchIndex = sections.flatMap((s) =>
     section: s.title,
     n: e.n,
     href: e.href,
+    ready: e.status === "ready",
   })),
 );
 ---
 
-<Layout {...Astro.props} searchIndex={searchIndex} goCount={total} attribution={attribution}>
+<Layout {...Astro.props} searchIndex={searchIndex} attribution={attribution}>
+  <slot name="before-header" slot="before-header" />
   <slot />
 </Layout>
