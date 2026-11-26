@@ -19,7 +19,9 @@ aurora($<HTMLCanvasElement>("#tech-aurora")!, {
 // ---------- progress ----------
 // Topics in course order (the sections view lists each topic once).
 const order = $$<HTMLAnchorElement>("#prog-sections [data-slug]");
-const next = order.find((a) => !learnedSet.has(a.dataset.slug ?? ""));
+// The next topic is the first unlearned one that has a lesson; planned topics are skipped.
+const unlearned = order.filter((a) => !learnedSet.has(a.dataset.slug ?? ""));
+const next = unlearned.find((a) => a.dataset.state !== "planned");
 const done = order.filter((a) => learnedSet.has(a.dataset.slug ?? "")).length;
 
 $("#st-done")!.textContent = String(done);
