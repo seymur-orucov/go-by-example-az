@@ -1,21 +1,41 @@
 ---
-// Memory visual for a lesson step. One branch per `vis.kind` (see visSchema in lib/lesson.ts).
-// Markup and classes follow design/shared/b.js renderVis.
-import type { Vis } from "../lib/lesson";
+// Step visual. One branch per `vis.kind` (see Vis in lib/lesson.ts):
+// - slice: memory cells (markup and classes follow design/shared/b.js renderVis);
+// - areas: the three areas of a Git repository, recorded by `pnpm content:run`.
+import type { Vis, VisAreas } from "../lib/lesson";
 
 interface Props {
   vis: Vis;
 }
 
 const { vis } = Astro.props;
+
+// ---- slice
 const shown = (v: string) => (v === "" ? "·" : /^\d+$/.test(v) ? v : `"${v}"`);
-const cellClass = (i: number) => {
+const cellClass = (v: Extract<Vis, { kind: "slice" }>, i: number) => {
   let cls = "cell";
-  if (vis.window) cls += i >= vis.window[0] && i < vis.window[1] ? " in" : " out";
-  else if (i >= vis.len) cls += " cap";
-  if (vis.fresh?.includes(i)) cls += " fresh";
+  if (v.window) cls += i >= v.window[0] && i < v.window[1] ? " in" : " out";
+  else if (i >= v.len) cls += " cap";
+  if (v.fresh?.includes(i)) cls += " fresh";
   return cls;
 };
+
+// ---- areas
+const WORK_STATE: Record<VisAreas["work"][number]["state"], string> = {
+  clean: "",
+  untracked: "izlənmir",
+  modified: "dəyişib",
+  deleted: "silinib",
+  ignored: "ignore",
+};
+const INDEX_STATE: Record<VisAreas["index"][number]["state"], string> = {
+  clean: "",
+  added: "yeni",
+  modified: "yenilənib",
+  deleted: "silinəcək",
+};
+const fileClass = (state: string, fresh?: boolean) =>
+  `file s-${state}${fresh && state !== "clean" ? " fresh" : ""}`;
 ---
 
 {vis.kind === "slice" && (
@@ -35,12 +55,82 @@ const cellClass = (i: number) => {
         <div class="cells-empty">hələ yer ayrılmayıb — ilk append zamanı ayrılacaq</div>
       ) : (
         vis.cells.map((val, i) => (
-          <div class={cellClass(i)} style={`animation-delay:${i * 40}ms`}>
+          <div class={cellClass(vis, i)} style={`animation-delay:${i * 40}ms`}>
             <span class="idx">{i}</span>
             <span class="box">{shown(val)}</span>
           </div>
         ))
       )}
+    </div>
+  </div>
+)}
+
+{vis.kind === "areas" && (
+  <div class="vis vis-areas">
+    <div class="areas">
+      <section class="area" aria-label="Working directory">
+        <header class="area-head">
+          <b>Working directory</b>
+          <small>iş qovluğu</small>
+        </header>
+        <ul class="files">
+          {vis.work.map((f, i) => (
+            <li class={fileClass(f.state, f.fresh)} style={`animation-delay:${i * 50}ms`}>
+              <span class="fname">{f.name}</span>
+              {WORK_STATE[f.state] && <span class="fstate">{WORK_STATE[f.state]}</span>}
+            </li>
+          ))}
+        </ul>
+        {vis.work.length === 0 && <p class="area-empty">boş</p>}
+      </section>
+
+      <span class="area-arrow" aria-hidden="true">
+        ›
+      </span>
+
+      <section class="area" aria-label="Staging area">
+        <header class="area-head">
+          <b>Staging area</b>
+          <small>növbəti snapshot</small>
+        </header>
+        <ul class="files">
+          {vis.index.map((f, i) => (
+            <li class={fileClass(f.state, f.fresh)} style={`animation-delay:${i * 50}ms`}>
+              <span class="fname">{f.name}</span>
+              {INDEX_STATE[f.state] && <span class="fstate">{INDEX_STATE[f.state]}</span>}
+            </li>
+          ))}
+        </ul>
+        {vis.index.length === 0 && <p class="area-empty">boş</p>}
+      </section>
+
+      <span class="area-arrow" aria-hidden="true">
+        ›
+      </span>
+
+      <section class="area" aria-label="Repository">
+        <header class="area-head">
+          <b>Repository</b>
+          <small>{vis.repo.count} commit</small>
+        </header>
+        {vis.repo.commit ? (
+          <>
+            <p class={`commit${vis.repo.fresh ? " fresh" : ""}`}>
+              <span class="hash">{vis.repo.commit.hash}</span>
+              <span class="msg">{vis.repo.commit.message}</span>
+            </p>
+            <ul class="files">
+              {vis.repo.files.map((name) => (
+                <li class="file s-clean">
+                  <span class="fname">{name}</span>
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : (
+          <p class="area-empty">hələ commit yoxdur</p>
+        )}
+      </section>
     </div>
   </div>
 )}

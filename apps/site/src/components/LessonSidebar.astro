@@ -2,10 +2,10 @@
 // All sections with collapsible groups and a progress bar (liked in variant A).
 // Learned marks and counts are painted from localStorage by scripts/lesson-sidebar.ts.
 import Icon from "@platform/theme/components/Icon.astro";
-import type { GoSection } from "../lib/go";
+import type { CatalogSection } from "../lib/catalog";
 
 interface Props {
-  sections: GoSection[];
+  sections: CatalogSection[];
   total: number;
   current: string;
 }

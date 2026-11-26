@@ -2783,3 +2783,176 @@ html[data-zen] .zen-bar {
 .lesson-soon .hero-cta {
   margin-top: 18px;
 }
+
+/* ---------- Terminal-session lessons (Git) ---------- */
+.cw-file .shfile {
+  background: #f05033;
+}
+
+/* The three areas of a Git repository (Vis kind "areas"); animations stop under
+   prefers-reduced-motion through the global rule in base.css. */
+.vis-areas .areas {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: stretch;
+  gap: 2px;
+}
+.area {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  padding: 6px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.area-head {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 2px;
+}
+.area-head b {
+  font: 650 11.5px/1.2 var(--font-mono);
+  color: var(--text);
+}
+.area-head small {
+  font-size: 11px;
+  color: var(--text-subtle);
+}
+.area-arrow {
+  align-self: center;
+  font: 600 13px/1 var(--font-mono);
+  color: var(--text-subtle);
+}
+.vis-areas .files {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.vis-areas .file {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2px 6px;
+  padding: 4px 6px;
+  font: 500 11px/1.3 var(--font-mono);
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: 7px;
+}
+.vis-areas .fname {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.vis-areas .fstate {
+  font: 500 10px/1.3 var(--font-sans);
+}
+.vis-areas .s-untracked {
+  color: var(--text-muted);
+  background: transparent;
+  border-style: dashed;
+}
+.vis-areas .s-ignored {
+  opacity: 0.5;
+  background: transparent;
+  border-style: dashed;
+}
+.vis-areas .s-modified {
+  border-color: var(--amber);
+}
+.vis-areas .s-modified .fstate {
+  color: var(--amber);
+}
+.vis-areas .s-added {
+  border-color: var(--green);
+}
+.vis-areas .s-added .fstate {
+  color: var(--green);
+}
+.vis-areas .s-deleted {
+  color: var(--red);
+  border-color: var(--red);
+  background: var(--red-soft);
+}
+.vis-areas .s-deleted .fname {
+  text-decoration: line-through;
+}
+.vis-areas .s-untracked .fstate {
+  color: var(--text-subtle);
+}
+.vis-areas .file.fresh,
+.vis-areas .commit.fresh {
+  box-shadow: 0 0 0 2px var(--accent-ring);
+  animation: popin 380ms var(--ease) both;
+}
+.vis-areas .commit {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  padding: 5px 7px;
+  font-size: 11.5px;
+  color: var(--text);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-ring);
+  border-radius: 7px;
+}
+.vis-areas .commit .hash {
+  font: 600 11px/1.2 var(--font-mono);
+  color: var(--accent-ink);
+}
+.vis-areas .commit .msg {
+  overflow-wrap: anywhere;
+}
+.area-empty {
+  margin: 0;
+  padding: 8px 4px;
+  font-size: 11.5px;
+  text-align: center;
+  color: var(--text-subtle);
+  border: 1px dashed var(--line-strong);
+  border-radius: 7px;
+}
+@media (max-width: 520px) {
+  .vis-areas .areas {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+  }
+  /* stacked, the headings already give the order */
+  .area-arrow {
+    display: none;
+  }
+}
+
+/* /git/: modules and their lessons */
+.git-index .hero {
+  padding-bottom: 24px;
+}
+.git-audience {
+  margin-top: 8px;
+  font-size: 14px;
+}
+.git-modules {
+  display: grid;
+  gap: 32px;
+  padding: 8px 0 64px;
+}
+.git-module .tv-head h2 {
+  font-size: 22px;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+}
+.git-module .mod-n {
+  color: var(--text-subtle);
+  font-weight: 600;
+}
+.row.is-planned b {
+  color: var(--text-muted);
+}

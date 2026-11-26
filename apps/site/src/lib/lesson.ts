@@ -4,6 +4,13 @@ import { existsSync, readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { z } from "astro/zod";
 import { parse as parseYaml } from "yaml";
+import {
+  parseSession,
+  sessionFileSchema,
+  transcript,
+  type AreasFrame,
+  type SessionFile,
+} from "./session.ts";
 
 /** Both `astro build` and the check script run with apps/site as the working directory. */
 export const CONTENT_ROOT = resolve(process.cwd(), "../../content");
@@ -24,7 +31,19 @@ const visSlice = z
   .strict();
 
 export const visSchema = z.discriminatedUnion("kind", [visSlice]);
-export type Vis = z.infer<typeof visSchema>;
+
+type Fresh<T> = T & { fresh?: boolean };
+/**
+ * The three areas of a Git repository after a step — not written by hand: recorded by
+ * `pnpm content:run` from the real repository. `fresh` marks what changed since the previous step.
+ */
+export interface VisAreas {
+  kind: "areas";
+  work: Fresh<AreasFrame["work"][number]>[];
+  index: Fresh<AreasFrame["index"][number]>[];
+  repo: Fresh<AreasFrame["repo"]>;
+}
+export type Vis = z.infer<typeof visSchema> | VisAreas;
 
 const stepDataSchema = z
   .object({ out: z.string().optional(), vis: visSchema.optional() })
@@ -78,8 +97,13 @@ export interface LessonStep extends CodeStep {
 
 export interface Lesson {
   slug: string;
-  /** main.go with the `//@step` markers removed. */
+  /** The code pane: `main.go` (Go) or `session.sh` (terminal sessions), markers removed. */
   code: string;
+  lang: "go" | "bash";
+  /** Name shown on the code window. */
+  file: string;
+  /** The command the "full output" button shows above the output; null for sessions (the transcript has its own `$` lines). */
+  run: string | null;
   intro: string;
   steps: LessonStep[];
   /** Markdown after the first `##` heading without an id; may be empty. */
@@ -252,6 +276,9 @@ export function loadLesson(
   return {
     slug,
     code,
+    lang: "go",
+    file: "main.go",
+    run: "go run main.go",
     intro: text.intro,
     steps: codeSteps.map((s) => {
       const section = text.sections.find((t) => t.id === s.id)!;
@@ -263,6 +290,138 @@ export function loadLesson(
     outro: text.outro,
     quiz: quizParsed.success ? quizParsed.data : [],
     takeaways: takeawaysParsed.success ? takeawaysParsed.data : { rules: [], practices: [] },
+    output,
+  };
+}
+
+const sessionStepsSchema = z.record(
+  z.string().regex(ID),
+  z
+    .object({ vis: z.enum(["areas"]).optional() })
+    .strict()
+    .nullable()
+    .transform((v) => v ?? {}),
+);
+
+/** Marks what is new or changed in `cur` compared with the previous step's frame. */
+function areasVis(cur: AreasFrame, prev: AreasFrame | null): VisAreas {
+  const had = (
+    list: { name: string; state: string }[] | undefined,
+    f: { name: string; state: string },
+  ) => !!list?.some((p) => p.name === f.name && p.state === f.state);
+  return {
+    kind: "areas",
+    work: cur.work.map((f) => ({ ...f, fresh: !had(prev?.work, f) })),
+    index: cur.index.map((f) => ({ ...f, fresh: !had(prev?.index, f) })),
+    repo: { ...cur.repo, fresh: cur.repo.commit?.hash !== prev?.repo.commit?.hash },
+  };
+}
+
+/**
+ * Loads and validates a ready terminal-session lesson: content/<technology>/lessons/<slug>/ with
+ * `session.sh`, the generated `session.json` and `output.txt`, `lesson.<locale>.md`, `steps.yaml`,
+ * `quiz.<locale>.yaml` and `takeaways.<locale>.yaml`. Throws an Error listing every problem found.
+ */
+export function loadSessionLesson(
+  technology: string,
+  slug: string,
+  opts: { locale?: string } = {},
+): Lesson {
+  const { locale = "az" } = opts;
+  const dir = join(CONTENT_ROOT, technology, "lessons", slug);
+  const files = {
+    session: join(dir, "session.sh"),
+    recorded: join(dir, "session.json"),
+    text: join(dir, `lesson.${locale}.md`),
+    steps: join(dir, "steps.yaml"),
+    quiz: join(dir, `quiz.${locale}.yaml`),
+    takeaways: join(dir, `takeaways.${locale}.yaml`),
+    output: join(dir, "output.txt"),
+  };
+  const missing = Object.values(files).filter((f) => !existsSync(f));
+  if (missing.length) {
+    const names = missing.map((f) => f.slice(dir.length + 1)).join(", ");
+    const hint = missing.includes(files.recorded)
+      ? ` (run: pnpm content:run ${technology}/${slug})`
+      : "";
+    throw new Error(`${technology}/${slug}: missing ${names}${hint}`);
+  }
+
+  const problems: string[] = [];
+  const session = parseSession(readFileSync(files.session, "utf8"));
+  const text = parseLessonText(readFileSync(files.text, "utf8"));
+  const output = readFileSync(files.output, "utf8").replace(/\r\n/g, "\n");
+
+  let recorded: SessionFile | null = null;
+  const rec = sessionFileSchema.safeParse(JSON.parse(readFileSync(files.recorded, "utf8")));
+  if (!rec.success) problems.push(`session.json: ${formatZod(rec.error)}`);
+  else recorded = rec.data;
+
+  // session.json must come from the current session.sh.
+  const sameCommands =
+    recorded !== null &&
+    recorded.commands.length === session.commands.length &&
+    recorded.commands.every((c, i) => {
+      const s = session.commands[i]!;
+      return c.cmd === s.cmd && c.step === s.step && c.hidden === s.hidden && c.fail === s.fail;
+    });
+  if (recorded && !sameCommands) {
+    problems.push(`session.json is out of date: run pnpm content:run ${technology}/${slug}`);
+  }
+  if (recorded && transcript(recorded.commands) + "\n" !== output) {
+    problems.push(
+      `output.txt does not match session.json: run pnpm content:run ${technology}/${slug}`,
+    );
+  }
+
+  const stepsParsed = sessionStepsSchema.safeParse(readYaml(files.steps) ?? {});
+  if (!stepsParsed.success) problems.push(`steps.yaml: ${formatZod(stepsParsed.error)}`);
+  const stepData = stepsParsed.success ? stepsParsed.data : {};
+
+  const quizParsed = quizSchema.safeParse(readYaml(files.quiz));
+  if (!quizParsed.success) problems.push(`quiz.${locale}.yaml: ${formatZod(quizParsed.error)}`);
+  const takeawaysParsed = takeawaysSchema.safeParse(readYaml(files.takeaways));
+  if (!takeawaysParsed.success) {
+    problems.push(`takeaways.${locale}.yaml: ${formatZod(takeawaysParsed.error)}`);
+  }
+
+  const codeIds = session.steps.map((s) => s.id).join(", ");
+  const textIds = text.sections.map((s) => s.id).join(", ");
+  if (!session.steps.length) problems.push("session.sh: no #@step markers");
+  if (codeIds !== textIds) {
+    problems.push(`step ids differ: session.sh [${codeIds}] vs lesson.${locale}.md [${textIds}]`);
+  }
+  for (const id of Object.keys(stepData)) {
+    if (!session.steps.some((s) => s.id === id)) problems.push(`steps.yaml: unknown step "${id}"`);
+  }
+  for (const s of session.steps) {
+    if (stepData[s.id]?.vis === "areas" && !recorded?.frames[s.id]?.areas) {
+      problems.push(`step "${s.id}": vis areas, but the step does not end inside a Git repository`);
+    }
+  }
+
+  if (problems.length) throw new Error(`${technology}/${slug}:\n  - ${problems.join("\n  - ")}`);
+
+  let prev: AreasFrame | null = null;
+  return {
+    slug,
+    code: session.code,
+    lang: "bash",
+    file: "terminal",
+    run: null,
+    intro: text.intro,
+    steps: session.steps.map((s) => {
+      const section = text.sections.find((t) => t.id === s.id)!;
+      const ran = recorded!.commands.filter((c) => c.step === s.id);
+      const frame = recorded!.frames[s.id]?.areas ?? null;
+      const vis = stepData[s.id]?.vis === "areas" && frame ? areasVis(frame, prev) : undefined;
+      prev = frame;
+      const out = transcript(ran);
+      return { ...s, title: section.title, body: section.body, out: out || undefined, vis };
+    }),
+    outro: text.outro,
+    quiz: quizParsed.data!,
+    takeaways: takeawaysParsed.data!,
     output,
   };
 }

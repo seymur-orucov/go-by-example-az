@@ -1,21 +1,23 @@
 ---
 // "Özünü yoxla": the questions of quiz.<locale>.yaml as a slider, one question at a time,
 // with progress dots and a result slide at the end. Behavior: scripts/quiz.ts.
-import { highlightGo } from "../lib/highlight";
+import { highlightLines, renderLines, type Lang } from "../lib/highlight";
 import type { QuizQuestion } from "../lib/lesson";
 import { renderInline } from "../lib/markdown";
 
 interface Props {
   quiz: QuizQuestion[];
+  /** Language of the questions' code snippets. */
+  lang?: Lang;
 }
 
-const { quiz } = Astro.props;
+const { quiz, lang = "go" } = Astro.props;
 const LETTERS = "ABCDE";
 const total = quiz.length;
 const questions = await Promise.all(
   quiz.map(async (q) => ({
     question: renderInline(q.question),
-    code: q.code ? await highlightGo(q.code) : undefined,
+    code: q.code ? renderLines(await highlightLines(q.code, lang)) : undefined,
     options: q.options.map(renderInline),
     answer: q.answer,
     explain: q.explain ? renderInline(q.explain) : "",

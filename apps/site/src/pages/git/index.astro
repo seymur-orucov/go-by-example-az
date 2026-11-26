@@ -1,0 +1,105 @@
+---
+// /git/: the Git course from content/git/syllabus.yaml — modules and their lessons.
+// A first, static version for the pilot; it grows into the Go page's views later.
+import Icon from "@platform/theme/components/Icon.astro";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import { LEVEL_LABEL } from "../../lib/catalog";
+import { getSyllabusCatalog } from "../../lib/syllabus";
+
+const { syllabus, sections, total } = getSyllabusCatalog("git");
+const ready = sections.flatMap((s) => s.items).filter((it) => it.status === "ready");
+const minutes = sections.flatMap((s) => s.items).reduce((m, it) => m + (it.duration ?? 0), 0);
+const first = ready[0] ?? sections[0]?.items[0];
+// 267 minutes -> "4,5" (nearest half hour, Azerbaijani decimal comma)
+const hours = (Math.round((minutes / 60) * 2) / 2).toString().replace(".", ",");
+---
+
+<SiteLayout
+  title="Git — Nümunələrlə"
+  description="Git-i Azərbaycan dilində, real komandalar və addım-addım vizual nümunələrlə öyrənin."
+>
+  <main class="container git-index">
+    <section class="hero">
+      <div class="hero-bg" aria-hidden="true">
+        <span class="blob b1"></span>
+        <span class="blob b2"></span>
+        <span class="blob b3"></span>
+      </div>
+      <nav class="crumbs home-crumbs" aria-label="Yol">
+        <a href="/">Ana səhifə</a>
+        <span class="sep">/</span>
+        <a href="/#yol">Texnologiyalar</a>
+        <span class="sep">/</span>
+        <span>Git</span>
+      </nav>
+      <h1>
+        Git-i <span class="grad-text">nümunələrlə</span> öyrən
+      </h1>
+      <p class="sub">
+        {sections.length} modul, {total} mövzu, təxminən {hours} saat. Hər mövzu real komandalar,
+        onların çıxışı və repository-nin addım-addım vəziyyəti ilə izah olunur.
+      </p>
+      <p class="sub git-audience">
+        <b>Kimin üçün:</b> {syllabus.audience} <b>Hədəf:</b> {syllabus.level}
+      </p>
+      <div class="hero-cta">
+        {first && (
+          <a class="btn btn-primary btn-lg" href={first.href}>
+            Öyrənməyə başla →
+          </a>
+        )}
+        <a class="btn btn-lg" href="#proqram">
+          Bütün mövzular
+        </a>
+      </div>
+    </section>
+
+    <section id="proqram" class="git-modules">
+      {sections.map((s, i) => (
+        <article class="git-module" style={`--c:${s.color}`}>
+          <div class="tv-head">
+            <span class="sc-icon">
+              <Icon name={s.icon} />
+            </span>
+            <div>
+              <h2>
+                <span class="mod-n">Modul {i + 1}.</span> {s.title}
+              </h2>
+              <p>{s.description}</p>
+            </div>
+          </div>
+          <div class="rows">
+            {s.items.map((it) => (
+              <a
+                class={`row${it.status === "planned" ? " is-planned" : ""}`}
+                href={it.href}
+                data-slug={it.slug}
+              >
+                <span class="n">{String(it.n).padStart(2, "0")}</span>
+                <span>
+                  <b>{it.title}</b>
+                  <span class="meta">
+                    {it.sub && (
+                      <>
+                        <span>{it.sub}</span>
+                        <span>·</span>
+                      </>
+                    )}
+                    <span>{it.duration} dəq</span>
+                    <span>·</span>
+                    {it.status === "ready" ? (
+                      <span class={`lvl ${LEVEL_LABEL[it.level]}`}>{LEVEL_LABEL[it.level]}</span>
+                    ) : (
+                      <span>tezliklə</span>
+                    )}
+                  </span>
+                </span>
+                <span class="arrow">→</span>
+              </a>
+            ))}
+          </div>
+        </article>
+      ))}
+    </section>
+  </main>
+</SiteLayout>

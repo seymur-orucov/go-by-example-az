@@ -9,7 +9,8 @@
     "preview": "astro preview",
     "check": "astro check",
     "astro": "astro",
-    "content:check": "node scripts/check-content.ts"
+    "content:check": "node scripts/check-content.ts",
+    "content:run": "node scripts/run-session.ts"
   },
   "dependencies": {
     "@platform/theme": "workspace:*",

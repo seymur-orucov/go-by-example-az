@@ -53,7 +53,8 @@ pre {
   border-radius: 5px;
   color: var(--accent-ink);
   background: var(--accent-soft);
-  white-space: nowrap;
+  /* pre, not nowrap: spaces are meaningful in code (`M  file` vs ` M file` in git status) */
+  white-space: pre;
 }
 kbd {
   display: inline-grid;
@@ -1868,6 +1869,8 @@ pre.code[contenteditable="true"] {
   padding: 6px 12px 12px;
   min-height: 3.2em;
   white-space: pre-wrap;
+  /* "--short" must not turn into a dash ligature in commands */
+  font-variant-ligatures: none;
 }
 .term-body .prompt {
   color: #8fb0ff;

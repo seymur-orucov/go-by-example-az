@@ -11,6 +11,10 @@ interface LessonData {
   steps: { from: number; to: number; out?: string }[];
   code: string;
   output: string;
+  /** The command shown above the full output ("go run main.go"); null for terminal sessions, whose output has its own `$` lines. */
+  run: string | null;
+  /** Toast after copying the code pane. */
+  copied: string;
   next: { title: string; href: string } | null;
 }
 
@@ -29,6 +33,17 @@ function readData(): LessonData | null {
 const wide = () => matchMedia("(min-width: 1201px)").matches;
 const reduced = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
 const pad = (n: number) => String(n).padStart(2, "0");
+
+/**
+ * One output line; in a terminal session (no `run` command) the `$ cmd` lines get the prompt
+ * color. An empty line becomes a space, so its block keeps a line's height (pre-wrap).
+ */
+const lineHtml = (l: string, session: boolean) =>
+  l === ""
+    ? " "
+    : session && l.startsWith("$ ")
+      ? `<span class="prompt">$</span> ${escapeHtml(l.slice(2))}`
+      : escapeHtml(l);
 
 const PLAY_ICON =
   '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15a1 1 0 0 0 1.5.9l12-7.5a1 1 0 0 0 0-1.8l-12-7.5A1 1 0 0 0 7 4.5Z"/></svg>';
@@ -67,7 +82,10 @@ function initWalkthrough(data: LessonData): void {
           .flatMap(({ out, k }) =>
             out!
               .split("\n")
-              .map((l) => `<span class="out-line${k < i ? " dim" : ""}">${escapeHtml(l)}</span>`),
+              .map(
+                (l) =>
+                  `<span class="out-line${k < i ? " dim" : ""}">${lineHtml(l, data.run === null)}</span>`,
+              ),
           )
           .join("")
       : '<span class="out-line dim">— bu addıma qədər heç nə çap olunmur</span>';
@@ -245,13 +263,14 @@ function initWalkthrough(data: LessonData): void {
   addEventListener("resize", fitSticky);
   addEventListener("goaz:layout", fitSticky);
 
-  // Full output: the recorded output of `go run main.go` (live runs come with the /api/run proxy).
+  // Full output: the recorded output of `go run main.go` or of the whole terminal session
+  // (live Go runs come with the /api/run proxy).
   const runBtn = $<HTMLButtonElement>("[data-run]")!;
   function showOutput() {
     stop();
     pre.classList.remove("has-focus");
     shown = -1;
-    term.innerHTML = '<span class="prompt">$</span> go run main.go';
+    term.innerHTML = data.run ? `<span class="prompt">$</span> ${escapeHtml(data.run)}` : "";
     data.output
       .replace(/\n$/, "")
       .split("\n")
@@ -259,10 +278,10 @@ function initWalkthrough(data: LessonData): void {
         const s = document.createElement("span");
         s.className = "out-line";
         s.style.animationDelay = `${i * 60}ms`;
-        s.textContent = l;
+        s.innerHTML = lineHtml(l, data.run === null);
         term.appendChild(s);
       });
-    setStatus("ok", "proqramın tam çıxışı");
+    setStatus("ok", data.run ? "proqramın tam çıxışı" : "sessiyanın tam çıxışı");
   }
   runBtn.addEventListener("click", showOutput);
   document.addEventListener("keydown", (ev) => {
@@ -273,7 +292,7 @@ function initWalkthrough(data: LessonData): void {
   });
 
   $("[data-copy]")!.addEventListener("click", async () => {
-    toast((await copyText(data.code)) ? "Kod kopyalandı" : "Kopyalamaq alınmadı");
+    toast((await copyText(data.code)) ? data.copied : "Kopyalamaq alınmadı");
   });
 
   go(0);
