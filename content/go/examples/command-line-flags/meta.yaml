@@ -2,5 +2,7 @@ title: "CLI Flags"
 subtitle: "Bayraqlar"
 section: system
 order: 2
-status: planned
+status: ready
 level: advanced
+duration: 10
+source: original

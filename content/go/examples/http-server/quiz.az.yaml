@@ -1,0 +1,54 @@
+- question: Bu handler hansı status kodunu göndərəcək?
+  code: |
+    func ping(w http.ResponseWriter, r *http.Request) {}
+  options: ["0", "200", "204"]
+  answer: 1
+  explain: "Handler status kodu yazmasa, Go `200 OK` göndərir, gövdə boş olsa belə."
+
+- question: Müştəri hansı status kodunu və gövdəni alacaq?
+  code: |
+    func order(w http.ResponseWriter, r *http.Request) {
+        http.Error(w, "bad", http.StatusBadRequest)
+        fmt.Fprint(w, "ok")
+    }
+  options: ['`400 "bad\n"`', '`200 "ok"`', '`400 "bad\nok"`']
+  answer: 2
+  explain: "`http.Error` funksiyanı bitirmir: `return` olmadığı üçün `ok` də gövdəyə əlavə olunur."
+
+- question: Müştəri hansı status kodunu alacaq?
+  code: |
+    func create(w http.ResponseWriter, r *http.Request) {
+        fmt.Fprint(w, "created")
+        w.WriteHeader(http.StatusCreated)
+    }
+  options: ["200", "201"]
+  answer: 0
+  explain: "İlk yazı status kodunu (`200`) göndərir; sonrakı `WriteHeader` gecikib və heç nəyi dəyişmir."
+
+- question: '`mux.HandleFunc("GET /menu", menu)` qeydiyyatı var. `POST /menu` sorğusu hansı kodu alacaq?'
+  options: ["404", "405", "200"]
+  answer: 1
+  explain: "Yol uyğundur, metod yox, ona görə mux `405 Method Not Allowed` qaytarır."
+
+- question: '`"GET /price/{item}"` qeydiyyatı var. `GET /price/latte/large` sorğusu nə alacaq?'
+  options: ["200, `item` = `latte`", "200, `item` = `latte/large`", "404"]
+  answer: 2
+  explain: "`{item}` yolun yalnız bir hissəsinə uyğun gəlir, ona görə bu yol heç bir marşruta düşmür."
+
+- question: 'Marşrut `"GET /price/{item}"`-dir, sorğu `/price/latte`. Handler-də bu kod nə çap edəcək?'
+  code: |
+    fmt.Printf("%q\n", r.PathValue("name"))
+  options: ['`"latte"`', "panic", "kompilyasiya xətası", '`""`']
+  answer: 3
+  explain: "Marşrutda `{name}` yoxdur, ona görə `PathValue` boş string qaytarır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    go func() { done <- srv.Serve(ln) }()
+    // ... sorğular ...
+    srv.Shutdown(context.Background())
+    err := <-done
+    fmt.Println(err == http.ErrServerClosed)
+  options: ["false", "true"]
+  answer: 1
+  explain: "`Shutdown`-dan sonra `Serve` həmişə `http.ErrServerClosed` qaytarır: bu, normal dayanmadır."

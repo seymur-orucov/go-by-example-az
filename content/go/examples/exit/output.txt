@@ -1,0 +1,6 @@
+backup: done
+backup: lock released
+first run: 0
+error: need 40 GB, only 25 GB free
+backup: lock released
+exiting with code 1

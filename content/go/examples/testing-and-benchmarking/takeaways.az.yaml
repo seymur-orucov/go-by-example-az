@@ -1,0 +1,10 @@
+rules:
+  - "Testlər eyni paketdə, adı `_test.go` ilə bitən faylda yazılır və `go test` ilə işlədilir; bu fayllar proqrama düşmür."
+  - "Test funksiyası `TestXxx(t *testing.T)`, benchmark isə `BenchmarkXxx(b *testing.B)` şəklindədir; `Test`-dən sonra böyük hərf gəlməlidir."
+  - "`t.Errorf` testi uğursuz edir və davam edir, `t.Fatalf` isə testi dərhal dayandırır."
+  - "`t.Run` alt test başladır; onun adı çıxışda `Ana/alt` kimi görünür və boşluqlar `_` olur."
+  - "Bayraqsız `go test` benchmark-ları işlətmir: `go test -bench .` lazımdır; `-v` hər testi, `-run` yalnız uyğun adları göstərir."
+practices:
+  - "Eyni funksiyanın bir neçə halını cədvəlli testlə (`[]struct` + `t.Run`) yoxlayın və sərhəd hallarını mütləq əlavə edin."
+  - "Xəta mesajında girişi, alınanı və gözləniləni yazın: `got %d, want %d`."
+  - "Benchmark-da yeni kod üçün `for b.Loop()` dövrünü işlədin."

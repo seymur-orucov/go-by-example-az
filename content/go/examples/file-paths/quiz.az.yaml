@@ -1,0 +1,52 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    fmt.Println(filepath.Ext("backup.tar.gz"))
+  options: [".tar.gz", ".gz", "gz", "tar.gz"]
+  answer: 1
+  explain: "`Ext` sonuncu nöqtədən başlayan hissəni nöqtə ilə birlikdə qaytarır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    fmt.Println(filepath.Base("photos/2026/"))
+  options: ["(boş sətir)", "/", "2026"]
+  answer: 2
+  explain: "`Base` sondakı ayırıcını atır və son elementi qaytarır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    fmt.Println(filepath.Dir("beach.jpg"))
+  options: [".", "(boş sətir)", "beach.jpg"]
+  answer: 0
+  explain: "Yolda qovluq yoxdursa, `Dir` cari qovluğu, yəni `.` qaytarır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    p := filepath.Join("a", "../b", "c.txt")
+    fmt.Println(filepath.ToSlash(p))
+  options: ["a/../b/c.txt", "a/b/c.txt", "b/c.txt"]
+  answer: 2
+  explain: "`Join` nəticəni təmizləyir: `a/..` bir-birini ləğv edir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    name := "README"
+    ext := filepath.Ext(name)
+    fmt.Printf("%q %q\n", ext, strings.TrimSuffix(name, ext))
+  options: ["`\"\" \"README\"`", "`\".\" \"README\"`", "`\"README\" \"\"`"]
+  answer: 0
+  explain: "Adda nöqtə yoxdursa, uzantı boş string-dir və `TrimSuffix` heç nə kəsmir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    rel, _ := filepath.Rel("music/rock", "music/jazz/a.mp3")
+    fmt.Println(filepath.ToSlash(rel))
+  options: ["jazz/a.mp3", "music/jazz/a.mp3", "../../jazz/a.mp3", "../jazz/a.mp3"]
+  answer: 3
+  explain: "`rock`-dan `jazz`-a keçmək üçün bir qovluq yuxarı (`..`) çıxmaq lazımdır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    fmt.Println(filepath.Ext("IMG_0042.JPG") == ".jpg")
+  options: ["true", "false"]
+  answer: 1
+  explain: "Müqayisə hərflərin böyüklüyünü fərqləndirir; əvvəlcə `strings.ToLower` çağırmaq lazımdır."

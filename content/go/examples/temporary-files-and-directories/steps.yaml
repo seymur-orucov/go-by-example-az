@@ -1,0 +1,13 @@
+dir:
+  out: |
+    prefix: true
+    unique: true
+file:
+  out: "name: true true"
+rename:
+  out: |
+    1 orders.csv <nil>
+    id,total_usd
+    A-17,42.50
+cleanup:
+  out: "thumbs removed: true"

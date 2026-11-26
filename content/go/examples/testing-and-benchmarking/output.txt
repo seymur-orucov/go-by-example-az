@@ -1,0 +1,2 @@
+benchmark ran: true allocs/op: 0
+PASS

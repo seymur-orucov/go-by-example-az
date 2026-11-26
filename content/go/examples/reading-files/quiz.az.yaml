@@ -1,0 +1,78 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    data, _ := os.ReadFile("menu.txt") // faylda: tea\ncake\n
+    fmt.Printf("%T %d\n", data, len(data))
+  options: ["string 9", "[]uint8 9", "[]uint8 2", "*os.File 9"]
+  answer: 1
+  explain: "`ReadFile` `[]byte` qaytarır (`%T` onu `[]uint8` kimi göstərir), uzunluq isə `\\n`-lər daxil baytların sayıdır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    _, err := os.Open("no-such-file.txt")
+    fmt.Println(err == fs.ErrNotExist, errors.Is(err, fs.ErrNotExist))
+  options: ["true true", "false false", "true false", "false true"]
+  answer: 3
+  explain: "`Open` `*fs.PathError` qaytarır və `fs.ErrNotExist` onun içindədir: `==` tutmur, `errors.Is` isə içəriyə baxır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    f, _ := os.Open("drink.txt") // faylda: coffee
+    defer f.Close()
+    buf := make([]byte, 4)
+    f.Read(buf)
+    n, _ := f.Read(buf)
+    fmt.Println(n, string(buf[:n]))
+  options: ["2 ee", "4 coff", "4 eeff", "0"]
+  answer: 0
+  explain: "Fayl mövqeyini yadda saxlayır: ikinci `Read` qalan 2 baytı oxuyur və `buf[:n]` yalnız onları göstərir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    f, _ := os.Open("list.txt") // faylda: tea\ncake\n\njuice\n
+    defer f.Close()
+    sc := bufio.NewScanner(f)
+    count := 0
+    for sc.Scan() {
+        count++
+    }
+    fmt.Println(count)
+  options: ["3", "5", "4"]
+  answer: 2
+  explain: "Boş sətir də sətirdir və `Scan()` onun üçün də `true` qaytarır; sondakı `\\n`-dən sonra isə yeni sətir yoxdur."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    f, _ := os.Open("win.txt") // faylda: tea\r\ncake\r\n
+    defer f.Close()
+    sc := bufio.NewScanner(f)
+    sc.Scan()
+    fmt.Println(len(sc.Text()))
+  options: ["5", "3", "4"]
+  answer: 1
+  explain: "`Scanner` sətrin sonundakı `\\n`-i də, ondan əvvəlki `\\r`-i də silir, ona görə `tea` qalır."
+
+- question: Hansı sətir kompilyasiya olunmur?
+  code: |
+    f, err := os.Open("menu.txt")      // A
+    data := os.ReadFile("menu.txt")    // B
+    sc := bufio.NewScanner(f)          // C
+  options: ["A", "C", "B"]
+  answer: 2
+  explain: "`os.ReadFile` iki dəyər qaytarır, ona görə `data, err := ...` yazılmalıdır."
+
+- question: "`Scan()` `false` qaytardı. Faylın sonuna çatıldığını, yoxsa xəta baş verdiyini necə bilmək olar?"
+  options: ["`sc.Text()` boşdursa, xətadır", "`sc.Err()` `nil`-dirsə, faylın sonudur", "`f.Close()`-un nəticəsinə baxmaq lazımdır", "Heç cür, ikisi eynidir"]
+  answer: 1
+  explain: "Faylın sonu xəta sayılmır, ona görə orada `sc.Err()` `nil` qaytarır; başqa hər hal xətadır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    f, _ := os.Open("drink.txt") // faylda: tea
+    defer f.Close()
+    buf := make([]byte, 8)
+    f.Read(buf)
+    n, err := f.Read(buf)
+    fmt.Println(n, err)
+  options: ["3 <nil>", "8 <nil>", "0 <nil>", "0 EOF"]
+  answer: 3
+  explain: "Birinci `Read` bütün 3 baytı oxuyur; faylın sonunda `Read` `0` və `io.EOF` qaytarır, o da `EOF` kimi çap olunur."

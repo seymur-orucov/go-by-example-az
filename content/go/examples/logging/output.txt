@@ -1,0 +1,5 @@
+order 1042 received
+order 1042 paid: 1850 cents
+payments: card declined for order 1043
+level=INFO msg="order shipped" order=1042 carrier=DHL
+{"level":"WARN","msg":"stock low","service":"orders","item":"mug","left":2}

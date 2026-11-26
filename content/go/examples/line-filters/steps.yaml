@@ -1,0 +1,8 @@
+reader:
+clean:
+unique:
+run:
+  out: |
+    1. milk
+    2. eggs
+    3. bread

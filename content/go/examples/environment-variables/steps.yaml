@@ -1,0 +1,16 @@
+getenv:
+  out: |
+    KIOSK_PORT: ""
+    listening on port 8080
+setenv:
+  out: "9090 USD"
+lookup:
+  out: |
+    greeting: "" set: true
+    region: "" set: false
+unset:
+  out: "greeting set: false"
+environ:
+  out: |
+    [KIOSK_CURRENCY=USD KIOSK_PORT=9090]
+    KIOSK_CURRENCY -> USD

@@ -1,0 +1,61 @@
+- question: Server `500` qaytarır. Bu kod nə çap edəcək?
+  code: |
+    resp, err := http.Get(srv.URL + "/report")
+    fmt.Println(err == nil, resp.StatusCode)
+  options: ["false 500", "true 0", "true 500"]
+  answer: 2
+  explain: "Server cavab verdisə, `err` `nil`-dir; `500` yalnız status kodunda görünür."
+
+- question: Server əlçatmaz olanda bu kod nə edəcək?
+  code: |
+    resp, err := http.Get("http://127.0.0.1:1/")
+    defer resp.Body.Close()
+    if err != nil {
+        fmt.Println("request failed")
+        return
+    }
+  options:
+    - "panic: nil pointer dereference"
+    - "`request failed` çap edir"
+    - "kompilyasiya xətası"
+  answer: 0
+  explain: "Xəta olanda `resp` `nil`-dir və `defer` sətri `resp.Body`-ni dərhal hesablayır; `defer` xəta yoxlanışından sonra yazılmalıdır."
+
+- question: Server `404` qaytarır. Bu kod nə çap edəcək?
+  code: |
+    fmt.Println(resp.StatusCode, resp.Status)
+  options: ["404 Not Found", "404 404 Not Found", "Not Found 404"]
+  answer: 1
+  explain: "`StatusCode` ədəddir, `Status` isə kodu mətnlə birlikdə saxlayır: `404 Not Found`."
+
+- question: Gövdə `OK` mətnidir. Bu kod nə çap edəcək?
+  code: |
+    body, _ := io.ReadAll(resp.Body)
+    fmt.Println(body)
+  options: ["OK", "[OK]", "\"OK\"", "[79 75]"]
+  answer: 3
+  explain: "`io.ReadAll` `[]byte` qaytarır və `Println` baytları ədəd kimi çap edir; mətn üçün `string(body)` lazımdır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    fmt.Println(http.DefaultClient.Timeout)
+  options: ["30s", "0s", "1m0s"]
+  answer: 1
+  explain: "`DefaultClient`-in vaxt limiti yoxdur (`0`), ona görə öz `http.Client`-inizi `Timeout` ilə yaradın."
+
+- question: Server 50 ms sonra cavab verir. Bu kod nə çap edəcək?
+  code: |
+    client := &http.Client{Timeout: 2 * time.Second}
+    _, err := client.Get(srv.URL + "/nap")
+    fmt.Println(err == nil)
+  options: ["true", "false"]
+  answer: 0
+  explain: "Cavab 2 saniyəlik limitə sığır, ona görə xəta yoxdur."
+
+- question: Server `404` qaytarır. Bu kod nə çap edəcək?
+  code: |
+    resp, err := client.Get(srv.URL + "/missing")
+    fmt.Println(err == nil, os.IsTimeout(err), resp.StatusCode)
+  options: ["false true 404", "true true 404", "true false 404"]
+  answer: 2
+  explain: "Cavab vaxtında gəlib, ona görə nə xəta, nə timeout var; `404` yalnız `StatusCode`-dadır."

@@ -1,0 +1,16 @@
+whole:
+  out: |
+    33 bytes
+    Route 12
+    Harbor
+    Old Town
+    Stadium
+missing:
+  out: "true true"
+open:
+  out: "5 Route <nil>"
+lines:
+  out: |
+    stop 1 Harbor
+    stop 2 Old Town
+    stop 3 Stadium

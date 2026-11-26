@@ -1,0 +1,59 @@
+- question: Bu proqram nə çap edəcək?
+  code: |
+    func main() {
+        defer fmt.Println("bye")
+        fmt.Println("start")
+        os.Exit(0)
+    }
+  options: ["`start`", "`start` və `bye`", "`bye` və `start`"]
+  answer: 0
+  explain: "`os.Exit` prosesi dərhal dayandırır, kod `0` olsa belə defer-lər işləmir."
+
+- question: Bu proqram nə çap edəcək və hansı kodla bitəcək?
+  code: |
+    func run() int {
+        defer fmt.Println("saved")
+        fmt.Println("work")
+        return 3
+    }
+
+    func main() {
+        os.Exit(run())
+    }
+  options:
+    - "`work`, kod 3"
+    - "`work` və `saved`, kod 0"
+    - "`work` və `saved`, kod 3"
+  answer: 2
+  explain: "`run` adi `return` ilə bitir və defer-i işləyir; `os.Exit` yalnız ondan sonra çağırılır."
+
+- question: Bu proqram nə çap edəcək?
+  code: |
+    func stop() {
+        defer fmt.Println("stop: defer")
+        os.Exit(1)
+    }
+
+    func main() {
+        defer fmt.Println("main: defer")
+        stop()
+        fmt.Println("after")
+    }
+  options: ["`stop: defer` və `main: defer`", "`stop: defer`", "`after`", "heç nə"]
+  answer: 3
+  explain: "`os.Exit` hansı funksiyada çağırılırsa çağırılsın, bütün prosesi bitirir: heç bir defer işləmir."
+
+- question: "`main` adi qaydada sona çatanda proqram hansı çıxış kodunu qaytarır?"
+  options: ["1", "0", "2"]
+  answer: 1
+  explain: "`main`-in adi sonu uğur sayılır və kod `0` olur."
+
+- question: Tutulmayan panic-dən sonra Go proqramı hansı kodla bitir?
+  options: ["0", "1", "2", "-1"]
+  answer: 2
+  explain: "Go runtime tutulmayan panic-də prosesi `2` kodu ilə bitirir."
+
+- question: "`./check` `os.Exit(1)` ilə bitir. Shell-də `./check && ./deploy` yazılanda nə olur?"
+  options: ["`./deploy` işə düşmür", "`./deploy` işə düşür", "shell xəta verib dayanır"]
+  answer: 0
+  explain: "`&&` ikinci əmri yalnız birinci `0` qaytaranda işə salır."

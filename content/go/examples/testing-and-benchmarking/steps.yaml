@@ -1,0 +1,8 @@
+code:
+test:
+table:
+bench:
+run:
+  out: |
+    benchmark ran: true allocs/op: 0
+    PASS

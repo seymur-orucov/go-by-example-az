@@ -1,0 +1,11 @@
+rules:
+  - "`os.ReadFile` bütün faylı bir dəfəyə oxuyub `[]byte` qaytarır və faylı özü bağlayır; böyük fayllar üçün yararsızdır."
+  - "Faylın olmadığını xəta mətni ilə yox, `errors.Is(err, fs.ErrNotExist)` ilə yoxlayın: mətn sistemdən asılıdır."
+  - "`os.Open` ilə açılan faylı bağlamaq lazımdır: xəta yoxlamasından sonra `defer f.Close()`."
+  - "`f.Read(buf)` ən çox `len(buf)` bayt oxuyur; nəticə `buf[:n]`-dir, faylın sonunda `0` və `io.EOF` gəlir."
+  - '`bufio.Scanner` faylı sətir-sətir oxuyur, `Text()` sətri `\n` (və `\r`) olmadan verir.'
+  - "`Scan()` həm faylın sonunda, həm də xətada `false` qaytarır; fərqi dövrdən sonra `sc.Err()` göstərir."
+practices:
+  - "Kiçik fayl üçün `os.ReadFile`, böyük və ya sətir-sətir emal olunan fayl üçün `os.Open` + `bufio.Scanner` seçin."
+  - "`defer f.Close()`-u `os.Open`-in xətası yoxlanandan dərhal sonra yazın."
+  - "Scanner dövründən sonra `sc.Err()`-u həmişə yoxlayın."

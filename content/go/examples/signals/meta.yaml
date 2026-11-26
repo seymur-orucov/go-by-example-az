@@ -2,5 +2,7 @@ title: "Signals"
 subtitle: "Siqnallar"
 section: system
 order: 11
-status: planned
+status: ready
 level: advanced
+duration: 11
+source: original

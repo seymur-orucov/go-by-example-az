@@ -1,0 +1,9 @@
+rules:
+  - "Çıxış kodu `0` uğur, sıfırdan fərqli kod xəta deməkdir; shell, CI və cron ona baxır."
+  - "`main` adi qaydada bitəndə kod `0`, tutulmayan panic-də `2` olur."
+  - "`os.Exit` prosesi dərhal dayandırır: heç bir defer, o cümlədən digər funksiyalarınkı, işləmir."
+  - "`log.Fatal` də daxildə `os.Exit(1)` çağırır."
+  - "`go run` sıfırdan fərqli kodu `exit status N` mesajı ilə göstərir; dəqiq kodu `go build` ilə yaradılmış faylı işlədib yoxlayın."
+practices:
+  - "`os.Exit`-i yalnız `main`-in sonunda çağırın, məsələn `os.Exit(run())`, ki `run`-ın defer-ləri işləsin."
+  - "Xəta mətnini `os.Stderr`-ə yazın və uğursuzluğu sıfırdan fərqli kodla bildirin."

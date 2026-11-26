@@ -1,0 +1,11 @@
+writefile:
+  out: '"tea 3 USD\n" <nil>'
+create:
+  out: "13 15 <nil>"
+append:
+  out: |
+    order: tea
+    order: cake
+    order: tea
+buffered:
+  out: "0 11"

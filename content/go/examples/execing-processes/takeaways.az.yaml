@@ -1,0 +1,11 @@
+rules:
+  - "`syscall.Exec` cari prosesi yeni proqramla əvəzləyir: PID eyni qalır, Go kodu isə bir daha işləmir."
+  - "Uğurlu `Exec` geri qayıtmır, ondan sonrakı sətirlər və `defer`-lər işləmir."
+  - "`syscall.Exec` proqramı `PATH`-da axtarmır; tam yolu `exec.LookPath` ilə tapın."
+  - "`args[0]` qaydaya görə proqramın adıdır, həqiqi arqumentlər ondan sonra gəlir."
+  - "Mühit yalnız üçüncü arqumentdən gəlir; adətən `os.Environ()` üstünə əlavə edilir."
+  - "Windows-da `syscall.Exec` həmişə `not supported by windows` xətası qaytarır."
+practices:
+  - "`Exec`-dən sonra yalnız xəta halını idarə edən kod yazın: ora yalnız uğursuzluqda çatılır."
+  - "Faylları bağlamaq kimi təmizlik işlərini `defer`-ə yox, `Exec`-dən əvvələ qoyun."
+  - "Go proqramı nəticəni gözləməli olanda `syscall.Exec` yox, `exec.Command` işlədin."

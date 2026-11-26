@@ -1,0 +1,53 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    args := []string{"push", "-force", "main"}
+    fmt.Println(args[0], args[1:])
+  options: ["`push [push -force main]`", "`push [-force main]`", "`push [main]`"]
+  answer: 1
+  explain: "`args[0]` alt əmrin adıdır, `args[1:]` isə onun flag-ları və arqumentləridir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    fs := flag.NewFlagSet("add", flag.ContinueOnError)
+    n := fs.Int("n", 1, "")
+    fs.Parse([]string{"add", "-n", "2"})
+    fmt.Println(*n, fs.Args())
+  options: ["`2 []`", "`2 [add]`", "`1 [add -n 2]`"]
+  answer: 2
+  explain: "Alt əmrin adı ötürülməyib: oxuma ilk flag olmayan `add` sözündə dayanır, ona görə `args[1:]` vermək lazımdır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    fs := flag.NewFlagSet("list", flag.ContinueOnError)
+    all := fs.Bool("all", false, "")
+    fs.Parse([]string{"-all"})
+    fs.Parse([]string{})
+    fmt.Println(*all)
+  options: ["true", "false"]
+  answer: 0
+  explain: "Eyni dəst ikinci dəfə oxunanda flag standart dəyərə qayıtmır, əvvəlki `true` qalır; ona görə dəst hər çağırışda yenidən yaradılır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    add := flag.NewFlagSet("add", flag.ContinueOnError)
+    list := flag.NewFlagSet("list", flag.ContinueOnError)
+    av := add.Bool("v", false, "")
+    lv := list.Bool("v", false, "")
+    add.Parse([]string{"-v"})
+    fmt.Println(*av, *lv)
+  options: ["`true true`", "`false false`", "panic: flag redefined", "`true false`"]
+  answer: 3
+  explain: "Hər `FlagSet`-in öz flag-ları var: eyni adlı `-v` iki dəstdə bir-birindən asılı deyil."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    cmd := "Add"
+    switch cmd {
+    case "add":
+        fmt.Println("adding")
+    default:
+        fmt.Println("unknown", cmd)
+    }
+  options: ["adding", "unknown Add", "heç nə"]
+  answer: 1
+  explain: "String müqayisəsi hərflərin böyüklüyünə həssasdır: `\"Add\"` `\"add\"` deyil."

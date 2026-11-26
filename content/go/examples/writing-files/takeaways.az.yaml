@@ -1,0 +1,10 @@
+rules:
+  - "`os.WriteFile` faylı yaradır və ya köhnə məzmunu tamamilə əvəz edir; üçüncü arqument icazələrdir (`0o644`)."
+  - "`os.Create` faylı yazmaq üçün açır: yoxdursa yaradır, varsa boşaldır."
+  - "`fmt.Fprintf` və `fmt.Fprintln` `Printf`/`Println` kimidir, amma birinci arqumentə, məsələn, fayla yazır."
+  - "Sona əlavə etmək üçün `os.OpenFile(path, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0o644)`; `O_APPEND` olmadan köhnə məzmunun üstündən yazılır."
+  - "`bufio.Writer` yazıları buferdə toplayır; `Flush()` çağırılmasa, məzmun fayla düşmür."
+practices:
+  - "Yazılan faylda `Close()`-un xətasını yoxlayın: disk dolubsa xəta orada çıxa bilər."
+  - "Çoxlu kiçik yazı üçün `bufio.Writer` istifadə edin və sonda `Flush()`-u unutmayın."
+  - "Jurnal kimi fayllara yeni sətirləri `O_APPEND` ilə əlavə edin, faylı hər dəfə yenidən yazmayın."

@@ -1,0 +1,57 @@
+- question: "`go test` hansı funksiyanı test kimi işlədir?"
+  options:
+    - "`func testTotal(t *testing.T)`"
+    - "`func TestTotal()`"
+    - "`func TestTotal(t *testing.T)`"
+    - "`func Testtotal(t *testing.T)`"
+  answer: 2
+  explain: "Ad `Test` və böyük hərflə başlamalı, yeganə parametr `*testing.T` olmalıdır; `Testtotal` üçün `go vet` xəbərdarlıq edir."
+
+- question: "`cart.go` faylındakı funksiyaların testləri hansı faylda olmalıdır?"
+  options: ["`cart_test.go`", "`test_cart.go`", "`cart.test.go`"]
+  answer: 0
+  explain: "`go test` yalnız adı `_test.go` ilə bitən faylları test faylı sayır."
+
+- question: Bu test uğursuz olanda neçə mesaj çap olunacaq?
+  code: |
+    func TestCart(t *testing.T) {
+        t.Errorf("total is wrong")
+        t.Errorf("count is wrong")
+    }
+  options: ["1", "2", "0"]
+  answer: 1
+  explain: "`t.Errorf` testi uğursuz qeyd edir, amma dayandırmır: hər iki sətir işləyir."
+
+- question: Bu test uğursuz olanda neçə mesaj çap olunacaq?
+  code: |
+    func TestCart(t *testing.T) {
+        t.Fatalf("cart is empty")
+        t.Errorf("count is wrong")
+    }
+  options: ["2", "0", "1"]
+  answer: 2
+  explain: "`t.Fatalf` testi dərhal dayandırır, ondan sonrakı sətir işləmir."
+
+- question: "`t.Run(\"one gram over\", ...)` alt testi uğursuz olsa, `go test` onun adını necə göstərir?"
+  options:
+    - "`TestShippingCents/one gram over`"
+    - "`one gram over`"
+    - "`TestShippingCents.one-gram-over`"
+    - "`TestShippingCents/one_gram_over`"
+  answer: 3
+  explain: "Alt testin adı ana testin adına `/` ilə qoşulur, boşluqlar isə `_` olur."
+
+- question: "Paketdə `TestShippingLight` və `TestShippingCents` testləri var. `go test -run Light` hansını işlədir?"
+  options: ["yalnız `TestShippingLight`", "hər ikisini", "heç birini"]
+  answer: 0
+  explain: "`-run` yalnız adı verilən ifadəyə uyğun gələn testləri işlədir."
+
+- question: "Bayraqsız `go test` benchmark funksiyalarını işlədirmi?"
+  options: ["bəli, testlərlə birlikdə", "xeyr, `-bench` bayrağı lazımdır"]
+  answer: 1
+  explain: "Benchmark-lar uzun çəkə bilər, ona görə yalnız `go test -bench .` kimi açıq istənəndə işləyir."
+
+- question: "Dərsdəki `ShippingCents(4000, false)` nə qaytarır?"
+  options: ["`649`", "`949`", "`799`", "`1598`"]
+  answer: 2
+  explain: "2 kq-dan artıq 2000 qram iki başlanmış kiloqramdır: 499 + 2 × 150 = 799 sent."

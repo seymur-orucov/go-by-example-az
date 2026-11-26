@@ -1,0 +1,16 @@
+2025: <nil>
+2025 again exists: true
+2026/07 parent missing: true
+2026/07 with MkdirAll: <nil>
+07 true
+albums.txt false
+.
+2025
+2026
+2026/07
+2026/07/birthday.jpg
+2026/07/lake.jpg
+2026/albums.txt
+photos: 2 <nil>
+Remove failed: true
+RemoveAll: <nil> 1

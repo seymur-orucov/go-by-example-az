@@ -1,0 +1,9 @@
+rules:
+  - "`flag.String`, `flag.Int`, `flag.Bool` pointer qaytarır; dəyəri `*city` kimi oxuyun."
+  - "Flag-lar yalnız `flag.Parse()`-dan sonra dolur; ona qədər standart dəyəri saxlayırlar."
+  - "Dəyər boşluqla (`-city Oslo`) və ya `=` ilə (`-days=3`) yazılır; bool flag-ı söndürmək üçün `-wind=false` lazımdır."
+  - "Oxuma ilk flag olmayan sözdə dayanır; qalan arqumentlər `flag.Args()`-dadır."
+  - "`flag.ContinueOnError` ilə yaradılan `FlagSet` səhv flag-da proqramı bitirmir, xətanı `Parse`-dan qaytarır."
+practices:
+  - "Hər flag-a ağlabatan standart dəyər və aydın izah yazın: izah `-h` ilə göstərilir."
+  - "Səhvi özünüz emal etmək lazımdırsa, `flag.NewFlagSet` ilə `flag.ContinueOnError` seçin."

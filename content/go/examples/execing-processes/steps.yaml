@@ -1,0 +1,4 @@
+exec:
+  out: |
+    launcher: handing over to sh
+    worker nightly-backup, same pid: yes

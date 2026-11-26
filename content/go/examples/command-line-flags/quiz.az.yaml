@@ -1,0 +1,73 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    fs := flag.NewFlagSet("copy", flag.ContinueOnError)
+    n := fs.Int("retries", 5, "retry count")
+    fs.Parse([]string{})
+    fmt.Println(*n)
+  options: ["0", "5", "nil"]
+  answer: 1
+  explain: "Flag yazılmayıbsa, `Parse`-dan sonra da standart dəyəri, yəni 5-i saxlayır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    fs := flag.NewFlagSet("copy", flag.ContinueOnError)
+    v := fs.Bool("verbose", false, "")
+    fs.Parse([]string{"-verbose", "false"})
+    fmt.Println(*v, fs.Args())
+  options: ["`false []`", "`false [false]`", "`true [false]`"]
+  answer: 2
+  explain: "Bool flag dəyəri boşluqdan sonra oxumur: `-verbose` onu `true` edir, `false` isə adi arqument olur."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    fs := flag.NewFlagSet("copy", flag.ContinueOnError)
+    n := fs.Int("retries", 1, "")
+    fs.Parse([]string{"photo.jpg", "-retries", "3"})
+    fmt.Println(*n, fs.Args())
+  options:
+    - "`1 [photo.jpg -retries 3]`"
+    - "`3 [photo.jpg]`"
+    - "`3 []`"
+  answer: 0
+  explain: "Oxuma ilk flag olmayan sözdə (`photo.jpg`) dayanır, qalanların hamısı `fs.Args()`-a düşür."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    fs := flag.NewFlagSet("copy", flag.ContinueOnError)
+    n := fs.Int("retries", 1, "")
+    before := *n
+    fs.Parse([]string{"-retries", "9"})
+    fmt.Println(before, *n)
+  options: ["9 9", "0 9", "1 1", "1 9"]
+  answer: 3
+  explain: "`Parse`-dan əvvəl pointer hələ standart dəyəri göstərir; 9 yalnız `Parse` zamanı yazılır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    fs := flag.NewFlagSet("copy", flag.ContinueOnError)
+    n := fs.Int("retries", 1, "")
+    fs.Parse([]string{"--retries=4"})
+    fmt.Println(*n)
+  options: ["4", "1", "xəta çap edəcək"]
+  answer: 0
+  explain: "`flag` paketi flag adından əvvəl bir və ya iki tire qəbul edir: `-retries` və `--retries` eynidir."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    fs := flag.NewFlagSet("copy", flag.ContinueOnError)
+    fs.SetOutput(io.Discard)
+    fs.Int("retries", 1, "")
+    err := fs.Parse([]string{"-retries=two"})
+    fmt.Println(err != nil)
+  options: ["false", "true"]
+  answer: 1
+  explain: "`two` ədədə çevrilmir, ona görə `Parse` xəta qaytarır."
+
+- question: Hansı sətir kompilyasiya olunmur?
+  code: |
+    n := flag.Int("n", 1, "count") // 1
+    flag.Parse()                   // 2
+    fmt.Println(n + 1)             // 3
+  options: ["1", "2", "3"]
+  answer: 2
+  explain: "`flag.Int` pointer qaytarır; dəyəri `*n + 1` kimi oxumaq lazımdır: `mismatched types *int and untyped int`."

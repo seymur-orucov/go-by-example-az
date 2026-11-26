@@ -2,5 +2,7 @@ title: "Subcommands"
 subtitle: "Alt əmrlər"
 section: system
 order: 3
-status: planned
+status: ready
 level: advanced
+duration: 10
+source: original

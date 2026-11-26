@@ -1,0 +1,10 @@
+rules:
+  - "`os.Getenv` olmayan dəyişən üçün boş string qaytarır, xəta vermir."
+  - "`os.LookupEnv`-in ikinci nəticəsi dəyişənin təyin olunub-olunmadığını göstərir: boş dəyər `true`, olmayan dəyişən `false` verir."
+  - "Mühit dəyişənlərinin dəyəri həmişə string-dir; ədədə `strconv` ilə çevirin."
+  - "`os.Setenv` və `os.Unsetenv` yalnız cari prosesə və onun başlatdığı proseslərə təsir edir, terminala yox."
+  - "`os.Environ` `AD=dəyər` string-ləri qaytarır və onların sırası zəmanətli deyil."
+practices:
+  - "Hər parametr üçün ağlabatan standart dəyər seçin: mühit dəyişəni yoxdursa, proqram yenə işləsin."
+  - "Proqramınızın dəyişənlərinə ümumi prefiks verin (`KIOSK_`), başqa proqramlarınkı ilə qarışmasın."
+  - "Gizli açarlar ola biləcəyi üçün bütün mühiti loga yazmayın."

@@ -1,0 +1,5 @@
+error: usage: todo <add|list> [flags]
+added "renew passport", priority 3
+listing tasks, finished too: true
+error: flag provided but not defined: -due
+error: unknown command "remove"

@@ -2,5 +2,7 @@ title: "Logging"
 subtitle: "Jurnal yazmaq"
 section: system
 order: 5
-status: planned
+status: ready
 level: advanced
+duration: 12
+source: original

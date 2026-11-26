@@ -1,0 +1,4 @@
+401 Unauthorized <nil>
+200 OK | Oslo: 4C, light rain
+error 404: unknown city
+failed: true timeout: true

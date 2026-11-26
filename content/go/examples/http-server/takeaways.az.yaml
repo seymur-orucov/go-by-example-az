@@ -1,0 +1,11 @@
+rules:
+  - "Handler `func(w http.ResponseWriter, r *http.Request)` formasındadır: `r` sorğudur, `w`-yə yazılan hər şey cavaba gedir."
+  - "Status kodu yazılmasa, cavab `200 OK` olur."
+  - "`http.Error` funksiyanı bitirmir, ondan sonra `return` yazın."
+  - "Header-lər və status kodu gövdədən əvvəl qoyulmalıdır; ilk yazıdan sonra onlar dəyişmir."
+  - "`ServeMux` marşrutu metod və yolla seçir (`\"GET /price/{item}\"`), `{item}` `r.PathValue` ilə oxunur; uyğun yol yoxdursa `404`, metod səhvdirsə `405` qaytarır."
+  - "`srv.Shutdown` serveri yumşaq dayandırır, `Serve` isə ondan sonra `http.ErrServerClosed` qaytarır."
+practices:
+  - "Hər marşrutda metodu da yazın (`\"GET /menu\"`), ona görə handler gözləmədiyi metodla çağırılmır."
+  - "`ListenAndServe` və `Serve`-in xətasını yoxlayın, `http.ErrServerClosed`-u isə normal dayanma kimi qəbul edin."
+  - "Proqram bitəndə serveri `Shutdown` ilə dayandırın ki, işlənən sorğular yarımçıq qalmasın."

@@ -2,5 +2,7 @@ title: "Reading Files"
 subtitle: "Fayl oxumaq"
 section: files
 order: 1
-status: planned
+status: ready
 level: intermediate
+duration: 10
+source: original

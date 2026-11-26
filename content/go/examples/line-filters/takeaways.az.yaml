@@ -1,0 +1,10 @@
+rules:
+  - "Sətir filtri girişi sətir-sətir oxuyur, hər sətri emal edir və nəticəni çıxışa yazır; adətən `os.Stdin`-dən oxuyub `os.Stdout`-a yazır."
+  - "`bufio.NewScanner` istənilən `io.Reader`-i sətirlərə bölür: fayl, `os.Stdin`, `strings.NewReader`."
+  - "`fmt.Fprintf` və `fmt.Fprintln` istənilən `io.Writer`-ə yazır."
+  - "Boru (`|`) və `>` yalnız `os.Stdout`-u yönləndirir; `os.Stderr`-ə yazılan mesajlar nəticəyə qarışmır."
+  - "`Scanner` bir sətri ən çox 64 KB qəbul edir; daha uzun sətirdə `sc.Err()` xəta qaytarır."
+practices:
+  - "Filtr funksiyasına fayl yox, `io.Reader` və `io.Writer` verin: onu həm `os.Stdin` ilə, həm də sınaq üçün `strings.NewReader` ilə işlətmək olur."
+  - "Nəticəni `os.Stdout`-a, xəta mesajlarını `os.Stderr`-ə yazın."
+  - "Dövrdən sonra `sc.Err()`-u qaytarın və ya yoxlayın."

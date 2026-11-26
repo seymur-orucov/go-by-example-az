@@ -1,0 +1,45 @@
+- question: Linux-da `syscall.Exec` uğurlu olur. Bu kod nə çap edəcək?
+  code: |
+    fmt.Println("start")
+    syscall.Exec(shell, []string{"sh", "-c", "echo hi"}, os.Environ())
+    fmt.Println("done")
+  options: ["`start`, `hi`, `done`", "`start`, `hi`", "`start`, `done`"]
+  answer: 1
+  explain: "Uğurlu `Exec` geri qayıtmır: proses artıq shell-dir, `done` sətri heç vaxt işləmir."
+
+- question: Linux-da bu kodda `deferred` çap olunacaqmı?
+  code: |
+    defer fmt.Println("deferred")
+    syscall.Exec(shell, []string{"sh", "-c", "true"}, os.Environ())
+  options: ["Xeyr", "Bəli, `Exec`-dən əvvəl", "Bəli, shell bitəndən sonra"]
+  answer: 0
+  explain: "`Exec` Go proqramını tamamilə əvəzləyir; `main` bitmir, ona görə `defer`-lər işləmir."
+
+- question: Bu çağırışda nə səhvdir?
+  code: |
+    syscall.Exec(shell, []string{"-c", "echo hi"}, os.Environ())
+  options:
+    - "səhv yoxdur"
+    - "`os.Environ()` verilməməlidir"
+    - "ilk element proqramın adı olmalıdır: burada `-c` ad sayılır və skript ötürülmür"
+  answer: 2
+  explain: "`args[0]` qaydaya görə proqramın adıdır; düzgünü `[]string{\"sh\", \"-c\", \"echo hi\"}`-dir."
+
+- question: Windows-da `syscall.Exec` çağırılanda nə olur?
+  options:
+    - "kompilyasiya xətası"
+    - "proses əvəzlənir"
+    - "panic"
+    - "`not supported by windows` xətası qaytarır"
+  answer: 3
+  explain: "Funksiya Windows-da da var, buna görə kod kompilyasiya olunur, amma həmişə xəta qaytarır."
+
+- question: '`syscall.Exec(path, args, nil)` çağırılır. Yeni proqram hansı mühit dəyişənlərini görəcək?'
+  options: ["heç birini", "valideynin hamısını", "yalnız `PATH`-ı"]
+  answer: 0
+  explain: "`syscall.Exec` mühiti yalnız üçüncü arqumentdən götürür; `nil` boş mühit deməkdir, ona görə adətən `os.Environ()` ötürülür."
+
+- question: Go proqramı uşaq proqram bitəndən sonra onun çıxış kodunu yoxlamalıdır. Hansını seçməli?
+  options: ["`syscall.Exec`", "`exec.Command(...).Run()`"]
+  answer: 1
+  explain: "`exec.Command` yeni proses yaradır və Go proqramı işləməyə davam edir; `syscall.Exec`-dən sonra isə Go proqramı yoxdur."

@@ -1,0 +1,67 @@
+- question: Bu kod nə çap edəcək?
+  code: |
+    log.SetOutput(os.Stdout)
+    log.SetFlags(0)
+    log.SetPrefix("shop: ")
+    log.Println("cart saved")
+  options: ["`cart saved shop:`", "`shop: cart saved`", "`2026/11/26 shop: cart saved`"]
+  answer: 1
+  explain: "Prefiks sətrin əvvəlinə yazılır, `SetFlags(0)` isə tarix və saatı söndürür."
+
+- question: "`l` standart səviyyəli `TextHandler` logger-idir (vaxtsız). Bu kod nə çap edəcək?"
+  code: |
+    l.Debug("retry", "n", 2)
+    l.Warn("slow", "ms", 900)
+  options:
+    - "`level=WARN msg=slow ms=900`"
+    - "`level=DEBUG msg=retry n=2` və `level=WARN msg=slow ms=900`"
+    - "heç nə"
+  answer: 0
+  explain: "Standart səviyyə `Info`-dur: `Debug` atılır, `Warn` yazılır."
+
+- question: Bu kod nə çap edəcək?
+  code: |
+    opts := &slog.HandlerOptions{Level: slog.LevelError}
+    j := slog.New(slog.NewJSONHandler(os.Stdout, opts))
+    j.Warn("disk almost full", "free_gb", 3)
+  options: ["JSON sətri, `\"level\":\"WARN\"` ilə", "`WARN disk almost full`", "heç nə"]
+  answer: 2
+  explain: "Hədd `Error`-dur, `Warn` ondan aşağıdır və atılır."
+
+- question: "`l` vaxtsız `TextHandler` logger-idir. Bu kod nə çap edəcək?"
+  code: |
+    l.Info("user login", "name", "Ann Lee")
+  options:
+    - "`level=INFO msg=user login name=Ann Lee`"
+    - "`INFO user login Ann Lee`"
+    - "`{\"msg\":\"user login\",\"name\":\"Ann Lee\"}`"
+    - "`level=INFO msg=\"user login\" name=\"Ann Lee\"`"
+  answer: 3
+  explain: "`TextHandler` boşluq olan dəyərləri dırnağa alır ki, sətri birmənalı oxumaq olsun."
+
+- question: "`l` vaxtsız `TextHandler` logger-idir. Bu kod nə çap edəcək?"
+  code: |
+    l.With("shop", "north").Info("open")
+  options: ["`level=INFO msg=open shop=north`", "`level=INFO msg=open`", "`shop=north`"]
+  answer: 0
+  explain: "`With` yeni logger qaytarır və onun hər qeydinə `shop=north` cütünü əlavə edir."
+
+- question: "`l` vaxtsız `TextHandler` logger-idir. Bu kod nə çap edəcək?"
+  code: |
+    l.Info("paid", "order")
+  options: ["`level=INFO msg=paid order`", "`level=INFO msg=paid !BADKEY=order`", "kompilyasiya xətası"]
+  answer: 1
+  explain: "Cütsüz qalan arqumentin açarı yoxdur, `slog` onu `!BADKEY` ilə yazır; `go vet` bu səhvi tapır."
+
+- question: Bu proqram nə edəcək?
+  code: |
+    func main() {
+        defer fmt.Println("closing db")
+        log.Fatal("config missing")
+    }
+  options:
+    - "xəta mesajını yazıb `closing db` çap edəcək"
+    - "panic verəcək"
+    - "xəta mesajını yazıb 1 kodu ilə bitəcək, `closing db` çap olunmayacaq"
+  answer: 2
+  explain: "`log.Fatal` mesajdan sonra `os.Exit(1)` çağırır və defer-lər işləmir."

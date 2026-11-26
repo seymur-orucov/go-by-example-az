@@ -1,0 +1,8 @@
+real:
+  out: "error: usage: todo <add|list> [flags]"
+simulate:
+  out: |
+    added "renew passport", priority 3
+    listing tasks, finished too: true
+    error: flag provided but not defined: -due
+    error: unknown command "remove"
