@@ -16,8 +16,6 @@ interface Props {
   techId: string;
   techTitle: string;
   techHref: string;
-  /** The header's technology switcher only knows Go so far. */
-  layoutTech?: "go";
   title: string;
   description: string;
   item: CatalogItem;
@@ -35,7 +33,6 @@ const {
   techId,
   techTitle,
   techHref,
-  layoutTech,
   title,
   description,
   item,
@@ -73,7 +70,7 @@ const nextReady = sections
   .find((it) => it.n > item.n && it.status === "ready");
 ---
 
-<SiteLayout title={title} description={description} tech={layoutTech} lesson>
+<SiteLayout title={title} description={description} tech={techId} lesson>
   <div class="layout">
     <LessonSidebar sections={sections} total={total} current={item.slug} />
 

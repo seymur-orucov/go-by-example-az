@@ -2,14 +2,34 @@
 import ViewMenu from "./ViewMenu.astro";
 // Site header: logo, technology switcher, main nav, search trigger, palette picker, theme toggle.
 // Routes follow /<technology>/...; directions live under /roadmaps/.
+/** A technology in the switcher; the site computes `status` from its content. */
+export interface TechMenuItem {
+  id: string;
+  name: string;
+  color: string;
+  status: "ready" | "started" | "soon";
+  ready: number;
+  total: number;
+  /** Set for active (ready or started) technologies. */
+  href?: string;
+}
+
 interface Props {
-  goCount?: number;
-  /** Technology section the page belongs to; changes the switcher label and nav. */
-  tech?: "go";
+  /** The switcher's list: active technologies are links, the rest show "tezliklə". */
+  technologies?: TechMenuItem[];
+  /** Technology section the page belongs to ("go", "git"); changes the switcher label and nav. */
+  tech?: string;
   /** Lesson pages: sidebar toggle and the view-mode menu (sidebar, width, Zen). */
   lesson?: boolean;
 }
-const { goCount, tech, lesson } = Astro.props;
+const { technologies = [], tech, lesson } = Astro.props;
+const current = technologies.find((t) => t.id === tech);
+const statusLabel = (t: TechMenuItem) =>
+  t.status === "ready"
+    ? "hazırdır"
+    : t.status === "started"
+      ? `başlanıb · ${t.ready}/${t.total}`
+      : "tezliklə";
 ---
 
 <header class="site-header">
@@ -49,8 +69,12 @@ const { goCount, tech, lesson } = Astro.props;
   </a>
   <div class="dd">
     <button class="tech-switch" data-menu-btn aria-label="Texnologiya seç">
-      {tech === "go" ? <span class="dot" /> : <span class="dot dot-all" />}
-      {tech === "go" ? "Go" : "Texnologiya"}
+      {current ? (
+        <span class="dot" style={`background:${current.color}`} />
+      ) : (
+        <span class="dot dot-all" />
+      )}
+      {current ? current.name : "Texnologiya"}
       <svg
         viewBox="0 0 24 24"
         fill="none"
@@ -64,22 +88,26 @@ const { goCount, tech, lesson } = Astro.props;
     </button>
     <div class="menu" hidden>
       <div class="menu-title label">Texnologiyalar</div>
-      <a class="menu-item" href="/go/">
-        <span class="dot" style="background:#00add8"></span>Go
-        <small>{goCount ? `${goCount} nümunə ✓` : "hazırdır"}</small>
-      </a>
-      <span class="menu-item soon">
-        <span class="dot" style="background:#3776ab"></span>Python<small>tezliklə</small>
-      </span>
-      <span class="menu-item soon">
-        <span class="dot" style="background:#dea584"></span>Rust<small>tezliklə</small>
-      </span>
-      <span class="menu-item soon">
-        <span class="dot" style="background:#3178c6"></span>TypeScript<small>tezliklə</small>
-      </span>
-      <span class="menu-item soon">
-        <span class="dot" style="background:#94a3b8"></span>SQL<small>tezliklə</small>
-      </span>
+      {technologies.map((t) =>
+        t.href ? (
+          <a
+            class="menu-item"
+            href={t.href}
+            aria-current={t.id === tech ? "page" : undefined}
+            title={`${t.ready} / ${t.total} dərs hazırdır`}
+          >
+            <span class="dot" style={`background:${t.color}`} />
+            {t.name}
+            <small>{statusLabel(t)}</small>
+          </a>
+        ) : (
+          <span class="menu-item soon">
+            <span class="dot" style={`background:${t.color}`} />
+            {t.name}
+            <small>{statusLabel(t)}</small>
+          </span>
+        ),
+      )}
       <div class="menu-title label">İstiqamətlər</div>
       <a class="menu-item" href="/roadmaps/backend/">
         <span class="dot" style="background:#8b5cf6"></span>Backend<small>önizləmə</small>
@@ -100,11 +128,25 @@ const { goCount, tech, lesson } = Astro.props;
           Playground
         </a>
       </>
+    ) : current ? (
+      <>
+        <a
+          href={`/${current.id}/#proqram`}
+          aria-current={Astro.url.pathname === `/${current.id}/` ? "page" : undefined}
+        >
+          Mövzular
+        </a>
+        <a href="/#bolmeler">Bölmələr</a>
+      </>
     ) : (
       <>
         <a href="/go/roadmap/">Yol xəritəsi</a>
         <a href="/#bolmeler">Bölmələr</a>
-        <a href="/go/">Go</a>
+        {technologies
+          .filter((t) => t.href)
+          .map((t) => (
+            <a href={t.href}>{t.name}</a>
+          ))}
       </>
     )}
   </nav>

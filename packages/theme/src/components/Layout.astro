@@ -1,7 +1,7 @@
 ---
 import "../styles/index.css";
 import Footer from "./Footer.astro";
-import Header from "./Header.astro";
+import Header, { type TechMenuItem } from "./Header.astro";
 
 interface SearchEntry {
   slug: string;
@@ -17,8 +17,10 @@ interface Props {
   description?: string;
   /** Entries for the Ctrl+K palette; the site builds them from its content collections. */
   searchIndex?: SearchEntry[];
-  goCount?: number;
-  tech?: "go";
+  /** The technology switcher; the site computes each status from its content. */
+  technologies?: TechMenuItem[];
+  /** Technology section the page belongs to ("go", "git"). */
+  tech?: string;
   /** Lesson pages: view modes (sidebar, width, Zen) in the header. */
   lesson?: boolean;
   /** Show the Go by Example CC BY 3.0 attribution (only while adapted lessons exist). */
@@ -29,7 +31,7 @@ const {
   title,
   description,
   searchIndex = [],
-  goCount,
+  technologies,
   tech,
   lesson,
   attribution = true,
@@ -73,7 +75,7 @@ const {
     />
   </head>
   <body>
-    <Header goCount={goCount} tech={tech} lesson={lesson} />
+    <Header technologies={technologies} tech={tech} lesson={lesson} />
     <slot />
     <Footer attribution={attribution} />
     <script

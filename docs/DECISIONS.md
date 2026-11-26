@@ -151,6 +151,7 @@ Supersedes the file list in the "Content layout" row above (`az.md` becomes `les
 | The `areas` visual (working directory / staging area / repository) is **recorded from the real repository** after each step, not written by hand; `steps.yaml` only chooses where to show it | A visual that cannot disagree with Git |
 | The lesson page is one component (`LessonView`) for every technology; Go's HTML stayed byte-identical after the move (checked against the previous build) | New kinds plug into the same walkthrough instead of copying the page |
 | Pilot lessons for Git: `three-areas` (`state`) and `first-commit` (`terminal`); the `write-content` skill lists approved lessons as exemplars per kind | The user approves one lesson per kind before module-by-module writing |
+| A technology's status is **computed from its content**, never set by hand: `ready` when every lesson is ready, `started` ("başlanıb") when at least one is, `soon` ("tezliklə") otherwise. Started and ready technologies are active (linked) in the header switcher, the nav and the Ctrl+K search (`apps/site/src/lib/technologies.ts`; a new course appears by adding content) (2026-11-26) | The user's rule: a technology that has started or finished is active on the site |
 
 ## Design
 

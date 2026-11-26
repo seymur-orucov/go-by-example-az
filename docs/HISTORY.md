@@ -463,3 +463,13 @@ Done (branch `feat/content-skills`):
 - **`write-content` skill**: pilot first (one lesson per kind, stop for approval), brief from the syllabus node, writing rules (on top of write-lesson's), the session format, quiz rules, verification (twice-run determinism, quiz sandbox, 1440px + a real 390px check through an iframe because headless Chrome on Windows has a minimum window width), batch phase with subagents, hand-off, and an "Exemplars" list.
 - Checked: `pnpm lint`, `format:check`, `check` (0 errors, 0 warnings, 0 hints), `content:check` (50/50), `build` (126 pages); pages looked at in headless Chrome at 1440px and 390px.
 - Awaiting the user's review of the two pilot lessons.
+
+### 55. Technologies become active by themselves
+The user asked that a technology be active on the site as soon as it has started or is finished; Git still showed "tezliklə".
+
+Done (branch `feat/content-skills`):
+- `apps/site/src/lib/technologies.ts`: the known technologies (Go, Git, Python, Rust, TypeScript, SQL) with a status computed from the content — `ready` (every lesson ready), `started` (at least one), `soon` (none). Active ones come first and link to `/<id>/`.
+- The header switcher is built from that list (it was hand-written and did not list Git): "Go — başlanıb · 48/84", "Git — başlanıb · 2/39", the rest "tezliklə". The switcher shows the current technology on Go and Git pages; Git pages get a "Mövzular" nav link. Go used to say "84 nümunə ✓" although 36 lessons are still planned.
+- Ctrl+K search also lists the topics of active technologies other than Go ("Git · Əsaslar").
+- The design prototype (`design/v2/v2.js`) still has hand-written mock statuses (Git "soon"); it is a frozen reference and was not changed.
+- Checked: `pnpm check` (0/0/0), lint, build (126 pages), the menu text on /, /go/, /git/ and a Git lesson.
