@@ -136,6 +136,17 @@ Supersedes the file list in the "Content layout" row above (`az.md` becomes `les
 | **Summary ("Yadda saxla")**: required for every `status: ready` lesson; `takeaways.<locale>.yaml` with `rules` (3–6 key points and gotchas of the page) and `practices` (1–4 best practices); inline Markdown only. Shown as a card at the end of the lesson, **left of the quiz** (it was in the design prototype but missing from the first site pages; added 2026-11-24) | The page's main points and good habits stay in one place after the walkthrough; separate file so it can be translated and reused later (roadmap nodes, interview prep) |
 | Slugs and step ids are **stable** once published | Future server-side progress and roadmap nodes (Phase 6) reference them |
 
+## Content pipeline: syllabus → lessons (2026-11-26)
+
+| Decision | Reason |
+|---|---|
+| New technologies are built in two steps, each a project skill with a user approval gate: **`plan-syllabus`** (research → proposal → `content/<technology>/syllabus.yaml`) and **`write-content`** (one pilot lesson per lesson kind → user approval → the rest module by module). Skills, not standalone agents: both steps need the user's decisions mid-way; subagents are used inside a skill for parallel research, lesson batches and an independent review | The user wanted a researcher and a content writer; skills can stop and ask, background agents cannot |
+| The syllabus uses **backward design**: every node has a measurable outcome ("Oxucu … bacarır"), direct prerequisites (a DAG), one **lesson kind**, facets, minutes, and `topics` (smaller source topics folded into the node, so coverage stays traceable) | Outcomes decide the lesson kind and the quiz; coverage against roadmap.sh can be checked |
+| **Lesson kinds** — the "stage" of the step-by-step walkthrough: `code` (exists), `terminal`, `state`, `diagram`, `compare`, `concept` (planned). Animations are **declarative data** (frames in YAML) rendered by shared components, not hand-written JS per lesson | Not every technology has code; one walkthrough model for all, consistent design, one place for `prefers-reduced-motion`, verifiable with Zod, translatable |
+| **Git is the pilot technology** for the new kinds: it has almost no `code` and needs `terminal` and `state` (the commit graph) the most | Tests the new kinds on real content instead of on Go |
+| Git syllabus scope: plain Git plus fork and pull requests (the user's decision); the ~65 GitHub platform topics of roadmap.sh (Actions, Pages, Copilot, API, …), server setup, LFS, submodules, filter-branch, attributes and patches are out of scope. Main syntax is `git switch` / `git restore`; `checkout` is only mentioned (the user's decision) | Daily use and interview-level understanding first; GitHub platform topics can become a separate technology |
+| itbooster.ru roadmaps are rendered client-side and are not fetched by tools; its private API is not probed. The user pastes a topic list when it should be part of a merge | Respect the site's private interfaces |
+
 ## Design
 
 | Decision | Rationale |

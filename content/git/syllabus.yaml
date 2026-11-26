@@ -1,0 +1,364 @@
+# Git syllabus — built with the plan-syllabus skill, approved by the user on 2026-11-26.
+# Node ids are stable once a lesson is published (they become /git/<id>/).
+# `topics`: English keywords the lesson must cover (smaller roadmap.sh topics folded into the node).
+technology: git
+title: "Git"
+status: approved
+audience: "Bir proqramlaşdırma dilini bilən, amma Git-dən istifadə etməmiş developer."
+level: "Gündəlik iş və müsahibə səviyyəsində anlayış (Git içəridə necə işləyir)."
+updated: 2026-11-26
+syntax: "Modern commands (git switch, git restore; Git 2.23+) are the main syntax; checkout is only mentioned."
+outOfScope:
+  - "GitHub platform features (Actions, Pages, Packages, Codespaces, Copilot, API, Projects, Issues) — a separate GitHub or CI/CD technology later"
+  - "Git server setup and protocols"
+  - "LFS, submodules, filter-branch / filter-repo, attributes, patches"
+sources:
+  - { name: roadmap.sh, url: "https://roadmap.sh/git-github", used: "topic list (coverage)" }
+  - { name: Pro Git, url: "https://git-scm.com/book/en/v2", used: "order, depth, fact checking" }
+modules:
+  - id: basics
+    title: "Əsaslar"
+    description: "Version control-un nə üçün lazım olduğu, ilk repository və ilk commit."
+    nodes:
+      - id: what-is-version-control
+        title: "Version control nədir"
+        outcome: "Oxucu version control-un hansı problemi həll etdiyini izah edə bilir."
+        kind: concept
+        facets: [theory, test]
+        requires: []
+        duration: 5
+        topics: [why version control, centralized vs distributed, git vs other VCS]
+      - id: install-and-config
+        title: "Quraşdırma və git config"
+        outcome: "Oxucu Git-i quraşdırıb adını və email-ini qlobal və lokal təyin edə bilir."
+        kind: terminal
+        facets: [theory, practice, test]
+        requires: [what-is-version-control]
+        duration: 6
+        topics: [installation, git config, local vs global config, user.name, user.email, init.defaultBranch]
+      - id: git-init
+        title: "git init"
+        outcome: "Oxucu yeni repository yarada və .git qovluğunun rolunu izah edə bilir."
+        kind: terminal
+        facets: [theory, practice, test]
+        requires: [install-and-config]
+        duration: 5
+        topics: [repository, .git directory]
+      - id: three-areas
+        title: "Üç sahə"
+        outcome: "Oxucu working directory, staging area və repository arasındakı axını izah edə bilir."
+        kind: state
+        facets: [theory, practice, visual, test, interview]
+        requires: [git-init]
+        duration: 8
+        topics: [working directory, staging area, index, repository]
+      - id: first-commit
+        title: "İlk commit: add və commit"
+        outcome: "Oxucu faylları stage edib commit edə bilir."
+        kind: terminal
+        facets: [theory, practice, test]
+        requires: [three-areas]
+        duration: 7
+        topics: [git add, git commit, committing changes]
+      - id: status-and-diff
+        title: "status və diff"
+        outcome: "Oxucu git status və git diff ilə staged və unstaged dəyişiklikləri oxuya bilir."
+        kind: terminal
+        facets: [theory, practice, test]
+        requires: [first-commit]
+        duration: 7
+        topics: [git status, staged changes, unstaged changes, git diff --staged, diff between commits, diff between branches]
+      - id: gitignore
+        title: ".gitignore"
+        outcome: "Oxucu lazımsız faylları .gitignore ilə izlənmədən çıxara bilir."
+        kind: terminal
+        facets: [theory, practice, test]
+        requires: [first-commit]
+        duration: 5
+        topics: [.gitignore patterns, already tracked files]
+
+  - id: history
+    title: "Tarixçə"
+    description: "Commit-in əslində nə olduğu, tarixçəyə baxmaq və HEAD."
+    nodes:
+      - id: commit-snapshot
+        title: "Commit nədir: snapshot, hash, parent"
+        outcome: "Oxucu commit-in diff yox, snapshot olduğunu və parent ilə zəncir qurduğunu izah edə bilir."
+        kind: state
+        facets: [theory, practice, visual, test, interview]
+        requires: [first-commit]
+        duration: 8
+        topics: [snapshot, commit hash, parent commit, commit graph]
+      - id: git-log
+        title: "git log"
+        outcome: "Oxucu tarixçəni filtrləyib qraf şəklində göstərə bilir."
+        kind: terminal
+        facets: [theory, practice, test]
+        requires: [commit-snapshot]
+        duration: 6
+        topics: [viewing commit history, git log options, --oneline, --graph, git show]
+      - id: head
+        title: "HEAD nədir"
+        outcome: "Oxucu HEAD-in nəyi göstərdiyini və commit-dən sonra necə hərəkət etdiyini izah edə bilir."
+        kind: state
+        facets: [theory, practice, visual, test]
+        requires: [commit-snapshot]
+        duration: 6
+        topics: [HEAD, HEAD~1, HEAD^]
+      - id: commit-messages
+        title: "Yaxşı commit mesajı"
+        outcome: "Oxucu qısa, aydın və tarixçədə faydalı commit mesajı yaza bilir."
+        kind: concept
+        facets: [theory, test]
+        requires: [first-commit]
+        duration: 5
+        topics: [commit messages, subject and body, imperative mood, Conventional Commits]
+      - id: tags
+        title: "Tag-lar"
+        outcome: "Oxucu lightweight və annotated tag yarada, push edə və onlara keçə bilir."
+        kind: terminal
+        facets: [theory, practice, test]
+        requires: [head]
+        duration: 6
+        topics: [tagging, lightweight vs annotated, managing tags, pushing tags, checkout tags]
+
+  - id: branches
+    title: "Branch-lar"
+    description: "Branch-ın pointer olması, merge növləri və konfliktlər."
+    nodes:
+      - id: what-is-a-branch
+        title: "Branch: commit-ə pointer"
+        outcome: "Oxucu branch-ın sadəcə commit-ə pointer olduğunu və buna görə ucuz olduğunu izah edə bilir."
+        kind: state
+        facets: [theory, practice, visual, test, interview]
+        requires: [head]
+        duration: 7
+        topics: [branching basics, branch as a pointer, HEAD points to a branch]
+      - id: switch-branches
+        title: "Branch yaratmaq, keçmək, silmək"
+        outcome: "Oxucu branch yarada, onlar arasında keçə, adını dəyişə və silə bilir."
+        kind: terminal
+        facets: [theory, practice, test]
+        requires: [what-is-a-branch]
+        duration: 7
+        topics: [git switch, git switch -c, git branch -m, git branch -d, branch naming, checkout (mention)]
+      - id: fast-forward-merge
+        title: "Fast-forward merge"
+        outcome: "Oxucu fast-forward merge-in nə vaxt baş verdiyini qrafda göstərə bilir."
+        kind: state
+        facets: [theory, practice, visual, test]
+        requires: [switch-branches]
+        duration: 7
+        topics: [merging basics, fast-forward]
+      - id: three-way-merge
+        title: "Merge commit (three-way merge)"
+        outcome: "Oxucu merge commit-in iki parent-i olduğunu və nə vaxt yarandığını izah edə bilir."
+        kind: state
+        facets: [theory, practice, visual, test, interview]
+        requires: [fast-forward-merge]
+        duration: 8
+        topics: [three-way merge, merge base, fast-forward vs non-fast-forward, --no-ff, merge strategies (ort)]
+      - id: merge-conflicts
+        title: "Konfliktlər"
+        outcome: "Oxucu merge konfliktini həll edib merge-i bitirə və ya ləğv edə bilir."
+        kind: terminal
+        facets: [theory, practice, test, interview]
+        requires: [three-way-merge]
+        duration: 9
+        topics: [handling conflicts, conflict markers, git merge --abort]
+      - id: detached-head
+        title: "Detached HEAD"
+        outcome: "Oxucu detached HEAD vəziyyətini tanıyıb oradan commit itirmədən çıxa bilir."
+        kind: state
+        facets: [theory, practice, visual, test]
+        requires: [what-is-a-branch]
+        duration: 6
+        topics: [detached HEAD, git switch --detach, saving work with a new branch]
+
+  - id: remotes
+    title: "Remote-lar"
+    description: "Uzaq repository ilə işləmək, fork və pull request."
+    nodes:
+      - id: remotes-and-clone
+        title: "Remote və clone"
+        outcome: "Oxucu lokal və uzaq repository arasındakı əlaqəni izah edib repo-nu clone edə bilir."
+        kind: diagram
+        facets: [theory, visual, test]
+        requires: [what-is-a-branch]
+        duration: 7
+        topics: [git remotes, cloning repositories, origin, managing remotes (add, rename, remove)]
+      - id: fetch-and-pull
+        title: "fetch və pull"
+        outcome: "Oxucu origin/main-in nə olduğunu və fetch ilə pull arasındakı fərqi izah edə bilir."
+        kind: state
+        facets: [theory, practice, visual, test, interview]
+        requires: [remotes-and-clone]
+        duration: 8
+        topics: [remote-tracking branches, fetch without merge, git pull, pull = fetch + merge]
+      - id: push
+        title: "push və upstream"
+        outcome: "Oxucu branch-ı push edib upstream təyin edə bilir və rədd edilən push-un səbəbini anlayır."
+        kind: terminal
+        facets: [theory, practice, test]
+        requires: [fetch-and-pull]
+        duration: 6
+        topics: [pushing changes, upstream, git push -u, rejected non-fast-forward push]
+      - id: fork-vs-clone
+        title: "Fork və clone"
+        outcome: "Oxucu fork ilə clone arasındakı fərqi və hansının nə vaxt lazım olduğunu izah edə bilir."
+        kind: compare
+        facets: [theory, visual, test]
+        requires: [remotes-and-clone]
+        duration: 5
+        topics: [forking vs cloning, upstream remote]
+      - id: pull-requests
+        title: "Pull request və code review"
+        outcome: "Oxucu branch-dan və ya fork-dan pull request açma və review axınını izah edə bilir."
+        kind: diagram
+        facets: [theory, visual, test]
+        requires: [push, fork-vs-clone]
+        duration: 8
+        topics: [pull requests, PR from a fork, code reviews, PR guidelines, contribution guidelines]
+
+  - id: undo
+    title: "Səhvləri düzəltmək"
+    description: "Dəyişikliyi və commit-i geri almağın yolları və hansını nə vaxt seçmək."
+    nodes:
+      - id: restore
+        title: "git restore"
+        outcome: "Oxucu fayldakı və staging-dəki dəyişikliyi git restore ilə geri ala bilir."
+        kind: terminal
+        facets: [theory, practice, test]
+        requires: [status-and-diff]
+        duration: 6
+        topics: [undoing changes, git restore, git restore --staged]
+      - id: amend
+        title: "commit --amend"
+        outcome: "Oxucu son commit-in mesajını və məzmununu düzəldə bilir və bunun yeni commit yaratdığını bilir."
+        kind: state
+        facets: [theory, practice, visual, test]
+        requires: [commit-snapshot]
+        duration: 5
+        topics: [git commit --amend]
+      - id: reset-modes
+        title: "reset: soft, mixed, hard"
+        outcome: "Oxucu git reset-in üç rejiminin üç sahəyə necə təsir etdiyini göstərə bilir."
+        kind: state
+        facets: [theory, practice, visual, test, interview]
+        requires: [three-areas, head]
+        duration: 10
+        topics: [git reset, --soft, --mixed, --hard]
+      - id: revert-vs-reset
+        title: "revert və reset"
+        outcome: "Oxucu paylaşılmış tarixçədə revert-in, lokal tarixçədə reset-in niyə seçildiyini əsaslandıra bilir."
+        kind: compare
+        facets: [theory, visual, test, interview]
+        requires: [reset-modes]
+        duration: 7
+        topics: [git revert, shared vs local history]
+      - id: reflog
+        title: "reflog"
+        outcome: "Oxucu reset və ya silinmiş branch-dan sonra itmiş commit-i reflog ilə tapıb bərpa edə bilir."
+        kind: state
+        facets: [theory, practice, visual, test]
+        requires: [reset-modes]
+        duration: 7
+        topics: [git reflog, recovering commits]
+      - id: stash
+        title: "stash"
+        outcome: "Oxucu yarımçıq işi stash ilə müvəqqəti saxlayıb geri qaytara bilir."
+        kind: state
+        facets: [theory, practice, visual, test]
+        requires: [three-areas]
+        duration: 6
+        topics: [git stash basics, stash pop vs apply, untracked files]
+
+  - id: rewrite
+    title: "Tarixçəni yenidən yazmaq"
+    description: "rebase, interactive rebase, cherry-pick və paylaşılmış tarixçənin qaydası."
+    nodes:
+      - id: rebase
+        title: "rebase"
+        outcome: "Oxucu rebase-in commit-ləri yeni əsasın üstünə necə köçürdüyünü (yeni hash-larla) izah edə bilir."
+        kind: state
+        facets: [theory, practice, visual, test]
+        requires: [three-way-merge]
+        duration: 9
+        topics: [git rebase, new commit hashes, rebase conflicts]
+      - id: merge-vs-rebase
+        title: "Merge və rebase"
+        outcome: "Oxucu merge ilə rebase arasında seçimi tarixçə və komanda işi baxımından əsaslandıra bilir."
+        kind: compare
+        facets: [theory, visual, test, interview]
+        requires: [rebase]
+        duration: 7
+        topics: [linear vs non-linear history, golden rule of rebasing]
+      - id: interactive-rebase
+        title: "Interactive rebase"
+        outcome: "Oxucu interactive rebase ilə commit-ləri birləşdirə, adını dəyişə və sırasını dəyişə bilir."
+        kind: terminal
+        facets: [theory, practice, test]
+        requires: [rebase]
+        duration: 9
+        topics: [git rebase -i, squash, fixup, reword, clean git history]
+      - id: cherry-pick
+        title: "cherry-pick"
+        outcome: "Oxucu bir commit-i başqa branch-a cherry-pick ilə köçürə bilir."
+        kind: state
+        facets: [theory, practice, visual, test]
+        requires: [what-is-a-branch]
+        duration: 6
+        topics: [cherry-picking commits]
+      - id: force-push
+        title: "Force push və qızıl qayda"
+        outcome: "Oxucu force push-un başqalarının işini necə silə biləcəyini və --force-with-lease-in niyə daha təhlükəsiz olduğunu izah edə bilir."
+        kind: diagram
+        facets: [theory, visual, test, interview]
+        requires: [push, rebase]
+        duration: 6
+        topics: [git push --force, --force-with-lease, rewriting shared history]
+
+  - id: teamwork
+    title: "Komanda işi və dərinlik"
+    description: "Komanda workflow-ları, faydalı alətlər və Git-in object modeli."
+    nodes:
+      - id: branching-workflows
+        title: "Branching workflow-lar"
+        outcome: "Oxucu GitHub flow, trunk-based development və git flow-u müqayisə edib komandaya uyğun olanı seçə bilir."
+        kind: compare
+        facets: [theory, visual, test, interview]
+        requires: [pull-requests]
+        duration: 8
+        topics: [working in a team, GitHub flow, trunk-based development, git flow]
+      - id: bisect
+        title: "bisect"
+        outcome: "Oxucu git bisect ilə xətanı gətirən commit-i tapa bilir."
+        kind: terminal
+        facets: [theory, practice, test]
+        requires: [git-log]
+        duration: 7
+        topics: [git bisect, good and bad commits, git bisect run]
+      - id: hooks
+        title: "Hooks"
+        outcome: "Oxucu pre-commit və commit-msg hook yazıb onların nə vaxt işlədiyini izah edə bilir."
+        kind: terminal
+        facets: [theory, practice, test]
+        requires: [first-commit]
+        duration: 7
+        topics: [git hooks, pre-commit, commit-msg, pre-push, client vs server hooks]
+      - id: worktree
+        title: "worktree"
+        outcome: "Oxucu git worktree ilə eyni anda iki branch üzərində işləyə bilir."
+        kind: terminal
+        facets: [theory, practice, test]
+        requires: [switch-branches]
+        duration: 5
+        topics: [git worktree add, git worktree remove]
+      - id: git-objects
+        title: ".git-in içi: blob, tree, commit"
+        outcome: "Oxucu Git-in object modelini (blob, tree, commit, ref) izah edib onu git cat-file ilə göstərə bilir."
+        kind: state
+        facets: [theory, practice, visual, test, interview]
+        requires: [commit-snapshot]
+        duration: 10
+        topics: [plumbing vs porcelain, blob, tree, commit object, refs, git cat-file]
