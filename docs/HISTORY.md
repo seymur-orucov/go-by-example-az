@@ -510,3 +510,12 @@ Done (branch `feat/content-skills`):
 - Found on the way: a stale dev server kept port 4322 after its task was stopped, so some checks went to the old design (the new server had silently moved to 4323); the status JSON must be read before any script that imports `TECHS` runs, so it is applied when `platform.ts` loads.
 - Checked after the merge: `pnpm check` (0/0/0), lint, `content:check` (66/66), build (128 pages).
 - Not checked: Ctrl+K with Git topics, Git quiz code in the new design, the mobile layout. Open: `feat/content-files-system` (20 Go lessons) and this branch are still unpushed; the port's PR must merge first.
+
+### 61. One technology page for every technology
+The user asked why `/git/` had no background animation while `/go/` did, and whether each technology page should look different. Claude found that `/git/` had been copied from the Go page's blocks without the aurora and the progress card, and recommended one shared template where each technology differs only by its color; the user chose the shared component.
+
+Done (branch `feat/tech-page`):
+- `components/TechPage.astro`: hero (aurora in the technology's color, mark, badge, stats), progress card (ring, next lesson, per-section bars, total hours), "where it fits" (directions and the techs after it; hidden when no direction lists the tech), program (section cards / all topics), five-facets strip. Props: technology id (name and color come from `TECHS`), catalog, heading, description, badge, unit ("bölmə" / "modul"), optional lighter color, optional roadmap link.
+- `styles/go.css` → `styles/tech.css` (`go-*` classes → `tech-*`, `--go-cyan` / `--go-ice` → `--tech-c` / `--tech-c-2`, set on `:root` by the page so the aurora can read them); `scripts/go-index.ts` → `scripts/tech-index.ts` (storage keys `w3:<tech>-open` / `w3:<tech>-view`, so Go keeps its keys).
+- `/go/` and `/git/` are now a few lines each. Git gains the orange aurora, the progress card ("öyrənilib" marks work with the `git/<id>` slugs), the fit section, collapsible cards and the "all topics" view; a topic without a subtitle shows its duration.
+- Checked: `pnpm check` (0/0/0), lint, format, build (128 pages); the built HTML of both pages (colors, aurora canvas, "Backend yolunda Git-dən sonra", 39 Git topics in both views). Not checked in a browser by Claude: the look of the orange aurora in light/dark themes and on mobile.
