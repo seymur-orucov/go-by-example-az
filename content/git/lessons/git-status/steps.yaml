@@ -1,0 +1,7 @@
+# The visuals are recorded from the real repository by `pnpm content:run`.
+clean:
+modified:
+sections:
+  vis: areas
+short:
+  vis: areas

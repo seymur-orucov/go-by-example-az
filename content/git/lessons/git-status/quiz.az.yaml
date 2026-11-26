@@ -1,0 +1,56 @@
+- question: "`list.txt` artıq commit olunub. Bu komandalardan sonra nə çap olunur?"
+  code: |
+    echo "eggs" >> list.txt
+    git status -s
+  options:
+    - "`M  list.txt`"
+    - "` M list.txt`"
+    - "`?? list.txt`"
+  answer: 1
+  explain: "Dəyişiklik diskdədir, stage edilməyib, ona görə `M` sağ sütundadır."
+- question: "Əvvəlki sualın davamı. Bu komandalardan sonra nə çap olunur?"
+  code: |
+    git add list.txt
+    git status -s
+  options:
+    - "`M  list.txt`"
+    - "` M list.txt`"
+    - "`A  list.txt`"
+  answer: 0
+  explain: "Dəyişiklik staging area-dadır, `M` sol sütuna keçib; `A` yalnız yeni fayl üçündür."
+- question: "`git status`-da üç bölmə var. Növbəti `git commit` hansını yazacaq?"
+  options:
+    - "`Untracked files`"
+    - "`Changes not staged for commit`"
+    - "`Changes to be committed`"
+  answer: 2
+  explain: "Commit yalnız staging area-nı yazır, yəni `Changes to be committed` bölməsini."
+- question: "Yeni `todo.txt` faylı yaratdınız. `git status` onu hansı bölmədə göstərir?"
+  options:
+    - "`Changes not staged for commit`"
+    - "`Untracked files`"
+    - "`Changes to be committed`"
+  answer: 1
+  explain: "Git yeni faylı `git add`-a qədər izləmir."
+- question: "`git status -s` `MM style.css` göstərir. Bu nə deməkdir?"
+  options:
+    - "Fayl iki dəfə commit olunub"
+    - "Fayl yeni yaradılıb"
+    - "Fayl silinib"
+    - "Dəyişiklik stage edilib, sonra fayl yenə dəyişib"
+  answer: 3
+  explain: "Sol `M` staged versiyanı, sağ `M` ondan sonrakı stage edilməmiş dəyişikliyi bildirir."
+- question: "`nothing to commit, working tree clean` nə deməkdir?"
+  options:
+    - "Fayllar son commit ilə eynidir və staging area-da yeni heç nə yoxdur"
+    - "Repository-də heç bir fayl yoxdur"
+    - "Hələ heç bir commit yoxdur"
+  answer: 0
+  explain: "Üç sahə eynidir: commit ediləsi heç nə yoxdur."
+- question: "`git status` `modified: app.js` altında `git restore <file>` ipucunu göstərir. `git restore app.js` nə edir?"
+  options:
+    - "`app.js`-i staging area-ya qoyur"
+    - "`app.js`-i commit edir"
+    - "Diskdəki dəyişikliyi silib faylı əvvəlki vəziyyətinə qaytarır"
+  answer: 2
+  explain: "`git restore` working directory-dəki dəyişikliyi ləğv edir; bunu geri qaytarmaq olmur."

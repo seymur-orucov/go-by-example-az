@@ -1,0 +1,474 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir site",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd site",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"<h1>Home</h1>\" > index.html",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"build started\" > debug.log",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add .",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add home page\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"API_KEY=test-123\" > .env",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "mkdir build",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"<h1>Home</h1>\" > build/index.html",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status --short",
+      "step": "problem",
+      "hidden": false,
+      "fail": false,
+      "out": "?? .env\n?? build/\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \".env\" > .gitignore",
+      "step": "ignore",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"build/\" >> .gitignore",
+      "step": "ignore",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"*.log\" >> .gitignore",
+      "step": "ignore",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status --short",
+      "step": "ignore",
+      "hidden": false,
+      "fail": false,
+      "out": "?? .gitignore\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git add .gitignore",
+      "step": "ignore",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"Ignore secrets, logs and build output\"",
+      "step": "ignore",
+      "hidden": false,
+      "fail": false,
+      "out": "[main 75b5f1d] Ignore secrets, logs and build output\n 1 file changed, 3 insertions(+)\n create mode 100644 .gitignore\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"404 /about\" > error.log",
+      "step": "check",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status --short",
+      "step": "check",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git check-ignore -v .env build/index.html error.log",
+      "step": "check",
+      "hidden": false,
+      "fail": false,
+      "out": ".gitignore:1:.env\t.env\n.gitignore:2:build/\tbuild/index.html\n.gitignore:3:*.log\terror.log\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"build finished\" >> debug.log",
+      "step": "tracked",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status --short",
+      "step": "tracked",
+      "hidden": false,
+      "fail": false,
+      "out": " M debug.log\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git rm --cached debug.log",
+      "step": "untrack",
+      "hidden": false,
+      "fail": false,
+      "out": "rm 'debug.log'\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git status --short",
+      "step": "untrack",
+      "hidden": false,
+      "fail": false,
+      "out": "D  debug.log\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"Stop tracking debug.log\"",
+      "step": "untrack",
+      "hidden": false,
+      "fail": false,
+      "out": "[main 88b9965] Stop tracking debug.log\n 1 file changed, 1 deletion(-)\n delete mode 100644 debug.log\n",
+      "exit": 0
+    },
+    {
+      "cmd": "ls",
+      "step": "untrack",
+      "hidden": false,
+      "fail": false,
+      "out": "build\ndebug.log\nerror.log\nindex.html\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "problem": {
+      "areas": {
+        "work": [
+          {
+            "name": ".env",
+            "state": "untracked"
+          },
+          {
+            "name": "build/index.html",
+            "state": "untracked"
+          },
+          {
+            "name": "debug.log",
+            "state": "clean"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "debug.log",
+            "state": "clean"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "d830af5",
+            "message": "Add home page"
+          },
+          "count": 1,
+          "files": [
+            "debug.log",
+            "index.html"
+          ]
+        }
+      }
+    },
+    "ignore": {
+      "areas": {
+        "work": [
+          {
+            "name": ".env",
+            "state": "ignored"
+          },
+          {
+            "name": ".gitignore",
+            "state": "clean"
+          },
+          {
+            "name": "build/index.html",
+            "state": "ignored"
+          },
+          {
+            "name": "debug.log",
+            "state": "clean"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": ".gitignore",
+            "state": "clean"
+          },
+          {
+            "name": "debug.log",
+            "state": "clean"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "75b5f1d",
+            "message": "Ignore secrets, logs and build output"
+          },
+          "count": 2,
+          "files": [
+            ".gitignore",
+            "debug.log",
+            "index.html"
+          ]
+        }
+      }
+    },
+    "check": {
+      "areas": {
+        "work": [
+          {
+            "name": ".env",
+            "state": "ignored"
+          },
+          {
+            "name": ".gitignore",
+            "state": "clean"
+          },
+          {
+            "name": "build/index.html",
+            "state": "ignored"
+          },
+          {
+            "name": "debug.log",
+            "state": "clean"
+          },
+          {
+            "name": "error.log",
+            "state": "ignored"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": ".gitignore",
+            "state": "clean"
+          },
+          {
+            "name": "debug.log",
+            "state": "clean"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "75b5f1d",
+            "message": "Ignore secrets, logs and build output"
+          },
+          "count": 2,
+          "files": [
+            ".gitignore",
+            "debug.log",
+            "index.html"
+          ]
+        }
+      }
+    },
+    "tracked": {
+      "areas": {
+        "work": [
+          {
+            "name": ".env",
+            "state": "ignored"
+          },
+          {
+            "name": ".gitignore",
+            "state": "clean"
+          },
+          {
+            "name": "build/index.html",
+            "state": "ignored"
+          },
+          {
+            "name": "debug.log",
+            "state": "modified"
+          },
+          {
+            "name": "error.log",
+            "state": "ignored"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": ".gitignore",
+            "state": "clean"
+          },
+          {
+            "name": "debug.log",
+            "state": "clean"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "75b5f1d",
+            "message": "Ignore secrets, logs and build output"
+          },
+          "count": 2,
+          "files": [
+            ".gitignore",
+            "debug.log",
+            "index.html"
+          ]
+        }
+      }
+    },
+    "untrack": {
+      "areas": {
+        "work": [
+          {
+            "name": ".env",
+            "state": "ignored"
+          },
+          {
+            "name": ".gitignore",
+            "state": "clean"
+          },
+          {
+            "name": "build/index.html",
+            "state": "ignored"
+          },
+          {
+            "name": "debug.log",
+            "state": "ignored"
+          },
+          {
+            "name": "error.log",
+            "state": "ignored"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": ".gitignore",
+            "state": "clean"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "88b9965",
+            "message": "Stop tracking debug.log"
+          },
+          "count": 3,
+          "files": [
+            ".gitignore",
+            "index.html"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,325 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir party",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd party",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"Nora\" \"Omar\" > guests.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"cake: 40 USD\" > budget.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add .",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Start party plan\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Lena\" >> guests.txt",
+      "step": "staged",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add guests.txt",
+      "step": "staged",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git diff",
+      "step": "staged",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git diff --staged",
+      "step": "staged",
+      "hidden": false,
+      "fail": false,
+      "out": "diff --git a/guests.txt b/guests.txt\nindex 67d8b28..a4a8149 100644\n--- a/guests.txt\n+++ b/guests.txt\n@@ -1,2 +1,3 @@\n Nora\n Omar\n+Lena\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"balloons: 15 USD\" >> budget.txt",
+      "step": "both",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git diff",
+      "step": "both",
+      "hidden": false,
+      "fail": false,
+      "out": "diff --git a/budget.txt b/budget.txt\nindex 23805d0..d2b9ce7 100644\n--- a/budget.txt\n+++ b/budget.txt\n@@ -1 +1,2 @@\n cake: 40 USD\n+balloons: 15 USD\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Bring board games\" > notes.txt",
+      "step": "new-file",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add notes.txt",
+      "step": "new-file",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git diff --staged",
+      "step": "new-file",
+      "hidden": false,
+      "fail": false,
+      "out": "diff --git a/guests.txt b/guests.txt\nindex 67d8b28..a4a8149 100644\n--- a/guests.txt\n+++ b/guests.txt\n@@ -1,2 +1,3 @@\n Nora\n Omar\n+Lena\ndiff --git a/notes.txt b/notes.txt\nnew file mode 100644\nindex 0000000..09116f9\n--- /dev/null\n+++ b/notes.txt\n@@ -0,0 +1 @@\n+Bring board games\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git diff --cached guests.txt",
+      "step": "cached",
+      "hidden": false,
+      "fail": false,
+      "out": "diff --git a/guests.txt b/guests.txt\nindex 67d8b28..a4a8149 100644\n--- a/guests.txt\n+++ b/guests.txt\n@@ -1,2 +1,3 @@\n Nora\n Omar\n+Lena\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"Invite Lena, add notes\"",
+      "step": "cached",
+      "hidden": false,
+      "fail": false,
+      "out": "[main 9121008] Invite Lena, add notes\n 2 files changed, 2 insertions(+)\n create mode 100644 notes.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git diff --staged",
+      "step": "cached",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git diff",
+      "step": "cached",
+      "hidden": false,
+      "fail": false,
+      "out": "diff --git a/budget.txt b/budget.txt\nindex 23805d0..d2b9ce7 100644\n--- a/budget.txt\n+++ b/budget.txt\n@@ -1 +1,2 @@\n cake: 40 USD\n+balloons: 15 USD\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "staged": {
+      "areas": {
+        "work": [
+          {
+            "name": "budget.txt",
+            "state": "clean"
+          },
+          {
+            "name": "guests.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "budget.txt",
+            "state": "clean"
+          },
+          {
+            "name": "guests.txt",
+            "state": "modified"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "b0e8c0d",
+            "message": "Start party plan"
+          },
+          "count": 1,
+          "files": [
+            "budget.txt",
+            "guests.txt"
+          ]
+        }
+      }
+    },
+    "both": {
+      "areas": {
+        "work": [
+          {
+            "name": "budget.txt",
+            "state": "modified"
+          },
+          {
+            "name": "guests.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "budget.txt",
+            "state": "clean"
+          },
+          {
+            "name": "guests.txt",
+            "state": "modified"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "b0e8c0d",
+            "message": "Start party plan"
+          },
+          "count": 1,
+          "files": [
+            "budget.txt",
+            "guests.txt"
+          ]
+        }
+      }
+    },
+    "new-file": {
+      "areas": {
+        "work": [
+          {
+            "name": "budget.txt",
+            "state": "modified"
+          },
+          {
+            "name": "guests.txt",
+            "state": "clean"
+          },
+          {
+            "name": "notes.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "budget.txt",
+            "state": "clean"
+          },
+          {
+            "name": "guests.txt",
+            "state": "modified"
+          },
+          {
+            "name": "notes.txt",
+            "state": "added"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "b0e8c0d",
+            "message": "Start party plan"
+          },
+          "count": 1,
+          "files": [
+            "budget.txt",
+            "guests.txt"
+          ]
+        }
+      }
+    },
+    "cached": {
+      "areas": {
+        "work": [
+          {
+            "name": "budget.txt",
+            "state": "modified"
+          },
+          {
+            "name": "guests.txt",
+            "state": "clean"
+          },
+          {
+            "name": "notes.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "budget.txt",
+            "state": "clean"
+          },
+          {
+            "name": "guests.txt",
+            "state": "clean"
+          },
+          {
+            "name": "notes.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "9121008",
+            "message": "Invite Lena, add notes"
+          },
+          "count": 2,
+          "files": [
+            "budget.txt",
+            "guests.txt",
+            "notes.txt"
+          ]
+        }
+      }
+    }
+  }
+}

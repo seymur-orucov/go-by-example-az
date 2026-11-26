@@ -1,0 +1,9 @@
+rules:
+  - "Arqumentsiz `git diff` working directory-ni staging area ilə müqayisə edir: yalnız stage edilməmiş dəyişiklikləri göstərir."
+  - "`-` silinmiş, `+` əlavə olunmuş sətirdir; dəyişmiş sətir bir `-` və bir `+` kimi görünür."
+  - "`@@ -8,3 +8,4 @@`: köhnə versiyada 8-ci sətirdən başlayan 3 sətir yeni versiyada 4 sətir olub."
+  - "`git add`-dan sonra `git diff` boş olur: dəyişiklik itməyib, staging area-ya keçib."
+  - "Untracked fayllar `git diff`-də görünmür."
+practices:
+  - "`git add`-dan əvvəl `git diff` ilə nəyi stage etdiyinizi oxuyun."
+  - "Çox fayl dəyişəndə diff-i bir fayla daraldın: `git diff menu.txt`."

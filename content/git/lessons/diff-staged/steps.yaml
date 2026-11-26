@@ -1,0 +1,7 @@
+# The visuals are recorded from the real repository by `pnpm content:run`.
+staged:
+both:
+  vis: areas
+new-file:
+cached:
+  vis: areas

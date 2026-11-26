@@ -1,0 +1,9 @@
+rules:
+  - "`git diff --staged` staging area-nı son commit ilə müqayisə edir: növbəti commit-ə düşəcək dəyişiklikləri göstərir."
+  - "`git diff --cached` `--staged` ilə eyni işi görür."
+  - "Adi `git diff` yalnız stage edilməmiş, `--staged` isə yalnız staged dəyişiklikləri göstərir."
+  - "Yeni fayl `git add`-dan sonra `--staged`-də `new file mode` və `--- /dev/null` ilə görünür; untracked fayl heç bir diff-də yoxdur."
+  - "Commit-dən sonra `git diff --staged` boş olur."
+practices:
+  - "Commit-dən əvvəl `git diff --staged` ilə commit-in məzmununu oxuyun."
+  - "Sonra adi `git diff` ilə stage etməyi unutduğunuz dəyişiklik qalıb-qalmadığını yoxlayın."

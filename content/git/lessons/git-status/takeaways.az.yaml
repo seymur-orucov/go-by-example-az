@@ -1,0 +1,9 @@
+rules:
+  - "`nothing to commit, working tree clean`: fayllar son commit ilə eynidir və staging area-da yeni heç nə yoxdur."
+  - "`Changes to be committed` növbəti commit-ə düşəcək, `Changes not staged for commit` isə hələ yalnız diskdə olan dəyişikliklərdir."
+  - "`Untracked files` Git-in izləmədiyi yeni fayllardır; `git add` onları izlənən edir."
+  - "`git status -s`-də sol simvol staging area-nı, sağ simvol working directory-ni bildirir: `M `, ` M`, `MM`, `??`."
+  - "`git restore <file>` diskdəki dəyişikliyi silir, `git restore --staged <file>` isə faylı yalnız staging area-dan çıxarır."
+practices:
+  - "Hər commit-dən əvvəl `git status` ilə nəyin commit-ə düşəcəyini yoxlayın."
+  - "İpuclarındakı komandaları nə etdiklərini bilmədən işə salmayın, xüsusən `git restore`-u."

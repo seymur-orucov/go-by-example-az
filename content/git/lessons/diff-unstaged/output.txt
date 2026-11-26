@@ -1,0 +1,44 @@
+$ sed -i 's/Coffee 3 USD/Coffee 4 USD/' menu.txt
+$ git diff
+diff --git a/menu.txt b/menu.txt
+index d2cfa46..17dd2c7 100644
+--- a/menu.txt
++++ b/menu.txt
+@@ -1,5 +1,5 @@
+ Tea 2 USD
+-Coffee 3 USD
++Coffee 4 USD
+ Espresso 3 USD
+ Latte 4 USD
+ Cappuccino 4 USD
+$ echo "Lemonade 3 USD" >> menu.txt
+$ git diff
+diff --git a/menu.txt b/menu.txt
+index d2cfa46..1ebff03 100644
+--- a/menu.txt
++++ b/menu.txt
+@@ -1,5 +1,5 @@
+ Tea 2 USD
+-Coffee 3 USD
++Coffee 4 USD
+ Espresso 3 USD
+ Latte 4 USD
+ Cappuccino 4 USD
+@@ -8,3 +8,4 @@ Orange juice 3 USD
+ Croissant 3 USD
+ Cheesecake 5 USD
+ Brownie 4 USD
++Lemonade 3 USD
+$ git add menu.txt
+$ git diff
+$ echo "Muffin 3 USD" >> menu.txt
+$ git diff
+diff --git a/menu.txt b/menu.txt
+index 1ebff03..5859192 100644
+--- a/menu.txt
++++ b/menu.txt
+@@ -9,3 +9,4 @@ Croissant 3 USD
+ Cheesecake 5 USD
+ Brownie 4 USD
+ Lemonade 3 USD
++Muffin 3 USD
