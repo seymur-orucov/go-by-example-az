@@ -79,6 +79,7 @@ format section there and one existing `source: original` lesson before starting.
   above a top-level declaration, gofmt writes it that way), `//@end` to close a step early.
   Step ids are short English kebab-case and **stable** once published.
 - `lesson.az.md`: intro, then `## Title {#id}` per step in the same order, optional outro.
+  Step headings are plain text: backticks there render literally.
 - `steps.yaml`: per step `out` (exactly what that step prints; use `|` for several lines)
   and optional `vis` (see `visSchema` in `apps/site/src/lib/lesson.ts`; only `kind: slice`
   exists today — adding a kind means a schema entry and a branch in
@@ -86,7 +87,10 @@ format section there and one existing `source: original` lesson before starting.
 - `quiz.az.yaml`: **5–10 questions** depending on the topic; mostly "Bu kod nə çap
   edəcək?" with a short `code`, plus "which line does not compile?" for typical mistakes.
   2–4 options, one `answer` (0-based), an `explain` of one sentence. Distractors must be
-  plausible mistakes, not jokes.
+  plausible mistakes, not jokes. Spread the correct `answer` over all positions (0, 1, 2, 3)
+  roughly evenly; the quiz does not shuffle options, so a fixed position can be guessed.
+- When `output.txt` or a quiz quotes a Go error message verbatim (`day out of range`,
+  `invalid syntax`), mention it in the hand-off: the wording may change in a later Go.
 - `takeaways.az.yaml`: the "Yadda saxla" card shown left of the quiz. `rules`: 3–6 key points
   and gotchas of **this** lesson (what a reader must remember: syntax rules, typical compile
   errors, behaviours that surprise beginners). `practices`: 1–4 best practices (habits that
