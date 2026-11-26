@@ -568,3 +568,12 @@ Done (branch `feat/go-visuals`):
 - Fixed on the way: notes inside a visual (`.vis-note`, also the old slice note) were 15 px because `.lx-step p` beat them; now 12.5 px.
 - `docs/GLOSSARY.md`: 88 terms in the nine sections — kept in English or translated (sabit, rekursiya, heş, dövr…), a short Azerbaijani explanation and the lesson that introduces it, checked against the lesson texts. The `write-lesson` skill points to it and lists the visual kinds.
 - Checked in headless Chrome: every new visual in the dark theme, the timeline in the light theme, channel-buffering and goroutines at 390 px (no horizontal scroll); `content:check` with deliberately broken data (six cases rejected).
+
+
+### 67. Text lessons: `concept` and `compare` pilots
+The user ran `/write-content git`. The first module ("Əsaslar") needs two kinds the site could not render, so Claude built them and wrote one pilot each; the `terminal` and `state` pilots are still awaiting review.
+
+Done (branch `feat/git-concept-compare`):
+- **Text lessons** (`concept`, `compare`): no code pane, steps in one column, hand-written visuals inside the steps — `flow` (a row of boxes, optional arrows) and `compare` (aspect by aspect, the better side green). `loadTextLesson` validates them; `loadNodeLesson` picks the loader by the node's kind (used by `/git/<id>/` and `content:check`).
+- **Pilots** (`source: original`): `what-is-version-control` (`concept`: a family recipe book — the `recipes_final_v2.md` copies problem, then the same work as a history of snapshots; why it helps; centralized vs distributed in brief; 4 steps, 6 questions) and `git-vs-other-vcs` (`compare`: SVN vs Git aspect by aspect, working on a train without internet, branches, Mercurial and Perforce, why Git won; 4 steps, 7 questions).
+- Checked in headless Chrome at 1440px (both themes) and 390px: fixed the caption casing ("GİT"), the arrow row wrapping on phones (now vertical) and the missing space after a list.
