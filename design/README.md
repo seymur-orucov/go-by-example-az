@@ -68,6 +68,50 @@ A new, self-contained version built on D (D itself is unchanged). Open http://lo
 - **Pages:** `index.html` (platform home), `go.html` (technology page), `roadmap.html` (Go graph + Backend preview, 5-facet node panel), `lesson.html?ex=slices` (lesson page).
 - **Motion:** aurora, typing placeholder, wires, auto-cycling demos and reveals stop under `prefers-reduced-motion` (the aurora draws one still frame).
 
+### Design v3 — "Order from chaos" (`/v3/`, 2026-11-26)
+A home page with **its own idea and motion language** (the first v3 try, "Aurora editorial", was rejected and deleted — the user found v2 better). Open http://localhost:4321/v3/. It loads v2's shell (`../v2/v2.css`, `../v2/v2.js`: tokens, header, menus, search) and adds `index.html`, `v3.css`, `v3.js`; no aurora and no glass wires. The other pages (Go, roadmap, lesson) are still v2's and are linked with `../v2/…` (`window.W3_PAGES` tells `v2.js` where they live). A small **v2 | v3** switch sits bottom-right; on desktop the header is a floating capsule.
+- **Idea and copy:** "Öyrənmək çətin deyil. Azmaq asandır." — the problem is not the lack of material but the lack of order. The whole page plays that out: chaos first, order after.
+- **Hero (canvas 2D particle field):** ~3200 points drift as dust while the headline rises; then they snap into a **roadmap graph** with a light ring. The sculpture then morphs through the five sides of every topic — map, `{ }` code, a rotating 3D cube (visual), a check (test), a speech bubble (interview) — with tabs and a caption; points leave short light trails, flee the pointer, and dissolve back into dust as the hero scrolls away. The simulation is time-based (sub-steps), so it converges at the same speed at any frame rate.
+- **01 Problem:** "Əvvəl: 47 açıq tab. Sonra: bir xəritə." — a **before/after slider** (drag, click or arrow keys): jittering tab chips on one side, the clean Go roadmap with the next lesson on the other; it sweeps once when it enters the view.
+- **02 Manifesto:** one large paragraph whose words **light up with the scroll**.
+- **03 One topic, five layers:** a **pinned 3D exploded view** — five plates (theory, code, visual, test, interview) separate as you scroll and each lights up in turn; the list on the left scrolls to a layer. No pin on narrow screens or with reduced motion (the stack is shown exploded, layers switch by tap).
+- **04 Stack:** a **technology orbit** — three rings (languages / web and data / tools and infra) revolve around "sən"; choosing a direction numbers its technologies in learning order and dims the rest.
+- **05 Platform:** the eight sections as a **large typographic list** with status, and a preview card that follows the cursor.
+- **Finale:** a running line of outlined type and the resume card.
+- Under `prefers-reduced-motion` the hero draws one still frame (tabs still switch shapes), the manifesto is fully lit, nothing revolves.
+
+### Design v4 — "Metro" (`/v4/`, 2026-11-26)
+A home page built from a different idea again, after the user's v3 feedback (disliked: the pinned "Bir mövzu. Beş qat." exploded view and the running "Seç · Öyrən · Yoxla · Təkrar" line) and the request "V4 hazırla. Tam fərqli." Open http://localhost:4321/v4/. **Its own look and shell** (`v4.css` does not load `v2.css`); it loads `../v2/v2.js` only for the prototype data, the theme/palette switch and the Ctrl+K search, and restyles the pieces that script generates. The other pages (Go, roadmap, lesson) are still v2's. A **v2 | v3 | v4** switch sits bottom-right.
+- **Idea and copy:** "Hər peşə bir xətdir. Hər texnologiya bir stansiya." — the platform is a transit map: directions are lines, technologies are stations, a lesson is a stop. The copy speaks in station announcements and signage.
+- **Look:** wayfinding, not glass — flat colour, thick lines, sign plates, numbered line bullets, hairline rules, paper tickets, an always-dark board. No glass, glow, gradient text, aurora, particles or marquee. Dark = the night map, light = the printed map (warm paper). The accent pair and the 4 palettes are kept; the four line colours are fixed.
+- **Hero (SVG transit map, 1280×640, octolinear):** four lines start at Git and share a trunk (Git → Linux → HTTP), then branch; interchange stations are capsules across the lines that stop there; Rust is a dashed planned extension. On load the lines are **drawn from Git** at a constant speed and each station opens when the line reaches it; then **one train per line** runs stop to stop and back, and the station it arrives at pings. Go is the open station (pulse, "Sən buradasan" / "Buradan başla" flag). The headline shares the canvas with the map (sizes in `cqw`, so they scale together). A **line chooser** highlights one line, dims the rest and lists its stops in order; hovering a line does the same; stations have a small sign (name, description, lines, status).
+- **The page line:** the header's bottom rule carries one stop per section and a train that follows the scroll.
+- **Go xətti:** a strip map of the nine Go sections with progress and a train that moves to the chosen stop; below it a timetable of that section's lessons (keçilib / hazırdır / yazılır) linking to the lesson pages.
+- **Növbəti stansiya: Slices:** four steps of the real `slices` lesson — a station name board, steps as a vertical line, a highlight band that slides between code ranges (two-way: step ↔ code line), memory cells, output; it walks through the steps on its own until the reader takes over. A **turnstile**: one real quiz question; the right answer turns the rotor, switches the lamp to green and enables "Növbəti stansiya: Maps".
+- **Bilet lazım deyil:** four paper tickets (free, no sign-up, in Azerbaijani, verified code) printed out in thermal-printer steps and then punched.
+- **Tablo:** the eight platform sections on a **split-flap board** (rollout order, status, a clock); rows flip in on enter, "Tablonu yenilə" replays.
+- **Finale:** a boarding pass printed from a slot — from the last learned lesson to the next one, with the progress bar.
+- Below 1180px the headline leaves the map canvas (the map gets a title block with the line legend); below 900px the map and the Go strip scroll sideways. Under `prefers-reduced-motion` the map is shown drawn, trains are parked, the board and tickets show their final state.
+
+### Design v5 — v2 and v3 merged (`/v5/`, 2026-11-26)
+The user on v4: "Maraqlıdır amma bəyənmədim" — then asked for a new version that **mixes v2 and v3**, uses the better concepts of both, keeps **v3's intro** ("çox maraqlı idi") and may add other ideas. Open http://localhost:4321/v5/. It loads v2's shell and home styles (`../v2/v2.css`, `../v2/home.css`, `../v2/v2.js`) and adds `index.html`, `v5.css`, `v5.js`; the other pages are v2's. A **v2 | v3 | v4 | v5** switch sits bottom-right.
+- **From v3:** the hero — the canvas particle field (dust → roadmap graph → code → cube → check → bubble, tabs and caption, pointer repulsion, dissolving on scroll) with its headline "Öyrənmək çətin deyil. Azmaq asandır."; the before/after slider; the scroll-lit manifesto. Not taken: the pinned "Bir mövzu. Beş qat." view and the running line (disliked), the orbit, the typographic list, the capsule header.
+- **From v2:** the look (aurora, hairline grid, glass cards, glowing borders, wires, `kicker` labels, gradient headings), the glowing ask box, the stack map, "Bir mövzu. Beş tərəf.", the platform rail, "Niyə məhz burada?" with the comparison table, the resume card. Not taken: the three tilted showcase cards (the facet demo shows the same lesson).
+- **New in v5:**
+  - *Order brings the light:* the sky (v2's aurora and grid) stays dark while the field is chaos and fades in when the particles lock into the map.
+  - *The field answers the reader:* text typed into the ask box (or a hovered suggestion chip) is drawn by the particles; Enter still opens the search. Clearing the box returns to the five shapes.
+  - *Scatter:* a click on an empty part of the hero blows the field apart from that point; it re-forms on its own.
+  - *Tabs → demo:* "Bu tərəfi nümunədə gör" under the hero tabs scrolls to the facet demo and opens the matching facet (the map tab goes to the stack map).
+- `v5.js` has two parts: part A is v2's `home.js` without the showcase, part B is v3's hero, slider and manifesto plus the additions. Under `prefers-reduced-motion` the hero is one still frame with the sky lit, typed text still redraws the shape, nothing scatters.
+
+### Design v6 — "Liquid glass" (`/v6/`, 2026-11-26)
+The user on v5: "Biraz qarışıq olub" — then asked for a v6 with an **interesting interactive intro animation**, and a home page that is **very informative, interesting and in a glass design style**. Open http://localhost:4321/v6/. It loads only v2's shell (`../v2/v2.css`, `../v2/v2.js`: tokens, glass, header, menus, search) plus `index.html`, `v6.css`, `v6.js`; nothing from v3–v5 and not v2's `home.css`. The other pages are v2's.
+- **One idea:** "Proqramlaşdırmanı bir yolda öyrən." — scattered sources flow together into one path; the whole page then explains that path with real data.
+- **Hero (WebGL liquid glass):** glass drops refract the aurora ribbons and a hairline grid behind them (rim colour, highlight, contact shadow). Intro: nine drops are scattered, each labelled with a source (video, məqalə, forum, pdf, kurs, sənəd, 47 tab, qeyd, podkast), then they flow together into one form with orbiting drops. Afterwards a small drop follows the mouse and melts into the form, any drop can be grabbed and pulled out, and a click on an empty spot splashes the form; it always flows back. A glass card on the form shows Go progress and the next lesson.
+- **Sections (all glass, all with real prototype data):** roadmap explorer (Go: 9 sections in a serpentine with a wire and progress, the chosen section's lessons with keçilib / hazırdır / yazılır; Backend: the 7 technologies in order), a lesson demo (real `slices` steps with a sliding code highlight, memory cells and output, "Hər dərsdə" list, one quiz question), directions + technologies with numbered order, the 8 platform sections with a rollout bar, "Niyə məhz burada?" + comparison table, FAQ, resume card.
+- **Performance (measured on an Intel HD iGPU, Chrome on Windows):** the shader compiles in the background (`KHR_parallel_shader_compile`) and the canvas fades in when ready — a blocking compile froze the page for tens of seconds on a fresh profile; the shader samples the backdrop once per pixel; the render scale adapts to the frame rate; no live `backdrop-filter` over the animated canvas (hero glass panels use a tinted fill) and the ask box's rotating ring runs on the compositor. Result: ~60 fps where the first version ran at ~21.
+- No WebGL: soft CSS backdrop with CSS glass circles. `prefers-reduced-motion`: one still frame of the formed glass, everything visible at once, no drops follow the pointer.
+
 ## Files
 ```
 design/
@@ -76,6 +120,10 @@ design/
   d/              Variant D — the chosen design
   archive/        Variants A, B, C — frozen, kept for comparison
   v2/             Design v2 — new version built on D
+  v3/             Design v3 — home page built on v2 (reuses v2's shell)
+  v4/             Design v4 — "Metro" home page (own look; uses v2.js for data and search)
+  v5/             Design v5 — home page that merges v2 and v3 (uses v2's shell and home styles)
+  v6/             Design v6 — "Liquid glass" home page (uses v2's shell only)
 ```
 
 | File | Purpose |
@@ -97,6 +145,10 @@ design/
 | `v2/go.html`, `go.css`, `go.js` | Design v2: Go technology page |
 | `v2/roadmap.html`, `roadmap.css`, `roadmap.js`, `nodes.js` | Design v2: roadmap page and sample node facets |
 | `v2/lesson.html`, `lesson.css`, `lesson.js` | Design v2: lesson page (the real `slices` lesson) |
+| `v3/index.html`, `v3.css`, `v3.js` | Design v3: platform home (particle-field hero, before/after slider, scroll-lit manifesto, exploded five-layer lesson, technology orbit, section list); loads `v2/v2.css` + `v2/v2.js` |
+| `v4/index.html`, `v4.css`, `v4.js` | Design v4 "Metro": platform home (transit-map hero with trains, Go strip map + timetable, lesson demo with a turnstile question, tickets, split-flap board, boarding pass); loads `v2/v2.js` but not `v2.css` |
+| `v5/index.html`, `v5.css`, `v5.js` | Design v5: platform home merging v2 and v3 (v3's particle intro, slider and manifesto; v2's ask box, stack map, facets, rail, advantages, resume card; new: aurora on lock, typed text drawn by particles, click to scatter); loads `v2/v2.css`, `v2/home.css`, `v2/v2.js` |
+| `v6/index.html`, `v6.css`, `v6.js` | Design v6 "Liquid glass": platform home (WebGL liquid-glass hero you can pull and splash, roadmap explorer, lesson demo + quiz, stack, platform sections, comparison, FAQ, resume card); loads `v2/v2.css` + `v2/v2.js` |
 | `archive/a/` | Variant A: `tokens.css`, `app.css`, `index.html`, `example.html` |
 | `archive/b/` | Variant B: `style.css`, `index.html`, `example.html` |
 | `archive/c/` | Variant C: `index.html`, `example.html` (styles are `shared/base.css`) |
