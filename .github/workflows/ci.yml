@@ -31,6 +31,24 @@ jobs:
       - run: pnpm content:check
       - run: pnpm build
 
+  go-lessons:
+    name: Go lessons (gofmt, vet, run against output.txt)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-go@v7
+        with:
+          go-version: "1.26.x"
+          cache: false # lessons have no go.mod or go.sum
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      # Also runs the Unix-only lessons that are skipped on Windows (execing-processes).
+      - run: pnpm content:go
+
   pr-title:
     name: Pull request title (Conventional Commits)
     if: github.event_name == 'pull_request'
