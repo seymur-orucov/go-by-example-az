@@ -2015,45 +2015,14 @@ button.vm-row:hover {
   white-space: pre-wrap;
 }
 
-/* ---------- Text lessons (concept, compare): one column, no code pane ---------- */
-/* Desktop: the visuals live in the sticky side panel (.lx-stage), one at a time; the copy
-   inside the step is shown only when the layout is one column. */
-.lx-walk.text .st-vis-inline {
-  display: none;
+/* ---------- Text lessons (concept, compare): no code pane ----------
+   Full width, steps one under another, each visual inside its step; nothing sticky
+   (the user's choice: a side panel and a capped column were both rejected). */
+.lx-walk.solo {
+  grid-template-columns: minmax(0, 1fr);
 }
-.stage-item {
-  padding: 14px 16px 16px;
-  border-radius: 18px;
-}
-.stage-item:not([hidden]) {
-  animation: stageIn 0.35s var(--ease-out) both;
-}
-.stage-item .st-vis {
-  margin-top: 0;
-}
-.stage-head {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
-}
-.stage-head b {
-  font-size: 15px;
-  color: var(--text);
-}
-@keyframes stageIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-}
-@media (max-width: 1180px) {
-  .lx-walk.text .st-vis-inline {
-    display: block;
-  }
-  .lx-stage {
-    display: none;
-  }
+.lx-walk.solo .lx-steps {
+  padding-bottom: 0;
 }
 
 /* ---------- Vis kind "flow": a row of boxes ---------- */
