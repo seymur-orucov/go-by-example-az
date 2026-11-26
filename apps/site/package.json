@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && pagefind --site dist",
     "preview": "astro preview",
     "check": "astro check",
     "astro": "astro",
@@ -14,8 +14,15 @@
     "content:go": "node scripts/run-go.ts"
   },
   "dependencies": {
+    "@codemirror/commands": "^6.11.2",
+    "@codemirror/lang-go": "^6.0.1",
+    "@codemirror/language": "^6.13.1",
+    "@codemirror/state": "^6.7.6",
+    "@codemirror/view": "^6.44.0",
+    "@lezer/highlight": "^1.2.5",
     "@platform/theme": "workspace:*",
     "astro": "^7.4.13",
+    "codemirror": "^6.0.2",
     "marked": "^18.2.1",
     "shiki": "^4.6.0",
     "yaml": "^2.9.1"
@@ -23,6 +30,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
     "@types/node": "^24.19.2",
+    "pagefind": "^1.6.0",
     "typescript": "~6.0.3"
   }
 }

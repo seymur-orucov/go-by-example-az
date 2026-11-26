@@ -206,6 +206,8 @@ interface PaletteItem {
   href?: string;
   ic: string;
   c: string;
+  /** Full-text match: Pagefind's excerpt (HTML). */
+  ex?: string;
 }
 const statusText = (s: string): string =>
   s === "live"
@@ -215,6 +217,7 @@ const statusText = (s: string): string =>
       : s === "preview"
         ? "önizləmə"
         : "tezliklə";
+const LESSONS_GROUP = "Dərslər";
 const INDEX: PaletteItem[] = [
   ...TECHS.map((t) => ({
     g: "Texnologiyalar",
@@ -240,14 +243,18 @@ const INDEX: PaletteItem[] = [
     ic: "·",
     c: "#8b9cff",
   })),
-  ...FLAT.map((x) => ({
-    g: "Go dərsləri",
-    t: x.title,
-    s: `${x.sub} · ${x.section}`,
-    href: x.href,
-    ic: "Go",
-    c: "#00add8",
-  })),
+  // lessons of every technology share one group; the icon follows the lesson's technology
+  ...FLAT.map((x) => {
+    const tech = TECHS.find((t) => x.href.startsWith(`/${t.id}/`));
+    return {
+      g: LESSONS_GROUP,
+      t: x.title,
+      s: x.sub ? `${x.sub} · ${x.section}` : x.section,
+      href: x.href,
+      ic: tech?.ic ?? "Go",
+      c: tech?.c ?? "#00add8",
+    };
+  }),
 ];
 let pal: HTMLElement | undefined;
 let palInput: HTMLInputElement;
@@ -261,7 +268,7 @@ function buildPalette(): void {
   pal.hidden = true;
   pal.innerHTML =
     `<div class="palette glass glow-border" role="dialog" aria-modal="true" aria-label="Axtarış"><label class="palette-input">${I.search}` +
-    '<input type="search" placeholder="Texnologiya, istiqamət və ya mövzu axtar…" autocomplete="off" aria-label="Axtarış"><kbd>Esc</kbd></label><div class="palette-list" role="listbox"></div></div>';
+    '<input type="search" placeholder="Texnologiya, mövzu və ya dərsin mətnində axtar…" autocomplete="off" aria-label="Axtarış"><kbd>Esc</kbd></label><div class="palette-list" role="listbox"></div></div>';
   document.body.appendChild(pal);
   palInput = pal.querySelector("input") as HTMLInputElement;
   palList = pal.querySelector(".palette-list") as HTMLElement;
@@ -284,16 +291,79 @@ function buildPalette(): void {
     }
   });
 }
+// Full-text search over lesson pages (Pagefind, built by `pagefind --site dist` after the
+// Astro build). Loaded on the first query; missing in `astro dev`, where only titles match.
+interface PagefindData {
+  url: string;
+  excerpt: string;
+  meta: Record<string, string | undefined>;
+}
+interface Pagefind {
+  /** Loads the index metadata ahead of the first query. */
+  init?(): Promise<void>;
+  search(q: string): Promise<{ results: { data(): Promise<PagefindData> }[] } | null>;
+}
+let pagefind: Promise<Pagefind | null> | undefined;
+const PAGEFIND_URL = "/pagefind/pagefind.js";
+function loadPagefind(): Promise<Pagefind | null> {
+  pagefind ??= (import(/* @vite-ignore */ PAGEFIND_URL) as Promise<Pagefind>)
+    .then(async (pf) => {
+      await pf.init?.();
+      return pf;
+    })
+    .catch(() => null);
+  return pagefind;
+}
+const FULLTEXT_GROUP = "Dərslərin mətnində";
+let ftSeq = 0;
+let ftTimer: number | undefined;
+
+/** Appends Pagefind's matches for `raw` below the title matches, unless the query changed. */
+function searchText(raw: string, local: PaletteItem[]): void {
+  const seq = ++ftSeq;
+  clearTimeout(ftTimer);
+  if (raw.length < 3) return;
+  ftTimer = window.setTimeout(async () => {
+    const pf = await loadPagefind();
+    const res = pf ? await pf.search(raw).catch(() => null) : null;
+    if (!res || seq !== ftSeq) return;
+    const data = await Promise.all(res.results.slice(0, 8).map((r) => r.data()));
+    if (seq !== ftSeq) return;
+    const seen = new Set(local.map((x) => x.href));
+    const found = data
+      .filter((d) => !seen.has(d.url))
+      .map((d): PaletteItem => {
+        const tech = TECHS.find((t) => t.id === d.meta.tech);
+        return {
+          g: FULLTEXT_GROUP,
+          t: d.meta.title ?? d.url,
+          s: d.meta.section ?? "",
+          href: d.url,
+          ic: tech?.ic ?? "·",
+          c: tech?.c ?? "#8b9cff",
+          ex: d.excerpt,
+        };
+      });
+    if (found.length) paintPalette(local.concat(found), palSel);
+  }, 160);
+}
+
 function renderPalette(): void {
-  const q = fold(palInput.value.trim());
-  palItems = (
+  const raw = palInput.value.trim();
+  const q = fold(raw);
+  const local = (
     q
       ? INDEX.filter((x) => fold(`${x.t} ${x.s}`).includes(q))
-      : INDEX.filter((x) => x.g !== "Go dərsləri").concat(
-          INDEX.filter((x) => x.g === "Go dərsləri").slice(0, 6),
+      : INDEX.filter((x) => x.g !== LESSONS_GROUP).concat(
+          INDEX.filter((x) => x.g === LESSONS_GROUP).slice(0, 6),
         )
   ).slice(0, 40);
-  palSel = 0;
+  paintPalette(local, 0);
+  searchText(raw, local);
+}
+function paintPalette(items: PaletteItem[], sel: number): void {
+  palItems = items;
+  palSel = Math.min(sel, Math.max(items.length - 1, 0));
   let g = "";
   let html = "";
   palItems.forEach((x, i) => {
@@ -301,7 +371,9 @@ function renderPalette(): void {
       g = x.g;
       html += `<div class="palette-group">${esc(g)}</div>`;
     }
-    html += `<a class="palette-item" role="option" data-i="${i}" href="${x.href || "#"}"><span class="mono-ic" style="--c:${x.c}">${esc(x.ic)}</span>${esc(x.t)}<small>${esc(x.s)}</small></a>`;
+    // Pagefind's excerpt is escaped text with <mark> around the matches
+    const ex = x.ex ? `<span class="palette-ex">${x.ex}</span>` : "";
+    html += `<a class="palette-item${ex ? " has-ex" : ""}" role="option" data-i="${i}" href="${x.href || "#"}"><span class="mono-ic" style="--c:${x.c}">${esc(x.ic)}</span><span class="palette-t">${esc(x.t)}${ex}</span><small>${esc(x.s)}</small></a>`;
   });
   palList.innerHTML = html || '<div class="palette-empty">Heç nə tapılmadı</div>';
   palList.querySelectorAll<HTMLElement>(".palette-item").forEach((a) => {
@@ -329,6 +401,7 @@ export function openPalette(q?: string): void {
   if (!pal) buildPalette();
   const p = pal as HTMLElement;
   p.hidden = false;
+  void loadPagefind(); // warm up, so the first query does not wait for the index
   palInput.value = q || "";
   renderPalette();
   palInput.focus();

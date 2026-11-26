@@ -106,13 +106,13 @@ functions/api/run.ts   # go.dev/_/compile proxy (rate limit + size limit)
 - [x] Tooling: commitlint + lefthook git hooks, Prettier + ESLint, `CHANGELOG.md` (Keep a Changelog), SemVer from the first release (`0.1.0`) — module 1
 - [x] Minimal CI (`.github/workflows/ci.yml`): lint, format check, type check, build, PR title check — module 1 (Go checks and Cloudflare stay in Phase 4)
 - [x] Move Variant D's tokens and components into `packages/theme`: styles, `Layout`, `Header` (+ `ViewMenu` on lessons), `Footer`, `Icon`, shell scripts (theme, palette, menus, Ctrl+K search, spy, view modes); lesson-specific parts (`LessonSidebar`, `Vis`, `Quiz`, walkthrough script) live in `apps/site` (module 2)
-- [~] Pages: `/go/` and `/go/<slug>/` done (ready lessons: walkthrough, two-way highlighting, memory visual, quiz; planned topics: an "in preparation" page); `/go/roadmap/`, `/` and `/roadmaps/backend/` remain (module 2)
+- [x] Pages: `/go/` and `/go/<slug>/` (ready lessons: walkthrough, two-way highlighting, memory visual, quiz; planned topics: an "in preparation" page), `/go/roadmap/`, `/` and `/roadmaps/backend/` (module 2)
 - [x] Lesson content format: `main.go` with `//@step` markers, `lesson.az.md`, `steps.yaml`, `quiz.az.yaml`, `output.txt`; loader + `pnpm content:check` in CI (module 2)
 - [x] "Yadda saxla" summary card (key points + best practices, `takeaways.az.yaml`) at the end of every lesson, left of the quiz — restored from the design prototype (module 2)
 - [x] Build-time syntax highlighting with Shiki (replacing the prototype's simple highlighter); scopes are mapped to the theme's `--tok-*` colors, so palettes and light/dark keep working (module 2)
-- [ ] Static search with Pagefind (`Ctrl+K` palette)
-- [ ] CodeMirror 6 — lazy-loaded only when "Edit" is clicked
-- [ ] `/api/run` — Cloudflare Pages Function, proxy to `go.dev/_/compile` (no CORS, so a proxy is needed)
+- [x] Static search with Pagefind (`Ctrl+K` palette): lesson pages of every technology are indexed after the build; full-text matches with excerpts appear below the title matches (module 3, 2026-11-27)
+- [x] CodeMirror 6 — lazy-loaded only when "Redaktə" (`E`) is clicked; "Sıfırla" restores the lesson's code (module 3)
+- [x] `/api/run` — Cloudflare Pages Function (`functions/api/run.ts`), proxy to `go.dev/_/compile` with a same-origin check, a 64 KB limit and 20 runs/minute per client; `astro dev` serves the same handler; "İşə sal" (`Ctrl+Enter`) on Go lessons (module 3). Not yet checked on Cloudflare itself (Phase 4)
 - [x] Progress in `localStorage` (with try/catch): `/go/`, lesson sidebar and the "Öyrəndim" button (module 2)
 - [~] View modes (sidebar, width, zen) moved into the theme (`view-modes.ts`, `ViewMenu`); `prefers-reduced-motion` is preserved. Home page animations remain (module 2)
 
@@ -213,7 +213,7 @@ Once the Go prototype is live, the site becomes a unified platform.
 
 0. **Design:** if the user says to continue the design, read [DESIGN-V2.md](DESIGN-V2.md) (brief, references, v2–v6 status; next: the user's feedback on v6 "Liquid glass", then the other pages in the chosen style).
 1. `pnpm install`, then `pnpm lint && pnpm format:check && pnpm check && pnpm build` to confirm the workspace is healthy. The design reference: `node design/serve.mjs` → http://localhost:4321/d/.
-2. Phase 2, **module 2** (`feat/site-content-theme`), continued: the lesson page `/go/<slug>/` is done; next `/go/roadmap/`, `/` and `/roadmaps/backend/`. Lesson page leftovers: the explanation ↔ code arrow/curved line (moved to Phase 2), "Redaktə" + live run (module 3: CodeMirror, `/api/run`). Also still to port: the "Oxuma — gör" demo player and the "Niyə bu sayt" bento (left out of `/go/` on purpose).
+2. Phase 2 modules 2 and 3 are done (pages, search, edit, run). Go leftovers: the terminology glossary and step visuals (Phase 3), Cloudflare Pages + a check of `/api/run` there (Phase 4). Still not ported on purpose: the "Oxuma — gör" demo player and the "Niyə bu sayt" bento.
 3. The platform name is still open; nothing in Phase 2 depends on it.
 4. Work on a branch and commit with Conventional Commits (see [CONTRIBUTING.md](../CONTRIBUTING.md)); group work into module PRs.
 

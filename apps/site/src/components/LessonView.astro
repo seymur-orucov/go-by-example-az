@@ -55,6 +55,8 @@ const {
 
 // Terminal sessions have no `run` command: their output already holds the `$ cmd` lines.
 const session = lesson ? lesson.run === null : false;
+// Go lessons can be edited and run on the Go Playground (POST /api/run).
+const runnable = lesson?.lang === "go" && !session;
 const lines = lesson ? await highlightLines(lesson.code, lesson.lang) : [];
 const steps = (lesson?.steps ?? []).map((s) => ({
   ...s,
@@ -72,6 +74,7 @@ const clientData = {
   code: lesson?.code ?? "",
   output: lesson?.output ?? "",
   run: lesson?.run ?? null,
+  runnable,
   copied: lesson?.lang === "bash" ? "Komandalar kopyalandı" : "Kod kopyalandı",
   next: next ? { title: next.title, href: next.href } : null,
   prev: prev ? { href: prev.href } : null,
@@ -99,8 +102,14 @@ const readyInSection = section.items.filter((it) => it.status === "ready" && it.
     />
     <div class="lx-scrim" data-sb-close></div>
 
-    <main class="lx-main" id="lx-main" data-slug={item.slug}>
-      <nav class="lx-crumbs" aria-label="Yol">
+    <main
+      class="lx-main"
+      id="lx-main"
+      data-slug={item.slug}
+      data-pagefind-body={lesson ? "" : undefined}
+      data-pagefind-meta={lesson ? `tech:${techId}` : undefined}
+    >
+      <nav class="lx-crumbs" aria-label="Yol" data-pagefind-ignore>
         <a href="/">Ana səhifə</a>
         <span>/</span>
         <a href={techHref}>{techTitle}</a>
@@ -113,7 +122,9 @@ const readyInSection = section.items.filter((it) => it.status === "ready" && it.
       {lesson ? (
         <>
           <header class="lx-head">
-            <div class="lx-meta">
+            {/* one key per attribute: Pagefind reads the rest of "a:x, b:y" as a's value */}
+            <span data-pagefind-meta={`section:${techTitle} · ${section.title}`} hidden />
+            <div class="lx-meta" data-pagefind-ignore>
               <span class="mono-ic" style={`--c:${techColor}`}>
                 {techTitle}
               </span>
@@ -121,11 +132,11 @@ const readyInSection = section.items.filter((it) => it.status === "ready" && it.
                 {section.title} · #{pad(item.n)} / {total}
               </span>
             </div>
-            <h1 class="lx-title">
+            <h1 class="lx-title" data-pagefind-meta="title">
               <span class="title-grad">{item.title}</span>
             </h1>
             <p class="lx-sub">{item.sub}</p>
-            <div class="lx-chips">
+            <div class="lx-chips" data-pagefind-ignore>
               <span class="chip c-green">{LEVEL_LABEL[item.level]}</span>
               {item.duration && <span class="chip">{item.duration} dəq</span>}
               <span class="chip">{steps.length} addım</span>
@@ -149,7 +160,7 @@ const readyInSection = section.items.filter((it) => it.status === "ready" && it.
                 </a>
               )}
             </div>
-            <div class="lx-actions">
+            <div class="lx-actions" data-pagefind-ignore>
               <button class="btn btn-sm" data-zen-toggle title="Zen rejimi (Z)">
                 <span data-zen-label>Zen</span>
               </button>
@@ -206,7 +217,7 @@ const readyInSection = section.items.filter((it) => it.status === "ready" && it.
               ))}
             </div>
 
-            <div class="lx-pane" id="lx-pane">
+            <div class="lx-pane" id="lx-pane" data-pagefind-ignore>
               <div class="cw glass dots">
                 <div class="win-head cw-head">
                   <span class="win-dots">
@@ -244,6 +255,50 @@ const readyInSection = section.items.filter((it) => it.status === "ready" && it.
                       ▶
                     </button>
                   </div>
+                  {runnable && (
+                    <>
+                      <button
+                        class="btn btn-ghost btn-sm btn-icon"
+                        id="btn-reset"
+                        aria-label="Kodu ilkin halına qaytar"
+                        title="Sıfırla"
+                        hidden
+                      >
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.8"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M3 12a9 9 0 1 0 3-6.7L3 8" />
+                          <path d="M3 3v5h5" />
+                        </svg>
+                      </button>
+                      <button
+                        class="btn btn-ghost btn-sm btn-icon"
+                        id="btn-edit"
+                        aria-label="Kodu redaktə et"
+                        aria-pressed="false"
+                        title="Redaktə (E)"
+                      >
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.8"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M12 20h9" />
+                          <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z" />
+                        </svg>
+                      </button>
+                    </>
+                  )}
                   <button
                     class="btn btn-ghost btn-sm btn-icon"
                     id="btn-copy"
@@ -273,6 +328,7 @@ const readyInSection = section.items.filter((it) => it.status === "ready" && it.
                   aria-label={lesson.file}
                   set:html={renderLines(lines)}
                 />
+                {runnable && <div class="cw-editor" id="cw-editor" hidden />}
                 <div class="cw-term" aria-live="polite">
                   <div class="cw-term-head">
                     <span>Çıxış</span>
@@ -283,6 +339,15 @@ const readyInSection = section.items.filter((it) => it.status === "ready" && it.
                     <button class="btn btn-ghost btn-sm" id="btn-full" aria-pressed="false">
                       Tam çıxış
                     </button>
+                    {runnable && (
+                      <button
+                        class="btn btn-sm cw-run"
+                        id="btn-run"
+                        title="Go Playground-da işə sal (Ctrl+Enter)"
+                      >
+                        ▶ İşə sal
+                      </button>
+                    )}
                   </div>
                   <div class="cw-term-body" id="cw-term" />
                 </div>
@@ -298,6 +363,12 @@ const readyInSection = section.items.filter((it) => it.status === "ready" && it.
                 <span>
                   <kbd>[</kbd> panel
                 </span>
+                {runnable && (
+                  <span>
+                    <kbd>E</kbd> redaktə · <kbd>Ctrl</kbd>
+                    <kbd>Enter</kbd> işə sal
+                  </span>
+                )}
                 <span>izah ↔ kod: üzərinə gəl</span>
               </div>
             </div>
@@ -310,7 +381,7 @@ const readyInSection = section.items.filter((it) => it.status === "ready" && it.
             <Quiz quiz={lesson.quiz} lang={lesson.lang} />
           </div>
 
-          <div class="lx-done glass" id="lx-done">
+          <div class="lx-done glass" id="lx-done" data-pagefind-ignore>
             <div>
               <b>Dərsi bitirdin?</b>
               <small>İrəliləyiş bu brauzerdə saxlanılır</small>
@@ -381,7 +452,7 @@ const readyInSection = section.items.filter((it) => it.status === "ready" && it.
         </>
       )}
 
-      <nav class="lx-pager" aria-label="Dərslər arasında keçid">
+      <nav class="lx-pager" aria-label="Dərslər arasında keçid" data-pagefind-ignore>
         {prev ? (
           <a class="glass spot" href={prev.href} data-prev>
             <span class="dir">

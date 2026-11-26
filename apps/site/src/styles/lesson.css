@@ -822,6 +822,70 @@ button.vm-row:hover {
   content: "› ";
   color: #34d399;
 }
+/* edit + run (Go lessons) */
+/* .btn sets display, which would otherwise beat the hidden attribute (Sıfırla, the editor) */
+.cw [hidden] {
+  display: none !important;
+}
+.cw-editor {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  font-size: 13.5px;
+  line-height: 1.7;
+  background: var(--code-bg);
+}
+.cw-editor .cm-editor {
+  min-height: 100%;
+}
+.cw-head #btn-edit[aria-pressed="true"] {
+  color: var(--accent-ink);
+  background: var(--accent-soft);
+}
+.cw.is-edited .cw-file::after {
+  content: " •";
+  color: var(--accent-ink);
+}
+.cw-term-head .cw-run {
+  margin-left: 0;
+  color: #fff;
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+}
+.cw-term-head .cw-run:hover {
+  color: #fff;
+  border-color: transparent;
+  filter: brightness(1.1);
+}
+.cw-term-head .cw-run:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+.cw-status.ran i {
+  background: #34d399;
+}
+.cw-status.err i {
+  background: #fb7193;
+}
+/* compiler and vet messages wrap: they are long and have no layout to keep */
+.cw-term-body span.err,
+.cw-term-body span.warn {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.cw-term-body span.err {
+  color: #fda4af;
+}
+.cw-term-body span.warn {
+  color: #fcd34d;
+}
+.cw-term-body span.note {
+  color: #7c879c;
+  white-space: pre-wrap;
+}
+.cw-term-body a {
+  color: #93c5fd;
+}
 .cw-hint {
   display: flex;
   flex-wrap: wrap;
