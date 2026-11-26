@@ -30,7 +30,108 @@ const visSlice = z
   })
   .strict();
 
-export const visSchema = z.discriminatedUnion("kind", [visSlice]);
+/** A value as the program prints it; YAML numbers and booleans are kept as their text. */
+const visValue = z.union([z.string(), z.number(), z.boolean()]).transform(String);
+
+/** A map after the step: entries in print order (fmt sorts the keys). */
+const visMap = z
+  .object({
+    kind: z.literal("map"),
+    name: z.string(),
+    entries: z.record(z.string(), visValue),
+    /** Keys added or changed by the step. */
+    fresh: z.array(z.string()).optional(),
+    /** Keys deleted by the step: drawn struck through, not counted in len. */
+    gone: z.array(z.string()).optional(),
+    /** A read in the step: `v, ok := m[key]`. */
+    lookup: z.object({ key: z.string(), value: visValue, ok: z.boolean() }).strict().optional(),
+  })
+  .strict()
+  .superRefine((v, ctx) => {
+    for (const k of v.fresh ?? [])
+      if (!(k in v.entries))
+        ctx.addIssue({ code: "custom", message: `fresh key "${k}" is not in entries` });
+    for (const k of v.gone ?? [])
+      if (k in v.entries)
+        ctx.addIssue({ code: "custom", message: `gone key "${k}" is still in entries` });
+    if (v.lookup && v.lookup.ok !== v.lookup.key in v.entries)
+      ctx.addIssue({
+        code: "custom",
+        message: `lookup "${v.lookup.key}": ok does not match entries`,
+      });
+  });
+
+/** A channel after the step: its buffer, who sends, who receives and what went through. */
+const visChannel = z
+  .object({
+    kind: z.literal("channel"),
+    name: z.string(),
+    /** 0 for an unbuffered channel: one hand-to-hand slot is drawn. */
+    cap: z.number().int().nonnegative(),
+    /** Values waiting in the buffer, oldest first. */
+    buf: z.array(visValue).default([]),
+    /** Indexes into `buf` added by the step. */
+    fresh: z.array(z.number().int().nonnegative()).optional(),
+    from: z.string().optional(),
+    to: z.string().optional(),
+    /** Values the receiver took during the step, in order. */
+    took: z.array(visValue).optional(),
+    /** Who had to wait during the step. */
+    waited: z.enum(["sender", "receiver"]).optional(),
+    closed: z.boolean().optional(),
+  })
+  .strict()
+  .superRefine((v, ctx) => {
+    if (v.buf.length > v.cap)
+      ctx.addIssue({
+        code: "custom",
+        message: `buf holds ${v.buf.length} values, cap is ${v.cap}`,
+      });
+    for (const i of v.fresh ?? [])
+      if (i >= v.buf.length)
+        ctx.addIssue({ code: "custom", message: `fresh index ${i} is outside buf` });
+  });
+
+/** Goroutines on a time axis: one row per goroutine, bars in milliseconds. */
+const visTimeline = z
+  .object({
+    kind: z.literal("timeline"),
+    /** Length of the axis in ms. */
+    total: z.number().positive(),
+    rows: z
+      .array(
+        z
+          .object({
+            name: z.string(),
+            bars: z.array(
+              z
+                .object({
+                  from: z.number().nonnegative(),
+                  to: z.number().nonnegative(),
+                  label: z.string().optional(),
+                  /** work (default), wait (blocked), cut (stopped because main returned) */
+                  state: z.enum(["work", "wait", "cut"]).default("work"),
+                })
+                .strict(),
+            ),
+          })
+          .strict(),
+      )
+      .min(1),
+    note: z.string().optional(),
+  })
+  .strict()
+  .superRefine((v, ctx) => {
+    for (const r of v.rows)
+      for (const b of r.bars)
+        if (b.from >= b.to || b.to > v.total)
+          ctx.addIssue({
+            code: "custom",
+            message: `${r.name}: bar ${b.from}–${b.to} is outside 0–${v.total}`,
+          });
+  });
+
+export const visSchema = z.discriminatedUnion("kind", [visSlice, visMap, visChannel, visTimeline]);
 
 type Fresh<T> = T & { fresh?: boolean };
 /**

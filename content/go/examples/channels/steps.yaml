@@ -1,9 +1,26 @@
 send: {}
 make:
   out: "counter: waiting for Margherita"
+  vis: { kind: channel, name: ready, cap: 0, from: "bake · soba", to: "main · piştaxta" }
 receive:
   out: "counter: got Margherita"
+  vis:
+    kind: channel
+    name: ready
+    cap: 0
+    from: "bake · soba"
+    to: "main · piştaxta"
+    took: [Margherita]
+    waited: receiver
 send-waits:
   out: |
     counter: the oven took the order, waited: true
     counter: got Pepperoni
+  vis:
+    kind: channel
+    name: orders
+    cap: 0
+    from: "main · piştaxta"
+    to: "go func · soba"
+    took: [Pepperoni]
+    waited: sender

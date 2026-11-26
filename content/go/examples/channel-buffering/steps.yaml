@@ -1,13 +1,37 @@
 make:
   out: "the rail holds 3 tickets"
+  vis: { kind: channel, name: rail, cap: 3, from: "main · kassir" }
 no-wait:
   out: "cashier took 3 orders, on the rail: 3 of 3"
+  vis:
+    kind: channel
+    name: rail
+    cap: 3
+    buf: [latte, cappuccino, mocha]
+    fresh: [0, 1, 2]
+    from: "main · kassir"
 full:
   out: |
     the rail was full, cashier waited: true
     barista made latte
+  vis:
+    kind: channel
+    name: rail
+    cap: 3
+    buf: [cappuccino, mocha, espresso]
+    fresh: [2]
+    from: "main · kassir"
+    to: "go func · barista"
+    took: [latte]
+    waited: sender
 fifo:
   out: |
     next ticket: cappuccino
     next ticket: mocha
     next ticket: espresso
+  vis:
+    kind: channel
+    name: rail
+    cap: 3
+    to: "main"
+    took: [cappuccino, mocha, espresso]

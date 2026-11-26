@@ -557,3 +557,14 @@ Done (branch `feat/search-run-edit`):
 - Search: `pnpm build` runs `pagefind --site dist`; only ready lesson pages are indexed (86), with `tech`, `section` and `title` meta. The Ctrl+K palette keeps the instant title match and adds "Dərslərin mətnində" with up to 8 excerpts; Pagefind loads when the palette opens. Found on the way: the lesson group was called "Go dərsləri" and showed Git topics with the Go icon — now "Dərslər", icon by technology.
 - Checked in headless Chrome (dev and preview builds): run of the lesson's code, of edited code, a compile error, the rate limit (429 after 20), a foreign origin (403), GET (405), too large (413), bad JSON (400); the editor in dark and light themes; 390 px width without horizontal scroll; search for "anbar", "mutex", "deadlock" (8 lessons), "commit" (Git topics), Enter on a result. Fixed during the check: the "Sıfırla" button showed while hidden (`.btn` display beat `[hidden]`), long compile errors scrolled sideways.
 - Not checked: the Pages Function on Cloudflare itself (Pages is not connected yet, Phase 4).
+- CI passed; merged as PR #24.
+
+### 66. Step visuals and the glossary
+The rest of the user's request: step visuals for map, channel and goroutine, and the terminology glossary.
+
+Done (branch `feat/go-visuals`):
+- Three new `vis` kinds (schema in `lib/lesson.ts`, markup in `Vis.astro`, styles in `lesson.css`): `map` (key → value rows in Go's print order; changed keys green, deleted ones struck through; a `m[key] → value, ok` read), `channel` (sender → buffer slots or one "əldən-ələ" slot when unbuffered → receiver; the values taken and who waited, in amber) and `timeline` (goroutines as bars on a ms axis: work, wait, cut when `main` returns; the legend lists only the states shown). Inconsistent data is rejected by `pnpm content:check` (a fresh key missing from the entries, a buffer over `cap`, a bar outside the axis…). The step script replays the bars' grow animation like the cells' pop; the global reduced-motion rule stops both.
+- Data written for maps (5 steps), channels (3), channel-buffering (4) and goroutines (3), checked against the code and the lesson text (soba / piştaxta, kassir / barista).
+- Fixed on the way: notes inside a visual (`.vis-note`, also the old slice note) were 15 px because `.lx-step p` beat them; now 12.5 px.
+- `docs/GLOSSARY.md`: 88 terms in the nine sections — kept in English or translated (sabit, rekursiya, heş, dövr…), a short Azerbaijani explanation and the lesson that introduces it, checked against the lesson texts. The `write-lesson` skill points to it and lists the visual kinds.
+- Checked in headless Chrome: every new visual in the dark theme, the timeline in the light theme, channel-buffering and goroutines at 390 px (no horizontal scroll); `content:check` with deliberately broken data (six cases rejected).

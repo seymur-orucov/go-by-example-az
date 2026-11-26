@@ -4,9 +4,41 @@ one-by-one:
     BlueWing 195 USD
     SkyJet 310 USD
     one by one, over 250ms: true
+  vis:
+    kind: timeline
+    total: 300
+    rows:
+      - name: main
+        bars:
+          - { from: 0, to: 100, label: AirNova }
+          - { from: 100, to: 200, label: BlueWing }
+          - { from: 200, to: 300, label: SkyJet }
+    note: "Bir goroutine: hər sorğu əvvəlkinin bitməsini gözləyir, cəmi ~300 ms."
 together:
   out: |
     [240 195 310]
     at the same time, faster: true
+  vis:
+    kind: timeline
+    total: 300
+    rows:
+      - name: main
+        bars: [{ from: 0, to: 100, label: wg.Wait(), state: wait }]
+      - name: AirNova
+        bars: [{ from: 0, to: 100, label: fare }]
+      - name: BlueWing
+        bars: [{ from: 0, to: 100, label: fare }]
+      - name: SkyJet
+        bars: [{ from: 0, to: 100, label: fare }]
+    note: "Üç goroutine eyni anda gözləyir, cəmi ~100 ms; main isə wg.Wait()-də onları gözləyir."
 no-wait:
   out: "search finished"
+  vis:
+    kind: timeline
+    total: 300
+    rows:
+      - name: main
+        bars: [{ from: 0, to: 12, label: "" }]
+      - name: LateAir
+        bars: [{ from: 0, to: 100, label: "report · kəsildi", state: cut }]
+    note: "main 'search finished' yazıb qayıdır, proqram bitir; LateAir-in 100 ms-lik cavabı çap olunmağa çatmır."
