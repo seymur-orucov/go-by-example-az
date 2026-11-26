@@ -499,7 +499,6 @@ Done (branch `feat/content-skills`):
 - Ctrl+K search also lists the topics of active technologies other than Go ("Git · Əsaslar").
 - The design prototype (`design/v2/v2.js`) still has hand-written mock statuses (Git "soon"); it is a frozen reference and was not changed.
 - Checked: `pnpm check` (0/0/0), lint, build (126 pages), the menu text on /, /go/, /git/ and a Git lesson.
-||||||| fd4ee32
 
 ### 60. The Git course on the v2 design
 The user asked for all branches to be combined so the new design and the Git course show together, then for the header/home port to be committed.
