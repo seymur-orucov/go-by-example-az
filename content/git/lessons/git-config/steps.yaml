@@ -1,0 +1,5 @@
+# Settings live in config files, not in the three areas: no visuals.
+identity:
+default-branch:
+read:
+local:

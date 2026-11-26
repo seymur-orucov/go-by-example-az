@@ -168,10 +168,10 @@ Once the Go prototype is live, the site becomes a unified platform.
   - [x] Lesson kinds `terminal` and `state` on the site: `session.sh` + `pnpm content:run` (recorded output), the `areas` visual, `/git/` and `/git/<id>/` pages, shared `LessonView`; `pnpm content:check` validates syllabi and session lessons
   - [ ] Lesson kinds `diagram`, `compare`, `concept` and the commit-graph visual (`vis: graph`, needed from `commit-snapshot` on)
   - [x] `write-content` skill (pilot lesson per kind → approval → module by module)
-  - [~] Git pilot lessons `three-areas` and `first-commit` — awaiting the user's review
+  - [x] Git pilot lessons `three-areas` and `first-commit` — approved by the user (2026-11-27)
   - [x] Lesson kinds `concept` and `compare` on the site (text lessons, `flow` / `compare` visuals)
-  - [~] Git pilot lessons `what-is-version-control` (`concept`) and `git-vs-other-vcs` (`compare`) — awaiting the user's review
-  - [ ] The remaining Git lessons, module by module
+  - [x] Git pilot lessons `what-is-version-control` (`concept`) and `git-vs-other-vcs` (`compare`) — approved by the user (2026-11-27)
+  - [ ] The remaining Git lessons, module by module (written, awaiting the user's review: "Əsaslar" — `what-is-a-repository`, `install-git`, `git-config`, `git-init`)
   - [ ] CI: run `pnpm content:run` and fail on a diff (needs a pinned Git version: output differs slightly between versions)
   - [x] Technology statuses computed from content (`lib/technologies.ts`: ready / started / soon) feed the v2 header nav, mega menu, Ctrl+K and the home stack map (`applyTechStates`); the hand-written `TECHS` statuses only remain as the fallback for technologies without content
 - [ ] Two kinds of roadmap:

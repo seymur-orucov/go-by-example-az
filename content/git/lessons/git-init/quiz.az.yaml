@@ -1,0 +1,58 @@
+- question: "Boş `notes` qovluğunda bu komandalardan sonra nə çap olunur?"
+  code: |
+    mkdir notes
+    cd notes
+    git init
+  options:
+    - "`Reinitialized existing Git repository in /home/sam/notes/.git/`"
+    - "`Initialized empty Git repository in /home/sam/notes/.git/`"
+    - "`fatal: not a git repository`"
+  answer: 1
+  explain: "Qovluqda repository yox idi, ona görə Git yenisini yaradır; `empty` hələ commit olmadığını bildirir."
+- question: "Bu komandalardan sonra `ls` nə göstərir?"
+  code: |
+    echo "milk" > list.txt
+    git init
+    ls
+  options:
+    - "`.git` və `list.txt`"
+    - "Yalnız `.git`"
+    - "Yalnız `list.txt`"
+  answer: 2
+  explain: "Adı nöqtə ilə başlayan `.git` gizlidir; onu `ls -A` göstərir."
+- question: "Commit-ləri olan repository-də `git init`-i yenidən işə salsanız nə olur?"
+  options:
+    - "Tarixçə silinir və boş repository yaranır"
+    - "Git `Reinitialized existing Git repository` yazır, tarixçə və ayarlar qalır"
+    - "Git xəta verib dayanır"
+  answer: 1
+  explain: "Təkrar `git init` yalnız çatışmayan hissələri əlavə edir, mövcud məlumata toxunmur."
+- question: "Qlobal `init.defaultBranch` ayarı `trunk`-dır. Yeni repository-də `cat .git/HEAD` nə çap edir?"
+  options:
+    - "`ref: refs/heads/main`"
+    - "`ref: refs/heads/master`"
+    - "`ref: refs/heads/trunk`"
+  answer: 2
+  explain: "İlk branch-ın adı `init.defaultBranch`-dan gəlir, `HEAD` isə ona baxır."
+- question: "`.git`-in hansı hissəsində faylların və commit-lərin məzmunu saxlanır?"
+  options:
+    - "`refs`"
+    - "`HEAD`"
+    - "`config`"
+    - "`objects`"
+  answer: 3
+  explain: "`objects` məzmunu saxlayır; `refs` branch-ların hansı commit-ə baxdığını, `HEAD` isə hazırkı branch-ı."
+- question: "`rm -rf .git`-dən sonra nə olur?"
+  options:
+    - "Fayllar yerində qalır, tarixçə isə itir"
+    - "Fayllar da, tarixçə də silinir"
+    - "Tarixçə qalır, Git onu yenidən tapır"
+  answer: 0
+  explain: "Repository `.git` qovluğudur; işçi fayllar onun xaricindədir və silinmir."
+- question: "Repository olmayan qovluqda `git status` nə çap edir?"
+  options:
+    - "`nothing to commit, working tree clean`"
+    - "`fatal: not a git repository (or any of the parent directories): .git`"
+    - "Heç nə"
+  answer: 1
+  explain: "Git cari və yuxarıdakı qovluqlarda `.git` axtarır; tapmayanda bu xətanı verir."

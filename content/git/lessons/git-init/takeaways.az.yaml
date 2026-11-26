@@ -1,0 +1,9 @@
+rules:
+  - "`git init` cari qovluqda boş repository yaradır; mövcud fayllar yerində qalır."
+  - "Repository-nin bütün məlumatı gizli `.git` qovluğundadır; onu `ls -A` göstərir."
+  - "`.git/HEAD` hazırkı branch-ı göstərir, məsələn `ref: refs/heads/main`."
+  - "Təkrar `git init` təhlükəsizdir: `Reinitialized existing Git repository` yazır və heç nə silmir."
+  - "`.git`-i silmək tarixçəni silir, fayllar isə qalır; sonra Git komandaları `not a git repository` xətası verir."
+practices:
+  - "`git init`-i layihənin öz qovluğunda işə salın, ev qovluğunda yox."
+  - "`.git`-in içindəki faylları əl ilə dəyişməyin."

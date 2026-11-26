@@ -1,0 +1,124 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "rm ~/.gitconfig",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git config --global user.name \"Sam Lee\"",
+      "step": "identity",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git config --global user.email \"sam@example.com\"",
+      "step": "identity",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git config --global init.defaultBranch main",
+      "step": "default-branch",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git config user.name",
+      "step": "read",
+      "hidden": false,
+      "fail": false,
+      "out": "Sam Lee\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git config --global --list",
+      "step": "read",
+      "hidden": false,
+      "fail": false,
+      "out": "user.name=Sam Lee\nuser.email=sam@example.com\ninit.defaultbranch=main\n",
+      "exit": 0
+    },
+    {
+      "cmd": "mkdir client-site",
+      "step": "local",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd client-site",
+      "step": "local",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": "local",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git config user.email \"sam@work.example\"",
+      "step": "local",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git config --show-origin user.email",
+      "step": "local",
+      "hidden": false,
+      "fail": false,
+      "out": "file:.git/config\tsam@work.example\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ..",
+      "step": "local",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git config --show-origin user.email",
+      "step": "local",
+      "hidden": false,
+      "fail": false,
+      "out": "file:/home/sam/.gitconfig\tsam@example.com\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "identity": {
+      "areas": null
+    },
+    "default-branch": {
+      "areas": null
+    },
+    "read": {
+      "areas": null
+    },
+    "local": {
+      "areas": null
+    }
+  }
+}

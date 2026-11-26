@@ -1,0 +1,43 @@
+- question: "Git-in quraşdırıldığını və versiyasını hansı komanda yoxlayır?"
+  options:
+    - "`git init`"
+    - "`git --version`"
+    - "`git status`"
+  answer: 1
+  explain: "`git --version` quraşdırılmış Git-in versiyasını çap edir; Git yoxdursa, terminal xəta verir."
+- question: "Terminal `git: command not found` cavabı verir. Bu nə deməkdir?"
+  options:
+    - "Qovluqda hələ repository yoxdur"
+    - "Əvvəlcə commit etmək lazımdır"
+    - "Git quraşdırılmayıb və ya terminal onu tapmır"
+  answer: 2
+  explain: "Bu xətanı Git yox, terminal verir: `git` adlı proqram tapılmadı."
+- question: "Git-i Windows-da quraşdırdınız, amma əvvəldən açıq olan terminal `git`-i hələ də tanımır. Nə etmək lazımdır?"
+  options:
+    - "Terminalı bağlayıb yenidən açmaq"
+    - "Git-i yenidən quraşdırmaq"
+    - "`git init` yazmaq"
+  answer: 0
+  explain: "Açıq terminal yeni quraşdırılmış proqramı görməyə bilər; yeni terminal onu tapır."
+- question: "Bu kurs nə üçün ən azı Git 2.23 tələb edir?"
+  options:
+    - "Ondan köhnə versiyalarda commit yoxdur"
+    - "Köhnə versiyalar Windows-da işləmir"
+    - "Kursda istifadə olunan `git switch` və `git restore` o versiyada gəlib"
+  answer: 2
+  explain: "`git switch` və `git restore` Git 2.23-də əlavə olunub; kurs bu komandalardan istifadə edir."
+- question: "`git commit -h` nə edir?"
+  options:
+    - "Commit yaradır"
+    - "Tam sənədi brauzerdə açır"
+    - "Gizli fayllar da daxil olmaqla commit edir"
+    - "`git commit`-in qısa istifadə qaydasını və flag-lərini terminala çap edir"
+  answer: 3
+  explain: "`-h` qısa yardımı terminala çap edir; tam sənəd üçün `git help commit` var."
+- question: "Usage sətrində `git init [-q | --quiet]` yazılıb. Bu nə deməkdir?"
+  options:
+    - "`-q` və ya `--quiet` yazmaq olar, amma məcburi deyil"
+    - "`-q` və `--quiet`-i birlikdə yazmaq məcburidir"
+    - "`git init` yalnız `-q` ilə işləyir"
+  answer: 0
+  explain: "Kvadrat mötərizə məcburi olmayan hissəni, `|` isə iki variantdan birini bildirir."

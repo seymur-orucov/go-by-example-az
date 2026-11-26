@@ -1,0 +1,50 @@
+- question: "Repository nədən ibarətdir?"
+  options:
+    - "Yalnız layihənin son versiyasındakı fayllardan"
+    - "Yalnız serverdə saxlanan tarixçədən"
+    - "Layihənin fayllarından və onların bütün tarixçəsindən"
+  answer: 2
+  explain: "Repository faylları və `.git`-dəki tarixçəni bir yerdə saxlayır."
+- question: "Git layihənin tarixçəsini harada saxlayır?"
+  options:
+    - "Layihənin kökündəki gizli `.git` qovluğunda"
+    - "Həmişə GitHub-da"
+    - "Hər faylın yanındakı ayrıca surətdə"
+  answer: 0
+  explain: "Tarixçə repository-nin içində, `.git` qovluğundadır."
+- question: "Layihə qovluğunu `.git` ilə birlikdə flash diskə köçürdünüz. Tarixçəyə nə olur?"
+  options:
+    - "Köçmür, serverdə qalır"
+    - "Qovluqla birlikdə köçür"
+    - "Yalnız son commit köçür"
+  answer: 1
+  explain: "Tarixçə `.git`-in içindədir, ona görə qovluqla birlikdə gedir."
+- question: "Lokal və remote repository arasında fərq nədir?"
+  options:
+    - "Lokal kompüterinizdədir, remote isə serverdəki ortaq surətdir"
+    - "Lokal yalnız faylları, remote yalnız tarixçəni saxlayır"
+    - "Lokal repository-də commit etmək olmur"
+  answer: 0
+  explain: "Hər ikisində eyni layihə və tarixçə var; remote komandanın ortaq nöqtəsidir."
+- question: "Komandanın layihəsi GitHub-dadır və siz ona qoşulursunuz. Repository-ni necə əldə edirsiniz?"
+  options:
+    - "`git init`"
+    - "`git config`"
+    - "`git clone`"
+  answer: 2
+  explain: "`git clone` remote repository-ni bütün tarixçəsi ilə köçürür; `git init` isə boş repository yaradır."
+- question: "İnternet yoxdur. Lokal repository ilə nə etmək olar?"
+  options:
+    - "Heç nə: Git serversiz işləmir"
+    - "Yalnız faylları oxumaq"
+    - "Yalnız remote-a göndərmək"
+    - "Commit etmək və tarixçəyə baxmaq"
+  answer: 3
+  explain: "Lokal repository-də tarixçənin tam surəti var; internet yalnız remote ilə əlaqə üçün lazımdır."
+- question: "Remote repository nə üçün lazımdır?"
+  options:
+    - "Lokal repository-ni sürətləndirmək üçün"
+    - "Komanda üzvlərinin commit-ləri göndərib götürdüyü ortaq yer olsun deyə"
+    - "Commit etmək üçün: commit yalnız remote-da yaranır"
+  answer: 1
+  explain: "Commit lokal yaranır; remote dəyişiklikləri paylaşmaq üçündür."

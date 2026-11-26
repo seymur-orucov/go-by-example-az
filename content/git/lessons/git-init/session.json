@@ -1,0 +1,147 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir cv",
+      "step": "init",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd cv",
+      "step": "init",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"# Sam Lee\" > cv.md",
+      "step": "init",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init",
+      "step": "init",
+      "hidden": false,
+      "fail": false,
+      "out": "Initialized empty Git repository in /home/sam/cv/.git/\n",
+      "exit": 0
+    },
+    {
+      "cmd": "ls -A",
+      "step": "init",
+      "hidden": false,
+      "fail": false,
+      "out": ".git\ncv.md\n",
+      "exit": 0
+    },
+    {
+      "cmd": "ls .git",
+      "step": "inside",
+      "hidden": false,
+      "fail": false,
+      "out": "HEAD\nconfig\ndescription\nhooks\ninfo\nobjects\nrefs\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cat .git/HEAD",
+      "step": "inside",
+      "hidden": false,
+      "fail": false,
+      "out": "ref: refs/heads/main\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git init",
+      "step": "reinit",
+      "hidden": false,
+      "fail": false,
+      "out": "Reinitialized existing Git repository in /home/sam/cv/.git/\n",
+      "exit": 0
+    },
+    {
+      "cmd": "rm -rf .git",
+      "step": "remove",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status",
+      "step": "remove",
+      "hidden": false,
+      "fail": true,
+      "out": "fatal: not a git repository (or any of the parent directories): .git\n",
+      "exit": 128
+    },
+    {
+      "cmd": "ls -A",
+      "step": "remove",
+      "hidden": false,
+      "fail": false,
+      "out": "cv.md\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "init": {
+      "areas": {
+        "work": [
+          {
+            "name": "cv.md",
+            "state": "untracked"
+          }
+        ],
+        "index": [],
+        "repo": {
+          "commit": null,
+          "count": 0,
+          "files": []
+        }
+      }
+    },
+    "inside": {
+      "areas": {
+        "work": [
+          {
+            "name": "cv.md",
+            "state": "untracked"
+          }
+        ],
+        "index": [],
+        "repo": {
+          "commit": null,
+          "count": 0,
+          "files": []
+        }
+      }
+    },
+    "reinit": {
+      "areas": {
+        "work": [
+          {
+            "name": "cv.md",
+            "state": "untracked"
+          }
+        ],
+        "index": [],
+        "repo": {
+          "commit": null,
+          "count": 0,
+          "files": []
+        }
+      }
+    },
+    "remove": {
+      "areas": null
+    }
+  }
+}

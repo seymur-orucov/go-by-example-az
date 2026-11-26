@@ -1,0 +1,22 @@
+# Hand-written visuals (text lesson): what a repository folder holds, then local and remote copies.
+parts:
+  vis:
+    kind: flow
+    caption: "Qovluq: blog/"
+    items:
+      - { label: "index.html", sub: "fayl" }
+      - { label: "posts/", sub: "qovluq" }
+      - { label: ".git/", sub: "tarixçə: bütün commit-lər", tone: accent }
+    note: "Fayllarla siz işləyirsiniz, Git isə onların tarixçəsini `.git`-də saxlayır."
+history-inside:
+local-remote:
+  vis:
+    kind: flow
+    caption: "Sam commit-lərini göndərir, Ayla onları götürür"
+    arrows: true
+    items:
+      - { label: "Sam-ın laptopu", sub: "lokal repository" }
+      - { label: "GitHub", sub: "remote repository", tone: accent }
+      - { label: "Ayla-nın laptopu", sub: "lokal repository" }
+    note: "Üç repository-də eyni tarixçə var. Göndərmək və götürmək Remote-lar modulunun mövzusudur."
+getting:
