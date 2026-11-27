@@ -1,0 +1,9 @@
+rules:
+  - "Remote repository-nizin tanıdığı başqa repository-dir: onun adı və ünvanı."
+  - "Repository-lər özləri sinxronlaşmır: commit-ləri push ilə göndərir, fetch və ya pull ilə götürürsünüz."
+  - "`origin` `git clone`-un verdiyi standart addır; xüsusi söz deyil, dəyişmək olar."
+  - "Remote-lar `.git/config`-də saxlanır; `git remote -v` onların ünvanlarını göstərir."
+  - "Eyni repository-nin HTTPS (`https://github.com/...`) və SSH (`git@github.com:...`) ünvanı olur."
+practices:
+  - "Tez başlamaq üçün HTTPS və credential manager, hər gün push edirsinizsə SSH açarı işlədin."
+  - "Gizli SSH açarını heç kimə göndərməyin; GitHub-a yalnız `.pub` faylını əlavə edin."

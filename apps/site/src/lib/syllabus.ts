@@ -172,12 +172,13 @@ export function loadLessonMeta(technology: string, id: string): LessonMeta | nul
 }
 
 /** Kinds whose lessons have no code pane: text, steps and hand-written visuals. */
-const TEXT_KINDS: readonly string[] = ["concept", "compare"];
+const TEXT_KINDS: readonly string[] = ["concept", "compare", "diagram"];
 
 /** Loads a ready lesson of a syllabus node with the loader its kind needs. */
 export function loadNodeLesson(technology: string, node: SyllabusNode): Lesson {
   if (TEXT_KINDS.includes(node.kind)) {
-    return loadTextLesson(technology, node.id, { requireCompare: node.kind === "compare" });
+    const require = node.kind === "compare" || node.kind === "diagram" ? node.kind : undefined;
+    return loadTextLesson(technology, node.id, { require });
   }
   if (node.kind === "terminal" || node.kind === "state")
     return loadSessionLesson(technology, node.id);

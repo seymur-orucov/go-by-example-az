@@ -178,6 +178,49 @@ const visCompare = z
   })
   .strict();
 
+/**
+ * Places side by side — computers, servers, repositories — with labelled arrows between
+ * neighbours (diagram lessons, hand-written): `links[i]` joins `nodes[i]` and `nodes[i + 1]`;
+ * `right` labels the → arrow, `left` the ← arrow. Stacked top to bottom on a phone.
+ */
+const visDiagram = z
+  .object({
+    kind: z.literal("diagram"),
+    caption: z.string().min(1),
+    nodes: z
+      .array(
+        z
+          .object({
+            title: z.string().min(1),
+            sub: z.string().optional(),
+            /** Short lines inside the box: branches, commits, files. */
+            lines: z.array(z.string().min(1)).max(6).optional(),
+            tone,
+          })
+          .strict(),
+      )
+      .min(2)
+      .max(4),
+    links: z.array(
+      z.object({ right: z.string().optional(), left: z.string().optional() }).strict(),
+    ),
+    note: z.string().optional(),
+  })
+  .strict()
+  .superRefine((v, ctx) => {
+    if (v.links.length !== v.nodes.length - 1) {
+      ctx.addIssue({
+        code: "custom",
+        message: `${v.nodes.length} nodes need ${v.nodes.length - 1} links, got ${v.links.length}`,
+      });
+    }
+    v.links.forEach((l, i) => {
+      if (!l.right && !l.left) {
+        ctx.addIssue({ code: "custom", message: `link ${i}: give it a right or a left label` });
+      }
+    });
+  });
+
 export const visSchema = z.discriminatedUnion("kind", [
   visSlice,
   visMap,
@@ -185,6 +228,7 @@ export const visSchema = z.discriminatedUnion("kind", [
   visTimeline,
   visFlow,
   visCompare,
+  visDiagram,
 ]);
 
 type Fresh<T> = T & { fresh?: boolean };
@@ -633,16 +677,16 @@ const textStepsSchema = z.record(
 
 /**
  * Loads and validates a ready text lesson (kinds `concept` and `compare`): content/<technology>/
- * lessons/<slug>/ with `lesson.<locale>.md`, `steps.yaml` (optional `vis` per step: `flow` or
- * `compare`), `quiz.<locale>.yaml` and `takeaways.<locale>.yaml` — no code, no session.
- * `requireCompare` (compare lessons) demands a `compare` visual in at least one step.
+ * lessons/<slug>/ with `lesson.<locale>.md`, `steps.yaml` (optional `vis` per step: `flow`,
+ * `compare` or `diagram`), `quiz.<locale>.yaml` and `takeaways.<locale>.yaml` — no code, no
+ * session. `require` demands that visual in at least one step (compare and diagram lessons).
  */
 export function loadTextLesson(
   technology: string,
   slug: string,
-  opts: { locale?: string; requireCompare?: boolean } = {},
+  opts: { locale?: string; require?: "compare" | "diagram" } = {},
 ): Lesson {
-  const { locale = "az", requireCompare = false } = opts;
+  const { locale = "az", require } = opts;
   const dir = join(CONTENT_ROOT, technology, "lessons", slug);
   const files = {
     text: join(dir, `lesson.${locale}.md`),
@@ -683,12 +727,17 @@ export function loadTextLesson(
     if (!ids.includes(id)) problems.push(`steps.yaml: unknown step "${id}"`);
   }
   const vises = Object.values(stepData).map((d) => d.vis);
-  const goOnly = vises.find((v) => v && v.kind !== "flow" && v.kind !== "compare");
+  const TEXT_VIS = ["flow", "compare", "diagram"];
+  const goOnly = vises.find((v) => v && !TEXT_VIS.includes(v.kind));
   if (goOnly) {
-    problems.push(`steps.yaml: "${goOnly.kind}" is a Go visual; text lessons use flow or compare`);
+    problems.push(
+      `steps.yaml: "${goOnly.kind}" is a Go visual; text lessons use flow, compare or diagram`,
+    );
   }
-  if (requireCompare && !vises.some((v) => v?.kind === "compare")) {
-    problems.push("steps.yaml: a compare lesson needs a `compare` visual in at least one step");
+  if (require && !vises.some((v) => v?.kind === require)) {
+    problems.push(
+      `steps.yaml: a ${require} lesson needs a \`${require}\` visual in at least one step`,
+    );
   }
 
   if (problems.length) throw new Error(`${technology}/${slug}:\n  - ${problems.join("\n  - ")}`);

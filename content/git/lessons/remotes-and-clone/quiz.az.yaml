@@ -1,0 +1,57 @@
+- question: "Remote nədir?"
+  options:
+    - "Repository-nin yalnız GitHub-da ola bilən xüsusi növü"
+    - "Repository-nizin tanıdığı başqa bir repository: onun adı və ünvanı"
+    - "Lokal repository-nin avtomatik yenilənən ehtiyat surəti"
+  answer: 1
+  explain: "Remote başqa bir Git repository-dir. O, GitHub-da, başqa serverdə və ya diskdəki qovluqda ola bilər."
+- question: "Sam commit etdi, amma push etmədi. Ayla bu commit-i görə bilərmi?"
+  options:
+    - "Bəli: GitHub lokal repository-ləri avtomatik sinxronlaşdırır"
+    - "Bəli, amma yalnız eyni branch-dadırlarsa"
+    - "Xeyr: commit yalnız Sam-ın laptopundadır, GitHub-a göndərilməyib"
+  answer: 2
+  explain: "Repository-lər özləri sinxronlaşmır. Commit əvvəlcə push ilə remote-a getməli, Ayla da onu oradan götürməlidir."
+- question: "`origin` sözü haradan gəlir?"
+  options:
+    - "Bunu `git clone` repository-nin gəldiyi remote-a avtomatik verir"
+    - "Git-in dəyişdirilə bilməyən xüsusi sözüdür"
+    - "GitHub hər repository-yə özü belə ad verir"
+  answer: 0
+  explain: "`origin` sadəcə razılaşmadır: clone onu standart ad kimi qoyur, sonra onu dəyişmək olar."
+- question: "Hansı ünvan SSH ünvanıdır?"
+  options:
+    - "`https://github.com/sam/shop.git`"
+    - "`/home/sam/server/shop.git`"
+    - "`github.com/sam/shop`"
+    - "`git@github.com:sam/shop.git`"
+  answer: 3
+  explain: "SSH ünvanı `git@github.com:` ilə başlayır. `https://` ilə başlayan HTTPS ünvanıdır, `/home/...` isə diskdəki qovluqdur."
+- question: "`git remote -v` hər remote üçün iki sətir çap edir. Onlar nəyi göstərir?"
+  options:
+    - "Lokal branch-ın və remote-dakı branch-ın adını"
+    - "Götürmək (`fetch`) və göndərmək (`push`) üçün ünvanı"
+    - "Eyni repository-nin HTTPS və SSH ünvanını"
+  answer: 1
+  explain: "Sətirlərin sonunda `(fetch)` və `(push)` yazılır. Adətən hər ikisində eyni ünvan olur."
+- question: "Remote-ların siyahısı harada saxlanır?"
+  options:
+    - "Repository-nin `.git/config` faylında"
+    - "GitHub hesabınızın ayarlarında"
+    - "`.gitignore` faylında"
+  answer: 0
+  explain: "Hər remote üçün `.git/config`-də `[remote \"ad\"]` bölməsi və `url` sətri yaranır."
+- question: "GitHub-a HTTPS ilə push edəndə hesabın parolu qəbul olunmur. Nə lazımdır?"
+  options:
+    - "Repository-ni yenidən clone etmək"
+    - "Ünvanın sonundan `.git`-i silmək"
+    - "Personal access token və ya credential manager"
+  answer: 2
+  explain: "GitHub 2021-ci ilin avqustundan Git əməliyyatları üçün hesab parolunu qəbul etmir."
+- question: "SSH açar cütündən hansını GitHub hesabına əlavə etmək lazımdır?"
+  options:
+    - "Gizli açarı (`id_ed25519`)"
+    - "Açıq açarı (`id_ed25519.pub`)"
+    - "Hər ikisini"
+  answer: 1
+  explain: "Açıq açar GitHub-a əlavə olunur, gizli açar yalnız sizin kompüterinizdə qalır."
