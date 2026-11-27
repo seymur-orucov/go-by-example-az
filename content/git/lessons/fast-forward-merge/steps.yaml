@@ -1,0 +1,11 @@
+# The visuals are recorded from the real repository by `pnpm content:run`.
+ahead:
+  vis: graph
+merge:
+  vis: graph
+after:
+  vis: graph
+up-to-date:
+  vis: graph
+ff-only:
+  vis: graph

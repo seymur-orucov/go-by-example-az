@@ -1,0 +1,850 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir flashcards",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd flashcards",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"# Spanish flashcards\" > README.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"front,back\" \"hola,hello\" \"gracias,thank you\" > spanish.csv",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add README.md spanish.csv",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Start the Spanish deck\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q -c food-cards",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"pan,bread\" \"agua,water\" \"leche,milk\" \"queso,cheese\" \"huevo,egg\" \"arroz,rice\" \"pollo,chicken\" \"manzana,aple\" \"naranja,orange\" \"sopa,soup\" >> spanish.csv",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add cards 1-10\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "sed -i \"s/,aple/,apple/\" spanish.csv",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Fix typo\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"pescado,fish\" \"carne,meat\" \"sal,salt\" \"azucar,sugar\" \"cafe,coffee\" \"te,tea\" \"jugo,juice\" \"tomate,tomato\" \"papa,potato\" \"uva,grape\" >> spanish.csv",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add cards 11-20\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q main",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"\" \"One card per line: Spanish word, English word.\" >> README.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Explain the card format\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline --graph --all",
+      "step": "branch",
+      "hidden": false,
+      "fail": false,
+      "out": "* eda9d2e Explain the card format\n| * 170aacd Add cards 11-20\n| * 202c968 Fix typo\n| * 2431c29 Add cards 1-10\n|/  \n* bd4ec03 Start the Spanish deck\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git merge --squash food-cards",
+      "step": "squash",
+      "hidden": false,
+      "fail": false,
+      "out": "Automatic merge went well; stopped before committing as requested\nSquash commit -- not updating HEAD\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git status",
+      "step": "squash",
+      "hidden": false,
+      "fail": false,
+      "out": "On branch main\nChanges to be committed:\n  (use \"git restore --staged <file>...\" to unstage)\n\tmodified:   spanish.csv\n\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"Add 20 food cards\"",
+      "step": "commit",
+      "hidden": false,
+      "fail": false,
+      "out": "[main 88986e2] Add 20 food cards\n 1 file changed, 20 insertions(+)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git cat-file -p HEAD",
+      "step": "commit",
+      "hidden": false,
+      "fail": false,
+      "out": "tree 5a24e11c99b73d5d371a6df09ed4cd80793c6916\nparent eda9d2e1512d409059513a2f700d27f2f7a3e390\nauthor Sam Lee <sam@example.com> 1768468800 +0000\ncommitter Sam Lee <sam@example.com> 1768468800 +0000\n\nAdd 20 food cards\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline main..food-cards",
+      "step": "not-merged",
+      "hidden": false,
+      "fail": false,
+      "out": "170aacd Add cards 11-20\n202c968 Fix typo\n2431c29 Add cards 1-10\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch -d food-cards",
+      "step": "not-merged",
+      "hidden": false,
+      "fail": true,
+      "out": "error: the branch 'food-cards' is not fully merged\nhint: If you are sure you want to delete it, run 'git branch -D food-cards'\nhint: Disable this message with \"git config set advice.forceDeleteBranch false\"\n",
+      "exit": 1
+    },
+    {
+      "cmd": "git branch -D food-cards",
+      "step": "not-merged",
+      "hidden": false,
+      "fail": false,
+      "out": "Deleted branch food-cards (was 170aacd).\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "history",
+      "hidden": false,
+      "fail": false,
+      "out": "88986e2 Add 20 food cards\neda9d2e Explain the card format\nbd4ec03 Start the Spanish deck\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git diff --stat HEAD~1 HEAD",
+      "step": "history",
+      "hidden": false,
+      "fail": false,
+      "out": " spanish.csv | 20 ++++++++++++++++++++\n 1 file changed, 20 insertions(+)\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "branch": {
+      "areas": {
+        "work": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "spanish.csv",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "spanish.csv",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "eda9d2e",
+            "message": "Explain the card format"
+          },
+          "count": 2,
+          "files": [
+            "README.md",
+            "spanish.csv"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "eda9d2e",
+            "message": "Explain the card format",
+            "parents": [
+              "bd4ec03"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "modified"
+              },
+              {
+                "name": "spanish.csv",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "170aacd",
+            "message": "Add cards 11-20",
+            "parents": [
+              "202c968"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "spanish.csv",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "202c968",
+            "message": "Fix typo",
+            "parents": [
+              "2431c29"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "spanish.csv",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "2431c29",
+            "message": "Add cards 1-10",
+            "parents": [
+              "bd4ec03"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "spanish.csv",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "bd4ec03",
+            "message": "Start the Spanish deck",
+            "parents": [],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "added"
+              },
+              {
+                "name": "spanish.csv",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "food-cards",
+            "target": "170aacd"
+          },
+          {
+            "name": "main",
+            "target": "eda9d2e"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "eda9d2e"
+        }
+      }
+    },
+    "squash": {
+      "areas": {
+        "work": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "spanish.csv",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "spanish.csv",
+            "state": "modified"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "eda9d2e",
+            "message": "Explain the card format"
+          },
+          "count": 2,
+          "files": [
+            "README.md",
+            "spanish.csv"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "eda9d2e",
+            "message": "Explain the card format",
+            "parents": [
+              "bd4ec03"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "modified"
+              },
+              {
+                "name": "spanish.csv",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "170aacd",
+            "message": "Add cards 11-20",
+            "parents": [
+              "202c968"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "spanish.csv",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "202c968",
+            "message": "Fix typo",
+            "parents": [
+              "2431c29"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "spanish.csv",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "2431c29",
+            "message": "Add cards 1-10",
+            "parents": [
+              "bd4ec03"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "spanish.csv",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "bd4ec03",
+            "message": "Start the Spanish deck",
+            "parents": [],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "added"
+              },
+              {
+                "name": "spanish.csv",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "food-cards",
+            "target": "170aacd"
+          },
+          {
+            "name": "main",
+            "target": "eda9d2e"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "eda9d2e"
+        }
+      }
+    },
+    "commit": {
+      "areas": {
+        "work": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "spanish.csv",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "spanish.csv",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "88986e2",
+            "message": "Add 20 food cards"
+          },
+          "count": 3,
+          "files": [
+            "README.md",
+            "spanish.csv"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "88986e2",
+            "message": "Add 20 food cards",
+            "parents": [
+              "eda9d2e"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "spanish.csv",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "eda9d2e",
+            "message": "Explain the card format",
+            "parents": [
+              "bd4ec03"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "modified"
+              },
+              {
+                "name": "spanish.csv",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "170aacd",
+            "message": "Add cards 11-20",
+            "parents": [
+              "202c968"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "spanish.csv",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "202c968",
+            "message": "Fix typo",
+            "parents": [
+              "2431c29"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "spanish.csv",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "2431c29",
+            "message": "Add cards 1-10",
+            "parents": [
+              "bd4ec03"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "spanish.csv",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "bd4ec03",
+            "message": "Start the Spanish deck",
+            "parents": [],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "added"
+              },
+              {
+                "name": "spanish.csv",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "food-cards",
+            "target": "170aacd"
+          },
+          {
+            "name": "main",
+            "target": "88986e2"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "88986e2"
+        }
+      }
+    },
+    "not-merged": {
+      "areas": {
+        "work": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "spanish.csv",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "spanish.csv",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "88986e2",
+            "message": "Add 20 food cards"
+          },
+          "count": 3,
+          "files": [
+            "README.md",
+            "spanish.csv"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "88986e2",
+            "message": "Add 20 food cards",
+            "parents": [
+              "eda9d2e"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "spanish.csv",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "eda9d2e",
+            "message": "Explain the card format",
+            "parents": [
+              "bd4ec03"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "modified"
+              },
+              {
+                "name": "spanish.csv",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "bd4ec03",
+            "message": "Start the Spanish deck",
+            "parents": [],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "added"
+              },
+              {
+                "name": "spanish.csv",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "88986e2"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "88986e2"
+        }
+      }
+    },
+    "history": {
+      "areas": {
+        "work": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "spanish.csv",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "spanish.csv",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "88986e2",
+            "message": "Add 20 food cards"
+          },
+          "count": 3,
+          "files": [
+            "README.md",
+            "spanish.csv"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "88986e2",
+            "message": "Add 20 food cards",
+            "parents": [
+              "eda9d2e"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "spanish.csv",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "eda9d2e",
+            "message": "Explain the card format",
+            "parents": [
+              "bd4ec03"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "modified"
+              },
+              {
+                "name": "spanish.csv",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "bd4ec03",
+            "message": "Start the Spanish deck",
+            "parents": [],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "added"
+              },
+              {
+                "name": "spanish.csv",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "88986e2"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "88986e2"
+        }
+      }
+    }
+  }
+}

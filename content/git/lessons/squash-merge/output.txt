@@ -1,0 +1,43 @@
+$ git log --oneline --graph --all
+* eda9d2e Explain the card format
+| * 170aacd Add cards 11-20
+| * 202c968 Fix typo
+| * 2431c29 Add cards 1-10
+|/  
+* bd4ec03 Start the Spanish deck
+$ git merge --squash food-cards
+Automatic merge went well; stopped before committing as requested
+Squash commit -- not updating HEAD
+$ git status
+On branch main
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   spanish.csv
+
+$ git commit -m "Add 20 food cards"
+[main 88986e2] Add 20 food cards
+ 1 file changed, 20 insertions(+)
+$ git cat-file -p HEAD
+tree 5a24e11c99b73d5d371a6df09ed4cd80793c6916
+parent eda9d2e1512d409059513a2f700d27f2f7a3e390
+author Sam Lee <sam@example.com> 1768468800 +0000
+committer Sam Lee <sam@example.com> 1768468800 +0000
+
+Add 20 food cards
+$ git log --oneline main..food-cards
+170aacd Add cards 11-20
+202c968 Fix typo
+2431c29 Add cards 1-10
+$ git branch -d food-cards
+error: the branch 'food-cards' is not fully merged
+hint: If you are sure you want to delete it, run 'git branch -D food-cards'
+hint: Disable this message with "git config set advice.forceDeleteBranch false"
+$ git branch -D food-cards
+Deleted branch food-cards (was 170aacd).
+$ git log --oneline
+88986e2 Add 20 food cards
+eda9d2e Explain the card format
+bd4ec03 Start the Spanish deck
+$ git diff --stat HEAD~1 HEAD
+ spanish.csv | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)

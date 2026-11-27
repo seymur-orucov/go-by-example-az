@@ -1,0 +1,11 @@
+rules:
+  - "İki branch eyni sətri fərqli dəyişəndə `git merge` `CONFLICT` yazıb dayanır, merge commit yaranmır."
+  - "`git status` konfliktli faylları `Unmerged paths` bölməsində `both modified` ilə göstərir."
+  - "`<<<<<<< HEAD` ilə `=======` arasında hazırkı branch-ın, `=======` ilə `>>>>>>> <branch>` arasında merge olunan branch-ın versiyası var."
+  - "Həll: faylın son versiyasını yazıb markerləri silin, `git add` ilə işarələyin, `git commit` ilə merge-i bitirin."
+  - "`git merge --abort` merge-i ləğv edib repository-ni merge-dən əvvəlki vəziyyətə qaytarır."
+  - "`git mergetool` konfliktli faylları `merge.tool` ayarında seçilmiş alətdə açır."
+practices:
+  - "Merge-ə commit olunmamış dəyişiklik olmadan başlayın: `--abort` onları həmişə bərpa edə bilmir."
+  - "`git add`-dan əvvəl faylda `<<<<<<<`, `=======` və `>>>>>>>` qalmadığını yoxlayın."
+  - "Hansı versiyanın doğru olduğunu bilmirsinizsə, o dəyişikliyi edən adamla danışın."

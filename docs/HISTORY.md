@@ -654,3 +654,16 @@ Done (branch `feat/git-branches-lessons`):
 - `diff-between-branches` (`terminal`, conference talk outline): `log main..feat`, `diff main feat` vs `diff main...feat` (merge base, what a PR shows), `--stat`.
 - The reviewer fixed terms ("hazırkı", "serverdəki"), wrong back-references ("əvvəlki dərsdə"), `git push -u origin` order, two giveaway quiz options, a hash copied into a quiz option.
 - Checked: `content:run` twice for the seven session lessons (identical), every quiz answer in sandboxes (writers) plus spot checks (reviewer), `content:check`, the `review-lesson` scan (0 points each).
+
+### 75. Git module 5 "Merge"
+Same process as module 4 (writers per lesson, an independent reviewer, Claude's checks).
+
+Done (branch `feat/git-merge-lessons`):
+- `merging-basics` (`terminal`, band set list): target (hədəf) and source (mənbə), `git switch` + `git merge`, the source does not move, a fast-forward and a merge commit side by side, `--no-edit` / `-m` and the editor.
+- `fast-forward-merge` (`state`, hiking trail guide): `Updating a..b` / `Fast-forward`, same hashes and a straight history, `Already up to date.`, `--ff-only` refusing.
+- `three-way-merge` (`state`, roommates' shopping list): merge base (`git merge-base`), base / ours / theirs, a commit with two parents (`HEAD^1`, `HEAD^2`), `ort` (default since Git 2.34).
+- `ff-vs-no-ff` (`compare`, mobile game team): `--no-ff` bubbles and `--first-parent`, `--ff-only`, `merge.ff`, `pull.ff only` for current Git, GitHub's "Create a merge commit".
+- `squash-merge` (`state`, flashcards deck): `--squash` stages without committing, one commit with one parent, `branch -d` refuses afterwards, GitHub's "Squash and merge".
+- `merge-conflicts` (`terminal`, club meeting agenda): `CONFLICT`, `Unmerged paths`, the markers, `--abort`, resolving with `git add` + `git commit`, `mergetool` mentioned.
+- The reviewer fixed the `pull.ff only` claim for current Git (a diverged pull already refuses), repeated `--no-edit` explanations, two confusing sentences in `fast-forward-merge`, wording and back-references.
+- Found on the way: the areas recorder showed a conflicted file as clean, and the graph did not show `origin/*`; both fixed in a separate site PR.

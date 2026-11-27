@@ -1,0 +1,81 @@
+- question: "`main`-dəsiniz və `git merge --squash food-cards` yazdınız. Merge konfliktsiz alındı. İndi nə vəziyyətdir?"
+  options:
+    - "İki parent-i olan merge commit yaranıb"
+    - "Dəyişikliklər staging area-dadır, yeni commit yoxdur"
+    - "Bir parent-i olan yeni commit yaranıb"
+    - "`food-cards` branch-ı silinib"
+  answer: 1
+  explain: "`--squash` merge-in nəticəsini working directory və staging area-ya yazır, amma commit etmir və HEAD-i yerindən tərpətmir."
+- question: "Bu komandalardan sonra `git status` nə çap edir?"
+  code: |
+    git merge --squash food-cards
+    git status
+  options:
+    - "`All conflicts fixed but you are still merging.`"
+    - "`nothing to commit, working tree clean`"
+    - "`Changes to be committed:` və dəyişən fayllar"
+  answer: 2
+  explain: "Dəyişikliklər staging area-dadır və commit-i gözləyir. `git status` bunu yarımçıq merge saymır."
+- question: "Squash merge-i hansı komanda başa çatdırır?"
+  options:
+    - "`git commit -m \"Add food cards\"`"
+    - "`git merge --continue`"
+    - "`git merge --squash --commit food-cards`"
+  answer: 0
+  explain: "Squash-dan sonra adi `git commit` lazımdır. `git merge --continue` davam etdirəcək merge tapmır, `--squash` ilə `--commit` isə birlikdə işləmir."
+- question: "Squash merge-dən sonrakı commit üçün `git cat-file -p HEAD` neçə `parent` sətri çap edir?"
+  options:
+    - "Bir"
+    - "İki"
+    - "Branch-dakı commit-lərin sayı qədər"
+  answer: 0
+  explain: "Squash commit adi commit-dir: onun yeganə parent-i `main`-in əvvəlki son commit-idir."
+- question: "Yeni, boş repository-də bu komandalardan sonra `git log --oneline` neçə sətir çap edir?"
+  code: |
+    echo "hola,hello" > spanish.csv
+    git add spanish.csv
+    git commit -q -m "Start the deck"
+    git switch -q -c colors
+    echo "rojo,red" >> spanish.csv
+    git commit -q -am "Add red"
+    echo "azul,blue" >> spanish.csv
+    git commit -q -am "Add blue"
+    git switch -q main
+    git merge -q --squash colors
+    git commit -q -m "Add color cards"
+    git log --oneline
+  options:
+    - "1"
+    - "2"
+    - "3"
+    - "4"
+  answer: 1
+  explain: "`main`-də `Start the deck` və `Add color cards` var. Fast-forward mümkün olsa da, `--squash` branch-ın commit-lərini gətirmir, yeni bir commit yaradılır."
+- question: "Squash merge-dən sonra `git branch -d food-cards` niyə xəta verir?"
+  options:
+    - "Branch-ın dəyişiklikləri `main`-ə düşməyib"
+    - "Hazırkı branch-ı silmək olmur"
+    - "Branch-ın commit-ləri `main`-in tarixçəsində yoxdur"
+  answer: 2
+  explain: "Dəyişikliklər `main`-dədir, commit-lər isə yox. `-d` commit-ləri yoxlayır, ona görə branch-ı `-D` ilə silmək lazımdır."
+- question: "Squash merge və commit-dən sonra `git log --oneline main..food-cards` nə çap edir?"
+  options:
+    - "Heç nə: branch artıq merge olunub"
+    - "`food-cards`-ın bütün commit-lərini"
+    - "Yalnız squash commit-i"
+  answer: 1
+  explain: "`main..food-cards` `main`-də olmayan commit-ləri göstərir. Squash commit branch-ın commit-lərini `main`-in tarixçəsinə qatmır."
+- question: "GitHub-da pull request-in **Squash and merge** düyməsi nə edir?"
+  options:
+    - "PR-ın commit-lərini bir commit-ə birləşdirib əsas branch-a əlavə edir"
+    - "PR-ın commit-lərini olduğu kimi saxlayıb merge commit yaradır"
+    - "PR-ın commit-lərini merge commit-siz əsas branch-ın üstünə köçürür"
+  answer: 0
+  explain: "Bu, `git merge --squash` və sonra `git commit` ilə eyni nəticədir. Merge commit-li variant **Create a merge commit** düyməsidir."
+- question: "Hansı halda squash merge pis seçimdir?"
+  options:
+    - "Branch-da `wip` və `Fix typo` kimi çoxlu kiçik commit var"
+    - "İş kiçikdir və tarixçədə bir commit kifayətdir"
+    - "Branch-ın hər commit-i ayrıca mənalıdır və tarixçədə qalmalıdır"
+  answer: 2
+  explain: "Squash commit-lərin ayrı-ayrı detallarını silir. Commit-lər mənalıdırsa, adi merge onları saxlayır."

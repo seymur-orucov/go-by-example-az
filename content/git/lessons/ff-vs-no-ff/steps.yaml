@@ -1,0 +1,42 @@
+# Hand-written visuals (text lesson): the merge.ff values, then fast-forward vs --no-ff.
+fast-forward:
+no-ff:
+ff-only:
+config:
+  vis:
+    kind: flow
+    caption: "`merge.ff` parametrinin dəyərləri"
+    items:
+      - { label: "`true`", sub: "default · mümkün olanda fast-forward" }
+      - { label: "`false`", sub: "həmişə merge commit, `--no-ff` kimi" }
+      - { label: "`only`", sub: "yalnız fast-forward, `--ff-only` kimi", tone: accent }
+    note: "`pull.ff` eyni dəyərləri alır və `git pull` zamanı `merge.ff`-dən üstündür."
+choose:
+  vis:
+    kind: compare
+    caption: "`main` yerində qalıb: `git merge` və `git merge --no-ff`"
+    a: { title: "Fast-forward", sub: "default" }
+    b: { title: "--no-ff", sub: "həmişə merge commit" }
+    rows:
+      - aspect: "Yeni commit"
+        a: "Yaranmır, `main` irəli çəkilir"
+        b: "Merge commit, iki parent-i olur"
+      - aspect: "`git log --graph`"
+        a: "Düz xətt"
+        b: "Branch qabarcıq kimi görünür"
+      - aspect: "Feature-in sərhədləri"
+        a: "Branch silinəndən sonra itir"
+        b: "Merge commit və onun mesajı saxlayır"
+        better: b
+      - aspect: "Tarixçənin həcmi"
+        a: "Yalnız iş commit-ləri"
+        b: "Hər merge üçün bir əlavə commit"
+        better: a
+      - aspect: "Feature-i geri almaq"
+        a: "Hər commit ayrıca geri alınır"
+        b: "Bir `git revert -m 1`"
+        better: b
+      - aspect: "Config"
+        a: "`merge.ff true`"
+        b: "`merge.ff false`"
+    note: "`--ff-only` fast-forward kimi düz xətt verir, fast-forward mümkün olmayanda isə merge-dən imtina edir."

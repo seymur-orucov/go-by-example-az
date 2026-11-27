@@ -1,0 +1,54 @@
+$ git merge ayla-time
+Auto-merging agenda.md
+CONFLICT (content): Merge conflict in agenda.md
+Automatic merge failed; fix conflicts and then commit the result.
+$ git status
+On branch main
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+	both modified:   agenda.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+$ git merge --abort
+$ git status
+On branch main
+nothing to commit, working tree clean
+$ cat agenda.md
+Day: Friday
+Time: 17:30
+Place: Library
+$ git merge ayla-time
+Auto-merging agenda.md
+CONFLICT (content): Merge conflict in agenda.md
+Automatic merge failed; fix conflicts and then commit the result.
+$ cat agenda.md
+Day: Friday
+<<<<<<< HEAD
+Time: 17:30
+=======
+Time: 19:00
+>>>>>>> ayla-time
+Place: Library
+$ printf "%s\n" "Day: Friday" "Time: 18:30" "Place: Library" > agenda.md
+$ git add agenda.md
+$ git status
+On branch main
+All conflicts fixed but you are still merging.
+  (use "git commit" to conclude merge)
+
+Changes to be committed:
+	modified:   agenda.md
+
+$ git commit --no-edit
+[main fd7de09] Merge branch 'ayla-time'
+$ git log --oneline --graph
+*   fd7de09 Merge branch 'ayla-time'
+|\  
+| * e4f86e2 Move meeting to 19:00
+* | 74cb38f Move meeting to 17:30
+|/  
+* 9e9cd5a Add meeting agenda

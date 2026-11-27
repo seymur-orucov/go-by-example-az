@@ -1,0 +1,87 @@
+- question: "`feature` branch-ının commit-lərini `main`-ə gətirmək istəyirsiniz. Hansı komandalar lazımdır?"
+  options:
+    - "`git switch feature`, sonra `git merge main`"
+    - "`git switch main`, sonra `git merge feature`"
+    - "`git switch feature`, sonra `git merge feature`"
+  answer: 1
+  explain: "Merge hazırkı branch-a yazır. Əvvəlcə target-ə, yəni `main`-ə keçirsiniz, sonra source-u, `feature`-u adlandırırsınız."
+- question: "Yeni repository-də bu komandalardan sonra çıxışın ikinci sətri nədir?"
+  code: |
+    echo "Baku" > tour.txt
+    git add tour.txt
+    git commit -q -m "Add Baku"
+    git switch -q -c summer
+    echo "Ganja" >> tour.txt
+    git commit -q -am "Add Ganja"
+    git switch -q main
+    git merge summer
+  options:
+    - "`Fast-forward`"
+    - "`Merge made by the 'ort' strategy.`"
+    - "`Already up to date.`"
+  answer: 0
+  explain: "`main`-də ayrılandan sonra yeni commit yoxdur, ona görə Git `main`-i `summer`-in commit-inə irəli çəkir. Birinci sətir `Updating ...`-dir."
+- question: "`main`-də `git merge summer` işlətdiniz. Merge-dən sonra `summer` branch-ına nə olur?"
+  options:
+    - "Avtomatik silinir"
+    - "Olduğu commit-də qalır"
+    - "`main`-in əvvəlki commit-inə keçir"
+  answer: 1
+  explain: "Merge yalnız hazırkı branch-ı, yəni target-i dəyişir. Source branch-a toxunmur."
+- question: "Yeni repository-də bu komandalardan sonra çıxışın birinci sətri nədir?"
+  code: |
+    echo "Baku" > tour.txt
+    git add tour.txt
+    git commit -q -m "Add Baku"
+    git switch -q -c merch
+    echo "t-shirts" > merch.txt
+    git add merch.txt
+    git commit -q -m "Add merch"
+    git switch -q main
+    echo "Ganja" >> tour.txt
+    git commit -q -am "Add Ganja"
+    git merge --no-edit merch
+  options:
+    - "`Updating ...`"
+    - "`Already up to date.`"
+    - "`Merge made by the 'ort' strategy.`"
+  answer: 2
+  explain: "İki branch da irəliləyib, ona görə Git `main`-i sadəcə irəli çəkə bilmir və merge commit yaradır."
+- question: "`main`-də `git merge --no-edit merch` merge commit yaratdı. Bu commit-in mesajı nədir?"
+  options:
+    - "`Merge merch`"
+    - "`merch`-in son commit-inin mesajı"
+    - "`Merge branch 'merch'`"
+  answer: 2
+  explain: "`--no-edit` Git-in hazır mesajını olduğu kimi götürür: `Merge branch 'merch'`."
+- question: "Real terminalda `--no-edit` və `-m` olmadan `git merge merch` merge commit yaradır. Nə baş verir?"
+  options:
+    - "Mətn redaktoru hazır mesajla açılır"
+    - "Git xəta verir, çünki mesaj yoxdur"
+    - "Commit mesajsız yaradılır"
+  answer: 0
+  explain: "Git redaktoru `Merge branch 'merch'` mesajı ilə açır. Faylı saxlayıb bağlayanda merge bitir."
+- question: "Yeni repository-də bu komandalardan sonra nə çap olunur?"
+  code: |
+    echo "Baku" > tour.txt
+    git add tour.txt
+    git commit -q -m "Add Baku"
+    git switch -q -c summer
+    echo "Ganja" >> tour.txt
+    git commit -q -am "Add Ganja"
+    git switch -q main
+    git merge -q summer
+    git branch -d summer
+  options:
+    - "`error: the branch 'summer' is not fully merged`"
+    - "`error: cannot delete branch 'summer' used by worktree`"
+    - "`Deleted branch summer (was ...)`"
+  answer: 2
+  explain: "`summer`-in commit-i merge ilə `main`-ə gəlib, ona görə `-d` branch-ı xəta vermədən silir."
+- question: "Siz `summer` branch-ındasınız və `git merge main` yazırsınız. Hansı branch dəyişə bilər?"
+  options:
+    - "`main`"
+    - "`summer`"
+    - "Hər ikisi"
+  answer: 1
+  explain: "Merge commit-ləri hazırkı branch-a gətirir. Burada target `summer`-dir, `main` isə source kimi dəyişmir."
