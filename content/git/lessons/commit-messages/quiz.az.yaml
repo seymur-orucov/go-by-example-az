@@ -33,8 +33,8 @@
   explain: "`fix` səhvin düzəlişi, `feat` yeni imkandır; spesifikasiya məhz bu iki tipi müəyyən edir."
 - question: "`feat!: remove search by ZIP code` başlığında `!` nə deməkdir?"
   options:
-    - "Dəyişiklik təcilidir"
-    - "Commit hələ yarımçıqdır"
+    - "Dəyişiklik təcilidir: onu ilk növbədə yoxlamaq lazımdır"
+    - "Commit yarımçıqdır: iş növbəti commit-də bitəcək"
     - "Breaking change: köhnə davranış artıq işləməyəcək"
   answer: 2
   explain: "Tipdən (və ya scope-dan) sonra `!` breaking change-i bildirir; eyni şeyi footer-dəki `BREAKING CHANGE:` sətri də edir."
@@ -58,16 +58,16 @@
     Cache forecast for ten minutes
     The API allows 60 calls per hour.
   options:
-    - "Git commit-i qəbul etmir"
-    - "Git body-ni silir"
+    - "Git commit-i qəbul etmir və boş sətir əlavə etməyi tələb edir"
+    - "Git body-ni silir, commit-də yalnız birinci sətir qalır"
     - "Boş sətrə qədər olan hər şey başlıq sayılır, `--oneline` iki sətri bir uzun sətir kimi göstərir"
   answer: 2
   explain: "Git birinci boş sətrə qədər olan mətni başlıq sayır; boş sətir olmayanda body başlığa qarışır."
 - question: "Komanda Conventional Commits işlədir. Bu, nəyə imkan verir?"
   options:
-    - "Commit-ləri daha sürətli yazmağa"
+    - "Commit-ləri daha sürətli yazmağa, çünki mesajı alət özü yaradır"
     - "Mesajların nə vaxt yazıldığını gizlətməyə"
-    - "Hash-ləri qısaltmağa"
+    - "Hash-ləri qısaltmağa və tarixçəni daha az yerdə saxlamağa"
     - "Tarixçədən avtomatik changelog yaratmağa və növbəti versiya nömrəsini seçməyə"
   answer: 3
   explain: "Format sabit olduğu üçün alətlər commit-ləri oxuyur: `fix` patch, `feat` minor, breaking change major versiya verir."

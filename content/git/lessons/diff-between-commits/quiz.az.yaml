@@ -53,15 +53,15 @@
   explain: "Qısa hash, `HEAD~N` və branch adı commit-in müxtəlif adlarıdır; `git diff` hamısını başa düşür."
 - question: "`--stat` çıxışında `week.txt | 3 ++-` sətri nə deməkdir?"
   options:
-    - "`week.txt` üç commit-də dəyişib"
-    - "`week.txt`-də 3 sətir var"
+    - "`week.txt` üç commit-də dəyişib: ikisində əlavə, birində silinmə"
+    - "`week.txt`-də cəmi 3 sətir var: ikisi yeni, biri köhnə"
     - "`week.txt`-də 3 sətir dəyişib: ikisi əlavə, biri silinmə"
   answer: 2
   explain: "Rəqəm dəyişən sətirlərin sayıdır, `+` və `-` işarələri onların əlavə və ya silinmə olduğunu göstərir."
 - question: "Repository-də `main` adlı fayl var. `git diff HEAD~1 HEAD main` nə edir?"
   options:
-    - "`main` faylının diff-ini göstərir"
+    - "`main` faylının iki commit arasındakı diff-ini göstərir"
     - "`ambiguous argument` xətası verir: `main` həm branch, həm fayl adıdır"
-    - "`main` branch-ı ilə müqayisə edir"
+    - "`main`-i branch adı kimi oxuyur və `HEAD` ilə müqayisə edir"
   answer: 1
   explain: "Git adın commit, yoxsa fayl olduğunu ayırd edə bilmir. `git diff HEAD~1 HEAD -- main` yazın."
