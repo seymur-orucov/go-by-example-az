@@ -1,0 +1,76 @@
+- question: "Bu komandalardan hansı plumbing-dir?"
+  options:
+    - "`git commit`"
+    - "`git switch`"
+    - "`git cat-file`"
+    - "`git log`"
+  answer: 2
+  explain: "`cat-file` aşağı səviyyəli komandadır: obyekti göstərir və skriptlər üçün nəzərdə tutulub. Qalanları insan üçün olan porcelain komandalardır."
+- question: "Yeni, boş repository-də bu komandalardan sonra nə çap olunur?"
+  code: |
+    echo "hello" > a.txt
+    echo "hello" > b.txt
+    git add .
+    git commit -q -m "Add two files"
+    git cat-file --batch-all-objects --batch-check | wc -l
+  options:
+    - "`3`"
+    - "`4`"
+    - "`5`"
+  answer: 0
+  explain: "İki faylın məzmunu eynidir, ona görə blob bir dənədir. Üstəgəl bir tree və bir commit: cəmi 3 obyekt."
+- question: "`echo \"draft\" | git hash-object --stdin` hash çap etdi. Sonra `git cat-file -t` həmin hash ilə nə edir?"
+  options:
+    - "`blob` çap edir, çünki hash hesablanıb"
+    - "`tree` çap edir, çünki fayl adı yoxdur"
+    - "Xəta verir, çünki obyekt bazaya yazılmayıb"
+  answer: 2
+  explain: "`-w` olmadan `hash-object` yalnız hash-i hesablayır. Obyekt `.git/objects`-ə düşmür və `cat-file` onu tapmır."
+- question: "Obyektin hash-i `3b18e512dba79e4c8300dd08aeb37f8e728b8dad`-dir. Obyekt hansı faylda saxlanır?"
+  options:
+    - "`.git/objects/3b18e512/dba79e4c8300dd08aeb37f8e728b8dad`"
+    - "`.git/objects/3b/18e512dba79e4c8300dd08aeb37f8e728b8dad`"
+    - "`.git/objects/blob/3b18e512dba79e4c8300dd08aeb37f8e728b8dad`"
+  answer: 1
+  explain: "Hash-in ilk iki simvolu qovluğun adı, qalan 38 simvolu faylın adıdır. Bu, `hello world` sətrinin blob hash-idir: hash yalnız məzmundan hesablandığı üçün hər repository-də eynidir."
+- question: "Yeni, boş repository-də bu komandalardan sonra nə çap olunur?"
+  code: |
+    mkdir docs
+    echo "a" > docs/a.txt
+    git add .
+    git commit -q -m "Add docs"
+    git cat-file -t HEAD:docs
+  options:
+    - "`blob`"
+    - "`tree`"
+    - "`commit`"
+  answer: 1
+  explain: "`HEAD:docs` commit-də `docs` yolundakı obyektdir. `docs` qovluqdur, qovluq isə tree kimi saxlanır."
+- question: "`git cat-file -p HEAD^{tree}` çıxışında `040000 tree ...` ilə başlayan `docs` sətri var. Bu nə deməkdir?"
+  options:
+    - "`docs` alt qovluqdur və onun öz tree-si var"
+    - "`docs` boş fayldır və onun blob-u yoxdur"
+    - "`docs` son commit-də silinmiş qovluqdur"
+  answer: 0
+  explain: "`040000` qovluğun rejimidir. Tree başqa tree-yə istinad edir və iç-içə qovluqlar belə saxlanır."
+- question: "Commit-də `readme.txt` və `notes/today.txt` var. Yalnız `notes/today.txt`-i dəyişib commit etsəniz, neçə yeni obyekt yaranır?"
+  options:
+    - "`2`"
+    - "`3`"
+    - "`4`"
+  answer: 2
+  explain: "Yeni blob, yeni `notes` tree-si, yeni kök tree və yeni commit. `readme.txt`-in blob-u əvvəlki kimi qalır."
+- question: "Faylın adı hansı obyektdə saxlanır?"
+  options:
+    - "Faylın blob-unda, məzmunla birlikdə"
+    - "Faylın olduğu qovluğun tree-sində"
+    - "Faylı əlavə edən commit-in mətnində"
+  answer: 1
+  explain: "Blob yalnız məzmundur. Adı və rejimi tree saxlayır, ona görə eyni məzmunlu iki fayl bir blob-u paylaşır."
+- question: "`cat .git/HEAD` `ref: refs/heads/dev` çap edir. `git rev-parse HEAD` nə çap edir?"
+  options:
+    - "`dev`-in göstərdiyi commit-in tam hash-ini"
+    - "`ref: refs/heads/dev` sətrini, olduğu kimi"
+    - "`dev`-in commit-indəki tree-nin hash-ini"
+  answer: 0
+  explain: "`rev-parse` zənciri izləyir: HEAD → `dev` → commit. Nəticə commit-in 40 simvolluq hash-idir."

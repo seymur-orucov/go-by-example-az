@@ -1,0 +1,818 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "git config --global protocol.file.allow always",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "mkdir ayla",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ayla",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q ui-kit",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ui-kit",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \".btn { padding: 8px 16px; }\" > button.css",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add button.css",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git -c user.name=\"Ayla Karimova\" -c user.email=\"ayla@example.com\" commit -q -m \"Add button styles\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \".card { border-radius: 8px; }\" > card.css",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add card.css",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git -c user.name=\"Ayla Karimova\" -c user.email=\"ayla@example.com\" commit -q -m \"Add card styles\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git clone -q --bare ~/ayla/ui-kit ~/server/ui-kit.git",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ~",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "mkdir brand-site",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd brand-site",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"<h1>Brand</h1>\" > index.html",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add index.html",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add home page\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git submodule add ~/server/ui-kit.git ui-kit",
+      "step": "add",
+      "hidden": false,
+      "fail": false,
+      "out": "Cloning into '/home/sam/brand-site/ui-kit'...\ndone.\n",
+      "exit": 0
+    },
+    {
+      "cmd": "MSYS_NO_PATHCONV=1 git config -f .gitmodules submodule.ui-kit.url /home/sam/server/ui-kit.git",
+      "step": "add",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add .gitmodules",
+      "step": "add",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status",
+      "step": "add",
+      "hidden": false,
+      "fail": false,
+      "out": "On branch main\nChanges to be committed:\n  (use \"git restore --staged <file>...\" to unstage)\n\tnew file:   .gitmodules\n\tnew file:   ui-kit\n\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cat .gitmodules",
+      "step": "add",
+      "hidden": false,
+      "fail": false,
+      "out": "[submodule \"ui-kit\"]\n\tpath = ui-kit\n\turl = /home/sam/server/ui-kit.git\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"Add ui-kit submodule\"",
+      "step": "gitlink",
+      "hidden": false,
+      "fail": false,
+      "out": "[main 52891c3] Add ui-kit submodule\n 2 files changed, 4 insertions(+)\n create mode 100644 .gitmodules\n create mode 160000 ui-kit\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git ls-tree HEAD",
+      "step": "gitlink",
+      "hidden": false,
+      "fail": false,
+      "out": "100644 blob c5982d0687e05e208093d123017d162f1af613e4\t.gitmodules\n100644 blob 8108685183beb90e8fc726f6f2cb715f955d7aa6\tindex.html\n160000 commit 779a71625ea5c1c670baf914b90ff7e557d65f36\tui-kit\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ui-kit",
+      "step": "gitlink",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "gitlink",
+      "hidden": false,
+      "fail": false,
+      "out": "779a716 Add card styles\nf0ac833 Add button styles\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ..",
+      "step": "gitlink",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ui-kit",
+      "step": "moved",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \".badge { font-size: 12px; }\" > badge.css",
+      "step": "moved",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add badge.css",
+      "step": "moved",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"Add badge styles\"",
+      "step": "moved",
+      "hidden": false,
+      "fail": false,
+      "out": "[main 110aae5] Add badge styles\n 1 file changed, 1 insertion(+)\n create mode 100644 badge.css\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git push",
+      "step": "moved",
+      "hidden": false,
+      "fail": false,
+      "out": "To /home/sam/server/ui-kit.git\n   779a716..110aae5  main -> main\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ..",
+      "step": "moved",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status",
+      "step": "moved",
+      "hidden": false,
+      "fail": false,
+      "out": "On branch main\nChanges not staged for commit:\n  (use \"git add <file>...\" to update what will be committed)\n  (use \"git restore <file>...\" to discard changes in working directory)\n\tmodified:   ui-kit (new commits)\n\nno changes added to commit (use \"git add\" and/or \"git commit -a\")\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git diff",
+      "step": "moved",
+      "hidden": false,
+      "fail": false,
+      "out": "diff --git a/ui-kit b/ui-kit\nindex 779a716..110aae5 160000\n--- a/ui-kit\n+++ b/ui-kit\n@@ -1 +1 @@\n-Subproject commit 779a71625ea5c1c670baf914b90ff7e557d65f36\n+Subproject commit 110aae5281ede60ff66d799beec2509299fbf7eb\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git diff --submodule",
+      "step": "moved",
+      "hidden": false,
+      "fail": false,
+      "out": "Submodule ui-kit 779a716..110aae5:\n  > Add badge styles\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git add ui-kit",
+      "step": "pin",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"Use badge styles from ui-kit\"",
+      "step": "pin",
+      "hidden": false,
+      "fail": false,
+      "out": "[main 39b5647] Use badge styles from ui-kit\n 1 file changed, 1 insertion(+), 1 deletion(-)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git ls-tree HEAD ui-kit",
+      "step": "pin",
+      "hidden": false,
+      "fail": false,
+      "out": "160000 commit 110aae5281ede60ff66d799beec2509299fbf7eb\tui-kit\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git ls-tree -r --name-only HEAD",
+      "step": "subtree",
+      "hidden": false,
+      "fail": false,
+      "out": ".gitmodules\nindex.html\nui-kit\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "add": {
+      "areas": {
+        "work": [
+          {
+            "name": ".gitmodules",
+            "state": "clean"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          },
+          {
+            "name": "ui-kit",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": ".gitmodules",
+            "state": "added"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          },
+          {
+            "name": "ui-kit",
+            "state": "added"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "d5c5aff",
+            "message": "Add home page"
+          },
+          "count": 1,
+          "files": [
+            "index.html"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "d5c5aff",
+            "message": "Add home page",
+            "parents": [],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "d5c5aff"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "d5c5aff"
+        }
+      }
+    },
+    "gitlink": {
+      "areas": {
+        "work": [
+          {
+            "name": ".gitmodules",
+            "state": "clean"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          },
+          {
+            "name": "ui-kit",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": ".gitmodules",
+            "state": "clean"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          },
+          {
+            "name": "ui-kit",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "52891c3",
+            "message": "Add ui-kit submodule"
+          },
+          "count": 2,
+          "files": [
+            ".gitmodules",
+            "index.html",
+            "ui-kit"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "52891c3",
+            "message": "Add ui-kit submodule",
+            "parents": [
+              "d5c5aff"
+            ],
+            "files": [
+              {
+                "name": ".gitmodules",
+                "state": "added"
+              },
+              {
+                "name": "index.html",
+                "state": "same"
+              },
+              {
+                "name": "ui-kit",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "d5c5aff",
+            "message": "Add home page",
+            "parents": [],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "52891c3"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "52891c3"
+        }
+      }
+    },
+    "moved": {
+      "areas": {
+        "work": [
+          {
+            "name": ".gitmodules",
+            "state": "clean"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          },
+          {
+            "name": "ui-kit",
+            "state": "modified"
+          }
+        ],
+        "index": [
+          {
+            "name": ".gitmodules",
+            "state": "clean"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          },
+          {
+            "name": "ui-kit",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "52891c3",
+            "message": "Add ui-kit submodule"
+          },
+          "count": 2,
+          "files": [
+            ".gitmodules",
+            "index.html",
+            "ui-kit"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "52891c3",
+            "message": "Add ui-kit submodule",
+            "parents": [
+              "d5c5aff"
+            ],
+            "files": [
+              {
+                "name": ".gitmodules",
+                "state": "added"
+              },
+              {
+                "name": "index.html",
+                "state": "same"
+              },
+              {
+                "name": "ui-kit",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "d5c5aff",
+            "message": "Add home page",
+            "parents": [],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "52891c3"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "52891c3"
+        }
+      }
+    },
+    "pin": {
+      "areas": {
+        "work": [
+          {
+            "name": ".gitmodules",
+            "state": "clean"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          },
+          {
+            "name": "ui-kit",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": ".gitmodules",
+            "state": "clean"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          },
+          {
+            "name": "ui-kit",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "39b5647",
+            "message": "Use badge styles from ui-kit"
+          },
+          "count": 3,
+          "files": [
+            ".gitmodules",
+            "index.html",
+            "ui-kit"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "39b5647",
+            "message": "Use badge styles from ui-kit",
+            "parents": [
+              "52891c3"
+            ],
+            "files": [
+              {
+                "name": ".gitmodules",
+                "state": "same"
+              },
+              {
+                "name": "index.html",
+                "state": "same"
+              },
+              {
+                "name": "ui-kit",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "52891c3",
+            "message": "Add ui-kit submodule",
+            "parents": [
+              "d5c5aff"
+            ],
+            "files": [
+              {
+                "name": ".gitmodules",
+                "state": "added"
+              },
+              {
+                "name": "index.html",
+                "state": "same"
+              },
+              {
+                "name": "ui-kit",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "d5c5aff",
+            "message": "Add home page",
+            "parents": [],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "39b5647"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "39b5647"
+        }
+      }
+    },
+    "subtree": {
+      "areas": {
+        "work": [
+          {
+            "name": ".gitmodules",
+            "state": "clean"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          },
+          {
+            "name": "ui-kit",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": ".gitmodules",
+            "state": "clean"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          },
+          {
+            "name": "ui-kit",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "39b5647",
+            "message": "Use badge styles from ui-kit"
+          },
+          "count": 3,
+          "files": [
+            ".gitmodules",
+            "index.html",
+            "ui-kit"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "39b5647",
+            "message": "Use badge styles from ui-kit",
+            "parents": [
+              "52891c3"
+            ],
+            "files": [
+              {
+                "name": ".gitmodules",
+                "state": "same"
+              },
+              {
+                "name": "index.html",
+                "state": "same"
+              },
+              {
+                "name": "ui-kit",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "52891c3",
+            "message": "Add ui-kit submodule",
+            "parents": [
+              "d5c5aff"
+            ],
+            "files": [
+              {
+                "name": ".gitmodules",
+                "state": "added"
+              },
+              {
+                "name": "index.html",
+                "state": "same"
+              },
+              {
+                "name": "ui-kit",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "d5c5aff",
+            "message": "Add home page",
+            "parents": [],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "39b5647"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "39b5647"
+        }
+      }
+    }
+  }
+}

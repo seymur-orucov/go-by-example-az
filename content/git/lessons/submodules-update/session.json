@@ -1,0 +1,774 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "git config --global protocol.file.allow always",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "mkdir server",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q --bare server/docs-theme.git",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q --bare server/docs-site.git",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git clone -q ~/server/docs-theme.git theme-dev",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "warning: You appear to have cloned an empty repository.\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cd theme-dev",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"body { font-family: sans-serif; }\" > theme.css",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add theme.css",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add base styles\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ~",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git clone -q ~/server/docs-site.git site-setup",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "warning: You appear to have cloned an empty repository.\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cd site-setup",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"# Getting started\" > index.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git submodule add -q ../docs-theme.git docs-theme",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add index.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add docs home with theme\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ~",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git clone ~/server/docs-site.git",
+      "step": "clone",
+      "hidden": false,
+      "fail": false,
+      "out": "Cloning into 'docs-site'...\ndone.\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cd docs-site",
+      "step": "clone",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "ls",
+      "step": "clone",
+      "hidden": false,
+      "fail": false,
+      "out": "docs-theme\nindex.md\n",
+      "exit": 0
+    },
+    {
+      "cmd": "ls docs-theme",
+      "step": "clone",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git submodule status",
+      "step": "clone",
+      "hidden": false,
+      "fail": false,
+      "out": "-0c05742a476803af0572940e7e838d9703195a0b docs-theme\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git submodule update --init",
+      "step": "init",
+      "hidden": false,
+      "fail": false,
+      "out": "Submodule 'docs-theme' (/home/sam/server/docs-theme.git) registered for path 'docs-theme'\nCloning into '/home/sam/docs-site/docs-theme'...\ndone.\nSubmodule path 'docs-theme': checked out '0c05742a476803af0572940e7e838d9703195a0b'\n",
+      "exit": 0
+    },
+    {
+      "cmd": "ls docs-theme",
+      "step": "init",
+      "hidden": false,
+      "fail": false,
+      "out": "theme.css\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git -C docs-theme status",
+      "step": "init",
+      "hidden": false,
+      "fail": false,
+      "out": "HEAD detached at 0c05742\nnothing to commit, working tree clean\n",
+      "exit": 0
+    },
+    {
+      "cmd": "mkdir ~/ayla",
+      "step": "recurse",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ~/ayla",
+      "step": "recurse",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git clone --recurse-submodules ~/server/docs-site.git",
+      "step": "recurse",
+      "hidden": false,
+      "fail": false,
+      "out": "Cloning into 'docs-site'...\ndone.\nSubmodule 'docs-theme' (/home/sam/server/docs-theme.git) registered for path 'docs-theme'\nCloning into '/home/sam/ayla/docs-site/docs-theme'...\ndone.\nSubmodule path 'docs-theme': checked out '0c05742a476803af0572940e7e838d9703195a0b'\n",
+      "exit": 0
+    },
+    {
+      "cmd": "ls docs-site/docs-theme",
+      "step": "recurse",
+      "hidden": false,
+      "fail": false,
+      "out": "theme.css\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ~/theme-dev",
+      "step": "remote",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"body.dark { background: #111; }\" > dark.css",
+      "step": "remote",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add dark.css",
+      "step": "remote",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add dark mode\"",
+      "step": "remote",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push -q",
+      "step": "remote",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ~/docs-site",
+      "step": "remote",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git submodule update --remote",
+      "step": "remote",
+      "hidden": false,
+      "fail": false,
+      "out": "From /home/sam/server/docs-theme\n   0c05742..b3bf032  main       -> origin/main\nSubmodule path 'docs-theme': checked out 'b3bf032e11c425c7a810714adeb6a7d248e6ee75'\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git status",
+      "step": "remote",
+      "hidden": false,
+      "fail": false,
+      "out": "On branch main\nYour branch is up to date with 'origin/main'.\n\nChanges not staged for commit:\n  (use \"git add <file>...\" to update what will be committed)\n  (use \"git restore <file>...\" to discard changes in working directory)\n\tmodified:   docs-theme (new commits)\n\nno changes added to commit (use \"git add\" and/or \"git commit -a\")\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git diff --submodule",
+      "step": "remote",
+      "hidden": false,
+      "fail": false,
+      "out": "Submodule docs-theme 0c05742..b3bf032:\n  > Add dark mode\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git add docs-theme",
+      "step": "remote",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"Update docs theme\"",
+      "step": "remote",
+      "hidden": false,
+      "fail": false,
+      "out": "[main 07f7a63] Update docs theme\n 1 file changed, 1 insertion(+), 1 deletion(-)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git push",
+      "step": "remote",
+      "hidden": false,
+      "fail": false,
+      "out": "To /home/sam/server/docs-site.git\n   814b1cc..07f7a63  main -> main\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ~/ayla/docs-site",
+      "step": "teammate",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git pull",
+      "step": "teammate",
+      "hidden": false,
+      "fail": false,
+      "out": "From /home/sam/server/docs-site\n   814b1cc..07f7a63  main       -> origin/main\nFetching submodule docs-theme\nFrom /home/sam/server/docs-theme\n   0c05742..b3bf032  main       -> origin/main\nUpdating 814b1cc..07f7a63\nFast-forward\n docs-theme | 2 +-\n 1 file changed, 1 insertion(+), 1 deletion(-)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git status",
+      "step": "teammate",
+      "hidden": false,
+      "fail": false,
+      "out": "On branch main\nYour branch is up to date with 'origin/main'.\n\nChanges not staged for commit:\n  (use \"git add <file>...\" to update what will be committed)\n  (use \"git restore <file>...\" to discard changes in working directory)\n\tmodified:   docs-theme (new commits)\n\nno changes added to commit (use \"git add\" and/or \"git commit -a\")\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git submodule update",
+      "step": "teammate",
+      "hidden": false,
+      "fail": false,
+      "out": "Submodule path 'docs-theme': checked out 'b3bf032e11c425c7a810714adeb6a7d248e6ee75'\n",
+      "exit": 0
+    },
+    {
+      "cmd": "ls docs-theme",
+      "step": "teammate",
+      "hidden": false,
+      "fail": false,
+      "out": "dark.css\ntheme.css\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "clone": {
+      "areas": {
+        "work": [
+          {
+            "name": ".gitmodules",
+            "state": "clean"
+          },
+          {
+            "name": "docs-theme",
+            "state": "clean"
+          },
+          {
+            "name": "index.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": ".gitmodules",
+            "state": "clean"
+          },
+          {
+            "name": "docs-theme",
+            "state": "clean"
+          },
+          {
+            "name": "index.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "814b1cc",
+            "message": "Add docs home with theme"
+          },
+          "count": 1,
+          "files": [
+            ".gitmodules",
+            "docs-theme",
+            "index.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "814b1cc",
+            "message": "Add docs home with theme",
+            "parents": [],
+            "files": [
+              {
+                "name": ".gitmodules",
+                "state": "added"
+              },
+              {
+                "name": "docs-theme",
+                "state": "added"
+              },
+              {
+                "name": "index.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "814b1cc"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "814b1cc"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "814b1cc"
+        }
+      }
+    },
+    "init": {
+      "areas": {
+        "work": [
+          {
+            "name": ".gitmodules",
+            "state": "clean"
+          },
+          {
+            "name": "docs-theme",
+            "state": "clean"
+          },
+          {
+            "name": "index.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": ".gitmodules",
+            "state": "clean"
+          },
+          {
+            "name": "docs-theme",
+            "state": "clean"
+          },
+          {
+            "name": "index.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "814b1cc",
+            "message": "Add docs home with theme"
+          },
+          "count": 1,
+          "files": [
+            ".gitmodules",
+            "docs-theme",
+            "index.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "814b1cc",
+            "message": "Add docs home with theme",
+            "parents": [],
+            "files": [
+              {
+                "name": ".gitmodules",
+                "state": "added"
+              },
+              {
+                "name": "docs-theme",
+                "state": "added"
+              },
+              {
+                "name": "index.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "814b1cc"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "814b1cc"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "814b1cc"
+        }
+      }
+    },
+    "recurse": {
+      "areas": null,
+      "graph": null
+    },
+    "remote": {
+      "areas": {
+        "work": [
+          {
+            "name": ".gitmodules",
+            "state": "clean"
+          },
+          {
+            "name": "docs-theme",
+            "state": "clean"
+          },
+          {
+            "name": "index.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": ".gitmodules",
+            "state": "clean"
+          },
+          {
+            "name": "docs-theme",
+            "state": "clean"
+          },
+          {
+            "name": "index.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "07f7a63",
+            "message": "Update docs theme"
+          },
+          "count": 2,
+          "files": [
+            ".gitmodules",
+            "docs-theme",
+            "index.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "07f7a63",
+            "message": "Update docs theme",
+            "parents": [
+              "814b1cc"
+            ],
+            "files": [
+              {
+                "name": ".gitmodules",
+                "state": "same"
+              },
+              {
+                "name": "docs-theme",
+                "state": "modified"
+              },
+              {
+                "name": "index.md",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "814b1cc",
+            "message": "Add docs home with theme",
+            "parents": [],
+            "files": [
+              {
+                "name": ".gitmodules",
+                "state": "added"
+              },
+              {
+                "name": "docs-theme",
+                "state": "added"
+              },
+              {
+                "name": "index.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "07f7a63"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "07f7a63"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "07f7a63"
+        }
+      }
+    },
+    "teammate": {
+      "areas": {
+        "work": [
+          {
+            "name": ".gitmodules",
+            "state": "clean"
+          },
+          {
+            "name": "docs-theme",
+            "state": "clean"
+          },
+          {
+            "name": "index.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": ".gitmodules",
+            "state": "clean"
+          },
+          {
+            "name": "docs-theme",
+            "state": "clean"
+          },
+          {
+            "name": "index.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "07f7a63",
+            "message": "Update docs theme"
+          },
+          "count": 2,
+          "files": [
+            ".gitmodules",
+            "docs-theme",
+            "index.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "07f7a63",
+            "message": "Update docs theme",
+            "parents": [
+              "814b1cc"
+            ],
+            "files": [
+              {
+                "name": ".gitmodules",
+                "state": "same"
+              },
+              {
+                "name": "docs-theme",
+                "state": "modified"
+              },
+              {
+                "name": "index.md",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "814b1cc",
+            "message": "Add docs home with theme",
+            "parents": [],
+            "files": [
+              {
+                "name": ".gitmodules",
+                "state": "added"
+              },
+              {
+                "name": "docs-theme",
+                "state": "added"
+              },
+              {
+                "name": "index.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "07f7a63"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "07f7a63"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "07f7a63"
+        }
+      }
+    }
+  }
+}

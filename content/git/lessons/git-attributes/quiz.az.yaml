@@ -1,0 +1,62 @@
+- question: "`git ls-files --eol` bu sətri çap edir. Bu nə deməkdir?"
+  code: |
+    i/lf    w/crlf  attr/text eol=lf      	deploy.sh
+  options:
+    - "Staging area-da LF, diskdə CRLF var; qayda working directory üçün LF tələb edir"
+    - "Staging area-da CRLF, diskdə LF var; qayda staging area üçün LF tələb edir"
+    - "Fayl binary sayılır; Git onun sətir sonlarına heç vaxt toxunmur"
+  answer: 0
+  explain: "`i/` staging area-dakı, `w/` diskdəki versiyadır. Fayl yenidən yazılanda (`git restore`, clone) diskdə də LF olacaq."
+- question: "`build.sh` CRLF ilə commit olunub. Sonra `.gitattributes`-ə `*.sh text eol=lf` yazıb onu commit etdiniz. Repository-dəki `build.sh` LF olurmu?"
+  options:
+    - "Bəli: qayda commit olunan kimi bütün fayllara tətbiq olunur"
+    - "Xeyr: faylı `git add --renormalize .` ilə yenidən stage etmək lazımdır"
+    - "Xeyr: `eol=lf` yalnız diskə təsir edir, repository-də CRLF qalır"
+  answer: 1
+  explain: "Qaydalar artıq commit olunmuş fayllara özü tətbiq olunmur. `--renormalize` onları yeni qaydalarla yenidən stage edir və `i/` LF olur."
+- question: "Yeni repository-də bu komandalardan sonra neçə sətir çap olunur?"
+  code: |
+    printf '*.jpg binary\n' > .gitattributes
+    git check-attr -a photo.jpg
+  options:
+    - "1 sətir: `photo.jpg: binary: set`"
+    - "Heç nə: `photo.jpg` adlı fayl yoxdur"
+    - "4 sətir: `binary`, `diff`, `merge` və `text`"
+  answer: 2
+  explain: "`binary` makrodur və `-diff -merge -text` deməkdir. `check-attr` pattern-ə baxır, faylın diskdə olması lazım deyil."
+- question: "Komandanın bir hissəsi macOS-da, bir hissəsi Windows-dadır. Sətir sonları qaydasını hamıya necə vermək olar?"
+  options:
+    - "Hər kəs öz kompüterində `core.autocrlf true` yazsın"
+    - "Qaydaları `.gitattributes`-ə yazıb onu commit etmək"
+    - "`.gitignore`-a `*.sh` və `*.bat` sətirlərini yazmaq"
+  answer: 1
+  explain: "`.gitattributes` repository ilə birlikdə gedir. `core.autocrlf` isə hər kəsin öz ayarıdır və unudula bilər."
+- question: "`.gitattributes`-də `*.bat text eol=crlf` var. `setup.bat` macOS-da clone olunur. Diskdə hansı sətir sonları olur?"
+  options:
+    - "LF, çünki macOS LF istifadə edir"
+    - "Repository-dəki kimi, yəni LF"
+    - "CRLF, çünki `eol` sistemdən asılı deyil"
+  answer: 2
+  explain: "`eol=crlf` working directory-də hər sistemdə CRLF yazır. Repository-də fayl LF ilə saxlanır."
+- question: "`.gitattributes`-də `version.txt merge=ours` var, amma `git config merge.ours.driver true` yazılmayıb. Hər iki branch `version.txt`-in eyni sətrini fərqli dəyişib. `git merge` nə edir?"
+  options:
+    - "Sizin versiyanı saxlayır, konflikt olmur"
+    - "Digər branch-ın versiyasını götürür"
+    - "`merge driver not found` xətası verib dayanır"
+    - "Adi merge edir və burada konflikt yaranır"
+  answer: 3
+  explain: "Driver config-də təyin olunmayıbsa, Git adi qaydada birləşdirir. `merge.ours.driver` hər clone-da ayrıca qurulmalıdır."
+- question: "`git diff` `Binary files a/icon.png and b/icon.png differ` çap edir. Bu nə deməkdir?"
+  options:
+    - "Fayl dəyişib, amma Git fərqi sətir-sətir göstərmir"
+    - "Fayl korlanıb və Git onu oxuya bilmir"
+    - "Faylın yalnız adı dəyişib, məzmunu eynidir"
+  answer: 0
+  explain: "Binary fayl üçün sətir-sətir diff mənasızdır, ona görə Git yalnız faylın dəyişdiyini bildirir."
+- question: "`.gitattributes`-ə `dist/** linguist-generated` əlavə etdiniz. Bu nəyi dəyişir?"
+  options:
+    - "`git diff` `dist/`-dəki faylların dəyişikliyini göstərmir"
+    - "GitHub bu faylları PR diff-ində bağlı göstərir və dil statistikasına salmır"
+    - "`git add .` `dist/`-dəki faylları götürmür"
+  answer: 1
+  explain: "`linguist-*` atributlarını Git özü istifadə etmir, onları GitHub oxuyur."

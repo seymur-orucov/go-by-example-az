@@ -1,0 +1,70 @@
+- question: "`docs-site`-ın `docs-theme` submodule-u var. Bu komandalardan sonra nə çap olunur?"
+  code: |
+    git clone ~/server/docs-site.git
+    cd docs-site
+    ls docs-theme
+  options:
+    - "`theme.css`"
+    - "Heç nə: `docs-theme` qovluğu boşdur"
+    - "`ls: cannot access 'docs-theme': No such file or directory`"
+  answer: 1
+  explain: "Adi clone submodule qovluğunu yaradır, amma onu doldurmur; fayllar `git submodule update --init`-dən sonra yaranır."
+- question: "`git submodule status` çıxışında sətir `-` ilə başlayır. Bu nə deməkdir?"
+  options:
+    - "Submodule hələ hazırlanmayıb: o, clone olunmayıb"
+    - "Submodule-da commit olunmamış dəyişiklik var"
+    - "Submodule-un repository-si serverdən silinib"
+  answer: 0
+  explain: "`-` initialize olunmamış submodule-u bildirir; `git submodule update --init` onu clone edir."
+- question: "Hansı komanda repository-ni submodule-ları ilə birlikdə bir dəfəyə clone edir?"
+  options:
+    - "`git clone --init ~/server/docs-site.git`"
+    - "`git clone --submodule ~/server/docs-site.git`"
+    - "`git clone --recurse-submodules ~/server/docs-site.git`"
+  answer: 2
+  explain: "`--recurse-submodules` clone-dan sonra submodule-ları da clone edir; `--init` və `--submodule` adlı clone seçimi yoxdur."
+- question: "`git submodule update --init`-dən sonra `git -C docs-theme status`-un birinci sətri nədir?"
+  options:
+    - "`On branch main`"
+    - "`No commits yet`"
+    - "`HEAD detached at <hash>`"
+  answer: 2
+  explain: "Git submodule-u gitlink-dəki commit-ə keçirir, branch-a yox, ona görə submodule-da HEAD ayrılmış olur."
+- question: "Theme-in serverdəki `main`-ində yeni commit var. Hansı komanda submodule-u o commit-ə keçirir?"
+  options:
+    - "`git submodule update`"
+    - "`git submodule update --remote`"
+    - "`git submodule update --init`"
+  answer: 1
+  explain: "`--remote` submodule-u serverdəki branch-ın son commit-inə keçirir; onsuz `update` gitlink-dəki köhnə commit-də qalır."
+- question: "Theme-ə əvvəlcə `Add print styles`, sonra `Fix link color` commit-i gəlib. Bu komandalardan sonra `Submodule docs-theme ...:` sətrinin altında nə çap olunur?"
+  code: |
+    git submodule update --remote
+    git diff --submodule
+  options:
+    - "`< Fix link color` və `< Add print styles`"
+    - "`-Subproject commit ...` və `+Subproject commit ...`"
+    - "`> Fix link color` və `> Add print styles`"
+  answer: 2
+  explain: "`--submodule` hash-lər yerinə gələn commit-ləri `>` ilə sadalayır, ən yenisi yuxarıda."
+- question: "Siz `git submodule update --remote` etdiniz, theme yeni commit-ə keçdi. Komanda yoldaşlarınız da onu alsın deyə nə etməlisiniz?"
+  options:
+    - "`git add docs-theme`, commit və push etmək"
+    - "Heç nə: theme serverdə onsuz da yenidir"
+    - "`git -C docs-theme push` etmək"
+  answer: 0
+  explain: "Başqaları gitlink-dəki commit-i alır; yeni gitlink-i commit edib push etməsəniz, onlarda köhnə commit qalır."
+- question: "Ayla `git pull` etdi, `git status` `modified: docs-theme (new commits)` yazır. Hansı komanda lazımdır?"
+  options:
+    - "`git add docs-theme` və commit"
+    - "`git submodule update`"
+    - "`git pull` bir daha"
+  answer: 1
+  explain: "Pull gitlink-i yeniləyib, qovluq isə köhnə commit-dədir; `git submodule update` onu gitlink-dəki commit-ə keçirir. `git add` isə yeniləməni geri qaytarardı."
+- question: "`git config submodule.recurse true`-dan sonra nə dəyişir?"
+  options:
+    - "`git pull` submodule-u da gitlink-dəki commit-ə keçirir"
+    - "Adi `git clone` submodule-ları da clone edir"
+    - "`git submodule update` həmişə `--remote` ilə işləyir"
+  answer: 0
+  explain: "Ayar `pull` kimi komandalara `--recurse-submodules` əlavə edir; clone-a təsir etmir, `--remote`-a da aidiyyəti yoxdur."

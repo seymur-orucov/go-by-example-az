@@ -1,0 +1,66 @@
+- question: "`git apply fix.patch` uğurla işlədi. İndi `git log --oneline` nə göstərir?"
+  options:
+    - "Yeni commit: müəllifi patch-i yazan adamdır"
+    - "Əvvəlki commit-ləri: `git apply` commit yaratmır"
+    - "Yeni commit: müəllifi `git apply`-ı işlədən adamdır"
+  answer: 1
+  explain: "`git apply` dəyişikliyi yalnız fayllara yazır. Commit-i sonra özünüz etməlisiniz."
+- question: "Yeni repository-də bu komandalardan sonra `git status --short` nə çap edir?"
+  code: |
+    echo "milk" > list.txt
+    git add list.txt
+    git commit -q -m "Start list"
+    echo "bread" >> list.txt
+    git diff > fix.patch
+    git restore list.txt
+    git apply fix.patch
+    git status --short
+  options:
+    - "`M  list.txt` və `?? fix.patch`"
+    - "Yalnız `?? fix.patch`"
+    - "` M list.txt` və `?? fix.patch`"
+    - "Heç nə: working directory təmizdir"
+  answer: 2
+  explain: "`git apply` faylı dəyişir, amma stage etmir, ona görə ` M`. `fix.patch` özü də yeni, izlənməyən fayldır."
+- question: "Patch faylının birinci sətrindəki `Mon Sep 17 00:00:00 2001` nədir?"
+  options:
+    - "Hər patch-də eyni olan sabit tarix"
+    - "Commit-in yaradıldığı tarix"
+    - "Patch faylının yaradıldığı tarix"
+  answer: 0
+  explain: "Bu tarix faylın `git format-patch`-dən çıxdığını göstərir. Commit-in vaxtı `Date:` sətrindədir."
+- question: "Branch-da üç commit var: `Add milk`, `Add bread`, `Add eggs` (sonuncu ən yenidir). `git format-patch -2` hansı faylları yaradır?"
+  options:
+    - "`0001-Add-milk.patch` və `0002-Add-bread.patch`"
+    - "`0001-Add-bread.patch` və `0002-Add-eggs.patch`"
+    - "`0001-Add-eggs.patch` və `0002-Add-bread.patch`"
+  answer: 1
+  explain: "`-2` son iki commit-i götürür. Fayllar köhnədən yeniyə nömrələnir."
+- question: "Sam Ayla-nın patch-ini `git am` ilə tətbiq edir. Yeni commit-in `AuthorDate` vaxtı haradan gəlir?"
+  options:
+    - "Sam-ın `git am`-i işlətdiyi vaxtdan"
+    - "Patch faylının diskdə yarandığı vaxtdan"
+    - "Patch-in `Date:` sətrindən"
+  answer: 2
+  explain: "`git am` müəllifi `From:`, vaxtı `Date:`, mesajı `Subject:` sətrindən götürür. `CommitDate` isə `git am`-in işlədiyi vaxtdır."
+- question: "`git apply --check fix.patch` patch tətbiq oluna biləndə nə çap edir?"
+  options:
+    - "Heç nə"
+    - "`Applying: ...`"
+    - "`1 file changed`"
+  answer: 0
+  explain: "`--check` faylları dəyişmir. Problem yoxdursa, susur; problem varsa, `patch does not apply` xətası verir."
+- question: "Server-də olmayan hər commit-i müəllifi və mesajı ilə ayrıca fayla çıxarmaq lazımdır. Hansı komanda?"
+  options:
+    - "`git diff origin/main > all.patch`"
+    - "`git format-patch -1 HEAD`"
+    - "`git format-patch origin/main..HEAD`"
+  answer: 2
+  explain: "`git diff` müəllifsiz bir diff yazır, `-1 HEAD` isə yalnız son commit-i götürür."
+- question: "`git am` patch-i tətbiq edə bilmədi və dayandı. `git am`-dən əvvəlki vəziyyətə hansı komanda qaytarır?"
+  options:
+    - "`git am --abort`"
+    - "`git am --3way`"
+    - "`git apply --check`"
+  answer: 0
+  explain: "`--abort` patch əməliyyatını dayandırır və faylları əvvəlki halına qaytarır. `--3way` isə yenidən tətbiq etməyə çalışır."

@@ -745,3 +745,15 @@ Done:
 - `hook-post-checkout` (`terminal`, a shop API): previous HEAD, new HEAD and the flag (`git restore` runs it with 0), a dependency reminder, the exit status does not undo the switch.
 - `hook-post-update` (`terminal`, a static site on a bare server): server hooks in the bare repository, a `post-receive` deploy with `--work-tree`, `post-update` arguments and `update-server-info`, a `pre-receive` rejection.
 - The reviewer removed a fenced code block and an id-less outro heading that the text-lesson renderer would show unstyled, made each fact taught once with back-references, fixed the clone note in `hook-post-checkout` and replaced near-duplicate quiz questions.
+
+### 83. Git module 13 "Dərinlik"
+Same process. With this module every node of part 1 ("Hissə 1 · Git") is written except the three `diagram` nodes (`remotes-and-clone` is the pilot on `feat/diagram-kind`; `force-push` and `pull-requests` wait for its approval).
+
+Done:
+- `git-objects` (`state`, a haiku collection): porcelain vs plumbing, the object types in `.git/objects`, `git hash-object`, `--batch-all-objects`, following HEAD → ref → commit → tree → blob, what a new commit adds.
+- `git-attributes` (`terminal`, cross-platform build scripts): CRLF in the repository, `text=auto` / `eol=lf` / `eol=crlf`, `--renormalize`, `git ls-files --eol`, `binary`, `linguist-generated`, `merge=ours`.
+- `git-lfs` (`terminal`, a game prototype's textures): why big blobs hurt, `git lfs install` / `track`, pointer files, `.git/lfs/objects`, push and clone (LFS works against a local bare repository).
+- `submodules` (`state`, a brand site with a UI kit): `git submodule add`, `.gitmodules`, the `160000 commit` gitlink, a moved submodule, `protocol.file.allow` (Git 2.38.1) explained once, submodule vs subtree.
+- `submodules-update` (`terminal`, a docs site with a theme): an empty folder after a plain clone, `update --init`, `--recurse-submodules`, `update --remote`, teammates after `git pull`.
+- `git-patch` (`terminal`, an email-patch library): `git diff > file` + `git apply`, `format-patch`, `git am` keeping the author.
+- Determinism fixes in the sessions: `.gitmodules` URLs rewritten to `/home/sam/...` (or relative) in hidden commands, a fixed `openssl` stream for the fake texture, single `git config` reads instead of `--get-regexp`.

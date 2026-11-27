@@ -1,0 +1,7 @@
+# The visuals are recorded from the real repository by `pnpm content:run`.
+# The graph shows only the parent repository (docs-site), not the submodule.
+clone:
+init:
+recurse:
+remote:
+teammate:

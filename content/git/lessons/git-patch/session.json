@@ -1,0 +1,514 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir server ayla",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q --bare server/lib-tiny.git",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git clone -q ~/server/lib-tiny.git",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "warning: You appear to have cloned an empty repository.\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cd lib-tiny",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"# upper: print the text in capitals\" \"upper() {\" \"  echo \\\"\\$1\\\" | tr a-z A-Z\" \"}\" \"\" \"# trim: remove spaces around the text\" \"trim() {\" \"  echo \\\"\\$1\\\" | sed 's/^ *//'\" \"}\" > strings.sh",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add strings.sh",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add upper and trim\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ~",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git clone -q ~/server/lib-tiny.git ayla/lib-tiny",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ayla/lib-tiny",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "sed -i 's|s/^ \\*//|s/^ *//; s/ *$//|' strings.sh",
+      "step": "diff-file",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git diff > trim.patch",
+      "step": "diff-file",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cat trim.patch",
+      "step": "diff-file",
+      "hidden": false,
+      "fail": false,
+      "out": "diff --git a/strings.sh b/strings.sh\nindex a8cfce2..5b6a70e 100644\n--- a/strings.sh\n+++ b/strings.sh\n@@ -5,5 +5,5 @@ upper() {\n \n # trim: remove spaces around the text\n trim() {\n-  echo \"$1\" | sed 's/^ *//'\n+  echo \"$1\" | sed 's/^ *//; s/ *$//'\n }\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ~/lib-tiny",
+      "step": "apply",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git apply --check ../ayla/lib-tiny/trim.patch",
+      "step": "apply",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git apply ../ayla/lib-tiny/trim.patch",
+      "step": "apply",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status --short",
+      "step": "apply",
+      "hidden": false,
+      "fail": false,
+      "out": " M strings.sh\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "apply",
+      "hidden": false,
+      "fail": false,
+      "out": "de8da21 Add upper and trim\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git apply --check ../ayla/lib-tiny/trim.patch",
+      "step": "apply",
+      "hidden": false,
+      "fail": true,
+      "out": "error: patch failed: strings.sh:5\nerror: strings.sh: patch does not apply\n",
+      "exit": 1
+    },
+    {
+      "cmd": "cd ~/ayla/lib-tiny",
+      "step": "format-patch",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "rm trim.patch",
+      "step": "format-patch",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git -c user.name=\"Ayla Karimova\" -c user.email=\"ayla@example.com\" commit -q -am \"Make trim remove trailing spaces\"",
+      "step": "format-patch",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git format-patch -1 HEAD",
+      "step": "format-patch",
+      "hidden": false,
+      "fail": false,
+      "out": "0001-Make-trim-remove-trailing-spaces.patch\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cat 0001-Make-trim-remove-trailing-spaces.patch",
+      "step": "format-patch",
+      "hidden": false,
+      "fail": false,
+      "out": "From 9cb41f5f1692fa9e83ba6eb01248c3b3355e29c6 Mon Sep 17 00:00:00 2001\nFrom: Ayla Karimova <ayla@example.com>\nDate: Thu, 15 Jan 2026 09:22:00 +0000\nSubject: [PATCH] Make trim remove trailing spaces\n\n---\n strings.sh | 2 +-\n 1 file changed, 1 insertion(+), 1 deletion(-)\n\ndiff --git a/strings.sh b/strings.sh\nindex a8cfce2..5b6a70e 100644\n--- a/strings.sh\n+++ b/strings.sh\n@@ -5,5 +5,5 @@ upper() {\n \n # trim: remove spaces around the text\n trim() {\n-  echo \"$1\" | sed 's/^ *//'\n+  echo \"$1\" | sed 's/^ *//; s/ *$//'\n }\n-- \n2.56.1.windows.1\n\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ~/lib-tiny",
+      "step": "am",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git restore strings.sh",
+      "step": "am",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git am ../ayla/lib-tiny/0001-Make-trim-remove-trailing-spaces.patch",
+      "step": "am",
+      "hidden": false,
+      "fail": false,
+      "out": "Applying: Make trim remove trailing spaces\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "am",
+      "hidden": false,
+      "fail": false,
+      "out": "7c9f1f5 Make trim remove trailing spaces\nde8da21 Add upper and trim\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log -1 --format=fuller",
+      "step": "am",
+      "hidden": false,
+      "fail": false,
+      "out": "commit 7c9f1f5414ecd72bc15cee6273e5c5758c9b2809\nAuthor:     Ayla Karimova <ayla@example.com>\nAuthorDate: Thu Jan 15 09:22:00 2026 +0000\nCommit:     Sam Lee <sam@example.com>\nCommitDate: Thu Jan 15 09:27:00 2026 +0000\n\n    Make trim remove trailing spaces\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "diff-file": {
+      "areas": {
+        "work": [
+          {
+            "name": "strings.sh",
+            "state": "modified"
+          },
+          {
+            "name": "trim.patch",
+            "state": "untracked"
+          }
+        ],
+        "index": [
+          {
+            "name": "strings.sh",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "de8da21",
+            "message": "Add upper and trim"
+          },
+          "count": 1,
+          "files": [
+            "strings.sh"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "de8da21",
+            "message": "Add upper and trim",
+            "parents": [],
+            "files": [
+              {
+                "name": "strings.sh",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "de8da21"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "de8da21"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "de8da21"
+        }
+      }
+    },
+    "apply": {
+      "areas": {
+        "work": [
+          {
+            "name": "strings.sh",
+            "state": "modified"
+          }
+        ],
+        "index": [
+          {
+            "name": "strings.sh",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "de8da21",
+            "message": "Add upper and trim"
+          },
+          "count": 1,
+          "files": [
+            "strings.sh"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "de8da21",
+            "message": "Add upper and trim",
+            "parents": [],
+            "files": [
+              {
+                "name": "strings.sh",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "de8da21"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "de8da21"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "de8da21"
+        }
+      }
+    },
+    "format-patch": {
+      "areas": {
+        "work": [
+          {
+            "name": "0001-Make-trim-remove-trailing-spaces.patch",
+            "state": "untracked"
+          },
+          {
+            "name": "strings.sh",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "strings.sh",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "9cb41f5",
+            "message": "Make trim remove trailing spaces"
+          },
+          "count": 2,
+          "files": [
+            "strings.sh"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "9cb41f5",
+            "message": "Make trim remove trailing spaces",
+            "parents": [
+              "de8da21"
+            ],
+            "files": [
+              {
+                "name": "strings.sh",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "de8da21",
+            "message": "Add upper and trim",
+            "parents": [],
+            "files": [
+              {
+                "name": "strings.sh",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "9cb41f5"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "de8da21"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "9cb41f5"
+        }
+      }
+    },
+    "am": {
+      "areas": {
+        "work": [
+          {
+            "name": "strings.sh",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "strings.sh",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "7c9f1f5",
+            "message": "Make trim remove trailing spaces"
+          },
+          "count": 2,
+          "files": [
+            "strings.sh"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "7c9f1f5",
+            "message": "Make trim remove trailing spaces",
+            "parents": [
+              "de8da21"
+            ],
+            "files": [
+              {
+                "name": "strings.sh",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "de8da21",
+            "message": "Add upper and trim",
+            "parents": [],
+            "files": [
+              {
+                "name": "strings.sh",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "7c9f1f5"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "de8da21"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "7c9f1f5"
+        }
+      }
+    }
+  }
+}

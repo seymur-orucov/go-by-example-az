@@ -1,0 +1,64 @@
+$ git log --oneline
+e2f096b Add first haiku
+$ git rev-parse HEAD
+e2f096b282b37daba440318e65a97c20d23e4e5e
+$ git cat-file -t HEAD
+commit
+$ find .git/objects -type f | sort
+.git/objects/1f/8929249147d63baa92dba9a32d4bcda4d7b34a
+.git/objects/61/3f594680d3c632939735bb117a670d239d937c
+.git/objects/68/3c77f80a9b2e353e384c9c41c2c0269b0ecc9b
+.git/objects/76/f8436a0b9c19b6cdf7349fb745ab732ea13ce2
+.git/objects/8a/7d79f8102cc4ed8357d72b69fa80c3e8e866f7
+.git/objects/ca/468a54c3005e2a00a95448de88bb83cbf38c2b
+.git/objects/e2/f096b282b37daba440318e65a97c20d23e4e5e
+$ git cat-file --batch-all-objects --batch-check
+1f8929249147d63baa92dba9a32d4bcda4d7b34a blob 17
+613f594680d3c632939735bb117a670d239d937c blob 21
+683c77f80a9b2e353e384c9c41c2c0269b0ecc9b tag 132
+76f8436a0b9c19b6cdf7349fb745ab732ea13ce2 blob 23
+8a7d79f8102cc4ed8357d72b69fa80c3e8e866f7 tree 38
+ca468a54c3005e2a00a95448de88bb83cbf38c2b tree 109
+e2f096b282b37daba440318e65a97c20d23e4e5e commit 166
+$ git ls-tree HEAD spring.txt
+100644 blob 613f594680d3c632939735bb117a670d239d937c	spring.txt
+$ git hash-object spring.txt
+613f594680d3c632939735bb117a670d239d937c
+$ find .git/objects -type f | wc -l
+7
+$ echo "First frost" | git hash-object --stdin
+48c691a2a3e0197fabf856bc6d710a85e16ff705
+$ find .git/objects -type f | wc -l
+7
+$ echo "First frost" | git hash-object -w --stdin
+48c691a2a3e0197fabf856bc6d710a85e16ff705
+$ find .git/objects -type f | wc -l
+8
+$ cat .git/HEAD
+ref: refs/heads/main
+$ git rev-parse main
+e2f096b282b37daba440318e65a97c20d23e4e5e
+$ git cat-file -p main
+tree ca468a54c3005e2a00a95448de88bb83cbf38c2b
+author Sam Lee <sam@example.com> 1768468080 +0000
+committer Sam Lee <sam@example.com> 1768468080 +0000
+
+Add first haiku
+$ git cat-file -p HEAD^{tree}
+100644 blob 76f8436a0b9c19b6cdf7349fb745ab732ea13ce2	autumn.txt
+040000 tree 8a7d79f8102cc4ed8357d72b69fa80c3e8e866f7	drafts
+100644 blob 613f594680d3c632939735bb117a670d239d937c	spring.txt
+$ git cat-file -p HEAD:drafts
+100644 blob 1f8929249147d63baa92dba9a32d4bcda4d7b34a	winter.txt
+$ git cat-file -p HEAD:drafts/winter.txt
+Snow on the roof
+$ echo "Warm wind" >> spring.txt
+$ git commit -am "Extend spring haiku"
+[main 7f98dd6] Extend spring haiku
+ 1 file changed, 1 insertion(+)
+$ find .git/objects -type f | wc -l
+11
+$ git cat-file -p HEAD^{tree}
+100644 blob 76f8436a0b9c19b6cdf7349fb745ab732ea13ce2	autumn.txt
+040000 tree 8a7d79f8102cc4ed8357d72b69fa80c3e8e866f7	drafts
+100644 blob 32172ec80f4677842a1ab1bc0e6d33655e4428c8	spring.txt

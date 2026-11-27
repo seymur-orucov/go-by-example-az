@@ -1,0 +1,11 @@
+rules:
+  - "Patch diff yazılmış mətn faylıdır: `git diff > fix.patch` onu yaradır."
+  - "`git apply` patch-i yalnız fayllara yazır: commit yaratmır, stage etmir, müəllif saxlamır."
+  - "`git apply --check` heç nəyi dəyişmədən patch-in tətbiq oluna biləcəyini yoxlayır."
+  - "`git format-patch -1 HEAD` commit-i `0001-<mesaj>.patch` faylına çevirir: `From:`, `Date:`, `Subject: [PATCH] ...` və diff."
+  - "`git am <fayl>` patch-dən commit yaradır: müəllif patch-dəki adamdır, committer isə `git am`-i işlədən."
+  - "Patch tətbiq olunmayanda `git am --abort` əvvəlki vəziyyətə qaytarır, `--3way` three-way merge-i yoxlayır."
+practices:
+  - "Patch-i tətbiq etməzdən əvvəl `git apply --check` işlədin."
+  - "Commit-i göndərəndə `git diff` yox, `git format-patch` işlədin ki, müəllif və mesaj itməsin."
+  - "Bir neçə commit üçün `git format-patch origin/main..HEAD` yazın: hər commit ayrıca fayl olur."

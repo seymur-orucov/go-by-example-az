@@ -171,7 +171,7 @@ Once the Go prototype is live, the site becomes a unified platform.
   - [x] Git pilot lessons `three-areas` and `first-commit` — approved by the user (2026-11-27)
   - [x] Lesson kinds `concept` and `compare` on the site (text lessons, `flow` / `compare` visuals)
   - [x] Git pilot lessons `what-is-version-control` (`concept`) and `git-vs-other-vcs` (`compare`) — approved by the user (2026-11-27)
-  - [ ] The remaining Git lessons, module by module (written, awaiting the user's review: "Əsaslar" — `what-is-a-repository`, `install-git`, `git-config`, `git-init`; "İlk commit-lər" — `git-status`, `diff-unstaged`, `diff-staged`, `gitignore`). Commit-graph visual (`vis: graph`) done; pilot `commit-snapshot` approved (2026-11-27); "Tarixçə" written, awaiting review — `git-log`, `git-log-options`, `head`, `diff-between-commits`, `commit-messages`. "Branch-lar", "Merge" and "Remote-lar" (without the diagram pilot) written, awaiting review., "Tag-lar" written. Next: "Səhvləri düzəltmək"
+  - [x] The remaining Git lessons of part 1, module by module (written by subagents, reviewed, awaiting the user's review), except the `diagram` nodes: `remotes-and-clone` (pilot, `feat/diagram-kind`), `force-push`, `pull-requests`
   - [ ] CI: run `pnpm content:run` and fail on a diff (needs a pinned Git version: output differs slightly between versions)
   - [x] Technology statuses computed from content (`lib/technologies.ts`: ready / started / soon) feed the v2 header nav, mega menu, Ctrl+K and the home stack map (`applyTechStates`); the hand-written `TECHS` statuses only remain as the fallback for technologies without content
 - [ ] Two kinds of roadmap:
