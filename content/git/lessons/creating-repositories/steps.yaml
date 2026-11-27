@@ -1,0 +1,109 @@
+# Drawn mockups (ui lesson): the new repository form, the form left empty, the Quick setup page
+# and the Code button. Simplified; labels follow GitHub Docs where the docs name them and are
+# paraphrased elsewhere.
+new-repo:
+  vis:
+    kind: ui
+    caption: "New repository forması (sadələşdirilmiş)"
+    url: "github.com/new"
+    main:
+      - type: heading
+        text: "Create a new repository"
+      - type: row
+        items:
+          - type: select
+            label: "Owner"
+            value: "sam-lee"
+            mark: "Sahib: şəxsi hesab və ya üzv olduğunuz təşkilat."
+          - type: field
+            label: "Repository name"
+            value: "habit-tracker"
+            state: ok
+            mark: "Ünvanın son hissəsi: `github.com/sam-lee/habit-tracker`."
+      - type: field
+        label: "Description (optional)"
+        value: "Track daily habits from the terminal"
+      - type: check
+        label: "Public"
+        radio: true
+      - type: check
+        label: "Private"
+        radio: true
+        checked: true
+        mark: "Görünmə: \"Private və public repository\" dərsi."
+      - type: text
+        text: "README, .gitignore, license"
+        mark: "Üç fayl seçimi: növbəti addımda."
+      - type: button
+        label: "Create repository"
+        tone: primary
+keep-empty:
+  vis:
+    kind: ui
+    caption: "Lokal repository üçün: üç seçim boş (sadələşdirilmiş)"
+    url: "github.com/new"
+    main:
+      - type: field
+        label: "Repository name"
+        value: "habit-tracker"
+        state: ok
+      - type: check
+        label: "Add README"
+        checked: false
+        mark: "Boş: Sam-ın öz `README.md`-si var."
+      - type: select
+        label: ".gitignore template"
+        value: "None"
+      - type: select
+        label: "License"
+        value: "None"
+        mark: "`.gitignore` və license-i push-dan sonra da əlavə etmək olar."
+      - type: button
+        label: "Create repository"
+        tone: primary
+    note: "Seçimlərdən biri işarələnsə, GitHub ilk commit-i yaradır və Sam-ın ilk push-u rədd olunur."
+push:
+  vis:
+    kind: ui
+    caption: "Quick setup səhifəsi (sadələşdirilmiş)"
+    url: "github.com/sam-lee/habit-tracker"
+    main:
+      - type: heading
+        text: "Quick setup"
+      - type: row
+        items:
+          - type: button
+            label: "HTTPS"
+          - type: button
+            label: "SSH"
+          - type: code
+            text: "https://github.com/sam-lee/habit-tracker.git"
+            mark: "Repository-nin URL-i: `git remote add origin`-dən sonra yazılır."
+      - type: text
+        text: "…or push an existing repository from the command line"
+      - type: code
+        text: "git remote add origin https://github.com/sam-lee/habit-tracker.git\ngit branch -M main\ngit push -u origin main"
+        mark: "Mövcud lokal repository üçün üç komanda."
+    note: "Repository boş olduğu üçün səhifədə fayl siyahısı yoxdur."
+clone-first:
+  vis:
+    kind: ui
+    caption: "Code düyməsi: clone URL-i (sadələşdirilmiş)"
+    url: "github.com/sam-lee/habit-tracker"
+    main:
+      - type: row
+        items:
+          - type: select
+            label: "Branch"
+            value: "main"
+          - type: button
+            label: "Code"
+            tone: primary
+            mark: "Clone URL-i bu düymənin menyusundadır."
+      - type: code
+        label: "HTTPS"
+        text: "https://github.com/sam-lee/habit-tracker.git"
+        mark: "Bu URL `git clone`-a verilir."
+      - type: list
+        items:
+          - { title: "README.md", icon: file }

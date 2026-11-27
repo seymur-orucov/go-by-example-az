@@ -1,0 +1,109 @@
+# Drawn mockups (ui lesson): the Public profile settings, the pin picker, the contribution
+# graph and the Emails settings. Simplified; labels follow GitHub Docs where the docs name them.
+public-profile:
+  vis:
+    kind: ui
+    caption: "Settings → Public profile (sadələşdirilmiş)"
+    url: "github.com/settings/profile"
+    main:
+      - type: heading
+        text: "Public profile"
+      - type: field
+        label: "Name"
+        value: "Sam Lee"
+        mark: "Göstərilən ad. İstifadəçi adı `sam-lee` bundan asılı deyil."
+      - type: field
+        label: "Bio"
+        value: "Frontend developer. I build small tools for travel and cooking."
+        mark: "Ən çox 160 simvol."
+      - type: field
+        label: "Link to social profile"
+        value: "https://samlee.example"
+        mark: "**Social accounts** altında ən çox dörd link."
+      - type: button
+        label: "Update profile"
+        tone: primary
+        mark: "Ad, bio, linklər və yer bu düymə ilə saxlanır."
+    side:
+      - type: box
+        label: "Profile Picture"
+        shape: round
+        mark: "**Edit** → **Upload a photo...**: PNG, JPG və ya GIF, 1 MB-dan kiçik."
+      - type: button
+        label: "Edit"
+pinned:
+  vis:
+    kind: ui
+    caption: "Customize your pins pəncərəsi (sadələşdirilmiş)"
+    url: "github.com/sam-lee"
+    main:
+      - type: heading
+        text: "Customize your pins"
+      - type: field
+        label: "Filter repositories and gists"
+        placeholder: "Filter"
+      - type: check
+        label: "sam-lee/portfolio"
+        checked: true
+        mark: "Seçilmiş repository profildə **Pinned** bölməsində görünür."
+      - type: check
+        label: "sam-lee/trip-planner"
+        checked: true
+      - type: check
+        label: "sam-lee/recipe-book"
+        checked: true
+      - type: check
+        label: "sam-lee/practice-2024"
+      - type: button
+        label: "Save pins"
+        tone: primary
+        mark: "Repository və gist birlikdə ən çox altı element seçmək olar."
+contribution-graph:
+  vis:
+    kind: ui
+    caption: "Profildə contribution graph (sadələşdirilmiş)"
+    url: "github.com/sam-lee"
+    main:
+      - type: heading
+        text: "48 contributions in the last year"
+        mark: "Son bir ildə sayılan bütün töhfələr."
+      - type: box
+        label: "Contribution calendar: one square per day"
+        shape: wide
+        mark: "Hər kvadrat bir gündür. Rəng tündləşdikcə töhfə çoxdur."
+      - type: heading
+        text: "Contribution activity"
+      - type: list
+        items:
+          - { title: "Created 6 commits in 2 repositories", sub: "sam-lee/portfolio, sam-lee/trip-planner", meta: "November" }
+          - { title: "Opened 1 pull request", sub: "sam-lee/recipe-book", meta: "November", icon: open }
+        mark: "Seçilmiş dövrün töhfələri: commit-lər, PR-lar, issue-lar."
+    note: "Default branch-da olmayan və fork-da edilən commit-lər, həmçinin hesaba bağlı olmayan email ilə edilən commit-lər burada sayılmır."
+private-email:
+  vis:
+    kind: ui
+    caption: "Settings → Emails (sadələşdirilmiş)"
+    url: "github.com/settings/emails"
+    main:
+      - type: heading
+        text: "Emails"
+      - type: list
+        items:
+          - { title: "sam@example.com", meta: "Primary" }
+      - type: check
+        label: "Keep my email addresses private"
+        sub: "12345678+sam-lee@users.noreply.github.com"
+        checked: true
+        mark: "Saytdakı əməliyyatlarda commit-ə noreply ünvanı yazılır."
+      - type: check
+        label: "Block command line pushes that expose my email"
+        checked: true
+        mark: "Ən son commit-də gizli email varsa, push rədd edilir."
+    side:
+      - type: list
+        items:
+          - { title: "Public profile", icon: user }
+          - { title: "Account" }
+          - { title: "**Emails**" }
+          - { title: "Password and authentication", icon: key }
+    note: "Nömrə `12345678` nümunədir. Hər hesabın öz nömrəsi var."

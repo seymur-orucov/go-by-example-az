@@ -1,0 +1,61 @@
+- question: "Sam-ın kompüterində commit-ləri olan lokal repository var. GitHub-da repository yaradanda formada nəyi seçməlidir?"
+  options:
+    - "Add README, `.gitignore` və license: üçünü də"
+    - "Üçünü də boş saxlamalı"
+    - "Yalnız Add README"
+  answer: 1
+  explain: "Seçimlərdən biri işarələnsə, GitHub ilk commit-i yaradır və lokal tarixçə ilə ortaq commit olmur. Bu faylları push-dan sonra əlavə etmək olar."
+- question: "Repository GitHub-da **Add README** ilə yaradılıb. Sam lokal repository-də bu komandaları işlədir. Nə olur?"
+  code: |
+    git remote add origin https://github.com/sam-lee/habit-tracker.git
+    git push -u origin main
+  options:
+    - "Push qəbul olunur, GitHub-dakı README silinir"
+    - "Git iki README-ni özü birləşdirir və push edir"
+    - "Push rədd olunur: `! [rejected] main -> main (fetch first)`"
+  answer: 2
+  explain: "Serverdə Sam-da olmayan commit var: GitHub-ın yaratdığı README commit-i. Push serverdəki branch-ı yalnız irəli apara bilər."
+- question: "Hansı komanda lokal repository-yə GitHub-dakı repository-nin ünvanını əlavə edir?"
+  options:
+    - "`git remote add origin <URL>`"
+    - "`git clone <URL>`"
+    - "`git push -u origin main`"
+    - "`git branch -M main`"
+  answer: 0
+  explain: "`git remote add` ad və URL-i yadda saxlayır, serverə qoşulmur. `git clone` isə yeni qovluqda yeni repository yaradır."
+- question: "Quick setup-dakı `git branch -M main` nə edir?"
+  options:
+    - "Serverdə `main` branch-ını yaradır"
+    - "`main`-i `origin/main`-ə bağlayır"
+    - "Cari branch-ın adını `main` edir"
+  answer: 2
+  explain: "Bu, lokal branch-ın adını dəyişir, məsələn köhnə `master`-i. Branch artıq `main`-dirsə, heç nə dəyişmir. Serverdə branch-ı push yaradır, upstream-i isə `-u` təyin edir."
+- question: "Boş repository-yə ilk `git push -u origin main` `* [new branch] main -> main` sətrini çap etdi. Bu nə deməkdir?"
+  options:
+    - "Lokal repository-də yeni `main` branch-ı yarandı"
+    - "Serverdə `main` yox idi, push onu yaratdı"
+    - "Push rədd olundu, `main` yenidən yaradılmalıdır"
+  answer: 1
+  explain: "Boş repository-də heç bir branch yoxdur. Push serverdə `main`-i yaradır, ona görə köhnə hash da göstərilmir."
+- question: "Public repository-də license faylı yoxdur. Bu nə deməkdir?"
+  options:
+    - "Hüquqlar müəllifdə qalır: başqaları kodu köçürüb yaya bilməz"
+    - "Kod açıq mənbəli sayılır: hər kəs onu istədiyi kimi işlədə bilər"
+    - "GitHub repository-ni avtomatik olaraq private edir"
+  answer: 0
+  explain: "License olmasa, müəllif hüququ qanunları işləyir. GitHub-ın qaydalarına görə repository-yə baxmaq və fork etmək yenə mümkündür."
+- question: "Bu adlardan hansını GitHub repository adı kimi dəyişmədən saxlayır?"
+  options:
+    - "`habit tracker`"
+    - "`vərdiş-izləyici`"
+    - "`habit/tracker`"
+    - "`habit_tracker.v2`"
+  answer: 3
+  explain: "Adda yalnız ASCII hərflər, rəqəmlər və `.`, `-`, `_` ola bilər. Boşluq, `/` və `ə` kimi simvolları GitHub `-` ilə əvəz edir."
+- question: "Repository GitHub-da README ilə yaradılıb və Sam onu `git clone` ilə gətirib. `git branch -vv` `main` üçün nə göstərir?"
+  options:
+    - "`[origin/main]`: upstream clone zamanı təyin olunub"
+    - "Upstream yoxdur: əvvəl `git push -u origin main` lazımdır"
+    - "`[upstream/main]`: clone remote-u `upstream` adlandırır"
+  answer: 0
+  explain: "Clone `origin` remote-unu və `main`-in upstream-ini özü qurur. Bu yolda `git remote add` və `-u` lazım olmur."

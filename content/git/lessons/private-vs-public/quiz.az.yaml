@@ -1,0 +1,63 @@
+- question: "Ayla `receipt-kit`-i public etdi. Bu repository-yə kim push edə bilər?"
+  options:
+    - "GitHub hesabı olan hər kəs"
+    - "Yalnız yazma icazəsi verilən adamlar"
+    - "İnternetdə hər kəs, hesabı olmayan da"
+  answer: 1
+  explain: "Public repository-ni hər kəs görür, clone və fork edir. Push isə yenə yalnız yazma icazəsi olanlara açıqdır."
+- question: "`bakery-orders` Ayla-nın şəxsi hesabında private repository-dir. Onu kim görür?"
+  options:
+    - "Ayla və onun əməkdaş kimi əlavə etdiyi adamlar"
+    - "Yalnız Ayla: private repository-yə giriş vermək olmur"
+    - "GitHub hesabı olan hər kəs, amma clone edə bilmir"
+  answer: 0
+  explain: "Private repository-ni sahibi və giriş verdiyi adamlar görür. Kənar adam onu heç görmür."
+- question: "Hansı layihə üçün private görünmə daha uyğundur?"
+  options:
+    - "Başqa proqramçıların da işlətməsi üçün yazılmış tarix formatlama kitabxanası"
+    - "İş axtararkən işəgötürənlərə göstərmək istədiyiniz portfolio saytı"
+    - "Bir klinikanın növbə sistemi: kod yalnız həmin klinika üçündür"
+  answer: 2
+  explain: "Kod yalnız bir müştərinin işidirsə, private seçilir. Kitabxana və portfolio başqalarının görməsi üçündür, onlara public uyğundur."
+- question: "Repository-nin görünməsi harada dəyişir?"
+  options:
+    - "Settings → Danger Zone → Change visibility"
+    - "Profil səhifəsi → Repositories → Edit visibility"
+    - "Code düyməsi → Clone → Visibility"
+  answer: 0
+  explain: "Görünmə repository-nin **Settings** səhifəsində, **Danger Zone** bölməsindəki **Change visibility** düyməsi ilə dəyişir. Bunun üçün admin icazəsi lazımdır."
+- question: "`receipt-kit` public idi və onu 12 nəfər fork etmişdi. Ayla repository-ni private edir. Fork-lar nə olur?"
+  options:
+    - "Onlar da avtomatik private olur"
+    - "Public qalır və repository-dən ayrılır"
+    - "GitHub onları silir"
+  answer: 1
+  explain: "Mövcud public fork-lar public qalır və ayrı repository olur. Onlardakı kodu geri gizlətmək olmur."
+- question: "Ayla bir commit-də `.env` faylını əlavə edib, sonrakı commit-də silib. İndi repository-ni public edir. Fayldakı açar nə olur?"
+  options:
+    - "Görünmür, çünki son versiyada fayl yoxdur"
+    - "Köhnə commit-də qalır və onu hər kəs görə bilər"
+    - "GitHub public edəndə köhnə commit-ləri təmizləyir"
+  answer: 1
+  explain: "Public etmək bütün tarixçəni açır. Açarı sızmış saymaq və xidmətdə yenisini yaratmaq lazımdır."
+- question: "Public repository 40 ulduz toplayıb. Sahibi onu private edir. Ulduzlar nə olur?"
+  options:
+    - "Qalır, sadəcə başqalarına görünmür"
+    - "Fork-lara köçürülür"
+    - "Silinir, izləyicilər də"
+  answer: 2
+  explain: "Görünmə dəyişəndə ulduzlar (stars) və izləyicilər (watchers) silinir."
+- question: "Internal repository-ni kim yarada bilər?"
+  options:
+    - "Pulsuz planda istənilən şəxsi hesab"
+    - "GitHub Pro-da istənilən şəxsi hesab"
+    - "Enterprise Cloud-a bağlı organization"
+  answer: 2
+  explain: "Internal görünmə yalnız enterprise-ə bağlı organization-larda var. Onu enterprise-in bütün üzvləri görür, kənardakılar görmür."
+- question: "GitHub Free-də private repository-lər haqqında hansı doğrudur?"
+  options:
+    - "Yalnız bir private repository yaratmaq olar"
+    - "İstənilən qədər yaratmaq olar, amma bəzi imkanlar yoxdur"
+    - "Private repository üçün mütləq pullu plan lazımdır"
+  answer: 1
+  explain: "GitHub Free-də private repository-lərin sayı limitsizdir, imkanları isə məhduddur. Əlavə imkanlar Pro, Team və Enterprise Cloud planlarındadır."

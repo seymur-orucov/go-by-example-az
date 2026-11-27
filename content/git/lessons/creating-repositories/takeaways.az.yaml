@@ -1,0 +1,11 @@
+rules:
+  - "Repository adında yalnız ASCII hərflər, rəqəmlər və `.`, `-`, `_` olur; ad ünvanın son hissəsidir."
+  - "README layihəni izah edir, `.gitignore` izlənməyən faylları sayır, license kodun necə işlədilə biləcəyini deyir."
+  - "License olmasa, bütün hüquqlar müəllifdə qalır və başqaları kodu köçürüb yaya bilməz."
+  - "Formada README, `.gitignore` və ya license seçilsə, GitHub ilk commit-i yaradır və lokal repository-nin ilk push-u rədd olunur."
+  - "Lokal repository-ni boş repository-yə bağlamaq üçün: `git remote add origin <URL>`, `git branch -M main`, `git push -u origin main`."
+  - "Repository-ni README ilə yaradıb `git clone` etsəniz, `origin` və upstream özü qurulur."
+practices:
+  - "Kod artıq kompüterdədirsə, repository-ni üç seçim boş halda yaradın; faylları push-dan sonra əlavə edin."
+  - "Layihə hələ başlamayıbsa, repository-ni README ilə yaradıb clone edin."
+  - "Public layihəyə license əlavə edin; seçməyə `choosealicense.com` kömək edir."

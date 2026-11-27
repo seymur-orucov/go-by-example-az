@@ -1,0 +1,11 @@
+rules:
+  - "Public repository-ni internetdə hər kəs görür, clone və fork edir; push isə yalnız yazma icazəsi olanlaradır."
+  - "Private repository-ni sahibi və giriş verdiyi adamlar görür; onun fork-u da private olur."
+  - "Görünmə Settings → Danger Zone → Change visibility ilə dəyişir; bunu admin icazəsi olan edir."
+  - "Public etmək bütün tarixçəni açır; private etmək isə mövcud public fork-ları gizlətmir."
+  - "Görünmə dəyişəndə ulduzlar və izləyicilər silinir."
+  - "Internal görünmə yalnız GitHub Enterprise Cloud-a bağlı organization-larda var və enterprise üzvlərinə açıqdır."
+practices:
+  - "Kodu başqaları işlətsin deyə yazırsınızsa public, yalnız sizin və ya müştərinin işidirsə private seçin."
+  - "Repository-ni public etməzdən əvvəl tarixçədə parol və açar axtarın; tapılanı ləğv edib yenisini yaradın."
+  - "Parol və açarları private repository-də də commit etməyin."

@@ -792,3 +792,13 @@ Done:
 - `vis: ui`: a browser frame with an address bar and optional tabs, a main and a side column of simple elements, numbered marks with a legend; data in `steps.yaml`, checked by Zod (`UiMock.astro`, `UiEl.astro`, CSS in `lesson.css`, own 16×16 line icons). The side column drops under the main one on a phone.
 - Pilot `github-account` (Sam starts a new job): signup and the password rule, the username and what renaming breaks, why 2FA and who must enable it (45 + 7 days), the authenticator app, the setup key, the 6-digit check, 16 recovery codes. Facts checked against GitHub Docs (creating an account, strong passwords, configuring 2FA, mandatory 2FA, recovery methods, changing your username); the signup form labels are not in the docs, so the mockup is called simplified.
 
+### 86. GitHub module 14 "GitHub ilə tanışlıq"
+The user approved the `ui` pilot and asked for the rest of the module. Four lessons were written by parallel subagents from a common brief; an independent reviewer checked facts against GitHub Docs, consistency and the quizzes and fixed them.
+
+Done:
+- `github-interface` (`ui`, a weather-station logger): the repository header and tabs, the Code tab, About and the Code button, Issues and Pull requests lists, notifications and Watch levels, search with `repo:`.
+- `github-profile` (`ui`, Sam's own account): Public profile, pinned items, the contribution graph and what counts, private email and the noreply address, `user.email` for commits.
+- `private-vs-public` (`compare`, a bakery's app and its helper library): who sees, clones, forks and pushes, when to choose which, changing visibility and its effects, internal repositories.
+- `creating-repositories` (`ui`, a habit tracker): the New repository form, README / `.gitignore` / license templates, why to keep the repository empty for an existing project (`fetch first`, unrelated histories), Quick setup and `git push -u`, creating first and cloning.
+- The reviewer removed claims no doc confirms (UTC days, a 24-hour delay, "Search all of GitHub"), trimmed busy lessons to 4–5 mockups and replaced giveaway quiz options.
+

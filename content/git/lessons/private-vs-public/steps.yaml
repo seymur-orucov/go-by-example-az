@@ -1,0 +1,66 @@
+# Hand-written visuals (text lesson): the public/private comparison and a simplified mockup of
+# the Danger Zone visibility setting. Labels follow GitHub Docs ("Setting repository visibility").
+who-sees:
+  vis:
+    kind: compare
+    caption: "Public və private repository"
+    a: { title: "Public", sub: "receipt-kit" }
+    b: { title: "Private", sub: "bakery-orders" }
+    rows:
+      - aspect: "Kim görür"
+        a: "İnternetdə hər kəs, hesabı olmayan da"
+        b: "Sahibi və giriş verdiyi adamlar"
+      - aspect: "Clone"
+        a: "Hər kəs"
+        b: "Yalnız girişi olanlar"
+      - aspect: "Fork"
+        a: "Hesabı olan hər kəs; fork public olur"
+        b: "Yalnız girişi olanlar; fork private olur"
+      - aspect: "Push"
+        a: "Yalnız yazma icazəsi olanlar"
+        b: "Yalnız yazma icazəsi olanlar"
+      - aspect: "Kodda unudulmuş açar"
+        a: "Hər kəs görə bilər"
+        b: "Girişi olanlar görə bilər"
+        better: b
+      - aspect: "GitHub Free-də imkanlar"
+        a: "Hamısı"
+        b: "Bəziləri yoxdur, pullu plan lazımdır"
+        better: a
+change:
+  vis:
+    kind: ui
+    caption: "Settings → Danger Zone: görünməni dəyişmək (sadələşdirilmiş)"
+    url: "github.com/ayla-karimova/receipt-kit/settings"
+    tabs:
+      - { label: "Code" }
+      - { label: "Issues" }
+      - { label: "Pull requests" }
+      - { label: "Settings", active: true, mark: "Görünmə repository-nin **Settings** tab-ında, səhifənin aşağısındakı bölmədə dəyişir." }
+    main:
+      - type: heading
+        text: "Danger Zone"
+      - type: row
+        items:
+          - type: text
+            text: "**Change repository visibility**"
+          - type: button
+            label: "Change visibility"
+            tone: danger
+            mark: "Düymə yeni görünməni seçmək üçün pəncərə açır."
+      - type: divider
+      - type: check
+        label: "Public"
+        radio: true
+        checked: true
+        mark: "Ayla public seçir."
+      - type: check
+        label: "Private"
+        radio: true
+      - type: button
+        label: "I have read and understand these effects"
+        mark: "Əvvəl GitHub nəticələri göstərir: tarixçə hər kəsə açılacaq, ulduzlar və izləyicilər silinəcək."
+      - type: button
+        label: "Make this repository public"
+        tone: danger
+        mark: "Son təsdiq. Bundan sonra repository internetdə hər kəsə görünür."
