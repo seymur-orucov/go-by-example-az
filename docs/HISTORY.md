@@ -647,3 +647,7 @@ Then `/polish-lesson go/tickers` (branch `refactor/polish-go-lessons`):
 - Quiz: the `NewTicker(0)` snippet did not compile (unused `t`, so "panic" was a wrong key) — now `defer t.Stop()`; answers spread over all three positions, no longer-than-the-rest right options.
 - Text: the `Stop` reason was wrong since Go 1.23 (unreferenced tickers are collected without `Stop`, per `go doc`) — rewritten; the watch story and the metronome comparison removed from the steps; the "three ticks" claim in #stop corrected; each step owns its data (no shared `pulse` slice indexed across steps).
 - Checked: `content:go --write tickers`, every changed quiz snippet run, `content:check` (102/102), a fresh-subagent re-review. Scan 11 → 5. Open minors: F8–F11 in the report.
+
+Also polished on the same branch:
+- `command-line-arguments`: the `go run` Bilgi said `os.Args[0]` changes every run (false since Go 1.24: the binary is cached) and that plain `go build` gives `./grades` (it needs `-o grades`); "shell bölür, Go yox" removed (on Windows Go splits the command line); #real now says the usage check lives in `average`, plus a Bilgi on `os.Stderr` / `os.Exit(2)`; "imkan verir/yaradır" and "paket" fixed. Steps could not be reordered: step order must follow `main.go`. Scan 3 → 1, fresh re-review run.
+- `stateful-goroutines`: the real reason "check" comes after the takes is `wg.Wait()`, not the queue; `requests` described as an unbuffered channel; quiz answers spread (all were at position 0) and the giveaway long options shortened. Scan 9 → 4.
