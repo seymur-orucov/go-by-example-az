@@ -1,0 +1,73 @@
+- question: "Hansı başlıq dərsdəki qaydalara uyğundur?"
+  options:
+    - "`fixed the bug`"
+    - "`Fix crash when city name is empty`"
+    - "`changes`"
+    - "`Fixes search crash, adds Fahrenheit and updates the footer and README`"
+  answer: 1
+  explain: "Qısadır, əmr formasındadır və bir dəyişikliyi adlandırır; sonuncu variant həm uzundur, həm də bir neçə işi bir commit-ə yığır."
+- question: "`git log --oneline` hər commit üçün nə göstərir?"
+  options:
+    - "Tam mesajı: başlığı və body-ni"
+    - "Yalnız qısa hash-i"
+    - "Qısa hash-i və mesajın başlığını"
+    - "Müəllifi və tarixi"
+  answer: 2
+  explain: "`--oneline` hər commit-i bir sətirdə göstərir: qısa hash və mesajın birinci boş sətrə qədər olan hissəsi."
+- question: "Bu commit-dən sonra `git log --oneline` hash-dən sonra nə göstərəcək?"
+  code: |
+    git commit -m "Cache forecast for ten minutes" -m "The API allows 60 calls per hour."
+  options:
+    - "`Cache forecast for ten minutes`"
+    - "`Cache forecast for ten minutes The API allows 60 calls per hour.`"
+    - "`The API allows 60 calls per hour.`"
+  answer: 0
+  explain: "İki `-m` iki abzas yaradır və aralarına boş sətir qoyur; birinci abzas başlıq olur, `--oneline` yalnız onu göstərir."
+- question: "Conventional Commits-də səhvin düzəlişi hansı tiplə yazılır?"
+  options:
+    - "`feat`"
+    - "`docs`"
+    - "`chore`"
+    - "`fix`"
+  answer: 3
+  explain: "`fix` səhvin düzəlişi, `feat` yeni imkandır; spesifikasiya məhz bu iki tipi müəyyən edir."
+- question: "`feat!: remove search by ZIP code` başlığında `!` nə deməkdir?"
+  options:
+    - "Dəyişiklik təcilidir"
+    - "Commit hələ yarımçıqdır"
+    - "Breaking change: köhnə davranış artıq işləməyəcək"
+  answer: 2
+  explain: "Tipdən (və ya scope-dan) sonra `!` breaking change-i bildirir; eyni şeyi footer-dəki `BREAKING CHANGE:` sətri də edir."
+- question: "Hansı başlıq əmr formasındadır?"
+  options:
+    - "`Added dark theme`"
+    - "`Add dark theme`"
+    - "`Adds dark theme`"
+    - "`Adding dark theme`"
+  answer: 1
+  explain: "Əmr forması commit-in koda nə etdiyini deyir; Git də öz mesajlarını belə yazır: `Merge branch ...`, `Revert ...`."
+- question: "Commit mesajının body-sinə nə yazılır?"
+  options:
+    - "Nəyin və niyə dəyişdiyi: əvvəl necə idi, problem nə idi"
+    - "Hər sətrin necə dəyişdiyi, diff-dəki kimi"
+    - "Dəyişən faylların tam siyahısı"
+  answer: 0
+  explain: "Kodun necə dəyişdiyini diff göstərir; body diff-in deyə bilmədiyini, yəni səbəbi izah edir."
+- question: "Mesajda başlıqla body arasında boş sətir unudulub. Nə olur?"
+  code: |
+    Cache forecast for ten minutes
+    The API allows 60 calls per hour.
+  options:
+    - "Git commit-i qəbul etmir"
+    - "Git body-ni silir"
+    - "Boş sətrə qədər olan hər şey başlıq sayılır, `--oneline` iki sətri bir uzun sətir kimi göstərir"
+  answer: 2
+  explain: "Git birinci boş sətrə qədər olan mətni başlıq sayır; boş sətir olmayanda body başlığa qarışır."
+- question: "Komanda Conventional Commits işlədir. Bu, nəyə imkan verir?"
+  options:
+    - "Commit-ləri daha sürətli yazmağa"
+    - "Mesajların nə vaxt yazıldığını gizlətməyə"
+    - "Hash-ləri qısaltmağa"
+    - "Tarixçədən avtomatik changelog yaratmağa və növbəti versiya nömrəsini seçməyə"
+  answer: 3
+  explain: "Format sabit olduğu üçün alətlər commit-ləri oxuyur: `fix` patch, `feat` minor, breaking change major versiya verir."

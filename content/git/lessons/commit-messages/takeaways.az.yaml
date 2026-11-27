@@ -1,0 +1,10 @@
+rules:
+  - "`git log --oneline` hash-dən sonra mesajın yalnız başlığını göstərir, ona görə başlıq tək başına dəyişikliyi izah etməlidir."
+  - "Başlıq təxminən 50 simvol olur və əmr formasında yazılır: `Fix ...`, `Add ...`; `Fixed ...` və ya `Fixes ...` yox."
+  - "Başlıqla body arasında boş sətir olur: Git birinci boş sətrə qədər olan mətni başlıq sayır."
+  - "Body nəyin və niyə dəyişdiyini izah edir; necə dəyişdiyini diff göstərir."
+  - "Conventional Commits formatı `type(scope): description`-dur: `feat` yeni imkan, `fix` səhvin düzəlişi, `!` və ya `BREAKING CHANGE:` köhnə davranışı pozan dəyişiklik."
+practices:
+  - "Hər məntiqi dəyişikliyi ayrıca commit edin: başlığa `and` ilə iki iş sığdırmaq lazım gəlirsə, bunlar iki commit-dir."
+  - "`wip`, `fix`, `update` kimi heç nə deməyən mesajlar yazmayın."
+  - "Bir layihədə bir mesaj üslubu işlədin; komanda Conventional Commits seçibsə, ona əməl edin."

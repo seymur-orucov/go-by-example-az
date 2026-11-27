@@ -1,0 +1,10 @@
+rules:
+  - "`git diff A B` A commit-inin snapshot-unu B ilə müqayisə edir: A köhnə tərəfdir (`-`), B yeni tərəfdir (`+`)."
+  - "A və B istənilən commit adı ola bilər: qısa hash, `HEAD~N`, branch adı; yerlərini dəyişsəniz, `-` və `+` də yer dəyişir."
+  - "`git diff HEAD~2 HEAD` son iki commit-in dəyişikliyini bir diff kimi göstərir."
+  - "Tək adla `git diff HEAD~2` commit-i working directory ilə müqayisə edir, commit olunmamış dəyişiklikləri də göstərir."
+  - "`--stat` hər fayl üçün dəyişən sətirlərin sayını və cəmi verir: `N files changed, X insertions(+), Y deletions(-)`."
+  - "`-- <fayl>` diff-i bir fayla daraldır və fayl adını commit adından ayırır."
+practices:
+  - "Böyük fərqə əvvəlcə `--stat` ilə baxın, sonra lazım olan faylın diff-ini açın."
+  - "Yalnız commit-ləri müqayisə etmək istəyəndə hər iki adı yazın: `git diff HEAD~2 HEAD`."

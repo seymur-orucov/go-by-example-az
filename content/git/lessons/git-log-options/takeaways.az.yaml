@@ -1,0 +1,11 @@
+rules:
+  - "`--oneline` hər commit-i bir sətirdə göstərir: qısa hash və mesajın ilk sətri; `--graph` solda commit qrafını çəkir."
+  - "`--author` mətni müəllifin adı və email-i ilə müqayisə edir; adın bir hissəsi kifayətdir."
+  - "`--since` və `--until` commit-ləri tarixə görə filtrləyir."
+  - "`git log -- <fayl>` yalnız həmin faylı dəyişən commit-ləri, `-p` isə hər commit-in diff-ini göstərir."
+  - "`-S \"söz\"` faylların məzmununda axtarır: sözün sayını dəyişən commit-ləri göstərir, mesajlara baxmır."
+  - "Fərqli filtrlər birləşir: commit hamısına uyğun gəlməlidir."
+practices:
+  - "Uzun tarixçəyə `git log --oneline` ilə baxın, lazım olan commit-i tapandan sonra onu ətraflı açın."
+  - "`-p`-ni say limiti (`-1`, `-3`) və ya fayl adı ilə birlikdə işlədin."
+  - "Dəqiq tarix sərhədi lazımdırsa, saatı da yazın: `--since=\"2026-01-10 00:00\"`."

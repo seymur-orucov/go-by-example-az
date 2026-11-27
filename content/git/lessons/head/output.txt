@@ -1,0 +1,29 @@
+$ git log --oneline
+d7424b2 Add basil
+2593880 Plan tomatoes
+$ cat .git/HEAD
+ref: refs/heads/main
+$ cat .git/refs/heads/main
+d7424b21e049d40c4bdc83a0386b6c5a079dc08b
+$ echo "tomatoes: May" > calendar.txt
+$ git add calendar.txt
+$ git commit -m "Add planting calendar"
+[main d166bfd] Add planting calendar
+ 1 file changed, 1 insertion(+)
+ create mode 100644 calendar.txt
+$ cat .git/HEAD
+ref: refs/heads/main
+$ cat .git/refs/heads/main
+d166bfd25ef1eb30bee7a64a2f23267d353bb8af
+$ git log --oneline -1 HEAD~1
+d7424b2 Add basil
+$ git log --oneline -1 HEAD~2
+2593880 Plan tomatoes
+$ git log --oneline -1 HEAD~3
+fatal: ambiguous argument 'HEAD~3': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git <command> [<revision>...] -- [<file>...]'
+$ git log --oneline -1 HEAD^
+d7424b2 Add basil
+$ git log --oneline -1 HEAD^^
+2593880 Plan tomatoes

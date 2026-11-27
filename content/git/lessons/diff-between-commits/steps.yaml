@@ -1,0 +1,8 @@
+# The visuals are recorded from the real repository by `pnpm content:run`.
+history:
+  vis: graph
+two-commits:
+stat:
+one-file:
+working-dir:
+  vis: areas

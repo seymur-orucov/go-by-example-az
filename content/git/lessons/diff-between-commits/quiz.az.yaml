@@ -1,0 +1,67 @@
+- question: "Yeni repository-də bu komandalardan sonra nə çap olunur?"
+  code: |
+    echo "milk" > list.txt
+    git add list.txt
+    git commit -q -m "Start list"
+    echo "bread" >> list.txt
+    git commit -q -am "Add bread"
+    git diff HEAD HEAD~1
+  options:
+    - "`+bread` olan diff"
+    - "`-bread` olan diff"
+    - "Heç nə: commit-lər arasında fərq yoxdur"
+  answer: 1
+  explain: "Birinci ad köhnə tərəfdir. Burada köhnə tərəf `HEAD`-dir, onda `bread` var, `HEAD~1`-də isə yoxdur."
+- question: "`git diff HEAD~2 HEAD` nəyi göstərir?"
+  options:
+    - "Yalnız `HEAD~2` commit-inin dəyişikliyini"
+    - "Son üç commit-i, hər birini ayrıca diff kimi"
+    - "Son iki commit-in dəyişikliyini birlikdə, bir diff kimi"
+  answer: 2
+  explain: "Git `HEAD~2` və `HEAD` snapshot-larını müqayisə edir; aradakı commit-ləri ayrıca göstərmir."
+- question: "İlk commit-dən bəri yalnız `food.md`-in dəyişikliyini hansı komanda göstərir? İlk commit `HEAD~3`-dür."
+  options:
+    - "`git diff HEAD~3 HEAD -- food.md`"
+    - "`git diff -- food.md`"
+    - "`git diff --stat HEAD~3 HEAD`"
+  answer: 0
+  explain: "`--`-dan sonrakı fayl yolu diff-i bir fayla daraldır. Arqumentsiz `git diff` commit-ləri müqayisə etmir, `--stat` isə bütün faylların xülasəsini verir."
+- question: "`list.txt`-də iki commit var: birincidə `milk`, ikincidə `bread` əlavə olunub. Bu komandalardan sonra diff hansı əlavə sətirləri göstərir?"
+  code: |
+    echo "eggs" >> list.txt
+    git diff HEAD~1
+  options:
+    - "Yalnız `+bread`"
+    - "Yalnız `+eggs`"
+    - "Heç birini"
+    - "`+bread` və `+eggs`"
+  answer: 3
+  explain: "Tək adla `git diff HEAD~1` commit-i working directory ilə müqayisə edir, ona görə commit olunmamış `eggs` də diff-ə düşür."
+- question: "`git diff --stat`-ın son sətri `1 file changed, 2 insertions(+), 1 deletion(-)`-dir. Bu nə deməkdir?"
+  options:
+    - "İki fayl əlavə olunub, bir fayl silinib"
+    - "Bir fayl dəyişib: iki sətir əlavə olunub, bir sətir silinib"
+    - "Bir commit-də iki fayl dəyişib"
+  answer: 1
+  explain: "`--stat` sətirləri sayır: `insertions` əlavə olunan, `deletion` silinən sətirlərdir."
+- question: "`git log --oneline`-dakı qısa hash-ləri `git diff`-ə vermək olarmı?"
+  options:
+    - "Bəli: A və B istənilən commit adı ola bilər"
+    - "Xeyr: yalnız `HEAD~N` formasını qəbul edir"
+    - "Yalnız tam, 40 simvolluq hash-i qəbul edir"
+  answer: 0
+  explain: "Qısa hash, `HEAD~N` və branch adı commit-in müxtəlif adlarıdır; `git diff` hamısını başa düşür."
+- question: "`--stat` çıxışında `week.txt | 3 ++-` sətri nə deməkdir?"
+  options:
+    - "`week.txt` üç commit-də dəyişib"
+    - "`week.txt`-də 3 sətir var"
+    - "`week.txt`-də 3 sətir dəyişib: ikisi əlavə, biri silinmə"
+  answer: 2
+  explain: "Rəqəm dəyişən sətirlərin sayıdır, `+` və `-` işarələri onların əlavə və ya silinmə olduğunu göstərir."
+- question: "Repository-də `main` adlı fayl var. `git diff HEAD~1 HEAD main` nə edir?"
+  options:
+    - "`main` faylının diff-ini göstərir"
+    - "`ambiguous argument` xətası verir: `main` həm branch, həm fayl adıdır"
+    - "`main` branch-ı ilə müqayisə edir"
+  answer: 1
+  explain: "Git adın commit, yoxsa fayl olduğunu ayırd edə bilmir. `git diff HEAD~1 HEAD -- main` yazın."
