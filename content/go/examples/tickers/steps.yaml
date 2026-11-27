@@ -7,7 +7,7 @@ stop:
   out: "warm-up over, watch is quiet"
 stop-channel:
   out: |
-    workout pulse: 124
-    workout pulse: 137
-    workout pulse: 131
+    workout reading: 1
+    workout reading: 2
+    workout reading: 3
     readings saved: 3

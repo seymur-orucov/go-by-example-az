@@ -639,3 +639,11 @@ Done (branch `feat/git-history-lessons`):
 - `commit-messages` (`concept`): a weather app — bad vs good `--oneline` history (`compare`), subject (~50 characters, one change per commit), imperative mood, body (what and why, ~72 columns, the blank line, `-m` twice; `flow` of the parts), Conventional Commits (types, `!`/`BREAKING CHANGE:`, changelog and SemVer); 5 steps, 9 questions.
 - Claude's edits: plainer wording in `head` (intro, the cmd note), a step heading with two `~` that Markdown rendered as strikethrough (now `HEAD~N: …`), an unverified claim about how GitHub cuts long subjects, a repeated rule in `git-log-options`.
 - Checked: `content:run` of all four session lessons again (identical), every quiz answer in scratch sandboxes (by the subagents), `content:check` (102/102), build, lint, format, `astro check`; `head` and `commit-messages` at 1440px, `git-log-options` at 390px (iframe).
+
+### 74. Go lesson review and the first polish (`tickers`)
+The user ran `/review-lesson go` on all 84 Go lessons (nine parallel subagents, reports in the git-ignored `.reviews/go/`, summary in `.reviews/go/SUMMARY.md`): 2 "Yenidən yazılmalı", 51 "Düzəliş lazımdır", 31 "Hazırdır"; none reads as AI text. In 36 lessons the quiz is the only major finding: right answers bunched on one position (20 quizzes have every answer at position 0, and the site does not shuffle options) or a giveaway right option. Other recurring issues: intros over 4 sentences, long `main.go`, running story metaphors (channels, channel-buffering, worker-pools), term drift ("paket"/"package", "flag"/"bayraq").
+
+Then `/polish-lesson go/tickers` (branch `refactor/polish-go-lessons`):
+- Quiz: the `NewTicker(0)` snippet did not compile (unused `t`, so "panic" was a wrong key) — now `defer t.Stop()`; answers spread over all three positions, no longer-than-the-rest right options.
+- Text: the `Stop` reason was wrong since Go 1.23 (unreferenced tickers are collected without `Stop`, per `go doc`) — rewritten; the watch story and the metronome comparison removed from the steps; the "three ticks" claim in #stop corrected; each step owns its data (no shared `pulse` slice indexed across steps).
+- Checked: `content:go --write tickers`, every changed quiz snippet run, `content:check` (102/102), a fresh-subagent re-review. Scan 11 → 5. Open minors: F8–F11 in the report.

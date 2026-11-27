@@ -6,13 +6,11 @@ import (
 )
 
 func main() {
-	pulse := []int{84, 92, 101, 124, 137, 131, 118}
-
 	//@step new-ticker
 	warmUp := time.NewTicker(100 * time.Millisecond)
-	for i := range 3 {
+	for _, p := range []int{84, 92, 101} {
 		<-warmUp.C
-		fmt.Println("warm-up pulse:", pulse[i])
+		fmt.Println("warm-up pulse:", p)
 	}
 
 	//@step stop
@@ -30,10 +28,10 @@ func main() {
 	go func() {
 		workout := time.NewTicker(200 * time.Millisecond)
 		defer workout.Stop()
-		for i := 3; ; i++ {
+		for n := 1; ; n++ {
 			select {
 			case <-workout.C:
-				readings <- pulse[i]
+				readings <- n
 			case <-finish:
 				close(readings)
 				return
@@ -41,8 +39,8 @@ func main() {
 		}
 	}()
 	count := 0
-	for p := range readings {
-		fmt.Println("workout pulse:", p)
+	for n := range readings {
+		fmt.Println("workout reading:", n)
 		count++
 		if count == 3 {
 			close(finish) // the runner taps "finish"
