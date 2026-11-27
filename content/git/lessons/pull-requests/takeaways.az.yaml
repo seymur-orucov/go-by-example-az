@@ -1,0 +1,11 @@
+rules:
+  - "Pull request bir branch-ı başqasına merge etmək təklifidir; bu, Git-in yox, GitHub və GitLab kimi hostinq xidmətinin imkanıdır."
+  - "Base branch dəyişikliyin merge olunacağı yerdir, compare (head) branch isə dəyişikliyin yazıldığı yer."
+  - "Yazma icazəniz varsa PR eyni repository-nin branch-ından açılır, yoxdursa fork-un branch-ından orijinalın `main`-inə."
+  - "Review üç cavabla bitir: **Comment**, **Approve**, **Request changes**; draft PR isə merge olunmur."
+  - "PR branch-a baxır: həmin branch-a push olunan yeni commit-lər PR-a avtomatik düşür."
+  - "Merge commit üsulu commit-ləri və merge commit-i, squash bir yeni commit-i, rebase and merge yeni hash-li commit-ləri gətirir."
+practices:
+  - "Hər iş üçün ayrıca branch və ayrıca PR açın."
+  - "Review-dakı düzəlişləri yeni PR ilə yox, eyni branch-a push edərək göndərin."
+  - "Merge-dən sonra branch-ı silin, lokal `main`-i yeniləyin və `git fetch --prune` edin."

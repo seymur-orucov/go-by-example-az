@@ -1,0 +1,10 @@
+rules:
+  - "Push olunmuş commit-i amend və ya rebase etsəniz, adi `git push` `non-fast-forward` ilə rədd olunur."
+  - "`git push --force` serverdəki branch-ı heç nə yoxlamadan sizinki ilə əvəz edir; arada push olunmuş commit-lər branch-dan silinir."
+  - "`fetch first` serverdə sizdə olmayan commit olduğunu bildirir: onu force push ilə keçməyin."
+  - "`--force-with-lease` serverdəki branch `origin/<branch>`-dakı commit-də deyilsə, push-u `stale info` ilə rədd edir."
+  - "Lease yalnız son gördüyünüzlə müqayisə edir: fetch-dən sonra o, gələn commit-ləri qorumur."
+practices:
+  - "Force push-u yalnız sizdən başqa heç kimin işləmədiyi branch-da edin, `--force` yox, `--force-with-lease` yazın."
+  - "Ortaq branch-larda, xüsusən `main`-də force push etməyin; səhvi `git revert` ilə geri alın."
+  - "Fetch-dən sonra force push etməzdən əvvəl gələn commit-lərə baxın: `git log --oneline HEAD..origin/<branch>`."
