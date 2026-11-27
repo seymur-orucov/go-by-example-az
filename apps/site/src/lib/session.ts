@@ -115,6 +115,35 @@ export const areasFrameSchema = z
   .strict();
 export type AreasFrame = z.infer<typeof areasFrameSchema>;
 
+// ---- The commit graph, recorded after each step ----------------------------------------------
+
+/** A file of a commit's snapshot, compared with the commit's first parent. */
+const graphFile = z
+  .object({ name: z.string(), state: z.enum(["added", "modified", "same", "deleted"]) })
+  .strict();
+const ref = z.object({ name: z.string(), target: z.string() }).strict();
+
+export const graphFrameSchema = z
+  .object({
+    /** Every commit reachable from a branch, a tag or HEAD, newest first (topological order). */
+    commits: z.array(
+      z
+        .object({
+          hash: z.string(),
+          message: z.string(),
+          parents: z.array(z.string()),
+          files: z.array(graphFile),
+        })
+        .strict(),
+    ),
+    branches: z.array(ref),
+    tags: z.array(ref),
+    /** `branch` is null when HEAD is detached; `target` is null on a branch with no commits yet. */
+    head: z.object({ branch: z.string().nullable(), target: z.string().nullable() }).strict(),
+  })
+  .strict();
+export type GraphFrame = z.infer<typeof graphFrameSchema>;
+
 export const sessionFileSchema = z
   .object({
     generatedBy: z.string(),
@@ -132,7 +161,16 @@ export const sessionFileSchema = z
         .strict(),
     ),
     /** Per step id: the repository state after the step, or null outside a repository. */
-    frames: z.record(z.string(), z.object({ areas: areasFrameSchema.nullable() }).strict()),
+    // `graph` is optional: lessons recorded before the graph visual existed do not have it.
+    frames: z.record(
+      z.string(),
+      z
+        .object({
+          areas: areasFrameSchema.nullable(),
+          graph: graphFrameSchema.nullable().optional(),
+        })
+        .strict(),
+    ),
   })
   .strict();
 export type SessionFile = z.infer<typeof sessionFileSchema>;

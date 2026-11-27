@@ -24,9 +24,9 @@ file (approved lessons of the same kind).
 
 1. Pick the earliest node (course order) of each kind the next module needs.
 2. If the site cannot render that kind yet, build it first and tell the user: today `code`
-   (Go only, see write-lesson), `terminal` and `state` (terminal sessions, `vis: areas`),
-   `concept` and `compare` (text lessons, `vis: flow` / `vis: compare`) exist; `diagram`, `ui`
-   and the commit-graph visual (`vis: graph`, needed from `commit-snapshot` on) do not. A new kind or visual = a schema in `apps/site/src/lib/`, a
+   (Go only, see write-lesson), `terminal` and `state` (terminal sessions, `vis: areas` and
+   `vis: graph`), `concept` and `compare` (text lessons, `vis: flow` / `vis: compare`) exist;
+   `diagram` and `ui` do not. A new kind or visual = a schema in `apps/site/src/lib/`, a
    branch in `Vis.astro` or a new stage component, CSS in `packages/theme`, and checks in
    `pnpm content:check`. Data-driven, never per-lesson JS; animations off under
    `prefers-reduced-motion`.
@@ -107,6 +107,10 @@ content/<technology>/lessons/<id>/
 
 `steps.yaml`: `vis: areas` shows working directory / staging area / repository after the step,
 recorded from the real repository (what changed since the previous step is highlighted).
+`vis: graph` shows the commit graph the same way (commits newest on top, parents, branches,
+tags, HEAD; new commits and moved refs highlighted); add `files: true` to also show each
+commit's parent and its files (new / changed / same as in the parent) — for lessons about what
+a commit holds, not for busy branch histories.
 `state` lessons put a visual on every step — the visual is the point; `terminal` lessons add one
 where the state is not obvious from the output.
 
