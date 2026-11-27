@@ -1,15 +1,15 @@
 - question: Bu kod nə çap edəcək?
   code: |
     fmt.Println(Count([]int{1, 2, 1}, 1), Count([]string{"a"}, "b"))
-  options: ["2 0", "1 0", "kompilyasiya xətası"]
-  answer: 0
+  options: ["1 0", "2 0", "kompilyasiya xətası"]
+  answer: 1
   explain: "Birinci çağırışda `T` `int`, ikincidə `string` olur; funksiya bir dəfə yazılıb."
 
 - question: Bu kod nə çap edəcək?
   code: |
     fmt.Println(Max([]string{"pear", "apple", "plum"}))
-  options: ["plum", "pear", "kompilyasiya xətası"]
-  answer: 0
+  options: ["pear", "kompilyasiya xətası", "plum"]
+  answer: 2
   explain: "Sətirlər `cmp.Ordered`-ə daxildir və əlifba sırası ilə müqayisə olunur, `plum` ən sondadır."
 
 - question: Bu kod niyə kompilyasiya olunmur?
@@ -21,27 +21,27 @@
         return b
     }
   options:
-    - "`any` `>` operatorunu təmin etmir"
     - "type parameter-in adı `T` ola bilməz"
+    - "`any` `>` operatorunu təmin etmir"
     - "generic funksiya iki parametr qəbul edə bilməz"
-  answer: 0
+  answer: 1
   explain: "`>` üçün constraint `cmp.Ordered` kimi sıralanan tipləri tələb etməlidir."
 
 - question: Bu kod niyə kompilyasiya olunmur?
   code: |
     fmt.Println(Max([]bool{true, false}))
   options:
-    - "`bool` sıralanmır, `cmp.Ordered`-ə daxil deyil"
     - "`Max`-a tipi açıq yazmaq lazımdır: `Max[bool]`"
     - "slice-da ən azı üç element olmalıdır"
-  answer: 0
+    - "`bool` sıralanmır, `cmp.Ordered`-ə daxil deyil"
+  answer: 2
   explain: "`bool` yalnız `comparable`-dir, ona görə `Count` işləyir, `Max` isə yox."
 
 - question: Bu kod nə çap edəcək?
   code: |
     fmt.Println(Count([]int{1, 2}, 2.5))
-  options: ["kompilyasiya xətası", "0", "1"]
-  answer: 0
+  options: ["0", "kompilyasiya xətası", "panic"]
+  answer: 1
   explain: "`T` slice-dan `int` kimi çıxarılır, `2.5` isə `int`-ə çevrilə bilmir."
 
 - question: Bu kod nə çap edəcək?
@@ -56,8 +56,8 @@
     }
 
     fmt.Println(Abs(Celsius(-3)))
-  options: ["kompilyasiya xətası", "3", "-3"]
-  answer: 0
+  options: ["3", "panic: mənfi dəyər", "kompilyasiya xətası"]
+  answer: 2
   explain: "Constraint-də `~` yoxdur, ona görə `float64` üzərində qurulan `Celsius` qəbul olunmur."
 
 - question: Hansı sətir kompilyasiya olunmur?
