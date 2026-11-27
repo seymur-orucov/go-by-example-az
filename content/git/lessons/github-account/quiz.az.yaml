@@ -1,0 +1,56 @@
+- question: "Git-i kompüterdə işlətmək üçün GitHub hesabı lazımdırmı?"
+  options:
+    - "Bəli: Git hər commit-i GitHub-a göndərib orada qeyd edir"
+    - "Xeyr: hesab yalnız GitHub-ın öz imkanları üçün lazımdır"
+    - "Bəli, amma yalnız `git init` və `git clone` üçün"
+  answer: 1
+  explain: "Git GitHub-dan asılı deyil. Hesab GitHub-ın özü üçündür: repository saxlamaq, töhfə vermək, komandada işləmək."
+- question: "Bu parollardan hansını GitHub qaydaya görə qəbul edə bilər?"
+  options:
+    - "`sunset42` (8 simvol: kiçik hərflər və rəqəmlər)"
+    - "`SUNSET42` (8 simvol: böyük hərflər və rəqəmlər)"
+    - "`sunsetbeach` (11 simvol: yalnız kiçik hərflər)"
+  answer: 0
+  explain: "8–14 simvolluq parolda rəqəm və kiçik hərf olmalıdır. `SUNSET42`-də kiçik hərf yoxdur, `sunsetbeach`-də rəqəm yoxdur və 15 simvoldan qısadır. Qaydaya uyan parolu da GitHub sızmış parol siyahısında tapsa, qəbul etməz."
+- question: "Sam istifadəçi adını `sam-lee`-dən `samlee`-yə dəyişdi. Hansı link işləməyəcək?"
+  options:
+    - "`github.com/samlee`"
+    - "`github.com/sam-lee/shop` (repository)"
+    - "`github.com/sam-lee` (profil)"
+  answer: 2
+  explain: "Köhnə profil linki 404 verir. Repository-lərin köhnə ünvanları isə yeni ada yönləndirilir, kimsə köhnə adı götürüb eyni adlı repository yaratmayınca."
+- question: "Ad dəyişəndən sonra köhnə ad `sam-lee` nə olur?"
+  options:
+    - "Həmişəlik Sam-a bağlı qalır"
+    - "Boşalır və başqası onu götürə bilər"
+    - "30 gün sonra silinir"
+  answer: 1
+  explain: "Köhnə ad başqasına açılır. Onu götürən adam eyni adlı repository yaratsa, köhnə yönləndirmə də işləməz."
+- question: "İki faktorlu autentifikasiya nəyi dəyişir?"
+  options:
+    - "Parolu silir, giriş yalnız telefonla olur"
+    - "Paroldan sonra ikinci sübut istəyir: tətbiqdəki kod və ya açar"
+    - "Hər girişdə yeni parol yaratmağı tələb edir"
+  answer: 1
+  explain: "Parol qalır. 2FA-da girişə parolla yanaşı ikinci bir şey də lazımdır, məsələn telefonunuzdakı tətbiqin kodu."
+- question: "GitHub 2FA üçün əsas üsul olaraq hansını tövsiyə edir?"
+  options:
+    - "SMS ilə gələn kod"
+    - "Emailə gələn kod"
+    - "Authenticator tətbiqi (TOTP)"
+  answer: 2
+  explain: "GitHub TOTP tətbiqini tövsiyə edir. SMS-i ələ keçirmək olur və o, hər ölkədə işləmir."
+- question: "Recovery code nəyə lazımdır?"
+  options:
+    - "Telefon itəndə girmək üçün: hər kod bir dəfə işləyir"
+    - "Parolu unudanda onu yenisi ilə əvəz etmək üçün"
+    - "Repository-ni başqa hesaba köçürmək üçün"
+  answer: 0
+  explain: "16 recovery code 2FA-nın ehtiyat yoludur. Hər biri bir dəfə işləyir. Onları telefondan ayrı yerdə, məsələn parol menecerində saxlayın."
+- question: "2FA qurularkən GitHub tətbiqin göstərdiyi 6 rəqəmli kodu niyə soruşur?"
+  options:
+    - "Kod sizin yeni parolunuz olur"
+    - "Tətbiqin düzgün qoşulduğunu yoxlamaq üçün"
+    - "Kodu recovery code kimi saxlamaq üçün"
+  answer: 1
+  explain: "Kod düz gəlirsə, tətbiq QR koddakı sirri düzgün götürüb. Sonra 2FA recovery code-lar saxlanandan sonra işə düşür."

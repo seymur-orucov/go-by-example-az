@@ -1,0 +1,10 @@
+rules:
+  - "Git hesab tələb etmir; GitHub hesabı repository saxlamaq və birgə işləmək üçündür."
+  - "Parol ya ən azı 15 simvol, ya da ən azı 8 simvol olmalı və içində rəqəm ilə kiçik hərf olmalıdır."
+  - "İstifadəçi adı profilin və repository-lərin ünvanındadır; dəyişəndə köhnə profil linki 404 verir."
+  - "2FA girişdə paroldan sonra ikinci sübut istəyir; GitHub kod töhfə verən hesablardan onu tələb edir."
+  - "Recovery code-lar 16 ehtiyat koddur; hər biri bir dəfə işləyir."
+practices:
+  - "Qısa, ciddi istifadəçi adı seçin və onu dəyişməməyə çalışın."
+  - "2FA üçün SMS yox, authenticator tətbiqi işlədin."
+  - "Recovery code-ları telefondan ayrı yerdə, məsələn parol menecerində saxlayın."
