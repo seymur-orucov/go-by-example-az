@@ -1,0 +1,70 @@
+- question: "Repository-nin ilk commit-ində `git cat-file -p HEAD` hansı sətri göstərmir?"
+  options:
+    - "`tree`"
+    - "`parent`"
+    - "`author`"
+    - "`committer`"
+  answer: 1
+  explain: "İlk (root) commit-dən əvvəl heç nə olmayıb, ona görə onun parent-i yoxdur."
+- question: "Yeni, boş repository-də bu komandalardan sonra nə çap olunur?"
+  code: |
+    echo "a" > one.txt
+    echo "b" > two.txt
+    echo "c" > three.txt
+    git add one.txt two.txt three.txt
+    git commit -q -m "Add three files"
+    echo "bb" > two.txt
+    git add two.txt
+    git commit -q -m "Change two"
+    git ls-tree HEAD | wc -l
+  options:
+    - "`1`"
+    - "`2`"
+    - "`3`"
+  answer: 2
+  explain: "Commit snapshot-dur: son commit-də yalnız `two.txt` dəyişsə də, tree hər üç faylı göstərir."
+- question: "Commit nəyi saxlayır?"
+  options:
+    - "Həmin andakı bütün faylların snapshot-unu (tree), parent-i, müəllifi, tarixi və mesajı"
+    - "Yalnız dəyişən sətirləri, yəni əvvəlki commit-ə görə diff-i"
+    - "Yalnız bu commit-də dəyişən faylların surətini"
+  answer: 0
+  explain: "Commit tam snapshot-a istinad edir; diff-i Git lazım olanda iki snapshot-u müqayisə edib hesablayır."
+- question: "`notes.txt` iki ardıcıl commit-də dəyişməyib. `git ls-tree` hər iki commit üçün onun blob hash-ini necə göstərir?"
+  options:
+    - "Fərqli: hər commit faylın yeni surətini saxlayır"
+    - "Eyni: məzmun eynidirsə, hash də eynidir və Git onu bir dəfə saxlayır"
+    - "İkinci commit-də `notes.txt` ümumiyyətlə görünmür"
+  answer: 1
+  explain: "Blob-un hash-i məzmundan hesablanır; yeni tree köhnə blob-a istinad edir."
+- question: "Repository-də iki commit var. Bu komanda nə çap edir?"
+  code: |
+    git cat-file -p HEAD | grep -c "^parent"
+  options:
+    - "`0`"
+    - "`1`"
+    - "`2`"
+  answer: 1
+  explain: "İkinci commit-in bir parent-i var: ilk commit. `grep -c` uyğun sətirləri sayır."
+- question: "Üç commit-lik tarixçədə ilk commit-in mesajını dəyişsəniz, digər iki commit-in hash-ləri ilə nə olur?"
+  options:
+    - "Dəyişmir: hər commit-in hash-i yalnız öz fayllarından asılıdır"
+    - "Yalnız ikinci commit-in hash-i dəyişir"
+    - "Hər ikisi dəyişir: hər commit parent-inin hash-ini saxlayır, o da zəncir boyu dəyişir"
+  answer: 2
+  explain: "Parent-in hash-i commit-in mətninə daxildir, ona görə dəyişiklik sonrakı bütün commit-lərə keçir."
+- question: "Commit-lər arasındakı istinad hansı istiqamətdədir?"
+  options:
+    - "Parent özündən sonrakı commit-ləri saxlayır"
+    - "İstinad yoxdur: Git commit-ləri tarixə görə sıralayır"
+    - "Hər iki istiqamətdə: commit həm parent-ini, həm də növbəti commit-i bilir"
+    - "Yeni commit öz parent-ini göstərir; parent sonrakı commit-ləri bilmir"
+  answer: 3
+  explain: "Commit yarananda parent-i artıq var, ona görə onun hash-ini yaza bilir; parent isə sonradan dəyişmir."
+- question: "`git commit` çıxışında `[main (root-commit) 3f2a91c]` görünür. `3f2a91c` nədir?"
+  options:
+    - "Commit-in qısa hash-i: tam 40 simvolluq hash-in başlanğıcı"
+    - "Commit-in sıra nömrəsi"
+    - "Faylın blob hash-i"
+  answer: 0
+  explain: "Git çıxışda hash-in qısa formasını göstərir; tam hash-i, məsələn, növbəti commit-in `parent` sətrində görmək olar."

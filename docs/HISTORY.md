@@ -607,3 +607,11 @@ Done (branch `feat/stackrise-brand`):
 - Page titles, the home comparison table and the slim lesson footer say `stackrise.dev`; `apps/site/public/favicon.svg` (light/dark aware) is linked from the layout; `site: "https://stackrise.dev"` in the Astro config.
 - Removed the name-preview switch (`BRANDS`, `paintBrand`, `?brand=`, `.brand-switch`). The `w3:` localStorage keys stay as they are (internal, renaming would reset saved settings).
 - Checked: lint, format check, `astro check`, build, the home page header in headless Edge.
+
+### 71. Commit-graph visual and the `commit-snapshot` pilot
+The user asked to continue Git from where it stopped: module 3 "Tarixçə" needed the commit-graph visual first.
+
+Done (branch `feat/git-commit-graph`):
+- **`vis: graph`** for session lessons: `pnpm content:run` records the graph after each step next to `areas` (commits reachable from branches, tags and HEAD, parents, each commit's files compared with its first parent, branches, tags, HEAD; `graph` is optional in `session.json`, so older lessons stay valid). `lib/graph.ts` lays it out: newest commit on top, a lane per branch chain (main first, lanes reused), fork and merge curves; each row draws its own slice of the rail (`GraphRail.astro`, an SVG stretched to the row), so rows can wrap on a phone. New commits and moved refs are highlighted; `HEAD → main`, detached `HEAD` and tags are pills. `files: true` adds a detail line per commit: parent(s) and the files (new / changed / same as in the parent) with a legend.
+- **Pilot `commit-snapshot`** (`state`, `source: original`): a weekly workout plan — `git cat-file -p HEAD` (tree, author, committer, no parent in the root commit), `git ls-tree --abbrev HEAD` (blobs), the second commit's `parent` line, the unchanged file keeping its blob hash (snapshot, not diff), a third commit and the chain; why changing an old commit changes every later hash. 5 steps with `vis: graph` + `files`, 8 questions.
+- Checked: `content:run` twice (identical), every quiz answer in a scratch sandbox, `content:check` (97/97), build, lint, format, `astro check`; the page at 1440px and 390px (iframe); a throwaway session with two branches, a merge, a tag, a hotfix branch and a detached HEAD to check lanes and curves (deleted afterwards).
