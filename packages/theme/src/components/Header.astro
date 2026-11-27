@@ -47,39 +47,49 @@ const { current, active = [], solid, lesson } = Astro.props;
       </svg>
     </button>
   )}
-  <a class="logo" href="/" aria-label="Ana səhifə">
-    <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true">
+  <a class="logo" href="/" aria-label="stackrise.dev — ana səhifə">
+    <!-- Brand mark "Ox qatları" (design/brand/stackrise.html, concept A), small-size variant:
+         three folded slabs stacked into an up arrow; the coral top slab is the "rise". -->
+    <svg class="logo-mark" viewBox="0 0 48 48" aria-hidden="true">
       <defs>
-        <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+        <linearGradient id="sr-tile" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0" stop-color="var(--cyan)"></stop>
           <stop offset=".5" stop-color="var(--accent)"></stop>
           <stop offset="1" stop-color="var(--accent-2)"></stop>
         </linearGradient>
       </defs>
-      <rect x="1" y="1" width="30" height="30" rx="9" fill="url(#lg)" opacity=".16"></rect>
+      <rect x="1" y="1" width="46" height="46" rx="13" fill="var(--surface)"></rect>
       <rect
-        x="1"
-        y="1"
-        width="30"
-        height="30"
-        rx="9"
+        x="1.5"
+        y="1.5"
+        width="45"
+        height="45"
+        rx="12.5"
         fill="none"
-        stroke="url(#lg)"
-        stroke-opacity=".7"
+        stroke="url(#sr-tile)"
+        stroke-opacity=".6"
       ></rect>
-      <path
-        d="M8 21.5 12.5 11l3.5 7 3.5-7L24 21.5"
-        fill="none"
-        stroke="url(#lg)"
-        stroke-width="2.4"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      ></path>
-      <circle cx="8" cy="21.5" r="1.8" fill="var(--cyan)"></circle>
-      <circle cx="24" cy="21.5" r="1.8" fill="var(--accent-2)"></circle>
+      <g transform="translate(24 24) scale(.84) translate(-24 -24)">
+        <g fill="var(--cyan)" opacity=".7">
+          <polygon points="9,35 24,26 24,33.5 9,42.5"></polygon>
+          <polygon points="39,35 24,26 24,33.5 39,42.5"></polygon>
+          <polygon points="39,35 24,26 24,33.5 39,42.5" fill="#000" fill-opacity=".32"></polygon>
+        </g>
+        <g fill="var(--accent)" opacity=".85">
+          <polygon points="9,25 24,16 24,23.5 9,32.5"></polygon>
+          <polygon points="39,25 24,16 24,23.5 39,32.5"></polygon>
+          <polygon points="39,25 24,16 24,23.5 39,32.5" fill="#000" fill-opacity=".32"></polygon>
+        </g>
+        <g fill="var(--accent-3)">
+          <polygon points="9,15 24,6 24,13.5 9,22.5"></polygon>
+          <polygon points="39,15 24,6 24,13.5 39,22.5"></polygon>
+          <polygon points="39,15 24,6 24,13.5 39,22.5" fill="#000" fill-opacity=".32"></polygon>
+        </g>
+      </g>
     </svg>
-    <span data-brand>
-      w3hub<span class="logo-tld">.dev</span>
+    <span class="logo-wm">
+      stack<span class="logo-rise">rise</span>
+      <span class="logo-tld">.dev</span>
     </span>
   </a>
   <nav class="nav" aria-label="Əsas menyu">

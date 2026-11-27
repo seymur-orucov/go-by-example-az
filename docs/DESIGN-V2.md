@@ -5,7 +5,7 @@ Single place for the design v2 work (`design/v2/`): what the user asked for, whi
 ## User's request (2026-11-25)
 
 - Redesign the home page and the other pages **on top of Variant D, as a new version** (D stays frozen), taking into account the design gaps listed in [ROADMAP.md](ROADMAP.md) (Phase 6, "Design gaps for the platform").
-- Platform name candidates (user's proposals): **`w3hub.dev`**, **`beststack.dev`**. Undecided; both are switchable in the v2 footer (`?brand=`).
+- Platform name: **`stackrise.dev`** (decided 2026-11-27). The prototypes still show the old candidates `w3hub.dev` / `beststack.dev`; the site in `apps/` uses the new name and logo.
 - Home page wishes:
   - an intro (hero) that is interesting — an animation or a video-like effect;
   - the available technologies and directions shown **compactly but visually**;
@@ -77,7 +77,7 @@ The user's request: *"V6 yarat. Introda maraqlı interaktiv animasiya. Əsas sə
 
 1. **Get the user's feedback on v6** (the liquid-glass hero and its interactions, the amount of information, the sections) and record it in [HISTORY.md](HISTORY.md). If v6 is the direction, it becomes the home reference; the Go, roadmap and lesson pages are already in the same (v2) glass language, and v6's roadmap explorer and lesson demo can feed `go.html` / `roadmap.html`.
 2. If the user wants another variant instead, one earlier proposal still stands: **"Light editorial"** (light-first, large type, fewer effects). ("Roadmap-first" is what v4 became.)
-3. Decide the platform name (`w3hub.dev` / `beststack.dev` / other) — check domain availability.
+3. ~~Decide the platform name~~ — done: `stackrise.dev`. Still open from the brand sheet: lockup/app-icon/monochrome SVG files, PNG/ICO favicons, the logo animation and an OG image.
 4. After a variant is approved: move it into `packages/theme` / `apps/site` (Phase 2 module 2: `/`, `/go/roadmap/`, `/roadmaps/backend/`).
 5. Known gaps: `design/shared/data.js` says "Massivlər" in the Kolleksiyalar description (term rule); the roadmap opens on the next topic, which may have no sample facet content; check fonts, the aurora, the v3 intro, the v4 map and the v6 liquid glass (drag on touch, frame rate) on a real browser/phone. The Google Fonts stylesheet is render-blocking in every version; on a slow connection it delays the intro scripts.
 
