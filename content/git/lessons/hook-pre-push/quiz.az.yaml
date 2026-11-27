@@ -1,0 +1,62 @@
+- question: "`pre-push` hook-u nə vaxt işləyir?"
+  options:
+    - "Hər `git commit`-dən əvvəl"
+    - "Server push-u qəbul edəndən sonra"
+    - "`git push` serverə nəsə göndərməzdən əvvəl"
+  answer: 2
+  explain: "Hook push-un əvvəlində işləyir. O 0-dan fərqli kodla bitsə, serverə heç nə getmir."
+- question: "`git push origin main` zamanı hook-un `$1` və `$2` arqumentləri nədir?"
+  options:
+    - "Lokal və serverdəki branch-ın adı"
+    - "Remote-un adı (`origin`) və ünvanı"
+    - "Göndərilən və serverdəki commit-in hash-i"
+  answer: 1
+  explain: "Arqumentlər remote-u təsvir edir. Branch-lar və commit-lər stdin-dəki sətirlərdə gəlir."
+- question: "`feature` branch-ı serverdə hələ yoxdur. `git push origin feature` zamanı hook-un stdin sətrində dördüncü sahə nə olur?"
+  options:
+    - "Lokal `feature`-in commit hash-i"
+    - "`refs/heads/feature`"
+    - "Sıfırlardan ibarət hash: `0000…`"
+    - "Sahə boş qalır, sətirdə üç söz olur"
+  answer: 2
+  explain: "Dördüncü sahə serverdə ref-in indiki commit-idir. Ref yoxdursa, Git sıfırlardan ibarət hash yazır."
+- question: "`git push origin main:release` zamanı stdin sətrinin üçüncü sahəsi nədir?"
+  options:
+    - "`refs/heads/main`"
+    - "`refs/heads/release`"
+    - "`origin`"
+  answer: 1
+  explain: "Üçüncü sahə serverdəki ref-dir. `main:release` lokal `main`-i serverdəki `release`-ə yazır."
+- question: "Hook `sh check.sh || exit 1`-dir, test uğursuz olur. Bu komandalardan sonra `git status` nə çap edir?"
+  code: |
+    git commit -q -am "Add a draft section"
+    git push
+    git status
+  options:
+    - "`Your branch is up to date with 'origin/main'.`"
+    - "`Your branch is behind 'origin/main' by 1 commit.`"
+    - "`nothing added to commit but untracked files present`"
+    - "`Your branch is ahead of 'origin/main' by 1 commit.`"
+  answer: 3
+  explain: "Hook push-u dayandırdı, commit lokal qaldı. Ona görə branch `origin/main`-dən bir commit irəlidədir."
+- question: "Hook serverdəki ref `refs/heads/main` olanda push-u dayandırır. `docs` branch-ında olarkən `git push origin HEAD:main` yazsanız nə olur?"
+  options:
+    - "Push dayanır, çünki serverdəki ref `refs/heads/main`-dir"
+    - "Push keçir, çünki lokal branch `docs`-dur"
+    - "Push keçir, çünki `HEAD` ref sayılmır"
+  answer: 0
+  explain: "Hook üçüncü sahəni, yəni serverdə yazılacaq ref-i yoxlayır. Lokal branch-ın adı rol oynamır."
+- question: "Eyni hook ilə `git push -u origin docs` nə edir?"
+  options:
+    - "Push dayanır, çünki `docs` `main`-dən yaranıb"
+    - "Push dayanır, çünki yeni branch-da hook sıfır hash görür"
+    - "Push keçir, çünki serverdəki ref `refs/heads/docs`-dur"
+  answer: 2
+  explain: "Üçüncü sahə `refs/heads/docs`-dur, `if` uyğun gəlmir və hook 0 ilə bitir."
+- question: "`pre-push` hook-unu işlətmədən push edən komanda hansıdır?"
+  options:
+    - "`git push --force`"
+    - "`git push --no-verify`"
+    - "`git push -u origin main`"
+  answer: 1
+  explain: "`--no-verify` hook-u tam keçir. `--force` isə başqa iş görür: serverdəki branch-ı zorla yenidən yazır."

@@ -1,0 +1,65 @@
+- question: "Git `commit-msg` hook-una hansı arqumenti verir?"
+  options:
+    - "Mesajın mətnini"
+    - "Mesajın yazıldığı faylın yolunu"
+    - "Yaranacaq commit-in hash-ini"
+    - "Cari branch-ın adını"
+  answer: 1
+  explain: "Hook bir arqument alır: mesajın yazıldığı müvəqqəti faylın yolu, adətən `.git/COMMIT_EDITMSG`. Skriptdə o `$1`-dir."
+- question: "Dərsdəki yoxlayan hook qoşulub. Bu komandadan sonra nə olur?"
+  code: |
+    git commit -m "Fix: typo in README"
+  options:
+    - "Commit yaranır, çünki `fix` tipi siyahıdadır"
+    - "Commit yaranır, çünki scope istəyə bağlıdır"
+    - "Hook rədd edir, çünki `Fix` böyük hərflə yazılıb"
+  answer: 2
+  explain: "Nümunədə tiplər kiçik hərflədir və `grep` hərflərin böyük-kiçikliyini nəzərə alır, ona görə `Fix` uyğun gəlmir."
+- question: "Dərsdəki yoxlayan hook qoşulub. Bu komandadan sonra nə olur?"
+  code: |
+    git commit -m "docs(readme) add install steps"
+  options:
+    - "Commit yaranır, çünki `docs` tipi siyahıdadır"
+    - "Hook rədd edir, çünki scope-dan sonra `:` yoxdur"
+    - "Hook rədd edir, çünki scope-da yalnız `cli` ola bilər"
+  answer: 1
+  explain: "Nümunə tipdən və scope-dan sonra `: ` tələb edir. Scope-un adını isə yoxlamır."
+- question: "Dərsdəki hook bu başlıqlardan hansını qəbul edir?"
+  options:
+    - "`style: format main.sh`"
+    - "`fix:handle empty input`"
+    - "`feat(cli)!: drop the -q flag`"
+    - "`fixes(cli): handle empty input`"
+  answer: 2
+  explain: "`feat`, scope `(cli)`, `!` və `: ` ardıcıllığı nümunəyə uyğundur. `style` siyahıda yoxdur, `fix:`-dan sonra boşluq yoxdur, `fixes` isə `fix` deyil."
+- question: "Dərsdəki hook qoşulub. Bu komandadan sonra nə olur?"
+  code: |
+    git commit -m "update readme" -m "fix: typo in usage"
+  options:
+    - "Hook rədd edir, çünki yalnız birinci sətri yoxlayır"
+    - "Commit yaranır, çünki ikinci abzas formata uyğundur"
+    - "Commit yaranır, çünki iki `-m` ilə hook işləmir"
+  answer: 0
+  explain: "Birinci `-m` başlıq olur. `head -n1 \"$1\"` yalnız `update readme`-ni götürür və o formata uyğun deyil."
+- question: "`commit-msg` hook-u 1 kodu ilə çıxdı. Stage olunmuş dəyişikliklərə nə olur?"
+  options:
+    - "Commit mesajsız yaranır"
+    - "Dəyişikliklər staging area-dan çıxarılır"
+    - "Dəyişikliklər silinir və fayllar köhnə halına qayıdır"
+    - "Commit yaranmır, dəyişikliklər staging area-da qalır"
+  answer: 3
+  explain: "Git commit-i yaratmır, başqa heç nəyə toxunmur: `git status --short` faylı yenə `M ` ilə göstərir."
+- question: "Siz `-m` olmadan `git commit` yazdınız və mesajı redaktorda yazdınız. Hook `cat \"$1\"` ilə faylda nə görür?"
+  options:
+    - "Yalnız redaktorda yazdığınız mesajı"
+    - "Mesajı və `#` ilə başlayan izah sətirlərini"
+    - "Boş fayl: mesaj fayla hook-dan sonra yazılır"
+  answer: 1
+  explain: "Git `#` sətirlərini hook işləyəndən sonra silir. Dərsdəki hook `head -n1` ilə yalnız başlığa baxır, ona görə bu sətirlər ona mane olmur."
+- question: "Hook-dakı `grep -Eq`-də `-q` nə edir?"
+  options:
+    - "Hərflərin böyük-kiçikliyinə baxmır"
+    - "Yalnız birinci sətri yoxlayır"
+    - "Heç nə çap etmir, yalnız çıxış kodu qaytarır"
+  answer: 2
+  explain: "`-q` (quiet) uyğun sətri ekrana çıxarmır. `if` üçün çıxış kodu kifayətdir: 0 uyğun gəldi, 1 gəlmədi."

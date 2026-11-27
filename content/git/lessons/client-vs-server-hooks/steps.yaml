@@ -1,0 +1,39 @@
+# Hand-written visuals (text lesson): the order of hooks in one commit + push, then client vs server.
+two-sides:
+  vis:
+    kind: flow
+    caption: "Bir commit və bir push: hook-ların sırası"
+    arrows: true
+    items:
+      - { label: "pre-commit", sub: "Sam-ın kompüteri" }
+      - { label: "commit-msg", sub: "Sam-ın kompüteri" }
+      - { label: "pre-push", sub: "Sam-ın kompüteri" }
+      - { label: "pre-receive", sub: "server, bir dəfə", tone: accent }
+      - { label: "update", sub: "server, hər branch üçün", tone: accent }
+      - { label: "post-receive", sub: "server, push-dan sonra", tone: accent }
+    note: "İlk üçü Sam-ın `.git/hooks` qovluğundadır, son üçü serverdəki `billing.git/hooks`-dadır."
+server-side:
+  vis:
+    kind: compare
+    caption: "Client və server hook-ları"
+    a: { title: "Client hook-ları", sub: "`pre-commit`, `commit-msg`, `pre-push`, `post-checkout`" }
+    b: { title: "Server hook-ları", sub: "`pre-receive`, `update`, `post-receive`" }
+    rows:
+      - aspect: "Harada işləyir"
+        a: "Developer-in kompüterində"
+        b: "Serverdəki bare repository-də"
+      - aspect: "Kim quraşdırır"
+        a: "Hər developer özü; clone ilə gəlmir"
+        b: "Serverin administratoru, bir dəfə"
+      - aspect: "Keçmək olarmı"
+        a: "Bəli: `--no-verify` və ya faylı silmək"
+        b: "Xeyr, hər push yoxlanır"
+        better: b
+      - aspect: "Səhv nə vaxt görünür"
+        a: "Commit və ya push anında"
+        b: "Push zamanı, commit artıq tarixçədədir"
+        better: a
+      - aspect: "Nəyə yarayır"
+        a: "Developer-ə tez xəbərdarlıq"
+        b: "Hamı üçün məcburi qayda, bildiriş, deploy"
+    note: "GitHub.com-da server hook-u yazmaq olmur: orada branch qorunma qaydaları, status check-lər və webhook-lar var."

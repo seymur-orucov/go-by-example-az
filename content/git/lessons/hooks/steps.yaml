@@ -1,0 +1,27 @@
+# Hand-written visuals (text lesson): the hooks of one commit, then how a team shares hooks.
+what:
+commit-flow:
+  vis:
+    kind: flow
+    caption: "git commit zamanı işləyən hook-lar"
+    arrows: true
+    items:
+      - { label: "`git commit`", sub: "komanda" }
+      - { label: "`pre-commit`", sub: "faylları yoxlayır; xəta olsa, commit yaranmır", tone: accent }
+      - { label: "`commit-msg`", sub: "mesajı yoxlayır; xəta olsa, commit yaranmır", tone: accent }
+      - { label: "commit yaranır", sub: "tarixçəyə yazılır", tone: good }
+      - { label: "`post-commit`", sub: "bildiriş; nəticəni dəyişmir" }
+    note: "Sıfırdan fərqli çıxış kodu zənciri dayandırır: sonrakı addımlar işləmir, fayllar staging area-da qalır."
+hooks-folder:
+sharing:
+  vis:
+    kind: flow
+    caption: "Hook-lar komandaya necə çatır"
+    arrows: true
+    items:
+      - { label: "`.githooks/pre-commit`", sub: "repository-də, commit olunur" }
+      - { label: "`git push` → `git clone`", sub: "qovluq hamıya çatır" }
+      - { label: "`git config core.hooksPath .githooks`", sub: "hər kəs bir dəfə işlədir", tone: accent }
+      - { label: "hook hər commit-də işləyir", tone: good }
+    note: "`.git/hooks` isə clone ilə gəlmir: yeni klonda orada yalnız `.sample` faylları olur."
+limits:

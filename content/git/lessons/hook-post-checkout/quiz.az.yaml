@@ -1,0 +1,65 @@
+- question: "`.git/hooks/post-checkout` belədir. `git switch -c test` nə çap edir?"
+  code: |
+    #!/bin/sh
+    echo "$3"
+  options:
+    - "`Switched to a new branch 'test'`, sonra `0`"
+    - "`Switched to a new branch 'test'`, sonra `1`"
+    - "Yalnız `Switched to a new branch 'test'`"
+  answer: 1
+  explain: "Yeni branch-a keçid də branch keçididir, ona görə bayraq `1`-dir. Hook keçiddən sonra işləyir."
+- question: "post-checkout hook-unda keçiddən əvvəlki HEAD hansı arqumentdədir?"
+  options:
+    - "`$1`"
+    - "`$2`"
+    - "`$3`"
+  answer: 0
+  explain: "`$1` əvvəlki HEAD, `$2` yeni HEAD, `$3` isə bayraqdır: `1` branch keçidi, `0` fayl bərpası."
+- question: "Eyni hook (`echo \"$3\"`) qoşulub. `notes.txt` dəyişib. `git restore notes.txt` nə çap edir?"
+  options:
+    - "`1`"
+    - "Heç nə: `git restore` hook-u işə salmır"
+    - "`0`"
+  answer: 2
+  explain: "`git restore` da post-checkout-u işə salır, amma fayl bərpasında bayraq `0`-dır."
+- question: "Hook belədir. `main`-də `git switch -c feat/cart` nə çap edir?"
+  code: |
+    #!/bin/sh
+    [ "$1" = "$2" ] && echo same
+  options:
+    - "Yalnız `Switched to a new branch 'feat/cart'`"
+    - "Xəta, çünki `feat/cart` hələ yox idi"
+    - "`Switched to a new branch 'feat/cart'`, sonra `same`"
+  answer: 2
+  explain: "Yeni branch `main`-in commit-indən başlayır. HEAD-in commit-i dəyişmir, ona görə ilk iki arqument eynidir."
+- question: "Dərsdəki `deps.txt` hook-u qoşulub. `docs/readme` branch-ı yalnız `README.md`-i dəyişib. `main`-də `git switch docs/readme` nə çap edir?"
+  options:
+    - "`Switched to branch 'docs/readme'` və `deps.txt changed: run the installer`"
+    - "Yalnız `Switched to branch 'docs/readme'`"
+    - "Yalnız `deps.txt changed: run the installer`"
+  answer: 1
+  explain: "`deps.txt` iki commit-də eynidir, `git diff --quiet` `0` qaytarır və `echo` işləmir."
+- question: "Hook yalnız `exit 1`-dən ibarətdir. `main`-də bu komandalardan sonra nə olur?"
+  code: |
+    git switch feat/cart && echo done
+  options:
+    - "`done` çap olunur, branch `feat/cart` olur"
+    - "`done` çap olunmur, branch `feat/cart` olur"
+    - "`done` çap olunmur, branch `main` qalır"
+  answer: 1
+  explain: "Hook keçidi geri qaytarmır, amma onun `1` kodu `git switch`-in çıxış kodu olur. Ona görə `&&`-dən sonrakı `echo` işləmir."
+- question: "`git clone` post-checkout-u işə salanda birinci arqument nə olur?"
+  options:
+    - "Serverdəki `main`-in son commit-i"
+    - "Boş sətir, çünki arqument verilmir"
+    - "Sıfırlardan ibarət hash"
+  answer: 2
+  explain: "Clone-dan əvvəl HEAD yox idi, ona görə Git əvvəlki HEAD yerinə sıfırlardan ibarət hash verir. Bayraq `1` olur."
+- question: "Bu komandalardan hansı post-checkout hook-unu işə salmır?"
+  options:
+    - "`git switch main`"
+    - "`git restore app.sh`"
+    - "`git checkout -- app.sh`"
+    - "`git commit -am \"Fix port\"`"
+  answer: 3
+  explain: "post-checkout branch keçidindən və fayl bərpasından sonra işləyir. Commit-dən sonra `post-commit` işləyir."

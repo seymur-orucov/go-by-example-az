@@ -1,0 +1,29 @@
+$ printf '%s\n' '#!/bin/sh' 'if git diff --cached | grep "^+.*TODO"; then' '  echo "TODO found: commit stopped"' '  exit 1' 'fi' > .git/hooks/pre-commit
+$ chmod +x .git/hooks/pre-commit
+$ cat .git/hooks/pre-commit
+#!/bin/sh
+if git diff --cached | grep "^+.*TODO"; then
+  echo "TODO found: commit stopped"
+  exit 1
+fi
+$ git add about.md
+$ git commit -m "Add about page"
++TODO: add contact link
+TODO found: commit stopped
+$ git status --short
+A  about.md
+$ sed -i '/TODO/d' about.md
+$ git commit -m "Add about page"
++TODO: add contact link
+TODO found: commit stopped
+$ git status --short
+AM about.md
+$ git add about.md
+$ git commit -m "Add about page"
+[main b48aeb7] Add about page
+ 1 file changed, 2 insertions(+)
+ create mode 100644 about.md
+$ echo "TODO: add photos" >> index.md
+$ git commit --no-verify -am "Start photo section"
+[main b86b70e] Start photo section
+ 1 file changed, 1 insertion(+)

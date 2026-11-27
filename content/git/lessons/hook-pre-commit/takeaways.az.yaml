@@ -1,0 +1,10 @@
+rules:
+  - "pre-commit hook `git commit` commit yaratmazdan əvvəl işə düşür; skript `0`-dan fərqli kodla bitsə, commit yaranmır."
+  - "Hook `.git/hooks/pre-commit` adlı, sonluqsuz faylda olmalıdır; `chmod +x` onu icra olunan edir."
+  - "Yoxlama staging area-ya baxmalıdır: `git diff --cached` commit-ə nə düşəcəyini göstərir."
+  - "Hook commit-i dayandıranda fayllar staging area-da qalır; düzəlişdən sonra `git add` edib yenidən commit edin."
+  - "`git commit --no-verify` (`-n`) pre-commit və commit-msg hook-larını işə salmır."
+practices:
+  - "Hook-da problemli sətri çap edin: developer nəyi düzəltməli olduğunu dərhal görür."
+  - "Eyni qaydanı CI-da da yoxlayın: hook-u keçmək və ya heç quraşdırmamaq olar."
+  - "`--no-verify`-ı yalnız hook-un niyə dayandırdığını bildiyiniz halda işlədin."

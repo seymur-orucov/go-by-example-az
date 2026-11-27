@@ -732,3 +732,16 @@ Done:
 - `bisect` (`terminal`, a temperature converter): binary search between `v1.0` and a bad `HEAD`, `good`/`bad`, `is the first 'bad' commit`, `bisect reset`, `bisect run` with an exit-code test.
 - `worktree` (`terminal`, a coffee subscription site): `git worktree add -b`, one `.git` for both folders, a branch open in one worktree only, `remove` and `prune`.
 - The reviewer set the level of modules 10–11 to `intermediate`, added the rebase recovery the earlier lessons promised to `reflog`, fixed the search counts in `bisect` and replaced near-duplicate quiz questions.
+
+### 82. Git module 12 "Git hooks"
+Same process.
+
+Done:
+- `hooks` (`concept`, a bike rental team): what a hook is, the order inside a commit, `.git/hooks` and `.sample`, executable bit and shebang (Windows needs `#!`), exit codes, hooks are not cloned, `core.hooksPath` and hook managers (this site: lefthook + commitlint).
+- `client-vs-server-hooks` (`compare`, a company Git server): client hooks give fast feedback and can be skipped, `pre-receive`/`update`/`post-receive` enforce rules for everyone, GitHub.com uses rulesets, status checks and webhooks instead.
+- `hook-pre-commit` (`terminal`, a notes site): block added `TODO` lines in the staged diff, the hook reads the staging area, `--no-verify`.
+- `hook-commit-msg` (`terminal`, a CLI tool): the message file argument, a Conventional Commits check with `grep -E`, commitlint.
+- `hook-pre-push` (`terminal`, a lamp landing page): the stdin ref lines (all-zero hash for a new branch), running a check before push, blocking direct pushes to `main`.
+- `hook-post-checkout` (`terminal`, a shop API): previous HEAD, new HEAD and the flag (`git restore` runs it with 0), a dependency reminder, the exit status does not undo the switch.
+- `hook-post-update` (`terminal`, a static site on a bare server): server hooks in the bare repository, a `post-receive` deploy with `--work-tree`, `post-update` arguments and `update-server-info`, a `pre-receive` rejection.
+- The reviewer removed a fenced code block and an id-less outro heading that the text-lesson renderer would show unstyled, made each fact taught once with back-references, fixed the clone note in `hook-post-checkout` and replaced near-duplicate quiz questions.

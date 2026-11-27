@@ -1,0 +1,10 @@
+rules:
+  - "`pre-push` `git push` serverə nəsə göndərməzdən əvvəl işləyir; 0-dan fərqli kodla bitsə, push dayanır və commit-lər lokal qalır."
+  - "Hook iki arqument alır: `$1` remote-un adı, `$2` onun ünvanıdır."
+  - "stdin-də push olunan hər ref üçün bir sətir gəlir: lokal ref, lokal commit, serverdəki ref və serverdəki indiki commit."
+  - "Serverdə hələ olmayan branch üçün dördüncü sahə sıfırlardan ibarət hash-dir."
+  - "`git push --no-verify` hook-u tam keçir, ona görə `main`-i həqiqətən serverdəki qayda (branch qorunma qaydası) qoruyur."
+practices:
+  - "Uzun çəkən testləri `pre-commit`-də yox, `pre-push`-da işlədin: `sh check.sh || exit 1`."
+  - "Branch-ı yoxlayanda serverdəki ref-ə (üçüncü sahə) baxın, lokal branch-ın adına yox."
+  - "`--no-verify`-ı yalnız səbəbini bildiyiniz halda işlədin: test də işləmir."

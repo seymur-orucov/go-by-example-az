@@ -1,0 +1,32 @@
+$ printf '%s\n' '#!/bin/sh' 'echo "Message file: $1"' 'cat "$1"' > .git/hooks/commit-msg
+$ chmod +x .git/hooks/commit-msg
+$ echo "Usage: ./main.sh FILE" > README.md
+$ git add README.md
+$ git commit -m "docs: add usage to README"
+Message file: .git/COMMIT_EDITMSG
+docs: add usage to README
+[main 064f584] docs: add usage to README
+ 1 file changed, 1 insertion(+)
+ create mode 100644 README.md
+$ printf '%s\n' '#!/bin/sh' 'if ! head -n1 "$1" | grep -Eq "^(feat|fix|docs|refactor|test|chore)(\(.+\))?!?: .+"; then' '  echo "commit-msg: use type(scope): description"' '  echo "example: fix(cli): handle empty input"' '  exit 1' 'fi' > .git/hooks/commit-msg
+$ cat .git/hooks/commit-msg
+#!/bin/sh
+if ! head -n1 "$1" | grep -Eq "^(feat|fix|docs|refactor|test|chore)(\(.+\))?!?: .+"; then
+  echo "commit-msg: use type(scope): description"
+  echo "example: fix(cli): handle empty input"
+  exit 1
+fi
+$ echo 'wc -l "$1"' >> main.sh
+$ git add main.sh
+$ git commit -m "update stuff"
+commit-msg: use type(scope): description
+example: fix(cli): handle empty input
+$ git status --short
+M  main.sh
+$ git commit -m "feat(cli): print the line count"
+[main 641bcf1] feat(cli): print the line count
+ 1 file changed, 1 insertion(+)
+$ git log --oneline
+641bcf1 feat(cli): print the line count
+064f584 docs: add usage to README
+4441bdd feat: count words in a file
