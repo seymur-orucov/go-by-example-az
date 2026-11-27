@@ -1,0 +1,756 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir city-guide",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd city-guide",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"# Places\" \"- Old Town\" \"- City Park\" > places.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"# Food\" \"- Pizza Corner\" > food.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add .",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Start city guide\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"- River Bridge\" >> places.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add River Bridge\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"- Noodle Bar\" >> food.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add Noodle Bar\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "sed -i 's/City Park/Central Park/' places.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Rename City Park\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "history",
+      "hidden": false,
+      "fail": false,
+      "out": "b988303 Rename City Park\n7bc7d6c Add Noodle Bar\n74b0bea Add River Bridge\n3eba4d2 Start city guide\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git diff HEAD~2 HEAD",
+      "step": "two-commits",
+      "hidden": false,
+      "fail": false,
+      "out": "diff --git a/food.md b/food.md\nindex 758fa14..56c6b68 100644\n--- a/food.md\n+++ b/food.md\n@@ -1,2 +1,3 @@\n # Food\n - Pizza Corner\n+- Noodle Bar\ndiff --git a/places.md b/places.md\nindex 94a8fb3..8f8f8cd 100644\n--- a/places.md\n+++ b/places.md\n@@ -1,4 +1,4 @@\n # Places\n - Old Town\n-- City Park\n+- Central Park\n - River Bridge\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git diff --stat HEAD~3 HEAD",
+      "step": "stat",
+      "hidden": false,
+      "fail": false,
+      "out": " food.md   | 1 +\n places.md | 3 ++-\n 2 files changed, 3 insertions(+), 1 deletion(-)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git diff HEAD~3 HEAD -- places.md",
+      "step": "one-file",
+      "hidden": false,
+      "fail": false,
+      "out": "diff --git a/places.md b/places.md\nindex 458ebbb..8f8f8cd 100644\n--- a/places.md\n+++ b/places.md\n@@ -1,3 +1,4 @@\n # Places\n - Old Town\n-- City Park\n+- Central Park\n+- River Bridge\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git diff HEAD HEAD~3 -- places.md",
+      "step": "one-file",
+      "hidden": false,
+      "fail": false,
+      "out": "diff --git a/places.md b/places.md\nindex 8f8f8cd..458ebbb 100644\n--- a/places.md\n+++ b/places.md\n@@ -1,4 +1,3 @@\n # Places\n - Old Town\n-- Central Park\n-- River Bridge\n+- City Park\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"- Night Market\" >> food.md",
+      "step": "working-dir",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git diff HEAD~2 HEAD -- food.md",
+      "step": "working-dir",
+      "hidden": false,
+      "fail": false,
+      "out": "diff --git a/food.md b/food.md\nindex 758fa14..56c6b68 100644\n--- a/food.md\n+++ b/food.md\n@@ -1,2 +1,3 @@\n # Food\n - Pizza Corner\n+- Noodle Bar\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git diff HEAD~2 -- food.md",
+      "step": "working-dir",
+      "hidden": false,
+      "fail": false,
+      "out": "diff --git a/food.md b/food.md\nindex 758fa14..7ba931a 100644\n--- a/food.md\n+++ b/food.md\n@@ -1,2 +1,4 @@\n # Food\n - Pizza Corner\n+- Noodle Bar\n+- Night Market\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "history": {
+      "areas": {
+        "work": [
+          {
+            "name": "food.md",
+            "state": "clean"
+          },
+          {
+            "name": "places.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "food.md",
+            "state": "clean"
+          },
+          {
+            "name": "places.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "b988303",
+            "message": "Rename City Park"
+          },
+          "count": 4,
+          "files": [
+            "food.md",
+            "places.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "b988303",
+            "message": "Rename City Park",
+            "parents": [
+              "7bc7d6c"
+            ],
+            "files": [
+              {
+                "name": "food.md",
+                "state": "same"
+              },
+              {
+                "name": "places.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "7bc7d6c",
+            "message": "Add Noodle Bar",
+            "parents": [
+              "74b0bea"
+            ],
+            "files": [
+              {
+                "name": "food.md",
+                "state": "modified"
+              },
+              {
+                "name": "places.md",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "74b0bea",
+            "message": "Add River Bridge",
+            "parents": [
+              "3eba4d2"
+            ],
+            "files": [
+              {
+                "name": "food.md",
+                "state": "same"
+              },
+              {
+                "name": "places.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "3eba4d2",
+            "message": "Start city guide",
+            "parents": [],
+            "files": [
+              {
+                "name": "food.md",
+                "state": "added"
+              },
+              {
+                "name": "places.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "b988303"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "b988303"
+        }
+      }
+    },
+    "two-commits": {
+      "areas": {
+        "work": [
+          {
+            "name": "food.md",
+            "state": "clean"
+          },
+          {
+            "name": "places.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "food.md",
+            "state": "clean"
+          },
+          {
+            "name": "places.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "b988303",
+            "message": "Rename City Park"
+          },
+          "count": 4,
+          "files": [
+            "food.md",
+            "places.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "b988303",
+            "message": "Rename City Park",
+            "parents": [
+              "7bc7d6c"
+            ],
+            "files": [
+              {
+                "name": "food.md",
+                "state": "same"
+              },
+              {
+                "name": "places.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "7bc7d6c",
+            "message": "Add Noodle Bar",
+            "parents": [
+              "74b0bea"
+            ],
+            "files": [
+              {
+                "name": "food.md",
+                "state": "modified"
+              },
+              {
+                "name": "places.md",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "74b0bea",
+            "message": "Add River Bridge",
+            "parents": [
+              "3eba4d2"
+            ],
+            "files": [
+              {
+                "name": "food.md",
+                "state": "same"
+              },
+              {
+                "name": "places.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "3eba4d2",
+            "message": "Start city guide",
+            "parents": [],
+            "files": [
+              {
+                "name": "food.md",
+                "state": "added"
+              },
+              {
+                "name": "places.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "b988303"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "b988303"
+        }
+      }
+    },
+    "stat": {
+      "areas": {
+        "work": [
+          {
+            "name": "food.md",
+            "state": "clean"
+          },
+          {
+            "name": "places.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "food.md",
+            "state": "clean"
+          },
+          {
+            "name": "places.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "b988303",
+            "message": "Rename City Park"
+          },
+          "count": 4,
+          "files": [
+            "food.md",
+            "places.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "b988303",
+            "message": "Rename City Park",
+            "parents": [
+              "7bc7d6c"
+            ],
+            "files": [
+              {
+                "name": "food.md",
+                "state": "same"
+              },
+              {
+                "name": "places.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "7bc7d6c",
+            "message": "Add Noodle Bar",
+            "parents": [
+              "74b0bea"
+            ],
+            "files": [
+              {
+                "name": "food.md",
+                "state": "modified"
+              },
+              {
+                "name": "places.md",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "74b0bea",
+            "message": "Add River Bridge",
+            "parents": [
+              "3eba4d2"
+            ],
+            "files": [
+              {
+                "name": "food.md",
+                "state": "same"
+              },
+              {
+                "name": "places.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "3eba4d2",
+            "message": "Start city guide",
+            "parents": [],
+            "files": [
+              {
+                "name": "food.md",
+                "state": "added"
+              },
+              {
+                "name": "places.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "b988303"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "b988303"
+        }
+      }
+    },
+    "one-file": {
+      "areas": {
+        "work": [
+          {
+            "name": "food.md",
+            "state": "clean"
+          },
+          {
+            "name": "places.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "food.md",
+            "state": "clean"
+          },
+          {
+            "name": "places.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "b988303",
+            "message": "Rename City Park"
+          },
+          "count": 4,
+          "files": [
+            "food.md",
+            "places.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "b988303",
+            "message": "Rename City Park",
+            "parents": [
+              "7bc7d6c"
+            ],
+            "files": [
+              {
+                "name": "food.md",
+                "state": "same"
+              },
+              {
+                "name": "places.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "7bc7d6c",
+            "message": "Add Noodle Bar",
+            "parents": [
+              "74b0bea"
+            ],
+            "files": [
+              {
+                "name": "food.md",
+                "state": "modified"
+              },
+              {
+                "name": "places.md",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "74b0bea",
+            "message": "Add River Bridge",
+            "parents": [
+              "3eba4d2"
+            ],
+            "files": [
+              {
+                "name": "food.md",
+                "state": "same"
+              },
+              {
+                "name": "places.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "3eba4d2",
+            "message": "Start city guide",
+            "parents": [],
+            "files": [
+              {
+                "name": "food.md",
+                "state": "added"
+              },
+              {
+                "name": "places.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "b988303"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "b988303"
+        }
+      }
+    },
+    "working-dir": {
+      "areas": {
+        "work": [
+          {
+            "name": "food.md",
+            "state": "modified"
+          },
+          {
+            "name": "places.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "food.md",
+            "state": "clean"
+          },
+          {
+            "name": "places.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "b988303",
+            "message": "Rename City Park"
+          },
+          "count": 4,
+          "files": [
+            "food.md",
+            "places.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "b988303",
+            "message": "Rename City Park",
+            "parents": [
+              "7bc7d6c"
+            ],
+            "files": [
+              {
+                "name": "food.md",
+                "state": "same"
+              },
+              {
+                "name": "places.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "7bc7d6c",
+            "message": "Add Noodle Bar",
+            "parents": [
+              "74b0bea"
+            ],
+            "files": [
+              {
+                "name": "food.md",
+                "state": "modified"
+              },
+              {
+                "name": "places.md",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "74b0bea",
+            "message": "Add River Bridge",
+            "parents": [
+              "3eba4d2"
+            ],
+            "files": [
+              {
+                "name": "food.md",
+                "state": "same"
+              },
+              {
+                "name": "places.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "3eba4d2",
+            "message": "Start city guide",
+            "parents": [],
+            "files": [
+              {
+                "name": "food.md",
+                "state": "added"
+              },
+              {
+                "name": "places.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "b988303"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "b988303"
+        }
+      }
+    }
+  }
+}

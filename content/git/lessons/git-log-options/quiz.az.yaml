@@ -1,0 +1,83 @@
+- question: "`git log --oneline` hər commit üçün nə göstərir?"
+  options:
+    - "Qısa hash və mesajın ilk sətri"
+    - "Tam hash, müəllif və tarix"
+    - "Qısa hash, müəllif və mesaj"
+  answer: 0
+  explain: "`--oneline` müəllifi və tarixi göstərmir, hər commit bir sətirdir."
+- question: "Yeni, boş repository-də bu komandalardan sonra nə çap olunur?"
+  code: |
+    echo "milk" > list.txt
+    git add list.txt
+    git commit -q -m "Add list"
+    echo "eggs" >> list.txt
+    git commit -q -am "Add eggs"
+    echo "Shop on Monday" > plan.txt
+    git add plan.txt
+    git commit -q -m "Add plan"
+    git log --oneline -- list.txt | wc -l
+  options:
+    - "`1`"
+    - "`2`"
+    - "`3`"
+  answer: 1
+  explain: "`list.txt`-i yalnız ilk iki commit dəyişib; `wc -l` sətirləri sayır."
+- question: "Commit-lərin müəllifləri `Sam Lee <sam@example.com>` və `Ayla Karimova <ayla@example.com>`-dur. `git log --author=\"example.com\"` kimin commit-lərini göstərir?"
+  options:
+    - "Heç kimin: belə adda müəllif yoxdur"
+    - "Yalnız Sam-ın"
+    - "Hər ikisinin: Git email-ə də baxır"
+  answer: 2
+  explain: "`--author` mətni adla və email ilə müqayisə edir, hissəvi uyğunluq kifayətdir."
+- question: "Yeni, boş repository-də bu komandalardan sonra `git log --oneline -S \"pizza\"` hansı commit-i göstərir?"
+  code: |
+    echo "pizza: 2" > order.txt
+    git add order.txt
+    git commit -q -m "Start order"
+    echo "pizza: 3" > order.txt
+    git commit -q -am "Order one more"
+    echo "soda: 4" >> order.txt
+    git commit -q -am "Add soda"
+  options:
+    - "Yalnız `Start order`"
+    - "`Order one more` və `Start order`"
+    - "Hər üç commit-i"
+  answer: 0
+  explain: "`Order one more` sətri dəyişib, amma `pizza` sözünün sayı yenə birdir; `-S` yalnız sayı dəyişən commit-ləri göstərir."
+- question: "Hansı komanda yalnız `README.md` faylını dəyişən commit-ləri göstərir?"
+  options:
+    - "`git log -S README.md`"
+    - "`git log --grep=README.md`"
+    - "`git log -- README.md`"
+    - "`git show README.md`"
+  answer: 2
+  explain: "`--`-dan sonrakı fayl adı tarixçəni bu faylı dəyişən commit-lərə daraldır."
+- question: "Tarixçədə üç commit var: 2026-cı il 3, 5 və 9 mart, hamısı günorta. `git log --oneline --since=\"2026-03-04\" --until=\"2026-03-08\"` hansılarını göstərir?"
+  options:
+    - "Üçünü"
+    - "3 və 5 mart commit-lərini"
+    - "Heç birini"
+    - "Yalnız 5 mart commit-ini"
+  answer: 3
+  explain: "Yalnız 5 mart 4 ilə 8 mart arasındadır."
+- question: "`git log -p -2` nə göstərir?"
+  options:
+    - "Son iki commit-i, hər birinin diff-i ilə"
+    - "Yalnız ikinci commit-in diff-ini"
+    - "Son iki commit-in yalnız mesajlarını"
+  answer: 0
+  explain: "`-2` say limitidir, `-p` hər commit-in altına diff-ini əlavə edir."
+- question: "`git log --author=\"Ayla\" -- snacks.txt` nəyi göstərir?"
+  options:
+    - "Ayla-nın bütün commit-lərini və `snacks.txt`-i dəyişən bütün commit-ləri"
+    - "Ayla-nın `snacks.txt`-i dəyişən commit-lərini"
+    - "Xəta: iki filtr birlikdə işləmir"
+  answer: 1
+  explain: "Fərqli filtrlər birləşir: commit hər ikisinə uyğun gəlməlidir."
+- question: "Saat 15:00-da `git log --since=\"2026-01-10\"` işə salırsınız. 10 yanvar saat 09:00-da yaranan commit görünürmü?"
+  options:
+    - "Bəli: saatsız tarix günün əvvəlindən sayılır"
+    - "Bəli: `--since` sərhəd gününü həmişə daxil edir"
+    - "Xeyr: saatsız tarixdə Git indiki saatı götürür, sərhəd 10 yanvar 15:00 olur"
+  answer: 2
+  explain: "Günün əvvəlindən saymaq üçün saatı yazın: `--since=\"2026-01-10 00:00\"`."

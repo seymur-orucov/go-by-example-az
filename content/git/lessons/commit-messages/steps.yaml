@@ -1,0 +1,38 @@
+# Hand-written visuals (text lesson): the same history with bad and good messages, then the
+# parts of one message.
+why:
+  vis:
+    kind: compare
+    caption: "Eyni dörd commit, `git log --oneline` (ən yenisi yuxarıda)"
+    a: { title: "Pis mesajlar", sub: "bir ay sonra heç nə demir" }
+    b: { title: "Yaxşı mesajlar", sub: "nə dəyişdiyi görünür" }
+    rows:
+      - aspect: "4-cü commit"
+        a: "`update`"
+        b: "`Cache forecast for ten minutes`"
+        better: b
+      - aspect: "3-cü commit"
+        a: "`wip`"
+        b: "`Show temperature in Fahrenheit`"
+        better: b
+      - aspect: "2-ci commit"
+        a: "`fix`"
+        b: "`Fix crash when city name is empty`"
+        better: b
+      - aspect: "1-ci commit"
+        a: "`changes`"
+        b: "`Add city search form`"
+        better: b
+    note: "Çıxışda hər sətrin əvvəlində qısa hash də olur; burada yalnız başlıqlar göstərilib."
+subject:
+imperative:
+body:
+  vis:
+    kind: flow
+    caption: "Commit mesajının hissələri"
+    items:
+      - { label: "Fix crash when city name is empty", sub: "başlıq · ~50 simvol", tone: accent }
+      - { label: "(boş sətir)", sub: "başlığı body-dən ayırır" }
+      - { label: "The search sent an empty request and the app crashed. Now the button is disabled until a city is typed.", sub: "body · nə və niyə, ~72 simvolluq sətirlər" }
+    note: "`git log --oneline` yalnız başlığı göstərir; tam mesaj `git log`-da görünür."
+conventional:

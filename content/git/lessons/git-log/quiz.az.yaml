@@ -1,0 +1,86 @@
+- question: "Yeni, boş repository-də bu komandalardan sonra `git log` çıxışında hansı mesaj birinci gəlir?"
+  code: |
+    echo "milk" > list.txt
+    git add list.txt
+    git commit -q -m "Add milk"
+    echo "eggs" >> list.txt
+    git commit -q -am "Add eggs"
+    echo "bread" >> list.txt
+    git commit -q -am "Add bread"
+    git log
+  options:
+    - "`Add milk`"
+    - "`Add eggs`"
+    - "`Add bread`"
+  answer: 2
+  explain: "`git log` commit-ləri yenidən köhnəyə sıralayır, ona görə son commit birinci gəlir."
+- question: "`git log` çıxışında ən aşağıdakı commit hansıdır?"
+  options:
+    - "Son commit"
+    - "Repository-nin ilk (root) commit-i"
+    - "Ən çox fayl dəyişən commit"
+  answer: 1
+  explain: "`git log` ən yeni commit-dən başlayıb parent-lər üzrə geriyə gedir və parent-i olmayan ilk commit-də dayanır."
+- question: "Arqumentsiz `git show` nəyi göstərir?"
+  options:
+    - "Son commit-i: hash, müəllif, tarix, mesaj və diff"
+    - "Repository-nin ilk commit-ini"
+    - "Staging area-dakı dəyişiklikləri"
+  answer: 0
+  explain: "Commit adı verilməyəndə `git show` son commit-i göstərir."
+- question: "Yeni, boş repository-də bu komandalardan sonra nə çap olunur?"
+  code: |
+    echo "Dune" > books.txt
+    git add books.txt
+    git commit -q -m "Add books"
+    echo "Read slowly" > notes.md
+    git add notes.md
+    git commit -q -m "Add notes"
+    git show | grep "^---"
+  options:
+    - "`--- a/notes.md`"
+    - "`--- a/books.txt`"
+    - "Heç nə"
+    - "`--- /dev/null`"
+  answer: 3
+  explain: "Son commit yalnız yeni `notes.md`-ni əlavə edib; parent-də bu fayl olmadığı üçün köhnə tərəf `/dev/null`-dur."
+- question: "`git show` çıxışındakı diff nəyi göstərir?"
+  options:
+    - "Working directory ilə son commit arasındakı fərqi"
+    - "Commit-in parent-inə görə nəyi dəyişdiyini"
+    - "Staging area-dakı dəyişiklikləri"
+  answer: 1
+  explain: "Git commit-in snapshot-unu parent-in snapshot-u ilə müqayisə edib bu diff-i hesablayır."
+- question: "`plan.txt` artıq commit olunub. Bu komandalardan sonra `git show` çıxışında `+Friday` sətri görünürmü?"
+  code: |
+    echo "Friday" >> plan.txt
+    git show
+  options:
+    - "Bəli: `git show` faylın diskdəki son halını göstərir"
+    - "Xeyr, Git xəta verir: əvvəlcə commit etmək lazımdır"
+    - "Xeyr: `git show` son commit-i göstərir, commit olunmamış dəyişiklik orada yoxdur"
+  answer: 2
+  explain: "Commit olunmamış dəyişikliyi `git status` və `git diff` göstərir, `git show` isə yalnız commit-i."
+- question: "Real terminalda `git log` uzun tarixçəni pager-də açdı. Ondan necə çıxmaq olar?"
+  options:
+    - "`q` basmaq"
+    - "`Enter` basmaq"
+    - "`Esc` basmaq"
+  answer: 0
+  explain: "Pager-dən `q` ilə çıxılır; `Enter` isə çıxışı bir sətir aşağı sürüşdürür."
+- question: "Yeni, boş repository-də bu komandalardan sonra nə çap olunur?"
+  code: |
+    echo "a" > one.txt
+    git add one.txt
+    git commit -q -m "First"
+    echo "b" >> one.txt
+    git commit -q -am "Second"
+    echo "c" >> one.txt
+    git commit -q -am "Third"
+    git log | grep -c "^commit"
+  options:
+    - "`1`"
+    - "`3`"
+    - "`4`"
+  answer: 1
+  explain: "`git log` hər commit üçün `commit` ilə başlayan bir sətir çap edir; `grep -c` onları sayır."

@@ -1,0 +1,495 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir reading-list",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd reading-list",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"The Hobbit\" \"Dune\" > books.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add books.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Start reading list\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Project Hail Mary\" >> books.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add Project Hail Mary\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git log",
+      "step": "log",
+      "hidden": false,
+      "fail": false,
+      "out": "commit 9ce7a1ef5fff60b1991055a32633edbfafb9627f\nAuthor: Sam Lee <sam@example.com>\nDate:   Thu Jan 15 09:07:00 2026 +0000\n\n    Add Project Hail Mary\n\ncommit 093fefbcbba1bffc98d463300d5d384f0c6f3ded\nAuthor: Sam Lee <sam@example.com>\nDate:   Thu Jan 15 09:05:00 2026 +0000\n\n    Start reading list\n",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"The Hobbit\" \"Dune (read)\" \"Project Hail Mary\" > books.txt",
+      "step": "show",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -am \"Mark Dune as read\"",
+      "step": "show",
+      "hidden": false,
+      "fail": false,
+      "out": "[main 89afae8] Mark Dune as read\n 1 file changed, 1 insertion(+), 1 deletion(-)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git show",
+      "step": "show",
+      "hidden": false,
+      "fail": false,
+      "out": "commit 89afae8b4f6989ef51022a84649e3d7e89871ae8\nAuthor: Sam Lee <sam@example.com>\nDate:   Thu Jan 15 09:10:00 2026 +0000\n\n    Mark Dune as read\n\ndiff --git a/books.txt b/books.txt\nindex ca2ad42..6849748 100644\n--- a/books.txt\n+++ b/books.txt\n@@ -1,3 +1,3 @@\n The Hobbit\n-Dune\n+Dune (read)\n Project Hail Mary\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Dune: the desert planet is the main character.\" > notes.md",
+      "step": "new-file",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add notes.md",
+      "step": "new-file",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"Add notes on Dune\"",
+      "step": "new-file",
+      "hidden": false,
+      "fail": false,
+      "out": "[main 0c3a6f0] Add notes on Dune\n 1 file changed, 1 insertion(+)\n create mode 100644 notes.md\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git show",
+      "step": "new-file",
+      "hidden": false,
+      "fail": false,
+      "out": "commit 0c3a6f09a5890eed7ac7e07f5751a78fb1805bd1\nAuthor: Sam Lee <sam@example.com>\nDate:   Thu Jan 15 09:14:00 2026 +0000\n\n    Add notes on Dune\n\ndiff --git a/notes.md b/notes.md\nnew file mode 100644\nindex 0000000..5765c18\n--- /dev/null\n+++ b/notes.md\n@@ -0,0 +1 @@\n+Dune: the desert planet is the main character.\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log",
+      "step": "order",
+      "hidden": false,
+      "fail": false,
+      "out": "commit 0c3a6f09a5890eed7ac7e07f5751a78fb1805bd1\nAuthor: Sam Lee <sam@example.com>\nDate:   Thu Jan 15 09:14:00 2026 +0000\n\n    Add notes on Dune\n\ncommit 89afae8b4f6989ef51022a84649e3d7e89871ae8\nAuthor: Sam Lee <sam@example.com>\nDate:   Thu Jan 15 09:10:00 2026 +0000\n\n    Mark Dune as read\n\ncommit 9ce7a1ef5fff60b1991055a32633edbfafb9627f\nAuthor: Sam Lee <sam@example.com>\nDate:   Thu Jan 15 09:07:00 2026 +0000\n\n    Add Project Hail Mary\n\ncommit 093fefbcbba1bffc98d463300d5d384f0c6f3ded\nAuthor: Sam Lee <sam@example.com>\nDate:   Thu Jan 15 09:05:00 2026 +0000\n\n    Start reading list\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "log": {
+      "areas": {
+        "work": [
+          {
+            "name": "books.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "books.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "9ce7a1e",
+            "message": "Add Project Hail Mary"
+          },
+          "count": 2,
+          "files": [
+            "books.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "9ce7a1e",
+            "message": "Add Project Hail Mary",
+            "parents": [
+              "093fefb"
+            ],
+            "files": [
+              {
+                "name": "books.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "093fefb",
+            "message": "Start reading list",
+            "parents": [],
+            "files": [
+              {
+                "name": "books.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "9ce7a1e"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "9ce7a1e"
+        }
+      }
+    },
+    "show": {
+      "areas": {
+        "work": [
+          {
+            "name": "books.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "books.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "89afae8",
+            "message": "Mark Dune as read"
+          },
+          "count": 3,
+          "files": [
+            "books.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "89afae8",
+            "message": "Mark Dune as read",
+            "parents": [
+              "9ce7a1e"
+            ],
+            "files": [
+              {
+                "name": "books.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "9ce7a1e",
+            "message": "Add Project Hail Mary",
+            "parents": [
+              "093fefb"
+            ],
+            "files": [
+              {
+                "name": "books.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "093fefb",
+            "message": "Start reading list",
+            "parents": [],
+            "files": [
+              {
+                "name": "books.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "89afae8"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "89afae8"
+        }
+      }
+    },
+    "new-file": {
+      "areas": {
+        "work": [
+          {
+            "name": "books.txt",
+            "state": "clean"
+          },
+          {
+            "name": "notes.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "books.txt",
+            "state": "clean"
+          },
+          {
+            "name": "notes.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "0c3a6f0",
+            "message": "Add notes on Dune"
+          },
+          "count": 4,
+          "files": [
+            "books.txt",
+            "notes.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "0c3a6f0",
+            "message": "Add notes on Dune",
+            "parents": [
+              "89afae8"
+            ],
+            "files": [
+              {
+                "name": "books.txt",
+                "state": "same"
+              },
+              {
+                "name": "notes.md",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "89afae8",
+            "message": "Mark Dune as read",
+            "parents": [
+              "9ce7a1e"
+            ],
+            "files": [
+              {
+                "name": "books.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "9ce7a1e",
+            "message": "Add Project Hail Mary",
+            "parents": [
+              "093fefb"
+            ],
+            "files": [
+              {
+                "name": "books.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "093fefb",
+            "message": "Start reading list",
+            "parents": [],
+            "files": [
+              {
+                "name": "books.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "0c3a6f0"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "0c3a6f0"
+        }
+      }
+    },
+    "order": {
+      "areas": {
+        "work": [
+          {
+            "name": "books.txt",
+            "state": "clean"
+          },
+          {
+            "name": "notes.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "books.txt",
+            "state": "clean"
+          },
+          {
+            "name": "notes.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "0c3a6f0",
+            "message": "Add notes on Dune"
+          },
+          "count": 4,
+          "files": [
+            "books.txt",
+            "notes.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "0c3a6f0",
+            "message": "Add notes on Dune",
+            "parents": [
+              "89afae8"
+            ],
+            "files": [
+              {
+                "name": "books.txt",
+                "state": "same"
+              },
+              {
+                "name": "notes.md",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "89afae8",
+            "message": "Mark Dune as read",
+            "parents": [
+              "9ce7a1e"
+            ],
+            "files": [
+              {
+                "name": "books.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "9ce7a1e",
+            "message": "Add Project Hail Mary",
+            "parents": [
+              "093fefb"
+            ],
+            "files": [
+              {
+                "name": "books.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "093fefb",
+            "message": "Start reading list",
+            "parents": [],
+            "files": [
+              {
+                "name": "books.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "0c3a6f0"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "0c3a6f0"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+rules:
+  - "HEAD adətən hazırkı branch-ı göstərir (`ref: refs/heads/main`), branch isə son commit-i."
+  - "Commit zamanı Git branch-ı yeni commit-ə keçirir; HEAD branch-a baxdığı üçün onunla birlikdə irəliləyir."
+  - "`HEAD~1` HEAD-in parent-idir, `HEAD~2` parent-in parent-i: rəqəm neçə addım geri getməyi bildirir."
+  - "`HEAD^` birinci parent-dir: düz tarixçədə `HEAD~1` ilə eynidir, `HEAD^^` isə `HEAD~2` ilə."
+  - "`HEAD^2` merge commit-in ikinci parent-idir, `HEAD~2` ilə qarışdırmayın."
+  - "Root commit-in parent-i yoxdur, ondan geri getmək xəta verir."
+practices:
+  - "Yaxın commit-lərə hash əvəzinə `HEAD~1`, `HEAD~2` ilə istinad edin; sabit istinad lazımdırsa hash yazın."
+  - "Windows `cmd`-də `HEAD^` əvəzinə `HEAD~1` yazın və ya `\"HEAD^\"` kimi dırnağa alın."

@@ -1,0 +1,68 @@
+$ git log --oneline
+e774130 Swap the main snack
+ce2b523 Set the start time
+96dd784 Add pizza to snacks
+1a93e9e Add the game list
+cf82f0d Add snack list
+a56ceac Add game night rules
+$ git log --oneline --graph
+* e774130 Swap the main snack
+* ce2b523 Set the start time
+* 96dd784 Add pizza to snacks
+* 1a93e9e Add the game list
+* cf82f0d Add snack list
+* a56ceac Add game night rules
+$ git log --author="Ayla"
+commit 96dd784e199a78ed424f3a2b4075b417ec80998a
+Author: Ayla Karimova <ayla@example.com>
+Date:   Fri Jan 9 17:00:00 2026 +0000
+
+    Add pizza to snacks
+
+commit cf82f0d9e193db274c6bb9d69844188c681b1bca
+Author: Ayla Karimova <ayla@example.com>
+Date:   Tue Jan 6 18:30:00 2026 +0000
+
+    Add snack list
+$ git log --since="2026-01-10"
+commit e7741306a1e2766307d7ace193883b6ba275dd55
+Author: Sam Lee <sam@example.com>
+Date:   Mon Jan 12 20:00:00 2026 +0000
+
+    Swap the main snack
+
+commit ce2b523de88d320e6c4d2a02ea6865db0426df68
+Author: Sam Lee <sam@example.com>
+Date:   Sun Jan 11 10:00:00 2026 +0000
+
+    Set the start time
+$ git log --oneline --since="2026-01-07" --until="2026-01-10"
+96dd784 Add pizza to snacks
+1a93e9e Add the game list
+$ git log --oneline -- snacks.txt
+e774130 Swap the main snack
+96dd784 Add pizza to snacks
+cf82f0d Add snack list
+$ git log -p -1 -- snacks.txt
+commit e7741306a1e2766307d7ace193883b6ba275dd55
+Author: Sam Lee <sam@example.com>
+Date:   Mon Jan 12 20:00:00 2026 +0000
+
+    Swap the main snack
+
+diff --git a/snacks.txt b/snacks.txt
+index 97cf5bb..8656dbc 100644
+--- a/snacks.txt
++++ b/snacks.txt
+@@ -1,3 +1,3 @@
+ chips
+ lemonade
+-pizza
++tacos
+$ git log --oneline -S "pizza"
+e774130 Swap the main snack
+96dd784 Add pizza to snacks
+$ git log --oneline --author="Sam" -- rules.md
+ce2b523 Set the start time
+1a93e9e Add the game list
+a56ceac Add game night rules

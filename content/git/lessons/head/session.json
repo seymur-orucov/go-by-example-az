@@ -1,0 +1,522 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir garden",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd garden",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"tomatoes\" > plants.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add plants.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Plan tomatoes\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"basil\" >> plants.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add plants.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add basil\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "pointer",
+      "hidden": false,
+      "fail": false,
+      "out": "d7424b2 Add basil\n2593880 Plan tomatoes\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cat .git/HEAD",
+      "step": "pointer",
+      "hidden": false,
+      "fail": false,
+      "out": "ref: refs/heads/main\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cat .git/refs/heads/main",
+      "step": "pointer",
+      "hidden": false,
+      "fail": false,
+      "out": "d7424b21e049d40c4bdc83a0386b6c5a079dc08b\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"tomatoes: May\" > calendar.txt",
+      "step": "move",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add calendar.txt",
+      "step": "move",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"Add planting calendar\"",
+      "step": "move",
+      "hidden": false,
+      "fail": false,
+      "out": "[main d166bfd] Add planting calendar\n 1 file changed, 1 insertion(+)\n create mode 100644 calendar.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cat .git/HEAD",
+      "step": "move",
+      "hidden": false,
+      "fail": false,
+      "out": "ref: refs/heads/main\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cat .git/refs/heads/main",
+      "step": "move",
+      "hidden": false,
+      "fail": false,
+      "out": "d166bfd25ef1eb30bee7a64a2f23267d353bb8af\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline -1 HEAD~1",
+      "step": "tilde",
+      "hidden": false,
+      "fail": false,
+      "out": "d7424b2 Add basil\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline -1 HEAD~2",
+      "step": "tilde",
+      "hidden": false,
+      "fail": false,
+      "out": "2593880 Plan tomatoes\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline -1 HEAD~3",
+      "step": "tilde",
+      "hidden": false,
+      "fail": true,
+      "out": "fatal: ambiguous argument 'HEAD~3': unknown revision or path not in the working tree.\nUse '--' to separate paths from revisions, like this:\n'git <command> [<revision>...] -- [<file>...]'\n",
+      "exit": 128
+    },
+    {
+      "cmd": "git log --oneline -1 HEAD^",
+      "step": "caret",
+      "hidden": false,
+      "fail": false,
+      "out": "d7424b2 Add basil\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline -1 HEAD^^",
+      "step": "caret",
+      "hidden": false,
+      "fail": false,
+      "out": "2593880 Plan tomatoes\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "pointer": {
+      "areas": {
+        "work": [
+          {
+            "name": "plants.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "plants.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "d7424b2",
+            "message": "Add basil"
+          },
+          "count": 2,
+          "files": [
+            "plants.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "d7424b2",
+            "message": "Add basil",
+            "parents": [
+              "2593880"
+            ],
+            "files": [
+              {
+                "name": "plants.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "2593880",
+            "message": "Plan tomatoes",
+            "parents": [],
+            "files": [
+              {
+                "name": "plants.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "d7424b2"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "d7424b2"
+        }
+      }
+    },
+    "move": {
+      "areas": {
+        "work": [
+          {
+            "name": "calendar.txt",
+            "state": "clean"
+          },
+          {
+            "name": "plants.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "calendar.txt",
+            "state": "clean"
+          },
+          {
+            "name": "plants.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "d166bfd",
+            "message": "Add planting calendar"
+          },
+          "count": 3,
+          "files": [
+            "calendar.txt",
+            "plants.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "d166bfd",
+            "message": "Add planting calendar",
+            "parents": [
+              "d7424b2"
+            ],
+            "files": [
+              {
+                "name": "calendar.txt",
+                "state": "added"
+              },
+              {
+                "name": "plants.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "d7424b2",
+            "message": "Add basil",
+            "parents": [
+              "2593880"
+            ],
+            "files": [
+              {
+                "name": "plants.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "2593880",
+            "message": "Plan tomatoes",
+            "parents": [],
+            "files": [
+              {
+                "name": "plants.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "d166bfd"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "d166bfd"
+        }
+      }
+    },
+    "tilde": {
+      "areas": {
+        "work": [
+          {
+            "name": "calendar.txt",
+            "state": "clean"
+          },
+          {
+            "name": "plants.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "calendar.txt",
+            "state": "clean"
+          },
+          {
+            "name": "plants.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "d166bfd",
+            "message": "Add planting calendar"
+          },
+          "count": 3,
+          "files": [
+            "calendar.txt",
+            "plants.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "d166bfd",
+            "message": "Add planting calendar",
+            "parents": [
+              "d7424b2"
+            ],
+            "files": [
+              {
+                "name": "calendar.txt",
+                "state": "added"
+              },
+              {
+                "name": "plants.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "d7424b2",
+            "message": "Add basil",
+            "parents": [
+              "2593880"
+            ],
+            "files": [
+              {
+                "name": "plants.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "2593880",
+            "message": "Plan tomatoes",
+            "parents": [],
+            "files": [
+              {
+                "name": "plants.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "d166bfd"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "d166bfd"
+        }
+      }
+    },
+    "caret": {
+      "areas": {
+        "work": [
+          {
+            "name": "calendar.txt",
+            "state": "clean"
+          },
+          {
+            "name": "plants.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "calendar.txt",
+            "state": "clean"
+          },
+          {
+            "name": "plants.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "d166bfd",
+            "message": "Add planting calendar"
+          },
+          "count": 3,
+          "files": [
+            "calendar.txt",
+            "plants.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "d166bfd",
+            "message": "Add planting calendar",
+            "parents": [
+              "d7424b2"
+            ],
+            "files": [
+              {
+                "name": "calendar.txt",
+                "state": "added"
+              },
+              {
+                "name": "plants.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "d7424b2",
+            "message": "Add basil",
+            "parents": [
+              "2593880"
+            ],
+            "files": [
+              {
+                "name": "plants.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "2593880",
+            "message": "Plan tomatoes",
+            "parents": [],
+            "files": [
+              {
+                "name": "plants.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "d166bfd"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "d166bfd"
+        }
+      }
+    }
+  }
+}

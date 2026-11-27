@@ -1,0 +1,70 @@
+$ git log --oneline
+b988303 Rename City Park
+7bc7d6c Add Noodle Bar
+74b0bea Add River Bridge
+3eba4d2 Start city guide
+$ git diff HEAD~2 HEAD
+diff --git a/food.md b/food.md
+index 758fa14..56c6b68 100644
+--- a/food.md
++++ b/food.md
+@@ -1,2 +1,3 @@
+ # Food
+ - Pizza Corner
++- Noodle Bar
+diff --git a/places.md b/places.md
+index 94a8fb3..8f8f8cd 100644
+--- a/places.md
++++ b/places.md
+@@ -1,4 +1,4 @@
+ # Places
+ - Old Town
+-- City Park
++- Central Park
+ - River Bridge
+$ git diff --stat HEAD~3 HEAD
+ food.md   | 1 +
+ places.md | 3 ++-
+ 2 files changed, 3 insertions(+), 1 deletion(-)
+$ git diff HEAD~3 HEAD -- places.md
+diff --git a/places.md b/places.md
+index 458ebbb..8f8f8cd 100644
+--- a/places.md
++++ b/places.md
+@@ -1,3 +1,4 @@
+ # Places
+ - Old Town
+-- City Park
++- Central Park
++- River Bridge
+$ git diff HEAD HEAD~3 -- places.md
+diff --git a/places.md b/places.md
+index 8f8f8cd..458ebbb 100644
+--- a/places.md
++++ b/places.md
+@@ -1,4 +1,3 @@
+ # Places
+ - Old Town
+-- Central Park
+-- River Bridge
++- City Park
+$ echo "- Night Market" >> food.md
+$ git diff HEAD~2 HEAD -- food.md
+diff --git a/food.md b/food.md
+index 758fa14..56c6b68 100644
+--- a/food.md
++++ b/food.md
+@@ -1,2 +1,3 @@
+ # Food
+ - Pizza Corner
++- Noodle Bar
+$ git diff HEAD~2 -- food.md
+diff --git a/food.md b/food.md
+index 758fa14..7ba931a 100644
+--- a/food.md
++++ b/food.md
+@@ -1,2 +1,4 @@
+ # Food
+ - Pizza Corner
++- Noodle Bar
++- Night Market

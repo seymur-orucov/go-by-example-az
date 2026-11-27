@@ -1,0 +1,76 @@
+$ git log
+commit 9ce7a1ef5fff60b1991055a32633edbfafb9627f
+Author: Sam Lee <sam@example.com>
+Date:   Thu Jan 15 09:07:00 2026 +0000
+
+    Add Project Hail Mary
+
+commit 093fefbcbba1bffc98d463300d5d384f0c6f3ded
+Author: Sam Lee <sam@example.com>
+Date:   Thu Jan 15 09:05:00 2026 +0000
+
+    Start reading list
+$ printf "%s\n" "The Hobbit" "Dune (read)" "Project Hail Mary" > books.txt
+$ git commit -am "Mark Dune as read"
+[main 89afae8] Mark Dune as read
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+$ git show
+commit 89afae8b4f6989ef51022a84649e3d7e89871ae8
+Author: Sam Lee <sam@example.com>
+Date:   Thu Jan 15 09:10:00 2026 +0000
+
+    Mark Dune as read
+
+diff --git a/books.txt b/books.txt
+index ca2ad42..6849748 100644
+--- a/books.txt
++++ b/books.txt
+@@ -1,3 +1,3 @@
+ The Hobbit
+-Dune
++Dune (read)
+ Project Hail Mary
+$ echo "Dune: the desert planet is the main character." > notes.md
+$ git add notes.md
+$ git commit -m "Add notes on Dune"
+[main 0c3a6f0] Add notes on Dune
+ 1 file changed, 1 insertion(+)
+ create mode 100644 notes.md
+$ git show
+commit 0c3a6f09a5890eed7ac7e07f5751a78fb1805bd1
+Author: Sam Lee <sam@example.com>
+Date:   Thu Jan 15 09:14:00 2026 +0000
+
+    Add notes on Dune
+
+diff --git a/notes.md b/notes.md
+new file mode 100644
+index 0000000..5765c18
+--- /dev/null
++++ b/notes.md
+@@ -0,0 +1 @@
++Dune: the desert planet is the main character.
+$ git log
+commit 0c3a6f09a5890eed7ac7e07f5751a78fb1805bd1
+Author: Sam Lee <sam@example.com>
+Date:   Thu Jan 15 09:14:00 2026 +0000
+
+    Add notes on Dune
+
+commit 89afae8b4f6989ef51022a84649e3d7e89871ae8
+Author: Sam Lee <sam@example.com>
+Date:   Thu Jan 15 09:10:00 2026 +0000
+
+    Mark Dune as read
+
+commit 9ce7a1ef5fff60b1991055a32633edbfafb9627f
+Author: Sam Lee <sam@example.com>
+Date:   Thu Jan 15 09:07:00 2026 +0000
+
+    Add Project Hail Mary
+
+commit 093fefbcbba1bffc98d463300d5d384f0c6f3ded
+Author: Sam Lee <sam@example.com>
+Date:   Thu Jan 15 09:05:00 2026 +0000
+
+    Start reading list

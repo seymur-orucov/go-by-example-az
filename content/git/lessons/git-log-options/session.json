@@ -1,0 +1,946 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir game-night",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd game-night",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"# Game night\" \"Every Friday\" > rules.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add rules.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "GIT_AUTHOR_DATE=\"2026-01-05T18:00:00Z\" GIT_COMMITTER_DATE=\"2026-01-05T18:00:00Z\" git commit -q -m \"Add game night rules\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"chips\" \"lemonade\" > snacks.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add snacks.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "GIT_AUTHOR_DATE=\"2026-01-06T18:30:00Z\" GIT_COMMITTER_DATE=\"2026-01-06T18:30:00Z\" git -c user.name=\"Ayla Karimova\" -c user.email=\"ayla@example.com\" commit -q -m \"Add snack list\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Games: Uno, Jenga\" >> rules.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "GIT_AUTHOR_DATE=\"2026-01-08T19:00:00Z\" GIT_COMMITTER_DATE=\"2026-01-08T19:00:00Z\" git commit -q -am \"Add the game list\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"pizza\" >> snacks.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "GIT_AUTHOR_DATE=\"2026-01-09T17:00:00Z\" GIT_COMMITTER_DATE=\"2026-01-09T17:00:00Z\" git -c user.name=\"Ayla Karimova\" -c user.email=\"ayla@example.com\" commit -q -am \"Add pizza to snacks\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Start: 7 pm\" >> rules.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "GIT_AUTHOR_DATE=\"2026-01-11T10:00:00Z\" GIT_COMMITTER_DATE=\"2026-01-11T10:00:00Z\" git commit -q -am \"Set the start time\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "sed -i \"s/pizza/tacos/\" snacks.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "GIT_AUTHOR_DATE=\"2026-01-12T20:00:00Z\" GIT_COMMITTER_DATE=\"2026-01-12T20:00:00Z\" git commit -q -am \"Swap the main snack\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "oneline",
+      "hidden": false,
+      "fail": false,
+      "out": "e774130 Swap the main snack\nce2b523 Set the start time\n96dd784 Add pizza to snacks\n1a93e9e Add the game list\ncf82f0d Add snack list\na56ceac Add game night rules\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline --graph",
+      "step": "oneline",
+      "hidden": false,
+      "fail": false,
+      "out": "* e774130 Swap the main snack\n* ce2b523 Set the start time\n* 96dd784 Add pizza to snacks\n* 1a93e9e Add the game list\n* cf82f0d Add snack list\n* a56ceac Add game night rules\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --author=\"Ayla\"",
+      "step": "author",
+      "hidden": false,
+      "fail": false,
+      "out": "commit 96dd784e199a78ed424f3a2b4075b417ec80998a\nAuthor: Ayla Karimova <ayla@example.com>\nDate:   Fri Jan 9 17:00:00 2026 +0000\n\n    Add pizza to snacks\n\ncommit cf82f0d9e193db274c6bb9d69844188c681b1bca\nAuthor: Ayla Karimova <ayla@example.com>\nDate:   Tue Jan 6 18:30:00 2026 +0000\n\n    Add snack list\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --since=\"2026-01-10\"",
+      "step": "dates",
+      "hidden": false,
+      "fail": false,
+      "out": "commit e7741306a1e2766307d7ace193883b6ba275dd55\nAuthor: Sam Lee <sam@example.com>\nDate:   Mon Jan 12 20:00:00 2026 +0000\n\n    Swap the main snack\n\ncommit ce2b523de88d320e6c4d2a02ea6865db0426df68\nAuthor: Sam Lee <sam@example.com>\nDate:   Sun Jan 11 10:00:00 2026 +0000\n\n    Set the start time\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline --since=\"2026-01-07\" --until=\"2026-01-10\"",
+      "step": "dates",
+      "hidden": false,
+      "fail": false,
+      "out": "96dd784 Add pizza to snacks\n1a93e9e Add the game list\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline -- snacks.txt",
+      "step": "path",
+      "hidden": false,
+      "fail": false,
+      "out": "e774130 Swap the main snack\n96dd784 Add pizza to snacks\ncf82f0d Add snack list\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log -p -1 -- snacks.txt",
+      "step": "path",
+      "hidden": false,
+      "fail": false,
+      "out": "commit e7741306a1e2766307d7ace193883b6ba275dd55\nAuthor: Sam Lee <sam@example.com>\nDate:   Mon Jan 12 20:00:00 2026 +0000\n\n    Swap the main snack\n\ndiff --git a/snacks.txt b/snacks.txt\nindex 97cf5bb..8656dbc 100644\n--- a/snacks.txt\n+++ b/snacks.txt\n@@ -1,3 +1,3 @@\n chips\n lemonade\n-pizza\n+tacos\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline -S \"pizza\"",
+      "step": "search",
+      "hidden": false,
+      "fail": false,
+      "out": "e774130 Swap the main snack\n96dd784 Add pizza to snacks\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline --author=\"Sam\" -- rules.md",
+      "step": "search",
+      "hidden": false,
+      "fail": false,
+      "out": "ce2b523 Set the start time\n1a93e9e Add the game list\na56ceac Add game night rules\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "oneline": {
+      "areas": {
+        "work": [
+          {
+            "name": "rules.md",
+            "state": "clean"
+          },
+          {
+            "name": "snacks.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "rules.md",
+            "state": "clean"
+          },
+          {
+            "name": "snacks.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "e774130",
+            "message": "Swap the main snack"
+          },
+          "count": 6,
+          "files": [
+            "rules.md",
+            "snacks.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "e774130",
+            "message": "Swap the main snack",
+            "parents": [
+              "ce2b523"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "same"
+              },
+              {
+                "name": "snacks.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "ce2b523",
+            "message": "Set the start time",
+            "parents": [
+              "96dd784"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              },
+              {
+                "name": "snacks.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "96dd784",
+            "message": "Add pizza to snacks",
+            "parents": [
+              "1a93e9e"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "same"
+              },
+              {
+                "name": "snacks.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "1a93e9e",
+            "message": "Add the game list",
+            "parents": [
+              "cf82f0d"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              },
+              {
+                "name": "snacks.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "cf82f0d",
+            "message": "Add snack list",
+            "parents": [
+              "a56ceac"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "same"
+              },
+              {
+                "name": "snacks.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "a56ceac",
+            "message": "Add game night rules",
+            "parents": [],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "e774130"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "e774130"
+        }
+      }
+    },
+    "author": {
+      "areas": {
+        "work": [
+          {
+            "name": "rules.md",
+            "state": "clean"
+          },
+          {
+            "name": "snacks.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "rules.md",
+            "state": "clean"
+          },
+          {
+            "name": "snacks.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "e774130",
+            "message": "Swap the main snack"
+          },
+          "count": 6,
+          "files": [
+            "rules.md",
+            "snacks.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "e774130",
+            "message": "Swap the main snack",
+            "parents": [
+              "ce2b523"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "same"
+              },
+              {
+                "name": "snacks.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "ce2b523",
+            "message": "Set the start time",
+            "parents": [
+              "96dd784"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              },
+              {
+                "name": "snacks.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "96dd784",
+            "message": "Add pizza to snacks",
+            "parents": [
+              "1a93e9e"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "same"
+              },
+              {
+                "name": "snacks.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "1a93e9e",
+            "message": "Add the game list",
+            "parents": [
+              "cf82f0d"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              },
+              {
+                "name": "snacks.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "cf82f0d",
+            "message": "Add snack list",
+            "parents": [
+              "a56ceac"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "same"
+              },
+              {
+                "name": "snacks.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "a56ceac",
+            "message": "Add game night rules",
+            "parents": [],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "e774130"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "e774130"
+        }
+      }
+    },
+    "dates": {
+      "areas": {
+        "work": [
+          {
+            "name": "rules.md",
+            "state": "clean"
+          },
+          {
+            "name": "snacks.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "rules.md",
+            "state": "clean"
+          },
+          {
+            "name": "snacks.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "e774130",
+            "message": "Swap the main snack"
+          },
+          "count": 6,
+          "files": [
+            "rules.md",
+            "snacks.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "e774130",
+            "message": "Swap the main snack",
+            "parents": [
+              "ce2b523"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "same"
+              },
+              {
+                "name": "snacks.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "ce2b523",
+            "message": "Set the start time",
+            "parents": [
+              "96dd784"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              },
+              {
+                "name": "snacks.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "96dd784",
+            "message": "Add pizza to snacks",
+            "parents": [
+              "1a93e9e"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "same"
+              },
+              {
+                "name": "snacks.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "1a93e9e",
+            "message": "Add the game list",
+            "parents": [
+              "cf82f0d"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              },
+              {
+                "name": "snacks.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "cf82f0d",
+            "message": "Add snack list",
+            "parents": [
+              "a56ceac"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "same"
+              },
+              {
+                "name": "snacks.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "a56ceac",
+            "message": "Add game night rules",
+            "parents": [],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "e774130"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "e774130"
+        }
+      }
+    },
+    "path": {
+      "areas": {
+        "work": [
+          {
+            "name": "rules.md",
+            "state": "clean"
+          },
+          {
+            "name": "snacks.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "rules.md",
+            "state": "clean"
+          },
+          {
+            "name": "snacks.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "e774130",
+            "message": "Swap the main snack"
+          },
+          "count": 6,
+          "files": [
+            "rules.md",
+            "snacks.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "e774130",
+            "message": "Swap the main snack",
+            "parents": [
+              "ce2b523"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "same"
+              },
+              {
+                "name": "snacks.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "ce2b523",
+            "message": "Set the start time",
+            "parents": [
+              "96dd784"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              },
+              {
+                "name": "snacks.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "96dd784",
+            "message": "Add pizza to snacks",
+            "parents": [
+              "1a93e9e"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "same"
+              },
+              {
+                "name": "snacks.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "1a93e9e",
+            "message": "Add the game list",
+            "parents": [
+              "cf82f0d"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              },
+              {
+                "name": "snacks.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "cf82f0d",
+            "message": "Add snack list",
+            "parents": [
+              "a56ceac"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "same"
+              },
+              {
+                "name": "snacks.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "a56ceac",
+            "message": "Add game night rules",
+            "parents": [],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "e774130"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "e774130"
+        }
+      }
+    },
+    "search": {
+      "areas": {
+        "work": [
+          {
+            "name": "rules.md",
+            "state": "clean"
+          },
+          {
+            "name": "snacks.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "rules.md",
+            "state": "clean"
+          },
+          {
+            "name": "snacks.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "e774130",
+            "message": "Swap the main snack"
+          },
+          "count": 6,
+          "files": [
+            "rules.md",
+            "snacks.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "e774130",
+            "message": "Swap the main snack",
+            "parents": [
+              "ce2b523"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "same"
+              },
+              {
+                "name": "snacks.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "ce2b523",
+            "message": "Set the start time",
+            "parents": [
+              "96dd784"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              },
+              {
+                "name": "snacks.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "96dd784",
+            "message": "Add pizza to snacks",
+            "parents": [
+              "1a93e9e"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "same"
+              },
+              {
+                "name": "snacks.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "1a93e9e",
+            "message": "Add the game list",
+            "parents": [
+              "cf82f0d"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              },
+              {
+                "name": "snacks.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "cf82f0d",
+            "message": "Add snack list",
+            "parents": [
+              "a56ceac"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "same"
+              },
+              {
+                "name": "snacks.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "a56ceac",
+            "message": "Add game night rules",
+            "parents": [],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "e774130"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "e774130"
+        }
+      }
+    }
+  }
+}

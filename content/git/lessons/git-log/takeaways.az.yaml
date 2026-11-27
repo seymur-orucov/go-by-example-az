@@ -1,0 +1,10 @@
+rules:
+  - "`git log` commit tarixçəsini göstərir: hər commit üçün tam hash, `Author`, `Date` və mesaj."
+  - "`git log` commit-ləri yenidən köhnəyə sıralayır: son commit yuxarıda, ilk (root) commit ən aşağıdadır."
+  - "Arqumentsiz `git show` son commit-i göstərir: `git log`-dakı başlıq və parent-ə görə diff."
+  - "`git show`-dakı diff saxlanmır: Git onu commit-in və parent-in snapshot-larını müqayisə edib hesablayır."
+  - "Yeni fayl əlavə edən commit-də `git show` `new file mode` və `--- /dev/null` göstərir."
+  - "`git log` və `git show` yalnız commit-ləri göstərir; commit olunmamış dəyişiklik üçün `git status` və `git diff`-ə baxın."
+practices:
+  - "Commit-dən sonra `git show` ilə commit-ə nəyin düşdüyünü yoxlayın."
+  - "Mesajı elə yazın ki, `git log`-da hər commit-in nə etdiyi aydın olsun."

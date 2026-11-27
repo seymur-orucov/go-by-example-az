@@ -1,0 +1,73 @@
+- question: "Commit-ləri olan repository-də `main` branch-ındasınız. `cat .git/HEAD` nə çap edir?"
+  options:
+    - "Son commit-in tam hash-i"
+    - "`ref: refs/heads/main`"
+    - "`HEAD -> main`"
+  answer: 1
+  explain: "HEAD adətən hash-i yox, hazırkı branch-ın adını saxlayır; hash branch-ın faylındadır."
+- question: "`main` branch-ında yeni commit yaradırsınız. `.git` qovluğunda hansı fayl dəyişir?"
+  options:
+    - "`.git/HEAD`"
+    - "Hər ikisi: `.git/HEAD` və `.git/refs/heads/main`"
+    - "Yalnız `.git/refs/heads/main`"
+  answer: 2
+  explain: "Git branch-ı yeni commit-ə keçirir. HEAD yenə `main`-i göstərir, ona görə onun faylı dəyişmir."
+- question: "Yeni, boş repository-də bu komandalardan sonra çap olunan sətirdə hansı commit mesajı olur?"
+  code: |
+    echo "a" > notes.txt
+    git add notes.txt
+    git commit -q -m "Start notes"
+    echo "b" >> notes.txt
+    git add notes.txt
+    git commit -q -m "Add second note"
+    echo "c" >> notes.txt
+    git add notes.txt
+    git commit -q -m "Add third note"
+    git log --oneline -1 HEAD~2
+  options:
+    - "`Add third note`"
+    - "`Add second note`"
+    - "`Start notes`"
+  answer: 2
+  explain: "`HEAD~2` HEAD-dən iki addım geridir: `Add third note` → `Add second note` → `Start notes`."
+- question: "Repository-də cəmi iki commit var. `git log --oneline -1 HEAD~2` nə çap edir?"
+  options:
+    - "`fatal: ambiguous argument 'HEAD~2': ...` xətası"
+    - "İlk commit-in sətri"
+    - "Heç nə"
+  answer: 0
+  explain: "`HEAD~1` root commit-dir, onun parent-i yoxdur. Git `HEAD~2` adlı commit tapmır və xəta verir."
+- question: "Repository-də dörd commit var, tarixçə düzdür. Hansı yazılış `HEAD~3` ilə eyni commit-i göstərir?"
+  options:
+    - "`HEAD^3`"
+    - "`HEAD-3`"
+    - "`HEAD^^^`"
+  answer: 2
+  explain: "Hər `^` bir addım geri gedir. `HEAD^3` isə HEAD-in üçüncü parent-idir və belə parent yoxdur."
+- question: "Merge olmayan düz tarixçədə `HEAD^` hansı commit-dir?"
+  options:
+    - "HEAD-in parent-i, yəni `HEAD~1` ilə eyni commit"
+    - "HEAD-in özü"
+    - "Root commit"
+  answer: 0
+  explain: "`^` birinci parent-i göstərir; düz tarixçədə hər commit-in bir parent-i var."
+- question: "HEAD `Add basil` commit-ini göstərirdi. Yeni commit-dən sonra `Add basil`-ə necə istinad etmək olar?"
+  options:
+    - "`HEAD`"
+    - "`HEAD~1`"
+    - "`HEAD~2`"
+  answer: 1
+  explain: "HEAD yeni commit-ə keçdi, `Add basil` isə onun parent-i oldu. `HEAD~1` sabit ad deyil, HEAD-ə görə hesablanır."
+- question: "Windows-un `cmd` pəncərəsində HEAD-in parent-ini görmək üçün hansı komanda düzgün işləyir?"
+  options:
+    - "`git log --oneline -1 HEAD^`"
+    - "`git log --oneline -1 HEAD~1`"
+  answer: 1
+  explain: "cmd `^`-i xüsusi simvol kimi oxuyur, ona görə `HEAD^` Git-ə düzgün çatmır. `HEAD~1` və ya dırnaqdakı `\"HEAD^\"` işləyir."
+- question: "`HEAD~2` nəyi göstərir?"
+  options:
+    - "HEAD-in parent-inin parent-ini: iki addım geri"
+    - "HEAD-in ikinci parent-ini"
+    - "Repository-nin ikinci commit-ini"
+  answer: 0
+  explain: "`~` neçə addım geri getməyi bildirir. İkinci parent `HEAD^2`-dir və yalnız merge commit-də olur."
