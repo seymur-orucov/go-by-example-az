@@ -93,11 +93,14 @@ export function parseSession(src: string): {
 const workFile = z
   .object({
     name: z.string(),
-    state: z.enum(["clean", "untracked", "modified", "deleted", "ignored"]),
+    state: z.enum(["clean", "untracked", "modified", "deleted", "ignored", "unmerged"]),
   })
   .strict();
 const indexFile = z
-  .object({ name: z.string(), state: z.enum(["clean", "added", "modified", "deleted"]) })
+  .object({
+    name: z.string(),
+    state: z.enum(["clean", "added", "modified", "deleted", "unmerged"]),
+  })
   .strict();
 
 export const areasFrameSchema = z
@@ -138,6 +141,8 @@ export const graphFrameSchema = z
     ),
     branches: z.array(ref),
     tags: z.array(ref),
+    /** Remote-tracking branches (`origin/main`); absent in frames without a remote. */
+    remotes: z.array(ref).optional(),
     /** `branch` is null when HEAD is detached; `target` is null on a branch with no commits yet. */
     head: z.object({ branch: z.string().nullable(), target: z.string().nullable() }).strict(),
   })

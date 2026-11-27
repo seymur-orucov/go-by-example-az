@@ -1945,6 +1945,14 @@ button.vm-row:hover {
 .vis-areas .s-added .fstate {
   color: var(--green);
 }
+.vis-areas .s-unmerged {
+  color: var(--red);
+  border-color: var(--red);
+  border-style: dashed;
+}
+.vis-areas .s-unmerged .fstate {
+  color: var(--red);
+}
 .vis-areas .s-deleted {
   color: var(--red);
   border-color: var(--red);
@@ -2139,6 +2147,11 @@ button.vm-row:hover {
   color: var(--accent-ink);
   background: var(--accent-soft);
   border-color: var(--accent-ring);
+}
+/* a remote-tracking branch (origin/main): where the server branch was at the last contact */
+.g-ref.k-remote {
+  color: var(--text-muted);
+  border-style: dashed;
 }
 .g-ref.k-tag {
   color: var(--amber);

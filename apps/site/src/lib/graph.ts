@@ -12,7 +12,7 @@ const laneX = (lane: number) => PAD + lane * LANE;
 
 export interface GraphRef {
   name: string;
-  kind: "branch" | "tag" | "head";
+  kind: "branch" | "remote" | "tag" | "head";
   /** HEAD points at this branch (shown as "HEAD → main"). */
   current?: boolean;
   fresh?: boolean;
@@ -63,6 +63,7 @@ export function layoutGraph(
   );
   for (const b of branchOrder) tips.push(b.target);
   if (frame.head.target) tips.push(frame.head.target);
+  for (const r of frame.remotes ?? []) tips.push(r.target);
   for (const t of frame.tags) tips.push(t.target);
   for (const c of commits) tips.push(c.hash);
 
@@ -155,7 +156,9 @@ export function layoutGraph(
   const prevRef = (kind: string, name: string) =>
     kind === "branch"
       ? prev?.branches.find((b) => b.name === name)?.target
-      : prev?.tags.find((t) => t.name === name)?.target;
+      : kind === "remote"
+        ? prev?.remotes?.find((r) => r.name === name)?.target
+        : prev?.tags.find((t) => t.name === name)?.target;
   const headMoved =
     prev?.head.target !== frame.head.target || prev?.head.branch !== frame.head.branch;
 
@@ -167,6 +170,9 @@ export function layoutGraph(
       const current = frame.head.branch === b.name;
       const moved = prevRef("branch", b.name) !== c.hash;
       refs.push({ name: b.name, kind: "branch", current, fresh: moved || (current && headMoved) });
+    }
+    for (const r of (frame.remotes ?? []).filter((r) => r.target === c.hash)) {
+      refs.push({ name: r.name, kind: "remote", fresh: prevRef("remote", r.name) !== c.hash });
     }
     for (const t of frame.tags.filter((t) => t.target === c.hash)) {
       refs.push({ name: t.name, kind: "tag", fresh: prevRef("tag", t.name) !== c.hash });
