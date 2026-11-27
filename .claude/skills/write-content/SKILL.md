@@ -183,3 +183,4 @@ Approved lessons to imitate, by kind (add one when the user approves a pilot):
 - `concept` — Git `what-is-version-control` (pilot, approved 2026-11-27)
 - `compare` — Git `git-vs-other-vcs` (pilot, approved 2026-11-27)
 - `diagram` — Git `remotes-and-clone` (pilot, approved 2026-11-28)
+- `ui` — Git `github-account` (pilot, approved 2026-11-28)
