@@ -162,7 +162,8 @@ reviewer agent (given the files, not Claude's conclusions) is worth it for the f
 
 Approved lessons to imitate, by kind (add one when the user approves a pilot):
 
-- `state` — Git `three-areas` (pilot, approved 2026-11-27)
+- `state` — Git `three-areas` (pilot, approved 2026-11-27); with `vis: graph` + `files`: Git
+  `commit-snapshot` (pilot, approved 2026-11-27)
 - `terminal` — Git `first-commit` (pilot, approved 2026-11-27)
 - `concept` — Git `what-is-version-control` (pilot, approved 2026-11-27)
 - `compare` — Git `git-vs-other-vcs` (pilot, approved 2026-11-27)
