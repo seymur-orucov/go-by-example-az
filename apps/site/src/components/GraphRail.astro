@@ -1,0 +1,21 @@
+---
+// One row's slice of the commit-graph rail (Vis kind "graph", see lib/graph.ts): the edge
+// pieces in row-local coordinates (y 0–100), stretched to the row's height, and the commit's dot.
+interface Props {
+  width: number;
+  paths: { d: string; lane: number }[];
+  dot?: { x: number; lane: number };
+}
+
+const { width, paths, dot } = Astro.props;
+const laneClass = (lane: number) => `l${lane % 4}`;
+---
+
+<span class="g-rail" style={`width:${width}px`} aria-hidden="true">
+  <svg viewBox={`0 0 ${width} 100`} preserveAspectRatio="none" width={width} height="100%">
+    {paths.map((p) => (
+      <path d={p.d} class={`g-edge ${laneClass(p.lane)}`} vector-effect="non-scaling-stroke" />
+    ))}
+  </svg>
+  {dot && <span class={`g-dot ${laneClass(dot.lane)}`} style={`left:${dot.x}px`} />}
+</span>

@@ -1,0 +1,9 @@
+rules:
+  - "Commit diff deyil, snapshot-dur: layihənin həmin andakı bütün fayllarını göstərir."
+  - "Commit-in içində tree (snapshot), parent, author, committer və mesaj var; `git cat-file -p` onu göstərir."
+  - "İlk (root) commit-in parent-i yoxdur; qalanları öz parent-ini göstərir və bu istinadlar commit qrafını qurur."
+  - "Hash commit-in məzmunundan hesablanır və parent-in hash-i də ora daxildir: köhnə commit dəyişsə, sonrakıların hamısının hash-i dəyişir."
+  - "Dəyişməyən faylın məzmunu yenidən saxlanmır: yeni tree eyni blob-a istinad edir."
+practices:
+  - "Commit-ə qısa hash ilə istinad edin: adətən ilk 7 simvol kifayətdir."
+  - "Nəyin dəyişdiyini görmək üçün diff-ə, layihənin həmin andakı halını görmək üçün snapshot-a baxın."
