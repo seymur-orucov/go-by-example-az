@@ -1,0 +1,60 @@
+- question: "Bunlardan hansı Git komandası deyil?"
+  options:
+    - "`git clone`"
+    - "`git fork`"
+    - "`git fetch`"
+  answer: 1
+  explain: "Fork GitHub kimi xidmətlərin imkanıdır; Git `git fork`-a `'fork' is not a git command` cavabını verir."
+- question: "Sam `notely/notely`-ni clone etdi, commit etdi, amma `git push` rədd olundu. Səbəb nədir?"
+  options:
+    - "Clone edilmiş repository-dən push etmək olmur"
+    - "Əvvəlcə `git fetch` etmək lazım idi"
+    - "Sam-ın `notely/notely`-yə yazma icazəsi yoxdur"
+  answer: 2
+  explain: "Açıq repository-ni hər kəs clone edə bilər, push üçün isə yazma icazəsi lazımdır."
+- question: "Sam `git clone https://github.com/sam/notely.git` ilə öz fork-unu clone etdi. `origin` hansı ünvanı göstərir?"
+  options:
+    - "`https://github.com/sam/notely.git`"
+    - "`https://github.com/notely/notely.git`"
+    - "Heç birini: fork-un clone-unda `origin` olmur"
+  answer: 0
+  explain: "`origin` həmişə clone edilən ünvandır; burada bu, Sam-ın fork-udur."
+- question: "Fork-un clone-unda orijinal repository-ni remote kimi hansı komanda əlavə edir?"
+  options:
+    - "`git clone https://github.com/notely/notely.git`"
+    - "`git remote add upstream https://github.com/notely/notely.git`"
+    - "`git remote set-url origin https://github.com/notely/notely.git`"
+  answer: 1
+  explain: "`git remote add` ikinci remote yaradır; `set-url` isə `origin`-i fork-dan ayırardı."
+- question: "`notely/notely`-yə yeni commit-lər gəlib. Sam lokal `main`-də bunları necə alır?"
+  options:
+    - "`git fetch origin`, sonra `git merge origin/main`"
+    - "`git pull origin main`"
+    - "`git fetch upstream`, sonra `git merge upstream/main`"
+  answer: 2
+  explain: "Yeniliklər orijinaldadır, yəni `upstream`-də; fork (`origin`) özü yenilənmir, ondan çəkmək heç nə gətirmir."
+- question: "Komanda xətti olmadan fork-un GitHub-dakı `main`-ini orijinala çatdırmaq üçün nə edirsiniz?"
+  options:
+    - "Fork səhifəsində **Sync fork**, sonra **Update branch**"
+    - "Orijinalın səhifəsində **Fork**-u yenidən basırsınız"
+    - "Fork səhifəsində **Code**, sonra **Download ZIP**"
+  answer: 0
+  explain: "**Sync fork** menyusu orijinalın yeni commit-lərini fork-un branch-ına gətirir."
+- question: "Sam lokal olaraq `git merge upstream/main` etdi. GitHub-dakı fork-un `main`-i də yeniləndimi?"
+  code: |
+    git fetch upstream
+    git switch main
+    git merge upstream/main
+  options:
+    - "Bəli, merge fork-u da yeniləyir"
+    - "Xeyr, bunun üçün `git push origin main` lazımdır"
+    - "Xeyr, bunun üçün `git push upstream main` lazımdır"
+  answer: 1
+  explain: "Bu komandalar yalnız lokal repository-ni dəyişir; fork `origin`-dir və ona push etmək lazımdır."
+- question: "Ayla `notely` komandasındadır və repository-yə yaza bilir. Yeni iş üçün ona fork lazımdırmı?"
+  options:
+    - "Bəli, pull request yalnız fork-dan açılır"
+    - "Bəli, clone yalnız fork-dan edilə bilər"
+    - "Xeyr, orijinalı clone edib branch-da işləyir"
+  answer: 2
+  explain: "Yazma icazəsi olan branch-ı birbaşa orijinala push edir və pull request-i eyni repository-də açır."

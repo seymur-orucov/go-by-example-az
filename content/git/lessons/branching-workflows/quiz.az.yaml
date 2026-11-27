@@ -1,0 +1,63 @@
+- question: "Startapda `main` istənilən an deploy oluna bilər. Hər iş qısa branch-da gedir və pull request ilə review olunur. Merge-dən sonra `main` deploy olunur. Bu hansı workflow-dur?"
+  options:
+    - "Git flow"
+    - "GitHub flow"
+    - "Heç biri, bu Git-in default qaydasıdır"
+  answer: 1
+  explain: "GitHub flow-da bir daimi branch var, `main`, və o həmişə deploy oluna bilən vəziyyətdədir. Git-in özü heç bir workflow tələb etmir."
+- question: "Mobil komanda git flow işlədir. `2.5` üçün yeni funksiyanın branch-ı haradan ayrılır və hara qayıdır?"
+  options:
+    - "`main`-dən ayrılır, `main`-ə qayıdır"
+    - "`release/2.5`-dən ayrılır, `main`-ə qayıdır"
+    - "`develop`-dan ayrılır, `develop`-a qayıdır"
+  answer: 2
+  explain: "`feature/...` branch-ları `develop`-la işləyir. `main`-ə yalnız `release` və `hotfix` branch-ları merge olunur."
+- question: "`2.4` mağazadadır və istifadəçilərdə giriş ekranı çökür. Git flow-da düzəliş branch-ı haradan ayrılır?"
+  options:
+    - "`main`-dən, çünki istifadəçilərdəki versiya oradadır"
+    - "`develop`-dan, çünki növbəti versiya oradadır"
+    - "`release/2.5`-dən, çünki ən yeni kod oradadır"
+  answer: 0
+  explain: "`hotfix/2.4.1` `main`-dən ayrılır. `develop`-da artıq `2.5`-in yarımçıq funksiyaları var, onlar düzəlişlə birlikdə istifadəçilərə getməməlidir."
+- question: "`hotfix/2.4.1` `main`-ə merge olundu və `v2.4.1` tag-ı qoyuldu. Daha nə etmək lazımdır?"
+  options:
+    - "Heç nə: `develop` hər merge-dən sonra `main`-i özü götürür"
+    - "Hotfix-i `develop`-a da merge etmək: düzəliş `2.5`-ə də düşsün"
+    - "`develop`-u silmək və `main`-dən yenidən yaratmaq"
+  answer: 1
+  explain: "Git branch-ları özü sinxronlaşdırmır. Hotfix `develop`-a merge olunmasa, səhv `2.5`-də geri qayıdır."
+- question: "Murad trunk-based development işlədən komandadadır. Axtarış funksiyası iki həftə çəkəcək. O, necə işləyir?"
+  options:
+    - "İki həftə `feat/search`-də işləyir, sonda bir dəfə merge edir"
+    - "`develop` yaradır, işi orada yığır, sonda `main`-ə keçirir"
+    - "Hər gün kiçik hissəni `main`-ə merge edir, yarımçığı flag-la gizlədir"
+  answer: 2
+  explain: "Trunk-based development-də hər kəs ən azı gündə bir dəfə trunk-a birləşdirir. Yarımçıq funksiyanı istifadəçidən feature flag gizlədir."
+- question: "Ödəniş ekranının kodu `main`-dədir və deploy olunub, amma istifadəçilər onu görmür. Bunu nə edir?"
+  options:
+    - "Feature flag: kodda şərt, flag bağlı olduqca ekran görünmür"
+    - "Tag: `v2.4` tag-ı olmayan kod serverə getmir"
+    - "Branch: kod ayrıca branch-da qaldıqca deploy olunmur"
+  answer: 0
+  explain: "Feature flag yarımçıq funksiyanı kodda saxlayıb istifadəçidən gizlədir. Funksiya hazır olanda flag açılır, yeni merge lazım olmur."
+- question: "Ayla-nın branch-ı üç həftədir `main`-ə merge olunmayıb. Merge zamanı ən çox nə gözlənir?"
+  options:
+    - "Fast-forward: branch-da commit-lər çoxdur"
+    - "Git merge etmir: branch iki həftədən köhnədir"
+    - "Çoxlu konflikt: bu müddətdə `main`-də eyni fayllar dəyişib"
+  answer: 2
+  explain: "Branch nə qədər uzun yaşayırsa, `main` o qədər çox dəyişir və konfliktlər yığılır. Git branch-ın yaşına baxmır."
+- question: "Hansı komanda üçün git flow ən uyğundur?"
+  options:
+    - "Gündə beş dəfə deploy olunan onlayn mağazanın veb tətbiqi"
+    - "Hər push-dan sonra yenilənən şirkətdaxili hesabat səhifəsi"
+    - "Müştərilərdə `3.1` və `3.2` işləyən masaüstü proqram"
+  answer: 2
+  explain: "Bir neçə versiya eyni vaxtda dəstəklənəndə `release` və `hotfix` branch-ları lazım olur. Davamlı deploy olunan veb tətbiq üçün GitHub flow kifayətdir."
+- question: "Vincent Driessen 2020-də git flow haqqında yazdığı qeyddə nə məsləhət gördü?"
+  options:
+    - "Davamlı deploy olunan veb tətbiqlər üçün GitHub flow kimi sadə workflow"
+    - "Hər komanda üçün standart workflow kimi yalnız git flow"
+    - "Git flow-dan imtina: `develop` branch-ı artıq lazım deyil"
+  answer: 0
+  explain: "Driessen-ə görə git flow versiyalarla buraxılan proqram üçün hələ uyğun ola bilər. Davamlı deploy üçün isə sadə workflow daha yaxşıdır."

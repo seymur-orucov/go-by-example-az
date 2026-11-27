@@ -1,0 +1,12 @@
+rules:
+  - "GitHub flow: `main` həmişə deploy oluna bilər; iş qısa branch-da gedir, review-dan sonra merge və deploy olunur."
+  - "Trunk-based development: hər kəs ən azı gündə bir dəfə `main`-ə birləşdirir; yarımçıq iş feature flag arxasındadır."
+  - "Git flow: daimi `main` və `develop`; `feature/...` `develop`-a, `release/...` və `hotfix/...` həm `main`-ə, həm `develop`-a merge olunur."
+  - "Git flow-da hər buraxılış `main`-də tag alır, təcili düzəliş isə `main`-dən ayrılan `hotfix/...` branch-ında edilir."
+  - "Branch nə qədər uzun yaşayırsa, merge o qədər çətin olur: `main`-də dəyişikliklər və konfliktlər yığılır."
+  - "Driessen 2020-də yazıb: davamlı deploy olunan proqram üçün GitHub flow kimi sadə workflow, versiyalarla buraxılan proqram üçün git flow."
+practices:
+  - "Veb tətbiq gündə bir neçə dəfə deploy olunursa, GitHub flow ilə başlayın."
+  - "Pull request-ləri gün ərzində review edin: bir həftə gözləyən pull request uzunömürlü branch-dır."
+  - "Bir neçə versiyanı eyni vaxtda dəstəkləməlisinizsə, git flow-un `release` və `hotfix` branch-larını işlədin."
+  - "Hotfix-i `main`-ə merge edəndən sonra `develop`-a da merge edin."

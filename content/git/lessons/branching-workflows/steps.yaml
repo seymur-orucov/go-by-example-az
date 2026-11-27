@@ -1,0 +1,52 @@
+# Hand-written visuals (text lesson): one release of the mobile app through git flow, then
+# GitHub flow and git flow side by side.
+github-flow:
+trunk-based:
+git-flow:
+  vis:
+    kind: flow
+    caption: "Git flow: `2.4` versiyasının yolu"
+    arrows: true
+    items:
+      - { label: "feature/offline-lessons", sub: "`develop`-dan ayrılır, `develop`-a qayıdır" }
+      - { label: "develop", sub: "`2.4`-ün funksiyaları yığılır" }
+      - { label: "release/2.4", sub: "yalnız düzəlişlər, `develop`-da `2.5` davam edir", tone: accent }
+      - { label: "main + v2.4", sub: "buraxılış, tag qoyulur" }
+      - { label: "hotfix/2.4.1", sub: "`main`-dən ayrılır, təcili düzəliş" }
+    note: "`release` və `hotfix` branch-ları həm `main`-ə, həm `develop`-a merge olunur."
+long-branches:
+choosing:
+  vis:
+    kind: compare
+    caption: "GitHub flow və git flow"
+    a: { title: "GitHub flow", sub: "davamlı deploy" }
+    b: { title: "Git flow", sub: "versiyalarla buraxılış" }
+    rows:
+      - aspect: "Daimi branch-lar"
+        a: "Yalnız `main`"
+        b: "`main` və `develop`"
+      - aspect: "Müvəqqəti branch-lar"
+        a: "İş branch-ı, məsələn `feat/online-payment`"
+        b: "`feature/...`, `release/...`, `hotfix/...`"
+      - aspect: "Branch nə qədər yaşayır"
+        a: "Bir neçə saat və ya bir neçə gün"
+        b: "`feature` həftələrlə, `develop` həmişə"
+        better: a
+      - aspect: "Buraxılış"
+        a: "Merge-dən sonra `main` deploy olunur"
+        b: "`release/...` `main`-ə merge olunur, tag qoyulur"
+      - aspect: "Təcili düzəliş"
+        a: "Adi branch və pull request, sonra deploy"
+        b: "`hotfix/...` `main`-dən, sonra `main`-ə və `develop`-a"
+      - aspect: "Merge"
+        a: "Kiçik və tez-tez"
+        b: "Böyük, konfliktlər yığıla bilər"
+        better: a
+      - aspect: "Bir neçə versiyanı dəstəkləmək"
+        a: "Nəzərdə tutulmayıb"
+        b: "`release` və `hotfix` branch-ları ilə"
+        better: b
+      - aspect: "Kimə uyğundur"
+        a: "Gündə bir neçə dəfə deploy olunan veb tətbiq"
+        b: "Versiyalarla buraxılan mobil və ya masaüstü proqram"
+    note: "Trunk-based development GitHub flow-a yaxındır: branch-lar daha qısadır, hər kəs ən azı gündə bir dəfə `main`-ə birləşdirir."

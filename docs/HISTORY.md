@@ -714,3 +714,11 @@ Done:
 - `filter-branch` (`terminal`, smart-home scripts with a leaked key): deleting is not enough, rotate the key first, `git filter-branch --index-filter`, `refs/original/`, `git filter-repo` (shown, not run), everyone re-clones.
 - Runner fix (in this branch): recorded output keeps only the text after the last carriage return, as a terminal shows it (Git's `Rebasing (1/2)` progress).
 - Levels: these lessons are `intermediate` (the site shows "orta"); modules 1–8 stay `beginner`.
+
+### 80. Git module 10 "Komanda işi" (without `pull-requests`)
+Same process; `pull-requests` is a `diagram` lesson and waits for the diagram pilot's approval.
+
+Done:
+- `fork-vs-clone` (`compare`, an Azerbaijani translation for an open-source notes app): fork is GitHub's copy under your account, clone is Git's copy on your computer; `origin` = the fork, `upstream` = the original; syncing with `fetch upstream` or the "Sync fork" button.
+- `branching-workflows` (`compare`, a web startup vs a versioned mobile app): GitHub flow, trunk-based development, git flow (with Driessen's 2020 note), the cost of long-lived branches.
+- `clean-git-history` (`terminal`, a market stall's stock list): atomic commits, `--fixup` while working, `git fetch` and `git rebase -i --autosquash origin/main` before the PR.
