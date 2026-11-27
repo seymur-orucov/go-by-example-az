@@ -1,0 +1,35 @@
+$ git log --oneline
+0222fb6 Dim lights at night
+609ca48 Add heating script
+3507946 Load settings from config.env
+9dd0cc7 Add lights script
+$ git rm config.env
+rm 'config.env'
+$ git commit -q -m "Remove config.env"
+$ git log --oneline -- config.env
+306c496 Remove config.env
+3507946 Load settings from config.env
+$ git show HEAD~3:config.env
+HUB_URL=http://192.168.1.20
+API_KEY=hk-7Q2m9Xa4
+$ printf "HUB_URL=http://192.168.1.20\nAPI_KEY=hk-Rb83Lw5T\n" > config.env
+$ echo "config.env" > .gitignore
+$ printf "HUB_URL=http://192.168.1.20\nAPI_KEY=your-key-here\n" > config.env.example
+$ git add .gitignore config.env.example
+$ git commit -q -m "Ignore config.env, add an example"
+$ git status --short --ignored
+!! config.env
+$ FILTER_BRANCH_SQUELCH_WARNING=1 git filter-branch --prune-empty --index-filter 'git rm --cached --ignore-unmatch config.env' -- --all | tail -n 1
+Ref 'refs/heads/main' was rewritten
+$ git log --oneline
+4a657f5 Ignore config.env, add an example
+88db7f4 Dim lights at night
+52e7acc Add heating script
+b98db82 Load settings from config.env
+9dd0cc7 Add lights script
+$ git log --oneline -- config.env
+$ git log --oneline --all -- config.env
+306c496 Remove config.env
+3507946 Load settings from config.env
+$ git update-ref -d refs/original/refs/heads/main
+$ git log --oneline --all -- config.env

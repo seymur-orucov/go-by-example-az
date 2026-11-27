@@ -1,0 +1,897 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir choreo",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd choreo",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"# Spring show\" \"\" \"## Verse\" \"- step touch x4\" > routine.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Tempo: 120 BPM\" > music.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add .",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add verse\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q -c chorus",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"\" \"## Chorus\" \"- spin rigth\" \"- jump x2\" >> routine.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add chorus moves\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "sed -i \"s/rigth/right/\" routine.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"fix typo\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Chorus starts at 0:45\" >> music.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"wip\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Walk in slowly, 8 counts\" > intro.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add intro.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Try slow intro\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "todo",
+      "hidden": false,
+      "fail": false,
+      "out": "30bd43e Try slow intro\n498abad wip\n9cd8cff fix typo\n784ae2e Add chorus moves\nc0f95b7 Add verse\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git config sequence.editor \"sed -n '/^[^#]/p'\"",
+      "step": "todo",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git rebase -i HEAD~4",
+      "step": "todo",
+      "hidden": false,
+      "fail": false,
+      "out": "pick 784ae2e # Add chorus moves\npick 9cd8cff # fix typo\npick 498abad # wip\npick 30bd43e # Try slow intro\nSuccessfully rebased and updated refs/heads/chorus.\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "todo",
+      "hidden": false,
+      "fail": false,
+      "out": "30bd43e Try slow intro\n498abad wip\n9cd8cff fix typo\n784ae2e Add chorus moves\nc0f95b7 Add verse\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git config sequence.editor \"sed -i -e '2s/^pick/fixup/' -e '4s/^pick/drop/' -e '/^[^#]/w /dev/stdout'\"",
+      "step": "fixup-drop",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git rebase -i HEAD~4",
+      "step": "fixup-drop",
+      "hidden": false,
+      "fail": false,
+      "out": "pick 784ae2e # Add chorus moves\nfixup 9cd8cff # fix typo\npick 498abad # wip\ndrop 30bd43e # Try slow intro\nSuccessfully rebased and updated refs/heads/chorus.\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "fixup-drop",
+      "hidden": false,
+      "fail": false,
+      "out": "2c47c33 wip\n15999c7 Add chorus moves\nc0f95b7 Add verse\n",
+      "exit": 0
+    },
+    {
+      "cmd": "ls",
+      "step": "fixup-drop",
+      "hidden": false,
+      "fail": false,
+      "out": "music.txt\nroutine.md\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git config sequence.editor \"sed -i -e '1s/^pick/reword/' -e '/^[^#]/w /dev/stdout'\"",
+      "step": "reword",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git config core.editor \"sed -i '1s/.*/Note when the chorus starts/'\"",
+      "step": "reword",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git rebase -i HEAD~1",
+      "step": "reword",
+      "hidden": false,
+      "fail": false,
+      "out": "reword 2c47c33 # wip\n[detached HEAD 085b8c4] Note when the chorus starts\n Date: Thu Jan 15 09:13:00 2026 +0000\n 1 file changed, 1 insertion(+)\nSuccessfully rebased and updated refs/heads/chorus.\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "reword",
+      "hidden": false,
+      "fail": false,
+      "out": "085b8c4 Note when the chorus starts\n15999c7 Add chorus moves\nc0f95b7 Add verse\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git config sequence.editor \"sed -i -e '2s/^pick/squash/' -e '/^[^#]/w /dev/stdout'\"",
+      "step": "squash",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git config core.editor true",
+      "step": "squash",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git rebase -i HEAD~2",
+      "step": "squash",
+      "hidden": false,
+      "fail": false,
+      "out": "pick 15999c7 # Add chorus moves\nsquash 085b8c4 # Note when the chorus starts\n[detached HEAD 45b71b0] Add chorus moves\n Date: Thu Jan 15 09:09:00 2026 +0000\n 2 files changed, 5 insertions(+)\nSuccessfully rebased and updated refs/heads/chorus.\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "squash",
+      "hidden": false,
+      "fail": false,
+      "out": "45b71b0 Add chorus moves\nc0f95b7 Add verse\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log -1",
+      "step": "squash",
+      "hidden": false,
+      "fail": false,
+      "out": "commit 45b71b0595ed8e543f98aadc3752361c2089d035\nAuthor: Sam Lee <sam@example.com>\nDate:   Thu Jan 15 09:09:00 2026 +0000\n\n    Add chorus moves\n    \n    Note when the chorus starts\n",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"\" \"## Bridge\" \"- slide left x2\" >> routine.md",
+      "step": "autosquash",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add bridge moves\"",
+      "step": "autosquash",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "sed -i \"s/0:45/0:48/\" music.txt",
+      "step": "autosquash",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add music.txt",
+      "step": "autosquash",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit --fixup=HEAD~1",
+      "step": "autosquash",
+      "hidden": false,
+      "fail": false,
+      "out": "[chorus e3c893b] fixup! Add chorus moves\n 1 file changed, 1 insertion(+), 1 deletion(-)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "autosquash",
+      "hidden": false,
+      "fail": false,
+      "out": "e3c893b fixup! Add chorus moves\n3762e60 Add bridge moves\n45b71b0 Add chorus moves\nc0f95b7 Add verse\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git config sequence.editor \"sed -n '/^[^#]/p'\"",
+      "step": "autosquash",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git rebase -i --autosquash HEAD~3",
+      "step": "autosquash",
+      "hidden": false,
+      "fail": false,
+      "out": "pick 45b71b0 # Add chorus moves\nfixup e3c893b # fixup! Add chorus moves\npick 3762e60 # Add bridge moves\nSuccessfully rebased and updated refs/heads/chorus.\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "autosquash",
+      "hidden": false,
+      "fail": false,
+      "out": "4c8db67 Add bridge moves\n04e90d6 Add chorus moves\nc0f95b7 Add verse\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "todo": {
+      "areas": {
+        "work": [
+          {
+            "name": "intro.md",
+            "state": "clean"
+          },
+          {
+            "name": "music.txt",
+            "state": "clean"
+          },
+          {
+            "name": "routine.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "intro.md",
+            "state": "clean"
+          },
+          {
+            "name": "music.txt",
+            "state": "clean"
+          },
+          {
+            "name": "routine.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "30bd43e",
+            "message": "Try slow intro"
+          },
+          "count": 5,
+          "files": [
+            "intro.md",
+            "music.txt",
+            "routine.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "30bd43e",
+            "message": "Try slow intro",
+            "parents": [
+              "498abad"
+            ],
+            "files": [
+              {
+                "name": "intro.md",
+                "state": "added"
+              },
+              {
+                "name": "music.txt",
+                "state": "same"
+              },
+              {
+                "name": "routine.md",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "498abad",
+            "message": "wip",
+            "parents": [
+              "9cd8cff"
+            ],
+            "files": [
+              {
+                "name": "music.txt",
+                "state": "modified"
+              },
+              {
+                "name": "routine.md",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "9cd8cff",
+            "message": "fix typo",
+            "parents": [
+              "784ae2e"
+            ],
+            "files": [
+              {
+                "name": "music.txt",
+                "state": "same"
+              },
+              {
+                "name": "routine.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "784ae2e",
+            "message": "Add chorus moves",
+            "parents": [
+              "c0f95b7"
+            ],
+            "files": [
+              {
+                "name": "music.txt",
+                "state": "same"
+              },
+              {
+                "name": "routine.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "c0f95b7",
+            "message": "Add verse",
+            "parents": [],
+            "files": [
+              {
+                "name": "music.txt",
+                "state": "added"
+              },
+              {
+                "name": "routine.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "chorus",
+            "target": "30bd43e"
+          },
+          {
+            "name": "main",
+            "target": "c0f95b7"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "chorus",
+          "target": "30bd43e"
+        }
+      }
+    },
+    "fixup-drop": {
+      "areas": {
+        "work": [
+          {
+            "name": "music.txt",
+            "state": "clean"
+          },
+          {
+            "name": "routine.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "music.txt",
+            "state": "clean"
+          },
+          {
+            "name": "routine.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "2c47c33",
+            "message": "wip"
+          },
+          "count": 3,
+          "files": [
+            "music.txt",
+            "routine.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "2c47c33",
+            "message": "wip",
+            "parents": [
+              "15999c7"
+            ],
+            "files": [
+              {
+                "name": "music.txt",
+                "state": "modified"
+              },
+              {
+                "name": "routine.md",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "15999c7",
+            "message": "Add chorus moves",
+            "parents": [
+              "c0f95b7"
+            ],
+            "files": [
+              {
+                "name": "music.txt",
+                "state": "same"
+              },
+              {
+                "name": "routine.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "c0f95b7",
+            "message": "Add verse",
+            "parents": [],
+            "files": [
+              {
+                "name": "music.txt",
+                "state": "added"
+              },
+              {
+                "name": "routine.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "chorus",
+            "target": "2c47c33"
+          },
+          {
+            "name": "main",
+            "target": "c0f95b7"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "chorus",
+          "target": "2c47c33"
+        }
+      }
+    },
+    "reword": {
+      "areas": {
+        "work": [
+          {
+            "name": "music.txt",
+            "state": "clean"
+          },
+          {
+            "name": "routine.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "music.txt",
+            "state": "clean"
+          },
+          {
+            "name": "routine.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "085b8c4",
+            "message": "Note when the chorus starts"
+          },
+          "count": 3,
+          "files": [
+            "music.txt",
+            "routine.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "085b8c4",
+            "message": "Note when the chorus starts",
+            "parents": [
+              "15999c7"
+            ],
+            "files": [
+              {
+                "name": "music.txt",
+                "state": "modified"
+              },
+              {
+                "name": "routine.md",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "15999c7",
+            "message": "Add chorus moves",
+            "parents": [
+              "c0f95b7"
+            ],
+            "files": [
+              {
+                "name": "music.txt",
+                "state": "same"
+              },
+              {
+                "name": "routine.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "c0f95b7",
+            "message": "Add verse",
+            "parents": [],
+            "files": [
+              {
+                "name": "music.txt",
+                "state": "added"
+              },
+              {
+                "name": "routine.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "chorus",
+            "target": "085b8c4"
+          },
+          {
+            "name": "main",
+            "target": "c0f95b7"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "chorus",
+          "target": "085b8c4"
+        }
+      }
+    },
+    "squash": {
+      "areas": {
+        "work": [
+          {
+            "name": "music.txt",
+            "state": "clean"
+          },
+          {
+            "name": "routine.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "music.txt",
+            "state": "clean"
+          },
+          {
+            "name": "routine.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "45b71b0",
+            "message": "Add chorus moves"
+          },
+          "count": 2,
+          "files": [
+            "music.txt",
+            "routine.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "45b71b0",
+            "message": "Add chorus moves",
+            "parents": [
+              "c0f95b7"
+            ],
+            "files": [
+              {
+                "name": "music.txt",
+                "state": "modified"
+              },
+              {
+                "name": "routine.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "c0f95b7",
+            "message": "Add verse",
+            "parents": [],
+            "files": [
+              {
+                "name": "music.txt",
+                "state": "added"
+              },
+              {
+                "name": "routine.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "chorus",
+            "target": "45b71b0"
+          },
+          {
+            "name": "main",
+            "target": "c0f95b7"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "chorus",
+          "target": "45b71b0"
+        }
+      }
+    },
+    "autosquash": {
+      "areas": {
+        "work": [
+          {
+            "name": "music.txt",
+            "state": "clean"
+          },
+          {
+            "name": "routine.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "music.txt",
+            "state": "clean"
+          },
+          {
+            "name": "routine.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "4c8db67",
+            "message": "Add bridge moves"
+          },
+          "count": 3,
+          "files": [
+            "music.txt",
+            "routine.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "4c8db67",
+            "message": "Add bridge moves",
+            "parents": [
+              "04e90d6"
+            ],
+            "files": [
+              {
+                "name": "music.txt",
+                "state": "same"
+              },
+              {
+                "name": "routine.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "04e90d6",
+            "message": "Add chorus moves",
+            "parents": [
+              "c0f95b7"
+            ],
+            "files": [
+              {
+                "name": "music.txt",
+                "state": "modified"
+              },
+              {
+                "name": "routine.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "c0f95b7",
+            "message": "Add verse",
+            "parents": [],
+            "files": [
+              {
+                "name": "music.txt",
+                "state": "added"
+              },
+              {
+                "name": "routine.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "chorus",
+            "target": "4c8db67"
+          },
+          {
+            "name": "main",
+            "target": "c0f95b7"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "chorus",
+          "target": "4c8db67"
+        }
+      }
+    }
+  }
+}

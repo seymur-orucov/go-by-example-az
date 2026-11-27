@@ -1,0 +1,1490 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir club-site",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd club-site",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"<h1>Training schedule</h1>\" \"<p>Monday 18:00 football</p>\" \"<p>Wednesday 18:00 basketball</p>\" \"<p>Saturday 10:00 swimming</p>\" > schedule.html",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add schedule.html",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add the training schedule\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"Home\" \"Schedule\" \"Contacts\" > menu.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"phone: +1 555 0199\" \"email: info@club.example\" > contacts.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add menu.txt contacts.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add the menu and contacts\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch release/1.0",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"<h1>Gallery</h1>\" > gallery.html",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"Home\" \"Schedule\" \"Gallery\" \"Contacts\" > menu.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add gallery.html menu.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add the gallery page\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "sed -i \"s/0199/0100/\" contacts.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Fix the phone number\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"<h1>Shop</h1>\" > shop.html",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"Home\" \"Schedule\" \"Gallery\" \"Shop\" \"Contacts\" > menu.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add shop.html menu.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add the shop page\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch release/1.0",
+      "step": "find",
+      "hidden": false,
+      "fail": false,
+      "out": "Switched to branch 'release/1.0'\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cat contacts.txt",
+      "step": "find",
+      "hidden": false,
+      "fail": false,
+      "out": "phone: +1 555 0199\nemail: info@club.example\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline release/1.0..main",
+      "step": "find",
+      "hidden": false,
+      "fail": false,
+      "out": "6621b44 Add the shop page\ne25a3d9 Fix the phone number\n7bcb5a0 Add the gallery page\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git cherry-pick main~1",
+      "step": "pick",
+      "hidden": false,
+      "fail": false,
+      "out": "[release/1.0 01525a4] Fix the phone number\n Date: Thu Jan 15 09:16:00 2026 +0000\n 1 file changed, 1 insertion(+), 1 deletion(-)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cat contacts.txt",
+      "step": "pick",
+      "hidden": false,
+      "fail": false,
+      "out": "phone: +1 555 0100\nemail: info@club.example\n",
+      "exit": 0
+    },
+    {
+      "cmd": "ls",
+      "step": "pick",
+      "hidden": false,
+      "fail": false,
+      "out": "contacts.txt\nmenu.txt\nschedule.html\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log -1 main~1",
+      "step": "new-commit",
+      "hidden": false,
+      "fail": false,
+      "out": "commit e25a3d9ab9198e3eb59350341d97a08dd8aaeb46\nAuthor: Sam Lee <sam@example.com>\nDate:   Thu Jan 15 09:16:00 2026 +0000\n\n    Fix the phone number\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log -1 release/1.0",
+      "step": "new-commit",
+      "hidden": false,
+      "fail": false,
+      "out": "commit 01525a4a40ce47a7c2450fd073d1a05fc39bcfde\nAuthor: Sam Lee <sam@example.com>\nDate:   Thu Jan 15 09:16:00 2026 +0000\n\n    Fix the phone number\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q main",
+      "step": "range",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "sed -i \"s/Saturday 10:00/Saturday 11:00/\" schedule.html",
+      "step": "range",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Fix the Saturday time\"",
+      "step": "range",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "sed -i \"s/Wednesday 18:00/Wednesday 19:00/\" schedule.html",
+      "step": "range",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Fix the Wednesday time\"",
+      "step": "range",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q release/1.0",
+      "step": "range",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git cherry-pick -x main~2..main",
+      "step": "range",
+      "hidden": false,
+      "fail": false,
+      "out": "[release/1.0 b457804] Fix the Saturday time\n Date: Thu Jan 15 09:31:00 2026 +0000\n 1 file changed, 1 insertion(+), 1 deletion(-)\n[release/1.0 17c7ccf] Fix the Wednesday time\n Date: Thu Jan 15 09:33:00 2026 +0000\n 1 file changed, 1 insertion(+), 1 deletion(-)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log -1",
+      "step": "range",
+      "hidden": false,
+      "fail": false,
+      "out": "commit 17c7ccfd76e044bbc911bda2c30939b1b7a80cda\nAuthor: Sam Lee <sam@example.com>\nDate:   Thu Jan 15 09:33:00 2026 +0000\n\n    Fix the Wednesday time\n    \n    (cherry picked from commit 3111bd29037c9ef8af740570de16461ff57f4a8d)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git cherry-pick \":/Add the shop\"",
+      "step": "conflict",
+      "hidden": false,
+      "fail": true,
+      "out": "Auto-merging menu.txt\nCONFLICT (content): Merge conflict in menu.txt\nerror: could not apply 6621b44... Add the shop page\nhint: After resolving the conflicts, mark them with\nhint: \"git add/rm <pathspec>\", then run\nhint: \"git cherry-pick --continue\".\nhint: You can instead skip this commit with \"git cherry-pick --skip\".\nhint: To abort and get back to the state before \"git cherry-pick\",\nhint: run \"git cherry-pick --abort\".\nhint: Disable this message with \"git config set advice.mergeConflict false\"\n",
+      "exit": 1
+    },
+    {
+      "cmd": "cat menu.txt",
+      "step": "conflict",
+      "hidden": false,
+      "fail": false,
+      "out": "Home\nSchedule\n<<<<<<< HEAD\n=======\nGallery\nShop\n>>>>>>> 6621b44 (Add the shop page)\nContacts\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git cherry-pick --abort",
+      "step": "conflict",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status",
+      "step": "conflict",
+      "hidden": false,
+      "fail": false,
+      "out": "On branch release/1.0\nnothing to commit, working tree clean\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "find": {
+      "areas": {
+        "work": [
+          {
+            "name": "contacts.txt",
+            "state": "clean"
+          },
+          {
+            "name": "menu.txt",
+            "state": "clean"
+          },
+          {
+            "name": "schedule.html",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "contacts.txt",
+            "state": "clean"
+          },
+          {
+            "name": "menu.txt",
+            "state": "clean"
+          },
+          {
+            "name": "schedule.html",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "7b67fc8",
+            "message": "Add the menu and contacts"
+          },
+          "count": 2,
+          "files": [
+            "contacts.txt",
+            "menu.txt",
+            "schedule.html"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "6621b44",
+            "message": "Add the shop page",
+            "parents": [
+              "e25a3d9"
+            ],
+            "files": [
+              {
+                "name": "contacts.txt",
+                "state": "same"
+              },
+              {
+                "name": "gallery.html",
+                "state": "same"
+              },
+              {
+                "name": "menu.txt",
+                "state": "modified"
+              },
+              {
+                "name": "schedule.html",
+                "state": "same"
+              },
+              {
+                "name": "shop.html",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "e25a3d9",
+            "message": "Fix the phone number",
+            "parents": [
+              "7bcb5a0"
+            ],
+            "files": [
+              {
+                "name": "contacts.txt",
+                "state": "modified"
+              },
+              {
+                "name": "gallery.html",
+                "state": "same"
+              },
+              {
+                "name": "menu.txt",
+                "state": "same"
+              },
+              {
+                "name": "schedule.html",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "7bcb5a0",
+            "message": "Add the gallery page",
+            "parents": [
+              "7b67fc8"
+            ],
+            "files": [
+              {
+                "name": "contacts.txt",
+                "state": "same"
+              },
+              {
+                "name": "gallery.html",
+                "state": "added"
+              },
+              {
+                "name": "menu.txt",
+                "state": "modified"
+              },
+              {
+                "name": "schedule.html",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "7b67fc8",
+            "message": "Add the menu and contacts",
+            "parents": [
+              "0a125cb"
+            ],
+            "files": [
+              {
+                "name": "contacts.txt",
+                "state": "added"
+              },
+              {
+                "name": "menu.txt",
+                "state": "added"
+              },
+              {
+                "name": "schedule.html",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "0a125cb",
+            "message": "Add the training schedule",
+            "parents": [],
+            "files": [
+              {
+                "name": "schedule.html",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "6621b44"
+          },
+          {
+            "name": "release/1.0",
+            "target": "7b67fc8"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "release/1.0",
+          "target": "7b67fc8"
+        }
+      }
+    },
+    "pick": {
+      "areas": {
+        "work": [
+          {
+            "name": "contacts.txt",
+            "state": "clean"
+          },
+          {
+            "name": "menu.txt",
+            "state": "clean"
+          },
+          {
+            "name": "schedule.html",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "contacts.txt",
+            "state": "clean"
+          },
+          {
+            "name": "menu.txt",
+            "state": "clean"
+          },
+          {
+            "name": "schedule.html",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "01525a4",
+            "message": "Fix the phone number"
+          },
+          "count": 3,
+          "files": [
+            "contacts.txt",
+            "menu.txt",
+            "schedule.html"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "01525a4",
+            "message": "Fix the phone number",
+            "parents": [
+              "7b67fc8"
+            ],
+            "files": [
+              {
+                "name": "contacts.txt",
+                "state": "modified"
+              },
+              {
+                "name": "menu.txt",
+                "state": "same"
+              },
+              {
+                "name": "schedule.html",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "6621b44",
+            "message": "Add the shop page",
+            "parents": [
+              "e25a3d9"
+            ],
+            "files": [
+              {
+                "name": "contacts.txt",
+                "state": "same"
+              },
+              {
+                "name": "gallery.html",
+                "state": "same"
+              },
+              {
+                "name": "menu.txt",
+                "state": "modified"
+              },
+              {
+                "name": "schedule.html",
+                "state": "same"
+              },
+              {
+                "name": "shop.html",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "e25a3d9",
+            "message": "Fix the phone number",
+            "parents": [
+              "7bcb5a0"
+            ],
+            "files": [
+              {
+                "name": "contacts.txt",
+                "state": "modified"
+              },
+              {
+                "name": "gallery.html",
+                "state": "same"
+              },
+              {
+                "name": "menu.txt",
+                "state": "same"
+              },
+              {
+                "name": "schedule.html",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "7bcb5a0",
+            "message": "Add the gallery page",
+            "parents": [
+              "7b67fc8"
+            ],
+            "files": [
+              {
+                "name": "contacts.txt",
+                "state": "same"
+              },
+              {
+                "name": "gallery.html",
+                "state": "added"
+              },
+              {
+                "name": "menu.txt",
+                "state": "modified"
+              },
+              {
+                "name": "schedule.html",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "7b67fc8",
+            "message": "Add the menu and contacts",
+            "parents": [
+              "0a125cb"
+            ],
+            "files": [
+              {
+                "name": "contacts.txt",
+                "state": "added"
+              },
+              {
+                "name": "menu.txt",
+                "state": "added"
+              },
+              {
+                "name": "schedule.html",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "0a125cb",
+            "message": "Add the training schedule",
+            "parents": [],
+            "files": [
+              {
+                "name": "schedule.html",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "6621b44"
+          },
+          {
+            "name": "release/1.0",
+            "target": "01525a4"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "release/1.0",
+          "target": "01525a4"
+        }
+      }
+    },
+    "new-commit": {
+      "areas": {
+        "work": [
+          {
+            "name": "contacts.txt",
+            "state": "clean"
+          },
+          {
+            "name": "menu.txt",
+            "state": "clean"
+          },
+          {
+            "name": "schedule.html",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "contacts.txt",
+            "state": "clean"
+          },
+          {
+            "name": "menu.txt",
+            "state": "clean"
+          },
+          {
+            "name": "schedule.html",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "01525a4",
+            "message": "Fix the phone number"
+          },
+          "count": 3,
+          "files": [
+            "contacts.txt",
+            "menu.txt",
+            "schedule.html"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "01525a4",
+            "message": "Fix the phone number",
+            "parents": [
+              "7b67fc8"
+            ],
+            "files": [
+              {
+                "name": "contacts.txt",
+                "state": "modified"
+              },
+              {
+                "name": "menu.txt",
+                "state": "same"
+              },
+              {
+                "name": "schedule.html",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "6621b44",
+            "message": "Add the shop page",
+            "parents": [
+              "e25a3d9"
+            ],
+            "files": [
+              {
+                "name": "contacts.txt",
+                "state": "same"
+              },
+              {
+                "name": "gallery.html",
+                "state": "same"
+              },
+              {
+                "name": "menu.txt",
+                "state": "modified"
+              },
+              {
+                "name": "schedule.html",
+                "state": "same"
+              },
+              {
+                "name": "shop.html",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "e25a3d9",
+            "message": "Fix the phone number",
+            "parents": [
+              "7bcb5a0"
+            ],
+            "files": [
+              {
+                "name": "contacts.txt",
+                "state": "modified"
+              },
+              {
+                "name": "gallery.html",
+                "state": "same"
+              },
+              {
+                "name": "menu.txt",
+                "state": "same"
+              },
+              {
+                "name": "schedule.html",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "7bcb5a0",
+            "message": "Add the gallery page",
+            "parents": [
+              "7b67fc8"
+            ],
+            "files": [
+              {
+                "name": "contacts.txt",
+                "state": "same"
+              },
+              {
+                "name": "gallery.html",
+                "state": "added"
+              },
+              {
+                "name": "menu.txt",
+                "state": "modified"
+              },
+              {
+                "name": "schedule.html",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "7b67fc8",
+            "message": "Add the menu and contacts",
+            "parents": [
+              "0a125cb"
+            ],
+            "files": [
+              {
+                "name": "contacts.txt",
+                "state": "added"
+              },
+              {
+                "name": "menu.txt",
+                "state": "added"
+              },
+              {
+                "name": "schedule.html",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "0a125cb",
+            "message": "Add the training schedule",
+            "parents": [],
+            "files": [
+              {
+                "name": "schedule.html",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "6621b44"
+          },
+          {
+            "name": "release/1.0",
+            "target": "01525a4"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "release/1.0",
+          "target": "01525a4"
+        }
+      }
+    },
+    "range": {
+      "areas": {
+        "work": [
+          {
+            "name": "contacts.txt",
+            "state": "clean"
+          },
+          {
+            "name": "menu.txt",
+            "state": "clean"
+          },
+          {
+            "name": "schedule.html",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "contacts.txt",
+            "state": "clean"
+          },
+          {
+            "name": "menu.txt",
+            "state": "clean"
+          },
+          {
+            "name": "schedule.html",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "17c7ccf",
+            "message": "Fix the Wednesday time"
+          },
+          "count": 5,
+          "files": [
+            "contacts.txt",
+            "menu.txt",
+            "schedule.html"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "17c7ccf",
+            "message": "Fix the Wednesday time",
+            "parents": [
+              "b457804"
+            ],
+            "files": [
+              {
+                "name": "contacts.txt",
+                "state": "same"
+              },
+              {
+                "name": "menu.txt",
+                "state": "same"
+              },
+              {
+                "name": "schedule.html",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "b457804",
+            "message": "Fix the Saturday time",
+            "parents": [
+              "01525a4"
+            ],
+            "files": [
+              {
+                "name": "contacts.txt",
+                "state": "same"
+              },
+              {
+                "name": "menu.txt",
+                "state": "same"
+              },
+              {
+                "name": "schedule.html",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "01525a4",
+            "message": "Fix the phone number",
+            "parents": [
+              "7b67fc8"
+            ],
+            "files": [
+              {
+                "name": "contacts.txt",
+                "state": "modified"
+              },
+              {
+                "name": "menu.txt",
+                "state": "same"
+              },
+              {
+                "name": "schedule.html",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "3111bd2",
+            "message": "Fix the Wednesday time",
+            "parents": [
+              "0ac6349"
+            ],
+            "files": [
+              {
+                "name": "contacts.txt",
+                "state": "same"
+              },
+              {
+                "name": "gallery.html",
+                "state": "same"
+              },
+              {
+                "name": "menu.txt",
+                "state": "same"
+              },
+              {
+                "name": "schedule.html",
+                "state": "modified"
+              },
+              {
+                "name": "shop.html",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "0ac6349",
+            "message": "Fix the Saturday time",
+            "parents": [
+              "6621b44"
+            ],
+            "files": [
+              {
+                "name": "contacts.txt",
+                "state": "same"
+              },
+              {
+                "name": "gallery.html",
+                "state": "same"
+              },
+              {
+                "name": "menu.txt",
+                "state": "same"
+              },
+              {
+                "name": "schedule.html",
+                "state": "modified"
+              },
+              {
+                "name": "shop.html",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "6621b44",
+            "message": "Add the shop page",
+            "parents": [
+              "e25a3d9"
+            ],
+            "files": [
+              {
+                "name": "contacts.txt",
+                "state": "same"
+              },
+              {
+                "name": "gallery.html",
+                "state": "same"
+              },
+              {
+                "name": "menu.txt",
+                "state": "modified"
+              },
+              {
+                "name": "schedule.html",
+                "state": "same"
+              },
+              {
+                "name": "shop.html",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "e25a3d9",
+            "message": "Fix the phone number",
+            "parents": [
+              "7bcb5a0"
+            ],
+            "files": [
+              {
+                "name": "contacts.txt",
+                "state": "modified"
+              },
+              {
+                "name": "gallery.html",
+                "state": "same"
+              },
+              {
+                "name": "menu.txt",
+                "state": "same"
+              },
+              {
+                "name": "schedule.html",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "7bcb5a0",
+            "message": "Add the gallery page",
+            "parents": [
+              "7b67fc8"
+            ],
+            "files": [
+              {
+                "name": "contacts.txt",
+                "state": "same"
+              },
+              {
+                "name": "gallery.html",
+                "state": "added"
+              },
+              {
+                "name": "menu.txt",
+                "state": "modified"
+              },
+              {
+                "name": "schedule.html",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "7b67fc8",
+            "message": "Add the menu and contacts",
+            "parents": [
+              "0a125cb"
+            ],
+            "files": [
+              {
+                "name": "contacts.txt",
+                "state": "added"
+              },
+              {
+                "name": "menu.txt",
+                "state": "added"
+              },
+              {
+                "name": "schedule.html",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "0a125cb",
+            "message": "Add the training schedule",
+            "parents": [],
+            "files": [
+              {
+                "name": "schedule.html",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "3111bd2"
+          },
+          {
+            "name": "release/1.0",
+            "target": "17c7ccf"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "release/1.0",
+          "target": "17c7ccf"
+        }
+      }
+    },
+    "conflict": {
+      "areas": {
+        "work": [
+          {
+            "name": "contacts.txt",
+            "state": "clean"
+          },
+          {
+            "name": "menu.txt",
+            "state": "clean"
+          },
+          {
+            "name": "schedule.html",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "contacts.txt",
+            "state": "clean"
+          },
+          {
+            "name": "menu.txt",
+            "state": "clean"
+          },
+          {
+            "name": "schedule.html",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "17c7ccf",
+            "message": "Fix the Wednesday time"
+          },
+          "count": 5,
+          "files": [
+            "contacts.txt",
+            "menu.txt",
+            "schedule.html"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "17c7ccf",
+            "message": "Fix the Wednesday time",
+            "parents": [
+              "b457804"
+            ],
+            "files": [
+              {
+                "name": "contacts.txt",
+                "state": "same"
+              },
+              {
+                "name": "menu.txt",
+                "state": "same"
+              },
+              {
+                "name": "schedule.html",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "b457804",
+            "message": "Fix the Saturday time",
+            "parents": [
+              "01525a4"
+            ],
+            "files": [
+              {
+                "name": "contacts.txt",
+                "state": "same"
+              },
+              {
+                "name": "menu.txt",
+                "state": "same"
+              },
+              {
+                "name": "schedule.html",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "01525a4",
+            "message": "Fix the phone number",
+            "parents": [
+              "7b67fc8"
+            ],
+            "files": [
+              {
+                "name": "contacts.txt",
+                "state": "modified"
+              },
+              {
+                "name": "menu.txt",
+                "state": "same"
+              },
+              {
+                "name": "schedule.html",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "3111bd2",
+            "message": "Fix the Wednesday time",
+            "parents": [
+              "0ac6349"
+            ],
+            "files": [
+              {
+                "name": "contacts.txt",
+                "state": "same"
+              },
+              {
+                "name": "gallery.html",
+                "state": "same"
+              },
+              {
+                "name": "menu.txt",
+                "state": "same"
+              },
+              {
+                "name": "schedule.html",
+                "state": "modified"
+              },
+              {
+                "name": "shop.html",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "0ac6349",
+            "message": "Fix the Saturday time",
+            "parents": [
+              "6621b44"
+            ],
+            "files": [
+              {
+                "name": "contacts.txt",
+                "state": "same"
+              },
+              {
+                "name": "gallery.html",
+                "state": "same"
+              },
+              {
+                "name": "menu.txt",
+                "state": "same"
+              },
+              {
+                "name": "schedule.html",
+                "state": "modified"
+              },
+              {
+                "name": "shop.html",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "6621b44",
+            "message": "Add the shop page",
+            "parents": [
+              "e25a3d9"
+            ],
+            "files": [
+              {
+                "name": "contacts.txt",
+                "state": "same"
+              },
+              {
+                "name": "gallery.html",
+                "state": "same"
+              },
+              {
+                "name": "menu.txt",
+                "state": "modified"
+              },
+              {
+                "name": "schedule.html",
+                "state": "same"
+              },
+              {
+                "name": "shop.html",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "e25a3d9",
+            "message": "Fix the phone number",
+            "parents": [
+              "7bcb5a0"
+            ],
+            "files": [
+              {
+                "name": "contacts.txt",
+                "state": "modified"
+              },
+              {
+                "name": "gallery.html",
+                "state": "same"
+              },
+              {
+                "name": "menu.txt",
+                "state": "same"
+              },
+              {
+                "name": "schedule.html",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "7bcb5a0",
+            "message": "Add the gallery page",
+            "parents": [
+              "7b67fc8"
+            ],
+            "files": [
+              {
+                "name": "contacts.txt",
+                "state": "same"
+              },
+              {
+                "name": "gallery.html",
+                "state": "added"
+              },
+              {
+                "name": "menu.txt",
+                "state": "modified"
+              },
+              {
+                "name": "schedule.html",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "7b67fc8",
+            "message": "Add the menu and contacts",
+            "parents": [
+              "0a125cb"
+            ],
+            "files": [
+              {
+                "name": "contacts.txt",
+                "state": "added"
+              },
+              {
+                "name": "menu.txt",
+                "state": "added"
+              },
+              {
+                "name": "schedule.html",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "0a125cb",
+            "message": "Add the training schedule",
+            "parents": [],
+            "files": [
+              {
+                "name": "schedule.html",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "3111bd2"
+          },
+          {
+            "name": "release/1.0",
+            "target": "17c7ccf"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "release/1.0",
+          "target": "17c7ccf"
+        }
+      }
+    }
+  }
+}

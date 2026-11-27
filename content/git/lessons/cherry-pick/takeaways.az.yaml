@@ -1,0 +1,10 @@
+rules:
+  - "`git cherry-pick <commit>` commit-in dəyişikliyini hazırkı branch-a yeni commit kimi tətbiq edir; orijinal öz branch-ında qalır."
+  - "Kopyanın mesajı, müəllifi və müəllif vaxtı orijinaldan gəlir, hash-i isə yenidir: parent-i və snapshot-u başqadır."
+  - "`-x` kopyanın mesajına `(cherry picked from commit ...)` sətri ilə orijinalın hash-ini yazır."
+  - "`git cherry-pick A..B` A-dan sonrakı commit-ləri B daxil olmaqla köhnədən yeniyə köçürür; A-nın özü köçmür."
+  - "Konfliktdə faylı düzəldib `git add` və `git cherry-pick --continue` yazın; `--abort` hər şeyi əvvəlki vəziyyətə qaytarır."
+practices:
+  - "Commit-i hash əvəzinə `main~1` kimi branch-a görə adla və ya `\":/mesaj\"` ilə verin; əvvəlcə `git log --oneline A..B` ilə yoxlayın."
+  - "Paylaşılmış branch-dan götürülən düzəlişi `-x` ilə köçürün ki, orijinalını tapmaq olsun."
+  - "Cherry-pick-i kiçik, müstəqil düzəlişlər üçün işlədin; branch-ın hamısı lazımdırsa, merge edin."

@@ -1,0 +1,74 @@
+$ git log --oneline --graph --all
+* e9f25c1 Fix the map year in room 1
+| * 9011dd7 Send visitors from room 2 to room 3
+| * d78a95c Add the room 3 script
+|/  
+* 62cbbc8 Add the room 2 script
+* 59decad Add the room 1 script
+$ git rebase main
+Successfully rebased and updated refs/heads/feat/room-3.
+$ git log --oneline --graph --all
+* 2bedc1b Send visitors from room 2 to room 3
+* bf3abe3 Add the room 3 script
+* e9f25c1 Fix the map year in room 1
+* 62cbbc8 Add the room 2 script
+* 59decad Add the room 1 script
+$ git log --oneline -1 main
+74226f0 Send visitors from room 2 to the gift shop
+$ git rebase main
+Auto-merging room-2.txt
+CONFLICT (content): Merge conflict in room-2.txt
+error: could not apply 2bedc1b... Send visitors from room 2 to room 3
+hint: Resolve all conflicts manually, mark them as resolved with
+hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
+hint: You can instead skip this commit: run "git rebase --skip".
+hint: To abort and get back to the state before "git rebase", run "git rebase --abort".
+hint: Disable this message with "git config set advice.mergeConflict false"
+Could not apply 2bedc1b... # Send visitors from room 2 to room 3
+$ git status
+interactive rebase in progress; onto 74226f0
+Last commands done (2 commands done):
+   pick bf3abe3 # Add the room 3 script
+   pick 2bedc1b # Send visitors from room 2 to room 3
+No commands remaining.
+You are currently rebasing branch 'feat/room-3' on '74226f0'.
+  (fix conflicts and then run "git rebase --continue")
+  (use "git rebase --skip" to skip this patch)
+  (use "git rebase --abort" to check out the original branch)
+
+Unmerged paths:
+  (use "git restore --staged <file>..." to unstage)
+  (use "git add <file>..." to mark resolution)
+	both modified:   room-2.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+$ cat room-2.txt
+Room 2: Ships
+These ship models are 200 years old.
+<<<<<<< HEAD
+Next: the gift shop.
+=======
+Next: room 3.
+>>>>>>> 2bedc1b (Send visitors from room 2 to room 3)
+$ printf "%s\n" "Room 2: Ships" "These ship models are 200 years old." "Next: room 3, then the gift shop." > room-2.txt
+$ git add room-2.txt
+$ GIT_EDITOR=true git rebase --continue
+[detached HEAD 5b07759] Send visitors from room 2 to room 3
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+Successfully rebased and updated refs/heads/feat/room-3.
+$ git switch main
+Switched to branch 'main'
+$ git merge feat/room-3
+Updating 74226f0..5b07759
+Fast-forward
+ room-2.txt | 2 +-
+ room-3.txt | 3 +++
+ 2 files changed, 4 insertions(+), 1 deletion(-)
+ create mode 100644 room-3.txt
+$ git log --oneline --graph
+* 5b07759 Send visitors from room 2 to room 3
+* ed6b6da Add the room 3 script
+* 74226f0 Send visitors from room 2 to the gift shop
+* e9f25c1 Fix the map year in room 1
+* 62cbbc8 Add the room 2 script
+* 59decad Add the room 1 script

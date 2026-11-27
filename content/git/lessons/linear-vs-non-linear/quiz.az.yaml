@@ -1,0 +1,61 @@
+- question: "Bu üsullardan hansı `main`-də qeyri-xətti tarixçə yaradır?"
+  options:
+    - "`git merge --squash` və sonra `git commit`"
+    - "`git merge --ff-only`"
+    - "`git merge --no-ff`"
+    - "Branch-ı rebase edib fast-forward etmək"
+  answer: 2
+  explain: "`--no-ff` həmişə merge commit yaradır və onun iki parent-i olur. Qalan üç üsulda `main`-in hər commit-inin bir parent-i var."
+- question: "`main`-ə iki paralel branch merge commit ilə gəlib. Adi `git log --oneline` niyə çətin oxunur?"
+  options:
+    - "Merge commit-lər çıxışda görünmür, yalnız branch-ların commit-ləri qalır"
+    - "Commit-lər tarixə görə düzülür və müxtəlif branch-ların commit-ləri qarışır"
+    - "Çıxışda yalnız birinci parent-lər göstərilir və branch-ların commit-ləri itir"
+  answer: 1
+  explain: "`git log` default olaraq commit-ləri tarixə görə, yenidən köhnəyə düzür. Bir branch-ın commit-ləri arasına başqa branch-ın commit-i düşə bilər. `--graph` və ya `--first-parent` bunu aydınlaşdırır."
+- question: "`main`-də bir commit var, `feat/week-numbers`-da isə üç commit. Bu komandalardan sonra `git log --oneline --graph` nə göstərir?"
+  code: |
+    git switch main
+    git merge --squash feat/week-numbers
+    git commit -m "Add week numbers"
+  options:
+    - "İki sətir, düz xətt"
+    - "Dörd sətir, düz xətt"
+    - "Beş sətir, budaqla"
+  answer: 0
+  explain: "Squash merge branch-ın üç commit-inin işini bir yeni commit kimi yazır. Onun bir parent-i var, ona görə `main`-də iki commit düz xətt üzərindədir."
+- question: "`main` üçün **Require linear history** açıqdır. Pull request-i hansı üsulla merge etmək olmaz?"
+  options:
+    - "**Squash and merge**"
+    - "**Rebase and merge**"
+    - "**Create a merge commit**"
+  answer: 2
+  explain: "Bu qayda branch-a merge commit push etməyi qadağan edir. Squash və rebase merge commit yaratmır, ona görə onlara icazə var."
+- question: "Hansı commit-i `git revert` ilə `-m` olmadan geri almaq olmaz?"
+  options:
+    - "`--no-ff` ilə yaranmış merge commit-i"
+    - "Squash merge ilə yaranmış commit-i"
+    - "Rebase-dən sonra fast-forward olunmuş commit-i"
+  answer: 0
+  explain: "Merge commit-in iki parent-i var və Git hansına qayıtmaq lazım olduğunu soruşur: `is a merge but no -m option was given`. Xətti tarixçədəki commit-lərin bir parent-i var."
+- question: "Qeyri-xətti `main`-də hər feature-i bir sətir kimi görmək üçün hansı komanda?"
+  options:
+    - "`git log --oneline`"
+    - "`git log --oneline --first-parent`"
+    - "`git log --oneline --reverse`"
+  answer: 1
+  explain: "`--first-parent` merge commit-lərdə yalnız birinci parent-lə, yəni `main`-in öz xətti ilə gedir. Hər feature orada bir merge commit-dir."
+- question: "Kitabxanaya gələn dəyişikliklər kiçikdir, iştirakçıların branch-larında isə çoxlu `fix typo` commit-i var. Maintainer-lər `main`-də hər pull request-i bir commit kimi görmək istəyir. Hansı üsul uyğundur?"
+  options:
+    - "**Create a merge commit**"
+    - "**Rebase and merge**"
+    - "**Squash and merge**"
+  answer: 2
+  explain: "Squash merge pull request-in bütün commit-lərini bir commit-ə yığır. Rebase and merge `fix typo` commit-lərini də `main`-ə gətirir, merge commit isə onları budaqda saxlayır."
+- question: "Hər branch əvvəlcə rebase olunur, sonra `--no-ff` ilə merge olunur. `main`-in qrafı necə görünür?"
+  options:
+    - "`main` düz xəttdir, hər feature onun yanında kəsişməyən budaqdır"
+    - "Tam düz xəttdir, çünki rebase merge commit-ləri silir"
+    - "Paralel branch-ların xətləri bir-birinin üstündən keçir"
+  answer: 0
+  explain: "Rebase branch-ı `main`-in son commit-inin üstünə köçürür, `--no-ff` isə yenə merge commit yaradır. Hər budaq əvvəlki merge-dən başlayır, ona görə budaqlar kəsişmir."

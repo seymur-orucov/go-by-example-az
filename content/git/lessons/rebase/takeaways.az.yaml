@@ -1,0 +1,10 @@
+rules:
+  - "`git rebase main` hazırkı branch-ın `main`-də olmayan commit-lərini `main`-in son commit-inin üstündə bir-bir təkrar tətbiq edir."
+  - "Rebase yeni commit-lər yaradır: mesaj eyni qalır, hash isə dəyişir, çünki parent dəyişib."
+  - "Rebase-dən sonra tarixçə düz xəttdir və `main` branch-ı fast-forward ilə gətirə bilir."
+  - "Konflikt olanda rebase həmin commit-də dayanır; faylı düzəldib `git add`, sonra `git rebase --continue` yazırsınız."
+  - "`git rebase --abort` rebase-i ləğv edir, `git rebase --skip` isə konfliktli commit-i atlayır."
+  - "Rebase konfliktində `<<<<<<< HEAD` tərəfi yeni əsasın versiyasıdır, tətbiq olunan commit isə `>>>>>>>` tərəfindədir."
+practices:
+  - "Rebase-dən əvvəl `git log --oneline --graph --all` ilə hansı commit-lərin köçürüləcəyinə baxın."
+  - "Başqalarında artıq olan commit-ləri rebase etməyin: rebase onları yeni commit-lərlə əvəz edir."

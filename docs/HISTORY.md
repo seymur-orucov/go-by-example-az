@@ -701,3 +701,16 @@ Done:
 - `reset-modes` (`compare`, a thesis repository): the three modes side by side, `git status` after each, a decision guide.
 - `revert-vs-reset` (`compare`, a team's to-do app): "has anyone else got this commit?", the `non-fast-forward` rejection after resetting a pushed commit, revert for shared history and reset for local.
 - The reviewer aligned the reflog mention and the rejected-push explanation across lessons, fixed a wrong quiz explanation in `reset-modes`, added a missing command to a quiz question and replaced five near-duplicate questions.
+
+### 79. Git module 9 "Tarixçəni yenidən yazmaq" (without `force-push`)
+Same process; `force-push` is a `diagram` lesson and waits for the diagram pilot's approval.
+
+Done:
+- `rebase` (`state`, museum audio guide): replayed commits with new hashes, `Successfully rebased …`, a rebase conflict (sides swapped compared with merge), `--continue` / `--abort`, then a fast-forward.
+- `merge-vs-rebase` (`compare`, news website): merging `main` in vs rebasing onto it, the golden rule (defined here, quoted from Pro Git), duplicated commits when it is broken, `git pull --rebase` for local commits.
+- `linear-vs-non-linear` (`compare`, an open-source date library): the shape of `main` after each merge method, bisect/revert vs context, GitHub's merge settings and "Require linear history".
+- `interactive-rebase` (`terminal`, dance choreography notes): the todo list, `fixup`, `drop`, `reword`, `squash`, `--fixup` + `--autosquash`; the editor is scripted with a hidden `sequence.editor` and the text says what a person types.
+- `cherry-pick` (`state`, sports club site): copying a fix to `release/1.0`, new hash with the same author, `-x`, a range, a conflict and `--abort`.
+- `filter-branch` (`terminal`, smart-home scripts with a leaked key): deleting is not enough, rotate the key first, `git filter-branch --index-filter`, `refs/original/`, `git filter-repo` (shown, not run), everyone re-clones.
+- Runner fix (in this branch): recorded output keeps only the text after the last carriage return, as a terminal shows it (Git's `Rebasing (1/2)` progress).
+- Levels: these lessons are `intermediate` (the site shows "orta"); modules 1–8 stay `beginner`.
