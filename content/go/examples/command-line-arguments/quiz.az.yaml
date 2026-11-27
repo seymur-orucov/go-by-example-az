@@ -24,7 +24,7 @@
     fmt.Println(len(os.Args[1:]))
   options: ["3", "1", "4", "2"]
   answer: 3
-  explain: "Dırnaq içindəki `New York` shell üçün bir arqumentdir, `today` ikincisidir."
+  explain: "Dırnaq içindəki `New York` bir arqument sayılır, `today` ikincisidir."
 
 - question: "Proqram `./sum 7 8` kimi işə salınıb. Bu kod nə çap edəcək?"
   code: |

@@ -3,22 +3,30 @@ package main
 import "fmt"
 
 // @step own
-func seatPrice(row string) int {
-	switch row {
-	case "A":
+type Row int
+
+const (
+	A Row = iota
+	B
+	C
+)
+
+func seatPrice(r Row) int {
+	switch r {
+	case A:
 		return 40
-	case "B":
+	case B:
 		return 30
-	case "C":
+	case C:
 		return 20
 	}
-	panic("unknown row " + row)
+	panic(fmt.Sprintf("unknown row %d", r))
 }
 
 //@end
 
 func main() {
-	fmt.Println("row B:", seatPrice("B"), "USD")
+	fmt.Println("row B:", seatPrice(B), "USD")
 
 	//@step runtime
 	prices := []int{40, 30, 20}
@@ -30,6 +38,6 @@ func main() {
 	}
 
 	//@step crash
-	fmt.Println("row Z:", seatPrice("Z"), "USD")
+	fmt.Println("row 7:", seatPrice(Row(7)), "USD")
 	fmt.Println("this line never runs")
 }

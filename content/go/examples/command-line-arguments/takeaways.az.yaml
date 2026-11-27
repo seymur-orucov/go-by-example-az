@@ -1,7 +1,7 @@
 rules:
   - "`os.Args[0]` proqramın yoludur, istifadəçinin arqumentləri `os.Args[1:]`-dədir."
   - "Bütün arqumentlər string-dir; ədəd lazımdırsa, `strconv.Atoi` ilə çevirib xətanı yoxlayın."
-  - "Arqumentləri shell boşluqla bölür; dırnaq içindəki mətn bir arqumentdir."
+  - "Arqumentlər boşluqla ayrılır; dırnaq içindəki mətn bir arqumentdir."
   - "Arqument verilməyibsə, `os.Args[1]` panic verir: əvvəlcə uzunluğu yoxlayın."
 practices:
   - "Arqument çatmayanda istifadə qaydasını (usage) çap edin."

@@ -18,11 +18,11 @@ Bu dərsdə anbarı idarə edirik: anbar siyahısı tək anbardar goroutine-dəd
 
 ## Yığıcılar {#pickers}
 
-Beş yığıcı eyni anda 3 cüt çəkmə istəyir, anbarda isə 12 cüt var. Sorğular `requests`-də növbəyə düzülür, ona görə dördü malı alır, beşinci 0 alır. Hansı yığıcının boş qalacağı hər dəfə fərqli ola bilər, nəticə isə həmişə eynidir. Doldurulan sifarişləri atomik sayğacla sayırıq.
+Beş yığıcı eyni anda 3 cüt çəkmə istəyir, anbarda isə 12 cüt var. `requests` buffer-siz channel-dır: yığıcılar sorğunu göndərmək üçün növbə ilə gözləyir, anbardar isə onları bir-bir icra edir. Ona görə dördü malı alır, beşinci 0 alır. Hansı yığıcının boş qalacağı hər dəfə fərqli ola bilər, nəticə isə həmişə eynidir. Doldurulan sifarişləri atomik sayğacla sayırıq.
 
 ## Yoxlama və bağlama {#check}
 
-`"check"` sorğusu da eyni növbədən keçir, ona görə anbardar onu bütün `"take"`-lərdən sonra görür və qalığı düzgün deyir: 0. Sonra `main` `requests`-i bağlayır. Channel-ı göndərən bağlayır, burada göndərən `main`-dir və başqa sorğu olmayacağını yalnız o bilir.
+`wg.Wait()` bütün `"take"` cavablarını gözləyir, ona görə `"check"` sorğusu onlardan sonra göndərilir və anbardar qalığı düzgün deyir: 0. Sonra `main` `requests`-i bağlayır. Channel-ı göndərən bağlayır, burada göndərən `main`-dir və başqa sorğu olmayacağını yalnız o bilir.
 
 ## Mutex, yoxsa sahib goroutine?
 

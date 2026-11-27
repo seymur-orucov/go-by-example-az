@@ -1,4 +1,4 @@
-Ağıllı ev sensorlardan müxtəlif tipli məlumat toplayır: temperatur kəsr ədəddir (`float64`), rütubət tam ədəd (`int`), qapı hadisələri sətir (`string`), hərəkət sensoru isə `bool` verir. Bu məlumatların hamısı üzərində eyni əməliyyatlar lazımdır: ən böyük dəyər, bir hadisənin neçə dəfə təkrarlandığı, sonuncu ölçmə. Generics belə funksiyanı bir dəfə yazıb bütün uyğun tiplər üçün istifadə etməyə imkan verir: tip də parametr kimi verilir. Interface-dən fərqi odur ki, nəticə də elə həmin konkret tipdə qayıdır.
+Generics funksiyanı bir dəfə yazıb müxtəlif tiplərlə işlətmək üsuludur: tip də parametr kimi verilir. Nəticə də elə həmin konkret tipdə qayıdır, interface-dəki kimi ümumi tipdə yox. Bu dərsdə ağıllı evin sensorlarını emal edirik. Temperatur `float64`, rütubət `int`, qapı hadisələri `string`, hərəkət isə `bool` tipindədir.
 
 ## Problem: eyni kod, fərqli tip {#problem}
 

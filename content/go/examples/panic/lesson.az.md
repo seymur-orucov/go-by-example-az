@@ -4,7 +4,7 @@ Bu dərsdə teatrda yer qiymətlərini hesablayırıq: sıralar `A`, `B`, `C`-di
 
 ## panic çağırmaq {#own}
 
-`seatPrice` yalnız üç sıranı tanıyır. Teatrda başqa sıra olmadığı üçün başqa hərf yalnız koddakı səhvdən gələ bilər, ona görə funksiya `error` qaytarmır, `panic` çağırır. `panic`-ə verilən dəyər, adətən mətn, səbəbi izah edir. `main`-də `B` sırası üçün çağırırıq, hər şey qaydasındadır: `30` dollar.
+Sıralar enums dərsindəki kimi `Row` tipinin üç sabitidir: `A`, `B`, `C`. `seatPrice` yalnız onları tanıyır. Başqa `Row` dəyəri ancaq koddakı səhvdən yarana bilər, məsələn `Row(7)` yazanda, ona görə funksiya `error` qaytarmır, `panic` çağırır. İstifadəçinin yazdığı hərf isə birbaşa `Row` olmur: onu əvvəlcə `error` qaytaran funksiya yoxlayıb çevirməlidir. `panic`-ə verilən dəyər, adətən mətn, səbəbi izah edir. `main`-də `B` sırası üçün çağırırıq, hər şey qaydasındadır: `30` dollar.
 
 ## Go özü də panic edir {#runtime}
 
@@ -12,6 +12,6 @@ Bəzi əməliyyatları Go icra edə bilmir və özü panic edir: slice-ın olmay
 
 ## Proqram dayanır {#crash}
 
-`seatPrice("Z")` panic edir. `fmt.Println` arqumentlərini hesablayarkən dayanır, ona görə `"row Z:"` da çap olunmur, sonrakı sətir də işləmir. Proqram `panic: unknown row Z` mesajı ilə və 2 çıxış kodu ilə (exit code, yəni proqramın əməliyyat sisteminə qaytardığı nəticə) bitir.
+`seatPrice(Row(7))` panic edir. `fmt.Println` arqumentlərini hesablayarkən dayanır, ona görə `"row 7:"` da çap olunmur, sonrakı sətir də işləmir. Proqram `panic: unknown row 7` mesajı ilə və 2 çıxış kodu ilə (exit code, yəni proqramın əməliyyat sisteminə qaytardığı nəticə) bitir.
 
 > **Bilgi:** Real terminalda mesajdan sonra çağırış izi (stack trace) də çap olunur: panic hansı funksiyada və hansı sətirdə baş verib. Çıxış panelində onu qısaltmışıq.

@@ -3,4 +3,4 @@ own:
 runtime:
   out: "no row with index 5"
 crash:
-  out: "panic: unknown row Z"
+  out: "panic: unknown row 7"

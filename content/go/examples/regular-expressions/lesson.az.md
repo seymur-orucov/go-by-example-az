@@ -4,9 +4,19 @@ Komandalar tapşırıqları (ticket) tracker-də `PAY-142` kimi açarlarla izlə
 
 ## Pattern və MatchString {#match}
 
-`regexp.MustCompile` pattern-i kompilyasiya edir, yəni axtarışa hazır `*regexp.Regexp` dəyərinə çevirir; bunu bir dəfə edib dəfələrlə istifadə edirik. Pattern backtick-lər içində yazılıb: bu, raw string literal-dır və onun içində `\` xüsusi simvol deyil, ona görə `\d` olduğu kimi pattern-ə çatır.
+`regexp.MustCompile` pattern-i kompilyasiya edir, yəni axtarışa hazır `*regexp.Regexp` dəyərinə çevirir. Bunu bir dəfə edib dəfələrlə istifadə edirik. Pattern backtick-lər içində yazılıb, yəni raw string literal-dır. Onun içində `\` xüsusi simvol deyil, ona görə `\d` olduğu kimi pattern-ə çatır.
 
-Pattern-in hissələri: `[A-Z]` bir böyük hərf, `{2,5}` əvvəlki hissə 2-dən 5-ə qədər dəfə, `-` adi defis, `\d` bir rəqəm, `+` əvvəlki hissə bir və ya daha çox dəfə, `^` və `$` isə mətnin əvvəli və sonu. `MatchString` mətn pattern-ə uyğundursa `true` qaytarır: kiçik hərfli `pay-142` və defissiz `PAY142` keçmir.
+Pattern-in hissələri, soldan sağa:
+
+- `^` mətnin əvvəli;
+- `[A-Z]` bir böyük hərf;
+- `{2,5}` əvvəlki hissə 2-dən 5-ə qədər dəfə;
+- `-` adi defis;
+- `\d` bir rəqəm;
+- `+` əvvəlki hissə bir və ya daha çox dəfə;
+- `$` mətnin sonu.
+
+`MatchString` mətn pattern-ə uyğundursa `true` qaytarır: kiçik hərfli `pay-142` və defissiz `PAY142` keçmir.
 
 > **Diqqət:** `^` və `$` olmasa, `MatchString` uyğunluğu mətnin istənilən hissəsində axtarır və `PAY-142!` üçün də `true` qaytarardı.
 
@@ -24,8 +34,8 @@ Mötərizə pattern-in bir hissəsini qrupa (group) ayırır. `FindStringSubmatc
 
 Buraxılış qeydlərində (release notes) hər açar tracker-dəki səhifəsinə aparmalıdır. `ReplaceAllString` hər uyğunluğu ikinci arqumentdəki mətnlə əvəz edir, orada `$1` və `$2` uyğun qrupların dəyəridir. Beləcə `PAY-142` `/issues/PAY/142` olur, pattern-ə uyğun gəlməyən hissələr isə olduğu kimi qalır.
 
-> **Diqqət:** `$1`-dən sonra hərf, rəqəm və ya `_` gəlirsə, Go onu qrup adının davamı sayır: `"$1_$2"` `1_` adlı qrupu axtarır, yerinə boş string qoyur və `PAY_142` əvəzinə `142` alınır. Belə halda `"${1}_$2"` yazın.
+> **Diqqət:** `$1`-dən sonra hərf, rəqəm və ya `_` gəlirsə, Go onu qrup adının davamı sayır. Məsələn, `"$1_$2"` `1_` adlı qrupu axtarır və yerinə boş string qoyur. Ona görə `PAY_142` əvəzinə `142` alınır. Belə halda `"${1}_$2"` yazın.
 
 ## Compile və xəta {#compile}
 
-Pattern kodda yazılıbsa, səhvi yalnız proqramçı edə bilər, ona görə `MustCompile` rahatdır: səhv pattern-də proqram dərhal panic ilə dayanır. Pattern kənardan gəlirsə (istifadəçinin axtarış sahəsinə yazdığı filtr, konfiqurasiya faylı), `regexp.Compile` istifadə olunur: o, `*regexp.Regexp` və `error` qaytarır, proqram isə xətanı göstərib işləməyə davam edir. Burada istifadəçi `)`-ni unudub və xəta mətni problemin nə olduğunu deyir.
+Pattern kodda yazılıbsa, səhvi yalnız proqramçı edə bilər, ona görə `MustCompile` rahatdır: səhv pattern-də proqram dərhal panic ilə dayanır. Pattern kənardan gəlirsə (istifadəçinin axtarış sahəsinə yazdığı filtr, konfiqurasiya faylı), `regexp.Compile` istifadə olunur. O, `*regexp.Regexp` və `error` qaytarır, proqram isə xətanı göstərib işləməyə davam edir. Burada istifadəçi `)`-ni unudub və xəta mətni problemin nə olduğunu deyir.

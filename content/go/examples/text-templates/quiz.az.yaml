@@ -34,9 +34,9 @@
         "{{range .Stops}}{{.Line}} {{end}}\n"))
     err := t.Execute(os.Stdout, Bus{7, []string{"Port"}})
     fmt.Println(err != nil)
-  options: ["7 və `false`", "`true`: `range`-in içində nöqtə string-dir və `Line` sahəsi yoxdur", "kompilyasiya xətası"]
+  options: ["`7` və `false`", "`true`", "kompilyasiya xətası"]
   answer: 1
-  explain: "`range`-in içində nöqtə cari elementdir; bütün verilənə `{{$.Line}}` ilə müraciət olunur."
+  explain: "`range`-in içində nöqtə cari elementdir, yəni string; onun `Line` sahəsi yoxdur və `Execute` xəta qaytarır. Bütün verilənə `{{$.Line}}` ilə müraciət olunur."
 
 - question: Struct-da `name string` (kiçik hərflə) sahəsi var, şablonda isə `{{.name}}` yazılıb. Nə baş verəcək?
   options: ["`Execute` xəta qaytarır", "boş mətn çap olunur", "kompilyasiya xətası"]
