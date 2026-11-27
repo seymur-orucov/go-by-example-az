@@ -1,0 +1,84 @@
+- question: "`list.txt` artıq commit olunub. Bu komandalardan sonra nə çap olunur?"
+  code: |
+    echo "pen" >> list.txt
+    git add list.txt
+    echo "ink" >> list.txt
+    git restore list.txt
+    git status --short
+  options:
+    - "Heç nə"
+    - "`MM list.txt`"
+    - "`M  list.txt`"
+    - "` M list.txt`"
+  answer: 2
+  explain: "`git restore` faylı staging area-dakı versiyaya qaytarır: `ink` getdi, staged `pen` isə qaldı."
+- question: "`notes.txt`-i stage etdiniz, amma onu bu commit-ə salmaq istəmirsiniz. Dəyişiklik diskdə qalmalıdır. Hansı komanda lazımdır?"
+  options:
+    - "`git restore --staged notes.txt`"
+    - "`git restore notes.txt`"
+    - "`git restore --staged --worktree notes.txt`"
+  answer: 0
+  explain: "`--staged` yalnız staging area-nı son commit-ə qaytarır; diskdəki fayla toxunmur."
+- question: "`cart.txt` artıq commit olunub. Bu komandalardan sonra nə çap olunur?"
+  code: |
+    echo "milk" >> cart.txt
+    git add cart.txt
+    git restore --staged cart.txt
+    git status --short
+  options:
+    - "`M  cart.txt`"
+    - "` M cart.txt`"
+    - "Heç nə"
+  answer: 1
+  explain: "Fayl staging area-dan çıxdı, amma `milk` sətri diskdə qaldı, ona görə dəyişiklik stage edilməmiş görünür."
+- question: "Stage etmədiyiniz bir dəyişikliyi `git restore todo.txt` ilə ləğv etdiniz. Onu necə geri qaytarmaq olar?"
+  options:
+    - "`git restore --staged todo.txt` ilə"
+    - "Heç cür: Git onu heç yerdə saxlamayıb"
+    - "`git log`-dakı son commit-dən"
+  answer: 1
+  explain: "Dəyişiklik nə commit-də, nə staging area-da olub; `git restore` onu birdəfəlik silir."
+- question: "Bu komandalardan sonra nə çap olunur?"
+  code: |
+    echo "10 USD" > price.txt
+    git add price.txt
+    git commit -q -m "Set price"
+    echo "12 USD" > price.txt
+    git commit -q -am "Raise price"
+    git restore --source=HEAD~1 price.txt
+    git status --short
+  options:
+    - "Heç nə: `HEAD` əvvəlki commit-ə keçir"
+    - "`M  price.txt`"
+    - "` M price.txt`"
+  answer: 2
+  explain: "`--source` köhnə versiyanı yalnız working directory-yə yazır; `HEAD` və staging area dəyişmir."
+- question: "`notes.txt`-i `rm notes.txt` ilə səhvən sildiniz və heç nə stage etməmisiniz. Faylı hansı komanda qaytarır?"
+  options:
+    - "`git restore notes.txt`"
+    - "`git add notes.txt`"
+    - "`git restore --staged notes.txt`"
+  answer: 0
+  explain: "Silinmə diskdəki dəyişiklikdir; `git restore` faylı staging area-dakı versiyadan geri yazır."
+- question: "`git checkout -- menu.txt` nə edir?"
+  options:
+    - "`git restore --staged menu.txt` ilə eyni işi görür"
+    - "`menu.txt` adlı branch-a keçir"
+    - "`git add menu.txt` ilə eyni işi görür"
+    - "`git restore menu.txt` ilə eyni işi görür"
+  answer: 3
+  explain: "Bu, köhnə yazılışdır: diskdəki dəyişikliyi ləğv edib faylı staging area-dakı versiyaya qaytarır."
+- question: "`git restore --source=HEAD~2 budget.txt`-dən sonra `gifts.txt` və `HEAD`-ə nə olur?"
+  options:
+    - "İkisi də dəyişmir"
+    - "`gifts.txt` də `HEAD~2`-dəki versiyaya qayıdır"
+    - "`HEAD` `HEAD~2`-yə keçir"
+  answer: 0
+  explain: "`git restore` yalnız adını yazdığınız faylı dəyişir və heç vaxt `HEAD`-i yerindən tərpətmir."
+- question: "`git status --short` `MM plan.txt` göstərir. `git restore --staged --worktree plan.txt`-dən sonra nə çap olunur?"
+  options:
+    - "`M  plan.txt`"
+    - "` M plan.txt`"
+    - "Heç nə"
+  answer: 2
+  explain: "İki flag birlikdə faylı hər iki sahədə son commit-dəki versiyaya qaytarır."

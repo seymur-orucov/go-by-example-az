@@ -689,3 +689,15 @@ Done (branch `feat/git-tags-lessons`):
 - `pushing-tags` (`terminal`, a browser extension): `git push` does not send tags, `git push origin <tag>`, `--follow-tags` vs `--tags`, `push.followTags`, deleting a server tag, teammates get tags with `git fetch`.
 - `checkout-tags` (`terminal`, a printable calendar generator): `git switch <tag>` refuses, `--detach`, a hotfix branch from a tag (`git switch -c hotfix/1.1.1 v1.1`), a new patch tag.
 - The reviewer explained the two- and three-part version names, removed a repeated explanation of annotated tag objects, fixed spellings ("serverdə", "Sam-ın", "merge-i") and a giveaway quiz option.
+
+### 78. Git module 8 "Səhvləri düzəltmək"
+Same process. From here on the remaining modules are collected on one branch (`feat/git-remaining-lessons`, one commit per module) and pushed as one PR: the user asked for fewer PRs because every push builds a Cloudflare Pages preview.
+
+Done:
+- `restore` (`terminal`, a holiday gift list): `git restore` from the staging area, `--staged`, both together, `--source=HEAD~2`, a deleted file, `checkout --` as the old form.
+- `amend` (`state`, a yoga class schedule): fixing the message, adding a forgotten file with `--no-edit`, a new commit with a new hash, an amended pushed commit and the rejected push.
+- `git-revert` (`state`, a car rental price table): `Revert "…"`, safe on pushed history, reverting an older commit, `--no-commit` over a range, a merge needs `-m 1`, `Reapply` (Git 2.43+).
+- `reset-soft`, `reset-mixed`, `reset-hard` (`state`; a translator's glossary, an aquarium log, a wedding playlist): what each mode changes and prints, squashing with `--soft`, re-splitting a commit and `git reset <file>` with `--mixed`, lost uncommitted work and `reset --hard origin/main` with `--hard`.
+- `reset-modes` (`compare`, a thesis repository): the three modes side by side, `git status` after each, a decision guide.
+- `revert-vs-reset` (`compare`, a team's to-do app): "has anyone else got this commit?", the `non-fast-forward` rejection after resetting a pushed commit, revert for shared history and reset for local.
+- The reviewer aligned the reflog mention and the rejected-push explanation across lessons, fixed a wrong quiz explanation in `reset-modes`, added a missing command to a quiz question and replaced five near-duplicate questions.

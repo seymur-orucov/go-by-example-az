@@ -1,0 +1,60 @@
+- question: "Səhv commit dünən push olunub, Ayla onu artıq `git pull` ilə götürüb. Onu necə geri almaq lazımdır?"
+  options:
+    - "`git reset --hard HEAD~1` edib yenidən push etmək"
+    - "`git revert` ilə ləğv commit-i yaradıb push etmək"
+    - "`git commit --amend` ilə commit-i düzəldib push etmək"
+  answer: 1
+  explain: "Commit paylaşılmış tarixçədədir. Revert onun üstünə yeni commit qoyur, push adi qaydada qəbul olunur və Ayla ləğvi `git pull` ilə alır."
+- question: "`git status` `Your branch is ahead of 'origin/main' by 2 commits` yazır. Son iki commit səhvdir. Hansı yol daha uyğundur?"
+  options:
+    - "`git reset` ilə `main`-i iki commit geri çəkmək"
+    - "`git revert` ilə iki ləğv commit-i yaratmaq"
+    - "Əvvəl push etmək, sonra iki commit-i revert etmək"
+  answer: 0
+  explain: "`ahead` o deməkdir ki, bu commit-lər serverdə yoxdur. Onları başqası götürməyib, ona görə reset tarixçəni izsiz təmizləyir."
+- question: "Bu komandalardan sonra sonuncu `git push` nə çap edir?"
+  code: |
+    git push                  # the commit reaches the server
+    git reset --hard HEAD~1
+    git push
+  options:
+    - "`Everything up-to-date`"
+    - "`! [rejected] main -> main (fetch first)`"
+    - "`! [rejected] main -> main (non-fast-forward)`"
+  answer: 2
+  explain: "Lokal `main` serverdəkindən geridədir. Push branch-ı geri çəkə bilməz, ona görə rədd olunur. `origin/main` serverdəki commit-i tanıyır, ona görə mötərizədə `non-fast-forward` yazılır."
+- question: "Sam push olunmuş commit-i `git reset --hard HEAD~1` ilə geri aldı, sonra `git pull` yazdı. Nə olur?"
+  options:
+    - "Səhv commit geri gəlir və `main` yenə onun üstündədir"
+    - "Pull serverdəki səhv commit-i də silir"
+    - "Pull konflikt verir və dayanır"
+  answer: 0
+  explain: "Serverdəki `main` dəyişməyib. Pull lokal `main`-i fast-forward ilə yenidən səhv commit-ə çəkir."
+- question: "Paylaşılmış `main`-də revert-in reset-dən daha bir üstünlüyü nədir?"
+  options:
+    - "Revert səhv commit-i hamının clone-undan silir"
+    - "Tarixçədə kimin, nə vaxt və nəyi geri aldığı qalır"
+    - "Revert tarixçədəki commit sayını azaldır"
+  answer: 1
+  explain: "Revert səhvi silmir, onun əksini yeni commit kimi yazır. `git log` həm səhvi, həm də ləğvi göstərir."
+- question: "Sayt serverdəki `main`-dən deploy olunur. Səhv commit push olunub. Sam yalnız `git reset --hard HEAD~1` edir. Sayt düzəlirmi?"
+  options:
+    - "Bəli: reset serverdəki `main`-i də geri çəkir"
+    - "Xeyr: serverdəki `main` hələ səhv commit-dədir"
+    - "Bəli, amma Ayla `git pull` edəndən sonra"
+  answer: 1
+  explain: "Reset yalnız Sam-ın lokal `main`-ini köçürür. Serverə heç nə getmir, ona görə sayt səhv commit ilə qalır."
+- question: "Sam son commit-in mesajında hərf səhvi buraxıb. Commit hələ push olunmayıb. Ən qısa yol hansıdır?"
+  options:
+    - "`git revert HEAD` edib yenidən commit etmək"
+    - "`git reset --hard HEAD~1` edib yenidən commit etmək"
+    - "`git commit --amend -m` ilə mesajı düzəltmək"
+  answer: 2
+  explain: "Commit lokaldır və sonuncudur: amend onu düzəldilmiş commit ilə əvəz edir. `--hard` isə commit-in dəyişikliyini də atardı."
+- question: "Hansı komanda hələ push olunmamış commit-ləri göstərir?"
+  options:
+    - "`git log --oneline origin/main..main`"
+    - "`git log --oneline main..origin/main`"
+    - "`git log --oneline origin/main`"
+  answer: 0
+  explain: "`origin/main..main` `main`-də olub `origin/main`-də olmayan commit-ləri göstərir. Bunlar yalnız sizdədir və onları reset etmək təhlükəsizdir."

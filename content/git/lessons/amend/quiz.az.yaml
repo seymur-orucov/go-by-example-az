@@ -1,0 +1,86 @@
+- question: "Repository-də üç commit var. Bu komandalardan sonra nə çap olunur?"
+  code: |
+    git commit -q --amend -m "Fix the schedule"
+    git log --oneline | wc -l
+  options:
+    - "`2`"
+    - "`3`"
+    - "`4`"
+  answer: 1
+  explain: "Amend yeni commit əlavə etmir, son commit-i əvəz edir. Branch-da yenə üç commit var."
+- question: "`git commit --amend -m` yalnız mesajı dəyişdi. Son commit-in hash-i ilə nə olur?"
+  options:
+    - "Dəyişmir: fayllar eyni qalıb"
+    - "Yalnız qısa hash dəyişir, tam hash eyni qalır"
+    - "Dəyişir: mesaj commit-in mətninə daxildir və hash ondan hesablanır"
+  answer: 2
+  explain: "Amend yeni commit yaradır. Mesaj fərqli olduğu üçün commit-in mətni də, hash-i də fərqlidir."
+- question: "Son commit-də `notes.txt` unudulub. Mesajı dəyişmədən faylı həmin commit-ə necə əlavə edirsiniz?"
+  options:
+    - "`git add notes.txt`, sonra `git commit --amend --no-edit`"
+    - "`git add notes.txt`, sonra `git commit --no-edit`"
+    - "`git commit --amend -m notes.txt`"
+  answer: 0
+  explain: "Amend staging-dəki faylı commit-ə qoyur, `--no-edit` köhnə mesajı saxlayır. `--amend` olmadan götürüləcək mesaj yoxdur və Git commit-i boş mesaja görə dayandırır. `-m notes.txt` isə yalnız mesajı dəyişir."
+- question: "Yeni, boş repository-də bu komandalardan sonra nə çap olunur?"
+  code: |
+    echo "Mon" > days.txt
+    git add days.txt
+    git commit -q -m "Add days"
+    echo "Room 2" > rooms.txt
+    git add rooms.txt
+    git commit -q --amend --no-edit
+    git log --oneline | wc -l
+  options:
+    - "`2`, çünki `rooms.txt` ayrıca commit oldu"
+    - "`0`, çünki köhnə commit silindi"
+    - "`1`, çünki `rooms.txt` eyni commit-ə düşdü"
+  answer: 2
+  explain: "Amend ilk commit-i `days.txt` və `rooms.txt`-dən ibarət yeni commit ilə əvəz edir. Tarixçədə yenə bir commit var."
+- question: "Amend-dən sonra yeni commit-in parent-i hansıdır?"
+  options:
+    - "Köhnə, əvəz olunan commit"
+    - "Köhnə commit-in parent-i"
+    - "Parent-i yoxdur"
+  answer: 1
+  explain: "Amend köhnə commit-in yerinə eyni parent üzərində yeni commit qurur. Köhnə commit branch-dan çıxır."
+- question: "Son commit-i push etdiniz, sonra onu `git commit --amend -m` ilə dəyişdiniz. Arqumentsiz `git push` nə edir?"
+  options:
+    - "Serverdəki commit-i yenisi ilə əvəz edir"
+    - "Rədd olunur: `non-fast-forward`"
+    - "Avtomatik merge commit yaradır və onu göndərir"
+  answer: 1
+  explain: "Serverdəki `main` köhnə commit-dədir, yeni commit isə onun davamı deyil. Push branch-ı yalnız irəli çəkə bilər."
+- question: "Real terminalda `-m` və `--no-edit` olmadan `git commit --amend` yazsanız, nə olur?"
+  options:
+    - "Redaktor açılır, orada köhnə mesaj yazılıb"
+    - "Redaktor boş mesajla açılır"
+    - "Git köhnə mesajı saxlayıb heç nə soruşmur"
+    - "`error: no message` xətası çıxır"
+  answer: 0
+  explain: "Amend köhnə mesajı redaktora başlanğıc kimi qoyur. Onu dəyişib saxlayırsınız; heç nə soruşulmasın deyə `--no-edit` var."
+- question: "Yeni, boş repository-də bu komandalardan sonra son commit-də hansı fayllar olur?"
+  code: |
+    echo "Tue 19:00" > schedule.txt
+    git add schedule.txt
+    git commit -q -m "Add Tuesday"
+    echo "idea" > draft.txt
+    git add draft.txt
+    echo "Tue 19:30" > schedule.txt
+    git add schedule.txt
+    git commit -q --amend -m "Add Tuesday class"
+    git ls-tree --name-only HEAD
+  options:
+    - "Yalnız `schedule.txt`: amend əvvəlki commit-in fayllarını götürür"
+    - "Yalnız `draft.txt`: amend yalnız yeni faylları götürür"
+    - "Heç biri: amend yalnız mesajı dəyişir"
+    - "`draft.txt` və `schedule.txt`: amend staging-dəki hər şeyi götürür"
+  answer: 3
+  explain: "`draft.txt` da stage olunmuşdu, ona görə yeni commit-ə düşdü. Amend-dən əvvəl `git status`-a baxın."
+- question: "Staging boşdur. `git commit --amend -m \"New text\"` commit-in snapshot-unu (tree) necə dəyişir?"
+  options:
+    - "Snapshot boş olur"
+    - "Snapshot-a köhnə commit-in faylları ikinci dəfə əlavə olunur"
+    - "Snapshot eyni qalır, yalnız mesaj və hash dəyişir"
+  answer: 2
+  explain: "Yeni commit-in tree-si staging-dən qurulur, staging isə köhnə commit ilə eynidir. Dəyişən yalnız mesajdır, ona görə hash də dəyişir."

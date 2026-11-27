@@ -1,0 +1,74 @@
+- question: "`git reset --soft HEAD~1` nəyi dəyişir?"
+  options:
+    - "Branch bir commit geri gedir, staging area və fayllar dəyişmir"
+    - "Branch geri gedir, staging area da həmin commit-ə qayıdır"
+    - "Branch, staging area və fayllar həmin commit-ə qayıdır"
+  answer: 0
+  explain: "`--soft` yalnız hazırkı branch-ı (və onunla HEAD-i) köçürür. Staging area və working directory olduğu kimi qalır."
+- question: "Yeni, boş repository-də bu komandalardan sonra nə çap olunur?"
+  code: |
+    echo "a" > list.txt
+    git add list.txt
+    git commit -q -m "Start list"
+    echo "b" > extra.txt
+    git add extra.txt
+    git commit -q -m "Add extra"
+    git reset --soft HEAD~1
+    git status --short
+  options:
+    - "`?? extra.txt`"
+    - "Heç nə çap olunmur"
+    - "`A  extra.txt`"
+    - "` A extra.txt`"
+  answer: 2
+  explain: "`main` `Start list`-ə qayıtdı, `extra.txt` isə staging area-da qaldı. Fayl son commit-də yoxdur, ona görə sol sütunda `A` görünür."
+- question: "`git reset --soft HEAD~1`-dən sonra `git status` geri alınan commit-in fayllarını hansı başlıq altında göstərir?"
+  options:
+    - "`Changes not staged for commit`"
+    - "`Changes to be committed`"
+    - "`Untracked files`"
+  answer: 1
+  explain: "`--soft` staging area-ya toxunmur, ona görə commit-in dəyişiklikləri stage olunmuş qalır."
+- question: "Son üç commit-i bir commit-də birləşdirmək istəyirsiniz. Hansı komandalar bunu edir?"
+  options:
+    - "`git reset --soft HEAD~2` və `git commit -m \"...\"`"
+    - "`git reset --soft HEAD~3` və `git commit -m \"...\"`"
+    - "`git reset --soft HEAD~3` və `git add .`"
+  answer: 1
+  explain: "`HEAD~3` branch-ı üç commit geri aparır, üçünün də dəyişiklikləri staging area-da toplanır. Sonra bir `git commit` lazımdır; `git add` commit yaratmır."
+- question: "`main`-də beş commit var. Bu komandalardan sonra `git log --oneline` neçə sətir çap edir?"
+  code: |
+    git reset --soft HEAD~3
+    git commit -q -m "Combine work"
+  options:
+    - "5"
+    - "3"
+    - "2"
+  answer: 1
+  explain: "Reset-dən sonra `main`-də iki commit qalır, `git commit` onların üstünə üçüncünü əlavə edir."
+- question: "Yeni, boş repository-də bu komandalardan sonra nə çap olunur?"
+  code: |
+    echo "v1" > app.txt
+    git add app.txt
+    git commit -q -m "Start"
+    echo "draft" > todo.txt
+    git add todo.txt
+    git commit -q -m "Add todo"
+    echo "final" > todo.txt
+    git commit -q -am "Update todo"
+    git reset --soft HEAD~2
+    git commit -q -m "Add todo list"
+    git show HEAD:todo.txt
+  options:
+    - "`draft`"
+    - "İki sətir: `draft` və `final`"
+    - "`final`"
+  answer: 2
+  explain: "Staging area faylın son halını saxlayır. Yeni commit-ə `final` düşür, aradakı `draft` versiyası düşmür."
+- question: "`git reset --soft HEAD~1` terminalda nə çap edir?"
+  options:
+    - "Heç nə çap etmir"
+    - "`HEAD is now at` və commit-in mesajı"
+    - "`Unstaged changes after reset:` və fayllar"
+  answer: 0
+  explain: "`--soft` səssiz işləyir. Nəticəni `git log` və `git status` ilə yoxlayırsınız."

@@ -1,0 +1,13 @@
+# The visuals are recorded from the real repository by `pnpm content:run`.
+typo:
+  vis: graph
+fix-message:
+  vis: graph
+forgotten-file:
+  vis: graph
+  files: true
+no-edit:
+  vis: graph
+  files: true
+pushed:
+  vis: graph

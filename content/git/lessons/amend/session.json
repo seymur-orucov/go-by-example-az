@@ -1,0 +1,633 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir yoga",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd yoga",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Mon 18:00 Hatha\" > schedule.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add schedule.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add Monday class\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Wed 18:00 Vinyasa\" >> schedule.txt",
+      "step": "typo",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add schedule.txt",
+      "step": "typo",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"Add Wednsday class\"",
+      "step": "typo",
+      "hidden": false,
+      "fail": false,
+      "out": "[main 5ef486e] Add Wednsday class\n 1 file changed, 1 insertion(+)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "typo",
+      "hidden": false,
+      "fail": false,
+      "out": "5ef486e Add Wednsday class\n90beeb5 Add Monday class\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit --amend -m \"Add Wednesday class\"",
+      "step": "fix-message",
+      "hidden": false,
+      "fail": false,
+      "out": "[main c27d7b9] Add Wednesday class\n Date: Thu Jan 15 09:08:00 2026 +0000\n 1 file changed, 1 insertion(+)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "fix-message",
+      "hidden": false,
+      "fail": false,
+      "out": "c27d7b9 Add Wednesday class\n90beeb5 Add Monday class\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Fri 09:00 Yin\" >> schedule.txt",
+      "step": "forgotten-file",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Drop-in: 15 USD\" > prices.txt",
+      "step": "forgotten-file",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add schedule.txt",
+      "step": "forgotten-file",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"Add Friday class and prices\"",
+      "step": "forgotten-file",
+      "hidden": false,
+      "fail": false,
+      "out": "[main 743f38e] Add Friday class and prices\n 1 file changed, 1 insertion(+)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git status --short",
+      "step": "forgotten-file",
+      "hidden": false,
+      "fail": false,
+      "out": "?? prices.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git add prices.txt",
+      "step": "no-edit",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit --amend --no-edit",
+      "step": "no-edit",
+      "hidden": false,
+      "fail": false,
+      "out": "[main e61b772] Add Friday class and prices\n Date: Thu Jan 15 09:15:00 2026 +0000\n 2 files changed, 2 insertions(+)\n create mode 100644 prices.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "no-edit",
+      "hidden": false,
+      "fail": false,
+      "out": "e61b772 Add Friday class and prices\nc27d7b9 Add Wednesday class\n90beeb5 Add Monday class\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q --bare ~/server/yoga.git",
+      "step": "pushed",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git remote add origin ~/server/yoga.git",
+      "step": "pushed",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push -u origin main",
+      "step": "pushed",
+      "hidden": false,
+      "fail": false,
+      "out": "To /home/sam/server/yoga.git\n * [new branch]      main -> main\nbranch 'main' set up to track 'origin/main'.\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit --amend -m \"Add Friday class and drop-in price\"",
+      "step": "pushed",
+      "hidden": false,
+      "fail": false,
+      "out": "[main d9b0fb1] Add Friday class and drop-in price\n Date: Thu Jan 15 09:15:00 2026 +0000\n 2 files changed, 2 insertions(+)\n create mode 100644 prices.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git status",
+      "step": "pushed",
+      "hidden": false,
+      "fail": false,
+      "out": "On branch main\nYour branch and 'origin/main' have diverged,\nand have 1 and 1 different commits each, respectively.\n  (use \"git pull\" if you want to integrate the remote branch with yours)\n\nnothing to commit, working tree clean\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git push",
+      "step": "pushed",
+      "hidden": false,
+      "fail": true,
+      "out": "To /home/sam/server/yoga.git\n ! [rejected]        main -> main (non-fast-forward)\nerror: failed to push some refs to '/home/sam/server/yoga.git'\nhint: Updates were rejected because the tip of your current branch is behind\nhint: its remote counterpart. If you want to integrate the remote changes,\nhint: use 'git pull' before pushing again.\nhint: See the 'Note about fast-forwards' in 'git push --help' for details.\n",
+      "exit": 1
+    }
+  ],
+  "frames": {
+    "typo": {
+      "areas": {
+        "work": [
+          {
+            "name": "schedule.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "schedule.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "5ef486e",
+            "message": "Add Wednsday class"
+          },
+          "count": 2,
+          "files": [
+            "schedule.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "5ef486e",
+            "message": "Add Wednsday class",
+            "parents": [
+              "90beeb5"
+            ],
+            "files": [
+              {
+                "name": "schedule.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "90beeb5",
+            "message": "Add Monday class",
+            "parents": [],
+            "files": [
+              {
+                "name": "schedule.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "5ef486e"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "5ef486e"
+        }
+      }
+    },
+    "fix-message": {
+      "areas": {
+        "work": [
+          {
+            "name": "schedule.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "schedule.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "c27d7b9",
+            "message": "Add Wednesday class"
+          },
+          "count": 2,
+          "files": [
+            "schedule.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "c27d7b9",
+            "message": "Add Wednesday class",
+            "parents": [
+              "90beeb5"
+            ],
+            "files": [
+              {
+                "name": "schedule.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "90beeb5",
+            "message": "Add Monday class",
+            "parents": [],
+            "files": [
+              {
+                "name": "schedule.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "c27d7b9"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "c27d7b9"
+        }
+      }
+    },
+    "forgotten-file": {
+      "areas": {
+        "work": [
+          {
+            "name": "prices.txt",
+            "state": "untracked"
+          },
+          {
+            "name": "schedule.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "schedule.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "743f38e",
+            "message": "Add Friday class and prices"
+          },
+          "count": 3,
+          "files": [
+            "schedule.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "743f38e",
+            "message": "Add Friday class and prices",
+            "parents": [
+              "c27d7b9"
+            ],
+            "files": [
+              {
+                "name": "schedule.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "c27d7b9",
+            "message": "Add Wednesday class",
+            "parents": [
+              "90beeb5"
+            ],
+            "files": [
+              {
+                "name": "schedule.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "90beeb5",
+            "message": "Add Monday class",
+            "parents": [],
+            "files": [
+              {
+                "name": "schedule.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "743f38e"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "743f38e"
+        }
+      }
+    },
+    "no-edit": {
+      "areas": {
+        "work": [
+          {
+            "name": "prices.txt",
+            "state": "clean"
+          },
+          {
+            "name": "schedule.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "prices.txt",
+            "state": "clean"
+          },
+          {
+            "name": "schedule.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "e61b772",
+            "message": "Add Friday class and prices"
+          },
+          "count": 3,
+          "files": [
+            "prices.txt",
+            "schedule.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "e61b772",
+            "message": "Add Friday class and prices",
+            "parents": [
+              "c27d7b9"
+            ],
+            "files": [
+              {
+                "name": "prices.txt",
+                "state": "added"
+              },
+              {
+                "name": "schedule.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "c27d7b9",
+            "message": "Add Wednesday class",
+            "parents": [
+              "90beeb5"
+            ],
+            "files": [
+              {
+                "name": "schedule.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "90beeb5",
+            "message": "Add Monday class",
+            "parents": [],
+            "files": [
+              {
+                "name": "schedule.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "e61b772"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "e61b772"
+        }
+      }
+    },
+    "pushed": {
+      "areas": {
+        "work": [
+          {
+            "name": "prices.txt",
+            "state": "clean"
+          },
+          {
+            "name": "schedule.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "prices.txt",
+            "state": "clean"
+          },
+          {
+            "name": "schedule.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "d9b0fb1",
+            "message": "Add Friday class and drop-in price"
+          },
+          "count": 3,
+          "files": [
+            "prices.txt",
+            "schedule.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "d9b0fb1",
+            "message": "Add Friday class and drop-in price",
+            "parents": [
+              "c27d7b9"
+            ],
+            "files": [
+              {
+                "name": "prices.txt",
+                "state": "added"
+              },
+              {
+                "name": "schedule.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "e61b772",
+            "message": "Add Friday class and prices",
+            "parents": [
+              "c27d7b9"
+            ],
+            "files": [
+              {
+                "name": "prices.txt",
+                "state": "added"
+              },
+              {
+                "name": "schedule.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "c27d7b9",
+            "message": "Add Wednesday class",
+            "parents": [
+              "90beeb5"
+            ],
+            "files": [
+              {
+                "name": "schedule.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "90beeb5",
+            "message": "Add Monday class",
+            "parents": [],
+            "files": [
+              {
+                "name": "schedule.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "d9b0fb1"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "e61b772"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "d9b0fb1"
+        }
+      }
+    }
+  }
+}

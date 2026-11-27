@@ -1,0 +1,9 @@
+rules:
+  - "`git commit --amend -m \"...\"` son commit-in mesajını düzəldir."
+  - "`git commit --amend --no-edit` staging-dəki faylları son commit-ə əlavə edir və mesajı saxlayır."
+  - "Amend köhnə commit-i dəyişmir: eyni parent üzərində yeni commit yaradır, hash də yeni olur."
+  - "Köhnə commit branch-dan çıxır; `git log` onu artıq göstərmir."
+  - "`-m` və `--no-edit` olmadan amend redaktor açır və köhnə mesajı orada göstərir."
+practices:
+  - "Yalnız hələ push etmədiyiniz commit-i amend edin: serverdə və başqalarında köhnə commit qalır."
+  - "Amend-dən əvvəl `git status`-a baxın: staging-dəki hər şey commit-ə düşəcək."

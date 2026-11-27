@@ -1,0 +1,54 @@
+$ echo "Sam: socks" > gifts.txt
+$ rm budget.txt
+$ git status
+On branch main
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	deleted:    budget.txt
+	modified:   gifts.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+$ git restore gifts.txt budget.txt
+$ cat gifts.txt budget.txt
+Mia: scarf
+Leo: puzzle
+Ana: tea set
+total: 250 USD
+$ echo "Sam: socks" >> gifts.txt
+$ git add gifts.txt
+$ git status
+On branch main
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   gifts.txt
+
+$ git restore --staged gifts.txt
+$ git status --short
+ M gifts.txt
+$ git add gifts.txt
+$ echo "Sam: gloves" >> gifts.txt
+$ git restore gifts.txt
+$ git status --short
+M  gifts.txt
+$ git restore --staged --worktree gifts.txt
+$ git status --short
+$ cat gifts.txt
+Mia: scarf
+Leo: puzzle
+Ana: tea set
+$ git log --oneline
+7230794 Add Ana
+d288e90 Raise budget to 250 USD
+5f7c8c6 Start gift list
+$ git restore --source=HEAD~2 budget.txt
+$ git status --short
+ M budget.txt
+$ git diff
+diff --git a/budget.txt b/budget.txt
+index f3fdbac..ae1ae05 100644
+--- a/budget.txt
++++ b/budget.txt
+@@ -1 +1 @@
+-total: 250 USD
++total: 150 USD

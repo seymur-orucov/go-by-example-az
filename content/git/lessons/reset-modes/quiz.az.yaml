@@ -1,0 +1,70 @@
+- question: "Son üç commit-i bir commit-də birləşdirmək istəyirsiniz. Hansı yol işləyir?"
+  options:
+    - "`git reset --hard HEAD~3`, sonra `git commit`"
+    - "`git reset --mixed HEAD~3`, sonra `git commit`"
+    - "`git reset --soft HEAD~3`, sonra `git commit`"
+  answer: 2
+  explain: "`--soft` üç commit-in dəyişikliklərini staged saxlayır və `git commit` onları bir commit kimi yazır. `--mixed`-dən sonra heç nə stage olunmayıb, `--hard`-dan sonra isə dəyişikliklər yoxdur: hər iki halda `git commit` commit yaratmır."
+- question: "Son commit yalnız `app.js`-i dəyişib. `git reset HEAD~1`-dən (rejimsiz) sonra `app.js` `git status`-da harada görünür?"
+  options:
+    - "`Changes to be committed` bölməsində"
+    - "`Changes not staged for commit` bölməsində"
+    - "Heç yerdə: fayl əvvəlki commit-dəki halına qayıdıb"
+  answer: 1
+  explain: "Rejim yazılmayanda reset `--mixed` kimi işləyir: staging area commit-ə uyğunlaşır, fayl isə diskdə dəyişmiş qalır."
+- question: "Repository-də bir commit var, `poster.md` isə hələ yoxdur. Bu komandalardan sonra nə çap olunur?"
+  code: |
+    echo "draft" > poster.md
+    git add poster.md
+    git commit -q -m "Add poster"
+    git reset -q --mixed HEAD~1
+    git status --short
+  options:
+    - "`A  poster.md`"
+    - "` M poster.md`"
+    - "Heç nə: `poster.md` silinib"
+    - "`?? poster.md`"
+  answer: 3
+  explain: "Fayl diskdə qalır, amma indiki commit-də və staging area-da yoxdur. Ona görə Git onu untracked (`??`) sayır."
+- question: "`git reset --soft HEAD~1` etdiniz, dəyişikliklər staged qaldı. İndi onları stage olunmamış görmək istəyirsiniz, branch yerində qalmalıdır. Hansı komanda?"
+  options:
+    - "`git reset`"
+    - "`git reset --hard`"
+    - "`git reset --soft HEAD`"
+  answer: 0
+  explain: "Arqumentsiz `git reset` `--mixed` rejimində `HEAD`-ə reset edir: branch yerində qalır, staging area `HEAD`-ə qayıdır. `--hard` dəyişiklikləri silərdi, `--soft HEAD` isə heç nəyi dəyişməzdi."
+- question: "Reset-dən sonra terminalda `HEAD is now at` sətri çıxdı. Hansı rejim işlədilib?"
+  options:
+    - "`--soft`"
+    - "`--hard`"
+    - "`--mixed`"
+  answer: 1
+  explain: "`--hard` yeni commit-in qısa hash-ini və mesajını yazır. `--soft` heç nə çap etmir, `--mixed` isə `Unstaged changes after reset:` siyahısını çap edir."
+- question: "Son commit-dəki dəyişikliklər tamamilə səhvdir və sizə lazım deyil. Commit push olunmayıb. Hansı komanda?"
+  options:
+    - "`git reset --hard HEAD~1`"
+    - "`git reset --soft HEAD~1`"
+    - "`git reset HEAD~1`"
+  answer: 0
+  explain: "`--hard` branch-ı, staging area-nı və working directory-ni əvvəlki commit-ə qaytarır. Digər iki rejim dəyişiklikləri diskdə saxlayır və onları əllə silmək lazım gələr."
+- question: "Tələbə `intro.md`-yə sətir yazıb, commit etməyib, sonra `git reset --hard HEAD~1` edib. Bu sətir haradadır?"
+  options:
+    - "Diskdə qalıb, çünki `--hard` yalnız branch-ı dəyişir"
+    - "İtib, çünki `--hard` faylı commit-dəki halına yazdı"
+    - "Staging area-dadır, çünki `--hard` onu stage etdi"
+  answer: 1
+  explain: "`--hard` izlənən faylları commit-dəki halına qaytarır. Sətir heç bir commit-ə düşmədiyi üçün Git onu geri qaytara bilmir."
+- question: "`--soft`, `--mixed` və `--hard` rejimlərinin üçü də nəyi dəyişir?"
+  options:
+    - "Yalnız staging area-nı"
+    - "Yalnız working directory-ni"
+    - "Hazırkı branch-ın göstərdiyi commit-i"
+  answer: 2
+  explain: "Branch-ı geri aparmaq hər rejimin ilk addımıdır. `--mixed` staging area-nı, `--hard` isə həm də working directory-ni dəyişir."
+- question: "Son commit `methods.md`-ni dəyişib, commit olunmamış iş yoxdur. `git reset <rejim> HEAD~1`-dən sonra hansı rejimdə `git status` `nothing to commit, working tree clean` yazır?"
+  options:
+    - "`--soft`"
+    - "`--mixed`"
+    - "`--hard`"
+  answer: 2
+  explain: "Yalnız `--hard` üç sahəni də commit ilə eyniləşdirir. `--soft`-dan sonra dəyişiklik `Changes to be committed`-də, `--mixed`-dən sonra `Changes not staged for commit`-də görünür."

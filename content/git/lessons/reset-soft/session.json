@@ -1,0 +1,622 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir glossary",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd glossary",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"term,meaning\\ninvoice,a request for payment\\n\" > terms.csv",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add terms.csv",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Start glossary\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"refund,money paid bak\" >> terms.csv",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add refund\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "sed -i \"s/bak$/back/\" terms.csv",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Fix typo\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"refund: a noun, not a verb\" > notes.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add notes.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add note on refund\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "move",
+      "hidden": false,
+      "fail": false,
+      "out": "d37360c Add note on refund\n88657f0 Fix typo\n3022499 Add refund\nb5a4ad8 Start glossary\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git reset --soft HEAD~1",
+      "step": "move",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "move",
+      "hidden": false,
+      "fail": false,
+      "out": "88657f0 Fix typo\n3022499 Add refund\nb5a4ad8 Start glossary\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git status",
+      "step": "staged",
+      "hidden": false,
+      "fail": false,
+      "out": "On branch main\nChanges to be committed:\n  (use \"git restore --staged <file>...\" to unstage)\n\tnew file:   notes.md\n\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"refund: keep it short on buttons\" >> notes.md",
+      "step": "recommit",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add notes.md",
+      "step": "recommit",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"Add notes on refund\"",
+      "step": "recommit",
+      "hidden": false,
+      "fail": false,
+      "out": "[main 080ac0a] Add notes on refund\n 1 file changed, 2 insertions(+)\n create mode 100644 notes.md\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "recommit",
+      "hidden": false,
+      "fail": false,
+      "out": "080ac0a Add notes on refund\n88657f0 Fix typo\n3022499 Add refund\nb5a4ad8 Start glossary\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git reset --soft HEAD~3",
+      "step": "squash",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status --short",
+      "step": "squash",
+      "hidden": false,
+      "fail": false,
+      "out": "A  notes.md\nM  terms.csv\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"Add refund term\"",
+      "step": "squash-commit",
+      "hidden": false,
+      "fail": false,
+      "out": "[main 16f51d3] Add refund term\n 2 files changed, 3 insertions(+)\n create mode 100644 notes.md\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "squash-commit",
+      "hidden": false,
+      "fail": false,
+      "out": "16f51d3 Add refund term\nb5a4ad8 Start glossary\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "move": {
+      "areas": {
+        "work": [
+          {
+            "name": "notes.md",
+            "state": "clean"
+          },
+          {
+            "name": "terms.csv",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "notes.md",
+            "state": "added"
+          },
+          {
+            "name": "terms.csv",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "88657f0",
+            "message": "Fix typo"
+          },
+          "count": 3,
+          "files": [
+            "terms.csv"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "88657f0",
+            "message": "Fix typo",
+            "parents": [
+              "3022499"
+            ],
+            "files": [
+              {
+                "name": "terms.csv",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "3022499",
+            "message": "Add refund",
+            "parents": [
+              "b5a4ad8"
+            ],
+            "files": [
+              {
+                "name": "terms.csv",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "b5a4ad8",
+            "message": "Start glossary",
+            "parents": [],
+            "files": [
+              {
+                "name": "terms.csv",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "88657f0"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "88657f0"
+        }
+      }
+    },
+    "staged": {
+      "areas": {
+        "work": [
+          {
+            "name": "notes.md",
+            "state": "clean"
+          },
+          {
+            "name": "terms.csv",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "notes.md",
+            "state": "added"
+          },
+          {
+            "name": "terms.csv",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "88657f0",
+            "message": "Fix typo"
+          },
+          "count": 3,
+          "files": [
+            "terms.csv"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "88657f0",
+            "message": "Fix typo",
+            "parents": [
+              "3022499"
+            ],
+            "files": [
+              {
+                "name": "terms.csv",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "3022499",
+            "message": "Add refund",
+            "parents": [
+              "b5a4ad8"
+            ],
+            "files": [
+              {
+                "name": "terms.csv",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "b5a4ad8",
+            "message": "Start glossary",
+            "parents": [],
+            "files": [
+              {
+                "name": "terms.csv",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "88657f0"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "88657f0"
+        }
+      }
+    },
+    "recommit": {
+      "areas": {
+        "work": [
+          {
+            "name": "notes.md",
+            "state": "clean"
+          },
+          {
+            "name": "terms.csv",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "notes.md",
+            "state": "clean"
+          },
+          {
+            "name": "terms.csv",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "080ac0a",
+            "message": "Add notes on refund"
+          },
+          "count": 4,
+          "files": [
+            "notes.md",
+            "terms.csv"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "080ac0a",
+            "message": "Add notes on refund",
+            "parents": [
+              "88657f0"
+            ],
+            "files": [
+              {
+                "name": "notes.md",
+                "state": "added"
+              },
+              {
+                "name": "terms.csv",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "88657f0",
+            "message": "Fix typo",
+            "parents": [
+              "3022499"
+            ],
+            "files": [
+              {
+                "name": "terms.csv",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "3022499",
+            "message": "Add refund",
+            "parents": [
+              "b5a4ad8"
+            ],
+            "files": [
+              {
+                "name": "terms.csv",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "b5a4ad8",
+            "message": "Start glossary",
+            "parents": [],
+            "files": [
+              {
+                "name": "terms.csv",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "080ac0a"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "080ac0a"
+        }
+      }
+    },
+    "squash": {
+      "areas": {
+        "work": [
+          {
+            "name": "notes.md",
+            "state": "clean"
+          },
+          {
+            "name": "terms.csv",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "notes.md",
+            "state": "added"
+          },
+          {
+            "name": "terms.csv",
+            "state": "modified"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "b5a4ad8",
+            "message": "Start glossary"
+          },
+          "count": 1,
+          "files": [
+            "terms.csv"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "b5a4ad8",
+            "message": "Start glossary",
+            "parents": [],
+            "files": [
+              {
+                "name": "terms.csv",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "b5a4ad8"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "b5a4ad8"
+        }
+      }
+    },
+    "squash-commit": {
+      "areas": {
+        "work": [
+          {
+            "name": "notes.md",
+            "state": "clean"
+          },
+          {
+            "name": "terms.csv",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "notes.md",
+            "state": "clean"
+          },
+          {
+            "name": "terms.csv",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "16f51d3",
+            "message": "Add refund term"
+          },
+          "count": 2,
+          "files": [
+            "notes.md",
+            "terms.csv"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "16f51d3",
+            "message": "Add refund term",
+            "parents": [
+              "b5a4ad8"
+            ],
+            "files": [
+              {
+                "name": "notes.md",
+                "state": "added"
+              },
+              {
+                "name": "terms.csv",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "b5a4ad8",
+            "message": "Start glossary",
+            "parents": [],
+            "files": [
+              {
+                "name": "terms.csv",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "16f51d3"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "16f51d3"
+        }
+      }
+    }
+  }
+}

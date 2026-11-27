@@ -1,0 +1,618 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir aquarium",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd aquarium",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"2026-01-12 temp 25C pH 7.2\" > water.log",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"flakes: every morning\" > feeding.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add water.log feeding.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Start aquarium log\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"2026-01-15 temp 26C pH 7.0\" >> water.log",
+      "step": "one-commit",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"shrimp pellets: Sunday\" >> feeding.txt",
+      "step": "one-commit",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add water.log feeding.txt",
+      "step": "one-commit",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"Update aquarium log\"",
+      "step": "one-commit",
+      "hidden": false,
+      "fail": false,
+      "out": "[main e5e8754] Update aquarium log\n 2 files changed, 2 insertions(+)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git reset HEAD~1",
+      "step": "reset",
+      "hidden": false,
+      "fail": false,
+      "out": "Unstaged changes after reset:\nM\tfeeding.txt\nM\twater.log\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "reset",
+      "hidden": false,
+      "fail": false,
+      "out": "0127a42 Start aquarium log\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git status",
+      "step": "unstaged",
+      "hidden": false,
+      "fail": false,
+      "out": "On branch main\nChanges not staged for commit:\n  (use \"git add <file>...\" to update what will be committed)\n  (use \"git restore <file>...\" to discard changes in working directory)\n\tmodified:   feeding.txt\n\tmodified:   water.log\n\nno changes added to commit (use \"git add\" and/or \"git commit -a\")\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git add water.log",
+      "step": "split",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"Log the January 15 water test\"",
+      "step": "split",
+      "hidden": false,
+      "fail": false,
+      "out": "[main 4d2f1e9] Log the January 15 water test\n 1 file changed, 1 insertion(+)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git add feeding.txt",
+      "step": "split",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"Feed shrimp pellets on Sunday\"",
+      "step": "split",
+      "hidden": false,
+      "fail": false,
+      "out": "[main 25a64e1] Feed shrimp pellets on Sunday\n 1 file changed, 1 insertion(+)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "split",
+      "hidden": false,
+      "fail": false,
+      "out": "25a64e1 Feed shrimp pellets on Sunday\n4d2f1e9 Log the January 15 water test\n0127a42 Start aquarium log\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"2026-01-18 temp 25C pH 7.1\" >> water.log",
+      "step": "unstage-file",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"no food: Friday\" >> feeding.txt",
+      "step": "unstage-file",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add water.log feeding.txt",
+      "step": "unstage-file",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git reset feeding.txt",
+      "step": "unstage-file",
+      "hidden": false,
+      "fail": false,
+      "out": "Unstaged changes after reset:\nM\tfeeding.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git status --short",
+      "step": "unstage-file",
+      "hidden": false,
+      "fail": false,
+      "out": " M feeding.txt\nM  water.log\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline -1",
+      "step": "unstage-file",
+      "hidden": false,
+      "fail": false,
+      "out": "25a64e1 Feed shrimp pellets on Sunday\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "one-commit": {
+      "areas": {
+        "work": [
+          {
+            "name": "feeding.txt",
+            "state": "clean"
+          },
+          {
+            "name": "water.log",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "feeding.txt",
+            "state": "clean"
+          },
+          {
+            "name": "water.log",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "e5e8754",
+            "message": "Update aquarium log"
+          },
+          "count": 2,
+          "files": [
+            "feeding.txt",
+            "water.log"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "e5e8754",
+            "message": "Update aquarium log",
+            "parents": [
+              "0127a42"
+            ],
+            "files": [
+              {
+                "name": "feeding.txt",
+                "state": "modified"
+              },
+              {
+                "name": "water.log",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "0127a42",
+            "message": "Start aquarium log",
+            "parents": [],
+            "files": [
+              {
+                "name": "feeding.txt",
+                "state": "added"
+              },
+              {
+                "name": "water.log",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "e5e8754"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "e5e8754"
+        }
+      }
+    },
+    "reset": {
+      "areas": {
+        "work": [
+          {
+            "name": "feeding.txt",
+            "state": "modified"
+          },
+          {
+            "name": "water.log",
+            "state": "modified"
+          }
+        ],
+        "index": [
+          {
+            "name": "feeding.txt",
+            "state": "clean"
+          },
+          {
+            "name": "water.log",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "0127a42",
+            "message": "Start aquarium log"
+          },
+          "count": 1,
+          "files": [
+            "feeding.txt",
+            "water.log"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "0127a42",
+            "message": "Start aquarium log",
+            "parents": [],
+            "files": [
+              {
+                "name": "feeding.txt",
+                "state": "added"
+              },
+              {
+                "name": "water.log",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "0127a42"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "0127a42"
+        }
+      }
+    },
+    "unstaged": {
+      "areas": {
+        "work": [
+          {
+            "name": "feeding.txt",
+            "state": "modified"
+          },
+          {
+            "name": "water.log",
+            "state": "modified"
+          }
+        ],
+        "index": [
+          {
+            "name": "feeding.txt",
+            "state": "clean"
+          },
+          {
+            "name": "water.log",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "0127a42",
+            "message": "Start aquarium log"
+          },
+          "count": 1,
+          "files": [
+            "feeding.txt",
+            "water.log"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "0127a42",
+            "message": "Start aquarium log",
+            "parents": [],
+            "files": [
+              {
+                "name": "feeding.txt",
+                "state": "added"
+              },
+              {
+                "name": "water.log",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "0127a42"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "0127a42"
+        }
+      }
+    },
+    "split": {
+      "areas": {
+        "work": [
+          {
+            "name": "feeding.txt",
+            "state": "clean"
+          },
+          {
+            "name": "water.log",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "feeding.txt",
+            "state": "clean"
+          },
+          {
+            "name": "water.log",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "25a64e1",
+            "message": "Feed shrimp pellets on Sunday"
+          },
+          "count": 3,
+          "files": [
+            "feeding.txt",
+            "water.log"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "25a64e1",
+            "message": "Feed shrimp pellets on Sunday",
+            "parents": [
+              "4d2f1e9"
+            ],
+            "files": [
+              {
+                "name": "feeding.txt",
+                "state": "modified"
+              },
+              {
+                "name": "water.log",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "4d2f1e9",
+            "message": "Log the January 15 water test",
+            "parents": [
+              "0127a42"
+            ],
+            "files": [
+              {
+                "name": "feeding.txt",
+                "state": "same"
+              },
+              {
+                "name": "water.log",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "0127a42",
+            "message": "Start aquarium log",
+            "parents": [],
+            "files": [
+              {
+                "name": "feeding.txt",
+                "state": "added"
+              },
+              {
+                "name": "water.log",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "25a64e1"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "25a64e1"
+        }
+      }
+    },
+    "unstage-file": {
+      "areas": {
+        "work": [
+          {
+            "name": "feeding.txt",
+            "state": "modified"
+          },
+          {
+            "name": "water.log",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "feeding.txt",
+            "state": "clean"
+          },
+          {
+            "name": "water.log",
+            "state": "modified"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "25a64e1",
+            "message": "Feed shrimp pellets on Sunday"
+          },
+          "count": 3,
+          "files": [
+            "feeding.txt",
+            "water.log"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "25a64e1",
+            "message": "Feed shrimp pellets on Sunday",
+            "parents": [
+              "4d2f1e9"
+            ],
+            "files": [
+              {
+                "name": "feeding.txt",
+                "state": "modified"
+              },
+              {
+                "name": "water.log",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "4d2f1e9",
+            "message": "Log the January 15 water test",
+            "parents": [
+              "0127a42"
+            ],
+            "files": [
+              {
+                "name": "feeding.txt",
+                "state": "same"
+              },
+              {
+                "name": "water.log",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "0127a42",
+            "message": "Start aquarium log",
+            "parents": [],
+            "files": [
+              {
+                "name": "feeding.txt",
+                "state": "added"
+              },
+              {
+                "name": "water.log",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "25a64e1"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "25a64e1"
+        }
+      }
+    }
+  }
+}

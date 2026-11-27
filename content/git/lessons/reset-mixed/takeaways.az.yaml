@@ -1,0 +1,10 @@
+rules:
+  - "Rejim yazılmayanda `git reset` `--mixed` işlədir: `git reset HEAD~1` `git reset --mixed HEAD~1` ilə eynidir."
+  - "`--mixed` branch-ı geri çəkir və staging area-nı həmin commit-ə qaytarır; working directory dəyişmir."
+  - "Reset-dən sonra dəyişikliklər `Changes not staged for commit` altındadır; `Unstaged changes after reset:` onları `M` ilə sadalayır."
+  - "Geri alınan commit-in yaratdığı fayl diskdə qalır, amma untracked olur (`??`)."
+  - "`git reset <file>` branch-ı tərpətmir: faylı unstage edir, `git restore --staged <file>` kimi."
+practices:
+  - "İki ayrı iş bir commit-ə düşübsə, `git reset HEAD~1` edin və hər işi ayrıca stage edib commit edin."
+  - "Reset-i yalnız hələ push etmədiyiniz commit-lərə tətbiq edin."
+  - "Reset-dən sonra `git restore <file>` yazmayın: commit-dən gələn dəyişiklik diskdən silinər."

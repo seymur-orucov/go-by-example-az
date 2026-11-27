@@ -1,0 +1,9 @@
+rules:
+  - "`git reset --hard` branch-ı, staging area-nı və working directory-ni verilən commit ilə eyniləşdirir."
+  - "İzlənən fayllardakı commit olunmamış dəyişikliklər (stage olunmuşlar da) silinir və geri qaytarılmır."
+  - "Untracked fayllara `reset --hard` toxunmur; `git add` olunmuş yeni fayl isə silinir."
+  - "`git reset --hard HEAD~1` son commit-i branch-dan atır, onun faylları diskdən də gedir; commit bir müddət `git reflog` ilə tapılır."
+  - "`git fetch` + `git reset --hard origin/main` lokal branch-ı serverdəki ilə tam eyni edir; göndərilməmiş commit-lər branch-dan çıxır."
+practices:
+  - "`reset --hard`-dan əvvəl `git status`-a baxın və saxlamaq istədiyinizi commit edin."
+  - "Lokal commit-i saxlamaq istəyirsinizsə, `reset`-dən əvvəl onun üstündə branch yaradın və ya push edin."
