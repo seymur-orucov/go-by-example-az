@@ -1,0 +1,11 @@
+rules:
+  - "`git stash` (`git stash push`) commit olunmamış dəyişiklikləri saxlayır və working directory ilə staging area-nı son commit-ə qaytarır."
+  - "Stash `.git`-də saxlanır və tarixçəyə düşmür; `git stash list` onları göstərir, ən yenisi `stash@{0}`-dır."
+  - "`git stash pop` stash-i tətbiq edib silir; `git stash apply` tətbiq edir və saxlayır, `git stash drop` isə silir."
+  - "`pop` və `apply` stage olunmuş dəyişikliyi stage edilməmiş kimi qaytarır; staging area üçün `--index` yazılır."
+  - "İzlənməyən fayllar standart olaraq stash-ə düşmür; onlar üçün `-u` lazımdır."
+  - "Konfliktlə bitən `pop` stash-i silmir."
+practices:
+  - "Stash-ə `-m` ilə ad verin: bir neçə `WIP on` sətrini bir-birindən ayırmaq çətindir."
+  - "Yeni fayl yaratmısınızsa, `git stash -u` yazın, yoxsa fayl başqa branch-a sizinlə keçir."
+  - "Stash-i uzun saxlamayın: iş uzun çəkəcəksə, onu branch-da commit edin."

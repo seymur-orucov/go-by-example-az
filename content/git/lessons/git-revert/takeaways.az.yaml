@@ -1,0 +1,11 @@
+rules:
+  - "`git revert <commit>` commit-in dəyişikliyini tərsinə çevirən yeni commit yaradır; köhnə commit tarixçədə qalır."
+  - "Revert tarixçəni yenidən yazmır, ona görə push olunmuş branch-da da adi `git push` ilə keçir."
+  - "Hazır mesaj `Revert \"<köhnə mesaj>\"`-dir, altında geri alınan commit-in hash-i yazılır."
+  - "`--no-commit` (`-n`) dəyişikliyi staging-də saxlayır: bir neçə revert bir `git commit` ilə bir commit olur."
+  - "Merge commit-i revert etmək üçün `-m 1` lazımdır: birinci parent-in tərəfi saxlanır, branch-ın gətirdiyi geri alınır."
+  - "Revert-in revert-i dəyişikliyi geri gətirir; mesajı `Reapply` ilə başlayır."
+practices:
+  - "Paylaşılmış branch-da səhv commit-i silməyin, `git revert` ilə geri alın."
+  - "Hazır mesajın altına commit-in niyə geri alındığını yazın: bunun üçün `--no-edit`-siz işlədin."
+  - "Bir işə aid bir neçə commit-i `git revert --no-commit A..B` və bir `git commit` ilə geri alın."

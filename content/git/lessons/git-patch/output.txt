@@ -1,0 +1,66 @@
+$ git diff > trim.patch
+$ cat trim.patch
+diff --git a/strings.sh b/strings.sh
+index a8cfce2..5b6a70e 100644
+--- a/strings.sh
++++ b/strings.sh
+@@ -5,5 +5,5 @@ upper() {
+ 
+ # trim: remove spaces around the text
+ trim() {
+-  echo "$1" | sed 's/^ *//'
++  echo "$1" | sed 's/^ *//; s/ *$//'
+ }
+$ cd ~/lib-tiny
+$ git apply --check ../ayla/lib-tiny/trim.patch
+$ git apply ../ayla/lib-tiny/trim.patch
+$ git status --short
+ M strings.sh
+$ git log --oneline
+de8da21 Add upper and trim
+$ git apply --check ../ayla/lib-tiny/trim.patch
+error: patch failed: strings.sh:5
+error: strings.sh: patch does not apply
+$ cd ~/ayla/lib-tiny
+$ git -c user.name="Ayla Karimova" -c user.email="ayla@example.com" commit -q -am "Make trim remove trailing spaces"
+$ git format-patch -1 HEAD
+0001-Make-trim-remove-trailing-spaces.patch
+$ cat 0001-Make-trim-remove-trailing-spaces.patch
+From 9cb41f5f1692fa9e83ba6eb01248c3b3355e29c6 Mon Sep 17 00:00:00 2001
+From: Ayla Karimova <ayla@example.com>
+Date: Thu, 15 Jan 2026 09:22:00 +0000
+Subject: [PATCH] Make trim remove trailing spaces
+
+---
+ strings.sh | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/strings.sh b/strings.sh
+index a8cfce2..5b6a70e 100644
+--- a/strings.sh
++++ b/strings.sh
+@@ -5,5 +5,5 @@ upper() {
+ 
+ # trim: remove spaces around the text
+ trim() {
+-  echo "$1" | sed 's/^ *//'
++  echo "$1" | sed 's/^ *//; s/ *$//'
+ }
+-- 
+2.56.1.windows.1
+
+$ cd ~/lib-tiny
+$ git restore strings.sh
+$ git am ../ayla/lib-tiny/0001-Make-trim-remove-trailing-spaces.patch
+Applying: Make trim remove trailing spaces
+$ git log --oneline
+7c9f1f5 Make trim remove trailing spaces
+de8da21 Add upper and trim
+$ git log -1 --format=fuller
+commit 7c9f1f5414ecd72bc15cee6273e5c5758c9b2809
+Author:     Ayla Karimova <ayla@example.com>
+AuthorDate: Thu Jan 15 09:22:00 2026 +0000
+Commit:     Sam Lee <sam@example.com>
+CommitDate: Thu Jan 15 09:27:00 2026 +0000
+
+    Make trim remove trailing spaces

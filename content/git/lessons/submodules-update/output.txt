@@ -1,0 +1,81 @@
+$ git clone ~/server/docs-site.git
+Cloning into 'docs-site'...
+done.
+$ cd docs-site
+$ ls
+docs-theme
+index.md
+$ ls docs-theme
+$ git submodule status
+-0c05742a476803af0572940e7e838d9703195a0b docs-theme
+$ git submodule update --init
+Submodule 'docs-theme' (/home/sam/server/docs-theme.git) registered for path 'docs-theme'
+Cloning into '/home/sam/docs-site/docs-theme'...
+done.
+Submodule path 'docs-theme': checked out '0c05742a476803af0572940e7e838d9703195a0b'
+$ ls docs-theme
+theme.css
+$ git -C docs-theme status
+HEAD detached at 0c05742
+nothing to commit, working tree clean
+$ cd ~/ayla
+$ git clone --recurse-submodules ~/server/docs-site.git
+Cloning into 'docs-site'...
+done.
+Submodule 'docs-theme' (/home/sam/server/docs-theme.git) registered for path 'docs-theme'
+Cloning into '/home/sam/ayla/docs-site/docs-theme'...
+done.
+Submodule path 'docs-theme': checked out '0c05742a476803af0572940e7e838d9703195a0b'
+$ ls docs-site/docs-theme
+theme.css
+$ cd ~/docs-site
+$ git submodule update --remote
+From /home/sam/server/docs-theme
+   0c05742..b3bf032  main       -> origin/main
+Submodule path 'docs-theme': checked out 'b3bf032e11c425c7a810714adeb6a7d248e6ee75'
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   docs-theme (new commits)
+
+no changes added to commit (use "git add" and/or "git commit -a")
+$ git diff --submodule
+Submodule docs-theme 0c05742..b3bf032:
+  > Add dark mode
+$ git add docs-theme
+$ git commit -m "Update docs theme"
+[main 07f7a63] Update docs theme
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+$ git push
+To /home/sam/server/docs-site.git
+   814b1cc..07f7a63  main -> main
+$ cd ~/ayla/docs-site
+$ git pull
+From /home/sam/server/docs-site
+   814b1cc..07f7a63  main       -> origin/main
+Fetching submodule docs-theme
+From /home/sam/server/docs-theme
+   0c05742..b3bf032  main       -> origin/main
+Updating 814b1cc..07f7a63
+Fast-forward
+ docs-theme | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   docs-theme (new commits)
+
+no changes added to commit (use "git add" and/or "git commit -a")
+$ git submodule update
+Submodule path 'docs-theme': checked out 'b3bf032e11c425c7a810714adeb6a7d248e6ee75'
+$ ls docs-theme
+dark.css
+theme.css

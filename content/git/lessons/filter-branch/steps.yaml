@@ -1,0 +1,7 @@
+# The visuals are recorded from the real repository by `pnpm content:run`.
+delete-not-enough:
+rotate-key:
+filter-branch:
+  vis: graph
+backup-ref:
+filter-repo:

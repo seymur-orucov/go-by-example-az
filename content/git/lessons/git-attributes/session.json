@@ -1,0 +1,809 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir build-scripts",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd build-scripts",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf '#!/bin/sh\\r\\necho \"Building...\"\\r\\n' > build.sh",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf '@echo off\\r\\necho Setting up...\\r\\n' > setup.bat",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf '\\211PNG\\r\\n\\032\\n\\000\\001' > logo.png",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "mkdir generated",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf 'export const version = 1;\\n' > generated/api.js",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add .",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add build scripts\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cat -A build.sh",
+      "step": "crlf",
+      "hidden": false,
+      "fail": false,
+      "out": "#!/bin/sh^M$\necho \"Building...\"^M$\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git ls-files --eol",
+      "step": "crlf",
+      "hidden": false,
+      "fail": false,
+      "out": "i/crlf  w/crlf  attr/                 \tbuild.sh\ni/lf    w/lf    attr/                 \tgenerated/api.js\ni/-text w/-text attr/                 \tlogo.png\ni/crlf  w/crlf  attr/                 \tsetup.bat\n",
+      "exit": 0
+    },
+    {
+      "cmd": "printf '%s\\n' '* text=auto' '*.sh text eol=lf' '*.bat text eol=crlf' > .gitattributes",
+      "step": "renormalize",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add .gitattributes",
+      "step": "renormalize",
+      "hidden": true,
+      "fail": false,
+      "out": "warning: in the working copy of '.gitattributes', LF will be replaced by CRLF the next time Git touches it\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cat .gitattributes",
+      "step": "renormalize",
+      "hidden": false,
+      "fail": false,
+      "out": "* text=auto\n*.sh text eol=lf\n*.bat text eol=crlf\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git add --renormalize .",
+      "step": "renormalize",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git ls-files --eol",
+      "step": "renormalize",
+      "hidden": false,
+      "fail": false,
+      "out": "i/lf    w/lf    attr/text=auto        \t.gitattributes\ni/lf    w/crlf  attr/text eol=lf      \tbuild.sh\ni/lf    w/lf    attr/text=auto        \tgenerated/api.js\ni/-text w/-text attr/text=auto        \tlogo.png\ni/lf    w/crlf  attr/text eol=crlf    \tsetup.bat\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Normalize line endings\"",
+      "step": "checkout",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "rm build.sh",
+      "step": "checkout",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git restore build.sh",
+      "step": "checkout",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cat -A build.sh",
+      "step": "checkout",
+      "hidden": false,
+      "fail": false,
+      "out": "#!/bin/sh$\necho \"Building...\"$\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git ls-files --eol build.sh",
+      "step": "checkout",
+      "hidden": false,
+      "fail": false,
+      "out": "i/lf    w/lf    attr/text eol=lf      \tbuild.sh\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo '*.png binary' >> .gitattributes",
+      "step": "binary",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git check-attr -a logo.png",
+      "step": "binary",
+      "hidden": false,
+      "fail": false,
+      "out": "logo.png: binary: set\nlogo.png: diff: unset\nlogo.png: merge: unset\nlogo.png: text: unset\n",
+      "exit": 0
+    },
+    {
+      "cmd": "printf '\\211PNG\\r\\n\\032\\n\\000\\002' > logo.png",
+      "step": "binary",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git diff logo.png",
+      "step": "binary",
+      "hidden": false,
+      "fail": false,
+      "out": "diff --git a/logo.png b/logo.png\nindex bccac03..46b8f05 100644\nBinary files a/logo.png and b/logo.png differ\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo 'generated/** linguist-generated' >> .gitattributes",
+      "step": "linguist",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git check-attr -a build.sh generated/api.js",
+      "step": "linguist",
+      "hidden": false,
+      "fail": false,
+      "out": "build.sh: text: set\nbuild.sh: eol: lf\ngenerated/api.js: text: auto\ngenerated/api.js: linguist-generated: set\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "crlf": {
+      "areas": {
+        "work": [
+          {
+            "name": "build.sh",
+            "state": "clean"
+          },
+          {
+            "name": "generated/api.js",
+            "state": "clean"
+          },
+          {
+            "name": "logo.png",
+            "state": "clean"
+          },
+          {
+            "name": "setup.bat",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "build.sh",
+            "state": "clean"
+          },
+          {
+            "name": "generated/api.js",
+            "state": "clean"
+          },
+          {
+            "name": "logo.png",
+            "state": "clean"
+          },
+          {
+            "name": "setup.bat",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "17dca88",
+            "message": "Add build scripts"
+          },
+          "count": 1,
+          "files": [
+            "build.sh",
+            "generated/api.js",
+            "logo.png",
+            "setup.bat"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "17dca88",
+            "message": "Add build scripts",
+            "parents": [],
+            "files": [
+              {
+                "name": "build.sh",
+                "state": "added"
+              },
+              {
+                "name": "generated/api.js",
+                "state": "added"
+              },
+              {
+                "name": "logo.png",
+                "state": "added"
+              },
+              {
+                "name": "setup.bat",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "17dca88"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "17dca88"
+        }
+      }
+    },
+    "renormalize": {
+      "areas": {
+        "work": [
+          {
+            "name": ".gitattributes",
+            "state": "clean"
+          },
+          {
+            "name": "build.sh",
+            "state": "clean"
+          },
+          {
+            "name": "generated/api.js",
+            "state": "clean"
+          },
+          {
+            "name": "logo.png",
+            "state": "clean"
+          },
+          {
+            "name": "setup.bat",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": ".gitattributes",
+            "state": "added"
+          },
+          {
+            "name": "build.sh",
+            "state": "modified"
+          },
+          {
+            "name": "generated/api.js",
+            "state": "clean"
+          },
+          {
+            "name": "logo.png",
+            "state": "clean"
+          },
+          {
+            "name": "setup.bat",
+            "state": "modified"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "17dca88",
+            "message": "Add build scripts"
+          },
+          "count": 1,
+          "files": [
+            "build.sh",
+            "generated/api.js",
+            "logo.png",
+            "setup.bat"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "17dca88",
+            "message": "Add build scripts",
+            "parents": [],
+            "files": [
+              {
+                "name": "build.sh",
+                "state": "added"
+              },
+              {
+                "name": "generated/api.js",
+                "state": "added"
+              },
+              {
+                "name": "logo.png",
+                "state": "added"
+              },
+              {
+                "name": "setup.bat",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "17dca88"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "17dca88"
+        }
+      }
+    },
+    "checkout": {
+      "areas": {
+        "work": [
+          {
+            "name": ".gitattributes",
+            "state": "clean"
+          },
+          {
+            "name": "build.sh",
+            "state": "clean"
+          },
+          {
+            "name": "generated/api.js",
+            "state": "clean"
+          },
+          {
+            "name": "logo.png",
+            "state": "clean"
+          },
+          {
+            "name": "setup.bat",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": ".gitattributes",
+            "state": "clean"
+          },
+          {
+            "name": "build.sh",
+            "state": "clean"
+          },
+          {
+            "name": "generated/api.js",
+            "state": "clean"
+          },
+          {
+            "name": "logo.png",
+            "state": "clean"
+          },
+          {
+            "name": "setup.bat",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "9a339aa",
+            "message": "Normalize line endings"
+          },
+          "count": 2,
+          "files": [
+            ".gitattributes",
+            "build.sh",
+            "generated/api.js",
+            "logo.png",
+            "setup.bat"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "9a339aa",
+            "message": "Normalize line endings",
+            "parents": [
+              "17dca88"
+            ],
+            "files": [
+              {
+                "name": ".gitattributes",
+                "state": "added"
+              },
+              {
+                "name": "build.sh",
+                "state": "modified"
+              },
+              {
+                "name": "generated/api.js",
+                "state": "same"
+              },
+              {
+                "name": "logo.png",
+                "state": "same"
+              },
+              {
+                "name": "setup.bat",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "17dca88",
+            "message": "Add build scripts",
+            "parents": [],
+            "files": [
+              {
+                "name": "build.sh",
+                "state": "added"
+              },
+              {
+                "name": "generated/api.js",
+                "state": "added"
+              },
+              {
+                "name": "logo.png",
+                "state": "added"
+              },
+              {
+                "name": "setup.bat",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "9a339aa"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "9a339aa"
+        }
+      }
+    },
+    "binary": {
+      "areas": {
+        "work": [
+          {
+            "name": ".gitattributes",
+            "state": "modified"
+          },
+          {
+            "name": "build.sh",
+            "state": "clean"
+          },
+          {
+            "name": "generated/api.js",
+            "state": "clean"
+          },
+          {
+            "name": "logo.png",
+            "state": "modified"
+          },
+          {
+            "name": "setup.bat",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": ".gitattributes",
+            "state": "clean"
+          },
+          {
+            "name": "build.sh",
+            "state": "clean"
+          },
+          {
+            "name": "generated/api.js",
+            "state": "clean"
+          },
+          {
+            "name": "logo.png",
+            "state": "clean"
+          },
+          {
+            "name": "setup.bat",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "9a339aa",
+            "message": "Normalize line endings"
+          },
+          "count": 2,
+          "files": [
+            ".gitattributes",
+            "build.sh",
+            "generated/api.js",
+            "logo.png",
+            "setup.bat"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "9a339aa",
+            "message": "Normalize line endings",
+            "parents": [
+              "17dca88"
+            ],
+            "files": [
+              {
+                "name": ".gitattributes",
+                "state": "added"
+              },
+              {
+                "name": "build.sh",
+                "state": "modified"
+              },
+              {
+                "name": "generated/api.js",
+                "state": "same"
+              },
+              {
+                "name": "logo.png",
+                "state": "same"
+              },
+              {
+                "name": "setup.bat",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "17dca88",
+            "message": "Add build scripts",
+            "parents": [],
+            "files": [
+              {
+                "name": "build.sh",
+                "state": "added"
+              },
+              {
+                "name": "generated/api.js",
+                "state": "added"
+              },
+              {
+                "name": "logo.png",
+                "state": "added"
+              },
+              {
+                "name": "setup.bat",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "9a339aa"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "9a339aa"
+        }
+      }
+    },
+    "linguist": {
+      "areas": {
+        "work": [
+          {
+            "name": ".gitattributes",
+            "state": "modified"
+          },
+          {
+            "name": "build.sh",
+            "state": "clean"
+          },
+          {
+            "name": "generated/api.js",
+            "state": "clean"
+          },
+          {
+            "name": "logo.png",
+            "state": "modified"
+          },
+          {
+            "name": "setup.bat",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": ".gitattributes",
+            "state": "clean"
+          },
+          {
+            "name": "build.sh",
+            "state": "clean"
+          },
+          {
+            "name": "generated/api.js",
+            "state": "clean"
+          },
+          {
+            "name": "logo.png",
+            "state": "clean"
+          },
+          {
+            "name": "setup.bat",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "9a339aa",
+            "message": "Normalize line endings"
+          },
+          "count": 2,
+          "files": [
+            ".gitattributes",
+            "build.sh",
+            "generated/api.js",
+            "logo.png",
+            "setup.bat"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "9a339aa",
+            "message": "Normalize line endings",
+            "parents": [
+              "17dca88"
+            ],
+            "files": [
+              {
+                "name": ".gitattributes",
+                "state": "added"
+              },
+              {
+                "name": "build.sh",
+                "state": "modified"
+              },
+              {
+                "name": "generated/api.js",
+                "state": "same"
+              },
+              {
+                "name": "logo.png",
+                "state": "same"
+              },
+              {
+                "name": "setup.bat",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "17dca88",
+            "message": "Add build scripts",
+            "parents": [],
+            "files": [
+              {
+                "name": "build.sh",
+                "state": "added"
+              },
+              {
+                "name": "generated/api.js",
+                "state": "added"
+              },
+              {
+                "name": "logo.png",
+                "state": "added"
+              },
+              {
+                "name": "setup.bat",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "9a339aa"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "9a339aa"
+        }
+      }
+    }
+  }
+}

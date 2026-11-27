@@ -1,0 +1,10 @@
+rules:
+  - "`post-checkout` `git switch` və `git checkout` faylları yerinə yazandan sonra işləyir; `git clone` da onu işə salır."
+  - "Hook üç arqument alır: `$1` əvvəlki HEAD-in commit-i, `$2` yeni HEAD-in commit-i, `$3` bayraq."
+  - "Bayraq `1` branch keçidi, `0` isə fayl bərpasıdır (`git restore`, `git checkout -- <fayl>`)."
+  - "İlk iki arqument eyni ola bilər: `git switch -c` yeni branch-ı eyni commit-dən başladır."
+  - "Hook-un çıxış kodu keçidi geri qaytarmır, sadəcə `git switch`-in çıxış kodu olur."
+practices:
+  - "Keçiddən sonra lazım olan işi xatırlatmaq üçün `git diff --quiet \"$1\" \"$2\" -- <fayl>` ilə faylın dəyişib-dəyişmədiyini yoxlayın."
+  - "Hook-un işini `[ \"$3\" = 1 ]` ilə branch keçidləri ilə məhdudlaşdırın."
+  - "Xatırlatma hook-unu `0` ilə bitirin ki, `git switch` uğursuz görünməsin."

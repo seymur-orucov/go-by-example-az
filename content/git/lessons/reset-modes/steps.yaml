@@ -1,0 +1,40 @@
+# Hand-written visuals (text lesson).
+same-start:
+  vis:
+    kind: flow
+    caption: "git reset HEAD~1: hansı sahələr dəyişir"
+    items:
+      - { label: "`--soft`", sub: "1 sahə: branch" }
+      - { label: "`--mixed` (default)", sub: "2 sahə: branch, staging area" }
+      - { label: "`--hard`", sub: "3 sahə: branch, staging area, working directory", tone: bad }
+    note: "Dəyişməyən sahələr reset-dən əvvəlki kimi qalır."
+data-loss:
+  vis:
+    kind: compare
+    caption: "git reset HEAD~1: --mixed və --hard"
+    a: { title: "`--mixed`", sub: "default" }
+    b: { title: "`--hard`", sub: "hər şey commit-ə qayıdır" }
+    rows:
+      - aspect: "Branch"
+        a: "Bir commit geri"
+        b: "Bir commit geri"
+      - aspect: "Staging area"
+        a: "Commit-dəki kimi olur"
+        b: "Commit-dəki kimi olur"
+      - aspect: "Working directory"
+        a: "Toxunulmur"
+        b: "Commit-dəki kimi olur"
+      - aspect: "Geri alınan dəyişikliklər"
+        a: "Diskdə, stage edilməmiş"
+        b: "Diskdən silinir"
+      - aspect: "`git status`"
+        a: "`Changes not staged for commit`, `Untracked files`"
+        b: "`nothing to commit, working tree clean`"
+      - aspect: "Commit olunmamış iş"
+        a: "Qalır"
+        b: "İtir"
+        better: a
+      - aspect: "Nə vaxt"
+        a: "Commit-i yenidən yığmaq"
+        b: "Dəyişiklikləri tamamilə atmaq"
+    note: "`--soft` staging area-ya da toxunmur: dəyişikliklər `Changes to be committed` bölməsində qalır."

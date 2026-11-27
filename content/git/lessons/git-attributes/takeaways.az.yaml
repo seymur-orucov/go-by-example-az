@@ -1,0 +1,11 @@
+rules:
+  - "`.gitattributes` commit olunur və qaydaları hamıya verir; `core.autocrlf` isə hər kəsin öz kompüterindəki ayardır."
+  - "`* text=auto` mətn fayllarını repository-də LF ilə saxlayır; `eol=lf` və `eol=crlf` diskdəki sətir sonlarını hər sistemdə sabitləyir."
+  - "Yeni qaydalar commit olunmuş fayllara özü tətbiq olunmur: `git add --renormalize .` onları yenidən stage edir."
+  - "`git ls-files --eol` hər fayl üçün staging area (`i/`), disk (`w/`) və qaydanı (`attr/`) göstərir."
+  - "`binary` = `-diff -merge -text`: sətir sonlarına toxunulmur, `git diff` yalnız `Binary files ... differ` yazır, merge konflikt verir."
+  - "`linguist-generated` və `linguist-vendored` Git-ə yox, GitHub-a aiddir: diff-də gizlətmə və dil statistikası."
+practices:
+  - "Shell skriptlərinə `eol=lf`, `.bat` fayllarına `eol=crlf` yazın ki, onlar hər sistemdə işləsin."
+  - "Şəkillər kimi binary faylları `binary` ilə açıq qeyd edin, Git-in təxmininə buraxmayın."
+  - "Fayl gözlənildiyi kimi davranmayanda `git check-attr -a <fayl>` ilə hansı qaydanın işlədiyinə baxın."

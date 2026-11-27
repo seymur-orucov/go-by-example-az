@@ -1,0 +1,68 @@
+$ git submodule add ~/server/ui-kit.git ui-kit
+Cloning into '/home/sam/brand-site/ui-kit'...
+done.
+$ git status
+On branch main
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	new file:   .gitmodules
+	new file:   ui-kit
+
+$ cat .gitmodules
+[submodule "ui-kit"]
+	path = ui-kit
+	url = /home/sam/server/ui-kit.git
+$ git commit -m "Add ui-kit submodule"
+[main 52891c3] Add ui-kit submodule
+ 2 files changed, 4 insertions(+)
+ create mode 100644 .gitmodules
+ create mode 160000 ui-kit
+$ git ls-tree HEAD
+100644 blob c5982d0687e05e208093d123017d162f1af613e4	.gitmodules
+100644 blob 8108685183beb90e8fc726f6f2cb715f955d7aa6	index.html
+160000 commit 779a71625ea5c1c670baf914b90ff7e557d65f36	ui-kit
+$ cd ui-kit
+$ git log --oneline
+779a716 Add card styles
+f0ac833 Add button styles
+$ cd ..
+$ cd ui-kit
+$ echo ".badge { font-size: 12px; }" > badge.css
+$ git add badge.css
+$ git commit -m "Add badge styles"
+[main 110aae5] Add badge styles
+ 1 file changed, 1 insertion(+)
+ create mode 100644 badge.css
+$ git push
+To /home/sam/server/ui-kit.git
+   779a716..110aae5  main -> main
+$ cd ..
+$ git status
+On branch main
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ui-kit (new commits)
+
+no changes added to commit (use "git add" and/or "git commit -a")
+$ git diff
+diff --git a/ui-kit b/ui-kit
+index 779a716..110aae5 160000
+--- a/ui-kit
++++ b/ui-kit
+@@ -1 +1 @@
+-Subproject commit 779a71625ea5c1c670baf914b90ff7e557d65f36
++Subproject commit 110aae5281ede60ff66d799beec2509299fbf7eb
+$ git diff --submodule
+Submodule ui-kit 779a716..110aae5:
+  > Add badge styles
+$ git add ui-kit
+$ git commit -m "Use badge styles from ui-kit"
+[main 39b5647] Use badge styles from ui-kit
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+$ git ls-tree HEAD ui-kit
+160000 commit 110aae5281ede60ff66d799beec2509299fbf7eb	ui-kit
+$ git ls-tree -r --name-only HEAD
+.gitmodules
+index.html
+ui-kit

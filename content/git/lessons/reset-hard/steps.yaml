@@ -1,0 +1,11 @@
+# The visuals are recorded from the real repository by `pnpm content:run`.
+uncommitted:
+  vis: areas
+reset:
+  vis: areas
+experiment:
+  vis: graph
+drop-commit:
+  vis: graph
+match-server:
+  vis: graph

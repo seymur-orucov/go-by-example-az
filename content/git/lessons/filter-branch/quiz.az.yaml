@@ -1,0 +1,61 @@
+- question: "`secret.txt` bir commit əvvəl əlavə olunub. Bu komandalardan sonra nə çap olunur?"
+  code: |
+    git rm -q secret.txt
+    git commit -q -m "Remove secret"
+    git log --oneline -- secret.txt
+  options:
+    - "Heç nə: fayl artıq yoxdur"
+    - "Bir sətir: yalnız `Remove secret`"
+    - "İki sətir: əlavə edən və silən commit"
+  answer: 2
+  explain: "`git log -- <fayl>` faylı dəyişən commit-ləri göstərir. Fayl silinsə də, onu əlavə edən commit tarixçədə qalır."
+- question: "`HEAD~1`-də `secret.txt` var, `HEAD` isə onu silən commit-dir. `git show HEAD~1:secret.txt` nə çap edir?"
+  options:
+    - "Faylın `HEAD~1`-dəki məzmununu"
+    - "`fatal: path 'secret.txt' does not exist in 'HEAD~1'`"
+    - "`HEAD~1` commit-inin diff-ini"
+  answer: 0
+  explain: "`<commit>:<fayl>` faylı həmin commit-dəki halı ilə çap edir. Xəta yalnız `HEAD:secret.txt` üçün olardı."
+- question: "API açarı olan commit GitHub-a push olunub. Birinci nə etmək lazımdır?"
+  options:
+    - "`git filter-branch` ilə tarixçəni təmizləmək"
+    - "Xidmətdə açarı ləğv edib yenisini yaratmaq"
+    - "Açarlı faylı `.gitignore`-a əlavə etmək"
+    - "Faylı silib yeni commit-i push etmək"
+  answer: 1
+  explain: "Push olunan açar ələ keçmiş sayılır: kimsə onu artıq clone edə bilib. Tarixçəni təmizləmək bu nüsxələrə toxunmur."
+- question: "`Remove secret` commit-i yalnız `secret.txt`-i silib. filter-branch `--prune-empty` olmadan bu faylı tarixçədən çıxarsa, bu commit-ə nə olur?"
+  options:
+    - "Tarixçədən avtomatik çıxır"
+    - "filter-branch xəta verib dayanır"
+    - "Boş commit kimi tarixçədə qalır"
+  answer: 2
+  explain: "Boş qalan commit-ləri yalnız `--prune-empty` atır. Onsuz `Remove secret` heç nəyi dəyişməyən commit kimi qalır."
+- question: "filter-branch-dan sonra `git log --oneline -- config.env` boşdur, `git log --oneline --all -- config.env` isə köhnə commit-ləri göstərir. Niyə?"
+  options:
+    - "`refs/original/` altındakı ehtiyat ref köhnə tarixçəni saxlayır"
+    - "`--index-filter` faylı yalnız son commit-dən silib"
+    - "`--all` silinmiş faylları da diskdən oxuyur"
+  answer: 0
+  explain: "filter-branch hər yenidən yazılan branch-ın köhnə ucunu `refs/original/`-da saxlayır, `--all` isə bu ref-i də oxuyur."
+- question: "Tarixçə `A → B → C`-dir. `secret.txt` `B`-də əlavə olunub, `B` başqa faylı da dəyişib. filter-branch `secret.txt`-i silsə, hansı commit-lərin hash-i dəyişir?"
+  options:
+    - "Yalnız `B`-nin"
+    - "`B`-nin və `C`-nin"
+    - "Hər üçünün"
+  answer: 1
+  explain: "`A`-da fayl yox idi, onun hash-i eyni qalır. `B`-nin snapshot-u dəyişir, `C`-nin isə parent-i dəyişir."
+- question: "Tarixçə yenidən yazılıb force push olunub. Ayla köhnə clone-unda `git pull --no-rebase` və `git push` edir. Nə olur?"
+  options:
+    - "Köhnə commit-lər açarla birlikdə serverə qayıdır"
+    - "Git push-u rədd edir, çünki tarixçə dəyişib"
+    - "Ayla-nın clone-u yeni tarixçəyə özü keçir"
+  answer: 0
+  explain: "Pull köhnə və yeni tarixçəni merge edir, push isə hamısını serverə göndərir. Ona görə hər kəs yenidən clone etməlidir."
+- question: "`git filter-repo --path config.env --invert-paths` nə edir?"
+  options:
+    - "Yalnız `config.env`-i saxlayır, qalan faylları silir"
+    - "`config.env`-i yalnız ən son commit-dən silir"
+    - "`config.env`-i bütün commit-lərdən silir"
+  answer: 2
+  explain: "`--path` faylı seçir, `--invert-paths` seçimi tərsinə çevirir: bu fayldan başqa hər şey saxlanılır."

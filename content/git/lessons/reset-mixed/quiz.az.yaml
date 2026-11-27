@@ -1,0 +1,67 @@
+- question: "`git reset HEAD~1` yazdınız və rejim göstərmədiniz. Git hansı rejimi işlədir?"
+  options:
+    - "`--soft`"
+    - "`--mixed`"
+    - "`--hard`"
+  answer: 1
+  explain: "`--mixed` standart rejimdir: `git reset HEAD~1` və `git reset --mixed HEAD~1` eyni komandadır."
+- question: "Repository-də iki commit var, ikincisi `notes.txt`-ə sətir əlavə edib. Bu komandalardan sonra nə çap olunur?"
+  code: |
+    git reset -q HEAD~1
+    git status --short
+  options:
+    - "`M  notes.txt`"
+    - "`?? notes.txt`"
+    - "Heç nə"
+    - "` M notes.txt`"
+  answer: 3
+  explain: "Staging area birinci commit-ə qayıtdı, disk isə dəyişmədi. Fərq working directory ilə staging area arasındadır, ona görə `M` sağ sütundadır. (`-q` `Unstaged changes after reset:` siyahısını gizlədir.)"
+- question: "`git reset --soft HEAD~1` əvəzinə `git reset HEAD~1` yazsanız, nə fərqli olar?"
+  options:
+    - "Dəyişikliklər stage olunmamış qalar, commit üçün yenidən `git add` lazımdır"
+    - "Dəyişikliklər diskdən silinər, fayllar əvvəlki commit-dəki kimi olar"
+    - "Branch yerində qalar, yalnız staging area əvvəlki commit-ə qayıdar"
+  answer: 0
+  explain: "Hər iki rejim branch-ı geri çəkir və faylları saxlayır. `--mixed` staging area-nı da geri qaytarır, `--soft` isə ona toxunmur."
+- question: "`main` branch-ındasınız. `tasks.txt`-i dəyişib stage etdiniz, sonra `git reset tasks.txt` yazdınız. `main` indi hansı commit-i göstərir?"
+  options:
+    - "Son commit-dən bir əvvəlkini"
+    - "Heç birini: HEAD detached olur"
+    - "Əvvəlki kimi son commit-i"
+  answer: 2
+  explain: "Fayl adı olan forma yalnız staging area-nı dəyişir: faylı unstage edir, branch isə yerində qalır."
+- question: "Hansı komanda `git reset feeding.txt` ilə eyni işi görür?"
+  options:
+    - "`git restore feeding.txt`"
+    - "`git restore --staged feeding.txt`"
+    - "`git reset --soft feeding.txt`"
+  answer: 1
+  explain: "Hər ikisi faylın staging area-dakı versiyasını `HEAD`-dəkinə qaytarır. `git restore feeding.txt` isə diskdəki dəyişikliyi atır."
+- question: "`git reset HEAD~1`-dən sonra çıxışda `M	water.log` sətri var. Bu nə deməkdir?"
+  options:
+    - "`water.log` reset zamanı diskdən silinib, yalnız commit-də qalıb"
+    - "`water.log` staging area-dadır və növbəti commit-ə düşəcək"
+    - "`water.log`-un diskdəki versiyası staging area-dakından fərqlidir"
+  answer: 2
+  explain: "`Unstaged changes after reset:` stage olunmamış dəyişiklikləri sadalayır; `M` faylın dəyişdiyini bildirir."
+- question: "Son commit-də `menu.txt` və `prices.txt`-dəki iki ayrı dəyişiklik var. Onları iki commit-ə necə bölmək olar?"
+  options:
+    - "`git reset prices.txt`, sonra hər faylı ayrıca `git add` və `git commit`"
+    - "`git commit --amend`, sonra hər faylı ayrıca `git add` və `git commit`"
+    - "`git reset HEAD~1`, sonra hər faylı ayrıca `git add` və `git commit`"
+  answer: 2
+  explain: "`git reset HEAD~1` commit-i ləğv edir və dəyişiklikləri diskdə saxlayır. `git reset prices.txt` commit-ə toxunmur: staging area onsuz da son commit ilə eynidir."
+- question: "`git reset HEAD~1`-dən sonra `git status` `water.log`-u `Changes not staged for commit` altında göstərir. `git restore water.log` nə edir?"
+  options:
+    - "Faylı yenidən stage edir"
+    - "Diskdəki dəyişikliyi atır, fayl `HEAD`-dəki kimi olur"
+    - "Ləğv olunmuş commit-i branch-a qaytarır"
+  answer: 1
+  explain: "`git restore` working directory-ni staging area-ya uyğunlaşdırır; staging area isə reset-dən sonra `HEAD` ilə eynidir."
+- question: "İki fayl stage olunub. Arqumentsiz `git reset` nə edir?"
+  options:
+    - "Hər iki faylı unstage edir, branch yerində qalır"
+    - "Son commit-i ləğv edir, fayllar stage olunmamış qalır"
+    - "Heç nə: commit göstərilmədiyi üçün xəta verir"
+  answer: 0
+  explain: "Commit yazılmayanda Git `HEAD` götürür. Branch `HEAD`-də qalır, staging area isə `HEAD`-ə qaytarılır."

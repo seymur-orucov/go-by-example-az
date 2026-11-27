@@ -1,0 +1,43 @@
+$ cat -A build.sh
+#!/bin/sh^M$
+echo "Building..."^M$
+$ git ls-files --eol
+i/crlf  w/crlf  attr/                 	build.sh
+i/lf    w/lf    attr/                 	generated/api.js
+i/-text w/-text attr/                 	logo.png
+i/crlf  w/crlf  attr/                 	setup.bat
+$ cat .gitattributes
+* text=auto
+*.sh text eol=lf
+*.bat text eol=crlf
+$ git add --renormalize .
+$ git ls-files --eol
+i/lf    w/lf    attr/text=auto        	.gitattributes
+i/lf    w/crlf  attr/text eol=lf      	build.sh
+i/lf    w/lf    attr/text=auto        	generated/api.js
+i/-text w/-text attr/text=auto        	logo.png
+i/lf    w/crlf  attr/text eol=crlf    	setup.bat
+$ git commit -q -m "Normalize line endings"
+$ rm build.sh
+$ git restore build.sh
+$ cat -A build.sh
+#!/bin/sh$
+echo "Building..."$
+$ git ls-files --eol build.sh
+i/lf    w/lf    attr/text eol=lf      	build.sh
+$ echo '*.png binary' >> .gitattributes
+$ git check-attr -a logo.png
+logo.png: binary: set
+logo.png: diff: unset
+logo.png: merge: unset
+logo.png: text: unset
+$ git diff logo.png
+diff --git a/logo.png b/logo.png
+index bccac03..46b8f05 100644
+Binary files a/logo.png and b/logo.png differ
+$ echo 'generated/** linguist-generated' >> .gitattributes
+$ git check-attr -a build.sh generated/api.js
+build.sh: text: set
+build.sh: eol: lf
+generated/api.js: text: auto
+generated/api.js: linguist-generated: set

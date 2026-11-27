@@ -1,0 +1,11 @@
+# The visuals are recorded from the real repository by `pnpm content:run`.
+stash:
+  vis: areas
+fix:
+  vis: graph
+pop:
+  vis: areas
+untracked:
+  vis: areas
+apply:
+  vis: areas

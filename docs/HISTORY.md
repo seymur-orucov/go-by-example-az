@@ -689,3 +689,71 @@ Done (branch `feat/git-tags-lessons`):
 - `pushing-tags` (`terminal`, a browser extension): `git push` does not send tags, `git push origin <tag>`, `--follow-tags` vs `--tags`, `push.followTags`, deleting a server tag, teammates get tags with `git fetch`.
 - `checkout-tags` (`terminal`, a printable calendar generator): `git switch <tag>` refuses, `--detach`, a hotfix branch from a tag (`git switch -c hotfix/1.1.1 v1.1`), a new patch tag.
 - The reviewer explained the two- and three-part version names, removed a repeated explanation of annotated tag objects, fixed spellings ("serverdə", "Sam-ın", "merge-i") and a giveaway quiz option.
+
+### 78. Git module 8 "Səhvləri düzəltmək"
+Same process. From here on the remaining modules are collected on one branch (`feat/git-remaining-lessons`, one commit per module) and pushed as one PR: the user asked for fewer PRs because every push builds a Cloudflare Pages preview.
+
+Done:
+- `restore` (`terminal`, a holiday gift list): `git restore` from the staging area, `--staged`, both together, `--source=HEAD~2`, a deleted file, `checkout --` as the old form.
+- `amend` (`state`, a yoga class schedule): fixing the message, adding a forgotten file with `--no-edit`, a new commit with a new hash, an amended pushed commit and the rejected push.
+- `git-revert` (`state`, a car rental price table): `Revert "…"`, safe on pushed history, reverting an older commit, `--no-commit` over a range, a merge needs `-m 1`, `Reapply` (Git 2.43+).
+- `reset-soft`, `reset-mixed`, `reset-hard` (`state`; a translator's glossary, an aquarium log, a wedding playlist): what each mode changes and prints, squashing with `--soft`, re-splitting a commit and `git reset <file>` with `--mixed`, lost uncommitted work and `reset --hard origin/main` with `--hard`.
+- `reset-modes` (`compare`, a thesis repository): the three modes side by side, `git status` after each, a decision guide.
+- `revert-vs-reset` (`compare`, a team's to-do app): "has anyone else got this commit?", the `non-fast-forward` rejection after resetting a pushed commit, revert for shared history and reset for local.
+- The reviewer aligned the reflog mention and the rejected-push explanation across lessons, fixed a wrong quiz explanation in `reset-modes`, added a missing command to a quiz question and replaced five near-duplicate questions.
+
+### 79. Git module 9 "Tarixçəni yenidən yazmaq" (without `force-push`)
+Same process; `force-push` is a `diagram` lesson and waits for the diagram pilot's approval.
+
+Done:
+- `rebase` (`state`, museum audio guide): replayed commits with new hashes, `Successfully rebased …`, a rebase conflict (sides swapped compared with merge), `--continue` / `--abort`, then a fast-forward.
+- `merge-vs-rebase` (`compare`, news website): merging `main` in vs rebasing onto it, the golden rule (defined here, quoted from Pro Git), duplicated commits when it is broken, `git pull --rebase` for local commits.
+- `linear-vs-non-linear` (`compare`, an open-source date library): the shape of `main` after each merge method, bisect/revert vs context, GitHub's merge settings and "Require linear history".
+- `interactive-rebase` (`terminal`, dance choreography notes): the todo list, `fixup`, `drop`, `reword`, `squash`, `--fixup` + `--autosquash`; the editor is scripted with a hidden `sequence.editor` and the text says what a person types.
+- `cherry-pick` (`state`, sports club site): copying a fix to `release/1.0`, new hash with the same author, `-x`, a range, a conflict and `--abort`.
+- `filter-branch` (`terminal`, smart-home scripts with a leaked key): deleting is not enough, rotate the key first, `git filter-branch --index-filter`, `refs/original/`, `git filter-repo` (shown, not run), everyone re-clones.
+- Runner fix (in this branch): recorded output keeps only the text after the last carriage return, as a terminal shows it (Git's `Rebasing (1/2)` progress).
+- Levels: these lessons are `intermediate` (the site shows "orta"); modules 1–8 stay `beginner`.
+
+### 80. Git module 10 "Komanda işi" (without `pull-requests`)
+Same process; `pull-requests` is a `diagram` lesson and waits for the diagram pilot's approval.
+
+Done:
+- `fork-vs-clone` (`compare`, an Azerbaijani translation for an open-source notes app): fork is GitHub's copy under your account, clone is Git's copy on your computer; `origin` = the fork, `upstream` = the original; syncing with `fetch upstream` or the "Sync fork" button.
+- `branching-workflows` (`compare`, a web startup vs a versioned mobile app): GitHub flow, trunk-based development, git flow (with Driessen's 2020 note), the cost of long-lived branches.
+- `clean-git-history` (`terminal`, a market stall's stock list): atomic commits, `--fixup` while working, `git fetch` and `git rebase -i --autosquash origin/main` before the PR.
+
+### 81. Git module 11 "Faydalı alətlər"
+Same process.
+
+Done:
+- `stash` (`state`, a school timetable): `git stash`, switching away and back, `pop` vs `apply`/`drop`, `-u` for untracked files, `-m` names, `pop --index`.
+- `reflog` (`state`, a short-story manuscript): reading `HEAD@{n}` lines, recovering commits after `reset --hard`, a deleted branch, undoing a rebase with `<branch>@{1}`; local only, 90/30-day expiry.
+- `bisect` (`terminal`, a temperature converter): binary search between `v1.0` and a bad `HEAD`, `good`/`bad`, `is the first 'bad' commit`, `bisect reset`, `bisect run` with an exit-code test.
+- `worktree` (`terminal`, a coffee subscription site): `git worktree add -b`, one `.git` for both folders, a branch open in one worktree only, `remove` and `prune`.
+- The reviewer set the level of modules 10–11 to `intermediate`, added the rebase recovery the earlier lessons promised to `reflog`, fixed the search counts in `bisect` and replaced near-duplicate quiz questions.
+
+### 82. Git module 12 "Git hooks"
+Same process.
+
+Done:
+- `hooks` (`concept`, a bike rental team): what a hook is, the order inside a commit, `.git/hooks` and `.sample`, executable bit and shebang (Windows needs `#!`), exit codes, hooks are not cloned, `core.hooksPath` and hook managers (this site: lefthook + commitlint).
+- `client-vs-server-hooks` (`compare`, a company Git server): client hooks give fast feedback and can be skipped, `pre-receive`/`update`/`post-receive` enforce rules for everyone, GitHub.com uses rulesets, status checks and webhooks instead.
+- `hook-pre-commit` (`terminal`, a notes site): block added `TODO` lines in the staged diff, the hook reads the staging area, `--no-verify`.
+- `hook-commit-msg` (`terminal`, a CLI tool): the message file argument, a Conventional Commits check with `grep -E`, commitlint.
+- `hook-pre-push` (`terminal`, a lamp landing page): the stdin ref lines (all-zero hash for a new branch), running a check before push, blocking direct pushes to `main`.
+- `hook-post-checkout` (`terminal`, a shop API): previous HEAD, new HEAD and the flag (`git restore` runs it with 0), a dependency reminder, the exit status does not undo the switch.
+- `hook-post-update` (`terminal`, a static site on a bare server): server hooks in the bare repository, a `post-receive` deploy with `--work-tree`, `post-update` arguments and `update-server-info`, a `pre-receive` rejection.
+- The reviewer removed a fenced code block and an id-less outro heading that the text-lesson renderer would show unstyled, made each fact taught once with back-references, fixed the clone note in `hook-post-checkout` and replaced near-duplicate quiz questions.
+
+### 83. Git module 13 "Dərinlik"
+Same process. With this module every node of part 1 ("Hissə 1 · Git") is written except the three `diagram` nodes (`remotes-and-clone` is the pilot on `feat/diagram-kind`; `force-push` and `pull-requests` wait for its approval).
+
+Done:
+- `git-objects` (`state`, a haiku collection): porcelain vs plumbing, the object types in `.git/objects`, `git hash-object`, `--batch-all-objects`, following HEAD → ref → commit → tree → blob, what a new commit adds.
+- `git-attributes` (`terminal`, cross-platform build scripts): CRLF in the repository, `text=auto` / `eol=lf` / `eol=crlf`, `--renormalize`, `git ls-files --eol`, `binary`, `linguist-generated`, `merge=ours`.
+- `git-lfs` (`terminal`, a game prototype's textures): why big blobs hurt, `git lfs install` / `track`, pointer files, `.git/lfs/objects`, push and clone (LFS works against a local bare repository).
+- `submodules` (`state`, a brand site with a UI kit): `git submodule add`, `.gitmodules`, the `160000 commit` gitlink, a moved submodule, `protocol.file.allow` (Git 2.38.1) explained once, submodule vs subtree.
+- `submodules-update` (`terminal`, a docs site with a theme): an empty folder after a plain clone, `update --init`, `--recurse-submodules`, `update --remote`, teammates after `git pull`.
+- `git-patch` (`terminal`, an email-patch library): `git diff > file` + `git apply`, `format-patch`, `git am` keeping the author.
+- Determinism fixes in the sessions: `.gitmodules` URLs rewritten to `/home/sam/...` (or relative) in hidden commands, a fixed `openssl` stream for the fake texture, single `git config` reads instead of `--get-regexp`.

@@ -1,0 +1,56 @@
+- question: "İş qovluğunda iki ayrı iş var: `menu.txt`-də yeni qiymətlər və `stock.csv`-də sayın düzəlişi. Hansı yol iki atomik commit verir?"
+  options:
+    - "`git add .`, sonra iki işi adlandıran bir commit"
+    - "`git add menu.txt` və commit, sonra `git add stock.csv` və commit"
+    - "`git add menu.txt stock.csv`, sonra iki `-m` ilə bir commit"
+  answer: 1
+  explain: "Hər commit-ə yalnız bir işin faylı düşür. Qalan iki yol hər iki dəyişikliyi bir commit-ə yazır."
+- question: "PR-da bu üç commit-dən hansı atomikdir?"
+  options:
+    - "`Update files`: qış qiymətləri və `jam`-in sayı birlikdə"
+    - "`wip`: yarımçıq lövhə və bir qiymətin dəyişməsi"
+    - "`Add winter prices`: yalnız `scarf` və `mittens` qiymətləri"
+  answer: 2
+  explain: "Atomik commit bir məntiqi dəyişiklikdir. Rəyçi onu ayrıca oxuyur, lazım olsa, `git revert` yalnız onu geri alır."
+- question: "Branch-da `main`-in üstündə üç commit var: `Add tea prices`, `Add tea to stock` və `fixup! Add tea prices`. `git rebase -i --autosquash main` siyahını açır, siz onu dəyişmədən bağlayırsınız. Sonra `git log --oneline main..HEAD` neçə sətir göstərir?"
+  options:
+    - "3"
+    - "1"
+    - "2"
+  answer: 2
+  explain: "`--autosquash` siyahını özü hazırlayır: düzəliş `Add tea prices`-ə qatılır. `Add tea prices` və `Add tea to stock` qalır."
+- question: "Branch-ın ilk commit-i `wip`-dir. İçindəki `sign.txt` lazımdır, mesajı isə heç nə demir. PR-dan əvvəlki rebase siyahısında bu sətirdə nə yazırsınız?"
+  options:
+    - "`reword`: dəyişiklik qalır, mesajı yenidən yazırsınız"
+    - "`drop`: commit və mesajı birlikdə gedir"
+    - "`fixup`: commit üstündəki sətrə qatılır"
+  answer: 0
+  explain: "`drop` `sign.txt`-i də silərdi. `fixup` commit-i yuxarıdakı sətrə qatır, ilk sətrin isə yuxarısında heç nə yoxdur."
+- question: "PR-dan əvvəl `git rebase -i --autosquash origin/main`-dən öncə niyə `git fetch` edirsiniz?"
+  options:
+    - "Lokal `main` serverdəki `main`-ə çatsın deyə"
+    - "`origin/main` serverdəki son vəziyyəti göstərsin deyə"
+    - "Branch serverə göndərilsin və PR açılsın deyə"
+  answer: 1
+  explain: "`git fetch` yalnız remote-tracking branch-ları yeniləyir, lokal `main` yerində qalır. Rebase branch-ı yenilənmiş `origin/main`-in üstünə köçürür."
+- question: "PR-dan əvvəl `git log --oneline origin/main..HEAD` nəyi göstərir?"
+  options:
+    - "PR-ın gətirəcəyi commit-ləri: branch-da var, `origin/main`-də yox"
+    - "Başqalarının yeni commit-lərini: `origin/main`-də var, branch-da yox"
+    - "Ortaq commit-ləri: həm branch-da, həm `origin/main`-də olanları"
+  answer: 0
+  explain: "`A..B` \"B-də var, A-da yox\" deməkdir. Burada B branch-ın özüdür."
+- question: "`fixup!` commit-lərini qatmaq və mesajları düzəltmək üçün rebase-i nə vaxt etmək düzgündür?"
+  options:
+    - "Hər yeni commit-dən dərhal sonra"
+    - "PR `main`-ə merge olunandan sonra"
+    - "Branch-ı push edib PR açmazdan əvvəl"
+  answer: 2
+  explain: "Rebase commit-ləri yenidən yazır. Push-dan əvvəl commit-lər yalnız sizdədir, qızıl qayda pozulmur."
+- question: "Səhv `Add winter prices` commit-indədir, ondan sonra isə `Fix jam count in stock` commit olunub. Düzəlişi stage edib `git commit --amend` yazsanız, nə olur?"
+  options:
+    - "Düzəliş `Add winter prices` commit-inə düşür"
+    - "Düzəliş `Fix jam count in stock` commit-inə düşür"
+    - "Git `fixup!` mesajlı yeni commit yaradır"
+  answer: 1
+  explain: "`--amend` həmişə son commit-i dəyişir. Köhnə commit-ə düzəliş üçün `--fixup` və `--autosquash` lazımdır."

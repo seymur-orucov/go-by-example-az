@@ -1,0 +1,60 @@
+$ cd ~/old-art
+$ git log --oneline --stat
+128b46f Darken the grass
+ textures/grass.psd | Bin 300000 -> 300000 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+a022504 Add the grass texture
+ textures/grass.psd | Bin 0 -> 300000 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+$ git count-objects -H
+8 objects, 586.65 KiB
+$ cd ~/game-art
+$ git lfs install
+Updated Git hooks.
+Git LFS initialized.
+$ git config --global filter.lfs.clean
+git-lfs clean -- %f
+$ git config --global filter.lfs.smudge
+git-lfs smudge -- %f
+$ git lfs track "*.psd"
+Tracking "*.psd"
+$ cat .gitattributes
+*.psd filter=lfs diff=lfs merge=lfs -text
+$ git add .
+$ git commit -m "Add the grass texture"
+[main (root-commit) abc75ab] Add the grass texture
+ 3 files changed, 5 insertions(+)
+ create mode 100644 .gitattributes
+ create mode 100644 README.md
+ create mode 100644 textures/grass.psd
+$ git show HEAD:textures/grass.psd
+version https://git-lfs.github.com/spec/v1
+oid sha256:5bd9a6ec84efcd77017d87125276a0d98e3eb23b1a796d982c9adbf92543226a
+size 300000
+$ wc -c textures/grass.psd
+300000 textures/grass.psd
+$ find .git/lfs/objects -type f
+.git/lfs/objects/5b/d9/5bd9a6ec84efcd77017d87125276a0d98e3eb23b1a796d982c9adbf92543226a
+$ git lfs ls-files
+5bd9a6ec84 * textures/grass.psd
+$ git commit -am "Darken the grass"
+[main 2493ea2] Darken the grass
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+$ find .git/lfs/objects -type f
+.git/lfs/objects/37/b8/37b8c626c3d5796afb3adb6223d8ea9e73febde2d40a2b00d61e1abf3e6cc18c
+.git/lfs/objects/5b/d9/5bd9a6ec84efcd77017d87125276a0d98e3eb23b1a796d982c9adbf92543226a
+$ git count-objects -H
+10 objects, 997 bytes
+$ git push -u origin main
+To /home/sam/server/game-art.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
+$ find ../server/game-art.git/lfs/objects -type f
+../server/game-art.git/lfs/objects/37/b8/37b8c626c3d5796afb3adb6223d8ea9e73febde2d40a2b00d61e1abf3e6cc18c
+../server/game-art.git/lfs/objects/5b/d9/5bd9a6ec84efcd77017d87125276a0d98e3eb23b1a796d982c9adbf92543226a
+$ git clone -q ~/server/game-art.git ~/ayla/game-art
+$ cd ~/ayla/game-art
+$ find .git/lfs/objects -type f
+.git/lfs/objects/37/b8/37b8c626c3d5796afb3adb6223d8ea9e73febde2d40a2b00d61e1abf3e6cc18c
+$ wc -c textures/grass.psd
+300000 textures/grass.psd

@@ -1,0 +1,9 @@
+rules:
+  - "Adi `git clone` submodule qovluğunu boş gətirir; `git submodule update --init` onu clone edib gitlink-dəki commit-ə keçirir."
+  - "`git clone --recurse-submodules` repository-ni submodule-ları ilə birlikdə bir komandada clone edir."
+  - "Submodule-da HEAD ayrılmış olur (`HEAD detached at`): Git onu branch-a yox, gitlink-dəki commit-ə keçirir."
+  - "`git submodule update --remote` submodule-u serverdəki branch-ın son commit-inə keçirir; yeni gitlink-i `git add` və commit ilə yazmaq lazımdır."
+  - "`git pull`-dan sonra `modified: docs-theme (new commits)` görsəniz, `git submodule update` edin, `git add` yox."
+practices:
+  - "Yeni gitlink-i commit etməzdən əvvəl `git diff --submodule` ilə hansı commit-lərin gəldiyinə baxın."
+  - "Submodule-lu repository-də `git config submodule.recurse true` qoyun ki, `git pull` submodule-u da yeniləsin."

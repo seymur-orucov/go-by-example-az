@@ -1,0 +1,11 @@
+rules:
+  - "Git böyük binary faylın hər versiyasını tam blob kimi saxlayır; hər clone isə bütün versiyaları yükləyir."
+  - "`git lfs install` hər istifadəçi üçün bir dəfə `~/.gitconfig`-ə `lfs` filter-ini yazır."
+  - "`git lfs track \"*.psd\"` `.gitattributes`-a `filter=lfs diff=lfs merge=lfs -text` sətrini əlavə edir."
+  - "Commit-də faylın yerinə üç sətirlik pointer olur: `version`, `oid sha256:` və `size`; real məzmun `.git/lfs/objects`-də və LFS serverindədir."
+  - "Clone Git tarixçəsini tam, LFS fayllarından isə yalnız checkout olunan versiyanı yükləyir."
+  - "GitHub-da push olunan hər LFS versiyası yaddaş limitinə tam sayılır, yükləmələr isə trafik limitinə."
+practices:
+  - "Böyük faylı ilk dəfə commit etməzdən əvvəl `git lfs track` işlədin: artıq commit olunmuş blob tarixçədə qalır."
+  - "`.gitattributes`-ı LFS faylları ilə birlikdə commit edin ki, qayda komandanın hər üzvündə işləsin."
+  - "Hansı faylların LFS-də olduğunu `git lfs ls-files` ilə yoxlayın."

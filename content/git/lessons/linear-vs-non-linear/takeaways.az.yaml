@@ -1,0 +1,10 @@
+rules:
+  - "Xətti tarixçədə `main`-in hər commit-inin bir parent-i var; onu fast-forward, rebase + fast-forward və squash merge verir."
+  - "Qeyri-xətti tarixçəni merge commit-lər yaradır; `git log --graph`-da branch-lar ayrıca budaq kimi görünür."
+  - "Xətti tarixçədə `git log --oneline` dəyişikliklərin siyahısıdır və hər commit `-m`-siz `git revert` ilə geri alınır."
+  - "Merge commit branch-ı və merge anını saxlayır; belə tarixçəyə `--graph` və ya `--first-parent` ilə baxırlar."
+  - "GitHub-ın **Require linear history** qaydası branch-da merge commit-i qadağan edir: pull request yalnız squash və ya rebase ilə merge olunur."
+practices:
+  - "Kiçik dəyişikliklər çox olan layihədə squash merge seçin: `main`-də hər commit bir dəyişiklik olur."
+  - "Uzun, paralel branch-lar varsa, merge commit-ləri saxlayın ki, işin necə birləşdiyi görünsün."
+  - "Seçimi GitHub ayarlarında qoyun: lazımsız merge üsullarını söndürün, lazım olsa **Require linear history**-ni açın."

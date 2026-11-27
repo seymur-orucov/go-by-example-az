@@ -1,0 +1,712 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir shop-api",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd shop-api",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf '%s\\n' 'curl' 'jq' > deps.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf '%s\\n' '#!/bin/sh' 'echo \"shop-api: port 8080\"' > app.sh",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add .",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Start the shop API\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q -c feat/payments",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo 'stripe-cli' >> deps.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo 'echo \"payments: on\"' >> app.sh",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add the payments module\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q -c fix/port main",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "sed -i 's/8080/8081/' app.sh",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Change the port\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q main",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf '%s\\n' '#!/bin/sh' 'echo \"post-checkout: $1 $2 $3\"' > .git/hooks/post-checkout",
+      "step": "arguments",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "chmod +x .git/hooks/post-checkout",
+      "step": "arguments",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch -v",
+      "step": "arguments",
+      "hidden": false,
+      "fail": false,
+      "out": "  feat/payments 542f6a7 Add the payments module\n  fix/port      9f37e6d Change the port\n* main          4b0b1db Start the shop API\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch feat/payments",
+      "step": "arguments",
+      "hidden": false,
+      "fail": false,
+      "out": "Switched to branch 'feat/payments'\npost-checkout: 4b0b1dbbb7c379d0515cff36482f54455f968fc5 542f6a7383f76b23efb0e6bcb35ed467a4fa9857 1\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch main",
+      "step": "arguments",
+      "hidden": false,
+      "fail": false,
+      "out": "Switched to branch 'main'\npost-checkout: 542f6a7383f76b23efb0e6bcb35ed467a4fa9857 4b0b1dbbb7c379d0515cff36482f54455f968fc5 1\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -c feat/refunds",
+      "step": "same-commit",
+      "hidden": false,
+      "fail": false,
+      "out": "Switched to a new branch 'feat/refunds'\npost-checkout: 4b0b1dbbb7c379d0515cff36482f54455f968fc5 4b0b1dbbb7c379d0515cff36482f54455f968fc5 1\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo 'echo \"debug\"' >> app.sh",
+      "step": "same-commit",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git restore app.sh",
+      "step": "same-commit",
+      "hidden": false,
+      "fail": false,
+      "out": "post-checkout: 4b0b1dbbb7c379d0515cff36482f54455f968fc5 4b0b1dbbb7c379d0515cff36482f54455f968fc5 0\n",
+      "exit": 0
+    },
+    {
+      "cmd": "printf '%s\\n' '#!/bin/sh' 'if [ \"$3\" = 1 ]; then' '  git diff --quiet \"$1\" \"$2\" -- deps.txt || echo \"deps.txt changed: run the installer\"' 'fi' > .git/hooks/post-checkout",
+      "step": "reminder",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cat .git/hooks/post-checkout",
+      "step": "reminder",
+      "hidden": false,
+      "fail": false,
+      "out": "#!/bin/sh\nif [ \"$3\" = 1 ]; then\n  git diff --quiet \"$1\" \"$2\" -- deps.txt || echo \"deps.txt changed: run the installer\"\nfi\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch fix/port",
+      "step": "reminder",
+      "hidden": false,
+      "fail": false,
+      "out": "Switched to branch 'fix/port'\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch feat/payments",
+      "step": "reminder",
+      "hidden": false,
+      "fail": false,
+      "out": "Switched to branch 'feat/payments'\ndeps.txt changed: run the installer\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git restore --source=main deps.txt",
+      "step": "reminder",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status --short",
+      "step": "reminder",
+      "hidden": false,
+      "fail": false,
+      "out": " M deps.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git restore deps.txt",
+      "step": "exit-status",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf '%s\\n' '#!/bin/sh' 'echo \"post-checkout: failed\"' 'exit 1' > .git/hooks/post-checkout",
+      "step": "exit-status",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch main; echo $?",
+      "step": "exit-status",
+      "hidden": false,
+      "fail": false,
+      "out": "Switched to branch 'main'\npost-checkout: failed\n1\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch",
+      "step": "exit-status",
+      "hidden": false,
+      "fail": false,
+      "out": "  feat/payments\n  feat/refunds\n  fix/port\n* main\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "arguments": {
+      "areas": {
+        "work": [
+          {
+            "name": "app.sh",
+            "state": "clean"
+          },
+          {
+            "name": "deps.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "app.sh",
+            "state": "clean"
+          },
+          {
+            "name": "deps.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "4b0b1db",
+            "message": "Start the shop API"
+          },
+          "count": 1,
+          "files": [
+            "app.sh",
+            "deps.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "9f37e6d",
+            "message": "Change the port",
+            "parents": [
+              "4b0b1db"
+            ],
+            "files": [
+              {
+                "name": "app.sh",
+                "state": "modified"
+              },
+              {
+                "name": "deps.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "542f6a7",
+            "message": "Add the payments module",
+            "parents": [
+              "4b0b1db"
+            ],
+            "files": [
+              {
+                "name": "app.sh",
+                "state": "modified"
+              },
+              {
+                "name": "deps.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "4b0b1db",
+            "message": "Start the shop API",
+            "parents": [],
+            "files": [
+              {
+                "name": "app.sh",
+                "state": "added"
+              },
+              {
+                "name": "deps.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "feat/payments",
+            "target": "542f6a7"
+          },
+          {
+            "name": "fix/port",
+            "target": "9f37e6d"
+          },
+          {
+            "name": "main",
+            "target": "4b0b1db"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "4b0b1db"
+        }
+      }
+    },
+    "same-commit": {
+      "areas": {
+        "work": [
+          {
+            "name": "app.sh",
+            "state": "clean"
+          },
+          {
+            "name": "deps.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "app.sh",
+            "state": "clean"
+          },
+          {
+            "name": "deps.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "4b0b1db",
+            "message": "Start the shop API"
+          },
+          "count": 1,
+          "files": [
+            "app.sh",
+            "deps.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "9f37e6d",
+            "message": "Change the port",
+            "parents": [
+              "4b0b1db"
+            ],
+            "files": [
+              {
+                "name": "app.sh",
+                "state": "modified"
+              },
+              {
+                "name": "deps.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "542f6a7",
+            "message": "Add the payments module",
+            "parents": [
+              "4b0b1db"
+            ],
+            "files": [
+              {
+                "name": "app.sh",
+                "state": "modified"
+              },
+              {
+                "name": "deps.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "4b0b1db",
+            "message": "Start the shop API",
+            "parents": [],
+            "files": [
+              {
+                "name": "app.sh",
+                "state": "added"
+              },
+              {
+                "name": "deps.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "feat/payments",
+            "target": "542f6a7"
+          },
+          {
+            "name": "feat/refunds",
+            "target": "4b0b1db"
+          },
+          {
+            "name": "fix/port",
+            "target": "9f37e6d"
+          },
+          {
+            "name": "main",
+            "target": "4b0b1db"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "feat/refunds",
+          "target": "4b0b1db"
+        }
+      }
+    },
+    "reminder": {
+      "areas": {
+        "work": [
+          {
+            "name": "app.sh",
+            "state": "clean"
+          },
+          {
+            "name": "deps.txt",
+            "state": "modified"
+          }
+        ],
+        "index": [
+          {
+            "name": "app.sh",
+            "state": "clean"
+          },
+          {
+            "name": "deps.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "542f6a7",
+            "message": "Add the payments module"
+          },
+          "count": 2,
+          "files": [
+            "app.sh",
+            "deps.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "9f37e6d",
+            "message": "Change the port",
+            "parents": [
+              "4b0b1db"
+            ],
+            "files": [
+              {
+                "name": "app.sh",
+                "state": "modified"
+              },
+              {
+                "name": "deps.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "542f6a7",
+            "message": "Add the payments module",
+            "parents": [
+              "4b0b1db"
+            ],
+            "files": [
+              {
+                "name": "app.sh",
+                "state": "modified"
+              },
+              {
+                "name": "deps.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "4b0b1db",
+            "message": "Start the shop API",
+            "parents": [],
+            "files": [
+              {
+                "name": "app.sh",
+                "state": "added"
+              },
+              {
+                "name": "deps.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "feat/payments",
+            "target": "542f6a7"
+          },
+          {
+            "name": "feat/refunds",
+            "target": "4b0b1db"
+          },
+          {
+            "name": "fix/port",
+            "target": "9f37e6d"
+          },
+          {
+            "name": "main",
+            "target": "4b0b1db"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "feat/payments",
+          "target": "542f6a7"
+        }
+      }
+    },
+    "exit-status": {
+      "areas": {
+        "work": [
+          {
+            "name": "app.sh",
+            "state": "clean"
+          },
+          {
+            "name": "deps.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "app.sh",
+            "state": "clean"
+          },
+          {
+            "name": "deps.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "4b0b1db",
+            "message": "Start the shop API"
+          },
+          "count": 1,
+          "files": [
+            "app.sh",
+            "deps.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "9f37e6d",
+            "message": "Change the port",
+            "parents": [
+              "4b0b1db"
+            ],
+            "files": [
+              {
+                "name": "app.sh",
+                "state": "modified"
+              },
+              {
+                "name": "deps.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "542f6a7",
+            "message": "Add the payments module",
+            "parents": [
+              "4b0b1db"
+            ],
+            "files": [
+              {
+                "name": "app.sh",
+                "state": "modified"
+              },
+              {
+                "name": "deps.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "4b0b1db",
+            "message": "Start the shop API",
+            "parents": [],
+            "files": [
+              {
+                "name": "app.sh",
+                "state": "added"
+              },
+              {
+                "name": "deps.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "feat/payments",
+            "target": "542f6a7"
+          },
+          {
+            "name": "feat/refunds",
+            "target": "4b0b1db"
+          },
+          {
+            "name": "fix/port",
+            "target": "9f37e6d"
+          },
+          {
+            "name": "main",
+            "target": "4b0b1db"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "4b0b1db"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+# The visuals are recorded from the real repository by `pnpm content:run`.
+entries:
+  vis: graph
+lose:
+  vis: graph
+recover:
+  vis: graph
+delete-branch:
+  vis: graph
+restore-branch:
+  vis: graph
+rebase:
+  vis: graph

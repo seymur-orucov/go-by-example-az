@@ -1,0 +1,10 @@
+rules:
+  - "Client hook-ları (`pre-commit`, `commit-msg`, `pre-push`, `post-checkout`) developer-in kompüterində, server hook-ları (`pre-receive`, `update`, `post-receive`) serverdəki repository-də push zamanı işləyir."
+  - "`.git/hooks` clone olunmur: hər developer client hook-unu özü quraşdırır və onu `--no-verify` ilə keçə bilər."
+  - "`git commit --no-verify` `pre-commit` və `commit-msg`-i, `git push --no-verify` `pre-push`-u keçir; server hook-larına təsir etmir."
+  - "`pre-receive` rədd edəndə push-dakı heç bir branch yenilənmir; `update` isə yalnız rədd etdiyi branch-ı saxlayır."
+  - "`post-receive` push-dan sonra işləyir və onu dayandıra bilmir: bildiriş və deploy üçündür."
+  - "GitHub.com-da öz server hook-unuz olmur: əvəzində branch qorunma qaydaları və ruleset-lər, tələb olunan status check-lər və webhook-lar var."
+practices:
+  - "Məcburi qaydanı serverdə saxlayın; client hook-unu developer-ə tez xəbər vermək üçün əlavə edin."
+  - "Server hook-unu qısa saxlayın: uzun testlər CI-da işləməlidir."

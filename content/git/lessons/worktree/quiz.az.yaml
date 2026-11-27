@@ -1,0 +1,78 @@
+- question: "Hansı komanda `main`-dən yeni `fix/cart` branch-ı yaradıb onu `../shop-fix` qovluğunda açır?"
+  options:
+    - "`git switch -c fix/cart ../shop-fix`"
+    - "`git worktree add ../shop-fix -b fix/cart main`"
+    - "`git worktree add fix/cart -b ../shop-fix main`"
+  answer: 1
+  explain: "Əvvəl qovluğun yeri, sonra `-b` ilə yeni branch-ın adı, sonda branch-ın başladığı yer gəlir."
+- question: "`shop` qovluğunda `main` açıqdır. Orada bu komanda nə edir?"
+  code: |
+    git worktree add ../shop-copy main
+  options:
+    - "`../shop-copy`-də ikinci `main` açır"
+    - "`main`-dən `shop-copy` adlı branch yaradır"
+    - "Xəta verir: `main` artıq bu qovluqda açıqdır"
+  answer: 2
+  explain: "Branch eyni anda yalnız bir worktree-də açıq ola bilər: `fatal: 'main' is already used by worktree at ...`."
+- question: "`shop` qovluğunda bu komandalardan sonra nə çap olunur?"
+  code: |
+    git worktree add ../shop-fix -b fix/cart main
+    cd ../shop-fix
+    echo "fixed" > cart.txt
+    git add cart.txt
+    git commit -q -m "Fix cart"
+    cd ../shop
+    git log --oneline -1 fix/cart
+  options:
+    - "`Fix cart` commit-i"
+    - "Xəta: `fix/cart` bu qovluqda yoxdur"
+    - "`main`-in son commit-i"
+  answer: 0
+  explain: "İki qovluq bir repository-dir: bir qovluqda yaranan commit və branch digərində də görünür."
+- question: "`notes.txt` `main`-də commit olunub. `shop` qovluğunda o dəyişdirilib, amma commit olunmayıb. Bu komandalardan sonra nə çap olunur?"
+  code: |
+    git worktree add ../shop-test -b test main
+    cd ../shop-test
+    git status --short
+  options:
+    - "` M notes.txt`"
+    - "`?? notes.txt`"
+    - "`M  notes.txt`"
+    - "Heç nə: yeni qovluq təmizdir"
+  answer: 3
+  explain: "Hər worktree-nin öz working directory-si və staging area-sı var. Commit olunmamış dəyişiklik `shop`-da qalır."
+- question: "`../shop-fix`-də `cart.txt` dəyişib, amma commit olunmayıb. `git worktree remove ../shop-fix` nə edir?"
+  options:
+    - "Qovluğu silir, dəyişiklik də itir"
+    - "Qovluğu silmir: `contains modified or untracked files`"
+    - "Dəyişikliyi stash edib qovluğu silir"
+  answer: 1
+  explain: "Git commit olunmamış işi itirmir. Yenə də silmək lazımdırsa, `--force` yazılır."
+- question: "`git worktree remove ../shop-fix` uğurla işlədi. Bu qovluqda açıq olan `fix/cart` branch-ına nə olur?"
+  options:
+    - "Silinir, commit-ləri də itir"
+    - "Avtomatik `main`-ə merge olunur"
+    - "Qalır, commit-ləri də yerindədir"
+  answer: 2
+  explain: "`remove` yalnız qovluğu silir. Branch-ı merge etmək və ya silmək ayrıca işdir."
+- question: "`git branch` çıxışında `+ fix/cart` sətri nə deməkdir?"
+  options:
+    - "`fix/cart` başqa worktree-də açıqdır"
+    - "`fix/cart` hazırkı qovluğun branch-ıdır"
+    - "`fix/cart`-da commit olunmamış dəyişiklik var"
+  answer: 0
+  explain: "Hazırkı branch `*` ilə, başqa worktree-də açıq olan branch `+` ilə işarələnir."
+- question: "Hansı halda worktree stash-dan daha rahatdır?"
+  options:
+    - "Dəyişikliyi bir dəqiqəlik kənara qoyub dərhal geri qaytaranda"
+    - "Başqa branch-da bir neçə saat işləyib yarımçıq işə toxunmayanda"
+    - "Commit olunmamış dəyişikliyi başqa branch-a aparanda"
+  answer: 1
+  explain: "Qısa keçid üçün stash kifayətdir. İki iş paralel gedəndə ayrıca qovluq rahatdır."
+- question: "`git worktree add` ilə yaranan qovluqda `.git` nədir?"
+  options:
+    - "Repository-nin tam surəti olan qovluq"
+    - "Boş qovluq, Git onu sonra doldurur"
+    - "Əsas `.git` qovluğuna yönləndirən fayl"
+  answer: 2
+  explain: "Bu faylda `gitdir: ...` sətri var. Commit-lər və branch-lar əsas `.git`-də saxlanır."

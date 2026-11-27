@@ -1,0 +1,10 @@
+rules:
+  - "`git reset` hazırkı branch-ı başqa commit-ə keçirir; HEAD branch-ı göstərdiyi üçün onunla birlikdə gedir."
+  - "`--soft` yalnız branch-ı köçürür: staging area və working directory dəyişmir, komanda heç nə çap etmir."
+  - "Geri alınan commit-lərin dəyişiklikləri stage olunmuş qalır və `git status`-da `Changes to be committed` altında görünür."
+  - "`git reset --soft HEAD~3` və `git commit` son üç commit-i bir commit-də birləşdirir; yeni commit faylların son halını saxlayır."
+  - "Geri alınan commit dərhal silinmir, Git onu bir müddət saxlayır."
+practices:
+  - "Kiçik ara commit-ləri push-dan əvvəl `reset --soft` ilə bir commit-də birləşdirin."
+  - "Push olunmuş commit-ləri reset etməyin; paylaşılmış commit-i `git revert` ilə ləğv edin."
+  - "Yalnız son commit-i düzəltmək lazımdırsa, `git commit --amend` daha qısadır."

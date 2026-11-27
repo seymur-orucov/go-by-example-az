@@ -1,0 +1,78 @@
+$ git log --oneline
+30bd43e Try slow intro
+498abad wip
+9cd8cff fix typo
+784ae2e Add chorus moves
+c0f95b7 Add verse
+$ git rebase -i HEAD~4
+pick 784ae2e # Add chorus moves
+pick 9cd8cff # fix typo
+pick 498abad # wip
+pick 30bd43e # Try slow intro
+Successfully rebased and updated refs/heads/chorus.
+$ git log --oneline
+30bd43e Try slow intro
+498abad wip
+9cd8cff fix typo
+784ae2e Add chorus moves
+c0f95b7 Add verse
+$ git rebase -i HEAD~4
+pick 784ae2e # Add chorus moves
+fixup 9cd8cff # fix typo
+pick 498abad # wip
+drop 30bd43e # Try slow intro
+Successfully rebased and updated refs/heads/chorus.
+$ git log --oneline
+2c47c33 wip
+15999c7 Add chorus moves
+c0f95b7 Add verse
+$ ls
+music.txt
+routine.md
+$ git rebase -i HEAD~1
+reword 2c47c33 # wip
+[detached HEAD 085b8c4] Note when the chorus starts
+ Date: Thu Jan 15 09:13:00 2026 +0000
+ 1 file changed, 1 insertion(+)
+Successfully rebased and updated refs/heads/chorus.
+$ git log --oneline
+085b8c4 Note when the chorus starts
+15999c7 Add chorus moves
+c0f95b7 Add verse
+$ git rebase -i HEAD~2
+pick 15999c7 # Add chorus moves
+squash 085b8c4 # Note when the chorus starts
+[detached HEAD 45b71b0] Add chorus moves
+ Date: Thu Jan 15 09:09:00 2026 +0000
+ 2 files changed, 5 insertions(+)
+Successfully rebased and updated refs/heads/chorus.
+$ git log --oneline
+45b71b0 Add chorus moves
+c0f95b7 Add verse
+$ git log -1
+commit 45b71b0595ed8e543f98aadc3752361c2089d035
+Author: Sam Lee <sam@example.com>
+Date:   Thu Jan 15 09:09:00 2026 +0000
+
+    Add chorus moves
+    
+    Note when the chorus starts
+$ sed -i "s/0:45/0:48/" music.txt
+$ git add music.txt
+$ git commit --fixup=HEAD~1
+[chorus e3c893b] fixup! Add chorus moves
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+$ git log --oneline
+e3c893b fixup! Add chorus moves
+3762e60 Add bridge moves
+45b71b0 Add chorus moves
+c0f95b7 Add verse
+$ git rebase -i --autosquash HEAD~3
+pick 45b71b0 # Add chorus moves
+fixup e3c893b # fixup! Add chorus moves
+pick 3762e60 # Add bridge moves
+Successfully rebased and updated refs/heads/chorus.
+$ git log --oneline
+4c8db67 Add bridge moves
+04e90d6 Add chorus moves
+c0f95b7 Add verse

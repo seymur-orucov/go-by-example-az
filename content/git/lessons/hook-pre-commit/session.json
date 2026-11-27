@@ -1,0 +1,517 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir notes-site",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd notes-site",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf '%s\\n' '# Notes' 'Short notes on what I learn.' > index.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add index.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Start notes site\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf '%s\\n' '# About' 'I write about Go and Git.' 'TODO: add contact link' > about.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf '%s\\n' '#!/bin/sh' 'if git diff --cached | grep \"^+.*TODO\"; then' '  echo \"TODO found: commit stopped\"' '  exit 1' 'fi' > .git/hooks/pre-commit",
+      "step": "write-hook",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "chmod +x .git/hooks/pre-commit",
+      "step": "write-hook",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cat .git/hooks/pre-commit",
+      "step": "write-hook",
+      "hidden": false,
+      "fail": false,
+      "out": "#!/bin/sh\nif git diff --cached | grep \"^+.*TODO\"; then\n  echo \"TODO found: commit stopped\"\n  exit 1\nfi\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git add about.md",
+      "step": "blocked",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"Add about page\"",
+      "step": "blocked",
+      "hidden": false,
+      "fail": true,
+      "out": "+TODO: add contact link\nTODO found: commit stopped\n",
+      "exit": 1
+    },
+    {
+      "cmd": "git status --short",
+      "step": "blocked",
+      "hidden": false,
+      "fail": false,
+      "out": "A  about.md\n",
+      "exit": 0
+    },
+    {
+      "cmd": "sed -i '/TODO/d' about.md",
+      "step": "staged-only",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"Add about page\"",
+      "step": "staged-only",
+      "hidden": false,
+      "fail": true,
+      "out": "+TODO: add contact link\nTODO found: commit stopped\n",
+      "exit": 1
+    },
+    {
+      "cmd": "git status --short",
+      "step": "staged-only",
+      "hidden": false,
+      "fail": false,
+      "out": "AM about.md\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git add about.md",
+      "step": "commit-ok",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"Add about page\"",
+      "step": "commit-ok",
+      "hidden": false,
+      "fail": false,
+      "out": "[main b48aeb7] Add about page\n 1 file changed, 2 insertions(+)\n create mode 100644 about.md\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"TODO: add photos\" >> index.md",
+      "step": "no-verify",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit --no-verify -am \"Start photo section\"",
+      "step": "no-verify",
+      "hidden": false,
+      "fail": false,
+      "out": "[main b86b70e] Start photo section\n 1 file changed, 1 insertion(+)\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "write-hook": {
+      "areas": {
+        "work": [
+          {
+            "name": "about.md",
+            "state": "untracked"
+          },
+          {
+            "name": "index.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "index.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "b18eb7b",
+            "message": "Start notes site"
+          },
+          "count": 1,
+          "files": [
+            "index.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "b18eb7b",
+            "message": "Start notes site",
+            "parents": [],
+            "files": [
+              {
+                "name": "index.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "b18eb7b"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "b18eb7b"
+        }
+      }
+    },
+    "blocked": {
+      "areas": {
+        "work": [
+          {
+            "name": "about.md",
+            "state": "clean"
+          },
+          {
+            "name": "index.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "about.md",
+            "state": "added"
+          },
+          {
+            "name": "index.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "b18eb7b",
+            "message": "Start notes site"
+          },
+          "count": 1,
+          "files": [
+            "index.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "b18eb7b",
+            "message": "Start notes site",
+            "parents": [],
+            "files": [
+              {
+                "name": "index.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "b18eb7b"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "b18eb7b"
+        }
+      }
+    },
+    "staged-only": {
+      "areas": {
+        "work": [
+          {
+            "name": "about.md",
+            "state": "modified"
+          },
+          {
+            "name": "index.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "about.md",
+            "state": "added"
+          },
+          {
+            "name": "index.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "b18eb7b",
+            "message": "Start notes site"
+          },
+          "count": 1,
+          "files": [
+            "index.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "b18eb7b",
+            "message": "Start notes site",
+            "parents": [],
+            "files": [
+              {
+                "name": "index.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "b18eb7b"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "b18eb7b"
+        }
+      }
+    },
+    "commit-ok": {
+      "areas": {
+        "work": [
+          {
+            "name": "about.md",
+            "state": "clean"
+          },
+          {
+            "name": "index.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "about.md",
+            "state": "clean"
+          },
+          {
+            "name": "index.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "b48aeb7",
+            "message": "Add about page"
+          },
+          "count": 2,
+          "files": [
+            "about.md",
+            "index.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "b48aeb7",
+            "message": "Add about page",
+            "parents": [
+              "b18eb7b"
+            ],
+            "files": [
+              {
+                "name": "about.md",
+                "state": "added"
+              },
+              {
+                "name": "index.md",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "b18eb7b",
+            "message": "Start notes site",
+            "parents": [],
+            "files": [
+              {
+                "name": "index.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "b48aeb7"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "b48aeb7"
+        }
+      }
+    },
+    "no-verify": {
+      "areas": {
+        "work": [
+          {
+            "name": "about.md",
+            "state": "clean"
+          },
+          {
+            "name": "index.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "about.md",
+            "state": "clean"
+          },
+          {
+            "name": "index.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "b86b70e",
+            "message": "Start photo section"
+          },
+          "count": 3,
+          "files": [
+            "about.md",
+            "index.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "b86b70e",
+            "message": "Start photo section",
+            "parents": [
+              "b48aeb7"
+            ],
+            "files": [
+              {
+                "name": "about.md",
+                "state": "same"
+              },
+              {
+                "name": "index.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "b48aeb7",
+            "message": "Add about page",
+            "parents": [
+              "b18eb7b"
+            ],
+            "files": [
+              {
+                "name": "about.md",
+                "state": "added"
+              },
+              {
+                "name": "index.md",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "b18eb7b",
+            "message": "Start notes site",
+            "parents": [],
+            "files": [
+              {
+                "name": "index.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "b86b70e"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "b86b70e"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+# The visuals are recorded from the real repository by `pnpm content:run`.
+hook-input:
+run-tests:
+fix:
+block-main:
+  vis: graph
+no-verify:

@@ -1,0 +1,634 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "git init -q --bare ~/server/site.git",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git clone -q ~/server/site.git",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "warning: You appear to have cloned an empty repository.\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cd site",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"<h1>Opening soon</h1>\" > index.html",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add index.html",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add the home page\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push -q origin main",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "ls ~/server/site.git",
+      "step": "bare-hooks",
+      "hidden": false,
+      "fail": false,
+      "out": "HEAD\nconfig\ndescription\nhooks\ninfo\nobjects\nrefs\n",
+      "exit": 0
+    },
+    {
+      "cmd": "ls ~/server/site.git/hooks",
+      "step": "bare-hooks",
+      "hidden": false,
+      "fail": false,
+      "out": "applypatch-msg.sample\ncommit-msg.sample\nfsmonitor-watchman.sample\npost-update.sample\npre-applypatch.sample\npre-commit.sample\npre-merge-commit.sample\npre-push.sample\npre-rebase.sample\npre-receive.sample\nprepare-commit-msg.sample\npush-to-checkout.sample\nsendemail-validate.sample\nupdate.sample\n",
+      "exit": 0
+    },
+    {
+      "cmd": "mkdir ~/www",
+      "step": "post-receive",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf '%s\\n' '#!/bin/sh' 'while read old new ref; do echo \"Received $ref\"; done' 'git --work-tree=\"$HOME/www\" --git-dir=\"$HOME/server/site.git\" checkout -q -f main' 'echo \"Deployed main to ~/www\"' > ~/server/site.git/hooks/post-receive",
+      "step": "post-receive",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "chmod +x ~/server/site.git/hooks/post-receive",
+      "step": "post-receive",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cat ~/server/site.git/hooks/post-receive",
+      "step": "post-receive",
+      "hidden": false,
+      "fail": false,
+      "out": "#!/bin/sh\nwhile read old new ref; do echo \"Received $ref\"; done\ngit --work-tree=\"$HOME/www\" --git-dir=\"$HOME/server/site.git\" checkout -q -f main\necho \"Deployed main to ~/www\"\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"<h1>Open daily 9-18</h1>\" > index.html",
+      "step": "deploy",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add opening hours\"",
+      "step": "deploy",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push",
+      "step": "deploy",
+      "hidden": false,
+      "fail": false,
+      "out": "remote: Received refs/heads/main        \nremote: Deployed main to ~/www        \nTo /home/sam/server/site.git\n   14c5fc0..8a9057c  main -> main\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cat ~/www/index.html",
+      "step": "deploy",
+      "hidden": false,
+      "fail": false,
+      "out": "<h1>Open daily 9-18</h1>\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cat ~/server/site.git/hooks/post-update.sample",
+      "step": "post-update",
+      "hidden": false,
+      "fail": false,
+      "out": "#!/bin/sh\n#\n# An example hook script to prepare a packed repository for use over\n# dumb transports.\n#\n# To enable this hook, rename this file to \"post-update\".\n\nexec git update-server-info\n",
+      "exit": 0
+    },
+    {
+      "cmd": "printf '%s\\n' '#!/bin/sh' 'echo \"post-update: $*\"' 'exec git update-server-info' > ~/server/site.git/hooks/post-update",
+      "step": "post-update",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "chmod +x ~/server/site.git/hooks/post-update",
+      "step": "post-update",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"<p>Call 555-0142</p>\" >> index.html",
+      "step": "post-update",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add the phone number\"",
+      "step": "post-update",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git tag v1.0",
+      "step": "post-update",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push origin main v1.0",
+      "step": "post-update",
+      "hidden": false,
+      "fail": false,
+      "out": "remote: Received refs/heads/main        \nremote: Received refs/tags/v1.0        \nremote: Deployed main to ~/www        \nremote: post-update: refs/heads/main refs/tags/v1.0        \nTo /home/sam/server/site.git\n   8a9057c..1c257b6  main -> main\n * [new tag]         v1.0 -> v1.0\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cat ~/server/site.git/info/refs",
+      "step": "post-update",
+      "hidden": false,
+      "fail": false,
+      "out": "1c257b6f47d5affc5748ce99d776d39eee511570\trefs/heads/main\n1c257b6f47d5affc5748ce99d776d39eee511570\trefs/tags/v1.0\n",
+      "exit": 0
+    },
+    {
+      "cmd": "printf '%s\\n' '#!/bin/sh' 'echo \"Deploys are paused until Monday\"' 'exit 1' > ~/server/site.git/hooks/pre-receive",
+      "step": "pre-receive",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "chmod +x ~/server/site.git/hooks/pre-receive",
+      "step": "pre-receive",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"<p>Closed on Sunday</p>\" >> index.html",
+      "step": "pre-receive",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add the day off\"",
+      "step": "pre-receive",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push",
+      "step": "pre-receive",
+      "hidden": false,
+      "fail": true,
+      "out": "remote: Deploys are paused until Monday        \nTo /home/sam/server/site.git\n ! [remote rejected] main -> main (pre-receive hook declined)\nerror: failed to push some refs to '/home/sam/server/site.git'\n",
+      "exit": 1
+    },
+    {
+      "cmd": "cat ~/www/index.html",
+      "step": "pre-receive",
+      "hidden": false,
+      "fail": false,
+      "out": "<h1>Open daily 9-18</h1>\n<p>Call 555-0142</p>\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "bare-hooks": {
+      "areas": {
+        "work": [
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "14c5fc0",
+            "message": "Add the home page"
+          },
+          "count": 1,
+          "files": [
+            "index.html"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "14c5fc0",
+            "message": "Add the home page",
+            "parents": [],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "14c5fc0"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "14c5fc0"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "14c5fc0"
+        }
+      }
+    },
+    "post-receive": {
+      "areas": {
+        "work": [
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "14c5fc0",
+            "message": "Add the home page"
+          },
+          "count": 1,
+          "files": [
+            "index.html"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "14c5fc0",
+            "message": "Add the home page",
+            "parents": [],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "14c5fc0"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "14c5fc0"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "14c5fc0"
+        }
+      }
+    },
+    "deploy": {
+      "areas": {
+        "work": [
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "8a9057c",
+            "message": "Add opening hours"
+          },
+          "count": 2,
+          "files": [
+            "index.html"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "8a9057c",
+            "message": "Add opening hours",
+            "parents": [
+              "14c5fc0"
+            ],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "14c5fc0",
+            "message": "Add the home page",
+            "parents": [],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "8a9057c"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "8a9057c"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "8a9057c"
+        }
+      }
+    },
+    "post-update": {
+      "areas": {
+        "work": [
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "1c257b6",
+            "message": "Add the phone number"
+          },
+          "count": 3,
+          "files": [
+            "index.html"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "1c257b6",
+            "message": "Add the phone number",
+            "parents": [
+              "8a9057c"
+            ],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "8a9057c",
+            "message": "Add opening hours",
+            "parents": [
+              "14c5fc0"
+            ],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "14c5fc0",
+            "message": "Add the home page",
+            "parents": [],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "1c257b6"
+          }
+        ],
+        "tags": [
+          {
+            "name": "v1.0",
+            "target": "1c257b6"
+          }
+        ],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "1c257b6"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "1c257b6"
+        }
+      }
+    },
+    "pre-receive": {
+      "areas": {
+        "work": [
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "1f823c4",
+            "message": "Add the day off"
+          },
+          "count": 4,
+          "files": [
+            "index.html"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "1f823c4",
+            "message": "Add the day off",
+            "parents": [
+              "1c257b6"
+            ],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "1c257b6",
+            "message": "Add the phone number",
+            "parents": [
+              "8a9057c"
+            ],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "8a9057c",
+            "message": "Add opening hours",
+            "parents": [
+              "14c5fc0"
+            ],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "14c5fc0",
+            "message": "Add the home page",
+            "parents": [],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "1f823c4"
+          }
+        ],
+        "tags": [
+          {
+            "name": "v1.0",
+            "target": "1c257b6"
+          }
+        ],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "1c257b6"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "1f823c4"
+        }
+      }
+    }
+  }
+}

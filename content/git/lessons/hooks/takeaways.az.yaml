@@ -1,0 +1,11 @@
+rules:
+  - "Hook Git-in müəyyən anda (`pre-commit`, `commit-msg`, `post-checkout`, `pre-push`) özü işə saldığı skriptdir."
+  - "`pre-commit` və ya `commit-msg` sıfırdan fərqli çıxış kodu qaytarsa, commit yaranmır; `post-commit`-in kodu isə heç nəyi dəyişmir."
+  - "Hook `.git/hooks` qovluğunda dəqiq adla, uzantısız saxlanır; `.sample` faylları işləmir."
+  - "Linux və macOS-da hook icra oluna bilən olmalıdır (`chmod +x`); Windows-da birinci sətir `#!/bin/sh` olmalıdır."
+  - "`.git/hooks` clone ilə gəlmir; komanda hook-ları repository-dəki qovluqda saxlayıb `core.hooksPath` ilə qoşur."
+practices:
+  - "Hook xəta qaytaranda nəyin səhv olduğunu çap etsin: `app.js: remove console.log`."
+  - "`git config core.hooksPath .githooks` komandasını README-də yazın, çünki bu ayar clone ilə gəlmir."
+  - "Böyük layihədə hook manager (Husky, pre-commit, lefthook) işlədin."
+  - "Hook-a son yoxlama kimi baxmayın: eyni qayda serverdə və ya CI-da da yoxlanmalıdır."

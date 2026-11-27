@@ -1,0 +1,46 @@
+# Hand-written visuals (text lesson): how a branch reaches main, then linear vs non-linear.
+two-shapes:
+  vis:
+    kind: flow
+    caption: "Branch `main`-ə necə gəlir və tarixçə hansı formada olur"
+    items:
+      - { label: "fast-forward", sub: "xətti" }
+      - { label: "rebase + fast-forward", sub: "xətti" }
+      - { label: "squash merge", sub: "xətti · branch bir commit olur" }
+      - { label: "merge commit", sub: "qeyri-xətti · three-way və ya `--no-ff`", tone: accent }
+linear:
+non-linear:
+choose:
+  vis:
+    kind: compare
+    caption: "`main`-in tarixçəsi: xətti və qeyri-xətti"
+    a: { title: "Xətti", sub: "fast-forward, rebase, squash" }
+    b: { title: "Qeyri-xətti", sub: "merge commit-lər" }
+    rows:
+      - aspect: "`git log --oneline`"
+        a: "Hər sətir bir dəyişiklik, `main`-ə düşdüyü sırada"
+        b: "Branch-ların commit-ləri tarixə görə qarışır"
+        better: a
+      - aspect: "`git log --graph`"
+        a: "Düz xətt"
+        b: "Budaqlar, paralel branch-larda kəsişən xətlər"
+      - aspect: "Branch konteksti"
+        a: "Feature-in sərhədi və merge anı görünmür"
+        b: "Merge commit branch-ın adını və merge anını saxlayır"
+        better: b
+      - aspect: "Bir commit-i geri almaq"
+        a: "`git revert <commit>`, `-m` lazım deyil"
+        b: "Merge commit üçün `git revert -m 1`"
+        better: a
+      - aspect: "Feature-i bütöv geri almaq"
+        a: "Squash-da bir commit, rebase-də hər commit ayrıca"
+        b: "Bir `git revert -m 1`"
+        better: b
+      - aspect: "Əlavə commit-lər"
+        a: "Yoxdur"
+        b: "Hər merge üçün bir, üstəlik `Merge branch 'main' into …`"
+        better: a
+      - aspect: "GitHub-da üsul"
+        a: "**Squash and merge**, **Rebase and merge**"
+        b: "**Create a merge commit**"
+    note: "Ara yol: branch-ı rebase edib `--no-ff` ilə merge etmək. `main` düz qalır, hər feature ayrıca budaq olur."

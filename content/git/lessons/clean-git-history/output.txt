@@ -1,0 +1,56 @@
+$ git diff
+diff --git a/prices.txt b/prices.txt
+index 1f47940..2c48a87 100644
+--- a/prices.txt
++++ b/prices.txt
+@@ -1,3 +1,5 @@
+ honey 8.00 USD
+ jam 6.50 USD
+ candles 4.00 USD
++scarf 15.00 USD
++mittens 9.00 USD
+diff --git a/stock.csv b/stock.csv
+index 21fd2eb..0d5c202 100644
+--- a/stock.csv
++++ b/stock.csv
+@@ -1,4 +1,4 @@
+ item,qty
+ honey,24
+-jam,18
++jam,12
+ candles,30
+$ git add prices.txt
+$ git commit -m "Add winter prices"
+[winter-goods 16d89a1] Add winter prices
+ 1 file changed, 2 insertions(+)
+$ git add stock.csv
+$ git commit -m "Fix jam count in stock"
+[winter-goods 525e127] Fix jam count in stock
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+$ sed -i "s/mittens 9.00/mittens 8.50/" prices.txt
+$ git add prices.txt
+$ git commit --fixup=":/Add winter prices"
+[winter-goods 951bbcc] fixup! Add winter prices
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+$ git fetch
+From /home/sam/server/market-stall
+   2870211..769bb85  main       -> origin/main
+$ git log --oneline origin/main..HEAD
+951bbcc fixup! Add winter prices
+525e127 Fix jam count in stock
+16d89a1 Add winter prices
+c71d231 wip
+$ git rebase -i --autosquash origin/main
+reword c71d231 # wip
+pick 16d89a1 # Add winter prices
+fixup 951bbcc # fixup! Add winter prices
+pick 525e127 # Fix jam count in stock
+[detached HEAD 7d4adda] Add the winter sign
+ Date: Thu Jan 15 09:20:00 2026 +0000
+ 1 file changed, 1 insertion(+)
+ create mode 100644 sign.txt
+Successfully rebased and updated refs/heads/winter-goods.
+$ git log --oneline origin/main..HEAD
+f09641d Fix jam count in stock
+9212aad Add winter prices
+7d4adda Add the winter sign

@@ -1,0 +1,881 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "git init -q --bare ~/server/landing.git",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "mkdir landing",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd landing",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf '%s\\n' '<h1>Lumo desk lamp</h1>' '<p>Warm light for late work.</p>' > index.html",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf '%s\\n' 'if grep -qi lorem index.html; then' '  echo \"check failed: index.html has lorem text\"' '  exit 1' 'fi' 'echo \"check passed\"' > check.sh",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add .",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add the landing page\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git remote add origin ~/server/landing.git",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf '%s\\n' '#!/bin/sh' 'echo \"$1 $2\"' 'cat' > .git/hooks/pre-push",
+      "step": "hook-input",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "chmod +x .git/hooks/pre-push",
+      "step": "hook-input",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push -u origin main",
+      "step": "hook-input",
+      "hidden": false,
+      "fail": false,
+      "out": "origin /home/sam/server/landing.git\nrefs/heads/main 4bfe21a88b559b05058fb3e8961b090cb47d97ac refs/heads/main 0000000000000000000000000000000000000000\nTo /home/sam/server/landing.git\n * [new branch]      main -> main\nbranch 'main' set up to track 'origin/main'.\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo '<p>Price: 49 USD</p>' >> index.html",
+      "step": "hook-input",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add the price\"",
+      "step": "hook-input",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push",
+      "step": "hook-input",
+      "hidden": false,
+      "fail": false,
+      "out": "origin /home/sam/server/landing.git\nrefs/heads/main 9d1007e4c0ee83ccfc7ad9e26eaa49fd425a74f0 refs/heads/main 4bfe21a88b559b05058fb3e8961b090cb47d97ac\nTo /home/sam/server/landing.git\n   4bfe21a..9d1007e  main -> main\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cat check.sh",
+      "step": "run-tests",
+      "hidden": false,
+      "fail": false,
+      "out": "if grep -qi lorem index.html; then\n  echo \"check failed: index.html has lorem text\"\n  exit 1\nfi\necho \"check passed\"\n",
+      "exit": 0
+    },
+    {
+      "cmd": "printf '%s\\n' '#!/bin/sh' 'sh check.sh || exit 1' > .git/hooks/pre-push",
+      "step": "run-tests",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo '<p>Lorem ipsum dolor sit amet.</p>' >> index.html",
+      "step": "run-tests",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add the features section\"",
+      "step": "run-tests",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push",
+      "step": "run-tests",
+      "hidden": false,
+      "fail": true,
+      "out": "check failed: index.html has lorem text\nerror: failed to push some refs to '/home/sam/server/landing.git'\n",
+      "exit": 1
+    },
+    {
+      "cmd": "git status",
+      "step": "run-tests",
+      "hidden": false,
+      "fail": false,
+      "out": "On branch main\nYour branch is ahead of 'origin/main' by 1 commit.\n  (use \"git push\" to publish your local commits)\n\nnothing to commit, working tree clean\n",
+      "exit": 0
+    },
+    {
+      "cmd": "printf '%s\\n' '<h1>Lumo desk lamp</h1>' '<p>Warm light for late work.</p>' '<p>Price: 49 USD</p>' '<p>Three brightness levels.</p>' > index.html",
+      "step": "fix",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Replace the placeholder text\"",
+      "step": "fix",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push",
+      "step": "fix",
+      "hidden": false,
+      "fail": false,
+      "out": "check passed\nTo /home/sam/server/landing.git\n   9d1007e..4d93a1e  main -> main\n",
+      "exit": 0
+    },
+    {
+      "cmd": "printf '%s\\n' '#!/bin/sh' 'sh check.sh || exit 1' 'while read local_ref local_sha remote_ref remote_sha; do' '  if [ \"$remote_ref\" = refs/heads/main ]; then' '    echo \"Do not push to main. Push a branch and open a pull request.\"' '    exit 1' '  fi' 'done' > .git/hooks/pre-push",
+      "step": "block-main",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cat .git/hooks/pre-push",
+      "step": "block-main",
+      "hidden": false,
+      "fail": false,
+      "out": "#!/bin/sh\nsh check.sh || exit 1\nwhile read local_ref local_sha remote_ref remote_sha; do\n  if [ \"$remote_ref\" = refs/heads/main ]; then\n    echo \"Do not push to main. Push a branch and open a pull request.\"\n    exit 1\n  fi\ndone\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo '<a href=\"/buy\">Buy now</a>' >> index.html",
+      "step": "block-main",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add the buy button\"",
+      "step": "block-main",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push",
+      "step": "block-main",
+      "hidden": false,
+      "fail": true,
+      "out": "check passed\nDo not push to main. Push a branch and open a pull request.\nerror: failed to push some refs to '/home/sam/server/landing.git'\n",
+      "exit": 1
+    },
+    {
+      "cmd": "git switch -c buy-button",
+      "step": "block-main",
+      "hidden": false,
+      "fail": false,
+      "out": "Switched to a new branch 'buy-button'\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git push -u origin buy-button",
+      "step": "block-main",
+      "hidden": false,
+      "fail": false,
+      "out": "check passed\nTo /home/sam/server/landing.git\n * [new branch]      buy-button -> buy-button\nbranch 'buy-button' set up to track 'origin/buy-button'.\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch main",
+      "step": "no-verify",
+      "hidden": false,
+      "fail": false,
+      "out": "Switched to branch 'main'\nYour branch is ahead of 'origin/main' by 1 commit.\n  (use \"git push\" to publish your local commits)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git push --no-verify",
+      "step": "no-verify",
+      "hidden": false,
+      "fail": false,
+      "out": "To /home/sam/server/landing.git\n   4d93a1e..522e0ca  main -> main\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "hook-input": {
+      "areas": {
+        "work": [
+          {
+            "name": "check.sh",
+            "state": "clean"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "check.sh",
+            "state": "clean"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "9d1007e",
+            "message": "Add the price"
+          },
+          "count": 2,
+          "files": [
+            "check.sh",
+            "index.html"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "9d1007e",
+            "message": "Add the price",
+            "parents": [
+              "4bfe21a"
+            ],
+            "files": [
+              {
+                "name": "check.sh",
+                "state": "same"
+              },
+              {
+                "name": "index.html",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "4bfe21a",
+            "message": "Add the landing page",
+            "parents": [],
+            "files": [
+              {
+                "name": "check.sh",
+                "state": "added"
+              },
+              {
+                "name": "index.html",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "9d1007e"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "9d1007e"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "9d1007e"
+        }
+      }
+    },
+    "run-tests": {
+      "areas": {
+        "work": [
+          {
+            "name": "check.sh",
+            "state": "clean"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "check.sh",
+            "state": "clean"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "3d08614",
+            "message": "Add the features section"
+          },
+          "count": 3,
+          "files": [
+            "check.sh",
+            "index.html"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "3d08614",
+            "message": "Add the features section",
+            "parents": [
+              "9d1007e"
+            ],
+            "files": [
+              {
+                "name": "check.sh",
+                "state": "same"
+              },
+              {
+                "name": "index.html",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "9d1007e",
+            "message": "Add the price",
+            "parents": [
+              "4bfe21a"
+            ],
+            "files": [
+              {
+                "name": "check.sh",
+                "state": "same"
+              },
+              {
+                "name": "index.html",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "4bfe21a",
+            "message": "Add the landing page",
+            "parents": [],
+            "files": [
+              {
+                "name": "check.sh",
+                "state": "added"
+              },
+              {
+                "name": "index.html",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "3d08614"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "9d1007e"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "3d08614"
+        }
+      }
+    },
+    "fix": {
+      "areas": {
+        "work": [
+          {
+            "name": "check.sh",
+            "state": "clean"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "check.sh",
+            "state": "clean"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "4d93a1e",
+            "message": "Replace the placeholder text"
+          },
+          "count": 4,
+          "files": [
+            "check.sh",
+            "index.html"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "4d93a1e",
+            "message": "Replace the placeholder text",
+            "parents": [
+              "3d08614"
+            ],
+            "files": [
+              {
+                "name": "check.sh",
+                "state": "same"
+              },
+              {
+                "name": "index.html",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "3d08614",
+            "message": "Add the features section",
+            "parents": [
+              "9d1007e"
+            ],
+            "files": [
+              {
+                "name": "check.sh",
+                "state": "same"
+              },
+              {
+                "name": "index.html",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "9d1007e",
+            "message": "Add the price",
+            "parents": [
+              "4bfe21a"
+            ],
+            "files": [
+              {
+                "name": "check.sh",
+                "state": "same"
+              },
+              {
+                "name": "index.html",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "4bfe21a",
+            "message": "Add the landing page",
+            "parents": [],
+            "files": [
+              {
+                "name": "check.sh",
+                "state": "added"
+              },
+              {
+                "name": "index.html",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "4d93a1e"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "4d93a1e"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "4d93a1e"
+        }
+      }
+    },
+    "block-main": {
+      "areas": {
+        "work": [
+          {
+            "name": "check.sh",
+            "state": "clean"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "check.sh",
+            "state": "clean"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "522e0ca",
+            "message": "Add the buy button"
+          },
+          "count": 5,
+          "files": [
+            "check.sh",
+            "index.html"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "522e0ca",
+            "message": "Add the buy button",
+            "parents": [
+              "4d93a1e"
+            ],
+            "files": [
+              {
+                "name": "check.sh",
+                "state": "same"
+              },
+              {
+                "name": "index.html",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "4d93a1e",
+            "message": "Replace the placeholder text",
+            "parents": [
+              "3d08614"
+            ],
+            "files": [
+              {
+                "name": "check.sh",
+                "state": "same"
+              },
+              {
+                "name": "index.html",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "3d08614",
+            "message": "Add the features section",
+            "parents": [
+              "9d1007e"
+            ],
+            "files": [
+              {
+                "name": "check.sh",
+                "state": "same"
+              },
+              {
+                "name": "index.html",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "9d1007e",
+            "message": "Add the price",
+            "parents": [
+              "4bfe21a"
+            ],
+            "files": [
+              {
+                "name": "check.sh",
+                "state": "same"
+              },
+              {
+                "name": "index.html",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "4bfe21a",
+            "message": "Add the landing page",
+            "parents": [],
+            "files": [
+              {
+                "name": "check.sh",
+                "state": "added"
+              },
+              {
+                "name": "index.html",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "buy-button",
+            "target": "522e0ca"
+          },
+          {
+            "name": "main",
+            "target": "522e0ca"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/buy-button",
+            "target": "522e0ca"
+          },
+          {
+            "name": "origin/main",
+            "target": "4d93a1e"
+          }
+        ],
+        "head": {
+          "branch": "buy-button",
+          "target": "522e0ca"
+        }
+      }
+    },
+    "no-verify": {
+      "areas": {
+        "work": [
+          {
+            "name": "check.sh",
+            "state": "clean"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "check.sh",
+            "state": "clean"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "522e0ca",
+            "message": "Add the buy button"
+          },
+          "count": 5,
+          "files": [
+            "check.sh",
+            "index.html"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "522e0ca",
+            "message": "Add the buy button",
+            "parents": [
+              "4d93a1e"
+            ],
+            "files": [
+              {
+                "name": "check.sh",
+                "state": "same"
+              },
+              {
+                "name": "index.html",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "4d93a1e",
+            "message": "Replace the placeholder text",
+            "parents": [
+              "3d08614"
+            ],
+            "files": [
+              {
+                "name": "check.sh",
+                "state": "same"
+              },
+              {
+                "name": "index.html",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "3d08614",
+            "message": "Add the features section",
+            "parents": [
+              "9d1007e"
+            ],
+            "files": [
+              {
+                "name": "check.sh",
+                "state": "same"
+              },
+              {
+                "name": "index.html",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "9d1007e",
+            "message": "Add the price",
+            "parents": [
+              "4bfe21a"
+            ],
+            "files": [
+              {
+                "name": "check.sh",
+                "state": "same"
+              },
+              {
+                "name": "index.html",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "4bfe21a",
+            "message": "Add the landing page",
+            "parents": [],
+            "files": [
+              {
+                "name": "check.sh",
+                "state": "added"
+              },
+              {
+                "name": "index.html",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "buy-button",
+            "target": "522e0ca"
+          },
+          {
+            "name": "main",
+            "target": "522e0ca"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/buy-button",
+            "target": "522e0ca"
+          },
+          {
+            "name": "origin/main",
+            "target": "522e0ca"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "522e0ca"
+        }
+      }
+    }
+  }
+}

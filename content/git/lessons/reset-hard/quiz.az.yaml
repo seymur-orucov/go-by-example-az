@@ -1,0 +1,76 @@
+- question: "`notes.txt` artıq commit olunub. Bu komandalardan sonra nə çap olunur?"
+  code: |
+    echo "call the florist" >> notes.txt
+    git reset --hard
+    git status --short
+  options:
+    - "` M notes.txt`"
+    - "`M  notes.txt`"
+    - "Heç nə: dəyişiklik silinib"
+  answer: 2
+  explain: "`reset --hard` working directory-ni HEAD-in commit-inə qaytarır. Yeni sətir silinir və status təmiz olur."
+- question: "Dəyişikliyi `git add` ilə stage etmisiniz, amma commit etməmisiniz. `git reset --hard`-dan sonra bu dəyişiklik harada olur?"
+  options:
+    - "Staging area-da qalır, fayldan silinir"
+    - "Heç yerdə: staging area-dan da, fayldan da silinir"
+    - "Faylda qalır, staging area-dan çıxır"
+  answer: 1
+  explain: "`--hard` staging area-nı da, working directory-ni də commit ilə eyniləşdirir. Dəyişikliyi faylda saxlayıb staging area-dan çıxaran `--mixed`-dir."
+- question: "`todo.txt` yeni fayldır, heç vaxt `git add` olunmayıb. Bu komandalardan sonra nə çap olunur?"
+  code: |
+    echo "book the DJ" > todo.txt
+    git reset --hard
+    git status --short
+  options:
+    - "`?? todo.txt`"
+    - "`A  todo.txt`"
+    - "Heç nə: fayl silinib"
+  answer: 0
+  explain: "`reset --hard` untracked fayllara toxunmur. Onları silmək üçün `git clean` var."
+- question: "Repository-də yalnız `a.txt` commit olunub. Bu komandalardan sonra `ls` nə çap edir?"
+  code: |
+    echo "draft" > b.txt
+    git add b.txt
+    git reset --hard
+    ls
+  options:
+    - "`a.txt` və `b.txt`"
+    - "Yalnız `b.txt`"
+    - "Yalnız `a.txt`"
+  answer: 2
+  explain: "`git add`-dan sonra Git `b.txt`-i izləyir. HEAD-in commit-ində bu fayl yoxdur, ona görə `reset --hard` onu diskdən də silir."
+- question: "Hansı rejim branch-dan başqa həm staging area-nı, həm də working directory-ni dəyişir?"
+  options:
+    - "`git reset --mixed`"
+    - "`git reset --hard`"
+    - "`git reset --soft`"
+  answer: 1
+  explain: "`--soft` yalnız branch-ı, `--mixed` branch-ı və staging area-nı, `--hard` isə üçünü də dəyişir."
+- question: "Son commit `Add b.txt` yalnız `b.txt`-i əlavə edib, ondan əvvəlki commit-də yalnız `a.txt` var. `git reset --hard HEAD~1`-dən sonra `ls` nə çap edir?"
+  options:
+    - "Yalnız `a.txt`"
+    - "`a.txt` və `b.txt`"
+    - "Heç nə: bütün fayllar silinir"
+  answer: 0
+  explain: "Fayllar `HEAD~1` commit-indəki kimi olur. `b.txt` yalnız atılan commit-də idi, ona görə diskdən də silinir."
+- question: "`git reset --hard HEAD~1` icra etdiniz. Hansını sonra tapmaq mümkündür?"
+  options:
+    - "Heç birini: `--hard` hər ikisini silir"
+    - "Atılan commit-i, bir müddət `git reflog` ilə"
+    - "Commit olunmamış dəyişiklikləri, `git reflog` ilə"
+  answer: 1
+  explain: "Commit Git-də bir müddət qalır və reflog onu göstərir. Commit olunmamış dəyişiklik heç bir commit-də olmadığı üçün geri gəlmir."
+- question: "`git fetch`-dən sonra lokal `main`-i serverdəki `main` ilə tam eyni etmək istəyirsiniz, lokal commit-lər lazım deyil. Hansı komanda?"
+  options:
+    - "`git reset --hard HEAD`"
+    - "`git reset --soft origin/main`"
+    - "`git reset --hard origin/main`"
+  answer: 2
+  explain: "`--hard origin/main` branch-ı, staging area-nı və faylları `origin/main`-in commit-inə keçirir. `--soft` faylları dəyişməz, `HEAD` isə branch-ı yerində saxlayar."
+- question: "Commit adı yazmadan `git reset --hard` icra edəndə `main` branch-ı hara keçir?"
+  options:
+    - "Heç yerə: HEAD-in commit-ində qalır"
+    - "Bir commit geri, `HEAD~1`-ə"
+    - "`origin/main`-in commit-inə"
+  answer: 0
+  explain: "Commit verilməyəndə `reset` HEAD-i götürür. Branch yerində qalır, yalnız staging area və fayllar qaytarılır."

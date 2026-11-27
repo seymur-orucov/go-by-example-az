@@ -1,0 +1,997 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "git init -q --bare ~/server/market-stall.git",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "mkdir market-stall",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd market-stall",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"item,qty\" \"honey,24\" \"jam,18\" \"candles,30\" > stock.csv",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"honey 8.00 USD\" \"jam 6.50 USD\" \"candles 4.00 USD\" > prices.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add .",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Start the stock and price list\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git remote add origin ~/server/market-stall.git",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push -q -u origin main",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git clone -q ~/server/market-stall.git ~/ayla/market-stall",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ~/ayla/market-stall",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Saturday 8:00-14:00\" > hours.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add hours.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git -c user.name=\"Ayla Karimova\" -c user.email=\"ayla@example.com\" commit -q -m \"Add market hours\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push -q origin main",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ~/market-stall",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q -c winter-goods",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Winter goods are here\" > sign.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add sign.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"wip\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"scarf 15.00 USD\" \"mittens 9.00 USD\" >> prices.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "sed -i \"s/jam,18/jam,12/\" stock.csv",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git diff",
+      "step": "atomic",
+      "hidden": false,
+      "fail": false,
+      "out": "diff --git a/prices.txt b/prices.txt\nindex 1f47940..2c48a87 100644\n--- a/prices.txt\n+++ b/prices.txt\n@@ -1,3 +1,5 @@\n honey 8.00 USD\n jam 6.50 USD\n candles 4.00 USD\n+scarf 15.00 USD\n+mittens 9.00 USD\ndiff --git a/stock.csv b/stock.csv\nindex 21fd2eb..0d5c202 100644\n--- a/stock.csv\n+++ b/stock.csv\n@@ -1,4 +1,4 @@\n item,qty\n honey,24\n-jam,18\n+jam,12\n candles,30\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git add prices.txt",
+      "step": "atomic",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"Add winter prices\"",
+      "step": "atomic",
+      "hidden": false,
+      "fail": false,
+      "out": "[winter-goods 16d89a1] Add winter prices\n 1 file changed, 2 insertions(+)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git add stock.csv",
+      "step": "atomic",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"Fix jam count in stock\"",
+      "step": "atomic",
+      "hidden": false,
+      "fail": false,
+      "out": "[winter-goods 525e127] Fix jam count in stock\n 1 file changed, 1 insertion(+), 1 deletion(-)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "sed -i \"s/mittens 9.00/mittens 8.50/\" prices.txt",
+      "step": "fixup",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add prices.txt",
+      "step": "fixup",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit --fixup=\":/Add winter prices\"",
+      "step": "fixup",
+      "hidden": false,
+      "fail": false,
+      "out": "[winter-goods 951bbcc] fixup! Add winter prices\n 1 file changed, 1 insertion(+), 1 deletion(-)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git fetch",
+      "step": "review",
+      "hidden": false,
+      "fail": false,
+      "out": "From /home/sam/server/market-stall\n   2870211..769bb85  main       -> origin/main\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline origin/main..HEAD",
+      "step": "review",
+      "hidden": false,
+      "fail": false,
+      "out": "951bbcc fixup! Add winter prices\n525e127 Fix jam count in stock\n16d89a1 Add winter prices\nc71d231 wip\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git config sequence.editor \"sed -i -e '1s/^pick/reword/' -e '/^[^#]/w /dev/stdout'\"",
+      "step": "rebase",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git config core.editor \"sed -i '1s/.*/Add the winter sign/'\"",
+      "step": "rebase",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git rebase -i --autosquash origin/main",
+      "step": "rebase",
+      "hidden": false,
+      "fail": false,
+      "out": "reword c71d231 # wip\npick 16d89a1 # Add winter prices\nfixup 951bbcc # fixup! Add winter prices\npick 525e127 # Fix jam count in stock\n[detached HEAD 7d4adda] Add the winter sign\n Date: Thu Jan 15 09:20:00 2026 +0000\n 1 file changed, 1 insertion(+)\n create mode 100644 sign.txt\nSuccessfully rebased and updated refs/heads/winter-goods.\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline origin/main..HEAD",
+      "step": "rebase",
+      "hidden": false,
+      "fail": false,
+      "out": "f09641d Fix jam count in stock\n9212aad Add winter prices\n7d4adda Add the winter sign\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "atomic": {
+      "areas": {
+        "work": [
+          {
+            "name": "prices.txt",
+            "state": "clean"
+          },
+          {
+            "name": "sign.txt",
+            "state": "clean"
+          },
+          {
+            "name": "stock.csv",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "prices.txt",
+            "state": "clean"
+          },
+          {
+            "name": "sign.txt",
+            "state": "clean"
+          },
+          {
+            "name": "stock.csv",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "525e127",
+            "message": "Fix jam count in stock"
+          },
+          "count": 4,
+          "files": [
+            "prices.txt",
+            "sign.txt",
+            "stock.csv"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "525e127",
+            "message": "Fix jam count in stock",
+            "parents": [
+              "16d89a1"
+            ],
+            "files": [
+              {
+                "name": "prices.txt",
+                "state": "same"
+              },
+              {
+                "name": "sign.txt",
+                "state": "same"
+              },
+              {
+                "name": "stock.csv",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "16d89a1",
+            "message": "Add winter prices",
+            "parents": [
+              "c71d231"
+            ],
+            "files": [
+              {
+                "name": "prices.txt",
+                "state": "modified"
+              },
+              {
+                "name": "sign.txt",
+                "state": "same"
+              },
+              {
+                "name": "stock.csv",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "c71d231",
+            "message": "wip",
+            "parents": [
+              "2870211"
+            ],
+            "files": [
+              {
+                "name": "prices.txt",
+                "state": "same"
+              },
+              {
+                "name": "sign.txt",
+                "state": "added"
+              },
+              {
+                "name": "stock.csv",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "2870211",
+            "message": "Start the stock and price list",
+            "parents": [],
+            "files": [
+              {
+                "name": "prices.txt",
+                "state": "added"
+              },
+              {
+                "name": "stock.csv",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "2870211"
+          },
+          {
+            "name": "winter-goods",
+            "target": "525e127"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "2870211"
+          }
+        ],
+        "head": {
+          "branch": "winter-goods",
+          "target": "525e127"
+        }
+      }
+    },
+    "fixup": {
+      "areas": {
+        "work": [
+          {
+            "name": "prices.txt",
+            "state": "clean"
+          },
+          {
+            "name": "sign.txt",
+            "state": "clean"
+          },
+          {
+            "name": "stock.csv",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "prices.txt",
+            "state": "clean"
+          },
+          {
+            "name": "sign.txt",
+            "state": "clean"
+          },
+          {
+            "name": "stock.csv",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "951bbcc",
+            "message": "fixup! Add winter prices"
+          },
+          "count": 5,
+          "files": [
+            "prices.txt",
+            "sign.txt",
+            "stock.csv"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "951bbcc",
+            "message": "fixup! Add winter prices",
+            "parents": [
+              "525e127"
+            ],
+            "files": [
+              {
+                "name": "prices.txt",
+                "state": "modified"
+              },
+              {
+                "name": "sign.txt",
+                "state": "same"
+              },
+              {
+                "name": "stock.csv",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "525e127",
+            "message": "Fix jam count in stock",
+            "parents": [
+              "16d89a1"
+            ],
+            "files": [
+              {
+                "name": "prices.txt",
+                "state": "same"
+              },
+              {
+                "name": "sign.txt",
+                "state": "same"
+              },
+              {
+                "name": "stock.csv",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "16d89a1",
+            "message": "Add winter prices",
+            "parents": [
+              "c71d231"
+            ],
+            "files": [
+              {
+                "name": "prices.txt",
+                "state": "modified"
+              },
+              {
+                "name": "sign.txt",
+                "state": "same"
+              },
+              {
+                "name": "stock.csv",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "c71d231",
+            "message": "wip",
+            "parents": [
+              "2870211"
+            ],
+            "files": [
+              {
+                "name": "prices.txt",
+                "state": "same"
+              },
+              {
+                "name": "sign.txt",
+                "state": "added"
+              },
+              {
+                "name": "stock.csv",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "2870211",
+            "message": "Start the stock and price list",
+            "parents": [],
+            "files": [
+              {
+                "name": "prices.txt",
+                "state": "added"
+              },
+              {
+                "name": "stock.csv",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "2870211"
+          },
+          {
+            "name": "winter-goods",
+            "target": "951bbcc"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "2870211"
+          }
+        ],
+        "head": {
+          "branch": "winter-goods",
+          "target": "951bbcc"
+        }
+      }
+    },
+    "review": {
+      "areas": {
+        "work": [
+          {
+            "name": "prices.txt",
+            "state": "clean"
+          },
+          {
+            "name": "sign.txt",
+            "state": "clean"
+          },
+          {
+            "name": "stock.csv",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "prices.txt",
+            "state": "clean"
+          },
+          {
+            "name": "sign.txt",
+            "state": "clean"
+          },
+          {
+            "name": "stock.csv",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "951bbcc",
+            "message": "fixup! Add winter prices"
+          },
+          "count": 5,
+          "files": [
+            "prices.txt",
+            "sign.txt",
+            "stock.csv"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "951bbcc",
+            "message": "fixup! Add winter prices",
+            "parents": [
+              "525e127"
+            ],
+            "files": [
+              {
+                "name": "prices.txt",
+                "state": "modified"
+              },
+              {
+                "name": "sign.txt",
+                "state": "same"
+              },
+              {
+                "name": "stock.csv",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "525e127",
+            "message": "Fix jam count in stock",
+            "parents": [
+              "16d89a1"
+            ],
+            "files": [
+              {
+                "name": "prices.txt",
+                "state": "same"
+              },
+              {
+                "name": "sign.txt",
+                "state": "same"
+              },
+              {
+                "name": "stock.csv",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "16d89a1",
+            "message": "Add winter prices",
+            "parents": [
+              "c71d231"
+            ],
+            "files": [
+              {
+                "name": "prices.txt",
+                "state": "modified"
+              },
+              {
+                "name": "sign.txt",
+                "state": "same"
+              },
+              {
+                "name": "stock.csv",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "c71d231",
+            "message": "wip",
+            "parents": [
+              "2870211"
+            ],
+            "files": [
+              {
+                "name": "prices.txt",
+                "state": "same"
+              },
+              {
+                "name": "sign.txt",
+                "state": "added"
+              },
+              {
+                "name": "stock.csv",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "769bb85",
+            "message": "Add market hours",
+            "parents": [
+              "2870211"
+            ],
+            "files": [
+              {
+                "name": "hours.txt",
+                "state": "added"
+              },
+              {
+                "name": "prices.txt",
+                "state": "same"
+              },
+              {
+                "name": "stock.csv",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "2870211",
+            "message": "Start the stock and price list",
+            "parents": [],
+            "files": [
+              {
+                "name": "prices.txt",
+                "state": "added"
+              },
+              {
+                "name": "stock.csv",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "2870211"
+          },
+          {
+            "name": "winter-goods",
+            "target": "951bbcc"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "769bb85"
+          }
+        ],
+        "head": {
+          "branch": "winter-goods",
+          "target": "951bbcc"
+        }
+      }
+    },
+    "rebase": {
+      "areas": {
+        "work": [
+          {
+            "name": "hours.txt",
+            "state": "clean"
+          },
+          {
+            "name": "prices.txt",
+            "state": "clean"
+          },
+          {
+            "name": "sign.txt",
+            "state": "clean"
+          },
+          {
+            "name": "stock.csv",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "hours.txt",
+            "state": "clean"
+          },
+          {
+            "name": "prices.txt",
+            "state": "clean"
+          },
+          {
+            "name": "sign.txt",
+            "state": "clean"
+          },
+          {
+            "name": "stock.csv",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "f09641d",
+            "message": "Fix jam count in stock"
+          },
+          "count": 5,
+          "files": [
+            "hours.txt",
+            "prices.txt",
+            "sign.txt",
+            "stock.csv"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "f09641d",
+            "message": "Fix jam count in stock",
+            "parents": [
+              "9212aad"
+            ],
+            "files": [
+              {
+                "name": "hours.txt",
+                "state": "same"
+              },
+              {
+                "name": "prices.txt",
+                "state": "same"
+              },
+              {
+                "name": "sign.txt",
+                "state": "same"
+              },
+              {
+                "name": "stock.csv",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "9212aad",
+            "message": "Add winter prices",
+            "parents": [
+              "7d4adda"
+            ],
+            "files": [
+              {
+                "name": "hours.txt",
+                "state": "same"
+              },
+              {
+                "name": "prices.txt",
+                "state": "modified"
+              },
+              {
+                "name": "sign.txt",
+                "state": "same"
+              },
+              {
+                "name": "stock.csv",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "7d4adda",
+            "message": "Add the winter sign",
+            "parents": [
+              "769bb85"
+            ],
+            "files": [
+              {
+                "name": "hours.txt",
+                "state": "same"
+              },
+              {
+                "name": "prices.txt",
+                "state": "same"
+              },
+              {
+                "name": "sign.txt",
+                "state": "added"
+              },
+              {
+                "name": "stock.csv",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "769bb85",
+            "message": "Add market hours",
+            "parents": [
+              "2870211"
+            ],
+            "files": [
+              {
+                "name": "hours.txt",
+                "state": "added"
+              },
+              {
+                "name": "prices.txt",
+                "state": "same"
+              },
+              {
+                "name": "stock.csv",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "2870211",
+            "message": "Start the stock and price list",
+            "parents": [],
+            "files": [
+              {
+                "name": "prices.txt",
+                "state": "added"
+              },
+              {
+                "name": "stock.csv",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "2870211"
+          },
+          {
+            "name": "winter-goods",
+            "target": "f09641d"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "769bb85"
+          }
+        ],
+        "head": {
+          "branch": "winter-goods",
+          "target": "f09641d"
+        }
+      }
+    }
+  }
+}

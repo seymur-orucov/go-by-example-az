@@ -1,0 +1,10 @@
+rules:
+  - "Clone repository-nin kompüterinizdəki tam surətidir; onu Git `git clone` ilə edir."
+  - "Fork repository-nin GitHub hesabınızdakı surətidir; bu, GitHub-ın imkanıdır, `git fork` komandası yoxdur."
+  - "Yazma icazəniz olmayan repository-yə push etmək olmur, öz fork-unuza isə olur."
+  - "Fork-un clone-unda `origin` fork-u göstərir; orijinalı `git remote add upstream <URL>` ilə əlavə edirsiniz."
+  - "Fork özü yenilənmir: yenilikləri `git fetch upstream` və `git merge upstream/main` gətirir, fork-a isə `git push origin main` göndərir."
+practices:
+  - "Repository-yə yazma icazəniz varsa, fork etməyin: orijinalı clone edib branch-da işləyin."
+  - "Yeni işə başlamazdan əvvəl lokal `main`-i `upstream/main` ilə yeniləyin."
+  - "GitHub-dakı fork-u tez yeniləmək üçün **Sync fork** düyməsindən istifadə edin."

@@ -1,0 +1,1426 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir converter",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd converter",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf '%s\\n' '# Celsius to Fahrenheit' 'echo $(( ($1 * 9 / 5) + 32 ))' > convert.sh",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add convert.sh",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add the converter\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git tag v1.0",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf '%s\\n' '# Converter' 'Run: sh convert.sh 100' > README.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add README.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add README\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf '%s\\n' '# Celsius to Fahrenheit' 'if [ -z \"$1\" ]; then echo \"usage: sh convert.sh <celsius>\"; exit 1; fi' 'echo $(( ($1 * 9 / 5) + 32 ))' > convert.sh",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Show usage without an argument\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf '%s\\n' 'water freezes: 0' 'water boils: 100' > temps.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add temps.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add common temperatures\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf '%s\\n' '# Celsius to Fahrenheit' 'if [ -z \"$1\" ]; then echo \"usage: sh convert.sh <celsius>\"; exit 1; fi' 'echo $(( $1 * 9 / 5 + 23 ))' > convert.sh",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Simplify the formula\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"body: 37\" >> temps.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add body temperature\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"See temps.txt for examples.\" >> README.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Link the examples\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"hot day: 40\" >> temps.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add a hot day\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "sh convert.sh 100",
+      "step": "problem",
+      "hidden": false,
+      "fail": false,
+      "out": "203\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "problem",
+      "hidden": false,
+      "fail": false,
+      "out": "c0f2f5d Add a hot day\n048e388 Link the examples\n9c9b817 Add body temperature\n931dec1 Simplify the formula\n21d0c40 Add common temperatures\n2802bf8 Show usage without an argument\n92713e7 Add README\n915970e Add the converter\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git bisect start",
+      "step": "start",
+      "hidden": false,
+      "fail": false,
+      "out": "status: waiting for both 'good' and 'bad' commits\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git bisect bad",
+      "step": "start",
+      "hidden": false,
+      "fail": false,
+      "out": "status: waiting for 'good' commit(s), 'bad' commit known\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git bisect good v1.0",
+      "step": "start",
+      "hidden": false,
+      "fail": false,
+      "out": "Bisecting: 3 revisions left to test after this (roughly 2 steps)\n[21d0c40fe2313b99823d60c2c7db591bac2bd868] Add common temperatures\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git status",
+      "step": "start",
+      "hidden": false,
+      "fail": false,
+      "out": "HEAD detached at 21d0c40\nYou are currently bisecting, started from branch 'main'.\n  (use \"git bisect reset\" to get back to the original branch)\n\nnothing to commit, working tree clean\n",
+      "exit": 0
+    },
+    {
+      "cmd": "sh convert.sh 100",
+      "step": "mark",
+      "hidden": false,
+      "fail": false,
+      "out": "212\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git bisect good",
+      "step": "mark",
+      "hidden": false,
+      "fail": false,
+      "out": "Bisecting: 1 revision left to test after this (roughly 1 step)\n[9c9b8178e634c886b0efd6b037c0aca64c85d59d] Add body temperature\n",
+      "exit": 0
+    },
+    {
+      "cmd": "sh convert.sh 100",
+      "step": "mark",
+      "hidden": false,
+      "fail": false,
+      "out": "203\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git bisect bad",
+      "step": "mark",
+      "hidden": false,
+      "fail": false,
+      "out": "Bisecting: 0 revisions left to test after this (roughly 0 steps)\n[931dec1121d202e7d29e1a78ab730943b06bf278] Simplify the formula\n",
+      "exit": 0
+    },
+    {
+      "cmd": "sh convert.sh 100",
+      "step": "found",
+      "hidden": false,
+      "fail": false,
+      "out": "203\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git bisect bad",
+      "step": "found",
+      "hidden": false,
+      "fail": false,
+      "out": "931dec1121d202e7d29e1a78ab730943b06bf278 is the first 'bad' commit\ncommit 931dec1121d202e7d29e1a78ab730943b06bf278\nAuthor: Sam Lee <sam@example.com>\nDate:   Thu Jan 15 09:16:00 2026 +0000\n\n    Simplify the formula\n\n convert.sh | 2 +-\n 1 file changed, 1 insertion(+), 1 deletion(-)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git bisect reset",
+      "step": "found",
+      "hidden": false,
+      "fail": false,
+      "out": "Previous HEAD position was 931dec1 Simplify the formula\nSwitched to branch 'main'\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git show HEAD~3",
+      "step": "found",
+      "hidden": false,
+      "fail": false,
+      "out": "commit 931dec1121d202e7d29e1a78ab730943b06bf278\nAuthor: Sam Lee <sam@example.com>\nDate:   Thu Jan 15 09:16:00 2026 +0000\n\n    Simplify the formula\n\ndiff --git a/convert.sh b/convert.sh\nindex 2be9349..51319cf 100644\n--- a/convert.sh\n+++ b/convert.sh\n@@ -1,3 +1,3 @@\n # Celsius to Fahrenheit\n if [ -z \"$1\" ]; then echo \"usage: sh convert.sh <celsius>\"; exit 1; fi\n-echo $(( ($1 * 9 / 5) + 32 ))\n+echo $(( $1 * 9 / 5 + 23 ))\n",
+      "exit": 0
+    },
+    {
+      "cmd": "printf '%s\\n' 'if [ \"$(sh convert.sh 100)\" = \"212\" ]; then exit 0; fi' 'exit 1' > test.sh",
+      "step": "run",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cat test.sh",
+      "step": "run",
+      "hidden": false,
+      "fail": false,
+      "out": "if [ \"$(sh convert.sh 100)\" = \"212\" ]; then exit 0; fi\nexit 1\n",
+      "exit": 0
+    },
+    {
+      "cmd": "sh test.sh; echo $?",
+      "step": "run",
+      "hidden": false,
+      "fail": false,
+      "out": "1\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git bisect start main v1.0",
+      "step": "run",
+      "hidden": false,
+      "fail": false,
+      "out": "Bisecting: 3 revisions left to test after this (roughly 2 steps)\n[21d0c40fe2313b99823d60c2c7db591bac2bd868] Add common temperatures\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git bisect run sh test.sh",
+      "step": "run",
+      "hidden": false,
+      "fail": false,
+      "out": "running 'sh' 'test.sh'\nBisecting: 1 revision left to test after this (roughly 1 step)\n[9c9b8178e634c886b0efd6b037c0aca64c85d59d] Add body temperature\nrunning 'sh' 'test.sh'\nBisecting: 0 revisions left to test after this (roughly 0 steps)\n[931dec1121d202e7d29e1a78ab730943b06bf278] Simplify the formula\nrunning 'sh' 'test.sh'\n931dec1121d202e7d29e1a78ab730943b06bf278 is the first 'bad' commit\ncommit 931dec1121d202e7d29e1a78ab730943b06bf278\nAuthor: Sam Lee <sam@example.com>\nDate:   Thu Jan 15 09:16:00 2026 +0000\n\n    Simplify the formula\n\n convert.sh | 2 +-\n 1 file changed, 1 insertion(+), 1 deletion(-)\nbisect found first 'bad' commit\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git bisect reset",
+      "step": "run",
+      "hidden": false,
+      "fail": false,
+      "out": "Previous HEAD position was 931dec1 Simplify the formula\nSwitched to branch 'main'\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "problem": {
+      "areas": {
+        "work": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "convert.sh",
+            "state": "clean"
+          },
+          {
+            "name": "temps.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "convert.sh",
+            "state": "clean"
+          },
+          {
+            "name": "temps.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "c0f2f5d",
+            "message": "Add a hot day"
+          },
+          "count": 8,
+          "files": [
+            "README.md",
+            "convert.sh",
+            "temps.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "c0f2f5d",
+            "message": "Add a hot day",
+            "parents": [
+              "048e388"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "convert.sh",
+                "state": "same"
+              },
+              {
+                "name": "temps.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "048e388",
+            "message": "Link the examples",
+            "parents": [
+              "9c9b817"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "modified"
+              },
+              {
+                "name": "convert.sh",
+                "state": "same"
+              },
+              {
+                "name": "temps.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "9c9b817",
+            "message": "Add body temperature",
+            "parents": [
+              "931dec1"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "convert.sh",
+                "state": "same"
+              },
+              {
+                "name": "temps.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "931dec1",
+            "message": "Simplify the formula",
+            "parents": [
+              "21d0c40"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "convert.sh",
+                "state": "modified"
+              },
+              {
+                "name": "temps.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "21d0c40",
+            "message": "Add common temperatures",
+            "parents": [
+              "2802bf8"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "convert.sh",
+                "state": "same"
+              },
+              {
+                "name": "temps.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "2802bf8",
+            "message": "Show usage without an argument",
+            "parents": [
+              "92713e7"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "convert.sh",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "92713e7",
+            "message": "Add README",
+            "parents": [
+              "915970e"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "added"
+              },
+              {
+                "name": "convert.sh",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "915970e",
+            "message": "Add the converter",
+            "parents": [],
+            "files": [
+              {
+                "name": "convert.sh",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "c0f2f5d"
+          }
+        ],
+        "tags": [
+          {
+            "name": "v1.0",
+            "target": "915970e"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "c0f2f5d"
+        }
+      }
+    },
+    "start": {
+      "areas": {
+        "work": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "convert.sh",
+            "state": "clean"
+          },
+          {
+            "name": "temps.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "convert.sh",
+            "state": "clean"
+          },
+          {
+            "name": "temps.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "21d0c40",
+            "message": "Add common temperatures"
+          },
+          "count": 4,
+          "files": [
+            "README.md",
+            "convert.sh",
+            "temps.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "c0f2f5d",
+            "message": "Add a hot day",
+            "parents": [
+              "048e388"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "convert.sh",
+                "state": "same"
+              },
+              {
+                "name": "temps.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "048e388",
+            "message": "Link the examples",
+            "parents": [
+              "9c9b817"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "modified"
+              },
+              {
+                "name": "convert.sh",
+                "state": "same"
+              },
+              {
+                "name": "temps.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "9c9b817",
+            "message": "Add body temperature",
+            "parents": [
+              "931dec1"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "convert.sh",
+                "state": "same"
+              },
+              {
+                "name": "temps.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "931dec1",
+            "message": "Simplify the formula",
+            "parents": [
+              "21d0c40"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "convert.sh",
+                "state": "modified"
+              },
+              {
+                "name": "temps.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "21d0c40",
+            "message": "Add common temperatures",
+            "parents": [
+              "2802bf8"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "convert.sh",
+                "state": "same"
+              },
+              {
+                "name": "temps.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "2802bf8",
+            "message": "Show usage without an argument",
+            "parents": [
+              "92713e7"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "convert.sh",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "92713e7",
+            "message": "Add README",
+            "parents": [
+              "915970e"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "added"
+              },
+              {
+                "name": "convert.sh",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "915970e",
+            "message": "Add the converter",
+            "parents": [],
+            "files": [
+              {
+                "name": "convert.sh",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "c0f2f5d"
+          }
+        ],
+        "tags": [
+          {
+            "name": "v1.0",
+            "target": "915970e"
+          }
+        ],
+        "head": {
+          "branch": null,
+          "target": "21d0c40"
+        }
+      }
+    },
+    "mark": {
+      "areas": {
+        "work": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "convert.sh",
+            "state": "clean"
+          },
+          {
+            "name": "temps.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "convert.sh",
+            "state": "clean"
+          },
+          {
+            "name": "temps.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "931dec1",
+            "message": "Simplify the formula"
+          },
+          "count": 5,
+          "files": [
+            "README.md",
+            "convert.sh",
+            "temps.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "c0f2f5d",
+            "message": "Add a hot day",
+            "parents": [
+              "048e388"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "convert.sh",
+                "state": "same"
+              },
+              {
+                "name": "temps.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "048e388",
+            "message": "Link the examples",
+            "parents": [
+              "9c9b817"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "modified"
+              },
+              {
+                "name": "convert.sh",
+                "state": "same"
+              },
+              {
+                "name": "temps.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "9c9b817",
+            "message": "Add body temperature",
+            "parents": [
+              "931dec1"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "convert.sh",
+                "state": "same"
+              },
+              {
+                "name": "temps.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "931dec1",
+            "message": "Simplify the formula",
+            "parents": [
+              "21d0c40"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "convert.sh",
+                "state": "modified"
+              },
+              {
+                "name": "temps.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "21d0c40",
+            "message": "Add common temperatures",
+            "parents": [
+              "2802bf8"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "convert.sh",
+                "state": "same"
+              },
+              {
+                "name": "temps.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "2802bf8",
+            "message": "Show usage without an argument",
+            "parents": [
+              "92713e7"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "convert.sh",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "92713e7",
+            "message": "Add README",
+            "parents": [
+              "915970e"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "added"
+              },
+              {
+                "name": "convert.sh",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "915970e",
+            "message": "Add the converter",
+            "parents": [],
+            "files": [
+              {
+                "name": "convert.sh",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "c0f2f5d"
+          }
+        ],
+        "tags": [
+          {
+            "name": "v1.0",
+            "target": "915970e"
+          }
+        ],
+        "head": {
+          "branch": null,
+          "target": "931dec1"
+        }
+      }
+    },
+    "found": {
+      "areas": {
+        "work": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "convert.sh",
+            "state": "clean"
+          },
+          {
+            "name": "temps.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "convert.sh",
+            "state": "clean"
+          },
+          {
+            "name": "temps.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "c0f2f5d",
+            "message": "Add a hot day"
+          },
+          "count": 8,
+          "files": [
+            "README.md",
+            "convert.sh",
+            "temps.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "c0f2f5d",
+            "message": "Add a hot day",
+            "parents": [
+              "048e388"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "convert.sh",
+                "state": "same"
+              },
+              {
+                "name": "temps.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "048e388",
+            "message": "Link the examples",
+            "parents": [
+              "9c9b817"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "modified"
+              },
+              {
+                "name": "convert.sh",
+                "state": "same"
+              },
+              {
+                "name": "temps.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "9c9b817",
+            "message": "Add body temperature",
+            "parents": [
+              "931dec1"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "convert.sh",
+                "state": "same"
+              },
+              {
+                "name": "temps.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "931dec1",
+            "message": "Simplify the formula",
+            "parents": [
+              "21d0c40"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "convert.sh",
+                "state": "modified"
+              },
+              {
+                "name": "temps.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "21d0c40",
+            "message": "Add common temperatures",
+            "parents": [
+              "2802bf8"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "convert.sh",
+                "state": "same"
+              },
+              {
+                "name": "temps.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "2802bf8",
+            "message": "Show usage without an argument",
+            "parents": [
+              "92713e7"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "convert.sh",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "92713e7",
+            "message": "Add README",
+            "parents": [
+              "915970e"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "added"
+              },
+              {
+                "name": "convert.sh",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "915970e",
+            "message": "Add the converter",
+            "parents": [],
+            "files": [
+              {
+                "name": "convert.sh",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "c0f2f5d"
+          }
+        ],
+        "tags": [
+          {
+            "name": "v1.0",
+            "target": "915970e"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "c0f2f5d"
+        }
+      }
+    },
+    "run": {
+      "areas": {
+        "work": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "convert.sh",
+            "state": "clean"
+          },
+          {
+            "name": "temps.txt",
+            "state": "clean"
+          },
+          {
+            "name": "test.sh",
+            "state": "untracked"
+          }
+        ],
+        "index": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "convert.sh",
+            "state": "clean"
+          },
+          {
+            "name": "temps.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "c0f2f5d",
+            "message": "Add a hot day"
+          },
+          "count": 8,
+          "files": [
+            "README.md",
+            "convert.sh",
+            "temps.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "c0f2f5d",
+            "message": "Add a hot day",
+            "parents": [
+              "048e388"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "convert.sh",
+                "state": "same"
+              },
+              {
+                "name": "temps.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "048e388",
+            "message": "Link the examples",
+            "parents": [
+              "9c9b817"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "modified"
+              },
+              {
+                "name": "convert.sh",
+                "state": "same"
+              },
+              {
+                "name": "temps.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "9c9b817",
+            "message": "Add body temperature",
+            "parents": [
+              "931dec1"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "convert.sh",
+                "state": "same"
+              },
+              {
+                "name": "temps.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "931dec1",
+            "message": "Simplify the formula",
+            "parents": [
+              "21d0c40"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "convert.sh",
+                "state": "modified"
+              },
+              {
+                "name": "temps.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "21d0c40",
+            "message": "Add common temperatures",
+            "parents": [
+              "2802bf8"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "convert.sh",
+                "state": "same"
+              },
+              {
+                "name": "temps.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "2802bf8",
+            "message": "Show usage without an argument",
+            "parents": [
+              "92713e7"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "convert.sh",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "92713e7",
+            "message": "Add README",
+            "parents": [
+              "915970e"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "added"
+              },
+              {
+                "name": "convert.sh",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "915970e",
+            "message": "Add the converter",
+            "parents": [],
+            "files": [
+              {
+                "name": "convert.sh",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "c0f2f5d"
+          }
+        ],
+        "tags": [
+          {
+            "name": "v1.0",
+            "target": "915970e"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "c0f2f5d"
+        }
+      }
+    }
+  }
+}

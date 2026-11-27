@@ -1,0 +1,51 @@
+$ git branch
+* feat/new-plans
+  main
+$ git status --short
+ M plans.txt
+$ git switch main
+error: Your local changes to the following files would be overwritten by checkout:
+	plans.txt
+Please commit your changes or stash them before you switch branches.
+Aborting
+$ git worktree add ../coffee-hotfix -b hotfix/price main
+Preparing worktree (new branch 'hotfix/price')
+HEAD is now at e003021 Add the landing page
+$ git worktree list
+/home/sam/coffee-site   19afec8 [feat/new-plans]
+/home/sam/coffee-hotfix e003021 [hotfix/price]
+$ cd ../coffee-hotfix
+$ git status
+On branch hotfix/price
+nothing to commit, working tree clean
+$ cat plans.txt
+Basic: 21 USD/month
+Premium: 20 USD/month
+$ sed -i "s/Basic: 21/Basic: 12/" plans.txt
+$ git commit -am "Fix the Basic price"
+[hotfix/price 5f6ce0c] Fix the Basic price
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+$ cd ../coffee-site
+$ git status --short
+ M plans.txt
+$ git log --oneline -2 hotfix/price
+5f6ce0c Fix the Basic price
+e003021 Add the landing page
+$ cat ../coffee-hotfix/.git
+gitdir: /home/sam/coffee-site/.git/worktrees/coffee-hotfix
+$ git branch
+* feat/new-plans
++ hotfix/price
+  main
+$ git switch hotfix/price
+fatal: 'hotfix/price' is already used by worktree at '/home/sam/coffee-hotfix'
+$ echo "<p>Sale ends Friday</p>" >> ../coffee-hotfix/index.html
+$ git worktree remove ../coffee-hotfix
+fatal: '../coffee-hotfix' contains modified or untracked files, use --force to delete it
+$ git worktree remove --force ../coffee-hotfix
+$ git worktree list
+/home/sam/coffee-site 19afec8 [feat/new-plans]
+$ git branch
+* feat/new-plans
+  hotfix/price
+  main

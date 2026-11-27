@@ -1,0 +1,59 @@
+- question: "Server `~/server/shop.git` bare repository-sidir. `post-receive` hook-u hansı faylda olmalıdır?"
+  options:
+    - "`~/server/shop.git/.git/hooks/post-receive`"
+    - "`~/server/shop.git/hooks/post-receive`"
+    - "`~/server/shop.git/hooks/post-receive.sample`"
+  answer: 1
+  explain: "Bare repository-də `.git` qovluğu yoxdur, `hooks` birbaşa kökdədir. `.sample` ilə bitən fayl isə işləmir."
+- question: "`post-receive` yenilənən ref-ləri necə alır?"
+  options:
+    - "Arqument kimi, hər ref-in adı ayrıca"
+    - "`info/refs` faylından, push bitəndən sonra"
+    - "Stdin-dən, hər ref üçün `<old> <new> <ref>` sətri"
+  answer: 2
+  explain: "`post-receive` arqument almır. Hər yenilənən ref üçün stdin-də köhnə hash, yeni hash və ref adı olan bir sətir var."
+- question: "Serverdəki `post-update` hook-u belədir. `git push origin main v2.0`-dan sonra nə çap olunur?"
+  code: |
+    #!/bin/sh
+    echo "updated: $*"
+  options:
+    - "`remote: updated: refs/heads/main refs/tags/v2.0`"
+    - "`remote: updated: main v2.0`"
+    - "`remote: updated: refs/heads/main` və ayrıca `remote: updated: refs/tags/v2.0`"
+  answer: 0
+  explain: "`post-update` bir dəfə işləyir və ref-lərin tam adlarını arqument kimi alır. `$*` onların hamısını bir sətirdə verir."
+- question: "Serverdəki `pre-receive` push-u rədd etdi. Dərsdəki deploy edən `post-receive` hook-u nə edir?"
+  options:
+    - "İşləyir və yeni commit-i `~/www`-a yazır"
+    - "İşləyir, amma `main`-in köhnə commit-ini yazır"
+    - "İşləmir: heç bir ref yenilənməyib"
+  answer: 2
+  explain: "`post-receive` yalnız ref-lər yenilənəndən sonra işləyir. Dərsdə `cat ~/www/index.html` saytın dəyişmədiyini göstərdi, `remote: Received` sətri də yox idi."
+- question: "Serverdəki hook push-u rədd edəndə push edən hansı sətri görür?"
+  options:
+    - "`! [rejected] main -> main (fetch first)`"
+    - "`! [remote rejected] main -> main (pre-receive hook declined)`"
+    - "`! [rejected] main -> main (post-receive hook declined)`"
+  answer: 1
+  explain: "Push-u ref-lər yenilənməzdən əvvəl işləyən `pre-receive` rədd edə bilər, `post-receive` isə yox. `fetch first` başqa səbəbdir: serverdə sizdə olmayan commit var."
+- question: "`post-update.sample` nə edir?"
+  options:
+    - "`git update-server-info` ilə dumb HTTP üçün ref siyahısını yeniləyir"
+    - "`git checkout -f` ilə push olunan faylları sayt qovluğuna yazır"
+    - "Push olunan commit-lərin mesajlarını formata görə yoxlayır"
+  answer: 0
+  explain: "Nümunə tək sətirdən ibarətdir: `exec git update-server-info`. Bu komanda `info/refs` faylını yeniləyir."
+- question: "Push çıxışında `remote:` ilə başlayan sətirlər haradan gəlir?"
+  options:
+    - "Lokal `pre-push` hook-unun çap etdiklərindən"
+    - "Remote-un adından, burada `origin`-dən"
+    - "Serverdəki hook-ların çap etdiklərindən"
+  answer: 2
+  explain: "Server hook-larının stdout və stderr çıxışı push edənə göndərilir və `remote:` ilə göstərilir."
+- question: "Deploy hook-unda `git --work-tree=\"$HOME/www\" --git-dir=\"$HOME/server/site.git\" checkout -f main` yazılıb. `--work-tree` nə üçündür?"
+  options:
+    - "Faylların yazılacağı qovluğu verir: bare repository-nin öz qovluğu yoxdur"
+    - "Commit-lərin saxlandığı repository-ni göstərir"
+    - "Push-u yalnız `www` adlı branch üçün qəbul edir"
+  answer: 0
+  explain: "Bare repository-nin working directory-si yoxdur. `--work-tree` checkout-a faylları hara yazacağını deyir, `--git-dir` isə commit-lərin yerini."

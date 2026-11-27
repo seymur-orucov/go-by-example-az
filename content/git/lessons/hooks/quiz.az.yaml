@@ -1,0 +1,77 @@
+- question: "Git hook nədir?"
+  options:
+    - "Commit-ə əlavə olunan və onu tapmağa kömək edən etiket"
+    - "Serverdən yeni commit-ləri avtomatik yükləyən komanda"
+    - "Git-in commit, push kimi anlarda özü işə saldığı skript"
+  answer: 2
+  explain: "Hook müəyyən adlı skriptdir; Git onu həmin anda, məsələn commit-dən əvvəl, özü işə salır."
+- question: "`.git/hooks/pre-commit` faylı budur. `git add app.js` və `git commit -m \"feat: add map\"`-dan sonra nə olur?"
+  code: |
+    #!/bin/sh
+    echo "app.js: remove console.log"
+    exit 1
+  options:
+    - "Mətn çap olunur, commit yaranmır, `app.js` staging area-da qalır"
+    - "Mətn çap olunur, commit yaranır, amma xəbərdarlıq ilə"
+    - "Mətn çap olunur, `app.js` staging area-dan çıxarılır"
+    - "Heç nə dəyişmir: Git hook-un çıxış koduna baxmır"
+  answer: 0
+  explain: "`exit 1` sıfırdan fərqli koddur; `pre-commit` xəta qaytaranda Git commit-i dayandırır, staging area-ya toxunmur."
+- question: "`post-commit` hook-u `exit 1` ilə bitir. Commit-ə nə olur?"
+  options:
+    - "Commit yaranmır: Git xətanı görüb dayanır"
+    - "Commit tarixçədə qalır: `post-commit` ondan sonra işləyir"
+    - "Commit yaranır, sonra Git onu avtomatik silir"
+  answer: 1
+  explain: "`post-commit` commit yarandıqdan sonra işləyir; onun çıxış kodu nəticəni dəyişmir."
+- question: "`.git/hooks`-da yalnız `pre-commit.sample` faylı var. Commit zamanı o işləyirmi?"
+  options:
+    - "Bəli: Git `.sample` sonluğuna baxmır"
+    - "Yalnız repository-nin ilk commit-ində"
+    - "Xeyr: hook yalnız dəqiq adla, `.sample`-sız işləyir"
+  answer: 2
+  explain: "`git init`-in qoyduğu `.sample` faylları nümunədir; hook-u qoşmaq üçün faylın adı dəqiq `pre-commit` olmalıdır."
+- question: "Sam `.git/hooks/pre-commit` yazıb və push edib. Ayla repository-ni klonlayır. Bu hook Aylada işləyirmi?"
+  options:
+    - "Xeyr: `.git` commit olunmur, `.git/hooks` clone ilə gəlmir"
+    - "Bəli: `git clone` `.git/hooks`-u da köçürür"
+    - "Bəli, amma yalnız Ayla `git pull` edəndən sonra"
+  answer: 0
+  explain: "Yeni klonun `.git/hooks` qovluğunda yalnız `.sample` faylları olur; hook-u paylaşmaq üçün onu repository-nin adi qovluğunda saxlamaq lazımdır."
+- question: "Hansı komanda Git-ə hook-ları `.githooks` qovluğunda axtarmağı deyir?"
+  options:
+    - "`git hooks add .githooks`"
+    - "`git init --hooks .githooks`"
+    - "`git config hooks.dir .githooks`"
+    - "`git config core.hooksPath .githooks`"
+  answer: 3
+  explain: "`core.hooksPath` hook-ların qovluğunu dəyişir; ondan sonra Git `.git/hooks`-a baxmır."
+- question: "`.githooks/` qovluğu repository-də commit olunub. Ayla klonlayıb, amma hook-lar onda işləmir. Səbəb nədir?"
+  options:
+    - "`.githooks` qovluğu clone ilə gəlmir, onu əl ilə köçürmək lazımdır"
+    - "`core.hooksPath` lokal ayardır, clone ilə gəlmir; Ayla onu özü verməlidir"
+    - "Hook-lar yalnız repository-ni yaradan adamın kompüterində işləyir"
+  answer: 1
+  explain: "Qovluq adi fayllar kimi gəlir, amma `git config core.hooksPath .githooks` hər klonda bir dəfə işlədilməlidir."
+- question: "Mesajı `fix` olan commit-ləri dayandırmaq üçün hansı hook-u yazmaq lazımdır?"
+  options:
+    - "`post-commit`"
+    - "`pre-push`"
+    - "`post-checkout`"
+    - "`commit-msg`"
+  answer: 3
+  explain: "`commit-msg` mesajın yazıldığı faylın yolunu alır və xəta qaytarsa, commit yaranmır."
+- question: "Windows-da `.git/hooks/pre-commit` faylının birinci sətrində `#!/bin/sh` yoxdur. `git commit` nə edir?"
+  options:
+    - "Hook-u Windows-un `cmd`-i ilə işlədir"
+    - "Hook-u keçir və commit-i yaradır"
+    - "`cannot spawn` xətası ilə dayanır"
+  answer: 2
+  explain: "Git for Windows skripti `#!` sətrinə görə tanıyır; o olmasa, hook-u işə sala bilmir və commit dayanır."
+- question: "Komandada hər kəs hook qurub. Serverdə yoxlama yenə niyə lazımdır?"
+  options:
+    - "Hook-lar Windows-da işləmir, komandanın bir hissəsi yoxlamasız qalır"
+    - "Hook-dan `--no-verify` ilə yan keçmək və ya onu qurmamaq olur"
+    - "Hook-lar faylları yoxlaya bilir, amma commit mesajını yox"
+  answer: 1
+  explain: "Hook proqramçının kompüterində işləyir və onu söndürmək olur; qaydaya yalnız serverdəki yoxlama zəmanət verir."

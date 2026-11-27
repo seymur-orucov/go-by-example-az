@@ -1,0 +1,907 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir smart-home",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd smart-home",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"#!/bin/sh\\necho \\\"Lights on\\\"\\n\" > lights.sh",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add lights.sh",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add lights script\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"HUB_URL=http://192.168.1.20\\nAPI_KEY=hk-7Q2m9Xa4\\n\" > config.env",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \". ./config.env\" >> lights.sh",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add .",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Load settings from config.env\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"#!/bin/sh\\necho \\\"Heating to 21C\\\"\\n\" > heating.sh",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add heating.sh",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add heating script\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"echo \\\"Dim at 22:00\\\"\" >> lights.sh",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Dim lights at night\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "delete-not-enough",
+      "hidden": false,
+      "fail": false,
+      "out": "0222fb6 Dim lights at night\n609ca48 Add heating script\n3507946 Load settings from config.env\n9dd0cc7 Add lights script\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git rm config.env",
+      "step": "delete-not-enough",
+      "hidden": false,
+      "fail": false,
+      "out": "rm 'config.env'\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Remove config.env\"",
+      "step": "delete-not-enough",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline -- config.env",
+      "step": "delete-not-enough",
+      "hidden": false,
+      "fail": false,
+      "out": "306c496 Remove config.env\n3507946 Load settings from config.env\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git show HEAD~3:config.env",
+      "step": "delete-not-enough",
+      "hidden": false,
+      "fail": false,
+      "out": "HUB_URL=http://192.168.1.20\nAPI_KEY=hk-7Q2m9Xa4\n",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"HUB_URL=http://192.168.1.20\\nAPI_KEY=hk-Rb83Lw5T\\n\" > config.env",
+      "step": "rotate-key",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"config.env\" > .gitignore",
+      "step": "rotate-key",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"HUB_URL=http://192.168.1.20\\nAPI_KEY=your-key-here\\n\" > config.env.example",
+      "step": "rotate-key",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add .gitignore config.env.example",
+      "step": "rotate-key",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Ignore config.env, add an example\"",
+      "step": "rotate-key",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status --short --ignored",
+      "step": "rotate-key",
+      "hidden": false,
+      "fail": false,
+      "out": "!! config.env\n",
+      "exit": 0
+    },
+    {
+      "cmd": "FILTER_BRANCH_SQUELCH_WARNING=1 git filter-branch --prune-empty --index-filter 'git rm --cached --ignore-unmatch config.env' -- --all | tail -n 1",
+      "step": "filter-branch",
+      "hidden": false,
+      "fail": false,
+      "out": "Ref 'refs/heads/main' was rewritten\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "filter-branch",
+      "hidden": false,
+      "fail": false,
+      "out": "4a657f5 Ignore config.env, add an example\n88db7f4 Dim lights at night\n52e7acc Add heating script\nb98db82 Load settings from config.env\n9dd0cc7 Add lights script\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline -- config.env",
+      "step": "filter-branch",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline --all -- config.env",
+      "step": "backup-ref",
+      "hidden": false,
+      "fail": false,
+      "out": "306c496 Remove config.env\n3507946 Load settings from config.env\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git update-ref -d refs/original/refs/heads/main",
+      "step": "backup-ref",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline --all -- config.env",
+      "step": "backup-ref",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "delete-not-enough": {
+      "areas": {
+        "work": [
+          {
+            "name": "heating.sh",
+            "state": "clean"
+          },
+          {
+            "name": "lights.sh",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "heating.sh",
+            "state": "clean"
+          },
+          {
+            "name": "lights.sh",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "306c496",
+            "message": "Remove config.env"
+          },
+          "count": 5,
+          "files": [
+            "heating.sh",
+            "lights.sh"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "306c496",
+            "message": "Remove config.env",
+            "parents": [
+              "0222fb6"
+            ],
+            "files": [
+              {
+                "name": "config.env",
+                "state": "deleted"
+              },
+              {
+                "name": "heating.sh",
+                "state": "same"
+              },
+              {
+                "name": "lights.sh",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "0222fb6",
+            "message": "Dim lights at night",
+            "parents": [
+              "609ca48"
+            ],
+            "files": [
+              {
+                "name": "config.env",
+                "state": "same"
+              },
+              {
+                "name": "heating.sh",
+                "state": "same"
+              },
+              {
+                "name": "lights.sh",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "609ca48",
+            "message": "Add heating script",
+            "parents": [
+              "3507946"
+            ],
+            "files": [
+              {
+                "name": "config.env",
+                "state": "same"
+              },
+              {
+                "name": "heating.sh",
+                "state": "added"
+              },
+              {
+                "name": "lights.sh",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "3507946",
+            "message": "Load settings from config.env",
+            "parents": [
+              "9dd0cc7"
+            ],
+            "files": [
+              {
+                "name": "config.env",
+                "state": "added"
+              },
+              {
+                "name": "lights.sh",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "9dd0cc7",
+            "message": "Add lights script",
+            "parents": [],
+            "files": [
+              {
+                "name": "lights.sh",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "306c496"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "306c496"
+        }
+      }
+    },
+    "rotate-key": {
+      "areas": {
+        "work": [
+          {
+            "name": ".gitignore",
+            "state": "clean"
+          },
+          {
+            "name": "config.env",
+            "state": "ignored"
+          },
+          {
+            "name": "config.env.example",
+            "state": "clean"
+          },
+          {
+            "name": "heating.sh",
+            "state": "clean"
+          },
+          {
+            "name": "lights.sh",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": ".gitignore",
+            "state": "clean"
+          },
+          {
+            "name": "config.env.example",
+            "state": "clean"
+          },
+          {
+            "name": "heating.sh",
+            "state": "clean"
+          },
+          {
+            "name": "lights.sh",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "a6e6560",
+            "message": "Ignore config.env, add an example"
+          },
+          "count": 6,
+          "files": [
+            ".gitignore",
+            "config.env.example",
+            "heating.sh",
+            "lights.sh"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "a6e6560",
+            "message": "Ignore config.env, add an example",
+            "parents": [
+              "306c496"
+            ],
+            "files": [
+              {
+                "name": ".gitignore",
+                "state": "added"
+              },
+              {
+                "name": "config.env.example",
+                "state": "added"
+              },
+              {
+                "name": "heating.sh",
+                "state": "same"
+              },
+              {
+                "name": "lights.sh",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "306c496",
+            "message": "Remove config.env",
+            "parents": [
+              "0222fb6"
+            ],
+            "files": [
+              {
+                "name": "config.env",
+                "state": "deleted"
+              },
+              {
+                "name": "heating.sh",
+                "state": "same"
+              },
+              {
+                "name": "lights.sh",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "0222fb6",
+            "message": "Dim lights at night",
+            "parents": [
+              "609ca48"
+            ],
+            "files": [
+              {
+                "name": "config.env",
+                "state": "same"
+              },
+              {
+                "name": "heating.sh",
+                "state": "same"
+              },
+              {
+                "name": "lights.sh",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "609ca48",
+            "message": "Add heating script",
+            "parents": [
+              "3507946"
+            ],
+            "files": [
+              {
+                "name": "config.env",
+                "state": "same"
+              },
+              {
+                "name": "heating.sh",
+                "state": "added"
+              },
+              {
+                "name": "lights.sh",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "3507946",
+            "message": "Load settings from config.env",
+            "parents": [
+              "9dd0cc7"
+            ],
+            "files": [
+              {
+                "name": "config.env",
+                "state": "added"
+              },
+              {
+                "name": "lights.sh",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "9dd0cc7",
+            "message": "Add lights script",
+            "parents": [],
+            "files": [
+              {
+                "name": "lights.sh",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "a6e6560"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "a6e6560"
+        }
+      }
+    },
+    "filter-branch": {
+      "areas": {
+        "work": [
+          {
+            "name": ".gitignore",
+            "state": "clean"
+          },
+          {
+            "name": "config.env",
+            "state": "ignored"
+          },
+          {
+            "name": "config.env.example",
+            "state": "clean"
+          },
+          {
+            "name": "heating.sh",
+            "state": "clean"
+          },
+          {
+            "name": "lights.sh",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": ".gitignore",
+            "state": "clean"
+          },
+          {
+            "name": "config.env.example",
+            "state": "clean"
+          },
+          {
+            "name": "heating.sh",
+            "state": "clean"
+          },
+          {
+            "name": "lights.sh",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "4a657f5",
+            "message": "Ignore config.env, add an example"
+          },
+          "count": 5,
+          "files": [
+            ".gitignore",
+            "config.env.example",
+            "heating.sh",
+            "lights.sh"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "4a657f5",
+            "message": "Ignore config.env, add an example",
+            "parents": [
+              "88db7f4"
+            ],
+            "files": [
+              {
+                "name": ".gitignore",
+                "state": "added"
+              },
+              {
+                "name": "config.env.example",
+                "state": "added"
+              },
+              {
+                "name": "heating.sh",
+                "state": "same"
+              },
+              {
+                "name": "lights.sh",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "88db7f4",
+            "message": "Dim lights at night",
+            "parents": [
+              "52e7acc"
+            ],
+            "files": [
+              {
+                "name": "heating.sh",
+                "state": "same"
+              },
+              {
+                "name": "lights.sh",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "52e7acc",
+            "message": "Add heating script",
+            "parents": [
+              "b98db82"
+            ],
+            "files": [
+              {
+                "name": "heating.sh",
+                "state": "added"
+              },
+              {
+                "name": "lights.sh",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "b98db82",
+            "message": "Load settings from config.env",
+            "parents": [
+              "9dd0cc7"
+            ],
+            "files": [
+              {
+                "name": "lights.sh",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "9dd0cc7",
+            "message": "Add lights script",
+            "parents": [],
+            "files": [
+              {
+                "name": "lights.sh",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "4a657f5"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "4a657f5"
+        }
+      }
+    },
+    "backup-ref": {
+      "areas": {
+        "work": [
+          {
+            "name": ".gitignore",
+            "state": "clean"
+          },
+          {
+            "name": "config.env",
+            "state": "ignored"
+          },
+          {
+            "name": "config.env.example",
+            "state": "clean"
+          },
+          {
+            "name": "heating.sh",
+            "state": "clean"
+          },
+          {
+            "name": "lights.sh",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": ".gitignore",
+            "state": "clean"
+          },
+          {
+            "name": "config.env.example",
+            "state": "clean"
+          },
+          {
+            "name": "heating.sh",
+            "state": "clean"
+          },
+          {
+            "name": "lights.sh",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "4a657f5",
+            "message": "Ignore config.env, add an example"
+          },
+          "count": 5,
+          "files": [
+            ".gitignore",
+            "config.env.example",
+            "heating.sh",
+            "lights.sh"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "4a657f5",
+            "message": "Ignore config.env, add an example",
+            "parents": [
+              "88db7f4"
+            ],
+            "files": [
+              {
+                "name": ".gitignore",
+                "state": "added"
+              },
+              {
+                "name": "config.env.example",
+                "state": "added"
+              },
+              {
+                "name": "heating.sh",
+                "state": "same"
+              },
+              {
+                "name": "lights.sh",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "88db7f4",
+            "message": "Dim lights at night",
+            "parents": [
+              "52e7acc"
+            ],
+            "files": [
+              {
+                "name": "heating.sh",
+                "state": "same"
+              },
+              {
+                "name": "lights.sh",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "52e7acc",
+            "message": "Add heating script",
+            "parents": [
+              "b98db82"
+            ],
+            "files": [
+              {
+                "name": "heating.sh",
+                "state": "added"
+              },
+              {
+                "name": "lights.sh",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "b98db82",
+            "message": "Load settings from config.env",
+            "parents": [
+              "9dd0cc7"
+            ],
+            "files": [
+              {
+                "name": "lights.sh",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "9dd0cc7",
+            "message": "Add lights script",
+            "parents": [],
+            "files": [
+              {
+                "name": "lights.sh",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "4a657f5"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "4a657f5"
+        }
+      }
+    },
+    "filter-repo": {
+      "areas": null,
+      "graph": null
+    }
+  }
+}

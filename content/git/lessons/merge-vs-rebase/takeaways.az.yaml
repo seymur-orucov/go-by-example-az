@@ -1,0 +1,11 @@
+rules:
+  - "`git merge main` branch-ın commit-lərinə toxunmur və üstünə merge commit əlavə edir; tarixçə işin necə getdiyini göstərir."
+  - "`git rebase main` branch-ın commit-lərini `main`-in üstünə yeni hash-li surətlər kimi köçürür; tarixçə düz xətt olur."
+  - "Qızıl qayda: repository-nizdən kənarda olan və başqalarının üzərində iş qura biləcəyi commit-ləri rebase etməyin."
+  - "Push olunmuş branch-ı rebase etsəniz, push `non-fast-forward` ilə rədd olunur, force push-dan sonra isə komanda yoldaşlarında təkrar commit-lər yaranır."
+  - "Merge konflikti bir dəfə həll etdirir, rebase isə hər commit-də ayrıca dayana bilər."
+  - "`git pull --rebase` push olunmamış lokal commit-ləri `origin/main`-in üstünə köçürür və merge commit yaratmır."
+practices:
+  - "Push etmədiyiniz commit-ləri `git pull --rebase` və ya `git rebase main` ilə yeniləyin."
+  - "Başqası ilə paylaşdığınız branch-a `main`-i `git merge main` ilə gətirin; `main`-i heç vaxt rebase etməyin."
+  - "Seçimi hər dəfə yazmamaq üçün `git config --global pull.rebase true` qurun."

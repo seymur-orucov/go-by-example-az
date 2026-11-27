@@ -1,0 +1,16 @@
+# The visuals are recorded from the real repository by `pnpm content:run`.
+add:
+  vis: graph
+  files: true
+gitlink:
+  vis: graph
+  files: true
+moved:
+  vis: graph
+  files: true
+pin:
+  vis: graph
+  files: true
+subtree:
+  vis: graph
+  files: true

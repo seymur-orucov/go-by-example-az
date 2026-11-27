@@ -1,0 +1,8 @@
+# The visuals are recorded from the real repository by `pnpm content:run`.
+write-hook:
+blocked:
+  vis: areas
+staged-only:
+  vis: areas
+commit-ok:
+no-verify:

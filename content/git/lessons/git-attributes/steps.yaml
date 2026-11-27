@@ -1,0 +1,7 @@
+# The visuals are recorded from the real repository by `pnpm content:run`.
+crlf:
+renormalize:
+  vis: areas
+checkout:
+binary:
+linguist:

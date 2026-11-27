@@ -1,0 +1,11 @@
+rules:
+  - "Seçimi bir sual həll edir: bu commit-i başqası artıq götürüb?"
+  - "`git revert` tarixçəyə ləğv commit-i əlavə edir; push olunmuş commit üçün o, təhlükəsiz yoldur."
+  - "`git reset` branch-ı geri çəkir və tarixçəni dəyişir; push olunmamış commit üçün o, ən təmiz yoldur."
+  - "Push olunmuş commit-i reset etsəniz, push `! [rejected] main -> main (non-fast-forward)` ilə rədd olunur, `git pull` isə səhv commit-i geri gətirir."
+  - "Revert səhvin və onun ləğvinin izini saxlayır, reset isə səhvi tarixçədən izsiz çıxarır."
+  - "`git status`-da `ahead of 'origin/main'` və `git log origin/main..main` push olunmamış commit-ləri göstərir."
+practices:
+  - "Paylaşılmış branch-da (`main`) səhvi həmişə `git revert` ilə geri alın; merge commit üçün `-m 1` əlavə edin."
+  - "Lokal səhvi push etməzdən əvvəl `git reset` ilə, son commit-dəkini isə `git commit --amend` ilə düzəldin."
+  - "Rədd edilən push-u `--force` ilə keçməyin: komanda yoldaşlarının clone-ları pozulur."

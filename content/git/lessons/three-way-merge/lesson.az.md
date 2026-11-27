@@ -36,6 +36,6 @@ Bir sətri yalnız bir tərəf dəyişibsə, Git həmin dəyişikliyi götürür
 
 ## İki parent {#parents}
 
-`git cat-file -p HEAD` merge commit-in içini göstərir. Adi commit-dən fərqi `parent` sətirlərindədir: burada onlar ikidir. Birincisi merge-dən əvvəl `main`-in son commit-idir, ikincisi `cleaning`-in son commit-i. `tree` isə birdir, birləşdirilmiş faylların snapshot-u. `author` Sam-dir, çünki merge-i o edib. Ayla-nın commit-ləri tarixçədə öz adı ilə qalır.
+`git cat-file -p HEAD` merge commit-in içini göstərir. Adi commit-dən fərqi `parent` sətirlərindədir: burada onlar ikidir. Birincisi merge-dən əvvəl `main`-in son commit-idir, ikincisi `cleaning`-in son commit-i. `tree` isə birdir, birləşdirilmiş faylların snapshot-u. `author` Sam-dır, çünki merge-i o edib. Ayla-nın commit-ləri tarixçədə öz adı ilə qalır.
 
 `HEAD^1` birinci parent-dir: `Switch to oat milk`. `HEAD^2` ikinci parent-dir: `Add dish soap to the list`. Birinci parent merge zamanı olduğunuz branch-dan, ikincisi birləşdirdiyiniz branch-dan gəlir. `HEAD~1` birinci parent-lə gedir, ona görə `HEAD^1` ilə eyni commit-dir.

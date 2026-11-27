@@ -1,0 +1,11 @@
+rules:
+  - "Porcelain komandalar (`add`, `commit`, `log`) insan üçündür; plumbing komandalar (`cat-file`, `hash-object`, `ls-tree`, `rev-parse`) aşağı səviyyəli işi görür və skriptlər üçündür."
+  - "Git-də dörd obyekt tipi var: blob (məzmun), tree (qovluq), commit və annotated tag."
+  - "Obyektin adı məzmunundan hesablanan hash-dir: eyni məzmun həmişə eyni hash alır və bir dəfə saxlanır."
+  - "Obyekt `.git/objects/<ilk 2 simvol>/<qalan 38 simvol>` faylındadır; `git gc` obyektləri packfile-a yığa bilər."
+  - "Tree fayl adlarını saxlayır və blob-lara, alt qovluqlar üçün isə başqa tree-lərə (`040000 tree`) istinad edir."
+  - "Ref (HEAD, branch, tag) hash-ə verilən addır: HEAD → branch → commit → tree → blob."
+practices:
+  - "Obyektin tipinə `git cat-file -t`, içinə `git cat-file -p` ilə baxın; `.git/objects`-dəki faylları əl ilə açmayın."
+  - "Commit-in tree-sinə `HEAD^{tree}`, konkret fayl və ya qovluğa `HEAD:<yol>` ilə istinad edin."
+  - "PowerShell-də və `cmd`-də `HEAD^{tree}`-i dırnağa alın."

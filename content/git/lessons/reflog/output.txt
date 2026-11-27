@@ -1,0 +1,72 @@
+$ git log --oneline
+df0b10e Add chapter 4
+ca96919 Add chapter 3
+d3a44f7 Add chapter 2
+1a4fcda Add chapter 1
+$ git reflog
+df0b10e HEAD@{0}: commit: Add chapter 4
+ca96919 HEAD@{1}: commit: Add chapter 3
+d3a44f7 HEAD@{2}: checkout: moving from sad-ending to main
+2102d77 HEAD@{3}: commit: Try a sad ending
+d3a44f7 HEAD@{4}: checkout: moving from main to sad-ending
+d3a44f7 HEAD@{5}: commit: Add chapter 2
+1a4fcda HEAD@{6}: commit (initial): Add chapter 1
+$ git reset --hard HEAD~2
+HEAD is now at d3a44f7 Add chapter 2
+$ git log --oneline
+d3a44f7 Add chapter 2
+1a4fcda Add chapter 1
+$ git reflog -3
+d3a44f7 HEAD@{0}: reset: moving to HEAD~2
+df0b10e HEAD@{1}: commit: Add chapter 4
+ca96919 HEAD@{2}: commit: Add chapter 3
+$ git reset --hard HEAD@{1}
+HEAD is now at df0b10e Add chapter 4
+$ git log --oneline
+df0b10e Add chapter 4
+ca96919 Add chapter 3
+d3a44f7 Add chapter 2
+1a4fcda Add chapter 1
+$ git reflog -2
+df0b10e HEAD@{0}: reset: moving to HEAD@{1}
+d3a44f7 HEAD@{1}: reset: moving to HEAD~2
+$ git branch -D sad-ending
+Deleted branch sad-ending (was 2102d77).
+$ git reflog
+df0b10e HEAD@{0}: reset: moving to HEAD@{1}
+d3a44f7 HEAD@{1}: reset: moving to HEAD~2
+df0b10e HEAD@{2}: commit: Add chapter 4
+ca96919 HEAD@{3}: commit: Add chapter 3
+d3a44f7 HEAD@{4}: checkout: moving from sad-ending to main
+2102d77 HEAD@{5}: commit: Try a sad ending
+d3a44f7 HEAD@{6}: checkout: moving from main to sad-ending
+d3a44f7 HEAD@{7}: commit: Add chapter 2
+1a4fcda HEAD@{8}: commit (initial): Add chapter 1
+$ git branch sad-ending HEAD@{5}
+$ git reflog show sad-ending
+2102d77 sad-ending@{0}: branch: Created from HEAD@{5}
+$ git reflog show main
+df0b10e main@{0}: reset: moving to HEAD@{1}
+d3a44f7 main@{1}: reset: moving to HEAD~2
+df0b10e main@{2}: commit: Add chapter 4
+ca96919 main@{3}: commit: Add chapter 3
+d3a44f7 main@{4}: commit: Add chapter 2
+1a4fcda main@{5}: commit (initial): Add chapter 1
+$ git switch sad-ending
+Switched to branch 'sad-ending'
+$ git rebase main
+Successfully rebased and updated refs/heads/sad-ending.
+$ git reflog -4
+cc79de2 HEAD@{0}: rebase (finish): returning to refs/heads/sad-ending
+cc79de2 HEAD@{1}: rebase (pick): Try a sad ending
+df0b10e HEAD@{2}: rebase (start): checkout main
+2102d77 HEAD@{3}: checkout: moving from main to sad-ending
+$ git reflog show sad-ending
+cc79de2 sad-ending@{0}: rebase (finish): refs/heads/sad-ending onto df0b10e3df28a919eb003396c834768e9e552e48
+2102d77 sad-ending@{1}: branch: Created from HEAD@{5}
+$ git reset --hard sad-ending@{1}
+HEAD is now at 2102d77 Try a sad ending
+$ git log --oneline
+2102d77 Try a sad ending
+d3a44f7 Add chapter 2
+1a4fcda Add chapter 1

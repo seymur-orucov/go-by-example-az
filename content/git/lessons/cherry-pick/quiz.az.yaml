@@ -1,0 +1,76 @@
+- question: "`git cherry-pick <commit>` nə edir?"
+  options:
+    - "Commit-i hazırkı branch-a köçürür və onu köhnə branch-dan silir"
+    - "Commit-in dəyişikliyini hazırkı branch-a yeni commit kimi tətbiq edir"
+    - "Commit-in branch-ını bütün commit-ləri ilə hazırkı branch-a merge edir"
+  answer: 1
+  explain: "Cherry-pick commit-in diff-ini hazırkı branch-ın üstünə yazır. Orijinal commit öz branch-ında qalır."
+- question: "Yeni, boş repository-də bu komandaları işlədirsiniz. Sonuncu komanda, `ls`, nə çap edir?"
+  code: |
+    echo "Monday" > days.txt
+    git add days.txt
+    git commit -q -m "Add Monday"
+    git branch stable
+    echo "<h1>News</h1>" > news.html
+    git add news.html
+    git commit -q -m "Add the news page"
+    echo "Tuesday" >> days.txt
+    git commit -q -am "Add Tuesday"
+    git switch -q stable
+    git cherry-pick main
+    ls
+  options:
+    - "Yalnız `days.txt`"
+    - "`days.txt` və `news.html`"
+    - "Heç nə: `main` commit deyil, branch-dır"
+  answer: 0
+  explain: "`main` son commit-i, `Add Tuesday`-i göstərir. Yalnız onun dəyişikliyi köçür; `news.html` əvvəlki commit-dədir."
+- question: "Commit cherry-pick ilə başqa branch-a köçürüldü. Kopyanın hash-i haqqında nə doğrudur?"
+  options:
+    - "Orijinalınkı ilə eynidir, çünki dəyişiklik eynidir"
+    - "Mesaj dəyişməyibsə, orijinalınkı ilə eynidir"
+    - "Fərqlidir, çünki kopyanın parent-i və snapshot-u başqadır"
+  answer: 2
+  explain: "Hash commit-in snapshot-undan və parent-indən hesablanır. Kopya başqa commit-in üstündədir, ona görə yeni hash alır."
+- question: "`git cherry-pick -x` adi cherry-pick-dən nə ilə fərqlənir?"
+  options:
+    - "Mesaja `(cherry picked from commit ...)` sətri və orijinalın hash-i əlavə olunur"
+    - "Kopya orijinal commit-in hash-ini saxlayır, yeni hash yaranmır"
+    - "Orijinal commit köçürüldükdən sonra öz branch-ından silinir"
+  answer: 0
+  explain: "`-x` yalnız mesaja bir sətir əlavə edir. Kopya yenə yeni commit-dir və orijinal yerində qalır."
+- question: "`main`-in son dörd commit-i köhnədən yeniyə A, B, C, D-dir. `git cherry-pick A..D` neçə commit köçürür?"
+  options:
+    - "2"
+    - "3"
+    - "4"
+  answer: 1
+  explain: "`A..D` \"D-də var, A-da yox\" deməkdir: B, C və D. A-nın özü aralığa düşmür."
+- question: "Ayla Karimova-nın commit-ini Sam Lee cherry-pick edir. Kopyada `git log -1`-in `Author` sətrində kim yazılır?"
+  options:
+    - "Sam Lee, çünki kopyanı o yaradıb"
+    - "Heç kim: kopyada `Author` sətri olmur"
+    - "Ayla Karimova, müəllif orijinaldan götürülür"
+  answer: 2
+  explain: "Cherry-pick müəllifi və müəllif vaxtını saxlayır. Sam yalnız committer olur, bunu `git log --format=fuller` göstərir."
+- question: "Cherry-pick konfliktlə dayandı, siz `menu.txt`-i düzəltdiniz. Sonra nə yazırsınız?"
+  options:
+    - "`git cherry-pick --abort`, sonra `git add menu.txt`"
+    - "`git commit --amend`, sonra `git cherry-pick --skip`"
+    - "`git add menu.txt`, sonra `git cherry-pick --continue`"
+  answer: 2
+  explain: "`git add` faylı həll olunmuş kimi qeyd edir, `--continue` commit-i yaradır. `--abort` isə düzəlişi də ləğv edərdi."
+- question: "`feat/shop` branch-ındakı on iki commit-in hamısı `main`-ə lazımdır. Hansı yol daha uyğundur?"
+  options:
+    - "Hər commit-i ayrıca `git cherry-pick` etmək"
+    - "`git merge feat/shop`"
+    - "`git cherry-pick -x` ilə yalnız son commit-i köçürmək"
+  answer: 1
+  explain: "Branch-ın hamısı lazımdırsa, merge edin. Cherry-pick hər commit-in ikinci nüsxəsini yaradır, son commit isə yalnız öz dəyişikliyini gətirir."
+- question: "`git cherry-pick \":/Fix the logo\"` hansı commit-i köçürür?"
+  options:
+    - "Mesajında `Fix the logo` olan ən yeni commit-i"
+    - "Mesajında `Fix the logo` olan ən köhnə commit-i"
+    - "`Fix the logo` adlı branch-ın son commit-ini"
+  answer: 0
+  explain: "`:/` mesajda mətn axtarır və bütün branch-lardan çatıla bilən ən yeni uyğun commit-i götürür."

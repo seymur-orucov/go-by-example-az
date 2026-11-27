@@ -1,0 +1,38 @@
+$ git log --oneline
+d37360c Add note on refund
+88657f0 Fix typo
+3022499 Add refund
+b5a4ad8 Start glossary
+$ git reset --soft HEAD~1
+$ git log --oneline
+88657f0 Fix typo
+3022499 Add refund
+b5a4ad8 Start glossary
+$ git status
+On branch main
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	new file:   notes.md
+
+$ echo "refund: keep it short on buttons" >> notes.md
+$ git add notes.md
+$ git commit -m "Add notes on refund"
+[main 080ac0a] Add notes on refund
+ 1 file changed, 2 insertions(+)
+ create mode 100644 notes.md
+$ git log --oneline
+080ac0a Add notes on refund
+88657f0 Fix typo
+3022499 Add refund
+b5a4ad8 Start glossary
+$ git reset --soft HEAD~3
+$ git status --short
+A  notes.md
+M  terms.csv
+$ git commit -m "Add refund term"
+[main 16f51d3] Add refund term
+ 2 files changed, 3 insertions(+)
+ create mode 100644 notes.md
+$ git log --oneline
+16f51d3 Add refund term
+b5a4ad8 Start glossary

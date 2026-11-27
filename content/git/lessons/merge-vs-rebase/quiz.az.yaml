@@ -1,0 +1,63 @@
+- question: "Sam `feat/weather-widget`-də `git merge main` yazdı. Branch-ın əvvəlki commit-ləri ilə nə olur?"
+  options:
+    - "Olduğu kimi qalır, üstünə merge commit əlavə olunur"
+    - "Yeni hash-lərlə `main`-in son commit-inin üstünə köçürülür"
+    - "Branch-dan çıxır, dəyişiklikləri merge commit-ə yığılır"
+  answer: 0
+  explain: "Merge mövcud commit-lərə toxunmur. O, iki tarixçəni birləşdirən yeni commit əlavə edir."
+- question: "`main`-də üç commit var: `Add home page`, `Add sports page`, `Add footer`. `feat/weather-widget` `Add home page`-dən ayrılıb və onda iki commit var: `Add weather box`, `Show temperature`. Branch-da `git rebase main`-dən sonra `git log --oneline` neçə commit göstərir?"
+  options:
+    - "`4`"
+    - "`6`"
+    - "`5`"
+  answer: 2
+  explain: "Rebase merge commit yaratmır: `main`-in üç commit-i və branch-ın köçürülmüş iki commit-i bir düz xəttdə durur. `git merge main` olsaydı, merge commit ilə altı olardı."
+- question: "Sam `feat/weather-widget`-də `git merge main` yazdı və konflikt olmadı. Yeni commit-in mesajı nədir?"
+  options:
+    - "`Merge branch 'feat/weather-widget' into main`"
+    - "`Merge branch 'main' into feat/weather-widget`"
+    - "`Merge branch 'main' of origin/feat/weather-widget`"
+  answer: 1
+  explain: "Mesajda merge olunan branch (`main`) və hazırkı branch (`feat/weather-widget`) yazılır."
+- question: "Rebase-in qızıl qaydasına görə hansı commit-ləri rebase etmək olmaz?"
+  options:
+    - "Konflikt yaradan və eyni sətri dəyişən commit-ləri"
+    - "Repository-nizdən kənarda olan və başqalarının üzərində iş qurduğu commit-ləri"
+    - "Merge commit-dən sonra yaranan və hələ push olunmamış commit-ləri"
+  answer: 1
+  explain: "Push olunmuş commit-in surəti serverdə və başqalarının clone-larındadır. Rebase onları dəyişə bilmir, yalnız sizdə yeni surətlər yaradır."
+- question: "Sam `feat/weather-widget`-i əvvəl push etmişdi. İndi `git rebase main` edib yenə `git push` yazır. Push nə çap edir?"
+  options:
+    - "`! [rejected] feat/weather-widget -> feat/weather-widget (non-fast-forward)`"
+    - "`+ feat/weather-widget -> feat/weather-widget (forced update)`"
+    - "`! [rejected] feat/weather-widget -> feat/weather-widget (fetch first)`"
+  answer: 0
+  explain: "Rebase-dən sonra Sam-ın branch-ında serverdəki köhnə commit-lər yoxdur, yəni o, serverdəkinin davamı deyil. Serverdəki commit-ləri Sam tanıyır, ona görə mötərizədə `non-fast-forward` yazılır. `forced update` yalnız `--force` ilə olur."
+- question: "Sam paylaşılmış branch-ı rebase edib force push etdi. Ayla-da köhnə commit-lər və öz yeni commit-i var. O, `git pull --no-rebase` yazır. Ayla-nın `git log`-unda nə görünür?"
+  options:
+    - "Ayla-nın yeni commit-i itir, yalnız Sam-ın commit-ləri qalır"
+    - "Pull konflikt verib dayanır, tarixçə dəyişmir"
+    - "Rebase olunmuş commit-lər iki dəfə: eyni mesaj, fərqli hash"
+  answer: 2
+  explain: "Git köhnə və yeni surətləri iki ayrı tarixçə kimi birləşdirir. Ayla bunu push etsə, köhnə surətlər serverə də qayıdır."
+- question: "Branch-da üç commit var və üçü də `main`-in dəyişdirdiyi sətri dəyişir. Konflikti neçə dəfə həll etmək lazım ola bilər?"
+  options:
+    - "Hər ikisində bir dəfə"
+    - "Merge-də üç dəfə, rebase-də bir dəfə"
+    - "Merge-də bir dəfə, rebase-də üç dəfə"
+  answer: 2
+  explain: "Merge iki tərəfin son halını bir dəfə müqayisə edir. Rebase commit-ləri bir-bir tətbiq edir və hər biri yenidən konflikt verə bilər."
+- question: "Sam-ın `main`-ində bir push olunmamış commit var, Ayla isə serverə yeni commit göndərib. Hansı komanda Ayla-nın commit-ini merge commit yaratmadan gətirir?"
+  options:
+    - "`git pull --no-rebase`"
+    - "`git pull --rebase`"
+    - "`git merge main`"
+  answer: 1
+  explain: "`git pull --rebase` fetch edir və Sam-ın lokal commit-ini `origin/main`-in üstünə köçürür. Commit push olunmamışdı, ona görə qızıl qayda pozulmur."
+- question: "Əvvəlki sualdakı `git pull --rebase`-dən sonra `git status` nə yazır?"
+  options:
+    - "`Your branch is ahead of 'origin/main' by 1 commit.`"
+    - "`Your branch is behind 'origin/main' by 1 commit.`"
+    - "`Your branch is up to date with 'origin/main'.`"
+  answer: 0
+  explain: "Ayla-nın commit-i artıq `main`-dədir, Sam-ın köçürülmüş commit-i isə hələ serverdə yoxdur. `git push` onu adi qaydada göndərir."
