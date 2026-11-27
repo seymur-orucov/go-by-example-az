@@ -722,3 +722,13 @@ Done:
 - `fork-vs-clone` (`compare`, an Azerbaijani translation for an open-source notes app): fork is GitHub's copy under your account, clone is Git's copy on your computer; `origin` = the fork, `upstream` = the original; syncing with `fetch upstream` or the "Sync fork" button.
 - `branching-workflows` (`compare`, a web startup vs a versioned mobile app): GitHub flow, trunk-based development, git flow (with Driessen's 2020 note), the cost of long-lived branches.
 - `clean-git-history` (`terminal`, a market stall's stock list): atomic commits, `--fixup` while working, `git fetch` and `git rebase -i --autosquash origin/main` before the PR.
+
+### 81. Git module 11 "Faydalı alətlər"
+Same process.
+
+Done:
+- `stash` (`state`, a school timetable): `git stash`, switching away and back, `pop` vs `apply`/`drop`, `-u` for untracked files, `-m` names, `pop --index`.
+- `reflog` (`state`, a short-story manuscript): reading `HEAD@{n}` lines, recovering commits after `reset --hard`, a deleted branch, undoing a rebase with `<branch>@{1}`; local only, 90/30-day expiry.
+- `bisect` (`terminal`, a temperature converter): binary search between `v1.0` and a bad `HEAD`, `good`/`bad`, `is the first 'bad' commit`, `bisect reset`, `bisect run` with an exit-code test.
+- `worktree` (`terminal`, a coffee subscription site): `git worktree add -b`, one `.git` for both folders, a branch open in one worktree only, `remove` and `prune`.
+- The reviewer set the level of modules 10–11 to `intermediate`, added the rebase recovery the earlier lessons promised to `reflog`, fixed the search counts in `bisect` and replaced near-duplicate quiz questions.

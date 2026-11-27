@@ -1,0 +1,11 @@
+rules:
+  - "`git reflog` HEAD-in olduğu bütün yerləri göstərir; hər hərəkət yeni `HEAD@{0}` sətri yazır, köhnə sətirlərin rəqəmi bir artır."
+  - "`HEAD@{n}` HEAD-in n hərəkət əvvəlki yeridir; `HEAD~n` isə parent-lər üzrə n addım geri gedir."
+  - "Branch silinəndə onun öz jurnalı da silinir; silinmiş branch-ın commit-ini HEAD-in jurnalında axtarın."
+  - "Reflog lokaldır: push onu göndərmir, clone köçürmür. Sətirləri 90 gün, branch-dan çıxmış commit-lərinki 30 gün qalır."
+  - "Reflog yalnız commit-ləri tapır; commit olunmamış dəyişiklik `reset --hard`-dan sonra geri gəlmir."
+  - "Rebase branch-ı bir dəfə tərpədir: rebase-dən əvvəlki commit `<branch>@{1}`-dir."
+practices:
+  - "Reset-dən sonra itən commit-ləri `git reset --hard HEAD@{1}` ilə qaytarın; `main`-i tərpətmək istəmirsinizsə, `git branch rescue HEAD@{1}` yazın."
+  - "Silinmiş branch-ı `git branch <ad> HEAD@{n}` ilə bərpa edin; `n`-i `git reflog`-da commit mesajına görə tapın."
+  - "`HEAD@{n}` yazmazdan əvvəl `git reflog`-a yenidən baxın: rəqəmlər hər hərəkətdən sonra dəyişir."

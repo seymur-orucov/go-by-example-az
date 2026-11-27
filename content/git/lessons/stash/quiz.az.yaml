@@ -1,0 +1,80 @@
+- question: "`notes.txt` `main`-də commit olunub. Bu komandalardan sonra nə çap olunur?"
+  code: |
+    echo "idea" >> notes.txt
+    git stash
+    git switch -q -c draft
+    git stash pop -q
+    git status --short
+  options:
+    - "` M notes.txt`"
+    - "Heç nə: stash yalnız `main`-də tətbiq olunur"
+    - "`M  notes.txt`"
+  answer: 0
+  explain: "Stash heç bir branch-a bağlı deyil, onu başqa branch-da da tətbiq etmək olar. `pop` dəyişikliyi stage edilməmiş kimi qaytarır."
+- question: "`notes.txt` artıq commit olunub və dəyişiklik yoxdur. Bu komandalardan sonra nə çap olunur?"
+  code: |
+    echo "draft" > plan.txt
+    git stash
+    git status --short
+  options:
+    - "Heç nə"
+    - "`?? plan.txt`"
+    - "`A  plan.txt`"
+  answer: 1
+  explain: "İzlənməyən fayl standart olaraq stash-ə düşmür. Git `No local changes to save` yazır və `plan.txt` yerində qalır."
+- question: "Hansı komanda stash-i tətbiq edir, amma onu siyahıda saxlayır?"
+  options:
+    - "`git stash apply`"
+    - "`git stash pop`"
+    - "`git stash drop`"
+    - "`git stash list`"
+  answer: 0
+  explain: "`apply` dəyişiklikləri qaytarır, stash isə siyahıda qalır. `pop` tətbiq edib silir, `drop` isə yalnız silir."
+- question: "`list.txt` artıq commit olunub. Bu komandalardan sonra `git stash list`-in birinci sətri nədir?"
+  code: |
+    echo "eggs" >> list.txt
+    git stash push -m "eggs"
+    echo "bread" >> list.txt
+    git stash push -m "bread"
+    git stash list
+  options:
+    - "`stash@{0}: On main: eggs`"
+    - "`stash@{0}: On main: bread`"
+    - "`stash@{1}: On main: bread`"
+  answer: 1
+  explain: "Ən yeni stash həmişə `stash@{0}` olur. Əvvəlki `eggs` `stash@{1}`-ə keçir."
+- question: "`list.txt` artıq commit olunub. Bu komandalardan sonra nə çap olunur?"
+  code: |
+    echo "eggs" >> list.txt
+    git add list.txt
+    git stash
+    git stash pop
+    git status --short
+  options:
+    - "`M  list.txt`"
+    - "` M list.txt`"
+    - "Heç nə"
+  answer: 1
+  explain: "`pop` staging area-nı bərpa etmir: stage olunmuş dəyişiklik stage edilməmiş kimi qayıdır. Bunun üçün `git stash pop --index` lazımdır."
+- question: "`git stash pop` konfliktlə bitdi. Stash-lə nə olur?"
+  options:
+    - "Silinir, dəyişikliklər yalnız fayllarda qalır"
+    - "`stash@{1}`-ə keçir, yerinə yenisi yazılır"
+    - "Siyahıda qalır, onu sonra özünüz silirsiniz"
+  answer: 2
+  explain: "Konflikt olanda Git stash-i silmir. Konflikti həll edəndən sonra `git stash drop` yazın."
+- question: "Stash harada saxlanır?"
+  options:
+    - "Staging area-da, `git status` onu göstərir"
+    - "Branch-ın yeni commit-ində, `git log` onu göstərir"
+    - "`.git` qovluğunda, `git stash list` onu göstərir"
+  answer: 2
+  explain: "Stash `.git`-də (`refs/stash`) saxlanır, heç bir branch-ın tarixçəsinə düşmür."
+- question: "Dəyişmiş `rooms.txt` və yeni, izlənməyən `tuesday.txt` var. İkisini birlikdə hansı komanda saxlayır?"
+  options:
+    - "`git stash`"
+    - "`git stash push -m \"all\"`"
+    - "`git stash apply -u`"
+    - "`git stash -u`"
+  answer: 3
+  explain: "`-u` (`--include-untracked`) izlənməyən faylları da stash-ə salır. `-u`-suz stash `tuesday.txt`-i working directory-də qoyur."

@@ -1,0 +1,10 @@
+rules:
+  - "`git worktree add <qovluq> -b <yeni-branch> <başlanğıc>` yeni branch yaradır və onu ayrıca qovluqda açır."
+  - "Worktree-lər bir repository-dir: commit-lər və branch-lar ortaqdır, working directory, staging area və HEAD isə hər qovluqda ayrıdır."
+  - "Branch eyni anda yalnız bir worktree-də açıq ola bilər; `git branch` belə branch-ı `+` ilə işarələyir."
+  - "`git worktree list` hər qovluğun yolunu, HEAD-in commit-ini və branch-ını göstərir."
+  - "`git worktree remove` commit olunmamış dəyişikliyi olan qovluğu silmir; `--force` onu dəyişikliklə birlikdə silir, branch isə qalır."
+practices:
+  - "Qısa keçid üçün stash, bir müddət paralel gedən iş üçün worktree işlədin."
+  - "Worktree qovluğunu əsas qovluğun yanında saxlayın və adını işə görə verin: `../coffee-hotfix`."
+  - "Qovluğu `git worktree remove` ilə silin; əl ilə silinmiş qovluğun qeydini `git worktree prune` təmizləyir."

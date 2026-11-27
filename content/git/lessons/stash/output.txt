@@ -1,0 +1,66 @@
+$ git status --short
+ M monday.txt
+M  rooms.txt
+$ git switch main
+error: Your local changes to the following files would be overwritten by checkout:
+	monday.txt
+Please commit your changes or stash them before you switch branches.
+Aborting
+$ git stash
+Saved working directory and index state WIP on clubs: 2311ed1 Add art club
+$ git status --short
+$ git stash list
+stash@{0}: WIP on clubs: 2311ed1 Add art club
+$ git switch main
+Switched to branch 'main'
+$ echo "science: lab 2" >> rooms.txt
+$ git add rooms.txt
+$ git commit -m "Add science lab room"
+[main c40d154] Add science lab room
+ 1 file changed, 1 insertion(+)
+$ git switch clubs
+Switched to branch 'clubs'
+$ git stash pop
+On branch clubs
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   monday.txt
+	modified:   rooms.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+Dropped refs/stash@{0} (a82ac041ae821b01f8d21ce50b91c09a30272b13)
+$ git status --short
+ M monday.txt
+ M rooms.txt
+$ git stash list
+$ echo "14:00 drama club" > tuesday.txt
+$ git stash push -m "art and chess"
+Saved working directory and index state On clubs: art and chess
+$ git status --short
+?? tuesday.txt
+$ git stash push -u -m "Tuesday clubs"
+Saved working directory and index state On clubs: Tuesday clubs
+$ git status --short
+$ git stash list
+stash@{0}: On clubs: Tuesday clubs
+stash@{1}: On clubs: art and chess
+$ git stash apply stash@{1}
+On branch clubs
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   monday.txt
+	modified:   rooms.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+$ git stash list
+stash@{0}: On clubs: Tuesday clubs
+stash@{1}: On clubs: art and chess
+$ git stash drop stash@{1}
+Dropped stash@{1} (26bd6b38e5e3abe016d1e98699fc162868afc0ac)
+$ git stash list
+stash@{0}: On clubs: Tuesday clubs
+$ git status --short
+ M monday.txt
+ M rooms.txt

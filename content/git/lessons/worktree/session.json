@@ -1,0 +1,761 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir coffee-site",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd coffee-site",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"<h1>Bean Box</h1>\" \"<p>Fresh coffee every month</p>\" > index.html",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"Basic: 21 USD/month\" \"Premium: 20 USD/month\" > plans.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add .",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add the landing page\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q -c feat/new-plans",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Family: 35 USD/month\" >> plans.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add the Family plan\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Student: 9 USD/month\" >> plans.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch",
+      "step": "problem",
+      "hidden": false,
+      "fail": false,
+      "out": "* feat/new-plans\n  main\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git status --short",
+      "step": "problem",
+      "hidden": false,
+      "fail": false,
+      "out": " M plans.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch main",
+      "step": "problem",
+      "hidden": false,
+      "fail": true,
+      "out": "error: Your local changes to the following files would be overwritten by checkout:\n\tplans.txt\nPlease commit your changes or stash them before you switch branches.\nAborting\n",
+      "exit": 1
+    },
+    {
+      "cmd": "git worktree add ../coffee-hotfix -b hotfix/price main",
+      "step": "add",
+      "hidden": false,
+      "fail": false,
+      "out": "Preparing worktree (new branch 'hotfix/price')\nHEAD is now at e003021 Add the landing page\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git worktree list",
+      "step": "add",
+      "hidden": false,
+      "fail": false,
+      "out": "/home/sam/coffee-site   19afec8 [feat/new-plans]\n/home/sam/coffee-hotfix e003021 [hotfix/price]\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ../coffee-hotfix",
+      "step": "fix",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status",
+      "step": "fix",
+      "hidden": false,
+      "fail": false,
+      "out": "On branch hotfix/price\nnothing to commit, working tree clean\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cat plans.txt",
+      "step": "fix",
+      "hidden": false,
+      "fail": false,
+      "out": "Basic: 21 USD/month\nPremium: 20 USD/month\n",
+      "exit": 0
+    },
+    {
+      "cmd": "sed -i \"s/Basic: 21/Basic: 12/\" plans.txt",
+      "step": "fix",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -am \"Fix the Basic price\"",
+      "step": "fix",
+      "hidden": false,
+      "fail": false,
+      "out": "[hotfix/price 5f6ce0c] Fix the Basic price\n 1 file changed, 1 insertion(+), 1 deletion(-)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ../coffee-site",
+      "step": "shared",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status --short",
+      "step": "shared",
+      "hidden": false,
+      "fail": false,
+      "out": " M plans.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline -2 hotfix/price",
+      "step": "shared",
+      "hidden": false,
+      "fail": false,
+      "out": "5f6ce0c Fix the Basic price\ne003021 Add the landing page\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cat ../coffee-hotfix/.git",
+      "step": "shared",
+      "hidden": false,
+      "fail": false,
+      "out": "gitdir: /home/sam/coffee-site/.git/worktrees/coffee-hotfix\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch",
+      "step": "shared",
+      "hidden": false,
+      "fail": false,
+      "out": "* feat/new-plans\n+ hotfix/price\n  main\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch hotfix/price",
+      "step": "shared",
+      "hidden": false,
+      "fail": true,
+      "out": "fatal: 'hotfix/price' is already used by worktree at '/home/sam/coffee-hotfix'\n",
+      "exit": 128
+    },
+    {
+      "cmd": "echo \"<p>Sale ends Friday</p>\" >> ../coffee-hotfix/index.html",
+      "step": "remove",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git worktree remove ../coffee-hotfix",
+      "step": "remove",
+      "hidden": false,
+      "fail": true,
+      "out": "fatal: '../coffee-hotfix' contains modified or untracked files, use --force to delete it\n",
+      "exit": 128
+    },
+    {
+      "cmd": "git worktree remove --force ../coffee-hotfix",
+      "step": "remove",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git worktree list",
+      "step": "remove",
+      "hidden": false,
+      "fail": false,
+      "out": "/home/sam/coffee-site 19afec8 [feat/new-plans]\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch",
+      "step": "remove",
+      "hidden": false,
+      "fail": false,
+      "out": "* feat/new-plans\n  hotfix/price\n  main\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "problem": {
+      "areas": {
+        "work": [
+          {
+            "name": "index.html",
+            "state": "clean"
+          },
+          {
+            "name": "plans.txt",
+            "state": "modified"
+          }
+        ],
+        "index": [
+          {
+            "name": "index.html",
+            "state": "clean"
+          },
+          {
+            "name": "plans.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "19afec8",
+            "message": "Add the Family plan"
+          },
+          "count": 2,
+          "files": [
+            "index.html",
+            "plans.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "19afec8",
+            "message": "Add the Family plan",
+            "parents": [
+              "e003021"
+            ],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "same"
+              },
+              {
+                "name": "plans.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "e003021",
+            "message": "Add the landing page",
+            "parents": [],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "added"
+              },
+              {
+                "name": "plans.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "feat/new-plans",
+            "target": "19afec8"
+          },
+          {
+            "name": "main",
+            "target": "e003021"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "feat/new-plans",
+          "target": "19afec8"
+        }
+      }
+    },
+    "add": {
+      "areas": {
+        "work": [
+          {
+            "name": "index.html",
+            "state": "clean"
+          },
+          {
+            "name": "plans.txt",
+            "state": "modified"
+          }
+        ],
+        "index": [
+          {
+            "name": "index.html",
+            "state": "clean"
+          },
+          {
+            "name": "plans.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "19afec8",
+            "message": "Add the Family plan"
+          },
+          "count": 2,
+          "files": [
+            "index.html",
+            "plans.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "19afec8",
+            "message": "Add the Family plan",
+            "parents": [
+              "e003021"
+            ],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "same"
+              },
+              {
+                "name": "plans.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "e003021",
+            "message": "Add the landing page",
+            "parents": [],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "added"
+              },
+              {
+                "name": "plans.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "feat/new-plans",
+            "target": "19afec8"
+          },
+          {
+            "name": "hotfix/price",
+            "target": "e003021"
+          },
+          {
+            "name": "main",
+            "target": "e003021"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "feat/new-plans",
+          "target": "19afec8"
+        }
+      }
+    },
+    "fix": {
+      "areas": {
+        "work": [
+          {
+            "name": "index.html",
+            "state": "clean"
+          },
+          {
+            "name": "plans.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "index.html",
+            "state": "clean"
+          },
+          {
+            "name": "plans.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "5f6ce0c",
+            "message": "Fix the Basic price"
+          },
+          "count": 2,
+          "files": [
+            "index.html",
+            "plans.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "5f6ce0c",
+            "message": "Fix the Basic price",
+            "parents": [
+              "e003021"
+            ],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "same"
+              },
+              {
+                "name": "plans.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "19afec8",
+            "message": "Add the Family plan",
+            "parents": [
+              "e003021"
+            ],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "same"
+              },
+              {
+                "name": "plans.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "e003021",
+            "message": "Add the landing page",
+            "parents": [],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "added"
+              },
+              {
+                "name": "plans.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "feat/new-plans",
+            "target": "19afec8"
+          },
+          {
+            "name": "hotfix/price",
+            "target": "5f6ce0c"
+          },
+          {
+            "name": "main",
+            "target": "e003021"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "hotfix/price",
+          "target": "5f6ce0c"
+        }
+      }
+    },
+    "shared": {
+      "areas": {
+        "work": [
+          {
+            "name": "index.html",
+            "state": "clean"
+          },
+          {
+            "name": "plans.txt",
+            "state": "modified"
+          }
+        ],
+        "index": [
+          {
+            "name": "index.html",
+            "state": "clean"
+          },
+          {
+            "name": "plans.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "19afec8",
+            "message": "Add the Family plan"
+          },
+          "count": 2,
+          "files": [
+            "index.html",
+            "plans.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "5f6ce0c",
+            "message": "Fix the Basic price",
+            "parents": [
+              "e003021"
+            ],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "same"
+              },
+              {
+                "name": "plans.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "19afec8",
+            "message": "Add the Family plan",
+            "parents": [
+              "e003021"
+            ],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "same"
+              },
+              {
+                "name": "plans.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "e003021",
+            "message": "Add the landing page",
+            "parents": [],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "added"
+              },
+              {
+                "name": "plans.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "feat/new-plans",
+            "target": "19afec8"
+          },
+          {
+            "name": "hotfix/price",
+            "target": "5f6ce0c"
+          },
+          {
+            "name": "main",
+            "target": "e003021"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "feat/new-plans",
+          "target": "19afec8"
+        }
+      }
+    },
+    "remove": {
+      "areas": {
+        "work": [
+          {
+            "name": "index.html",
+            "state": "clean"
+          },
+          {
+            "name": "plans.txt",
+            "state": "modified"
+          }
+        ],
+        "index": [
+          {
+            "name": "index.html",
+            "state": "clean"
+          },
+          {
+            "name": "plans.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "19afec8",
+            "message": "Add the Family plan"
+          },
+          "count": 2,
+          "files": [
+            "index.html",
+            "plans.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "5f6ce0c",
+            "message": "Fix the Basic price",
+            "parents": [
+              "e003021"
+            ],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "same"
+              },
+              {
+                "name": "plans.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "19afec8",
+            "message": "Add the Family plan",
+            "parents": [
+              "e003021"
+            ],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "same"
+              },
+              {
+                "name": "plans.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "e003021",
+            "message": "Add the landing page",
+            "parents": [],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "added"
+              },
+              {
+                "name": "plans.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "feat/new-plans",
+            "target": "19afec8"
+          },
+          {
+            "name": "hotfix/price",
+            "target": "5f6ce0c"
+          },
+          {
+            "name": "main",
+            "target": "e003021"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "feat/new-plans",
+          "target": "19afec8"
+        }
+      }
+    }
+  }
+}

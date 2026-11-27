@@ -1,0 +1,1224 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir story",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd story",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Mira finds a letter under the door.\" > chapter-1.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add chapter-1.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add chapter 1\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"The letter is twenty years old.\" > chapter-2.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add chapter-2.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add chapter 2\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q -c sad-ending",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Nobody answers the letter.\" > ending.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add ending.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Try a sad ending\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q main",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Mira goes to the old address.\" > chapter-3.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add chapter-3.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add chapter 3\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"A stranger opens the door.\" > chapter-4.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add chapter-4.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add chapter 4\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "entries",
+      "hidden": false,
+      "fail": false,
+      "out": "df0b10e Add chapter 4\nca96919 Add chapter 3\nd3a44f7 Add chapter 2\n1a4fcda Add chapter 1\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git reflog",
+      "step": "entries",
+      "hidden": false,
+      "fail": false,
+      "out": "df0b10e HEAD@{0}: commit: Add chapter 4\nca96919 HEAD@{1}: commit: Add chapter 3\nd3a44f7 HEAD@{2}: checkout: moving from sad-ending to main\n2102d77 HEAD@{3}: commit: Try a sad ending\nd3a44f7 HEAD@{4}: checkout: moving from main to sad-ending\nd3a44f7 HEAD@{5}: commit: Add chapter 2\n1a4fcda HEAD@{6}: commit (initial): Add chapter 1\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git reset --hard HEAD~2",
+      "step": "lose",
+      "hidden": false,
+      "fail": false,
+      "out": "HEAD is now at d3a44f7 Add chapter 2\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "lose",
+      "hidden": false,
+      "fail": false,
+      "out": "d3a44f7 Add chapter 2\n1a4fcda Add chapter 1\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git reflog -3",
+      "step": "lose",
+      "hidden": false,
+      "fail": false,
+      "out": "d3a44f7 HEAD@{0}: reset: moving to HEAD~2\ndf0b10e HEAD@{1}: commit: Add chapter 4\nca96919 HEAD@{2}: commit: Add chapter 3\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git reset --hard HEAD@{1}",
+      "step": "recover",
+      "hidden": false,
+      "fail": false,
+      "out": "HEAD is now at df0b10e Add chapter 4\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "recover",
+      "hidden": false,
+      "fail": false,
+      "out": "df0b10e Add chapter 4\nca96919 Add chapter 3\nd3a44f7 Add chapter 2\n1a4fcda Add chapter 1\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git reflog -2",
+      "step": "recover",
+      "hidden": false,
+      "fail": false,
+      "out": "df0b10e HEAD@{0}: reset: moving to HEAD@{1}\nd3a44f7 HEAD@{1}: reset: moving to HEAD~2\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch -D sad-ending",
+      "step": "delete-branch",
+      "hidden": false,
+      "fail": false,
+      "out": "Deleted branch sad-ending (was 2102d77).\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git reflog",
+      "step": "delete-branch",
+      "hidden": false,
+      "fail": false,
+      "out": "df0b10e HEAD@{0}: reset: moving to HEAD@{1}\nd3a44f7 HEAD@{1}: reset: moving to HEAD~2\ndf0b10e HEAD@{2}: commit: Add chapter 4\nca96919 HEAD@{3}: commit: Add chapter 3\nd3a44f7 HEAD@{4}: checkout: moving from sad-ending to main\n2102d77 HEAD@{5}: commit: Try a sad ending\nd3a44f7 HEAD@{6}: checkout: moving from main to sad-ending\nd3a44f7 HEAD@{7}: commit: Add chapter 2\n1a4fcda HEAD@{8}: commit (initial): Add chapter 1\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch sad-ending HEAD@{5}",
+      "step": "restore-branch",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git reflog show sad-ending",
+      "step": "restore-branch",
+      "hidden": false,
+      "fail": false,
+      "out": "2102d77 sad-ending@{0}: branch: Created from HEAD@{5}\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git reflog show main",
+      "step": "restore-branch",
+      "hidden": false,
+      "fail": false,
+      "out": "df0b10e main@{0}: reset: moving to HEAD@{1}\nd3a44f7 main@{1}: reset: moving to HEAD~2\ndf0b10e main@{2}: commit: Add chapter 4\nca96919 main@{3}: commit: Add chapter 3\nd3a44f7 main@{4}: commit: Add chapter 2\n1a4fcda main@{5}: commit (initial): Add chapter 1\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch sad-ending",
+      "step": "rebase",
+      "hidden": false,
+      "fail": false,
+      "out": "Switched to branch 'sad-ending'\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git rebase main",
+      "step": "rebase",
+      "hidden": false,
+      "fail": false,
+      "out": "Successfully rebased and updated refs/heads/sad-ending.\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git reflog -4",
+      "step": "rebase",
+      "hidden": false,
+      "fail": false,
+      "out": "cc79de2 HEAD@{0}: rebase (finish): returning to refs/heads/sad-ending\ncc79de2 HEAD@{1}: rebase (pick): Try a sad ending\ndf0b10e HEAD@{2}: rebase (start): checkout main\n2102d77 HEAD@{3}: checkout: moving from main to sad-ending\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git reflog show sad-ending",
+      "step": "rebase",
+      "hidden": false,
+      "fail": false,
+      "out": "cc79de2 sad-ending@{0}: rebase (finish): refs/heads/sad-ending onto df0b10e3df28a919eb003396c834768e9e552e48\n2102d77 sad-ending@{1}: branch: Created from HEAD@{5}\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git reset --hard sad-ending@{1}",
+      "step": "rebase",
+      "hidden": false,
+      "fail": false,
+      "out": "HEAD is now at 2102d77 Try a sad ending\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "rebase",
+      "hidden": false,
+      "fail": false,
+      "out": "2102d77 Try a sad ending\nd3a44f7 Add chapter 2\n1a4fcda Add chapter 1\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "entries": {
+      "areas": {
+        "work": [
+          {
+            "name": "chapter-1.md",
+            "state": "clean"
+          },
+          {
+            "name": "chapter-2.md",
+            "state": "clean"
+          },
+          {
+            "name": "chapter-3.md",
+            "state": "clean"
+          },
+          {
+            "name": "chapter-4.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "chapter-1.md",
+            "state": "clean"
+          },
+          {
+            "name": "chapter-2.md",
+            "state": "clean"
+          },
+          {
+            "name": "chapter-3.md",
+            "state": "clean"
+          },
+          {
+            "name": "chapter-4.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "df0b10e",
+            "message": "Add chapter 4"
+          },
+          "count": 4,
+          "files": [
+            "chapter-1.md",
+            "chapter-2.md",
+            "chapter-3.md",
+            "chapter-4.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "df0b10e",
+            "message": "Add chapter 4",
+            "parents": [
+              "ca96919"
+            ],
+            "files": [
+              {
+                "name": "chapter-1.md",
+                "state": "same"
+              },
+              {
+                "name": "chapter-2.md",
+                "state": "same"
+              },
+              {
+                "name": "chapter-3.md",
+                "state": "same"
+              },
+              {
+                "name": "chapter-4.md",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "ca96919",
+            "message": "Add chapter 3",
+            "parents": [
+              "d3a44f7"
+            ],
+            "files": [
+              {
+                "name": "chapter-1.md",
+                "state": "same"
+              },
+              {
+                "name": "chapter-2.md",
+                "state": "same"
+              },
+              {
+                "name": "chapter-3.md",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "2102d77",
+            "message": "Try a sad ending",
+            "parents": [
+              "d3a44f7"
+            ],
+            "files": [
+              {
+                "name": "chapter-1.md",
+                "state": "same"
+              },
+              {
+                "name": "chapter-2.md",
+                "state": "same"
+              },
+              {
+                "name": "ending.md",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "d3a44f7",
+            "message": "Add chapter 2",
+            "parents": [
+              "1a4fcda"
+            ],
+            "files": [
+              {
+                "name": "chapter-1.md",
+                "state": "same"
+              },
+              {
+                "name": "chapter-2.md",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "1a4fcda",
+            "message": "Add chapter 1",
+            "parents": [],
+            "files": [
+              {
+                "name": "chapter-1.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "df0b10e"
+          },
+          {
+            "name": "sad-ending",
+            "target": "2102d77"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "df0b10e"
+        }
+      }
+    },
+    "lose": {
+      "areas": {
+        "work": [
+          {
+            "name": "chapter-1.md",
+            "state": "clean"
+          },
+          {
+            "name": "chapter-2.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "chapter-1.md",
+            "state": "clean"
+          },
+          {
+            "name": "chapter-2.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "d3a44f7",
+            "message": "Add chapter 2"
+          },
+          "count": 2,
+          "files": [
+            "chapter-1.md",
+            "chapter-2.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "2102d77",
+            "message": "Try a sad ending",
+            "parents": [
+              "d3a44f7"
+            ],
+            "files": [
+              {
+                "name": "chapter-1.md",
+                "state": "same"
+              },
+              {
+                "name": "chapter-2.md",
+                "state": "same"
+              },
+              {
+                "name": "ending.md",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "d3a44f7",
+            "message": "Add chapter 2",
+            "parents": [
+              "1a4fcda"
+            ],
+            "files": [
+              {
+                "name": "chapter-1.md",
+                "state": "same"
+              },
+              {
+                "name": "chapter-2.md",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "1a4fcda",
+            "message": "Add chapter 1",
+            "parents": [],
+            "files": [
+              {
+                "name": "chapter-1.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "d3a44f7"
+          },
+          {
+            "name": "sad-ending",
+            "target": "2102d77"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "d3a44f7"
+        }
+      }
+    },
+    "recover": {
+      "areas": {
+        "work": [
+          {
+            "name": "chapter-1.md",
+            "state": "clean"
+          },
+          {
+            "name": "chapter-2.md",
+            "state": "clean"
+          },
+          {
+            "name": "chapter-3.md",
+            "state": "clean"
+          },
+          {
+            "name": "chapter-4.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "chapter-1.md",
+            "state": "clean"
+          },
+          {
+            "name": "chapter-2.md",
+            "state": "clean"
+          },
+          {
+            "name": "chapter-3.md",
+            "state": "clean"
+          },
+          {
+            "name": "chapter-4.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "df0b10e",
+            "message": "Add chapter 4"
+          },
+          "count": 4,
+          "files": [
+            "chapter-1.md",
+            "chapter-2.md",
+            "chapter-3.md",
+            "chapter-4.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "df0b10e",
+            "message": "Add chapter 4",
+            "parents": [
+              "ca96919"
+            ],
+            "files": [
+              {
+                "name": "chapter-1.md",
+                "state": "same"
+              },
+              {
+                "name": "chapter-2.md",
+                "state": "same"
+              },
+              {
+                "name": "chapter-3.md",
+                "state": "same"
+              },
+              {
+                "name": "chapter-4.md",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "ca96919",
+            "message": "Add chapter 3",
+            "parents": [
+              "d3a44f7"
+            ],
+            "files": [
+              {
+                "name": "chapter-1.md",
+                "state": "same"
+              },
+              {
+                "name": "chapter-2.md",
+                "state": "same"
+              },
+              {
+                "name": "chapter-3.md",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "2102d77",
+            "message": "Try a sad ending",
+            "parents": [
+              "d3a44f7"
+            ],
+            "files": [
+              {
+                "name": "chapter-1.md",
+                "state": "same"
+              },
+              {
+                "name": "chapter-2.md",
+                "state": "same"
+              },
+              {
+                "name": "ending.md",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "d3a44f7",
+            "message": "Add chapter 2",
+            "parents": [
+              "1a4fcda"
+            ],
+            "files": [
+              {
+                "name": "chapter-1.md",
+                "state": "same"
+              },
+              {
+                "name": "chapter-2.md",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "1a4fcda",
+            "message": "Add chapter 1",
+            "parents": [],
+            "files": [
+              {
+                "name": "chapter-1.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "df0b10e"
+          },
+          {
+            "name": "sad-ending",
+            "target": "2102d77"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "df0b10e"
+        }
+      }
+    },
+    "delete-branch": {
+      "areas": {
+        "work": [
+          {
+            "name": "chapter-1.md",
+            "state": "clean"
+          },
+          {
+            "name": "chapter-2.md",
+            "state": "clean"
+          },
+          {
+            "name": "chapter-3.md",
+            "state": "clean"
+          },
+          {
+            "name": "chapter-4.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "chapter-1.md",
+            "state": "clean"
+          },
+          {
+            "name": "chapter-2.md",
+            "state": "clean"
+          },
+          {
+            "name": "chapter-3.md",
+            "state": "clean"
+          },
+          {
+            "name": "chapter-4.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "df0b10e",
+            "message": "Add chapter 4"
+          },
+          "count": 4,
+          "files": [
+            "chapter-1.md",
+            "chapter-2.md",
+            "chapter-3.md",
+            "chapter-4.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "df0b10e",
+            "message": "Add chapter 4",
+            "parents": [
+              "ca96919"
+            ],
+            "files": [
+              {
+                "name": "chapter-1.md",
+                "state": "same"
+              },
+              {
+                "name": "chapter-2.md",
+                "state": "same"
+              },
+              {
+                "name": "chapter-3.md",
+                "state": "same"
+              },
+              {
+                "name": "chapter-4.md",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "ca96919",
+            "message": "Add chapter 3",
+            "parents": [
+              "d3a44f7"
+            ],
+            "files": [
+              {
+                "name": "chapter-1.md",
+                "state": "same"
+              },
+              {
+                "name": "chapter-2.md",
+                "state": "same"
+              },
+              {
+                "name": "chapter-3.md",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "d3a44f7",
+            "message": "Add chapter 2",
+            "parents": [
+              "1a4fcda"
+            ],
+            "files": [
+              {
+                "name": "chapter-1.md",
+                "state": "same"
+              },
+              {
+                "name": "chapter-2.md",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "1a4fcda",
+            "message": "Add chapter 1",
+            "parents": [],
+            "files": [
+              {
+                "name": "chapter-1.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "df0b10e"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "df0b10e"
+        }
+      }
+    },
+    "restore-branch": {
+      "areas": {
+        "work": [
+          {
+            "name": "chapter-1.md",
+            "state": "clean"
+          },
+          {
+            "name": "chapter-2.md",
+            "state": "clean"
+          },
+          {
+            "name": "chapter-3.md",
+            "state": "clean"
+          },
+          {
+            "name": "chapter-4.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "chapter-1.md",
+            "state": "clean"
+          },
+          {
+            "name": "chapter-2.md",
+            "state": "clean"
+          },
+          {
+            "name": "chapter-3.md",
+            "state": "clean"
+          },
+          {
+            "name": "chapter-4.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "df0b10e",
+            "message": "Add chapter 4"
+          },
+          "count": 4,
+          "files": [
+            "chapter-1.md",
+            "chapter-2.md",
+            "chapter-3.md",
+            "chapter-4.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "df0b10e",
+            "message": "Add chapter 4",
+            "parents": [
+              "ca96919"
+            ],
+            "files": [
+              {
+                "name": "chapter-1.md",
+                "state": "same"
+              },
+              {
+                "name": "chapter-2.md",
+                "state": "same"
+              },
+              {
+                "name": "chapter-3.md",
+                "state": "same"
+              },
+              {
+                "name": "chapter-4.md",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "ca96919",
+            "message": "Add chapter 3",
+            "parents": [
+              "d3a44f7"
+            ],
+            "files": [
+              {
+                "name": "chapter-1.md",
+                "state": "same"
+              },
+              {
+                "name": "chapter-2.md",
+                "state": "same"
+              },
+              {
+                "name": "chapter-3.md",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "2102d77",
+            "message": "Try a sad ending",
+            "parents": [
+              "d3a44f7"
+            ],
+            "files": [
+              {
+                "name": "chapter-1.md",
+                "state": "same"
+              },
+              {
+                "name": "chapter-2.md",
+                "state": "same"
+              },
+              {
+                "name": "ending.md",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "d3a44f7",
+            "message": "Add chapter 2",
+            "parents": [
+              "1a4fcda"
+            ],
+            "files": [
+              {
+                "name": "chapter-1.md",
+                "state": "same"
+              },
+              {
+                "name": "chapter-2.md",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "1a4fcda",
+            "message": "Add chapter 1",
+            "parents": [],
+            "files": [
+              {
+                "name": "chapter-1.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "df0b10e"
+          },
+          {
+            "name": "sad-ending",
+            "target": "2102d77"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "df0b10e"
+        }
+      }
+    },
+    "rebase": {
+      "areas": {
+        "work": [
+          {
+            "name": "chapter-1.md",
+            "state": "clean"
+          },
+          {
+            "name": "chapter-2.md",
+            "state": "clean"
+          },
+          {
+            "name": "ending.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "chapter-1.md",
+            "state": "clean"
+          },
+          {
+            "name": "chapter-2.md",
+            "state": "clean"
+          },
+          {
+            "name": "ending.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "2102d77",
+            "message": "Try a sad ending"
+          },
+          "count": 3,
+          "files": [
+            "chapter-1.md",
+            "chapter-2.md",
+            "ending.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "df0b10e",
+            "message": "Add chapter 4",
+            "parents": [
+              "ca96919"
+            ],
+            "files": [
+              {
+                "name": "chapter-1.md",
+                "state": "same"
+              },
+              {
+                "name": "chapter-2.md",
+                "state": "same"
+              },
+              {
+                "name": "chapter-3.md",
+                "state": "same"
+              },
+              {
+                "name": "chapter-4.md",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "ca96919",
+            "message": "Add chapter 3",
+            "parents": [
+              "d3a44f7"
+            ],
+            "files": [
+              {
+                "name": "chapter-1.md",
+                "state": "same"
+              },
+              {
+                "name": "chapter-2.md",
+                "state": "same"
+              },
+              {
+                "name": "chapter-3.md",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "2102d77",
+            "message": "Try a sad ending",
+            "parents": [
+              "d3a44f7"
+            ],
+            "files": [
+              {
+                "name": "chapter-1.md",
+                "state": "same"
+              },
+              {
+                "name": "chapter-2.md",
+                "state": "same"
+              },
+              {
+                "name": "ending.md",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "d3a44f7",
+            "message": "Add chapter 2",
+            "parents": [
+              "1a4fcda"
+            ],
+            "files": [
+              {
+                "name": "chapter-1.md",
+                "state": "same"
+              },
+              {
+                "name": "chapter-2.md",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "1a4fcda",
+            "message": "Add chapter 1",
+            "parents": [],
+            "files": [
+              {
+                "name": "chapter-1.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "df0b10e"
+          },
+          {
+            "name": "sad-ending",
+            "target": "2102d77"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "sad-ending",
+          "target": "2102d77"
+        }
+      }
+    }
+  }
+}

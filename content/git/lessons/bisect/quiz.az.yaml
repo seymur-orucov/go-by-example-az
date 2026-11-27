@@ -1,0 +1,75 @@
+- question: "`v1.0`-dan sonra 32 commit var və xəta onlardan birindədir. `git bisect` xətalı commit-i neçə yoxlama ilə tapır?"
+  options:
+    - "Təxminən 32"
+    - "Təxminən 16"
+    - "Təxminən 5"
+  answer: 2
+  explain: "Hər yoxlama şübhəli commit-ləri iki dəfə azaldır: 32 → 16 → 8 → 4 → 2 → 1."
+- question: "Bu komandalardan sonra `git status`-un birinci sətri necə başlayır?"
+  code: |
+    git bisect start
+    git bisect bad
+    git bisect good v1.0
+    git status
+  options:
+    - "`On branch main`"
+    - "`HEAD detached at`"
+    - "`You are currently bisecting`"
+  answer: 1
+  explain: "Bisect yoxlanacaq commit-ə detached HEAD ilə keçir. `You are currently bisecting` ikinci sətirdir."
+- question: "Bisect `Step 3` commit-inə keçib. `git bisect bad` arqumentsiz hansı commit-i pis kimi qeyd edir?"
+  options:
+    - "`Step 3`-ü, yəni HEAD-i"
+    - "`main`-in son commit-ini"
+    - "Bisect-in ilk keçdiyi commit-i"
+  answer: 0
+  explain: "Arqument verilməsə, `good` və `bad` indiki commit-ə, yəni HEAD-ə aiddir."
+- question: "Bisect `Bisecting: 0 revisions left to test after this (roughly 0 steps)` yazdı. Bu nə deməkdir?"
+  options:
+    - "Axtarış bitdi, xətalı commit elə bu commit-dir"
+    - "Bu commit-i də yoxlamaq lazımdır, sonra axtarış bitir"
+    - "Yoxlanacaq commit qalmadı, xəta tapılmadı"
+  answer: 1
+  explain: "Say bu commit-dən sonra qalanları göstərir. Git yenə bir commit-ə keçib və cavabınızı gözləyir."
+- question: "`git bisect start main v1.0` hansı komandalarla eynidir?"
+  options:
+    - "`git bisect start`, `git bisect good main`, `git bisect bad v1.0`"
+    - "`git bisect start`, `git bisect good main`, `git bisect good v1.0`"
+    - "`git bisect start`, `git bisect bad main`, `git bisect good v1.0`"
+  answer: 2
+  explain: "`git bisect start`-dan sonra birinci arqument pis, qalanları yaxşı commit-dir."
+- question: "`git bisect run` üçün yazılan skript hansı kodla çıxanda commit yaxşı sayılır?"
+  options:
+    - "`1`"
+    - "`125`"
+    - "`0`"
+  answer: 2
+  explain: "`0` yaxşı, 1–127 arası (125-dən başqa) pis deməkdir. `125` commit-i ötürür."
+- question: "Bisect xətalı commit-i tapdı. Axtarışı bitirib branch-a qayıtmaq üçün hansı komanda yazılır?"
+  options:
+    - "`git bisect reset`"
+    - "`git bisect stop`"
+    - "`git bisect end`"
+  answer: 0
+  explain: "`stop` və `end` bisect-də yoxdur, Git `unknown command` xətası verir."
+- question: "Yeni repository-də bu komandalardan sonra Git hansı commit-ə keçir?"
+  code: |
+    echo 1 > n.txt && git add n.txt && git commit -q -m "Step 1"
+    echo 2 > n.txt && git commit -q -am "Step 2"
+    echo 3 > n.txt && git commit -q -am "Step 3"
+    echo 4 > n.txt && git commit -q -am "Step 4"
+    echo 5 > n.txt && git commit -q -am "Step 5"
+    git bisect start HEAD HEAD~4
+  options:
+    - "`Step 2`"
+    - "`Step 3`"
+    - "`Step 4`"
+  answer: 1
+  explain: "Yaxşı `Step 1`, pis `Step 5`-dir. Git ortadakı `Step 3`-ə keçir."
+- question: "`test.sh` commit olunmayıb. `git bisect run sh test.sh` köhnə commit-ə keçəndə `test.sh` nə olur?"
+  options:
+    - "Silinir, çünki köhnə commit-də yoxdur"
+    - "Bisect xəta verir və dayanır"
+    - "İşçi qovluqda qalır, Git ona toxunmur"
+  answer: 2
+  explain: "Commit-lər arasında keçəndə Git izlənməyən fayllara toxunmur."
