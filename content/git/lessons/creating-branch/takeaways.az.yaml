@@ -1,0 +1,10 @@
+rules:
+  - "`git branch` branch-ların siyahısını çap edir; `*` hazırkı branch-ı göstərir."
+  - "`git branch <ad>` hazırkı commit-də yeni branch yaradır, amma ona keçmir."
+  - "`git switch -c <ad>` branch-ı yaradır və dərhal ona keçir; köhnə yazılışı `git checkout -b <ad>`-dır."
+  - "`git branch -v` hər branch-ın göstərdiyi commit-in qısa hash-ini və mesajını yazır."
+  - "Başlanğıc commit ikinci arqumentdir: `git branch <ad> HEAD~1`; verilməyəndə HEAD götürülür."
+  - "Belə adda branch artıq varsa, `git branch <ad>` və `git switch -c <ad>` xəta verir."
+practices:
+  - "Yeni işə başlayanda branch-ı `git switch -c` ilə yaradın: commit-lər səhvən `main`-ə düşmür."
+  - "Commit etməzdən əvvəl `git branch` ilə `*`-ın hansı branch-da olduğuna baxın."

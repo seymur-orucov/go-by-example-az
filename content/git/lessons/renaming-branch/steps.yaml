@@ -1,0 +1,6 @@
+# The visuals are recorded from the real repository by `pnpm content:run`.
+other-branch:
+current-branch:
+name-taken:
+  vis: graph
+remote:

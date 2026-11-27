@@ -639,3 +639,18 @@ Done (branch `feat/git-history-lessons`):
 - `commit-messages` (`concept`): a weather app — bad vs good `--oneline` history (`compare`), subject (~50 characters, one change per commit), imperative mood, body (what and why, ~72 columns, the blank line, `-m` twice; `flow` of the parts), Conventional Commits (types, `!`/`BREAKING CHANGE:`, changelog and SemVer); 5 steps, 9 questions.
 - Claude's edits: plainer wording in `head` (intro, the cmd note), a step heading with two `~` that Markdown rendered as strikethrough (now `HEAD~N: …`), an unverified claim about how GitHub cuts long subjects, a repeated rule in `git-log-options`.
 - Checked: `content:run` of all four session lessons again (identical), every quiz answer in scratch sandboxes (by the subagents), `content:check` (102/102), build, lint, format, `astro check`; `head` and `commit-messages` at 1440px, `git-log-options` at 390px (iframe).
+
+### 74. Git module 4 "Branch-lar"
+The user asked for every remaining module of the Git part (`/write-content git`, "bütün modulları yaz"). The work runs in a separate worktree (`go-by-example-git`), module by module: one writer subagent per lesson from a shared brief (rules learned so far: no hashes, plain headings with at most one `~`, no giveaway quiz options, the `review-lesson` scan), then an independent reviewer subagent per module, then Claude's checks and one PR per module.
+
+Done (branch `feat/git-branches-lessons`):
+- `what-is-a-branch` (`state`, podcast notes): a branch is a 41-byte file with a hash; a new branch copies nothing; only the branch HEAD points to moves; `--decorate`, `--all`.
+- `creating-branch` (`terminal`, photo album site): `git branch <name>`, `*`, `-v`, a start point (`HEAD~1`), `git switch -c`, the "already exists" error.
+- `switch-branches` (`state`, moving checklist): the working directory follows the branch, `git switch -`, `checkout` mentioned, a change that travels with you and one that blocks the switch.
+- `renaming-branch` (`terminal`, school newsletter): `-m` for another and the current branch, `master` → `main`, `-M`, the server keeps the old name (`git push -u origin new`, `git push origin --delete old`, `git ls-remote --heads`).
+- `deleting-branch` (`terminal`, pet-care schedule): `-d`, "not fully merged", `-D`, the current branch cannot be deleted, `git push origin --delete`.
+- `branch-naming` (`concept`, online bookstore): prefixes, ticket ids, kebab-case, Git's rules (`git check-ref-format --branch`), `feat` vs `feat/x`.
+- `detached-head` (`state`, song lyrics): `git switch --detach`, `.git/HEAD` with a hash, a commit on no branch, saving it with `git switch -c`, the "leaving 1 commit behind" warning.
+- `diff-between-branches` (`terminal`, conference talk outline): `log main..feat`, `diff main feat` vs `diff main...feat` (merge base, what a PR shows), `--stat`.
+- The reviewer fixed terms ("hazırkı", "serverdəki"), wrong back-references ("əvvəlki dərsdə"), `git push -u origin` order, two giveaway quiz options, a hash copied into a quiz option.
+- Checked: `content:run` twice for the seven session lessons (identical), every quiz answer in sandboxes (writers) plus spot checks (reviewer), `content:check`, the `review-lesson` scan (0 points each).

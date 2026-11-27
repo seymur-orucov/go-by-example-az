@@ -1,0 +1,90 @@
+- question: "Yeni repository-də bu komandalardan sonra nə çap olunur?"
+  code: |
+    echo "milk" > list.txt
+    git add list.txt
+    git commit -q -m "Start list"
+    git switch -q -c feature
+    echo "eggs" >> list.txt
+    git commit -q -am "Add eggs"
+    echo "rice" >> list.txt
+    git commit -q -am "Add rice"
+    git switch -q main
+    echo "tea" > drinks.txt
+    git add drinks.txt
+    git commit -q -m "Add drinks"
+    git log --oneline main..feature
+  options:
+    - "Yalnız `Add drinks` commit-i"
+    - "`Add rice` və `Add eggs` commit-ləri"
+    - "`Add rice`, `Add eggs` və `Start list` commit-ləri"
+  answer: 1
+  explain: "`main..feature` `feature`-da olub `main`-də olmayan commit-ləri göstərir. `Start list` hər iki branch-dadır, `Add drinks` isə yalnız `main`-dədir."
+- question: "`git log feature..main` hansı commit-ləri göstərir?"
+  options:
+    - "`feature`-da olub `main`-də olmayanları"
+    - "Hər iki branch-ın bütün commit-lərini"
+    - "`main`-də olub `feature`-da olmayanları"
+  answer: 2
+  explain: "`A..B` \"B-də var, A-da yox\" deməkdir. Burada B `main`-dir."
+- question: "`git diff main..feature` hansı komanda ilə eyni nəticəni verir?"
+  options:
+    - "`git diff main feature`"
+    - "`git diff main...feature`"
+    - "`git log -p main..feature`"
+  answer: 0
+  explain: "`git diff`-də iki nöqtə boşluqla eynidir: hər ikisi iki branch-ın son snapshot-larını müqayisə edir."
+- question: "Yeni repository-də bu komandalardan sonra nə çap olunur?"
+  code: |
+    echo "milk" > list.txt
+    git add list.txt
+    git commit -q -m "Start list"
+    git switch -q -c feature
+    echo "pasta" > dinner.txt
+    git add dinner.txt
+    git commit -q -m "Plan dinner"
+    git switch -q main
+    echo "bread" >> list.txt
+    git commit -q -am "Add bread"
+    git diff --stat main feature
+  options:
+    - "Yalnız `dinner.txt`: `1 +`"
+    - "`dinner.txt`: `1 +` və `list.txt`: `1 -`"
+    - "`dinner.txt`: `1 +` və `list.txt`: `1 +`"
+  answer: 1
+  explain: "İki snapshot müqayisə olunur. `bread` `main`-də var, `feature`-da yoxdur, ona görə `feature` tərəfdən silinmə kimi görünür."
+- question: "`feature` yalnız `dinner.txt` faylını yaradıb. `main` isə ayrılandan sonra `list.txt`-ə bir sətir əlavə edib. `git diff --stat main...feature` hansı faylları göstərir?"
+  options:
+    - "Yalnız `dinner.txt`"
+    - "`dinner.txt` və `list.txt`"
+    - "Yalnız `list.txt`"
+    - "Heç bir faylı"
+  answer: 0
+  explain: "Üç nöqtə `feature`-u merge base ilə müqayisə edir. `main`-in sonrakı dəyişikliyi diff-ə düşmür."
+- question: "Merge base nədir?"
+  options:
+    - "İki branch-ı birləşdirən yeni commit"
+    - "`main` branch-ının ən yeni commit-i"
+    - "İki branch-ın ən son ortaq commit-i"
+  answer: 2
+  explain: "Branch ayrılan yerdəki commit hər iki tarixçədədir. `git diff A...B` B-ni məhz bu commit ilə müqayisə edir."
+- question: "GitHub-da pull request-in \"Files changed\" bölməsi hansı komandanın nəticəsinə uyğundur?"
+  options:
+    - "`git diff main feature`"
+    - "`git diff main...feature`"
+    - "`git log main..feature`"
+  answer: 1
+  explain: "Pull request branch-ın merge base-dən bəri etdiyi dəyişiklikləri göstərir, `main`-ə sonradan gələnləri yox."
+- question: "`git diff main feature` çıxışında `-` sətirləri var, amma `feature`-da heç nə silinməyib. Səbəb nədir?"
+  options:
+    - "Ayrılandan sonra `main`-ə gələn sətirlər `feature`-da yoxdur"
+    - "`git diff` `feature`-un commit-lərini tərsinə göstərir"
+    - "Working directory-də commit olunmamış dəyişikliklər var"
+  answer: 0
+  explain: "İki snapshot müqayisə olunanda `main`-in yeni sətirləri `feature` tərəfdə olmadığı üçün `-` ilə görünür. Yalnız branch-ın dəyişikliyi üçün `main...feature` yazın."
+- question: "`feature` branch-ındasınız. `git diff main...` nəyi göstərir?"
+  options:
+    - "Xəta verir: ikinci ad yazılmayıb"
+    - "`main`-ə sonradan gələn dəyişiklikləri"
+    - "`git diff main...feature` ilə eyni diff-i"
+  answer: 2
+  explain: "Buraxılan adın yerinə Git `HEAD` götürür, `HEAD` isə `feature`-a baxır."

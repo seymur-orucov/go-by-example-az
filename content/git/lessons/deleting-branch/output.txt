@@ -1,0 +1,22 @@
+$ git branch -v
+* main      9a72f11 Add vet visit
+  new-food  0145366 Try salmon food
+  vet-visit 9a72f11 Add vet visit
+$ git branch -d vet-visit
+Deleted branch vet-visit (was 9a72f11).
+$ git log --oneline
+9a72f11 Add vet visit
+39977a3 Add feeding times
+$ git branch -d new-food
+error: the branch 'new-food' is not fully merged
+hint: If you are sure you want to delete it, run 'git branch -D new-food'
+hint: Disable this message with "git config set advice.forceDeleteBranch false"
+$ git branch -D new-food
+Deleted branch new-food (was 0145366).
+$ git branch
+* main
+$ git branch -d main
+error: cannot delete branch 'main' used by worktree at '/home/sam/pet-care'
+$ git push origin --delete vet-visit
+To /home/sam/server/pet-care.git
+ - [deleted]         vet-visit

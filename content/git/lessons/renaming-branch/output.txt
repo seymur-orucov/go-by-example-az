@@ -1,0 +1,36 @@
+$ git branch
+  isue-2
+* master
+$ git branch -m isue-2 issue-2
+$ git branch
+  issue-2
+* master
+$ git branch -m main
+$ git status
+On branch main
+nothing to commit, working tree clean
+$ git switch -c issue-2-new
+Switched to a new branch 'issue-2-new'
+$ printf "%s\n" "# Issue 2" "Chess club wins the cup" > issue-2.md
+$ git add issue-2.md
+$ git commit -m "Start issue 2 again"
+[issue-2-new 7af5362] Start issue 2 again
+ 1 file changed, 2 insertions(+)
+ create mode 100644 issue-2.md
+$ git branch -m issue-2
+fatal: a branch named 'issue-2' already exists
+$ git branch -M issue-2
+$ git branch
+* issue-2
+  main
+$ git ls-remote --heads origin
+ec2e4bd8a1fd346461192c71c4f406ce199b5e11	refs/heads/isue-2
+$ git push -u origin issue-2
+To /home/sam/server/newsletter.git
+ * [new branch]      issue-2 -> issue-2
+branch 'issue-2' set up to track 'origin/issue-2'.
+$ git push origin --delete isue-2
+To /home/sam/server/newsletter.git
+ - [deleted]         isue-2
+$ git ls-remote --heads origin
+7af5362a050912f1a37c2cbb47c75f0602a69620	refs/heads/issue-2

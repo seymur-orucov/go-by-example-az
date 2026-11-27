@@ -1,0 +1,78 @@
+$ git log --oneline --graph --all --decorate
+* 814fb21 (HEAD -> main) Shorten the talk to 15 minutes
+| * cae6280 (feat/demo) Add the demo slide
+| * 3c45fca Add the live demo section
+|/  
+* 9b2a848 Add the first slides
+* 06d00b3 Start the talk outline
+$ git log --oneline main..feat/demo
+cae6280 Add the demo slide
+3c45fca Add the live demo section
+$ git log --oneline feat/demo..main
+814fb21 Shorten the talk to 15 minutes
+$ git diff main feat/demo
+diff --git a/outline.md b/outline.md
+index 4607323..92aba6e 100644
+--- a/outline.md
++++ b/outline.md
+@@ -1,4 +1,5 @@
+-# Git in 15 minutes
++# Git in 20 minutes
+ 1. Why version control
+ 2. First commit
+ 3. Branches
++4. Live demo
+diff --git a/slides.txt b/slides.txt
+index ae1b636..7c0d6cc 100644
+--- a/slides.txt
++++ b/slides.txt
+@@ -1,2 +1,3 @@
+ Title slide
+ Why version control
++Demo: git log
+$ git diff main..feat/demo
+diff --git a/outline.md b/outline.md
+index 4607323..92aba6e 100644
+--- a/outline.md
++++ b/outline.md
+@@ -1,4 +1,5 @@
+-# Git in 15 minutes
++# Git in 20 minutes
+ 1. Why version control
+ 2. First commit
+ 3. Branches
++4. Live demo
+diff --git a/slides.txt b/slides.txt
+index ae1b636..7c0d6cc 100644
+--- a/slides.txt
++++ b/slides.txt
+@@ -1,2 +1,3 @@
+ Title slide
+ Why version control
++Demo: git log
+$ git diff main...feat/demo
+diff --git a/outline.md b/outline.md
+index caf37a3..92aba6e 100644
+--- a/outline.md
++++ b/outline.md
+@@ -2,3 +2,4 @@
+ 1. Why version control
+ 2. First commit
+ 3. Branches
++4. Live demo
+diff --git a/slides.txt b/slides.txt
+index ae1b636..7c0d6cc 100644
+--- a/slides.txt
++++ b/slides.txt
+@@ -1,2 +1,3 @@
+ Title slide
+ Why version control
++Demo: git log
+$ git diff --stat main feat/demo
+ outline.md | 3 ++-
+ slides.txt | 1 +
+ 2 files changed, 3 insertions(+), 1 deletion(-)
+$ git diff --stat main...feat/demo
+ outline.md | 1 +
+ slides.txt | 1 +
+ 2 files changed, 2 insertions(+)

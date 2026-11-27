@@ -1,0 +1,78 @@
+- question: "Yeni, boş repository-də bu komandalardan sonra `ls` nə çap edir?"
+  code: |
+    echo "milk" > list.txt
+    git add list.txt
+    git commit -q -m "Start list"
+    git switch -c draft
+    echo "idea" > notes.txt
+    git add notes.txt
+    git commit -q -m "Add notes"
+    git switch main
+    ls
+  options:
+    - "`list.txt`"
+    - "`list.txt` və `notes.txt`"
+    - "`notes.txt`"
+  answer: 0
+  explain: "`notes.txt` yalnız `draft`-ın commit-indədir. `main`-ə keçəndə Git onu working directory-dən götürür."
+- question: "`git switch -` nə edir?"
+  options:
+    - "HEAD-i bir commit geri, `HEAD~1`-ə aparır"
+    - "Hazırkı branch-ı silir və `main`-ə keçir"
+    - "Əvvəl olduğunuz branch-a geri keçir"
+  answer: 2
+  explain: "`-` əvvəlki branch deməkdir. İki branch arasında gedib-gələndə adı yazmaq lazım olmur."
+- question: "`notes.txt` commit olunub, `main` və `feature` eyni commit-i göstərir. `main`-dəsiniz. Bu komandalardan sonra nə çap olunur?"
+  code: |
+    echo "draft" >> notes.txt
+    git switch feature
+    git status --short
+  options:
+    - "Heç nə: dəyişiklik `main`-də qaldı"
+    - "` M notes.txt`"
+    - "`M  notes.txt`"
+  answer: 1
+  explain: "Commit olunmamış dəyişiklik heç bir branch-a aid deyil. O, working directory-də qalır və sizinlə `feature`-ə keçir."
+- question: "`git switch` nə vaxt keçidi etmir?"
+  options:
+    - "Commit olunmamış hər hansı dəyişiklik olanda"
+    - "Dəyişmiş fayl iki branch-da fərqli olanda"
+    - "Hədəf branch-da hazırkından çox commit olanda"
+  answer: 1
+  explain: "Faylı əvəz etmək commit olunmamış dəyişikliyi silərdi, ona görə Git dayanır. Fayl iki branch-da eynidirsə, dəyişiklik sizinlə keçir."
+- question: "`git switch main` `error: Your local changes ... would be overwritten` verdi. Dəyişikliyi saxlayıb keçmək üçün nə etmək olar?"
+  options:
+    - "Dəyişikliyi commit edib sonra keçmək"
+    - "Faylı `git add` edib sonra keçmək"
+    - "`git switch main`-i bir də işlətmək"
+  answer: 0
+  explain: "Commit-dən sonra dəyişiklik branch-ın tarixçəsindədir və keçidə mane olmur. Stage olunmuş dəyişiklik də commit olunmayıb, ona görə Git yenə dayanır."
+- question: "`git switch movers` ilə eyni keçidi hansı komanda edir?"
+  options:
+    - "`git checkout movers`"
+    - "`git branch movers`"
+    - "`git restore movers`"
+  answer: 0
+  explain: "`git checkout <branch>` köhnə komandadır və eyni keçidi edir. `git branch movers` isə yeni branch yaradır, ona keçmir."
+- question: "`main`-də `notes.txt` commit olunub. Bu komandalardan sonra `git branch` hansı branch-ı `*` ilə göstərir?"
+  code: |
+    git switch -c feature
+    echo "v2" > notes.txt
+    git add notes.txt
+    git commit -q -m "Rewrite notes"
+    echo "draft" >> notes.txt
+    git switch main
+    git branch
+  options:
+    - "`main`"
+    - "Heç birini: HEAD branch-sız qalır"
+    - "`feature`"
+  answer: 2
+  explain: "`notes.txt` iki branch-da fərqlidir və commit olunmamış dəyişiklik var. Git keçidi etmədi (`Aborting`), HEAD `feature`-də qaldı."
+- question: "`feature`-də `notes.txt`-ə sətir əlavə edib commit edirsiniz, sonra `git switch main` yazırsınız. `main`-dəki `notes.txt`-də bu sətir varmı?"
+  options:
+    - "Var: commit hər iki branch-a düşür"
+    - "Yoxdur: sətir yalnız `feature`-in commit-indədir"
+    - "Var, amma `git status` onu ` M` kimi göstərir"
+  answer: 1
+  explain: "Commit hazırkı branch-ı irəlilədir. `main`-ə keçəndə Git `notes.txt`-i `main`-in son commit-indəki kimi yazır."

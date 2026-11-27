@@ -1,0 +1,74 @@
+- question: "`main` branch-ındasınız və repository-də üç commit var. `git switch HEAD~1` nə edir?"
+  options:
+    - "HEAD-i `HEAD~1` commit-inə keçirir"
+    - "`HEAD~1` adlı yeni branch yaradır"
+    - "Xəta verir: Git branch adı gözləyir"
+  answer: 2
+  explain: "`git switch` commit-ə yalnız `--detach` ilə keçir. Onsuz `a branch is expected, got commit 'HEAD~1'` xətası çıxır."
+- question: "`git switch --detach HEAD~1`-dən sonra `cat .git/HEAD` nə çap edir?"
+  options:
+    - "`ref: refs/heads/main`"
+    - "Commit-in tam hash-i"
+    - "`HEAD detached at main`"
+  answer: 1
+  explain: "Detached HEAD-də HEAD branch-ı yox, birbaşa commit-i göstərir, ona görə faylda hash yazılır."
+- question: "Bu komandalardan sonra `git commit` çıxışının birinci sətri necə başlayır?"
+  code: |
+    git switch --detach HEAD~1
+    echo "Outro: fade out" >> lyrics.txt
+    git add lyrics.txt
+    git commit -m "Add outro"
+  options:
+    - "`[main ...]`"
+    - "`[detached HEAD ...]`"
+    - "`[HEAD~1 ...]`"
+  answer: 1
+  explain: "Commit heç bir branch-a düşmür, ona görə branch adı yerinə `detached HEAD` yazılır."
+- question: "Detached HEAD-də yeni commit etdiniz. Hansı branch irəliləyir?"
+  options:
+    - "Heç biri: yeni commit-i yalnız HEAD göstərir"
+    - "`main`, çünki repository-nin əsas branch-ıdır"
+    - "Ən son yaradılmış branch"
+  answer: 0
+  explain: "HEAD branch-a bağlı deyil, ona görə Git yalnız HEAD-i yeni commit-ə keçirir."
+- question: "Detached HEAD-də commit etdiniz və `main`-ə qayıtmazdan əvvəl onu saxlamaq istəyirsiniz. Hansı komanda həm branch yaradır, həm də sizi ona keçirir?"
+  options:
+    - "`git branch outro-idea`"
+    - "`git switch outro-idea`"
+    - "`git switch -c outro-idea`"
+  answer: 2
+  explain: "`git switch -c` HEAD-in olduğu commit-dən branch yaradıb ona keçir. `git branch` yalnız yaradır, `git switch` isə mövcud branch-a keçir."
+- question: "Bu komandalardan sonra `git status`-un birinci sətri nədir?"
+  code: |
+    git switch --detach HEAD~1
+    echo "Outro: fade out" >> lyrics.txt
+    git add lyrics.txt
+    git commit -q -m "Add outro"
+    git branch outro-idea
+    git status
+  options:
+    - "`On branch outro-idea`"
+    - "`HEAD detached from ...` və bir hash"
+  answer: 1
+  explain: "`git branch` commit-i saxlayır, amma HEAD-i branch-a keçirmir. HEAD ayrılmış qalır."
+- question: "`main`-ə keçəndə Git `you are leaving 1 commit behind, not connected to any of your branches` yazdı. Bu nə deməkdir?"
+  options:
+    - "Commit artıq silinib, onu qaytarmaq olmaz"
+    - "`main` uzaqdakı branch-dan bir commit geridədir"
+    - "Commit qalıb, amma heç bir branch onu göstərmir"
+  answer: 2
+  explain: "Commit dərhal silinmir. Xəbərdarlıq onun hash-ini verir ki, `git branch <ad> <hash>` ilə saxlayasınız."
+- question: "Xəbərdarlıqdan sonra artıq `main`-dəsiniz. Geridə qalan commit-i necə saxlamaq olar?"
+  options:
+    - "`git branch <ad> <hash>`, hash xəbərdarlıqdadır"
+    - "`git switch -c <ad>`, `main`-də olduğunuz halda"
+    - "`git commit --detach`, `main`-də olduğunuz halda"
+  answer: 0
+  explain: "`git switch -c <ad>` yeni branch-ı HEAD-dən, yəni `main`-in commit-indən yaradır. Lazım olan commit-i hash göstərir."
+- question: "Hansı komanda da HEAD-i ayırır?"
+  options:
+    - "`git checkout HEAD~2`"
+    - "`git branch HEAD~2`"
+    - "`git status HEAD~2`"
+  answer: 0
+  explain: "`git checkout` commit-ə keçəndə HEAD-i ayırır və üstəlik detached HEAD haqda uzun bir mətn çap edir."

@@ -1,0 +1,9 @@
+# The visuals are recorded from the real repository by `pnpm content:run`.
+file:
+  vis: graph
+create:
+  vis: graph
+commit:
+  vis: graph
+head:
+  vis: graph

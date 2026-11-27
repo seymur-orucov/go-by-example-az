@@ -1,0 +1,558 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir newsletter",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd newsletter",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q -b master",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"# Issue 1\" \"School fair on Friday\" > issue-1.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add issue-1.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add issue 1\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q -c isue-2",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"# Issue 2\" \"Draft: sports news\" > issue-2.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add issue-2.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Draft issue 2\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q --bare ~/server/newsletter.git",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push -q ~/server/newsletter.git isue-2",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git remote add origin ~/server/newsletter.git",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q master",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch",
+      "step": "other-branch",
+      "hidden": false,
+      "fail": false,
+      "out": "  isue-2\n* master\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch -m isue-2 issue-2",
+      "step": "other-branch",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch",
+      "step": "other-branch",
+      "hidden": false,
+      "fail": false,
+      "out": "  issue-2\n* master\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch -m main",
+      "step": "current-branch",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status",
+      "step": "current-branch",
+      "hidden": false,
+      "fail": false,
+      "out": "On branch main\nnothing to commit, working tree clean\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -c issue-2-new",
+      "step": "name-taken",
+      "hidden": false,
+      "fail": false,
+      "out": "Switched to a new branch 'issue-2-new'\n",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"# Issue 2\" \"Chess club wins the cup\" > issue-2.md",
+      "step": "name-taken",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add issue-2.md",
+      "step": "name-taken",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"Start issue 2 again\"",
+      "step": "name-taken",
+      "hidden": false,
+      "fail": false,
+      "out": "[issue-2-new 7af5362] Start issue 2 again\n 1 file changed, 2 insertions(+)\n create mode 100644 issue-2.md\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch -m issue-2",
+      "step": "name-taken",
+      "hidden": false,
+      "fail": true,
+      "out": "fatal: a branch named 'issue-2' already exists\n",
+      "exit": 128
+    },
+    {
+      "cmd": "git branch -M issue-2",
+      "step": "name-taken",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch",
+      "step": "name-taken",
+      "hidden": false,
+      "fail": false,
+      "out": "* issue-2\n  main\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git ls-remote --heads origin",
+      "step": "remote",
+      "hidden": false,
+      "fail": false,
+      "out": "ec2e4bd8a1fd346461192c71c4f406ce199b5e11\trefs/heads/isue-2\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git push -u origin issue-2",
+      "step": "remote",
+      "hidden": false,
+      "fail": false,
+      "out": "To /home/sam/server/newsletter.git\n * [new branch]      issue-2 -> issue-2\nbranch 'issue-2' set up to track 'origin/issue-2'.\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git push origin --delete isue-2",
+      "step": "remote",
+      "hidden": false,
+      "fail": false,
+      "out": "To /home/sam/server/newsletter.git\n - [deleted]         isue-2\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git ls-remote --heads origin",
+      "step": "remote",
+      "hidden": false,
+      "fail": false,
+      "out": "7af5362a050912f1a37c2cbb47c75f0602a69620\trefs/heads/issue-2\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "other-branch": {
+      "areas": {
+        "work": [
+          {
+            "name": "issue-1.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "issue-1.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "08ed9c3",
+            "message": "Add issue 1"
+          },
+          "count": 1,
+          "files": [
+            "issue-1.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "ec2e4bd",
+            "message": "Draft issue 2",
+            "parents": [
+              "08ed9c3"
+            ],
+            "files": [
+              {
+                "name": "issue-1.md",
+                "state": "same"
+              },
+              {
+                "name": "issue-2.md",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "08ed9c3",
+            "message": "Add issue 1",
+            "parents": [],
+            "files": [
+              {
+                "name": "issue-1.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "issue-2",
+            "target": "ec2e4bd"
+          },
+          {
+            "name": "master",
+            "target": "08ed9c3"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "master",
+          "target": "08ed9c3"
+        }
+      }
+    },
+    "current-branch": {
+      "areas": {
+        "work": [
+          {
+            "name": "issue-1.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "issue-1.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "08ed9c3",
+            "message": "Add issue 1"
+          },
+          "count": 1,
+          "files": [
+            "issue-1.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "ec2e4bd",
+            "message": "Draft issue 2",
+            "parents": [
+              "08ed9c3"
+            ],
+            "files": [
+              {
+                "name": "issue-1.md",
+                "state": "same"
+              },
+              {
+                "name": "issue-2.md",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "08ed9c3",
+            "message": "Add issue 1",
+            "parents": [],
+            "files": [
+              {
+                "name": "issue-1.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "issue-2",
+            "target": "ec2e4bd"
+          },
+          {
+            "name": "main",
+            "target": "08ed9c3"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "08ed9c3"
+        }
+      }
+    },
+    "name-taken": {
+      "areas": {
+        "work": [
+          {
+            "name": "issue-1.md",
+            "state": "clean"
+          },
+          {
+            "name": "issue-2.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "issue-1.md",
+            "state": "clean"
+          },
+          {
+            "name": "issue-2.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "7af5362",
+            "message": "Start issue 2 again"
+          },
+          "count": 2,
+          "files": [
+            "issue-1.md",
+            "issue-2.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "7af5362",
+            "message": "Start issue 2 again",
+            "parents": [
+              "08ed9c3"
+            ],
+            "files": [
+              {
+                "name": "issue-1.md",
+                "state": "same"
+              },
+              {
+                "name": "issue-2.md",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "08ed9c3",
+            "message": "Add issue 1",
+            "parents": [],
+            "files": [
+              {
+                "name": "issue-1.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "issue-2",
+            "target": "7af5362"
+          },
+          {
+            "name": "main",
+            "target": "08ed9c3"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "issue-2",
+          "target": "7af5362"
+        }
+      }
+    },
+    "remote": {
+      "areas": {
+        "work": [
+          {
+            "name": "issue-1.md",
+            "state": "clean"
+          },
+          {
+            "name": "issue-2.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "issue-1.md",
+            "state": "clean"
+          },
+          {
+            "name": "issue-2.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "7af5362",
+            "message": "Start issue 2 again"
+          },
+          "count": 2,
+          "files": [
+            "issue-1.md",
+            "issue-2.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "7af5362",
+            "message": "Start issue 2 again",
+            "parents": [
+              "08ed9c3"
+            ],
+            "files": [
+              {
+                "name": "issue-1.md",
+                "state": "same"
+              },
+              {
+                "name": "issue-2.md",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "08ed9c3",
+            "message": "Add issue 1",
+            "parents": [],
+            "files": [
+              {
+                "name": "issue-1.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "issue-2",
+            "target": "7af5362"
+          },
+          {
+            "name": "main",
+            "target": "08ed9c3"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "issue-2",
+          "target": "7af5362"
+        }
+      }
+    }
+  }
+}

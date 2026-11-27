@@ -1,0 +1,10 @@
+rules:
+  - "Detached HEAD-də HEAD branch-ı yox, birbaşa commit-i göstərir: `.git/HEAD`-də hash yazılır."
+  - "`git switch` commit-ə yalnız `--detach` ilə keçir; `git checkout <hash>` da HEAD-i ayırır."
+  - "`git status` bu vəziyyətdə `HEAD detached at` (və ya commit-dən sonra `detached from`) yazır."
+  - "Detached HEAD-də edilən commit heç bir branch-a düşmür, onu yalnız HEAD göstərir."
+  - "Branch yaratmadan çıxanda Git `you are leaving 1 commit behind` xəbərdarlığı ilə commit-in hash-ini verir."
+practices:
+  - "Detached HEAD-də commit etmisinizsə, çıxmazdan əvvəl `git switch -c <ad>` ilə branch yaradın."
+  - "Xəbərdarlığı görəndə commit-i dərhal `git branch <ad> <hash>` ilə saxlayın."
+  - "Köhnə commit-ə sadəcə baxmaq üçün `git switch --detach <commit>`, qayıtmaq üçün `git switch main` yazın."

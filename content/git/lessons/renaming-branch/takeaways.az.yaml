@@ -1,0 +1,10 @@
+rules:
+  - "`git branch -m <köhnə> <yeni>` istənilən branch-ın, `git branch -m <yeni>` isə hazırkı branch-ın adını dəyişir."
+  - "Ad dəyişəndə commit-lər və onların hash-ləri dəyişmir: yalnız pointer yeni ad alır."
+  - "Yeni ad artıq varsa, `-m` `fatal: a branch named '...' already exists` xətası verir; `-M` köhnə branch-ı silib adı məcburi dəyişir."
+  - "Lokal ad dəyişikliyi serverə çatmır: yeni adı `git push -u origin <yeni>` ilə göndərib köhnəni `git push origin --delete <köhnə>` ilə silirsiniz."
+  - "`git ls-remote --heads origin` serverdəki branch-ları göstərir."
+practices:
+  - "`-M`-dən əvvəl köhnə branch-da lazımlı commit qalmadığını yoxlayın."
+  - "Köhnə repository-də `master`-i `main` etmək üçün `git branch -m main` kifayətdir."
+  - "Serverdəki branch-ın adını dəyişəndə komandaya xəbər verin: köhnə adı yükləyənlər öz lokal branch-larını da yeniləməlidir."

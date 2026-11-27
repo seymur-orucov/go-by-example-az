@@ -1,0 +1,74 @@
+- question: "`git branch` çıxışındakı `* main` sətrində `*` nəyi bildirir?"
+  options:
+    - "`main` ən son yaradılan branch-dır"
+    - "HEAD `main`-i göstərir, hazırda bu branch-dasınız"
+    - "`main`-də commit edilməmiş dəyişiklik var"
+  answer: 1
+  explain: "`*` HEAD-in göstərdiyi branch-ın qarşısında olur. Başqa branch-a keçəndə `*` da ora keçir."
+- question: "`.git/refs/heads/main` faylının ölçüsü nə qədərdir?"
+  options:
+    - "41 bayt: 40 simvolluq hash və sətir sonu"
+    - "Son commit-dəki faylların ümumi ölçüsü qədər"
+    - "Hər commit-də bir sətir artır, ona görə böyüyür"
+  answer: 0
+  explain: "Branch faylında yalnız bir commit-in hash-i var. Yeni commit-də hash dəyişir, ölçü isə eyni qalır."
+- question: "Commit-ləri olan repository-də `main` branch-ındasınız. Bu komandalardan sonra nə çap olunur?"
+  code: |
+    git branch draft
+    cat .git/refs/heads/draft
+  options:
+    - "`ref: refs/heads/main`"
+    - "Heç nə: yeni branch-ın faylı boşdur"
+    - "`main`-in göstərdiyi commit-in tam hash-i"
+  answer: 2
+  explain: "`git branch draft` hazırkı commit-də branch yaradır. Faylına `main`-dəki hash-in eynisi yazılır."
+- question: "Yeni, boş repository-də bu komandalardan sonra `Start notes` sətrindəki mötərizədə nə olur?"
+  code: |
+    echo "a" > notes.txt
+    git add notes.txt
+    git commit -q -m "Start notes"
+    git branch draft
+    echo "b" >> notes.txt
+    git add notes.txt
+    git commit -q -m "Add second note"
+    git log --oneline --decorate
+  options:
+    - "`(HEAD -> main, draft)`"
+    - "`(draft)`"
+    - "`(HEAD -> draft)`"
+  answer: 1
+  explain: "İkinci commit zamanı HEAD `main`-də idi, ona görə yalnız `main` irəlilədi. `draft` `Start notes`-də qaldı."
+- question: "`git log --oneline --decorate` çıxışında sətir `(HEAD -> main, fix) Add intro` ilə bitir. Bu nə deməkdir?"
+  options:
+    - "Bu commit-i həm `main`, həm `fix` göstərir; HEAD `main`-dədir"
+    - "Commit `fix`-dədir, `main` isə onun parent-ini göstərir"
+    - "HEAD `fix`-dədir, `main` isə ondan bir commit irəlidədir"
+  answer: 0
+  explain: "Mötərizədə commit-i göstərən bütün adlar yazılır. `HEAD -> main` HEAD-in `main`-də olduğunu bildirir."
+- question: "Commit-ləri olan repository-də `main`-dəsiniz. Bu komandalardan sonra yeni commit-i hansı branch göstərir?"
+  code: |
+    git branch fix
+    git switch fix
+    echo "typo" >> notes.txt
+    git add notes.txt
+    git commit -q -m "Fix typo"
+  options:
+    - "Yalnız `main`"
+    - "Hər ikisi: `main` və `fix`"
+    - "Yalnız `fix`"
+  answer: 2
+  explain: "`git switch fix`-dən sonra HEAD `fix`-i göstərir. Commit yalnız HEAD-in göstərdiyi branch-ı irəlilədir."
+- question: "`git switch draft`-dan sonra `cat .git/HEAD` nə çap edir?"
+  options:
+    - "`draft`-ın göstərdiyi commit-in tam hash-i"
+    - "`ref: refs/heads/draft`"
+    - "`ref: refs/heads/main`"
+  answer: 1
+  explain: "HEAD hash-i yox, branch-ın adını saxlayır. `git switch` bu adı dəyişir."
+- question: "Böyük layihədə yeni branch niyə bir anda yaranır?"
+  options:
+    - "Git yalnız commit hash-i olan kiçik fayl yazır"
+    - "Git yalnız dəyişən faylları yeni qovluğa köçürür"
+    - "Git faylları sıxışdırıb `.git`-də saxlayır"
+  answer: 0
+  explain: "Branch commit-i göstərən addır. Onu yaratmaq üçün Git heç bir layihə faylını köçürmür."

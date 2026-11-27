@@ -1,0 +1,69 @@
+- question: "Yeni repository-də bu komandalardan sonra nə çap olunur?"
+  code: |
+    echo "walk: 7:00" > walks.txt
+    git add walks.txt
+    git commit -q -m "Add walks"
+    git switch -q -c idea
+    echo "walk: 18:00" >> walks.txt
+    git commit -q -am "Add evening walk"
+    git switch -q main
+    git branch -d idea
+  options:
+    - "`Deleted branch idea (was ...)`"
+    - "`error: branch 'idea' not found`"
+    - "`error: the branch 'idea' is not fully merged`"
+  answer: 2
+  explain: "`idea`-da `main`-də olmayan commit var: `Add evening walk`. `-d` belə branch-ı silmir."
+- question: "`git branch -d test` deyir ki, branch `not fully merged`-dir. Siz onu yenə də silmək istəyirsiniz. Hansı komanda lazımdır?"
+  options:
+    - "`git branch -D test`"
+    - "`git branch -d -v test`"
+    - "`git switch -c test`"
+  answer: 0
+  explain: "`-D` (`--delete --force`) branch-ı merge yoxlaması olmadan silir."
+- question: "Bu komandalardan sonra nə çap olunur? `main`-də artıq bir commit var."
+  code: |
+    git branch backup
+    git branch -d backup
+  options:
+    - "`error: the branch 'backup' is not fully merged`"
+    - "`Deleted branch backup (was ...)`"
+    - "`error: cannot delete branch 'backup' used by worktree at ...`"
+  answer: 1
+  explain: "`backup` `main`-in commit-ini göstərir, öz commit-i yoxdur. Onun bütün commit-ləri `main`-də olduğu üçün `-d` onu silir."
+- question: "Siz `draft` branch-ındasınız. `git branch -D draft` nə edir?"
+  options:
+    - "Branch-ı silir və HEAD-i `main`-ə keçirir"
+    - "Branch-ı silir, amma commit-lərini saxlayır"
+    - "Branch-ı yalnız merge olunubsa silir"
+    - "Xəta verir, çünki `draft` hazırkı branch-dır"
+  answer: 3
+  explain: "Hazırkı branch-ı nə `-d`, nə də `-D` silir: `cannot delete branch 'draft' used by worktree`. Əvvəlcə `git switch` ilə başqa branch-a keçmək lazımdır."
+- question: "`vet-visit`-in commit-ləri artıq `main`-dədir. `git branch -d vet-visit`-dən sonra bu commit-lərə nə olur?"
+  options:
+    - "Onlar da silinir"
+    - "`main`-in tarixçəsində qalır, silinən yalnız addır"
+    - "Unreachable olur və bir müddət sonra silinir"
+  answer: 1
+  explain: "Branch pointer-dir. `main` həmin commit-ləri göstərməyə davam edir, ona görə heç nə itmir."
+- question: "Merge olunmamış branch-ı `-D` ilə sildiniz. Onun commit-inə nə olur?"
+  options:
+    - "Dərhal və tamamilə silinir"
+    - "Avtomatik olaraq `main`-ə əlavə olunur"
+    - "Unreachable olur, amma Git onu bir müddət saxlayır"
+  answer: 2
+  explain: "Commit-i heç bir branch göstərmir, amma o, dərhal silinmir. `(was ...)`-dakı hash ilə branch-ı geri yaratmaq olar."
+- question: "`fix-menu` branch-ı `origin` serverinə push olunub. Onu serverdən hansı komanda silir?"
+  options:
+    - "`git push origin --delete fix-menu`"
+    - "`git branch -d origin/fix-menu`"
+    - "`git branch -D fix-menu`"
+  answer: 0
+  explain: "`git branch` yalnız lokal branch-larla işləyir. Serverdəki branch-ı `git push origin --delete` silir."
+- question: "`fix-menu` serverə push olunub. Siz lokal olaraq `git branch -d fix-menu` işlətdiniz. Serverdəki `fix-menu`-ya nə olur?"
+  options:
+    - "O da avtomatik silinir"
+    - "Serverdə qalır, onu ayrıca silmək lazımdır"
+    - "Serverdə `main`-ə birləşdirilir"
+  answer: 1
+  explain: "Lokal silmək serverə toxunmur. Serverdəki branch `git push origin --delete fix-menu`-ya qədər qalır."

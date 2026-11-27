@@ -1,0 +1,11 @@
+# The visuals are recorded from the real repository by `pnpm content:run`.
+switch:
+  vis: graph
+back:
+  vis: areas
+carry:
+  vis: areas
+refuse:
+  vis: graph
+commit-first:
+  vis: graph

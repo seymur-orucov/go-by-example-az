@@ -1,0 +1,701 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir songs",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd songs",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Verse 1: rain on the window\" > lyrics.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add lyrics.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add first verse\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Chorus: we keep on walking\" >> lyrics.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add lyrics.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add chorus\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Verse 2: sun on the road\" >> lyrics.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add lyrics.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add second verse\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "detach",
+      "hidden": false,
+      "fail": false,
+      "out": "375a42a Add second verse\n2217cf4 Add chorus\nb4dfaa6 Add first verse\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch HEAD~2",
+      "step": "detach",
+      "hidden": false,
+      "fail": true,
+      "out": "fatal: a branch is expected, got commit 'HEAD~2'\nhint: If you want to detach HEAD at the commit, try again with the --detach option.\n",
+      "exit": 128
+    },
+    {
+      "cmd": "git switch --detach HEAD~2",
+      "step": "detach",
+      "hidden": false,
+      "fail": false,
+      "out": "HEAD is now at b4dfaa6 Add first verse\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cat lyrics.txt",
+      "step": "detach",
+      "hidden": false,
+      "fail": false,
+      "out": "Verse 1: rain on the window\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cat .git/HEAD",
+      "step": "look",
+      "hidden": false,
+      "fail": false,
+      "out": "b4dfaa60e7308d1e9d523a8df5d0e08d7a020f90\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git status",
+      "step": "look",
+      "hidden": false,
+      "fail": false,
+      "out": "HEAD detached at b4dfaa6\nnothing to commit, working tree clean\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch",
+      "step": "look",
+      "hidden": false,
+      "fail": false,
+      "out": "* (HEAD detached at b4dfaa6)\n  main\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Chorus: slow and quiet\" >> lyrics.txt",
+      "step": "commit",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add lyrics.txt",
+      "step": "commit",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"Try a quiet chorus\"",
+      "step": "commit",
+      "hidden": false,
+      "fail": false,
+      "out": "[detached HEAD 71988e0] Try a quiet chorus\n 1 file changed, 1 insertion(+)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch",
+      "step": "commit",
+      "hidden": false,
+      "fail": false,
+      "out": "* (HEAD detached from b4dfaa6)\n  main\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -c quiet-chorus",
+      "step": "save",
+      "hidden": false,
+      "fail": false,
+      "out": "Switched to a new branch 'quiet-chorus'\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cat .git/HEAD",
+      "step": "save",
+      "hidden": false,
+      "fail": false,
+      "out": "ref: refs/heads/quiet-chorus\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch",
+      "step": "save",
+      "hidden": false,
+      "fail": false,
+      "out": "  main\n* quiet-chorus\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch main",
+      "step": "leave",
+      "hidden": false,
+      "fail": false,
+      "out": "Switched to branch 'main'\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch --detach HEAD~1",
+      "step": "leave",
+      "hidden": false,
+      "fail": false,
+      "out": "HEAD is now at 2217cf4 Add chorus\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Bridge: one more time\" >> lyrics.txt",
+      "step": "leave",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add lyrics.txt",
+      "step": "leave",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Try a bridge\"",
+      "step": "leave",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch main",
+      "step": "leave",
+      "hidden": false,
+      "fail": false,
+      "out": "Warning: you are leaving 1 commit behind, not connected to\nany of your branches:\n\n  b8987a9 Try a bridge\n\nIf you want to keep it by creating a new branch, this may be a good time\nto do so with:\n\n git branch <new-branch-name> b8987a9\n\nSwitched to branch 'main'\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "detach": {
+      "areas": {
+        "work": [
+          {
+            "name": "lyrics.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "lyrics.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "b4dfaa6",
+            "message": "Add first verse"
+          },
+          "count": 1,
+          "files": [
+            "lyrics.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "375a42a",
+            "message": "Add second verse",
+            "parents": [
+              "2217cf4"
+            ],
+            "files": [
+              {
+                "name": "lyrics.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "2217cf4",
+            "message": "Add chorus",
+            "parents": [
+              "b4dfaa6"
+            ],
+            "files": [
+              {
+                "name": "lyrics.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "b4dfaa6",
+            "message": "Add first verse",
+            "parents": [],
+            "files": [
+              {
+                "name": "lyrics.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "375a42a"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": null,
+          "target": "b4dfaa6"
+        }
+      }
+    },
+    "look": {
+      "areas": {
+        "work": [
+          {
+            "name": "lyrics.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "lyrics.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "b4dfaa6",
+            "message": "Add first verse"
+          },
+          "count": 1,
+          "files": [
+            "lyrics.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "375a42a",
+            "message": "Add second verse",
+            "parents": [
+              "2217cf4"
+            ],
+            "files": [
+              {
+                "name": "lyrics.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "2217cf4",
+            "message": "Add chorus",
+            "parents": [
+              "b4dfaa6"
+            ],
+            "files": [
+              {
+                "name": "lyrics.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "b4dfaa6",
+            "message": "Add first verse",
+            "parents": [],
+            "files": [
+              {
+                "name": "lyrics.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "375a42a"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": null,
+          "target": "b4dfaa6"
+        }
+      }
+    },
+    "commit": {
+      "areas": {
+        "work": [
+          {
+            "name": "lyrics.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "lyrics.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "71988e0",
+            "message": "Try a quiet chorus"
+          },
+          "count": 2,
+          "files": [
+            "lyrics.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "71988e0",
+            "message": "Try a quiet chorus",
+            "parents": [
+              "b4dfaa6"
+            ],
+            "files": [
+              {
+                "name": "lyrics.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "375a42a",
+            "message": "Add second verse",
+            "parents": [
+              "2217cf4"
+            ],
+            "files": [
+              {
+                "name": "lyrics.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "2217cf4",
+            "message": "Add chorus",
+            "parents": [
+              "b4dfaa6"
+            ],
+            "files": [
+              {
+                "name": "lyrics.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "b4dfaa6",
+            "message": "Add first verse",
+            "parents": [],
+            "files": [
+              {
+                "name": "lyrics.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "375a42a"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": null,
+          "target": "71988e0"
+        }
+      }
+    },
+    "save": {
+      "areas": {
+        "work": [
+          {
+            "name": "lyrics.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "lyrics.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "71988e0",
+            "message": "Try a quiet chorus"
+          },
+          "count": 2,
+          "files": [
+            "lyrics.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "71988e0",
+            "message": "Try a quiet chorus",
+            "parents": [
+              "b4dfaa6"
+            ],
+            "files": [
+              {
+                "name": "lyrics.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "375a42a",
+            "message": "Add second verse",
+            "parents": [
+              "2217cf4"
+            ],
+            "files": [
+              {
+                "name": "lyrics.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "2217cf4",
+            "message": "Add chorus",
+            "parents": [
+              "b4dfaa6"
+            ],
+            "files": [
+              {
+                "name": "lyrics.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "b4dfaa6",
+            "message": "Add first verse",
+            "parents": [],
+            "files": [
+              {
+                "name": "lyrics.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "375a42a"
+          },
+          {
+            "name": "quiet-chorus",
+            "target": "71988e0"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "quiet-chorus",
+          "target": "71988e0"
+        }
+      }
+    },
+    "leave": {
+      "areas": {
+        "work": [
+          {
+            "name": "lyrics.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "lyrics.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "375a42a",
+            "message": "Add second verse"
+          },
+          "count": 3,
+          "files": [
+            "lyrics.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "71988e0",
+            "message": "Try a quiet chorus",
+            "parents": [
+              "b4dfaa6"
+            ],
+            "files": [
+              {
+                "name": "lyrics.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "375a42a",
+            "message": "Add second verse",
+            "parents": [
+              "2217cf4"
+            ],
+            "files": [
+              {
+                "name": "lyrics.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "2217cf4",
+            "message": "Add chorus",
+            "parents": [
+              "b4dfaa6"
+            ],
+            "files": [
+              {
+                "name": "lyrics.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "b4dfaa6",
+            "message": "Add first verse",
+            "parents": [],
+            "files": [
+              {
+                "name": "lyrics.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "375a42a"
+          },
+          {
+            "name": "quiet-chorus",
+            "target": "71988e0"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "375a42a"
+        }
+      }
+    }
+  }
+}

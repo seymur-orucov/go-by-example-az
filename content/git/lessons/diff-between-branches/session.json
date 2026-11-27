@@ -1,0 +1,873 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir talk",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd talk",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"# Git in 20 minutes\" \"1. Why version control\" \"2. First commit\" \"3. Branches\" > outline.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add outline.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Start the talk outline\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"Title slide\" \"Why version control\" > slides.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add slides.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add the first slides\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q -c feat/demo",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"4. Live demo\" >> outline.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add the live demo section\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Demo: git log\" >> slides.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add the demo slide\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q main",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "sed -i \"s/20 minutes/15 minutes/\" outline.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Shorten the talk to 15 minutes\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline --graph --all --decorate",
+      "step": "history",
+      "hidden": false,
+      "fail": false,
+      "out": "* 814fb21 (HEAD -> main) Shorten the talk to 15 minutes\n| * cae6280 (feat/demo) Add the demo slide\n| * 3c45fca Add the live demo section\n|/  \n* 9b2a848 Add the first slides\n* 06d00b3 Start the talk outline\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline main..feat/demo",
+      "step": "log-range",
+      "hidden": false,
+      "fail": false,
+      "out": "cae6280 Add the demo slide\n3c45fca Add the live demo section\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline feat/demo..main",
+      "step": "log-range",
+      "hidden": false,
+      "fail": false,
+      "out": "814fb21 Shorten the talk to 15 minutes\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git diff main feat/demo",
+      "step": "two-snapshots",
+      "hidden": false,
+      "fail": false,
+      "out": "diff --git a/outline.md b/outline.md\nindex 4607323..92aba6e 100644\n--- a/outline.md\n+++ b/outline.md\n@@ -1,4 +1,5 @@\n-# Git in 15 minutes\n+# Git in 20 minutes\n 1. Why version control\n 2. First commit\n 3. Branches\n+4. Live demo\ndiff --git a/slides.txt b/slides.txt\nindex ae1b636..7c0d6cc 100644\n--- a/slides.txt\n+++ b/slides.txt\n@@ -1,2 +1,3 @@\n Title slide\n Why version control\n+Demo: git log\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git diff main..feat/demo",
+      "step": "two-snapshots",
+      "hidden": false,
+      "fail": false,
+      "out": "diff --git a/outline.md b/outline.md\nindex 4607323..92aba6e 100644\n--- a/outline.md\n+++ b/outline.md\n@@ -1,4 +1,5 @@\n-# Git in 15 minutes\n+# Git in 20 minutes\n 1. Why version control\n 2. First commit\n 3. Branches\n+4. Live demo\ndiff --git a/slides.txt b/slides.txt\nindex ae1b636..7c0d6cc 100644\n--- a/slides.txt\n+++ b/slides.txt\n@@ -1,2 +1,3 @@\n Title slide\n Why version control\n+Demo: git log\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git diff main...feat/demo",
+      "step": "three-dots",
+      "hidden": false,
+      "fail": false,
+      "out": "diff --git a/outline.md b/outline.md\nindex caf37a3..92aba6e 100644\n--- a/outline.md\n+++ b/outline.md\n@@ -2,3 +2,4 @@\n 1. Why version control\n 2. First commit\n 3. Branches\n+4. Live demo\ndiff --git a/slides.txt b/slides.txt\nindex ae1b636..7c0d6cc 100644\n--- a/slides.txt\n+++ b/slides.txt\n@@ -1,2 +1,3 @@\n Title slide\n Why version control\n+Demo: git log\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git diff --stat main feat/demo",
+      "step": "stat",
+      "hidden": false,
+      "fail": false,
+      "out": " outline.md | 3 ++-\n slides.txt | 1 +\n 2 files changed, 3 insertions(+), 1 deletion(-)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git diff --stat main...feat/demo",
+      "step": "stat",
+      "hidden": false,
+      "fail": false,
+      "out": " outline.md | 1 +\n slides.txt | 1 +\n 2 files changed, 2 insertions(+)\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "history": {
+      "areas": {
+        "work": [
+          {
+            "name": "outline.md",
+            "state": "clean"
+          },
+          {
+            "name": "slides.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "outline.md",
+            "state": "clean"
+          },
+          {
+            "name": "slides.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "814fb21",
+            "message": "Shorten the talk to 15 minutes"
+          },
+          "count": 3,
+          "files": [
+            "outline.md",
+            "slides.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "814fb21",
+            "message": "Shorten the talk to 15 minutes",
+            "parents": [
+              "9b2a848"
+            ],
+            "files": [
+              {
+                "name": "outline.md",
+                "state": "modified"
+              },
+              {
+                "name": "slides.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "cae6280",
+            "message": "Add the demo slide",
+            "parents": [
+              "3c45fca"
+            ],
+            "files": [
+              {
+                "name": "outline.md",
+                "state": "same"
+              },
+              {
+                "name": "slides.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "3c45fca",
+            "message": "Add the live demo section",
+            "parents": [
+              "9b2a848"
+            ],
+            "files": [
+              {
+                "name": "outline.md",
+                "state": "modified"
+              },
+              {
+                "name": "slides.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "9b2a848",
+            "message": "Add the first slides",
+            "parents": [
+              "06d00b3"
+            ],
+            "files": [
+              {
+                "name": "outline.md",
+                "state": "same"
+              },
+              {
+                "name": "slides.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "06d00b3",
+            "message": "Start the talk outline",
+            "parents": [],
+            "files": [
+              {
+                "name": "outline.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "feat/demo",
+            "target": "cae6280"
+          },
+          {
+            "name": "main",
+            "target": "814fb21"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "814fb21"
+        }
+      }
+    },
+    "log-range": {
+      "areas": {
+        "work": [
+          {
+            "name": "outline.md",
+            "state": "clean"
+          },
+          {
+            "name": "slides.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "outline.md",
+            "state": "clean"
+          },
+          {
+            "name": "slides.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "814fb21",
+            "message": "Shorten the talk to 15 minutes"
+          },
+          "count": 3,
+          "files": [
+            "outline.md",
+            "slides.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "814fb21",
+            "message": "Shorten the talk to 15 minutes",
+            "parents": [
+              "9b2a848"
+            ],
+            "files": [
+              {
+                "name": "outline.md",
+                "state": "modified"
+              },
+              {
+                "name": "slides.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "cae6280",
+            "message": "Add the demo slide",
+            "parents": [
+              "3c45fca"
+            ],
+            "files": [
+              {
+                "name": "outline.md",
+                "state": "same"
+              },
+              {
+                "name": "slides.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "3c45fca",
+            "message": "Add the live demo section",
+            "parents": [
+              "9b2a848"
+            ],
+            "files": [
+              {
+                "name": "outline.md",
+                "state": "modified"
+              },
+              {
+                "name": "slides.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "9b2a848",
+            "message": "Add the first slides",
+            "parents": [
+              "06d00b3"
+            ],
+            "files": [
+              {
+                "name": "outline.md",
+                "state": "same"
+              },
+              {
+                "name": "slides.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "06d00b3",
+            "message": "Start the talk outline",
+            "parents": [],
+            "files": [
+              {
+                "name": "outline.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "feat/demo",
+            "target": "cae6280"
+          },
+          {
+            "name": "main",
+            "target": "814fb21"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "814fb21"
+        }
+      }
+    },
+    "two-snapshots": {
+      "areas": {
+        "work": [
+          {
+            "name": "outline.md",
+            "state": "clean"
+          },
+          {
+            "name": "slides.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "outline.md",
+            "state": "clean"
+          },
+          {
+            "name": "slides.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "814fb21",
+            "message": "Shorten the talk to 15 minutes"
+          },
+          "count": 3,
+          "files": [
+            "outline.md",
+            "slides.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "814fb21",
+            "message": "Shorten the talk to 15 minutes",
+            "parents": [
+              "9b2a848"
+            ],
+            "files": [
+              {
+                "name": "outline.md",
+                "state": "modified"
+              },
+              {
+                "name": "slides.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "cae6280",
+            "message": "Add the demo slide",
+            "parents": [
+              "3c45fca"
+            ],
+            "files": [
+              {
+                "name": "outline.md",
+                "state": "same"
+              },
+              {
+                "name": "slides.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "3c45fca",
+            "message": "Add the live demo section",
+            "parents": [
+              "9b2a848"
+            ],
+            "files": [
+              {
+                "name": "outline.md",
+                "state": "modified"
+              },
+              {
+                "name": "slides.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "9b2a848",
+            "message": "Add the first slides",
+            "parents": [
+              "06d00b3"
+            ],
+            "files": [
+              {
+                "name": "outline.md",
+                "state": "same"
+              },
+              {
+                "name": "slides.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "06d00b3",
+            "message": "Start the talk outline",
+            "parents": [],
+            "files": [
+              {
+                "name": "outline.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "feat/demo",
+            "target": "cae6280"
+          },
+          {
+            "name": "main",
+            "target": "814fb21"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "814fb21"
+        }
+      }
+    },
+    "three-dots": {
+      "areas": {
+        "work": [
+          {
+            "name": "outline.md",
+            "state": "clean"
+          },
+          {
+            "name": "slides.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "outline.md",
+            "state": "clean"
+          },
+          {
+            "name": "slides.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "814fb21",
+            "message": "Shorten the talk to 15 minutes"
+          },
+          "count": 3,
+          "files": [
+            "outline.md",
+            "slides.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "814fb21",
+            "message": "Shorten the talk to 15 minutes",
+            "parents": [
+              "9b2a848"
+            ],
+            "files": [
+              {
+                "name": "outline.md",
+                "state": "modified"
+              },
+              {
+                "name": "slides.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "cae6280",
+            "message": "Add the demo slide",
+            "parents": [
+              "3c45fca"
+            ],
+            "files": [
+              {
+                "name": "outline.md",
+                "state": "same"
+              },
+              {
+                "name": "slides.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "3c45fca",
+            "message": "Add the live demo section",
+            "parents": [
+              "9b2a848"
+            ],
+            "files": [
+              {
+                "name": "outline.md",
+                "state": "modified"
+              },
+              {
+                "name": "slides.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "9b2a848",
+            "message": "Add the first slides",
+            "parents": [
+              "06d00b3"
+            ],
+            "files": [
+              {
+                "name": "outline.md",
+                "state": "same"
+              },
+              {
+                "name": "slides.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "06d00b3",
+            "message": "Start the talk outline",
+            "parents": [],
+            "files": [
+              {
+                "name": "outline.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "feat/demo",
+            "target": "cae6280"
+          },
+          {
+            "name": "main",
+            "target": "814fb21"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "814fb21"
+        }
+      }
+    },
+    "stat": {
+      "areas": {
+        "work": [
+          {
+            "name": "outline.md",
+            "state": "clean"
+          },
+          {
+            "name": "slides.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "outline.md",
+            "state": "clean"
+          },
+          {
+            "name": "slides.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "814fb21",
+            "message": "Shorten the talk to 15 minutes"
+          },
+          "count": 3,
+          "files": [
+            "outline.md",
+            "slides.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "814fb21",
+            "message": "Shorten the talk to 15 minutes",
+            "parents": [
+              "9b2a848"
+            ],
+            "files": [
+              {
+                "name": "outline.md",
+                "state": "modified"
+              },
+              {
+                "name": "slides.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "cae6280",
+            "message": "Add the demo slide",
+            "parents": [
+              "3c45fca"
+            ],
+            "files": [
+              {
+                "name": "outline.md",
+                "state": "same"
+              },
+              {
+                "name": "slides.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "3c45fca",
+            "message": "Add the live demo section",
+            "parents": [
+              "9b2a848"
+            ],
+            "files": [
+              {
+                "name": "outline.md",
+                "state": "modified"
+              },
+              {
+                "name": "slides.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "9b2a848",
+            "message": "Add the first slides",
+            "parents": [
+              "06d00b3"
+            ],
+            "files": [
+              {
+                "name": "outline.md",
+                "state": "same"
+              },
+              {
+                "name": "slides.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "06d00b3",
+            "message": "Start the talk outline",
+            "parents": [],
+            "files": [
+              {
+                "name": "outline.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "feat/demo",
+            "target": "cae6280"
+          },
+          {
+            "name": "main",
+            "target": "814fb21"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "814fb21"
+        }
+      }
+    }
+  }
+}
