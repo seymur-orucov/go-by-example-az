@@ -1,0 +1,660 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "git init -q --bare ~/server/pet-care.git",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "mkdir pet-care",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd pet-care",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Cat: 8:00 and 19:00\" > feeding.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add feeding.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add feeding times\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q -c vet-visit",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Vet: March 3, 10:00\" > vet.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add vet.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add vet visit\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q main",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git merge -q vet-visit",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q -c new-food",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Cat: try salmon food\" >> feeding.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Try salmon food\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q main",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git remote add origin ~/server/pet-care.git",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push -q origin main vet-visit",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch -v",
+      "step": "list",
+      "hidden": false,
+      "fail": false,
+      "out": "* main      9a72f11 Add vet visit\n  new-food  0145366 Try salmon food\n  vet-visit 9a72f11 Add vet visit\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch -d vet-visit",
+      "step": "delete-merged",
+      "hidden": false,
+      "fail": false,
+      "out": "Deleted branch vet-visit (was 9a72f11).\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "delete-merged",
+      "hidden": false,
+      "fail": false,
+      "out": "9a72f11 Add vet visit\n39977a3 Add feeding times\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch -d new-food",
+      "step": "force",
+      "hidden": false,
+      "fail": true,
+      "out": "error: the branch 'new-food' is not fully merged\nhint: If you are sure you want to delete it, run 'git branch -D new-food'\nhint: Disable this message with \"git config set advice.forceDeleteBranch false\"\n",
+      "exit": 1
+    },
+    {
+      "cmd": "git branch -D new-food",
+      "step": "force",
+      "hidden": false,
+      "fail": false,
+      "out": "Deleted branch new-food (was 0145366).\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch",
+      "step": "force",
+      "hidden": false,
+      "fail": false,
+      "out": "* main\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch -d main",
+      "step": "current",
+      "hidden": false,
+      "fail": true,
+      "out": "error: cannot delete branch 'main' used by worktree at '/home/sam/pet-care'\n",
+      "exit": 1
+    },
+    {
+      "cmd": "git push origin --delete vet-visit",
+      "step": "remote",
+      "hidden": false,
+      "fail": false,
+      "out": "To /home/sam/server/pet-care.git\n - [deleted]         vet-visit\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "list": {
+      "areas": {
+        "work": [
+          {
+            "name": "feeding.txt",
+            "state": "clean"
+          },
+          {
+            "name": "vet.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "feeding.txt",
+            "state": "clean"
+          },
+          {
+            "name": "vet.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "9a72f11",
+            "message": "Add vet visit"
+          },
+          "count": 2,
+          "files": [
+            "feeding.txt",
+            "vet.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "0145366",
+            "message": "Try salmon food",
+            "parents": [
+              "9a72f11"
+            ],
+            "files": [
+              {
+                "name": "feeding.txt",
+                "state": "modified"
+              },
+              {
+                "name": "vet.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "9a72f11",
+            "message": "Add vet visit",
+            "parents": [
+              "39977a3"
+            ],
+            "files": [
+              {
+                "name": "feeding.txt",
+                "state": "same"
+              },
+              {
+                "name": "vet.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "39977a3",
+            "message": "Add feeding times",
+            "parents": [],
+            "files": [
+              {
+                "name": "feeding.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "9a72f11"
+          },
+          {
+            "name": "new-food",
+            "target": "0145366"
+          },
+          {
+            "name": "vet-visit",
+            "target": "9a72f11"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "9a72f11"
+        }
+      }
+    },
+    "delete-merged": {
+      "areas": {
+        "work": [
+          {
+            "name": "feeding.txt",
+            "state": "clean"
+          },
+          {
+            "name": "vet.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "feeding.txt",
+            "state": "clean"
+          },
+          {
+            "name": "vet.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "9a72f11",
+            "message": "Add vet visit"
+          },
+          "count": 2,
+          "files": [
+            "feeding.txt",
+            "vet.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "0145366",
+            "message": "Try salmon food",
+            "parents": [
+              "9a72f11"
+            ],
+            "files": [
+              {
+                "name": "feeding.txt",
+                "state": "modified"
+              },
+              {
+                "name": "vet.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "9a72f11",
+            "message": "Add vet visit",
+            "parents": [
+              "39977a3"
+            ],
+            "files": [
+              {
+                "name": "feeding.txt",
+                "state": "same"
+              },
+              {
+                "name": "vet.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "39977a3",
+            "message": "Add feeding times",
+            "parents": [],
+            "files": [
+              {
+                "name": "feeding.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "9a72f11"
+          },
+          {
+            "name": "new-food",
+            "target": "0145366"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "9a72f11"
+        }
+      }
+    },
+    "force": {
+      "areas": {
+        "work": [
+          {
+            "name": "feeding.txt",
+            "state": "clean"
+          },
+          {
+            "name": "vet.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "feeding.txt",
+            "state": "clean"
+          },
+          {
+            "name": "vet.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "9a72f11",
+            "message": "Add vet visit"
+          },
+          "count": 2,
+          "files": [
+            "feeding.txt",
+            "vet.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "9a72f11",
+            "message": "Add vet visit",
+            "parents": [
+              "39977a3"
+            ],
+            "files": [
+              {
+                "name": "feeding.txt",
+                "state": "same"
+              },
+              {
+                "name": "vet.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "39977a3",
+            "message": "Add feeding times",
+            "parents": [],
+            "files": [
+              {
+                "name": "feeding.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "9a72f11"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "9a72f11"
+        }
+      }
+    },
+    "current": {
+      "areas": {
+        "work": [
+          {
+            "name": "feeding.txt",
+            "state": "clean"
+          },
+          {
+            "name": "vet.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "feeding.txt",
+            "state": "clean"
+          },
+          {
+            "name": "vet.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "9a72f11",
+            "message": "Add vet visit"
+          },
+          "count": 2,
+          "files": [
+            "feeding.txt",
+            "vet.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "9a72f11",
+            "message": "Add vet visit",
+            "parents": [
+              "39977a3"
+            ],
+            "files": [
+              {
+                "name": "feeding.txt",
+                "state": "same"
+              },
+              {
+                "name": "vet.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "39977a3",
+            "message": "Add feeding times",
+            "parents": [],
+            "files": [
+              {
+                "name": "feeding.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "9a72f11"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "9a72f11"
+        }
+      }
+    },
+    "remote": {
+      "areas": {
+        "work": [
+          {
+            "name": "feeding.txt",
+            "state": "clean"
+          },
+          {
+            "name": "vet.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "feeding.txt",
+            "state": "clean"
+          },
+          {
+            "name": "vet.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "9a72f11",
+            "message": "Add vet visit"
+          },
+          "count": 2,
+          "files": [
+            "feeding.txt",
+            "vet.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "9a72f11",
+            "message": "Add vet visit",
+            "parents": [
+              "39977a3"
+            ],
+            "files": [
+              {
+                "name": "feeding.txt",
+                "state": "same"
+              },
+              {
+                "name": "vet.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "39977a3",
+            "message": "Add feeding times",
+            "parents": [],
+            "files": [
+              {
+                "name": "feeding.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "9a72f11"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "9a72f11"
+        }
+      }
+    }
+  }
+}

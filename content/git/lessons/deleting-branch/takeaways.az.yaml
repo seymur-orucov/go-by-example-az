@@ -1,0 +1,9 @@
+rules:
+  - "`git branch -d <ad>` branch-ı yalnız onun commit-ləri hazırkı branch-da olanda silir; yoxsa `not fully merged` xətası verir."
+  - "`git branch -D <ad>` yoxlamadan silir; merge olunmamış commit-lər unreachable olur, amma dərhal itmir."
+  - "Branch-ı silmək yalnız pointer-i silir: başqa branch-ın tarixçəsindəki commit-lər yerində qalır."
+  - "Hazırkı branch-ı silmək olmur, `-D` ilə də; əvvəlcə başqa branch-a keçin."
+  - "Lokal silmək serverdəki branch-a toxunmur; onu `git push origin --delete <ad>` silir."
+practices:
+  - "`-D`-dən əvvəl `git log <ad>` ilə branch-da nə olduğuna baxın."
+  - "Səhvən silinmiş branch-ı `(was ...)`-dakı hash-dən geri yaradın: `git branch <ad> <hash>`."

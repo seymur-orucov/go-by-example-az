@@ -1,0 +1,42 @@
+$ git branch
+* main
+$ cat .git/refs/heads/main
+51f9609fe5c63a7cba5a973a2760d633b36db46a
+$ wc -c .git/refs/heads/main
+41 .git/refs/heads/main
+$ git branch season-2
+$ ls .git/refs/heads
+main
+season-2
+$ cat .git/refs/heads/season-2
+51f9609fe5c63a7cba5a973a2760d633b36db46a
+$ git log --oneline --decorate
+51f9609 (HEAD -> main, season-2) Add guest list
+c3b1361 Add first episode
+$ ls
+episodes.md
+guests.txt
+$ echo "Ep 2: Remote work" >> episodes.md
+$ git add episodes.md
+$ git commit -m "Add second episode"
+[main 24044ae] Add second episode
+ 1 file changed, 1 insertion(+)
+$ cat .git/refs/heads/main
+24044aed74d5b600322f331dacf2effeb56e463f
+$ cat .git/refs/heads/season-2
+51f9609fe5c63a7cba5a973a2760d633b36db46a
+$ git switch season-2
+Switched to branch 'season-2'
+$ cat .git/HEAD
+ref: refs/heads/season-2
+$ echo "S2 Ep 1: Murad, teacher" >> guests.txt
+$ git add guests.txt
+$ git commit -m "Add season 2 guest"
+[season-2 7da4f2d] Add season 2 guest
+ 1 file changed, 1 insertion(+)
+$ git log --oneline --decorate --graph --all
+* 7da4f2d (HEAD -> season-2) Add season 2 guest
+| * 24044ae (main) Add second episode
+|/  
+* 51f9609 Add guest list
+* c3b1361 Add first episode

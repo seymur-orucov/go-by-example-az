@@ -1,0 +1,70 @@
+- question: "`main` branch-ında commit-lər var, başqa branch yoxdur. Bu komandalardan sonra nə çap olunur?"
+  code: |
+    git branch hotfix
+    git branch
+  options:
+    - "İki sətir: `hotfix` və `* main`"
+    - "İki sətir: `* hotfix` və `main`"
+    - "Bir sətir: `* main`"
+  answer: 0
+  explain: "`git branch hotfix` branch-ı yaradır, amma ona keçmir. Ona görə `*` `main`-in qarşısında qalır."
+- question: "Hansı komanda `gallery` branch-ını yaradıb dərhal ona keçir?"
+  options:
+    - "`git branch gallery`"
+    - "`git switch -c gallery`"
+    - "`git switch gallery`"
+  answer: 1
+  explain: "`-c` branch-ı yaradır, `switch` isə ona keçir. `git branch` yalnız yaradır, `-c`-siz `git switch` isə mövcud branch-a keçir."
+- question: "Yeni repository-də bu komandalardan sonra `git branch -v` çıxışında `draft` sətrində hansı mesaj olur?"
+  code: |
+    echo "a" > notes.txt
+    git add notes.txt
+    git commit -q -m "Start notes"
+    git branch draft
+    echo "b" >> notes.txt
+    git commit -q -am "Add intro"
+    git branch -v
+  options:
+    - "`Add intro`"
+    - "`Start notes`"
+    - "`draft` sətri olmur"
+  answer: 1
+  explain: "`draft` yaradılanda HEAD `main`-də qaldı. `Add intro` `main`-ə düşdü, `draft` isə `Start notes`-da qaldı."
+- question: "`main`-də üç commit var: `Add page`, `Add photos`, `Add captions` (ən yenisi). Bu komandalardan sonra `v1` sətrində hansı mesaj olur?"
+  code: |
+    git branch v1 HEAD~2
+    git branch -v
+  options:
+    - "`Add captions`"
+    - "`Add photos`"
+    - "`Add page`"
+  answer: 2
+  explain: "İkinci arqument başlanğıc commit-dir. `HEAD~2` HEAD-dən iki addım geridir: `Add page`."
+- question: "`git branch -v` çıxışında `  print-version a1b2c3d Add album page` sətri var. Bu nə deməkdir?"
+  options:
+    - "`print-version` hazırkı branch-dır və `Add album page` onun ilk commit-idir"
+    - "`print-version` silinib, onun son commit-i `Add album page` idi"
+    - "`print-version` `Add album page` commit-ini göstərir və hazırkı branch deyil"
+  answer: 2
+  explain: "`-v` hər branch-ın göstərdiyi commit-in qısa hash-ini və mesajını yazır. Sətrin əvvəlində `*` yoxdur, deməli, branch hazırkı deyil."
+- question: "`notes` branch-ı artıq var. `git switch -c notes` nə çap edir?"
+  options:
+    - "`Switched to a new branch 'notes'`"
+    - "`fatal: a branch named 'notes' already exists`"
+    - "`Switched to branch 'notes'`"
+  answer: 1
+  explain: "`-c` yalnız yeni branch yaradır. Mövcud branch-a keçmək üçün `git switch notes` yazılır."
+- question: "`main`-dəsiniz. `git branch extra`-dan sonra hansı doğrudur?"
+  options:
+    - "HEAD `extra`-ya keçir, fayllar dəyişmir"
+    - "`extra` boş branch-dır, hələ commit göstərmir"
+    - "HEAD `main`-də qalır, `extra` hazırkı commit-i göstərir"
+  answer: 2
+  explain: "`git branch <ad>` hazırkı commit-i göstərən yeni pointer yaradır və ona keçmir."
+- question: "`git switch -c gallery`-nin köhnə yazılışı hansıdır?"
+  options:
+    - "`git checkout -b gallery`"
+    - "`git checkout gallery`"
+    - "`git branch -b gallery`"
+  answer: 0
+  explain: "`git checkout -b` branch-ı yaradıb ona keçir. `-b`-siz `git checkout` mövcud branch-a keçir."

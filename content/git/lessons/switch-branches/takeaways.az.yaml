@@ -1,0 +1,10 @@
+rules:
+  - "`git switch <ad>` HEAD-i həmin branch-a yönəldir və working directory-ni onun son commit-inə uyğunlaşdırır."
+  - "Keçiddən sonra yalnız bir branch-da olan fayl yaranır və ya yox olur; fayl itmir, o, commit-lərdə saxlanır."
+  - "`git switch -` əvvəlki branch-a qayıdır."
+  - "Commit olunmamış dəyişiklik heç bir branch-a aid deyil: fayl iki branch-da eynidirsə, o, sizinlə keçir."
+  - "Dəyişmiş fayl iki branch-da fərqlidirsə, Git keçidi etmir (`Your local changes ... would be overwritten`)."
+  - "`git checkout <branch>` köhnə komandadır və eyni keçidi edir."
+practices:
+  - "Keçiddən əvvəl `git status --short`-a baxın və dəyişikliyi aid olduğu branch-da commit edin."
+  - "İki branch arasında gedib-gələndə `git switch -` yazın."

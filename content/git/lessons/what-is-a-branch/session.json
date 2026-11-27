@@ -1,0 +1,607 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir podcast",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd podcast",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Ep 1: Why we started\" > episodes.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add episodes.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add first episode\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Ep 1: Leyla, designer\" > guests.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add guests.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add guest list\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch",
+      "step": "file",
+      "hidden": false,
+      "fail": false,
+      "out": "* main\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cat .git/refs/heads/main",
+      "step": "file",
+      "hidden": false,
+      "fail": false,
+      "out": "51f9609fe5c63a7cba5a973a2760d633b36db46a\n",
+      "exit": 0
+    },
+    {
+      "cmd": "wc -c .git/refs/heads/main",
+      "step": "file",
+      "hidden": false,
+      "fail": false,
+      "out": "41 .git/refs/heads/main\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch season-2",
+      "step": "create",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "ls .git/refs/heads",
+      "step": "create",
+      "hidden": false,
+      "fail": false,
+      "out": "main\nseason-2\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cat .git/refs/heads/season-2",
+      "step": "create",
+      "hidden": false,
+      "fail": false,
+      "out": "51f9609fe5c63a7cba5a973a2760d633b36db46a\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline --decorate",
+      "step": "create",
+      "hidden": false,
+      "fail": false,
+      "out": "51f9609 (HEAD -> main, season-2) Add guest list\nc3b1361 Add first episode\n",
+      "exit": 0
+    },
+    {
+      "cmd": "ls",
+      "step": "create",
+      "hidden": false,
+      "fail": false,
+      "out": "episodes.md\nguests.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Ep 2: Remote work\" >> episodes.md",
+      "step": "commit",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add episodes.md",
+      "step": "commit",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"Add second episode\"",
+      "step": "commit",
+      "hidden": false,
+      "fail": false,
+      "out": "[main 24044ae] Add second episode\n 1 file changed, 1 insertion(+)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cat .git/refs/heads/main",
+      "step": "commit",
+      "hidden": false,
+      "fail": false,
+      "out": "24044aed74d5b600322f331dacf2effeb56e463f\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cat .git/refs/heads/season-2",
+      "step": "commit",
+      "hidden": false,
+      "fail": false,
+      "out": "51f9609fe5c63a7cba5a973a2760d633b36db46a\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch season-2",
+      "step": "head",
+      "hidden": false,
+      "fail": false,
+      "out": "Switched to branch 'season-2'\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cat .git/HEAD",
+      "step": "head",
+      "hidden": false,
+      "fail": false,
+      "out": "ref: refs/heads/season-2\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"S2 Ep 1: Murad, teacher\" >> guests.txt",
+      "step": "head",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add guests.txt",
+      "step": "head",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"Add season 2 guest\"",
+      "step": "head",
+      "hidden": false,
+      "fail": false,
+      "out": "[season-2 7da4f2d] Add season 2 guest\n 1 file changed, 1 insertion(+)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline --decorate --graph --all",
+      "step": "head",
+      "hidden": false,
+      "fail": false,
+      "out": "* 7da4f2d (HEAD -> season-2) Add season 2 guest\n| * 24044ae (main) Add second episode\n|/  \n* 51f9609 Add guest list\n* c3b1361 Add first episode\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "file": {
+      "areas": {
+        "work": [
+          {
+            "name": "episodes.md",
+            "state": "clean"
+          },
+          {
+            "name": "guests.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "episodes.md",
+            "state": "clean"
+          },
+          {
+            "name": "guests.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "51f9609",
+            "message": "Add guest list"
+          },
+          "count": 2,
+          "files": [
+            "episodes.md",
+            "guests.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "51f9609",
+            "message": "Add guest list",
+            "parents": [
+              "c3b1361"
+            ],
+            "files": [
+              {
+                "name": "episodes.md",
+                "state": "same"
+              },
+              {
+                "name": "guests.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "c3b1361",
+            "message": "Add first episode",
+            "parents": [],
+            "files": [
+              {
+                "name": "episodes.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "51f9609"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "51f9609"
+        }
+      }
+    },
+    "create": {
+      "areas": {
+        "work": [
+          {
+            "name": "episodes.md",
+            "state": "clean"
+          },
+          {
+            "name": "guests.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "episodes.md",
+            "state": "clean"
+          },
+          {
+            "name": "guests.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "51f9609",
+            "message": "Add guest list"
+          },
+          "count": 2,
+          "files": [
+            "episodes.md",
+            "guests.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "51f9609",
+            "message": "Add guest list",
+            "parents": [
+              "c3b1361"
+            ],
+            "files": [
+              {
+                "name": "episodes.md",
+                "state": "same"
+              },
+              {
+                "name": "guests.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "c3b1361",
+            "message": "Add first episode",
+            "parents": [],
+            "files": [
+              {
+                "name": "episodes.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "51f9609"
+          },
+          {
+            "name": "season-2",
+            "target": "51f9609"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "51f9609"
+        }
+      }
+    },
+    "commit": {
+      "areas": {
+        "work": [
+          {
+            "name": "episodes.md",
+            "state": "clean"
+          },
+          {
+            "name": "guests.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "episodes.md",
+            "state": "clean"
+          },
+          {
+            "name": "guests.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "24044ae",
+            "message": "Add second episode"
+          },
+          "count": 3,
+          "files": [
+            "episodes.md",
+            "guests.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "24044ae",
+            "message": "Add second episode",
+            "parents": [
+              "51f9609"
+            ],
+            "files": [
+              {
+                "name": "episodes.md",
+                "state": "modified"
+              },
+              {
+                "name": "guests.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "51f9609",
+            "message": "Add guest list",
+            "parents": [
+              "c3b1361"
+            ],
+            "files": [
+              {
+                "name": "episodes.md",
+                "state": "same"
+              },
+              {
+                "name": "guests.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "c3b1361",
+            "message": "Add first episode",
+            "parents": [],
+            "files": [
+              {
+                "name": "episodes.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "24044ae"
+          },
+          {
+            "name": "season-2",
+            "target": "51f9609"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "24044ae"
+        }
+      }
+    },
+    "head": {
+      "areas": {
+        "work": [
+          {
+            "name": "episodes.md",
+            "state": "clean"
+          },
+          {
+            "name": "guests.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "episodes.md",
+            "state": "clean"
+          },
+          {
+            "name": "guests.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "7da4f2d",
+            "message": "Add season 2 guest"
+          },
+          "count": 3,
+          "files": [
+            "episodes.md",
+            "guests.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "7da4f2d",
+            "message": "Add season 2 guest",
+            "parents": [
+              "51f9609"
+            ],
+            "files": [
+              {
+                "name": "episodes.md",
+                "state": "same"
+              },
+              {
+                "name": "guests.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "24044ae",
+            "message": "Add second episode",
+            "parents": [
+              "51f9609"
+            ],
+            "files": [
+              {
+                "name": "episodes.md",
+                "state": "modified"
+              },
+              {
+                "name": "guests.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "51f9609",
+            "message": "Add guest list",
+            "parents": [
+              "c3b1361"
+            ],
+            "files": [
+              {
+                "name": "episodes.md",
+                "state": "same"
+              },
+              {
+                "name": "guests.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "c3b1361",
+            "message": "Add first episode",
+            "parents": [],
+            "files": [
+              {
+                "name": "episodes.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "24044ae"
+          },
+          {
+            "name": "season-2",
+            "target": "7da4f2d"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "season-2",
+          "target": "7da4f2d"
+        }
+      }
+    }
+  }
+}

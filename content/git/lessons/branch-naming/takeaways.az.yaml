@@ -1,0 +1,10 @@
+rules:
+  - "Git adda yalnız simvolları yoxlayır: boşluq, `..`, `@{` və `~ ^ : ? * [ \\` olmur."
+  - "Branch adı `-` ilə başlaya, `/`, `.` və ya `.lock` ilə bitə bilməz."
+  - "`feat/`, `fix/`, `docs/`, `chore/`, `hotfix/` komandaların konvensiyasıdır, Git-in qaydası deyil."
+  - "`/` adda icazəlidir, amma `feat` və `feat/...` branch-ı eyni vaxtda ola bilməz: Git `cannot lock ref` xətası verir."
+  - "`git check-ref-format --branch <ad>` adın Git üçün düzgün olduğunu yoxlayır və branch yaratmır."
+practices:
+  - "Adı prefiks, tapşırıq nömrəsi və qısa kebab-case təsvirdən qurun: `feat/BOOK-142-gift-cards`."
+  - "Layihədə işlənən üsula uyğunlaşın: komanda `feature/` yazırsa, siz də `feature/` yazın."
+  - "Prefiksi və təsviri kiçik hərflə yazın: Windows və macOS-da `Fix/` və `fix/` qarışa bilər."

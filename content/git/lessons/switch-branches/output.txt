@@ -1,0 +1,45 @@
+$ git branch
+* main
+  movers
+$ ls
+addresses.txt
+boxes.txt
+$ git switch movers
+Switched to branch 'movers'
+$ ls
+addresses.txt
+boxes.txt
+movers.txt
+$ cat boxes.txt
+kitchen: 6 boxes
+bedroom: 4 boxes
+$ git switch -
+Switched to branch 'main'
+$ ls
+addresses.txt
+boxes.txt
+$ cat boxes.txt
+kitchen: 6 boxes
+$ echo "new: 5 Pine Road" >> addresses.txt
+$ git status --short
+ M addresses.txt
+$ git switch movers
+Switched to branch 'movers'
+M	addresses.txt
+$ git status --short
+ M addresses.txt
+$ echo "garage: 3 boxes" >> boxes.txt
+$ git switch main
+error: Your local changes to the following files would be overwritten by checkout:
+	boxes.txt
+Please commit your changes or stash them before you switch branches.
+Aborting
+$ git add boxes.txt
+$ git commit -m "Count garage boxes"
+[movers 6e6be0b] Count garage boxes
+ 1 file changed, 1 insertion(+)
+$ git switch main
+Switched to branch 'main'
+M	addresses.txt
+$ git status --short
+ M addresses.txt

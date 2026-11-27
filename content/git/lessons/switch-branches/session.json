@@ -1,0 +1,956 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir moving",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd moving",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"kitchen: 6 boxes\" > boxes.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add boxes.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Count kitchen boxes\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"old: 12 Oak Street\" > addresses.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add addresses.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add old address\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q -c movers",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"FastMove: 450 USD\" > movers.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add movers.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add mover quotes\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"bedroom: 4 boxes\" >> boxes.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add boxes.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Count bedroom boxes\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q main",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch",
+      "step": "switch",
+      "hidden": false,
+      "fail": false,
+      "out": "* main\n  movers\n",
+      "exit": 0
+    },
+    {
+      "cmd": "ls",
+      "step": "switch",
+      "hidden": false,
+      "fail": false,
+      "out": "addresses.txt\nboxes.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch movers",
+      "step": "switch",
+      "hidden": false,
+      "fail": false,
+      "out": "Switched to branch 'movers'\n",
+      "exit": 0
+    },
+    {
+      "cmd": "ls",
+      "step": "switch",
+      "hidden": false,
+      "fail": false,
+      "out": "addresses.txt\nboxes.txt\nmovers.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cat boxes.txt",
+      "step": "switch",
+      "hidden": false,
+      "fail": false,
+      "out": "kitchen: 6 boxes\nbedroom: 4 boxes\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -",
+      "step": "back",
+      "hidden": false,
+      "fail": false,
+      "out": "Switched to branch 'main'\n",
+      "exit": 0
+    },
+    {
+      "cmd": "ls",
+      "step": "back",
+      "hidden": false,
+      "fail": false,
+      "out": "addresses.txt\nboxes.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cat boxes.txt",
+      "step": "back",
+      "hidden": false,
+      "fail": false,
+      "out": "kitchen: 6 boxes\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"new: 5 Pine Road\" >> addresses.txt",
+      "step": "carry",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status --short",
+      "step": "carry",
+      "hidden": false,
+      "fail": false,
+      "out": " M addresses.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch movers",
+      "step": "carry",
+      "hidden": false,
+      "fail": false,
+      "out": "Switched to branch 'movers'\nM\taddresses.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git status --short",
+      "step": "carry",
+      "hidden": false,
+      "fail": false,
+      "out": " M addresses.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"garage: 3 boxes\" >> boxes.txt",
+      "step": "refuse",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch main",
+      "step": "refuse",
+      "hidden": false,
+      "fail": true,
+      "out": "error: Your local changes to the following files would be overwritten by checkout:\n\tboxes.txt\nPlease commit your changes or stash them before you switch branches.\nAborting\n",
+      "exit": 1
+    },
+    {
+      "cmd": "git add boxes.txt",
+      "step": "commit-first",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"Count garage boxes\"",
+      "step": "commit-first",
+      "hidden": false,
+      "fail": false,
+      "out": "[movers 6e6be0b] Count garage boxes\n 1 file changed, 1 insertion(+)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch main",
+      "step": "commit-first",
+      "hidden": false,
+      "fail": false,
+      "out": "Switched to branch 'main'\nM\taddresses.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git status --short",
+      "step": "commit-first",
+      "hidden": false,
+      "fail": false,
+      "out": " M addresses.txt\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "switch": {
+      "areas": {
+        "work": [
+          {
+            "name": "addresses.txt",
+            "state": "clean"
+          },
+          {
+            "name": "boxes.txt",
+            "state": "clean"
+          },
+          {
+            "name": "movers.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "addresses.txt",
+            "state": "clean"
+          },
+          {
+            "name": "boxes.txt",
+            "state": "clean"
+          },
+          {
+            "name": "movers.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "99be689",
+            "message": "Count bedroom boxes"
+          },
+          "count": 4,
+          "files": [
+            "addresses.txt",
+            "boxes.txt",
+            "movers.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "99be689",
+            "message": "Count bedroom boxes",
+            "parents": [
+              "5f87119"
+            ],
+            "files": [
+              {
+                "name": "addresses.txt",
+                "state": "same"
+              },
+              {
+                "name": "boxes.txt",
+                "state": "modified"
+              },
+              {
+                "name": "movers.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "5f87119",
+            "message": "Add mover quotes",
+            "parents": [
+              "d7abbf0"
+            ],
+            "files": [
+              {
+                "name": "addresses.txt",
+                "state": "same"
+              },
+              {
+                "name": "boxes.txt",
+                "state": "same"
+              },
+              {
+                "name": "movers.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "d7abbf0",
+            "message": "Add old address",
+            "parents": [
+              "f770227"
+            ],
+            "files": [
+              {
+                "name": "addresses.txt",
+                "state": "added"
+              },
+              {
+                "name": "boxes.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "f770227",
+            "message": "Count kitchen boxes",
+            "parents": [],
+            "files": [
+              {
+                "name": "boxes.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "d7abbf0"
+          },
+          {
+            "name": "movers",
+            "target": "99be689"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "movers",
+          "target": "99be689"
+        }
+      }
+    },
+    "back": {
+      "areas": {
+        "work": [
+          {
+            "name": "addresses.txt",
+            "state": "clean"
+          },
+          {
+            "name": "boxes.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "addresses.txt",
+            "state": "clean"
+          },
+          {
+            "name": "boxes.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "d7abbf0",
+            "message": "Add old address"
+          },
+          "count": 2,
+          "files": [
+            "addresses.txt",
+            "boxes.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "99be689",
+            "message": "Count bedroom boxes",
+            "parents": [
+              "5f87119"
+            ],
+            "files": [
+              {
+                "name": "addresses.txt",
+                "state": "same"
+              },
+              {
+                "name": "boxes.txt",
+                "state": "modified"
+              },
+              {
+                "name": "movers.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "5f87119",
+            "message": "Add mover quotes",
+            "parents": [
+              "d7abbf0"
+            ],
+            "files": [
+              {
+                "name": "addresses.txt",
+                "state": "same"
+              },
+              {
+                "name": "boxes.txt",
+                "state": "same"
+              },
+              {
+                "name": "movers.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "d7abbf0",
+            "message": "Add old address",
+            "parents": [
+              "f770227"
+            ],
+            "files": [
+              {
+                "name": "addresses.txt",
+                "state": "added"
+              },
+              {
+                "name": "boxes.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "f770227",
+            "message": "Count kitchen boxes",
+            "parents": [],
+            "files": [
+              {
+                "name": "boxes.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "d7abbf0"
+          },
+          {
+            "name": "movers",
+            "target": "99be689"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "d7abbf0"
+        }
+      }
+    },
+    "carry": {
+      "areas": {
+        "work": [
+          {
+            "name": "addresses.txt",
+            "state": "modified"
+          },
+          {
+            "name": "boxes.txt",
+            "state": "clean"
+          },
+          {
+            "name": "movers.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "addresses.txt",
+            "state": "clean"
+          },
+          {
+            "name": "boxes.txt",
+            "state": "clean"
+          },
+          {
+            "name": "movers.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "99be689",
+            "message": "Count bedroom boxes"
+          },
+          "count": 4,
+          "files": [
+            "addresses.txt",
+            "boxes.txt",
+            "movers.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "99be689",
+            "message": "Count bedroom boxes",
+            "parents": [
+              "5f87119"
+            ],
+            "files": [
+              {
+                "name": "addresses.txt",
+                "state": "same"
+              },
+              {
+                "name": "boxes.txt",
+                "state": "modified"
+              },
+              {
+                "name": "movers.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "5f87119",
+            "message": "Add mover quotes",
+            "parents": [
+              "d7abbf0"
+            ],
+            "files": [
+              {
+                "name": "addresses.txt",
+                "state": "same"
+              },
+              {
+                "name": "boxes.txt",
+                "state": "same"
+              },
+              {
+                "name": "movers.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "d7abbf0",
+            "message": "Add old address",
+            "parents": [
+              "f770227"
+            ],
+            "files": [
+              {
+                "name": "addresses.txt",
+                "state": "added"
+              },
+              {
+                "name": "boxes.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "f770227",
+            "message": "Count kitchen boxes",
+            "parents": [],
+            "files": [
+              {
+                "name": "boxes.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "d7abbf0"
+          },
+          {
+            "name": "movers",
+            "target": "99be689"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "movers",
+          "target": "99be689"
+        }
+      }
+    },
+    "refuse": {
+      "areas": {
+        "work": [
+          {
+            "name": "addresses.txt",
+            "state": "modified"
+          },
+          {
+            "name": "boxes.txt",
+            "state": "modified"
+          },
+          {
+            "name": "movers.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "addresses.txt",
+            "state": "clean"
+          },
+          {
+            "name": "boxes.txt",
+            "state": "clean"
+          },
+          {
+            "name": "movers.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "99be689",
+            "message": "Count bedroom boxes"
+          },
+          "count": 4,
+          "files": [
+            "addresses.txt",
+            "boxes.txt",
+            "movers.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "99be689",
+            "message": "Count bedroom boxes",
+            "parents": [
+              "5f87119"
+            ],
+            "files": [
+              {
+                "name": "addresses.txt",
+                "state": "same"
+              },
+              {
+                "name": "boxes.txt",
+                "state": "modified"
+              },
+              {
+                "name": "movers.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "5f87119",
+            "message": "Add mover quotes",
+            "parents": [
+              "d7abbf0"
+            ],
+            "files": [
+              {
+                "name": "addresses.txt",
+                "state": "same"
+              },
+              {
+                "name": "boxes.txt",
+                "state": "same"
+              },
+              {
+                "name": "movers.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "d7abbf0",
+            "message": "Add old address",
+            "parents": [
+              "f770227"
+            ],
+            "files": [
+              {
+                "name": "addresses.txt",
+                "state": "added"
+              },
+              {
+                "name": "boxes.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "f770227",
+            "message": "Count kitchen boxes",
+            "parents": [],
+            "files": [
+              {
+                "name": "boxes.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "d7abbf0"
+          },
+          {
+            "name": "movers",
+            "target": "99be689"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "movers",
+          "target": "99be689"
+        }
+      }
+    },
+    "commit-first": {
+      "areas": {
+        "work": [
+          {
+            "name": "addresses.txt",
+            "state": "modified"
+          },
+          {
+            "name": "boxes.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "addresses.txt",
+            "state": "clean"
+          },
+          {
+            "name": "boxes.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "d7abbf0",
+            "message": "Add old address"
+          },
+          "count": 2,
+          "files": [
+            "addresses.txt",
+            "boxes.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "6e6be0b",
+            "message": "Count garage boxes",
+            "parents": [
+              "99be689"
+            ],
+            "files": [
+              {
+                "name": "addresses.txt",
+                "state": "same"
+              },
+              {
+                "name": "boxes.txt",
+                "state": "modified"
+              },
+              {
+                "name": "movers.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "99be689",
+            "message": "Count bedroom boxes",
+            "parents": [
+              "5f87119"
+            ],
+            "files": [
+              {
+                "name": "addresses.txt",
+                "state": "same"
+              },
+              {
+                "name": "boxes.txt",
+                "state": "modified"
+              },
+              {
+                "name": "movers.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "5f87119",
+            "message": "Add mover quotes",
+            "parents": [
+              "d7abbf0"
+            ],
+            "files": [
+              {
+                "name": "addresses.txt",
+                "state": "same"
+              },
+              {
+                "name": "boxes.txt",
+                "state": "same"
+              },
+              {
+                "name": "movers.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "d7abbf0",
+            "message": "Add old address",
+            "parents": [
+              "f770227"
+            ],
+            "files": [
+              {
+                "name": "addresses.txt",
+                "state": "added"
+              },
+              {
+                "name": "boxes.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "f770227",
+            "message": "Count kitchen boxes",
+            "parents": [],
+            "files": [
+              {
+                "name": "boxes.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "d7abbf0"
+          },
+          {
+            "name": "movers",
+            "target": "6e6be0b"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "d7abbf0"
+        }
+      }
+    }
+  }
+}
