@@ -1,0 +1,6 @@
+# The visuals are recorded from the real repository by `pnpm content:run`.
+bare-hooks:
+post-receive:
+deploy:
+post-update:
+pre-receive:

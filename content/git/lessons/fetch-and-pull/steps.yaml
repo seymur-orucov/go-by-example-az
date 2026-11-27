@@ -1,0 +1,12 @@
+# The visuals are recorded from the real repository by `pnpm content:run`.
+# The graph shows origin/main as a dashed pill next to the local branches.
+tracking:
+  vis: graph
+fetch:
+  vis: graph
+merge:
+  vis: graph
+pull:
+  vis: graph
+diverged:
+  vis: graph

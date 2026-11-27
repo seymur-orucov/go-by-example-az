@@ -1,0 +1,30 @@
+# Hand-written visual (text lesson).
+two-ways:
+  vis:
+    kind: compare
+    caption: "git revert və git reset"
+    a: { title: "git revert", sub: "yeni commit əlavə edir" }
+    b: { title: "git reset", sub: "branch-ı geri çəkir" }
+    rows:
+      - aspect: "Tarixçəyə nə edir"
+        a: "Sonuna səhvin əksini edən commit əlavə edir"
+        b: "Branch-ı köhnə commit-ə çəkir, sonrakılar branch-dan çıxır"
+      - aspect: "Push olunmuş commit"
+        a: "Push adi qaydada qəbul olunur"
+        b: "Push rədd olunur: `non-fast-forward`"
+        better: a
+      - aspect: "Komanda yoldaşları"
+        a: "Ləğvi `git pull` ilə alırlar"
+        b: "Səhv commit onların clone-unda qalır"
+        better: a
+      - aspect: "Səhvin izi"
+        a: "Səhv də, ləğvi də `git log`-da görünür"
+        b: "İz qalmır, sanki səhv olmayıb"
+      - aspect: "Push olunmamış commit"
+        a: "İşləyir, amma tarixçəyə iki lazımsız commit düşür"
+        b: "Commit izsiz çıxır, sonra push adi qaydada işləyir"
+        better: b
+      - aspect: "Merge commit"
+        a: "`git revert -m 1`"
+        b: "`git reset --hard HEAD~1`"
+    note: "Commit başqasında varsa `git revert`, yalnız sizdə varsa `git reset` və ya `git commit --amend`."

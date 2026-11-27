@@ -1,0 +1,57 @@
+- question: "`git init` ilə yeni repository yaratdınız. `git remote -v` nə çap edir?"
+  options:
+    - "`origin` və onun `(fetch)`, `(push)` sətirləri"
+    - "Heç nə: repository-nin remote-u yoxdur"
+    - "`fatal: not a remote repository`"
+  answer: 1
+  explain: "`origin`-i yalnız `git clone` özü yaradır. `git init`-dən sonra remote-u `git remote add` ilə əlavə edirsiniz."
+- question: "Bu komandalardan sonra nə çap olunur?"
+  code: |
+    git remote add origin https://github.com/ali/shop.git
+    git remote add origin https://github.com/ali/store.git
+  options:
+    - "Heç nə: `origin` artıq `store.git`-i göstərir"
+    - "Heç nə: `origin`-in iki URL-i olur"
+    - "`error: remote origin already exists.`"
+  answer: 2
+  explain: "`git remote add` mövcud remote-u əvəz etmir. URL-ni dəyişmək üçün `git remote set-url` lazımdır."
+- question: "`origin` `https://github.com/ali/shop.git`-i göstərir. Hansı komanda onu SSH ünvanına keçirir?"
+  options:
+    - "`git remote add origin git@github.com:ali/shop.git`"
+    - "`git remote rename origin git@github.com:ali/shop.git`"
+    - "`git remote ssh origin git@github.com:ali/shop.git`"
+    - "`git remote set-url origin git@github.com:ali/shop.git`"
+  answer: 3
+  explain: "`set-url` remote-un adını saxlayıb yalnız URL-ni dəyişir."
+- question: "Bu komandalardan sonra `fetch` sətri necə görünür?"
+  code: |
+    git remote add origin https://github.com/sam/notes.git
+    git remote rename origin backup
+    git config --get-regexp remote
+  options:
+    - "`remote.origin.fetch +refs/heads/*:refs/remotes/origin/*`"
+    - "`remote.backup.fetch +refs/heads/*:refs/remotes/backup/*`"
+    - "`remote.backup.fetch +refs/heads/*:refs/remotes/origin/*`"
+  answer: 1
+  explain: "`rename` remote-un bütün parametrlərini yeniləyir: həm bölmənin adını, həm də `fetch` sətrindəki `refs/remotes/backup/*` yolunu."
+- question: "`git remote add origin <URL>` işləyəndə nə baş verir?"
+  options:
+    - "Ad və URL `.git/config` faylına yazılır"
+    - "Git serverə qoşulub branch-ları yükləyir"
+    - "Serverdə yeni boş repository yaranır"
+  answer: 0
+  explain: "`git remote add` serverə qoşulmur. O, yalnız `[remote \"origin\"]` bölməsini yazır."
+- question: "Sam `git remote remove backup` etdi. Serverdəki `backup` repository-si nə olur?"
+  options:
+    - "Silinir, çünki remote artıq yoxdur"
+    - "Boşaldılır, amma qovluğu qalır"
+    - "Dəyişmir: yalnız lokal qeyd silinir"
+  answer: 2
+  explain: "`remove` lokal `.git/config`-dəki qeydi və remote-tracking branch-ları silir. Serverə toxunmur."
+- question: "`origin` və `backup` remote-ları var. `git remote` (`-v` olmadan) nə çap edir?"
+  options:
+    - "Yalnız adları: `backup` və `origin`"
+    - "Adları və hər birinin URL-ni"
+    - "Yalnız birinci əlavə olunan remote-u"
+  answer: 0
+  explain: "`git remote` yalnız adları çap edir. URL-ləri görmək üçün `-v` lazımdır."

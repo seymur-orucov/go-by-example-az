@@ -1,0 +1,489 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir cli-tool",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd cli-tool",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf '%s\\n' '#!/bin/sh' 'wc -w \"$1\"' > main.sh",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add main.sh",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"feat: count words in a file\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf '%s\\n' '#!/bin/sh' 'echo \"Message file: $1\"' 'cat \"$1\"' > .git/hooks/commit-msg",
+      "step": "message-file",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "chmod +x .git/hooks/commit-msg",
+      "step": "message-file",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Usage: ./main.sh FILE\" > README.md",
+      "step": "message-file",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add README.md",
+      "step": "message-file",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"docs: add usage to README\"",
+      "step": "message-file",
+      "hidden": false,
+      "fail": false,
+      "out": "Message file: .git/COMMIT_EDITMSG\ndocs: add usage to README\n[main 064f584] docs: add usage to README\n 1 file changed, 1 insertion(+)\n create mode 100644 README.md\n",
+      "exit": 0
+    },
+    {
+      "cmd": "printf '%s\\n' '#!/bin/sh' 'if ! head -n1 \"$1\" | grep -Eq \"^(feat|fix|docs|refactor|test|chore)(\\(.+\\))?!?: .+\"; then' '  echo \"commit-msg: use type(scope): description\"' '  echo \"example: fix(cli): handle empty input\"' '  exit 1' 'fi' > .git/hooks/commit-msg",
+      "step": "check",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cat .git/hooks/commit-msg",
+      "step": "check",
+      "hidden": false,
+      "fail": false,
+      "out": "#!/bin/sh\nif ! head -n1 \"$1\" | grep -Eq \"^(feat|fix|docs|refactor|test|chore)(\\(.+\\))?!?: .+\"; then\n  echo \"commit-msg: use type(scope): description\"\n  echo \"example: fix(cli): handle empty input\"\n  exit 1\nfi\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo 'wc -l \"$1\"' >> main.sh",
+      "step": "blocked",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add main.sh",
+      "step": "blocked",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"update stuff\"",
+      "step": "blocked",
+      "hidden": false,
+      "fail": true,
+      "out": "commit-msg: use type(scope): description\nexample: fix(cli): handle empty input\n",
+      "exit": 1
+    },
+    {
+      "cmd": "git status --short",
+      "step": "blocked",
+      "hidden": false,
+      "fail": false,
+      "out": "M  main.sh\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"feat(cli): print the line count\"",
+      "step": "valid",
+      "hidden": false,
+      "fail": false,
+      "out": "[main 641bcf1] feat(cli): print the line count\n 1 file changed, 1 insertion(+)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "valid",
+      "hidden": false,
+      "fail": false,
+      "out": "641bcf1 feat(cli): print the line count\n064f584 docs: add usage to README\n4441bdd feat: count words in a file\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "message-file": {
+      "areas": {
+        "work": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "main.sh",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "main.sh",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "064f584",
+            "message": "docs: add usage to README"
+          },
+          "count": 2,
+          "files": [
+            "README.md",
+            "main.sh"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "064f584",
+            "message": "docs: add usage to README",
+            "parents": [
+              "4441bdd"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "added"
+              },
+              {
+                "name": "main.sh",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "4441bdd",
+            "message": "feat: count words in a file",
+            "parents": [],
+            "files": [
+              {
+                "name": "main.sh",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "064f584"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "064f584"
+        }
+      }
+    },
+    "check": {
+      "areas": {
+        "work": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "main.sh",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "main.sh",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "064f584",
+            "message": "docs: add usage to README"
+          },
+          "count": 2,
+          "files": [
+            "README.md",
+            "main.sh"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "064f584",
+            "message": "docs: add usage to README",
+            "parents": [
+              "4441bdd"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "added"
+              },
+              {
+                "name": "main.sh",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "4441bdd",
+            "message": "feat: count words in a file",
+            "parents": [],
+            "files": [
+              {
+                "name": "main.sh",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "064f584"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "064f584"
+        }
+      }
+    },
+    "blocked": {
+      "areas": {
+        "work": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "main.sh",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "main.sh",
+            "state": "modified"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "064f584",
+            "message": "docs: add usage to README"
+          },
+          "count": 2,
+          "files": [
+            "README.md",
+            "main.sh"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "064f584",
+            "message": "docs: add usage to README",
+            "parents": [
+              "4441bdd"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "added"
+              },
+              {
+                "name": "main.sh",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "4441bdd",
+            "message": "feat: count words in a file",
+            "parents": [],
+            "files": [
+              {
+                "name": "main.sh",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "064f584"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "064f584"
+        }
+      }
+    },
+    "valid": {
+      "areas": {
+        "work": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "main.sh",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "main.sh",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "641bcf1",
+            "message": "feat(cli): print the line count"
+          },
+          "count": 3,
+          "files": [
+            "README.md",
+            "main.sh"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "641bcf1",
+            "message": "feat(cli): print the line count",
+            "parents": [
+              "064f584"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "main.sh",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "064f584",
+            "message": "docs: add usage to README",
+            "parents": [
+              "4441bdd"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "added"
+              },
+              {
+                "name": "main.sh",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "4441bdd",
+            "message": "feat: count words in a file",
+            "parents": [],
+            "files": [
+              {
+                "name": "main.sh",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "641bcf1"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "641bcf1"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,54 @@
+$ git fetch
+From /home/sam/server/charity-run
+   90be296..b4c29e5  main              -> origin/main
+ * [new branch]      feat/tshirt-sizes -> origin/feat/tshirt-sizes
+$ git status
+On branch main
+Your branch is behind 'origin/main' by 2 commits, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+nothing to commit, working tree clean
+$ git log --oneline HEAD..origin/main
+b4c29e5 Add the entry fee
+c7090bb Add the 10 km route
+$ git diff --stat HEAD...origin/main
+ index.html | 1 +
+ routes.txt | 1 +
+ 2 files changed, 2 insertions(+)
+$ git diff HEAD...origin/main -- index.html
+diff --git a/index.html b/index.html
+index 1ed694c..75c0ff1 100644
+--- a/index.html
++++ b/index.html
+@@ -1,2 +1,3 @@
+ <h1>Charity Run</h1>
+ <p>Date: May 24</p>
++<p>Entry fee: 15 USD</p>
+$ git merge origin/main
+Updating 90be296..b4c29e5
+Fast-forward
+ index.html | 1 +
+ routes.txt | 1 +
+ 2 files changed, 2 insertions(+)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+$ git branch -r
+  origin/HEAD -> origin/main
+  origin/feat/tshirt-sizes
+  origin/main
+$ git log --oneline main..origin/feat/tshirt-sizes
+7034252 Add T-shirt sizes
+$ git fetch
+$ git branch -r
+  origin/HEAD -> origin/main
+  origin/feat/tshirt-sizes
+  origin/main
+$ git fetch --prune
+From /home/sam/server/charity-run
+ - [deleted]         (none)     -> origin/feat/tshirt-sizes
+$ git branch -r
+  origin/HEAD -> origin/main
+  origin/main

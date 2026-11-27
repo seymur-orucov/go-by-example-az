@@ -1,0 +1,70 @@
+- question: "Əsas repository-də `git ls-tree HEAD` bu sətri çap edir. `ui-kit` necə saxlanılıb?"
+  code: |
+    160000 commit 4b1d9e07a2c35f8e6d0b7a9c1e2f3a4b5c6d7e8f	ui-kit
+  options:
+    - "Tree kimi: `ui-kit`-in bütün faylları bu commit-ə daxildir"
+    - "Gitlink kimi: `ui-kit` repository-sindəki bir commit-in hash-i"
+    - "Blob kimi: `ui-kit` qovluğunun sıxılmış arxivi"
+  answer: 1
+  explain: "`160000` rejimi və `commit` növü gitlink-dir. Əsas repository faylları yox, submodule-un commit-ini saxlayır."
+- question: "`.gitmodules` faylında nə saxlanılır?"
+  options:
+    - "Hər submodule-un qovluğu (`path`) və serverinin ünvanı (`url`)"
+    - "Hər submodule-un bağlandığı commit-in hash-i"
+    - "Submodule-un bütün fayllarının siyahısı"
+  answer: 0
+  explain: "Commit-in hash-i gitlink-dədir, tree-də. `.gitmodules` yalnız yolu və ünvanı saxlayır."
+- question: "Yeni repository-də `git submodule add <ünvan> lib` uğurla işlədi (`lib` repository-sində `a.txt` var). `git status --short` nə çap edir?"
+  options:
+    - "`A  lib/a.txt`"
+    - "`?? lib/`"
+    - "`A  .gitmodules` və `A  lib`"
+  answer: 2
+  explain: "`git submodule add` `.gitmodules`-u və gitlink-i stage edir. Submodule-un faylları əsas repository-yə düşmür."
+- question: "Yeni repository-də bu komandalardan sonra `git ls-tree -r --name-only HEAD` nə çap edir (`lib` repository-sində `a.txt` var)?"
+  code: |
+    echo "m" > main.txt
+    git add main.txt
+    git commit -q -m "Add main"
+    git submodule add -q https://github.com/sam/lib.git lib
+    git commit -q -m "Add lib"
+  options:
+    - "`.gitmodules`, `lib/a.txt`, `main.txt`"
+    - "`.gitmodules`, `lib`, `main.txt`"
+    - "`lib`, `main.txt`"
+  answer: 1
+  explain: "`-r` alt qovluqlara girir, gitlink-in içinə isə yox. `.gitmodules` də commit-ə düşüb."
+- question: "`lib` submodule-unda yeni commit etdiniz və əsas repository-yə qayıtdınız. `git status` `lib` üçün nə göstərir?"
+  options:
+    - "`modified:   lib (new commits)`"
+    - "`new file:   lib/b.txt`"
+    - "Heç nə: submodule-un commit-ləri əsas repository-yə aid deyil"
+  answer: 0
+  explain: "Submodule gitlink-dəki commit-dən irəlidədir. Əsas repository bunu gitlink-in dəyişməsi kimi görür."
+- question: "`lib` submodule-unda `b.txt` əlavə edib commit etdiniz. Əsas repository-də `git add lib` nəyi stage edir?"
+  options:
+    - "`lib` qovluğundakı yeni `b.txt` faylını"
+    - "Submodule-un indiki commit-ini, yəni yeni gitlink-i"
+    - "`.gitmodules`-da `lib`-in yeni ünvanını"
+  answer: 1
+  explain: "Əsas repository submodule-un fayllarını saxlamır. `git add lib` gitlink-ə submodule-un indiki commit-inin hash-ini yazır."
+- question: "`ui-kit`-də commit etdiniz, onu push etmədiniz, amma əsas repository-də yeni gitlink-i commit edib push etdiniz. Komanda yoldaşınız submodule-u yükləyəndə nə olur?"
+  options:
+    - "Git `ui-kit`-i özü sizin kompüterinizdən götürür"
+    - "Submodule xəbərdarlıqsız köhnə commit-də qalır"
+    - "Xəta çıxır: gitlink serverdə olmayan commit-i göstərir"
+  answer: 2
+  explain: "Gitlink yalnız hash-dir. Commit `ui-kit`-in serverində yoxdursa, Git onu heç yerdən gətirə bilmir (`not our ref`)."
+- question: "Komandanız əlavə Git komandaları öyrənmək istəmir, paylaşılan kod isə nadir dəyişir və əsasən sizin layihədə redaktə olunur. Hansı daha uyğundur?"
+  options:
+    - "Submodule"
+    - "Subtree"
+  answer: 1
+  explain: "Subtree faylları adi fayl kimi tarixçənizə gətirir: clone edən heç nə əlavə bilməli deyil."
+- question: "Kompüterdəki qovluqdan `git submodule add` `fatal: transport 'file' not allowed` xətası verdi. Səbəb nədir?"
+  options:
+    - "Server qovluğu bare deyil, adi repository olmalıdır"
+    - "Submodule yalnız GitHub-dakı `https://` ünvanı ilə işləyir"
+    - "Git 2.38.1-dən bəri submodule üçün `file` protokolu defolt bağlıdır"
+  answer: 2
+  explain: "Təhlükəsizlik üçün `protocol.file.allow` defolt `user`-dir. Yerli serverlə işləmək üçün onu `always` etmək olar."

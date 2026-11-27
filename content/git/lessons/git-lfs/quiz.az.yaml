@@ -1,0 +1,64 @@
+- question: "LFS qoşulmuş repository-də bu komandadan sonra `.gitattributes`-da hansı sətir olur?"
+  code: |
+    git lfs track "*.wav"
+  options:
+    - "`*.wav lfs=true -diff -merge`"
+    - "`*.wav filter=lfs diff=lfs merge=lfs -text`"
+    - "`*.wav binary filter=lfs`"
+  answer: 1
+  explain: "`git lfs track` nümunəni `filter=lfs diff=lfs merge=lfs -text` atributları ilə `.gitattributes`-a yazır."
+- question: "LFS ilə izlənən faylın yerinə commit-də nə saxlanır?"
+  options:
+    - "Faylın zlib ilə sıxılmış tam surəti"
+    - "`.git/lfs/objects`-dəki faylın yolu"
+    - "Üç sətirlik pointer: `version`, `oid`, `size`"
+  answer: 2
+  explain: "Commit-də kiçik pointer fayl olur. Real məzmun LFS-də saxlanır, `oid` onu tapmaq üçündür."
+- question: "LFS qoşulmuş repository-də bu komandalardan sonra nə çap olunur?"
+  code: |
+    git lfs track "*.png"
+    head -c 5000 /dev/zero > logo.png
+    git add .
+    git commit -q -m "Add logo"
+    git show HEAD:logo.png | tail -n 1
+  options:
+    - "`size 5000`"
+    - "`size 129`"
+    - "`version https://git-lfs.github.com/spec/v1`"
+  answer: 0
+  explain: "Commit-də pointer var, onun son sətri real faylın ölçüsüdür: 5000 bayt. 129 bayt pointer-in öz ölçüsüdür."
+- question: "`git lfs install`-ı nə vaxt işlətmək lazımdır?"
+  options:
+    - "Hər yeni `.psd` faylı əlavə edəndə"
+    - "Hər istifadəçi üçün bir dəfə"
+    - "Hər `git push`-dan əvvəl"
+  answer: 1
+  explain: "`git lfs install` `~/.gitconfig`-ə `lfs` filter-ini yazır. Bu bir dəfə lazımdır, push zamanı faylları isə `pre-push` hook-u göndərir."
+- question: "Sam `git lfs track \"*.psd\"` işlədib, amma `.gitattributes`-ı commit etməyib. Ayla repository-ni clone edib `tree.psd` commit edir. Nə olur?"
+  options:
+    - "`tree.psd` adi blob kimi tam commit olunur"
+    - "`tree.psd` pointer fayl kimi commit olunur"
+    - "Git `tree.psd`-ni commit etməyə icazə vermir"
+  answer: 0
+  explain: "Qayda yalnız Sam-ın kompüterindədir. Ayla-nın clone-unda `.gitattributes` yoxdur, ona görə fayl LFS-dən keçmir."
+- question: "`git lfs ls-files` `ba299e552d - a.psd` göstərir. `-` nə deməkdir?"
+  options:
+    - "Fayl LFS-dən çıxarılıb"
+    - "Faylın son commit-dən sonra dəyişikliyi var"
+    - "Lokal yalnız pointer var, məzmun yüklənməyib"
+  answer: 2
+  explain: "`*` faylın tam məzmununun lokal olduğunu, `-` isə yalnız pointer olduğunu bildirir."
+- question: "LFS ilə izlənən 100 MB-lıq faylın 5 versiyası serverə push olunub. Yeni clone LFS-dən nə qədər yükləyir?"
+  options:
+    - "Hər 5 versiyanı, təxminən 500 MB"
+    - "Checkout olunan versiyanı, təxminən 100 MB"
+    - "Heç nə: diskdə yalnız pointer-lər qalır"
+  answer: 1
+  explain: "Clone bütün pointer-ləri alır, LFS-dən isə yalnız checkout olunan versiyanı yükləyir. Köhnə versiya o commit-ə keçəndə yüklənir."
+- question: "GitHub-a LFS faylının hər biri 1 GB olan 3 versiyası push olunub. Yaddaş limitindən nə qədər istifadə olunur?"
+  options:
+    - "Təxminən 1 GB: yalnız son versiya sayılır"
+    - "Bir neçə KB: yalnız pointer-lər sayılır"
+    - "Təxminən 3 GB: hər versiya tam sayılır"
+  answer: 2
+  explain: "Push olunan hər versiya LFS yaddaşına tam yüklənir və limitə sayılır."

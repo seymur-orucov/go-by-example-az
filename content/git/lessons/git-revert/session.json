@@ -1,0 +1,1280 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "git init -q --bare ~/server/car-rental.git",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "mkdir car-rental",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd car-rental",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"economy: 40 USD/day\" \"compact: 55 USD/day\" \"suv: 80 USD/day\" > prices.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add prices.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add the price table\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"economy: 6\" \"compact: 4\" \"suv: 2\" > cars.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add cars.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add the car list\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"convertible: 1\" >> cars.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"convertible: 120 USD/day\" >> prices.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add the convertible\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "sed -i \"s/^suv: 80/suv: 95/\" prices.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Raise the SUV price\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git remote add origin ~/server/car-rental.git",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push -q -u origin main",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git revert --no-edit HEAD",
+      "step": "revert-last",
+      "hidden": false,
+      "fail": false,
+      "out": "[main 841232e] Revert \"Raise the SUV price\"\n Date: Thu Jan 15 09:17:00 2026 +0000\n 1 file changed, 1 insertion(+), 1 deletion(-)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cat prices.txt",
+      "step": "revert-last",
+      "hidden": false,
+      "fail": false,
+      "out": "economy: 40 USD/day\ncompact: 55 USD/day\nsuv: 80 USD/day\nconvertible: 120 USD/day\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "revert-last",
+      "hidden": false,
+      "fail": false,
+      "out": "841232e Revert \"Raise the SUV price\"\n53e5ee6 Raise the SUV price\n786d4d3 Add the convertible\n18273f3 Add the car list\nd9c47e6 Add the price table\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log -1",
+      "step": "shared",
+      "hidden": false,
+      "fail": false,
+      "out": "commit 841232e7da045aef2a365efccfd3942cf982aadc\nAuthor: Sam Lee <sam@example.com>\nDate:   Thu Jan 15 09:17:00 2026 +0000\n\n    Revert \"Raise the SUV price\"\n    \n    This reverts commit 53e5ee6af56f517294d3ecf05a305f5408e45ac7.\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git push",
+      "step": "shared",
+      "hidden": false,
+      "fail": false,
+      "out": "To /home/sam/server/car-rental.git\n   53e5ee6..841232e  main -> main\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline -3",
+      "step": "older",
+      "hidden": false,
+      "fail": false,
+      "out": "841232e Revert \"Raise the SUV price\"\n53e5ee6 Raise the SUV price\n786d4d3 Add the convertible\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git revert --no-edit HEAD~2",
+      "step": "older",
+      "hidden": false,
+      "fail": false,
+      "out": "[main d6173a6] Revert \"Add the convertible\"\n Date: Thu Jan 15 09:23:00 2026 +0000\n 2 files changed, 2 deletions(-)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cat cars.txt prices.txt",
+      "step": "older",
+      "hidden": false,
+      "fail": false,
+      "out": "economy: 6\ncompact: 4\nsuv: 2\neconomy: 40 USD/day\ncompact: 55 USD/day\nsuv: 80 USD/day\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"winter: 10% off\" > discount.txt",
+      "step": "no-commit",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add discount.txt",
+      "step": "no-commit",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add the winter discount\"",
+      "step": "no-commit",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"winter: 10% off until March 31\" > discount.txt",
+      "step": "no-commit",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Extend the winter discount\"",
+      "step": "no-commit",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline -2",
+      "step": "no-commit",
+      "hidden": false,
+      "fail": false,
+      "out": "30dc836 Extend the winter discount\n181376f Add the winter discount\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git revert --no-commit HEAD~2..HEAD",
+      "step": "no-commit",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status",
+      "step": "no-commit",
+      "hidden": false,
+      "fail": false,
+      "out": "On branch main\nYour branch is ahead of 'origin/main' by 3 commits.\n  (use \"git push\" to publish your local commits)\n\nYou are currently reverting commit 181376f.\n  (all conflicts fixed: run \"git revert --continue\")\n  (use \"git revert --skip\" to skip this patch)\n  (use \"git revert --abort\" to cancel the revert operation)\n\nChanges to be committed:\n  (use \"git restore --staged <file>...\" to unstage)\n\tdeleted:    discount.txt\n\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"Remove the winter discount\"",
+      "step": "no-commit",
+      "hidden": false,
+      "fail": false,
+      "out": "[main a8dfd17] Remove the winter discount\n 1 file changed, 1 deletion(-)\n delete mode 100644 discount.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q -c feat/insurance",
+      "step": "merge",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"basic: 12 USD/day\" \"full: 25 USD/day\" > insurance.txt",
+      "step": "merge",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add insurance.txt",
+      "step": "merge",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add insurance options\"",
+      "step": "merge",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q main",
+      "step": "merge",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git merge -q --no-ff --no-edit feat/insurance",
+      "step": "merge",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline --graph -3",
+      "step": "merge",
+      "hidden": false,
+      "fail": false,
+      "out": "*   9a3fdf2 Merge branch 'feat/insurance'\n|\\  \n| * 5b1dcba Add insurance options\n|/  \n* a8dfd17 Remove the winter discount\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git revert HEAD",
+      "step": "merge",
+      "hidden": false,
+      "fail": true,
+      "out": "error: commit 9a3fdf2aa5ee806396dc5e176c1405185f61ce2d is a merge but no -m option was given.\nfatal: revert failed\n",
+      "exit": 128
+    },
+    {
+      "cmd": "git revert --no-edit -m 1 HEAD",
+      "step": "merge",
+      "hidden": false,
+      "fail": false,
+      "out": "[main c48b8ae] Revert \"Merge branch 'feat/insurance'\"\n Date: Thu Jan 15 09:42:00 2026 +0000\n 1 file changed, 2 deletions(-)\n delete mode 100644 insurance.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "ls",
+      "step": "merge",
+      "hidden": false,
+      "fail": false,
+      "out": "cars.txt\nprices.txt\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "revert-last": {
+      "areas": {
+        "work": [
+          {
+            "name": "cars.txt",
+            "state": "clean"
+          },
+          {
+            "name": "prices.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "cars.txt",
+            "state": "clean"
+          },
+          {
+            "name": "prices.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "841232e",
+            "message": "Revert \"Raise the SUV price\""
+          },
+          "count": 5,
+          "files": [
+            "cars.txt",
+            "prices.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "841232e",
+            "message": "Revert \"Raise the SUV price\"",
+            "parents": [
+              "53e5ee6"
+            ],
+            "files": [
+              {
+                "name": "cars.txt",
+                "state": "same"
+              },
+              {
+                "name": "prices.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "53e5ee6",
+            "message": "Raise the SUV price",
+            "parents": [
+              "786d4d3"
+            ],
+            "files": [
+              {
+                "name": "cars.txt",
+                "state": "same"
+              },
+              {
+                "name": "prices.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "786d4d3",
+            "message": "Add the convertible",
+            "parents": [
+              "18273f3"
+            ],
+            "files": [
+              {
+                "name": "cars.txt",
+                "state": "modified"
+              },
+              {
+                "name": "prices.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "18273f3",
+            "message": "Add the car list",
+            "parents": [
+              "d9c47e6"
+            ],
+            "files": [
+              {
+                "name": "cars.txt",
+                "state": "added"
+              },
+              {
+                "name": "prices.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "d9c47e6",
+            "message": "Add the price table",
+            "parents": [],
+            "files": [
+              {
+                "name": "prices.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "841232e"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "53e5ee6"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "841232e"
+        }
+      }
+    },
+    "shared": {
+      "areas": {
+        "work": [
+          {
+            "name": "cars.txt",
+            "state": "clean"
+          },
+          {
+            "name": "prices.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "cars.txt",
+            "state": "clean"
+          },
+          {
+            "name": "prices.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "841232e",
+            "message": "Revert \"Raise the SUV price\""
+          },
+          "count": 5,
+          "files": [
+            "cars.txt",
+            "prices.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "841232e",
+            "message": "Revert \"Raise the SUV price\"",
+            "parents": [
+              "53e5ee6"
+            ],
+            "files": [
+              {
+                "name": "cars.txt",
+                "state": "same"
+              },
+              {
+                "name": "prices.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "53e5ee6",
+            "message": "Raise the SUV price",
+            "parents": [
+              "786d4d3"
+            ],
+            "files": [
+              {
+                "name": "cars.txt",
+                "state": "same"
+              },
+              {
+                "name": "prices.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "786d4d3",
+            "message": "Add the convertible",
+            "parents": [
+              "18273f3"
+            ],
+            "files": [
+              {
+                "name": "cars.txt",
+                "state": "modified"
+              },
+              {
+                "name": "prices.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "18273f3",
+            "message": "Add the car list",
+            "parents": [
+              "d9c47e6"
+            ],
+            "files": [
+              {
+                "name": "cars.txt",
+                "state": "added"
+              },
+              {
+                "name": "prices.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "d9c47e6",
+            "message": "Add the price table",
+            "parents": [],
+            "files": [
+              {
+                "name": "prices.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "841232e"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "841232e"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "841232e"
+        }
+      }
+    },
+    "older": {
+      "areas": {
+        "work": [
+          {
+            "name": "cars.txt",
+            "state": "clean"
+          },
+          {
+            "name": "prices.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "cars.txt",
+            "state": "clean"
+          },
+          {
+            "name": "prices.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "d6173a6",
+            "message": "Revert \"Add the convertible\""
+          },
+          "count": 6,
+          "files": [
+            "cars.txt",
+            "prices.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "d6173a6",
+            "message": "Revert \"Add the convertible\"",
+            "parents": [
+              "841232e"
+            ],
+            "files": [
+              {
+                "name": "cars.txt",
+                "state": "modified"
+              },
+              {
+                "name": "prices.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "841232e",
+            "message": "Revert \"Raise the SUV price\"",
+            "parents": [
+              "53e5ee6"
+            ],
+            "files": [
+              {
+                "name": "cars.txt",
+                "state": "same"
+              },
+              {
+                "name": "prices.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "53e5ee6",
+            "message": "Raise the SUV price",
+            "parents": [
+              "786d4d3"
+            ],
+            "files": [
+              {
+                "name": "cars.txt",
+                "state": "same"
+              },
+              {
+                "name": "prices.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "786d4d3",
+            "message": "Add the convertible",
+            "parents": [
+              "18273f3"
+            ],
+            "files": [
+              {
+                "name": "cars.txt",
+                "state": "modified"
+              },
+              {
+                "name": "prices.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "18273f3",
+            "message": "Add the car list",
+            "parents": [
+              "d9c47e6"
+            ],
+            "files": [
+              {
+                "name": "cars.txt",
+                "state": "added"
+              },
+              {
+                "name": "prices.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "d9c47e6",
+            "message": "Add the price table",
+            "parents": [],
+            "files": [
+              {
+                "name": "prices.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "d6173a6"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "841232e"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "d6173a6"
+        }
+      }
+    },
+    "no-commit": {
+      "areas": {
+        "work": [
+          {
+            "name": "cars.txt",
+            "state": "clean"
+          },
+          {
+            "name": "prices.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "cars.txt",
+            "state": "clean"
+          },
+          {
+            "name": "prices.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "a8dfd17",
+            "message": "Remove the winter discount"
+          },
+          "count": 9,
+          "files": [
+            "cars.txt",
+            "prices.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "a8dfd17",
+            "message": "Remove the winter discount",
+            "parents": [
+              "30dc836"
+            ],
+            "files": [
+              {
+                "name": "cars.txt",
+                "state": "same"
+              },
+              {
+                "name": "discount.txt",
+                "state": "deleted"
+              },
+              {
+                "name": "prices.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "30dc836",
+            "message": "Extend the winter discount",
+            "parents": [
+              "181376f"
+            ],
+            "files": [
+              {
+                "name": "cars.txt",
+                "state": "same"
+              },
+              {
+                "name": "discount.txt",
+                "state": "modified"
+              },
+              {
+                "name": "prices.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "181376f",
+            "message": "Add the winter discount",
+            "parents": [
+              "d6173a6"
+            ],
+            "files": [
+              {
+                "name": "cars.txt",
+                "state": "same"
+              },
+              {
+                "name": "discount.txt",
+                "state": "added"
+              },
+              {
+                "name": "prices.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "d6173a6",
+            "message": "Revert \"Add the convertible\"",
+            "parents": [
+              "841232e"
+            ],
+            "files": [
+              {
+                "name": "cars.txt",
+                "state": "modified"
+              },
+              {
+                "name": "prices.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "841232e",
+            "message": "Revert \"Raise the SUV price\"",
+            "parents": [
+              "53e5ee6"
+            ],
+            "files": [
+              {
+                "name": "cars.txt",
+                "state": "same"
+              },
+              {
+                "name": "prices.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "53e5ee6",
+            "message": "Raise the SUV price",
+            "parents": [
+              "786d4d3"
+            ],
+            "files": [
+              {
+                "name": "cars.txt",
+                "state": "same"
+              },
+              {
+                "name": "prices.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "786d4d3",
+            "message": "Add the convertible",
+            "parents": [
+              "18273f3"
+            ],
+            "files": [
+              {
+                "name": "cars.txt",
+                "state": "modified"
+              },
+              {
+                "name": "prices.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "18273f3",
+            "message": "Add the car list",
+            "parents": [
+              "d9c47e6"
+            ],
+            "files": [
+              {
+                "name": "cars.txt",
+                "state": "added"
+              },
+              {
+                "name": "prices.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "d9c47e6",
+            "message": "Add the price table",
+            "parents": [],
+            "files": [
+              {
+                "name": "prices.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "a8dfd17"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "841232e"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "a8dfd17"
+        }
+      }
+    },
+    "merge": {
+      "areas": {
+        "work": [
+          {
+            "name": "cars.txt",
+            "state": "clean"
+          },
+          {
+            "name": "prices.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "cars.txt",
+            "state": "clean"
+          },
+          {
+            "name": "prices.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "c48b8ae",
+            "message": "Revert \"Merge branch 'feat/insurance'\""
+          },
+          "count": 12,
+          "files": [
+            "cars.txt",
+            "prices.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "c48b8ae",
+            "message": "Revert \"Merge branch 'feat/insurance'\"",
+            "parents": [
+              "9a3fdf2"
+            ],
+            "files": [
+              {
+                "name": "cars.txt",
+                "state": "same"
+              },
+              {
+                "name": "insurance.txt",
+                "state": "deleted"
+              },
+              {
+                "name": "prices.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "9a3fdf2",
+            "message": "Merge branch 'feat/insurance'",
+            "parents": [
+              "a8dfd17",
+              "5b1dcba"
+            ],
+            "files": [
+              {
+                "name": "cars.txt",
+                "state": "same"
+              },
+              {
+                "name": "insurance.txt",
+                "state": "added"
+              },
+              {
+                "name": "prices.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "5b1dcba",
+            "message": "Add insurance options",
+            "parents": [
+              "a8dfd17"
+            ],
+            "files": [
+              {
+                "name": "cars.txt",
+                "state": "same"
+              },
+              {
+                "name": "insurance.txt",
+                "state": "added"
+              },
+              {
+                "name": "prices.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "a8dfd17",
+            "message": "Remove the winter discount",
+            "parents": [
+              "30dc836"
+            ],
+            "files": [
+              {
+                "name": "cars.txt",
+                "state": "same"
+              },
+              {
+                "name": "discount.txt",
+                "state": "deleted"
+              },
+              {
+                "name": "prices.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "30dc836",
+            "message": "Extend the winter discount",
+            "parents": [
+              "181376f"
+            ],
+            "files": [
+              {
+                "name": "cars.txt",
+                "state": "same"
+              },
+              {
+                "name": "discount.txt",
+                "state": "modified"
+              },
+              {
+                "name": "prices.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "181376f",
+            "message": "Add the winter discount",
+            "parents": [
+              "d6173a6"
+            ],
+            "files": [
+              {
+                "name": "cars.txt",
+                "state": "same"
+              },
+              {
+                "name": "discount.txt",
+                "state": "added"
+              },
+              {
+                "name": "prices.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "d6173a6",
+            "message": "Revert \"Add the convertible\"",
+            "parents": [
+              "841232e"
+            ],
+            "files": [
+              {
+                "name": "cars.txt",
+                "state": "modified"
+              },
+              {
+                "name": "prices.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "841232e",
+            "message": "Revert \"Raise the SUV price\"",
+            "parents": [
+              "53e5ee6"
+            ],
+            "files": [
+              {
+                "name": "cars.txt",
+                "state": "same"
+              },
+              {
+                "name": "prices.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "53e5ee6",
+            "message": "Raise the SUV price",
+            "parents": [
+              "786d4d3"
+            ],
+            "files": [
+              {
+                "name": "cars.txt",
+                "state": "same"
+              },
+              {
+                "name": "prices.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "786d4d3",
+            "message": "Add the convertible",
+            "parents": [
+              "18273f3"
+            ],
+            "files": [
+              {
+                "name": "cars.txt",
+                "state": "modified"
+              },
+              {
+                "name": "prices.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "18273f3",
+            "message": "Add the car list",
+            "parents": [
+              "d9c47e6"
+            ],
+            "files": [
+              {
+                "name": "cars.txt",
+                "state": "added"
+              },
+              {
+                "name": "prices.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "d9c47e6",
+            "message": "Add the price table",
+            "parents": [],
+            "files": [
+              {
+                "name": "prices.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "feat/insurance",
+            "target": "5b1dcba"
+          },
+          {
+            "name": "main",
+            "target": "c48b8ae"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "841232e"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "c48b8ae"
+        }
+      }
+    }
+  }
+}

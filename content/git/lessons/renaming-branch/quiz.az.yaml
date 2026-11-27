@@ -1,0 +1,63 @@
+- question: "Siz `fix-menu` branch-ındasınız. Hansı komanda onun adını `fix-footer` edir?"
+  options:
+    - "`git branch fix-footer`"
+    - "`git switch -m fix-footer`"
+    - "`git branch -m fix-footer`"
+    - "`git rename fix-footer`"
+  answer: 2
+  explain: "Bir adla `git branch -m` hazırkı branch-ın adını dəyişir. `git branch fix-footer` isə yeni branch yaradır."
+- question: "Repository-də bir commit və `main` branch-ı var. Bu komandalardan sonra nə çap olunur?"
+  code: |
+    git switch -c draft
+    git branch -m main trunk
+    git branch
+  options:
+    - "`* trunk` və `  draft`"
+    - "`* draft` və `  trunk`"
+    - "`* draft` və `  main`"
+    - "Xəta: yalnız hazırkı branch-ın adını dəyişmək olar"
+  answer: 1
+  explain: "İki adla `git branch -m` istənilən branch-ın adını dəyişir. Siz `draft`-da qalırsınız, ulduz da orada olur."
+- question: "`main`, `notes` və `docs` branch-ları var. `git branch -m notes docs` nə çap edir?"
+  options:
+    - "Heç nə: `docs` artıq `notes`-un commit-ini göstərir"
+    - "`fatal: a branch named 'docs' already exists`"
+    - "`fatal: branch 'notes' not found`"
+  answer: 1
+  explain: "`-m` mövcud branch-ı əvəz etmir. Bunun üçün `-M` lazımdır."
+- question: "`git branch -M notes docs` işləyəndən sonra köhnə `docs` branch-ı nə olur?"
+  options:
+    - "Onun commit-ləri `notes`-un commit-ləri ilə bir branch-da birləşir"
+    - "O, `docs-old` adı ilə saxlanılır"
+    - "Silinir: `docs` adı artıq `notes`-un commit-ini göstərir"
+  answer: 2
+  explain: "`-M` köhnə `docs`-u silir. Onun öz commit-ləri varsa, onlar adsız qalır."
+- question: "`feature` branch-ında üç commit var. `git branch -m feature feat`-dən sonra bu commit-lərin hash-ləri nə olur?"
+  options:
+    - "Hər üç commit yeni hash alır"
+    - "Dəyişmir: yalnız pointer-in adı dəyişir"
+    - "Yalnız ən son commit yeni hash alır"
+  answer: 1
+  explain: "Branch commit-ə pointer-dir. Ad dəyişəndə commit-lərə toxunulmur."
+- question: "Serverdə (`origin`) `ui` branch-ı var. Siz lokal `git branch -m ui ui-v2` etdiniz. `git ls-remote --heads origin` hansı branch-ı göstərir?"
+  options:
+    - "`refs/heads/ui`"
+    - "`refs/heads/ui-v2`"
+    - "`refs/heads/ui` və `refs/heads/ui-v2`"
+  answer: 0
+  explain: "Lokal ad dəyişikliyi serverə çatmır. Server köhnə adı saxlayır."
+- question: "Lokal `ui` artıq `ui-v2` adlanır. Hansı komandalar serverdəki adı da dəyişir?"
+  options:
+    - "`git push origin -m ui ui-v2`"
+    - "`git branch -m origin/ui origin/ui-v2`"
+    - "`git push origin ui-v2` və `git branch -d ui`"
+    - "`git push -u origin ui-v2` və `git push origin --delete ui`"
+  answer: 3
+  explain: "Server üçün ad dəyişmək komandası yoxdur: yeni adı push edir, köhnəni `--delete` ilə silirsiniz. `git branch -d` yalnız lokal branch-ı silir."
+- question: "`git ls-remote --heads origin` çıxışında hər sətirdə nə var?"
+  options:
+    - "Serverdəki branch-ın commit hash-i və tam adı"
+    - "Lokal branch-ın adı və serverdəki adı"
+    - "Serverdəki son commit-in mesajı və müəllifi"
+  answer: 0
+  explain: "Məsələn: hash, sonra `refs/heads/issue-2`."

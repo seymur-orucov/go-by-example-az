@@ -1,0 +1,11 @@
+rules:
+  - "`git rebase -i HEAD~N` son N commit-i siyahı kimi redaktorda açır; ən köhnə commit yuxarıdadır."
+  - "`pick` commit-i saxlayır, `drop` silir, `reword` mesajını dəyişir."
+  - "`fixup` dəyişikliyi yuxarıdakı commit-ə qatır və mesajı atır; `squash` mesajları birləşdirib redaktorda açır."
+  - "Sətirlərin yerini dəyişsəniz, commit-lər yeni sırada yazılır."
+  - "`git commit --fixup=<commit>` `fixup!` commit-i yaradır, `git rebase -i --autosquash` onu hədəfinə qatır."
+  - "Interactive rebase dəyişən commit-lərə və onlardan sonrakılara yeni hash verir."
+practices:
+  - "Tarixçəni push etməzdən əvvəl təmizləyin: `wip` və `fix typo` commit-lərini birləşdirin, mesajları düzəldin."
+  - "Push olunmuş commit-lərə interactive rebase etməyin: başqalarının tarixçəsi ayrılır."
+  - "Köhnə commit-də səhv tapanda `git commit --fixup` yazın, sonra `--autosquash` ilə birləşdirin."

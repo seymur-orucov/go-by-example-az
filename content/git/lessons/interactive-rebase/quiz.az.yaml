@@ -1,0 +1,65 @@
+- question: "`git rebase -i HEAD~3` redaktorda siyahı açır. Siyahıda commit-lər hansı sırada olur?"
+  options:
+    - "Ən yeni commit yuxarıda, `git log`-dakı kimi"
+    - "Ən köhnə commit yuxarıda, `git log`-un əksinə"
+    - "Mesajlara görə əlifba sırası ilə"
+  answer: 1
+  explain: "Git sətirləri yuxarıdan aşağı bir-bir tətbiq edir, ona görə ən köhnə commit birinci gəlir."
+- question: "`fixup` ilə `squash` arasında fərq nədir?"
+  options:
+    - "`fixup` commit-i dəyişiklikləri ilə silir, `squash` saxlayır"
+    - "`fixup` yalnız son commit-lə, `squash` istənilən commit-lə işləyir"
+    - "`fixup` commit-in mesajını atır, `squash` mesajları birləşdirib redaktorda açır"
+  answer: 2
+  explain: "Hər ikisi dəyişikliyi yuxarıdakı commit-ə qatır. Fərq mesajdadır: `fixup` yalnız yuxarıdakı commit-in mesajını saxlayır."
+- question: "Branch-da `main`-in üstündə dörd commit var. `git rebase -i HEAD~4` siyahısında ikinci sətri `fixup`, üçüncünü `drop` edirsiniz, qalanlar `pick` qalır. Rebase-dən sonra `main`-in üstündə neçə commit olur?"
+  options:
+    - "4"
+    - "3"
+    - "2"
+    - "1"
+  answer: 2
+  explain: "İkinci commit birinciyə qatılır, üçüncü silinir. Birinci və dördüncü commit qalır."
+- question: "Siyahıda bir sətirdə `pick`-i `reword` ilə əvəz etdiniz. Git bu commit üçün nə edir?"
+  options:
+    - "Commit-i saxlayır və mesaj üçün redaktor açır"
+    - "Commit-i silir, mesajını növbəti commit-ə verir"
+    - "Mesajı yuxarıdakı commit-in mesajına əlavə edir"
+  answer: 0
+  explain: "`reword` commit-in dəyişikliklərinə toxunmur, yalnız mesajı soruşur. Mesaj dəyişdiyi üçün hash də yeni olur."
+- question: "Bu komandalardan sonra son commit-in mesajı nə olur?"
+  code: |
+    echo "- run 5 min" > warmup.md
+    git add warmup.md
+    git commit -q -m "Add warm-up"
+    echo "- stretch 5 min" >> warmup.md
+    git add warmup.md
+    git commit -q --fixup=HEAD
+  options:
+    - "`Add warm-up`"
+    - "`fixup Add warm-up`"
+    - "`Fix Add warm-up`"
+    - "`fixup! Add warm-up`"
+  answer: 3
+  explain: "`--fixup` mesajı özü yazır: `fixup! ` və hədəf commit-in mesajı. `--autosquash` bu commit-i məhz bu mesaja görə tapır."
+- question: "Komanda yoldaşınız `chorus` branch-ını serverdən artıq götürüb. Siz onun commit-lərini interactive rebase ilə birləşdirdiniz. Nə olur?"
+  options:
+    - "Onun kompüterində commit-lər də avtomatik yenilənir"
+    - "Onda köhnə commit-lər qalır və tarixçələr ayrılır"
+    - "Git rebase-i rədd edir, çünki commit-lər push olunub"
+  answer: 1
+  explain: "Rebase yeni commit-lər yaradır, başqasının kompüterindəki köhnə commit-lər isə yerində qalır. Git bunu yoxlamır, ona görə qızıl qaydaya özünüz əməl etməlisiniz."
+- question: "Siyahıdakı hər sətri `pick` olaraq saxlayıb redaktoru bağladınız. Nə olur?"
+  options:
+    - "Commit-lər dəyişmir, hash-lər eyni qalır"
+    - "Bütün commit-lər yeni hash alır"
+    - "Rebase dayanır və `--continue` gözləyir"
+  answer: 0
+  explain: "Heç bir commit dəyişmədiyi və parent-lər eyni qaldığı üçün Git onları yenidən yazmır."
+- question: "Siyahıda `Add a` və `Add b` sətirlərinin yerini dəyişdiniz. Rebase-dən sonra nə olur?"
+  options:
+    - "Git sətirləri köhnə sıraya qaytarır"
+    - "Commit-lər yeni sırada yazılır"
+    - "Hər iki commit bir commit-ə birləşir"
+  answer: 1
+  explain: "Git sətirləri yuxarıdan aşağı tətbiq edir. `Add b` indi birinci yazılır, `Add a` onun üstünə gəlir."

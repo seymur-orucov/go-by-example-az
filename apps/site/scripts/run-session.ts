@@ -82,6 +82,12 @@ function runLesson(dir: string, bash: string): void {
   const paths = spellings(home);
   const clean = (s: string) => {
     let out = s.replace(/\r\n/g, "\n");
+    // Progress messages ("Rebasing (1/2)\rRebasing (2/2)\r…") overwrite each other in a
+    // terminal: keep what the reader would see, the text after the last carriage return.
+    out = out
+      .split("\n")
+      .map((l) => l.slice(l.lastIndexOf("\r") + 1))
+      .join("\n");
     for (const p of paths) out = out.split(p).join(SHOWN_HOME);
     return out;
   };
@@ -153,11 +159,14 @@ function runLesson(dir: string, bash: string): void {
 
     const work: AreasFrame["work"] = [];
     const names = new Set([...tracked, ...status.keys()]);
+    // A merge conflict leaves one of these codes until the file is resolved and added.
+    const UNMERGED = new Set(["DD", "AU", "UD", "UA", "DU", "AA", "UU"]);
     for (const n of [...names].sort()) {
       const xy = status.get(n) ?? "  ";
       const y = xy[1];
-      const state =
-        xy === "??"
+      const state = UNMERGED.has(xy)
+        ? "unmerged"
+        : xy === "??"
           ? "untracked"
           : xy === "!!"
             ? "ignored"
@@ -176,7 +185,15 @@ function runLesson(dir: string, bash: string): void {
       const xy = status.get(n) ?? "  ";
       if (xy === "??" || xy === "!!") continue;
       const x = xy[0];
-      const state = x === "A" ? "added" : x === "M" ? "modified" : x === "D" ? "deleted" : "clean";
+      const state = UNMERGED.has(xy)
+        ? "unmerged"
+        : x === "A"
+          ? "added"
+          : x === "M"
+            ? "modified"
+            : x === "D"
+              ? "deleted"
+              : "clean";
       index.push({ name: n, state });
     }
 
@@ -192,7 +209,11 @@ function runLesson(dir: string, bash: string): void {
     return { work, index, repo };
   }
 
-  /** The commit graph: commits reachable from branches, tags and HEAD, with Git's short hashes. */
+  /**
+   * The commit graph: commits reachable from branches, tags, remote-tracking branches and HEAD,
+   * with Git's short hashes. `remotes` is left out when there are none, so lessons without a
+   * remote record the same frame as before.
+   */
   function graphSnapshot(at: string): GraphFrame | null {
     if (git(at, ["rev-parse", "--is-inside-work-tree"]).stdout.trim() !== "true") return null;
     const out = (args: string[]) => git(at, args).stdout;
@@ -205,13 +226,16 @@ function runLesson(dir: string, bash: string): void {
       "--format=%(refname)%00%(objectname)%00%(*objectname)",
       "refs/heads",
       "refs/tags",
+      "refs/remotes",
     ])
       .split("\n")
       .filter((l) => l !== "")
       .map((l) => {
         const [name, obj, peeled] = l.split("\0");
         return { name: name!, target: peeled || obj! };
-      });
+      })
+      // `origin/HEAD` only names the server's default branch, which has its own ref.
+      .filter((r) => !(r.name.startsWith("refs/remotes/") && r.name.endsWith("/HEAD")));
     const tips = [...new Set([...refs.map((r) => r.target), ...(headTarget ? [headTarget] : [])])];
     if (!tips.length) {
       return { commits: [], branches: [], tags: [], head: { branch: headBranch, target: null } };
@@ -267,10 +291,12 @@ function runLesson(dir: string, bash: string): void {
       refs
         .filter((r) => r.name.startsWith(prefix))
         .map((r) => ({ name: r.name.slice(prefix.length), target: abbrev(r.target) }));
+    const remotes = pick("refs/remotes/");
     return {
       commits,
       branches: pick("refs/heads/"),
       tags: pick("refs/tags/"),
+      ...(remotes.length ? { remotes } : {}),
       head: { branch: headBranch, target: headTarget ? abbrev(headTarget) : null },
     };
   }

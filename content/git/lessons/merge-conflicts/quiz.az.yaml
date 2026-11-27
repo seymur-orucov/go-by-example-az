@@ -1,0 +1,73 @@
+- question: "Siz `main`-dəsiniz və `git merge sale` konfliktlə dayandı. Faylda bu hissə var. `sale` branch-ında qiymət nədir?"
+  code: |
+    <<<<<<< HEAD
+    Price: 6 USD
+    =======
+    Price: 4 USD
+    >>>>>>> sale
+  options:
+    - "`6 USD`"
+    - "`4 USD`"
+    - "Markerlərdən bunu bilmək olmur"
+  answer: 1
+  explain: "`=======` ilə `>>>>>>> sale` arasında merge olunan branch-ın versiyası var. `<<<<<<< HEAD` hissəsi `main`-inkidir."
+- question: "`git merge` `CONFLICT (content)` yazıb dayandı. Hansı doğrudur?"
+  options:
+    - "Merge commit yaranıb, markerlər onun içindədir"
+    - "Git hazırkı branch-ın versiyasını seçib merge-i bitirib"
+    - "Merge commit yaranmayıb, Git konfliktin həllini gözləyir"
+  answer: 2
+  explain: "Konfliktdə merge dayanır və commit yaranmır. Faylı həll edib `git add` və `git commit` etməlisiniz."
+- question: "`git merge sale` konfliktlə dayanmışdı. Bu komandalardan sonra `git status` nə yazır?"
+  code: |
+    git merge --abort
+    git status
+  options:
+    - "`nothing to commit, working tree clean`"
+    - "`You have unmerged paths.`"
+    - "`All conflicts fixed but you are still merging.`"
+  answer: 0
+  explain: "`--abort` merge-i ləğv edir və repository-ni merge-dən əvvəlki təmiz vəziyyətə qaytarır."
+- question: "Konfliktli `notes.txt`-i redaktorda düzəltdiniz, amma `git add` etmədən `git commit --no-edit` yazdınız. Nə olur?"
+  options:
+    - "Git commit etmir: fayl hələ unmerged sayılır"
+    - "Commit yaranır, `notes.txt` köhnə versiyada qalır"
+    - "Git `notes.txt`-i özü stage edib commit edir"
+  answer: 0
+  explain: "Git `Committing is not possible because you have unmerged files.` yazır. Faylı əvvəlcə `git add` ilə həll olunmuş kimi işarələmək lazımdır."
+- question: "Faylda `<<<<<<< HEAD` sətri qalıb, amma siz `git add` və `git commit --no-edit` etdiniz. Nə olur?"
+  options:
+    - "`git add` xəta verir və faylı stage etmir"
+    - "Commit yaranır, markerlər də commit-dəki faylda qalır"
+    - "Git commit zamanı markerləri özü silir"
+  answer: 1
+  explain: "`git add` markerləri yoxlamır. Markerlər adi mətn kimi commit-ə düşür, ona görə faylı əvvəlcə oxuyun."
+- question: "`plan.txt`-də 4 sətir var. Ayla öz branch-ında 4-cü sətri, Sam `main`-də 1-ci sətri dəyişib. Sam Ayla-nın branch-ını merge edəndə nə olur?"
+  options:
+    - "Konflikt yaranır, çünki ikisi də eyni faylı dəyişib"
+    - "Git Ayla-nın faylını götürür, Sam-ın dəyişikliyi itir"
+    - "Git iki dəyişikliyi özü birləşdirib merge commit yaradır"
+  answer: 2
+  explain: "Konflikt eyni faylda yox, eyni sətirlərdə olur. Fərqli sətirləri Git özü birləşdirir."
+- question: "Konfliktli `notes.txt`-dən markerləri silib son versiyanı yazdınız. Hansı komanda faylı həll olunmuş kimi işarələyir?"
+  options:
+    - "`git merge --abort`"
+    - "`git restore notes.txt`"
+    - "`git status notes.txt`"
+    - "`git add notes.txt`"
+  answer: 3
+  explain: "`git add` faylı stage edir və Git onu artıq unmerged saymır. Sonra `git commit` merge-i bitirir."
+- question: "`git mergetool` nə edir?"
+  options:
+    - "Konfliktli faylları seçdiyiniz qrafik alətdə açır"
+    - "Konfliktləri özü həll edib merge commit yaradır"
+    - "Merge-i ləğv edib faylları əvvəlki halına qaytarır"
+  answer: 0
+  explain: "`git mergetool` `merge.tool` ayarındakı aləti (Meld, vimdiff və s.) açır. Həlli yenə siz edirsiniz."
+- question: "Bütün konfliktlər həll olunub və `git add` edilib. Hansı komanda merge-i redaktor açmadan bitirir?"
+  options:
+    - "`git merge --abort`"
+    - "`git commit --no-edit`"
+    - "`git merge ayla-time`"
+  answer: 1
+  explain: "`--no-edit` Git-in hazırladığı `Merge branch '...'` mesajını qəbul edir. Merge-i təkrar işə salmaq xəta verir: əvvəlki merge hələ bitməyib."

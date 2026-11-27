@@ -1,0 +1,805 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "git init -q --bare ~/server/playlist.git",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git clone -q ~/server/playlist.git",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "warning: You appear to have cloned an empty repository.\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cd playlist",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"entrance: Canon in D\" \"exit: Wedding March\" > ceremony.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add ceremony.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add ceremony songs\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"September\" \"Dancing Queen\" > party.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add party.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add party songs\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push -q origin main",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git clone -q ~/server/playlist.git ~/ayla/playlist",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ~/ayla/playlist",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"first dance: At Last\" >> ceremony.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git -c user.name=\"Ayla Karimova\" -c user.email=\"ayla@example.com\" commit -q -am \"Add the first dance\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push -q origin main",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ~/playlist",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"rings: Air on the G String\" >> ceremony.txt",
+      "step": "uncommitted",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add ceremony.txt",
+      "step": "uncommitted",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Uptown Funk\" >> party.txt",
+      "step": "uncommitted",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"1. Best man\" > speeches.txt",
+      "step": "uncommitted",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status --short",
+      "step": "uncommitted",
+      "hidden": false,
+      "fail": false,
+      "out": "M  ceremony.txt\n M party.txt\n?? speeches.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git reset --hard",
+      "step": "reset",
+      "hidden": false,
+      "fail": false,
+      "out": "HEAD is now at 80d6cc8 Add party songs\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git status --short",
+      "step": "reset",
+      "hidden": false,
+      "fail": false,
+      "out": "?? speeches.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cat party.txt",
+      "step": "reset",
+      "hidden": false,
+      "fail": false,
+      "out": "September\nDancing Queen\n",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"Dancing Queen\" \"September\" > party.txt",
+      "step": "experiment",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -am \"Try a new party order\"",
+      "step": "experiment",
+      "hidden": false,
+      "fail": false,
+      "out": "[main 979d51e] Try a new party order\n 1 file changed, 1 insertion(+), 1 deletion(-)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git add speeches.txt",
+      "step": "experiment",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"Add the speech order\"",
+      "step": "experiment",
+      "hidden": false,
+      "fail": false,
+      "out": "[main d6fc7e4] Add the speech order\n 1 file changed, 1 insertion(+)\n create mode 100644 speeches.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "experiment",
+      "hidden": false,
+      "fail": false,
+      "out": "d6fc7e4 Add the speech order\n979d51e Try a new party order\n80d6cc8 Add party songs\n4b57422 Add ceremony songs\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git reset --hard HEAD~1",
+      "step": "drop-commit",
+      "hidden": false,
+      "fail": false,
+      "out": "HEAD is now at 979d51e Try a new party order\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "drop-commit",
+      "hidden": false,
+      "fail": false,
+      "out": "979d51e Try a new party order\n80d6cc8 Add party songs\n4b57422 Add ceremony songs\n",
+      "exit": 0
+    },
+    {
+      "cmd": "ls",
+      "step": "drop-commit",
+      "hidden": false,
+      "fail": false,
+      "out": "ceremony.txt\nparty.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git fetch",
+      "step": "match-server",
+      "hidden": false,
+      "fail": false,
+      "out": "From /home/sam/server/playlist\n   80d6cc8..7d3dd6e  main       -> origin/main\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git status",
+      "step": "match-server",
+      "hidden": false,
+      "fail": false,
+      "out": "On branch main\nYour branch and 'origin/main' have diverged,\nand have 1 and 1 different commits each, respectively.\n  (use \"git pull\" if you want to integrate the remote branch with yours)\n\nnothing to commit, working tree clean\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git reset --hard origin/main",
+      "step": "match-server",
+      "hidden": false,
+      "fail": false,
+      "out": "HEAD is now at 7d3dd6e Add the first dance\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "match-server",
+      "hidden": false,
+      "fail": false,
+      "out": "7d3dd6e Add the first dance\n80d6cc8 Add party songs\n4b57422 Add ceremony songs\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "uncommitted": {
+      "areas": {
+        "work": [
+          {
+            "name": "ceremony.txt",
+            "state": "clean"
+          },
+          {
+            "name": "party.txt",
+            "state": "modified"
+          },
+          {
+            "name": "speeches.txt",
+            "state": "untracked"
+          }
+        ],
+        "index": [
+          {
+            "name": "ceremony.txt",
+            "state": "modified"
+          },
+          {
+            "name": "party.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "80d6cc8",
+            "message": "Add party songs"
+          },
+          "count": 2,
+          "files": [
+            "ceremony.txt",
+            "party.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "80d6cc8",
+            "message": "Add party songs",
+            "parents": [
+              "4b57422"
+            ],
+            "files": [
+              {
+                "name": "ceremony.txt",
+                "state": "same"
+              },
+              {
+                "name": "party.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "4b57422",
+            "message": "Add ceremony songs",
+            "parents": [],
+            "files": [
+              {
+                "name": "ceremony.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "80d6cc8"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "80d6cc8"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "80d6cc8"
+        }
+      }
+    },
+    "reset": {
+      "areas": {
+        "work": [
+          {
+            "name": "ceremony.txt",
+            "state": "clean"
+          },
+          {
+            "name": "party.txt",
+            "state": "clean"
+          },
+          {
+            "name": "speeches.txt",
+            "state": "untracked"
+          }
+        ],
+        "index": [
+          {
+            "name": "ceremony.txt",
+            "state": "clean"
+          },
+          {
+            "name": "party.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "80d6cc8",
+            "message": "Add party songs"
+          },
+          "count": 2,
+          "files": [
+            "ceremony.txt",
+            "party.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "80d6cc8",
+            "message": "Add party songs",
+            "parents": [
+              "4b57422"
+            ],
+            "files": [
+              {
+                "name": "ceremony.txt",
+                "state": "same"
+              },
+              {
+                "name": "party.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "4b57422",
+            "message": "Add ceremony songs",
+            "parents": [],
+            "files": [
+              {
+                "name": "ceremony.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "80d6cc8"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "80d6cc8"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "80d6cc8"
+        }
+      }
+    },
+    "experiment": {
+      "areas": {
+        "work": [
+          {
+            "name": "ceremony.txt",
+            "state": "clean"
+          },
+          {
+            "name": "party.txt",
+            "state": "clean"
+          },
+          {
+            "name": "speeches.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "ceremony.txt",
+            "state": "clean"
+          },
+          {
+            "name": "party.txt",
+            "state": "clean"
+          },
+          {
+            "name": "speeches.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "d6fc7e4",
+            "message": "Add the speech order"
+          },
+          "count": 4,
+          "files": [
+            "ceremony.txt",
+            "party.txt",
+            "speeches.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "d6fc7e4",
+            "message": "Add the speech order",
+            "parents": [
+              "979d51e"
+            ],
+            "files": [
+              {
+                "name": "ceremony.txt",
+                "state": "same"
+              },
+              {
+                "name": "party.txt",
+                "state": "same"
+              },
+              {
+                "name": "speeches.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "979d51e",
+            "message": "Try a new party order",
+            "parents": [
+              "80d6cc8"
+            ],
+            "files": [
+              {
+                "name": "ceremony.txt",
+                "state": "same"
+              },
+              {
+                "name": "party.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "80d6cc8",
+            "message": "Add party songs",
+            "parents": [
+              "4b57422"
+            ],
+            "files": [
+              {
+                "name": "ceremony.txt",
+                "state": "same"
+              },
+              {
+                "name": "party.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "4b57422",
+            "message": "Add ceremony songs",
+            "parents": [],
+            "files": [
+              {
+                "name": "ceremony.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "d6fc7e4"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "80d6cc8"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "d6fc7e4"
+        }
+      }
+    },
+    "drop-commit": {
+      "areas": {
+        "work": [
+          {
+            "name": "ceremony.txt",
+            "state": "clean"
+          },
+          {
+            "name": "party.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "ceremony.txt",
+            "state": "clean"
+          },
+          {
+            "name": "party.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "979d51e",
+            "message": "Try a new party order"
+          },
+          "count": 3,
+          "files": [
+            "ceremony.txt",
+            "party.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "979d51e",
+            "message": "Try a new party order",
+            "parents": [
+              "80d6cc8"
+            ],
+            "files": [
+              {
+                "name": "ceremony.txt",
+                "state": "same"
+              },
+              {
+                "name": "party.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "80d6cc8",
+            "message": "Add party songs",
+            "parents": [
+              "4b57422"
+            ],
+            "files": [
+              {
+                "name": "ceremony.txt",
+                "state": "same"
+              },
+              {
+                "name": "party.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "4b57422",
+            "message": "Add ceremony songs",
+            "parents": [],
+            "files": [
+              {
+                "name": "ceremony.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "979d51e"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "80d6cc8"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "979d51e"
+        }
+      }
+    },
+    "match-server": {
+      "areas": {
+        "work": [
+          {
+            "name": "ceremony.txt",
+            "state": "clean"
+          },
+          {
+            "name": "party.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "ceremony.txt",
+            "state": "clean"
+          },
+          {
+            "name": "party.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "7d3dd6e",
+            "message": "Add the first dance"
+          },
+          "count": 3,
+          "files": [
+            "ceremony.txt",
+            "party.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "7d3dd6e",
+            "message": "Add the first dance",
+            "parents": [
+              "80d6cc8"
+            ],
+            "files": [
+              {
+                "name": "ceremony.txt",
+                "state": "modified"
+              },
+              {
+                "name": "party.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "80d6cc8",
+            "message": "Add party songs",
+            "parents": [
+              "4b57422"
+            ],
+            "files": [
+              {
+                "name": "ceremony.txt",
+                "state": "same"
+              },
+              {
+                "name": "party.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "4b57422",
+            "message": "Add ceremony songs",
+            "parents": [],
+            "files": [
+              {
+                "name": "ceremony.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "7d3dd6e"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "7d3dd6e"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "7d3dd6e"
+        }
+      }
+    }
+  }
+}

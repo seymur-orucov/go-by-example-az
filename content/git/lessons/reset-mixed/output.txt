@@ -1,0 +1,44 @@
+$ echo "2026-01-15 temp 26C pH 7.0" >> water.log
+$ echo "shrimp pellets: Sunday" >> feeding.txt
+$ git add water.log feeding.txt
+$ git commit -m "Update aquarium log"
+[main e5e8754] Update aquarium log
+ 2 files changed, 2 insertions(+)
+$ git reset HEAD~1
+Unstaged changes after reset:
+M	feeding.txt
+M	water.log
+$ git log --oneline
+0127a42 Start aquarium log
+$ git status
+On branch main
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   feeding.txt
+	modified:   water.log
+
+no changes added to commit (use "git add" and/or "git commit -a")
+$ git add water.log
+$ git commit -m "Log the January 15 water test"
+[main 4d2f1e9] Log the January 15 water test
+ 1 file changed, 1 insertion(+)
+$ git add feeding.txt
+$ git commit -m "Feed shrimp pellets on Sunday"
+[main 25a64e1] Feed shrimp pellets on Sunday
+ 1 file changed, 1 insertion(+)
+$ git log --oneline
+25a64e1 Feed shrimp pellets on Sunday
+4d2f1e9 Log the January 15 water test
+0127a42 Start aquarium log
+$ echo "2026-01-18 temp 25C pH 7.1" >> water.log
+$ echo "no food: Friday" >> feeding.txt
+$ git add water.log feeding.txt
+$ git reset feeding.txt
+Unstaged changes after reset:
+M	feeding.txt
+$ git status --short
+ M feeding.txt
+M  water.log
+$ git log --oneline -1
+25a64e1 Feed shrimp pellets on Sunday

@@ -640,7 +640,135 @@ Done (branch `feat/git-history-lessons`):
 - Claude's edits: plainer wording in `head` (intro, the cmd note), a step heading with two `~` that Markdown rendered as strikethrough (now `HEAD~N: …`), an unverified claim about how GitHub cuts long subjects, a repeated rule in `git-log-options`.
 - Checked: `content:run` of all four session lessons again (identical), every quiz answer in scratch sandboxes (by the subagents), `content:check` (102/102), build, lint, format, `astro check`; `head` and `commit-messages` at 1440px, `git-log-options` at 390px (iframe).
 
-### 74. Go lesson review and the first polish (`tickers`)
+### 74. Git module 4 "Branch-lar"
+The user asked for every remaining module of the Git part (`/write-content git`, "bütün modulları yaz"). The work runs in a separate worktree (`go-by-example-git`), module by module: one writer subagent per lesson from a shared brief (rules learned so far: no hashes, plain headings with at most one `~`, no giveaway quiz options, the `review-lesson` scan), then an independent reviewer subagent per module, then Claude's checks and one PR per module.
+
+Done (branch `feat/git-branches-lessons`):
+- `what-is-a-branch` (`state`, podcast notes): a branch is a 41-byte file with a hash; a new branch copies nothing; only the branch HEAD points to moves; `--decorate`, `--all`.
+- `creating-branch` (`terminal`, photo album site): `git branch <name>`, `*`, `-v`, a start point (`HEAD~1`), `git switch -c`, the "already exists" error.
+- `switch-branches` (`state`, moving checklist): the working directory follows the branch, `git switch -`, `checkout` mentioned, a change that travels with you and one that blocks the switch.
+- `renaming-branch` (`terminal`, school newsletter): `-m` for another and the current branch, `master` → `main`, `-M`, the server keeps the old name (`git push -u origin new`, `git push origin --delete old`, `git ls-remote --heads`).
+- `deleting-branch` (`terminal`, pet-care schedule): `-d`, "not fully merged", `-D`, the current branch cannot be deleted, `git push origin --delete`.
+- `branch-naming` (`concept`, online bookstore): prefixes, ticket ids, kebab-case, Git's rules (`git check-ref-format --branch`), `feat` vs `feat/x`.
+- `detached-head` (`state`, song lyrics): `git switch --detach`, `.git/HEAD` with a hash, a commit on no branch, saving it with `git switch -c`, the "leaving 1 commit behind" warning.
+- `diff-between-branches` (`terminal`, conference talk outline): `log main..feat`, `diff main feat` vs `diff main...feat` (merge base, what a PR shows), `--stat`.
+- The reviewer fixed terms ("hazırkı", "serverdəki"), wrong back-references ("əvvəlki dərsdə"), `git push -u origin` order, two giveaway quiz options, a hash copied into a quiz option.
+- Checked: `content:run` twice for the seven session lessons (identical), every quiz answer in sandboxes (writers) plus spot checks (reviewer), `content:check`, the `review-lesson` scan (0 points each).
+
+### 75. Git module 5 "Merge"
+Same process as module 4 (writers per lesson, an independent reviewer, Claude's checks).
+
+Done (branch `feat/git-merge-lessons`):
+- `merging-basics` (`terminal`, band set list): target (hədəf) and source (mənbə), `git switch` + `git merge`, the source does not move, a fast-forward and a merge commit side by side, `--no-edit` / `-m` and the editor.
+- `fast-forward-merge` (`state`, hiking trail guide): `Updating a..b` / `Fast-forward`, same hashes and a straight history, `Already up to date.`, `--ff-only` refusing.
+- `three-way-merge` (`state`, roommates' shopping list): merge base (`git merge-base`), base / ours / theirs, a commit with two parents (`HEAD^1`, `HEAD^2`), `ort` (default since Git 2.34).
+- `ff-vs-no-ff` (`compare`, mobile game team): `--no-ff` bubbles and `--first-parent`, `--ff-only`, `merge.ff`, `pull.ff only` for current Git, GitHub's "Create a merge commit".
+- `squash-merge` (`state`, flashcards deck): `--squash` stages without committing, one commit with one parent, `branch -d` refuses afterwards, GitHub's "Squash and merge".
+- `merge-conflicts` (`terminal`, club meeting agenda): `CONFLICT`, `Unmerged paths`, the markers, `--abort`, resolving with `git add` + `git commit`, `mergetool` mentioned.
+- The reviewer fixed the `pull.ff only` claim for current Git (a diverged pull already refuses), repeated `--no-edit` explanations, two confusing sentences in `fast-forward-merge`, wording and back-references.
+- Found on the way: the areas recorder showed a conflicted file as clean, and the graph did not show `origin/*`; both fixed in a separate site PR.
+
+### 76. Git module 6 "Remote-lar" (without the diagram pilot)
+Same process. The first lesson, `remotes-and-clone`, is the pilot of the new `diagram` kind (branch `feat/diagram-kind`, awaiting the user's approval), so it is not part of this PR.
+
+Done (branch `feat/git-remotes-lessons`):
+- `cloning-repositories` (`terminal`, an open-source icon pack): `git clone` from a local bare repository (explained once here), the full history, `origin`, `git branch -a` and remote-tracking branches, cloning into another folder, `--depth 1` over `file://`.
+- `managing-remotes` (`terminal`, bike repair notes): `git remote add`, `-v`, `.git/config` via `git config --get-regexp`, `rename`, `set-url`, `remove`.
+- `fetch-and-pull` (`state`, exam notes with Ayla's clone): `origin/main` as the last known server position, `git fetch` moving only `origin/main`, `git merge origin/main`, `git pull`, a diverged pull refusing and `--no-rebase`.
+- `fetch-without-merge` (`terminal`, charity run page): reading `fetch` output, `log HEAD..origin/main`, `diff --stat`, `git branch -r`, `fetch --prune`, `fetch.prune`.
+- `push` (`terminal`, quiz question bank): `git push origin main`, no upstream, `-u`, `git branch -vv`, a rejected push (`fetch first`) and pull-then-push.
+- The recorder now shows `origin/*` in the graph (separate site PR), so the reviewer re-recorded all five, added graphs where the remote-tracking branch is the point, and rewrote texts that said the visual shows only local branches. It also removed repeated explanations (bare repository, `(fetch)`/`(push)`, `--no-edit`) in favour of back-references and unified spelling ("serverə", "Sam-ın").
+- A `git pull` merge commit puts the sandbox's temp path into its message; the sessions amend it in a hidden command so the output stays deterministic.
+
+### 77. Git module 7 "Tag-lar"
+Same process.
+
+Done (branch `feat/git-tags-lessons`):
+- `tags` (`terminal`, a desktop calculator's releases): a lightweight tag as a file in `.git/refs/tags/`, a tag does not move, annotated tags (`-a`, `-m`, `git cat-file -t`, `git show` with `Tagger`), semantic versioning (MAJOR.MINOR.PATCH, a zero patch may be left out of the name), annotated tags for releases (`git describe`).
+- `managing-tags` (`terminal`, a board-game rulebook's editions): `git tag -n`, `-l "v1.*"`, text order vs `--sort=v:refname`, tagging an older commit, `git tag -d`, "already exists" and `-f`, never move a shared tag.
+- `pushing-tags` (`terminal`, a browser extension): `git push` does not send tags, `git push origin <tag>`, `--follow-tags` vs `--tags`, `push.followTags`, deleting a server tag, teammates get tags with `git fetch`.
+- `checkout-tags` (`terminal`, a printable calendar generator): `git switch <tag>` refuses, `--detach`, a hotfix branch from a tag (`git switch -c hotfix/1.1.1 v1.1`), a new patch tag.
+- The reviewer explained the two- and three-part version names, removed a repeated explanation of annotated tag objects, fixed spellings ("serverdə", "Sam-ın", "merge-i") and a giveaway quiz option.
+
+### 78. Git module 8 "Səhvləri düzəltmək"
+Same process. From here on the remaining modules are collected on one branch (`feat/git-remaining-lessons`, one commit per module) and pushed as one PR: the user asked for fewer PRs because every push builds a Cloudflare Pages preview.
+
+Done:
+- `restore` (`terminal`, a holiday gift list): `git restore` from the staging area, `--staged`, both together, `--source=HEAD~2`, a deleted file, `checkout --` as the old form.
+- `amend` (`state`, a yoga class schedule): fixing the message, adding a forgotten file with `--no-edit`, a new commit with a new hash, an amended pushed commit and the rejected push.
+- `git-revert` (`state`, a car rental price table): `Revert "…"`, safe on pushed history, reverting an older commit, `--no-commit` over a range, a merge needs `-m 1`, `Reapply` (Git 2.43+).
+- `reset-soft`, `reset-mixed`, `reset-hard` (`state`; a translator's glossary, an aquarium log, a wedding playlist): what each mode changes and prints, squashing with `--soft`, re-splitting a commit and `git reset <file>` with `--mixed`, lost uncommitted work and `reset --hard origin/main` with `--hard`.
+- `reset-modes` (`compare`, a thesis repository): the three modes side by side, `git status` after each, a decision guide.
+- `revert-vs-reset` (`compare`, a team's to-do app): "has anyone else got this commit?", the `non-fast-forward` rejection after resetting a pushed commit, revert for shared history and reset for local.
+- The reviewer aligned the reflog mention and the rejected-push explanation across lessons, fixed a wrong quiz explanation in `reset-modes`, added a missing command to a quiz question and replaced five near-duplicate questions.
+
+### 79. Git module 9 "Tarixçəni yenidən yazmaq" (without `force-push`)
+Same process; `force-push` is a `diagram` lesson and waits for the diagram pilot's approval.
+
+Done:
+- `rebase` (`state`, museum audio guide): replayed commits with new hashes, `Successfully rebased …`, a rebase conflict (sides swapped compared with merge), `--continue` / `--abort`, then a fast-forward.
+- `merge-vs-rebase` (`compare`, news website): merging `main` in vs rebasing onto it, the golden rule (defined here, quoted from Pro Git), duplicated commits when it is broken, `git pull --rebase` for local commits.
+- `linear-vs-non-linear` (`compare`, an open-source date library): the shape of `main` after each merge method, bisect/revert vs context, GitHub's merge settings and "Require linear history".
+- `interactive-rebase` (`terminal`, dance choreography notes): the todo list, `fixup`, `drop`, `reword`, `squash`, `--fixup` + `--autosquash`; the editor is scripted with a hidden `sequence.editor` and the text says what a person types.
+- `cherry-pick` (`state`, sports club site): copying a fix to `release/1.0`, new hash with the same author, `-x`, a range, a conflict and `--abort`.
+- `filter-branch` (`terminal`, smart-home scripts with a leaked key): deleting is not enough, rotate the key first, `git filter-branch --index-filter`, `refs/original/`, `git filter-repo` (shown, not run), everyone re-clones.
+- Runner fix (in this branch): recorded output keeps only the text after the last carriage return, as a terminal shows it (Git's `Rebasing (1/2)` progress).
+- Levels: these lessons are `intermediate` (the site shows "orta"); modules 1–8 stay `beginner`.
+
+### 80. Git module 10 "Komanda işi" (without `pull-requests`)
+Same process; `pull-requests` is a `diagram` lesson and waits for the diagram pilot's approval.
+
+Done:
+- `fork-vs-clone` (`compare`, an Azerbaijani translation for an open-source notes app): fork is GitHub's copy under your account, clone is Git's copy on your computer; `origin` = the fork, `upstream` = the original; syncing with `fetch upstream` or the "Sync fork" button.
+- `branching-workflows` (`compare`, a web startup vs a versioned mobile app): GitHub flow, trunk-based development, git flow (with Driessen's 2020 note), the cost of long-lived branches.
+- `clean-git-history` (`terminal`, a market stall's stock list): atomic commits, `--fixup` while working, `git fetch` and `git rebase -i --autosquash origin/main` before the PR.
+
+### 81. Git module 11 "Faydalı alətlər"
+Same process.
+
+Done:
+- `stash` (`state`, a school timetable): `git stash`, switching away and back, `pop` vs `apply`/`drop`, `-u` for untracked files, `-m` names, `pop --index`.
+- `reflog` (`state`, a short-story manuscript): reading `HEAD@{n}` lines, recovering commits after `reset --hard`, a deleted branch, undoing a rebase with `<branch>@{1}`; local only, 90/30-day expiry.
+- `bisect` (`terminal`, a temperature converter): binary search between `v1.0` and a bad `HEAD`, `good`/`bad`, `is the first 'bad' commit`, `bisect reset`, `bisect run` with an exit-code test.
+- `worktree` (`terminal`, a coffee subscription site): `git worktree add -b`, one `.git` for both folders, a branch open in one worktree only, `remove` and `prune`.
+- The reviewer set the level of modules 10–11 to `intermediate`, added the rebase recovery the earlier lessons promised to `reflog`, fixed the search counts in `bisect` and replaced near-duplicate quiz questions.
+
+### 82. Git module 12 "Git hooks"
+Same process.
+
+Done:
+- `hooks` (`concept`, a bike rental team): what a hook is, the order inside a commit, `.git/hooks` and `.sample`, executable bit and shebang (Windows needs `#!`), exit codes, hooks are not cloned, `core.hooksPath` and hook managers (this site: lefthook + commitlint).
+- `client-vs-server-hooks` (`compare`, a company Git server): client hooks give fast feedback and can be skipped, `pre-receive`/`update`/`post-receive` enforce rules for everyone, GitHub.com uses rulesets, status checks and webhooks instead.
+- `hook-pre-commit` (`terminal`, a notes site): block added `TODO` lines in the staged diff, the hook reads the staging area, `--no-verify`.
+- `hook-commit-msg` (`terminal`, a CLI tool): the message file argument, a Conventional Commits check with `grep -E`, commitlint.
+- `hook-pre-push` (`terminal`, a lamp landing page): the stdin ref lines (all-zero hash for a new branch), running a check before push, blocking direct pushes to `main`.
+- `hook-post-checkout` (`terminal`, a shop API): previous HEAD, new HEAD and the flag (`git restore` runs it with 0), a dependency reminder, the exit status does not undo the switch.
+- `hook-post-update` (`terminal`, a static site on a bare server): server hooks in the bare repository, a `post-receive` deploy with `--work-tree`, `post-update` arguments and `update-server-info`, a `pre-receive` rejection.
+- The reviewer removed a fenced code block and an id-less outro heading that the text-lesson renderer would show unstyled, made each fact taught once with back-references, fixed the clone note in `hook-post-checkout` and replaced near-duplicate quiz questions.
+
+### 83. Git module 13 "Dərinlik"
+Same process. With this module every node of part 1 ("Hissə 1 · Git") is written except the three `diagram` nodes (`remotes-and-clone` is the pilot on `feat/diagram-kind`; `force-push` and `pull-requests` wait for its approval).
+
+Done:
+- `git-objects` (`state`, a haiku collection): porcelain vs plumbing, the object types in `.git/objects`, `git hash-object`, `--batch-all-objects`, following HEAD → ref → commit → tree → blob, what a new commit adds.
+- `git-attributes` (`terminal`, cross-platform build scripts): CRLF in the repository, `text=auto` / `eol=lf` / `eol=crlf`, `--renormalize`, `git ls-files --eol`, `binary`, `linguist-generated`, `merge=ours`.
+- `git-lfs` (`terminal`, a game prototype's textures): why big blobs hurt, `git lfs install` / `track`, pointer files, `.git/lfs/objects`, push and clone (LFS works against a local bare repository).
+- `submodules` (`state`, a brand site with a UI kit): `git submodule add`, `.gitmodules`, the `160000 commit` gitlink, a moved submodule, `protocol.file.allow` (Git 2.38.1) explained once, submodule vs subtree.
+- `submodules-update` (`terminal`, a docs site with a theme): an empty folder after a plain clone, `update --init`, `--recurse-submodules`, `update --remote`, teammates after `git pull`.
+- `git-patch` (`terminal`, an email-patch library): `git diff > file` + `git apply`, `format-patch`, `git am` keeping the author.
+- Determinism fixes in the sessions: `.gitmodules` URLs rewritten to `/home/sam/...` (or relative) in hidden commands, a fixed `openssl` stream for the fake texture, single `git config` reads instead of `--get-regexp`.
+
+### 84. Lesson kind `diagram` and the last Git part 1 lessons
+The user approved continuing with the `diagram` pilot (`remotes-and-clone`); it became the exemplar of the kind in the write-content skill.
+
+Done:
+- The `diagram` kind: a text lesson whose main visual is `vis: diagram`, 2–4 blocks side by side with labelled arrows between them, stacked with vertical arrows on a phone (schema in `lesson.ts`, a branch in `Vis.astro`, CSS in `lesson.css`, a check that the lesson has one).
+- `remotes-and-clone` (pilot, an online shop): local and remote repositories, `origin`, the URL, HTTPS vs SSH.
+- `force-push` (a bus-ticket app translation): the `non-fast-forward` and `fetch first` rejections, `--force` replacing the branch and losing a teammate's commit, `--force-with-lease` and `stale info`, the lease passing after a fetch, `--force-if-includes`, `git pull --rebase` dropping the teammate's own commit after a force push, the golden rule and protected branches.
+- `pull-requests` (an open-source bus timetable): base and compare branch, a PR from a branch and from a fork, draft, the three review answers, new commits and checks, the three GitHub merge methods, cleaning up after a merge (`-d` fails after squash or rebase).
+- With these, every node of part 1 ("Hissə 1 · Git", 78 lessons) is written.
+
+### 85. Go lesson review and the first polish (`tickers`)
 The user ran `/review-lesson go` on all 84 Go lessons (nine parallel subagents, reports in the git-ignored `.reviews/go/`, summary in `.reviews/go/SUMMARY.md`): 2 "Yenidən yazılmalı", 51 "Düzəliş lazımdır", 31 "Hazırdır"; none reads as AI text. In 36 lessons the quiz is the only major finding: right answers bunched on one position (20 quizzes have every answer at position 0, and the site does not shuffle options) or a giveaway right option. Other recurring issues: intros over 4 sentences, long `main.go`, running story metaphors (channels, channel-buffering, worker-pools), term drift ("paket"/"package", "flag"/"bayraq").
 
 Then `/polish-lesson go/tickers` (branch `refactor/polish-go-lessons`):

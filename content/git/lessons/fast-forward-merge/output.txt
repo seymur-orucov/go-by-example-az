@@ -1,0 +1,42 @@
+$ git branch -v
+* main        94ad99e Add the packing checklist
+  ridge-trail f32bef9 Add a rain jacket to the checklist
+$ git log --oneline ridge-trail
+f32bef9 Add a rain jacket to the checklist
+3686ebb Add the ridge trail
+94ad99e Add the packing checklist
+719a377 Add the lake trail
+$ git log --oneline ridge-trail..main
+$ git merge ridge-trail
+Updating 94ad99e..f32bef9
+Fast-forward
+ checklist.txt | 1 +
+ routes.md     | 1 +
+ 2 files changed, 2 insertions(+)
+$ cat routes.md
+Lake Loop: 5 km, easy
+Ridge Path: 12 km, hard
+$ git log --oneline
+f32bef9 Add a rain jacket to the checklist
+3686ebb Add the ridge trail
+94ad99e Add the packing checklist
+719a377 Add the lake trail
+$ git branch -v
+* main        f32bef9 Add a rain jacket to the checklist
+  ridge-trail f32bef9 Add a rain jacket to the checklist
+$ git merge ridge-trail
+Already up to date.
+$ git log --oneline campsites..main
+f32bef9 Add a rain jacket to the checklist
+3686ebb Add the ridge trail
+$ git merge --ff-only campsites
+hint: Diverging branches can't be fast-forwarded, you need to either:
+hint:
+hint: 	git merge --no-ff
+hint:
+hint: or:
+hint:
+hint: 	git rebase
+hint:
+hint: Disable this message with "git config set advice.diverging false"
+fatal: Not possible to fast-forward, aborting.

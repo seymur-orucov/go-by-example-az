@@ -1,0 +1,977 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir flat",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd flat",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"milk\" \"bread\" \"eggs\" \"rice\" > groceries.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add groceries.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Start the grocery list\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"kitchen: Sam\" \"bathroom: Ayla\" > cleaning.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add cleaning.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add the cleaning rota\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q -c cleaning",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"hallway: Ayla\" >> cleaning.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git -c user.name=\"Ayla Karimova\" -c user.email=\"ayla@example.com\" commit -q -am \"Add the hallway to the rota\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"dish soap\" >> groceries.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git -c user.name=\"Ayla Karimova\" -c user.email=\"ayla@example.com\" commit -q -am \"Add dish soap to the list\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q main",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q -c groceries",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "sed -i \"s/^milk$/oat milk/\" groceries.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Switch to oat milk\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q main",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git merge groceries",
+      "step": "fork",
+      "hidden": false,
+      "fail": false,
+      "out": "Updating b256534..2cf4af6\nFast-forward\n groceries.txt | 2 +-\n 1 file changed, 1 insertion(+), 1 deletion(-)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline --graph --all --decorate",
+      "step": "fork",
+      "hidden": false,
+      "fail": false,
+      "out": "* 2cf4af6 (HEAD -> main, groceries) Switch to oat milk\n| * 55b9576 (cleaning) Add dish soap to the list\n| * 658c294 Add the hallway to the rota\n|/  \n* b256534 Add the cleaning rota\n* dec4ad9 Start the grocery list\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git merge-base main cleaning",
+      "step": "merge-base",
+      "hidden": false,
+      "fail": false,
+      "out": "b25653410b3457a26d37b8d5377b0111d522ede1\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline -1 $(git merge-base main cleaning)",
+      "step": "merge-base",
+      "hidden": false,
+      "fail": false,
+      "out": "b256534 Add the cleaning rota\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git diff cleaning...main",
+      "step": "two-sides",
+      "hidden": false,
+      "fail": false,
+      "out": "diff --git a/groceries.txt b/groceries.txt\nindex 3bc99fa..77bb52d 100644\n--- a/groceries.txt\n+++ b/groceries.txt\n@@ -1,4 +1,4 @@\n-milk\n+oat milk\n bread\n eggs\n rice\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git diff main...cleaning",
+      "step": "two-sides",
+      "hidden": false,
+      "fail": false,
+      "out": "diff --git a/cleaning.txt b/cleaning.txt\nindex f840686..f4e66d2 100644\n--- a/cleaning.txt\n+++ b/cleaning.txt\n@@ -1,2 +1,3 @@\n kitchen: Sam\n bathroom: Ayla\n+hallway: Ayla\ndiff --git a/groceries.txt b/groceries.txt\nindex 3bc99fa..3da6544 100644\n--- a/groceries.txt\n+++ b/groceries.txt\n@@ -2,3 +2,4 @@ milk\n bread\n eggs\n rice\n+dish soap\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git merge --no-edit cleaning",
+      "step": "merge",
+      "hidden": false,
+      "fail": false,
+      "out": "Auto-merging groceries.txt\nMerge made by the 'ort' strategy.\n cleaning.txt  | 1 +\n groceries.txt | 1 +\n 2 files changed, 2 insertions(+)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cat groceries.txt",
+      "step": "merge",
+      "hidden": false,
+      "fail": false,
+      "out": "oat milk\nbread\neggs\nrice\ndish soap\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline --graph",
+      "step": "merge",
+      "hidden": false,
+      "fail": false,
+      "out": "*   bd86331 Merge branch 'cleaning'\n|\\  \n| * 55b9576 Add dish soap to the list\n| * 658c294 Add the hallway to the rota\n* | 2cf4af6 Switch to oat milk\n|/  \n* b256534 Add the cleaning rota\n* dec4ad9 Start the grocery list\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git cat-file -p HEAD",
+      "step": "parents",
+      "hidden": false,
+      "fail": false,
+      "out": "tree 5b5d4772a1b64a9c6bb55e9f19043a02bcd95e22\nparent 2cf4af69bf4db55d4a080e59cb4dc7dc0ec64c22\nparent 55b9576e233c4d11fd446f4f3b001c864d58b735\nauthor Sam Lee <sam@example.com> 1768469100 +0000\ncommitter Sam Lee <sam@example.com> 1768469100 +0000\n\nMerge branch 'cleaning'\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline -1 HEAD^1",
+      "step": "parents",
+      "hidden": false,
+      "fail": false,
+      "out": "2cf4af6 Switch to oat milk\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline -1 HEAD^2",
+      "step": "parents",
+      "hidden": false,
+      "fail": false,
+      "out": "55b9576 Add dish soap to the list\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "fork": {
+      "areas": {
+        "work": [
+          {
+            "name": "cleaning.txt",
+            "state": "clean"
+          },
+          {
+            "name": "groceries.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "cleaning.txt",
+            "state": "clean"
+          },
+          {
+            "name": "groceries.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "2cf4af6",
+            "message": "Switch to oat milk"
+          },
+          "count": 3,
+          "files": [
+            "cleaning.txt",
+            "groceries.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "2cf4af6",
+            "message": "Switch to oat milk",
+            "parents": [
+              "b256534"
+            ],
+            "files": [
+              {
+                "name": "cleaning.txt",
+                "state": "same"
+              },
+              {
+                "name": "groceries.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "55b9576",
+            "message": "Add dish soap to the list",
+            "parents": [
+              "658c294"
+            ],
+            "files": [
+              {
+                "name": "cleaning.txt",
+                "state": "same"
+              },
+              {
+                "name": "groceries.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "658c294",
+            "message": "Add the hallway to the rota",
+            "parents": [
+              "b256534"
+            ],
+            "files": [
+              {
+                "name": "cleaning.txt",
+                "state": "modified"
+              },
+              {
+                "name": "groceries.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "b256534",
+            "message": "Add the cleaning rota",
+            "parents": [
+              "dec4ad9"
+            ],
+            "files": [
+              {
+                "name": "cleaning.txt",
+                "state": "added"
+              },
+              {
+                "name": "groceries.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "dec4ad9",
+            "message": "Start the grocery list",
+            "parents": [],
+            "files": [
+              {
+                "name": "groceries.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "cleaning",
+            "target": "55b9576"
+          },
+          {
+            "name": "groceries",
+            "target": "2cf4af6"
+          },
+          {
+            "name": "main",
+            "target": "2cf4af6"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "2cf4af6"
+        }
+      }
+    },
+    "merge-base": {
+      "areas": {
+        "work": [
+          {
+            "name": "cleaning.txt",
+            "state": "clean"
+          },
+          {
+            "name": "groceries.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "cleaning.txt",
+            "state": "clean"
+          },
+          {
+            "name": "groceries.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "2cf4af6",
+            "message": "Switch to oat milk"
+          },
+          "count": 3,
+          "files": [
+            "cleaning.txt",
+            "groceries.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "2cf4af6",
+            "message": "Switch to oat milk",
+            "parents": [
+              "b256534"
+            ],
+            "files": [
+              {
+                "name": "cleaning.txt",
+                "state": "same"
+              },
+              {
+                "name": "groceries.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "55b9576",
+            "message": "Add dish soap to the list",
+            "parents": [
+              "658c294"
+            ],
+            "files": [
+              {
+                "name": "cleaning.txt",
+                "state": "same"
+              },
+              {
+                "name": "groceries.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "658c294",
+            "message": "Add the hallway to the rota",
+            "parents": [
+              "b256534"
+            ],
+            "files": [
+              {
+                "name": "cleaning.txt",
+                "state": "modified"
+              },
+              {
+                "name": "groceries.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "b256534",
+            "message": "Add the cleaning rota",
+            "parents": [
+              "dec4ad9"
+            ],
+            "files": [
+              {
+                "name": "cleaning.txt",
+                "state": "added"
+              },
+              {
+                "name": "groceries.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "dec4ad9",
+            "message": "Start the grocery list",
+            "parents": [],
+            "files": [
+              {
+                "name": "groceries.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "cleaning",
+            "target": "55b9576"
+          },
+          {
+            "name": "groceries",
+            "target": "2cf4af6"
+          },
+          {
+            "name": "main",
+            "target": "2cf4af6"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "2cf4af6"
+        }
+      }
+    },
+    "two-sides": {
+      "areas": {
+        "work": [
+          {
+            "name": "cleaning.txt",
+            "state": "clean"
+          },
+          {
+            "name": "groceries.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "cleaning.txt",
+            "state": "clean"
+          },
+          {
+            "name": "groceries.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "2cf4af6",
+            "message": "Switch to oat milk"
+          },
+          "count": 3,
+          "files": [
+            "cleaning.txt",
+            "groceries.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "2cf4af6",
+            "message": "Switch to oat milk",
+            "parents": [
+              "b256534"
+            ],
+            "files": [
+              {
+                "name": "cleaning.txt",
+                "state": "same"
+              },
+              {
+                "name": "groceries.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "55b9576",
+            "message": "Add dish soap to the list",
+            "parents": [
+              "658c294"
+            ],
+            "files": [
+              {
+                "name": "cleaning.txt",
+                "state": "same"
+              },
+              {
+                "name": "groceries.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "658c294",
+            "message": "Add the hallway to the rota",
+            "parents": [
+              "b256534"
+            ],
+            "files": [
+              {
+                "name": "cleaning.txt",
+                "state": "modified"
+              },
+              {
+                "name": "groceries.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "b256534",
+            "message": "Add the cleaning rota",
+            "parents": [
+              "dec4ad9"
+            ],
+            "files": [
+              {
+                "name": "cleaning.txt",
+                "state": "added"
+              },
+              {
+                "name": "groceries.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "dec4ad9",
+            "message": "Start the grocery list",
+            "parents": [],
+            "files": [
+              {
+                "name": "groceries.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "cleaning",
+            "target": "55b9576"
+          },
+          {
+            "name": "groceries",
+            "target": "2cf4af6"
+          },
+          {
+            "name": "main",
+            "target": "2cf4af6"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "2cf4af6"
+        }
+      }
+    },
+    "merge": {
+      "areas": {
+        "work": [
+          {
+            "name": "cleaning.txt",
+            "state": "clean"
+          },
+          {
+            "name": "groceries.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "cleaning.txt",
+            "state": "clean"
+          },
+          {
+            "name": "groceries.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "bd86331",
+            "message": "Merge branch 'cleaning'"
+          },
+          "count": 6,
+          "files": [
+            "cleaning.txt",
+            "groceries.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "bd86331",
+            "message": "Merge branch 'cleaning'",
+            "parents": [
+              "2cf4af6",
+              "55b9576"
+            ],
+            "files": [
+              {
+                "name": "cleaning.txt",
+                "state": "modified"
+              },
+              {
+                "name": "groceries.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "55b9576",
+            "message": "Add dish soap to the list",
+            "parents": [
+              "658c294"
+            ],
+            "files": [
+              {
+                "name": "cleaning.txt",
+                "state": "same"
+              },
+              {
+                "name": "groceries.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "658c294",
+            "message": "Add the hallway to the rota",
+            "parents": [
+              "b256534"
+            ],
+            "files": [
+              {
+                "name": "cleaning.txt",
+                "state": "modified"
+              },
+              {
+                "name": "groceries.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "2cf4af6",
+            "message": "Switch to oat milk",
+            "parents": [
+              "b256534"
+            ],
+            "files": [
+              {
+                "name": "cleaning.txt",
+                "state": "same"
+              },
+              {
+                "name": "groceries.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "b256534",
+            "message": "Add the cleaning rota",
+            "parents": [
+              "dec4ad9"
+            ],
+            "files": [
+              {
+                "name": "cleaning.txt",
+                "state": "added"
+              },
+              {
+                "name": "groceries.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "dec4ad9",
+            "message": "Start the grocery list",
+            "parents": [],
+            "files": [
+              {
+                "name": "groceries.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "cleaning",
+            "target": "55b9576"
+          },
+          {
+            "name": "groceries",
+            "target": "2cf4af6"
+          },
+          {
+            "name": "main",
+            "target": "bd86331"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "bd86331"
+        }
+      }
+    },
+    "parents": {
+      "areas": {
+        "work": [
+          {
+            "name": "cleaning.txt",
+            "state": "clean"
+          },
+          {
+            "name": "groceries.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "cleaning.txt",
+            "state": "clean"
+          },
+          {
+            "name": "groceries.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "bd86331",
+            "message": "Merge branch 'cleaning'"
+          },
+          "count": 6,
+          "files": [
+            "cleaning.txt",
+            "groceries.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "bd86331",
+            "message": "Merge branch 'cleaning'",
+            "parents": [
+              "2cf4af6",
+              "55b9576"
+            ],
+            "files": [
+              {
+                "name": "cleaning.txt",
+                "state": "modified"
+              },
+              {
+                "name": "groceries.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "55b9576",
+            "message": "Add dish soap to the list",
+            "parents": [
+              "658c294"
+            ],
+            "files": [
+              {
+                "name": "cleaning.txt",
+                "state": "same"
+              },
+              {
+                "name": "groceries.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "658c294",
+            "message": "Add the hallway to the rota",
+            "parents": [
+              "b256534"
+            ],
+            "files": [
+              {
+                "name": "cleaning.txt",
+                "state": "modified"
+              },
+              {
+                "name": "groceries.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "2cf4af6",
+            "message": "Switch to oat milk",
+            "parents": [
+              "b256534"
+            ],
+            "files": [
+              {
+                "name": "cleaning.txt",
+                "state": "same"
+              },
+              {
+                "name": "groceries.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "b256534",
+            "message": "Add the cleaning rota",
+            "parents": [
+              "dec4ad9"
+            ],
+            "files": [
+              {
+                "name": "cleaning.txt",
+                "state": "added"
+              },
+              {
+                "name": "groceries.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "dec4ad9",
+            "message": "Start the grocery list",
+            "parents": [],
+            "files": [
+              {
+                "name": "groceries.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "cleaning",
+            "target": "55b9576"
+          },
+          {
+            "name": "groceries",
+            "target": "2cf4af6"
+          },
+          {
+            "name": "main",
+            "target": "bd86331"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "bd86331"
+        }
+      }
+    }
+  }
+}

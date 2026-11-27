@@ -1,0 +1,971 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir calendar-gen",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd calendar-gen",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo 'echo \"Printing calendar 2026\"' > make.sh",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Jan 1 New Year's Day\" > holidays.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add .",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add calendar script\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git tag -a v1.0 -m \"Version 1.0\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Dec 13 New Year's Eve\" >> holidays.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add New Year's Eve\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git tag -a v1.1 -m \"Version 1.1\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo 'echo \"Printing calendar 2026 on A4\"' > make.sh",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Print on A4 paper\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git tag -a v2.0 -m \"Version 2.0\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo 'echo \"Printing calendar 2026 on A4 with week numbers\"' > make.sh",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add week numbers\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git tag",
+      "step": "switch-fails",
+      "hidden": false,
+      "fail": false,
+      "out": "v1.0\nv1.1\nv2.0\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline --decorate",
+      "step": "switch-fails",
+      "hidden": false,
+      "fail": false,
+      "out": "667d79f (HEAD -> main) Add week numbers\n1e7dadc (tag: v2.0) Print on A4 paper\n5fa46d9 (tag: v1.1) Add New Year's Eve\n5e0d023 (tag: v1.0) Add calendar script\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch v1.1",
+      "step": "switch-fails",
+      "hidden": false,
+      "fail": true,
+      "out": "fatal: a branch is expected, got tag 'v1.1'\nhint: If you want to detach HEAD at the commit, try again with the --detach option.\n",
+      "exit": 128
+    },
+    {
+      "cmd": "git switch --detach v1.1",
+      "step": "detach",
+      "hidden": false,
+      "fail": false,
+      "out": "HEAD is now at 5fa46d9 Add New Year's Eve\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cat holidays.txt",
+      "step": "detach",
+      "hidden": false,
+      "fail": false,
+      "out": "Jan 1 New Year's Day\nDec 13 New Year's Eve\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git status",
+      "step": "detach",
+      "hidden": false,
+      "fail": false,
+      "out": "HEAD detached at v1.1\nnothing to commit, working tree clean\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -c hotfix/1.1.1 v1.1",
+      "step": "hotfix-branch",
+      "hidden": false,
+      "fail": false,
+      "out": "Switched to a new branch 'hotfix/1.1.1'\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch",
+      "step": "hotfix-branch",
+      "hidden": false,
+      "fail": false,
+      "out": "* hotfix/1.1.1\n  main\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Jan 1 New Year's Day\" > holidays.txt",
+      "step": "fix",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Dec 31 New Year's Eve\" >> holidays.txt",
+      "step": "fix",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git diff",
+      "step": "fix",
+      "hidden": false,
+      "fail": false,
+      "out": "diff --git a/holidays.txt b/holidays.txt\nindex 30ebacb..33d1c4a 100644\n--- a/holidays.txt\n+++ b/holidays.txt\n@@ -1,2 +1,2 @@\n Jan 1 New Year's Day\n-Dec 13 New Year's Eve\n+Dec 31 New Year's Eve\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -am \"Fix New Year's Eve date\"",
+      "step": "fix",
+      "hidden": false,
+      "fail": false,
+      "out": "[hotfix/1.1.1 fe6411b] Fix New Year's Eve date\n 1 file changed, 1 insertion(+), 1 deletion(-)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git tag -a v1.1.1 -m \"Version 1.1.1\"",
+      "step": "fix",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git tag",
+      "step": "fix",
+      "hidden": false,
+      "fail": false,
+      "out": "v1.0\nv1.1\nv1.1.1\nv2.0\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline --decorate --all --graph",
+      "step": "graph",
+      "hidden": false,
+      "fail": false,
+      "out": "* fe6411b (HEAD -> hotfix/1.1.1, tag: v1.1.1) Fix New Year's Eve date\n| * 667d79f (main) Add week numbers\n| * 1e7dadc (tag: v2.0) Print on A4 paper\n|/  \n* 5fa46d9 (tag: v1.1) Add New Year's Eve\n* 5e0d023 (tag: v1.0) Add calendar script\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch main",
+      "step": "graph",
+      "hidden": false,
+      "fail": false,
+      "out": "Switched to branch 'main'\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cat holidays.txt",
+      "step": "graph",
+      "hidden": false,
+      "fail": false,
+      "out": "Jan 1 New Year's Day\nDec 13 New Year's Eve\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "switch-fails": {
+      "areas": {
+        "work": [
+          {
+            "name": "holidays.txt",
+            "state": "clean"
+          },
+          {
+            "name": "make.sh",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "holidays.txt",
+            "state": "clean"
+          },
+          {
+            "name": "make.sh",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "667d79f",
+            "message": "Add week numbers"
+          },
+          "count": 4,
+          "files": [
+            "holidays.txt",
+            "make.sh"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "667d79f",
+            "message": "Add week numbers",
+            "parents": [
+              "1e7dadc"
+            ],
+            "files": [
+              {
+                "name": "holidays.txt",
+                "state": "same"
+              },
+              {
+                "name": "make.sh",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "1e7dadc",
+            "message": "Print on A4 paper",
+            "parents": [
+              "5fa46d9"
+            ],
+            "files": [
+              {
+                "name": "holidays.txt",
+                "state": "same"
+              },
+              {
+                "name": "make.sh",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "5fa46d9",
+            "message": "Add New Year's Eve",
+            "parents": [
+              "5e0d023"
+            ],
+            "files": [
+              {
+                "name": "holidays.txt",
+                "state": "modified"
+              },
+              {
+                "name": "make.sh",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "5e0d023",
+            "message": "Add calendar script",
+            "parents": [],
+            "files": [
+              {
+                "name": "holidays.txt",
+                "state": "added"
+              },
+              {
+                "name": "make.sh",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "667d79f"
+          }
+        ],
+        "tags": [
+          {
+            "name": "v1.0",
+            "target": "5e0d023"
+          },
+          {
+            "name": "v1.1",
+            "target": "5fa46d9"
+          },
+          {
+            "name": "v2.0",
+            "target": "1e7dadc"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "667d79f"
+        }
+      }
+    },
+    "detach": {
+      "areas": {
+        "work": [
+          {
+            "name": "holidays.txt",
+            "state": "clean"
+          },
+          {
+            "name": "make.sh",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "holidays.txt",
+            "state": "clean"
+          },
+          {
+            "name": "make.sh",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "5fa46d9",
+            "message": "Add New Year's Eve"
+          },
+          "count": 2,
+          "files": [
+            "holidays.txt",
+            "make.sh"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "667d79f",
+            "message": "Add week numbers",
+            "parents": [
+              "1e7dadc"
+            ],
+            "files": [
+              {
+                "name": "holidays.txt",
+                "state": "same"
+              },
+              {
+                "name": "make.sh",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "1e7dadc",
+            "message": "Print on A4 paper",
+            "parents": [
+              "5fa46d9"
+            ],
+            "files": [
+              {
+                "name": "holidays.txt",
+                "state": "same"
+              },
+              {
+                "name": "make.sh",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "5fa46d9",
+            "message": "Add New Year's Eve",
+            "parents": [
+              "5e0d023"
+            ],
+            "files": [
+              {
+                "name": "holidays.txt",
+                "state": "modified"
+              },
+              {
+                "name": "make.sh",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "5e0d023",
+            "message": "Add calendar script",
+            "parents": [],
+            "files": [
+              {
+                "name": "holidays.txt",
+                "state": "added"
+              },
+              {
+                "name": "make.sh",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "667d79f"
+          }
+        ],
+        "tags": [
+          {
+            "name": "v1.0",
+            "target": "5e0d023"
+          },
+          {
+            "name": "v1.1",
+            "target": "5fa46d9"
+          },
+          {
+            "name": "v2.0",
+            "target": "1e7dadc"
+          }
+        ],
+        "head": {
+          "branch": null,
+          "target": "5fa46d9"
+        }
+      }
+    },
+    "hotfix-branch": {
+      "areas": {
+        "work": [
+          {
+            "name": "holidays.txt",
+            "state": "clean"
+          },
+          {
+            "name": "make.sh",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "holidays.txt",
+            "state": "clean"
+          },
+          {
+            "name": "make.sh",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "5fa46d9",
+            "message": "Add New Year's Eve"
+          },
+          "count": 2,
+          "files": [
+            "holidays.txt",
+            "make.sh"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "667d79f",
+            "message": "Add week numbers",
+            "parents": [
+              "1e7dadc"
+            ],
+            "files": [
+              {
+                "name": "holidays.txt",
+                "state": "same"
+              },
+              {
+                "name": "make.sh",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "1e7dadc",
+            "message": "Print on A4 paper",
+            "parents": [
+              "5fa46d9"
+            ],
+            "files": [
+              {
+                "name": "holidays.txt",
+                "state": "same"
+              },
+              {
+                "name": "make.sh",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "5fa46d9",
+            "message": "Add New Year's Eve",
+            "parents": [
+              "5e0d023"
+            ],
+            "files": [
+              {
+                "name": "holidays.txt",
+                "state": "modified"
+              },
+              {
+                "name": "make.sh",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "5e0d023",
+            "message": "Add calendar script",
+            "parents": [],
+            "files": [
+              {
+                "name": "holidays.txt",
+                "state": "added"
+              },
+              {
+                "name": "make.sh",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "hotfix/1.1.1",
+            "target": "5fa46d9"
+          },
+          {
+            "name": "main",
+            "target": "667d79f"
+          }
+        ],
+        "tags": [
+          {
+            "name": "v1.0",
+            "target": "5e0d023"
+          },
+          {
+            "name": "v1.1",
+            "target": "5fa46d9"
+          },
+          {
+            "name": "v2.0",
+            "target": "1e7dadc"
+          }
+        ],
+        "head": {
+          "branch": "hotfix/1.1.1",
+          "target": "5fa46d9"
+        }
+      }
+    },
+    "fix": {
+      "areas": {
+        "work": [
+          {
+            "name": "holidays.txt",
+            "state": "clean"
+          },
+          {
+            "name": "make.sh",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "holidays.txt",
+            "state": "clean"
+          },
+          {
+            "name": "make.sh",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "fe6411b",
+            "message": "Fix New Year's Eve date"
+          },
+          "count": 3,
+          "files": [
+            "holidays.txt",
+            "make.sh"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "fe6411b",
+            "message": "Fix New Year's Eve date",
+            "parents": [
+              "5fa46d9"
+            ],
+            "files": [
+              {
+                "name": "holidays.txt",
+                "state": "modified"
+              },
+              {
+                "name": "make.sh",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "667d79f",
+            "message": "Add week numbers",
+            "parents": [
+              "1e7dadc"
+            ],
+            "files": [
+              {
+                "name": "holidays.txt",
+                "state": "same"
+              },
+              {
+                "name": "make.sh",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "1e7dadc",
+            "message": "Print on A4 paper",
+            "parents": [
+              "5fa46d9"
+            ],
+            "files": [
+              {
+                "name": "holidays.txt",
+                "state": "same"
+              },
+              {
+                "name": "make.sh",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "5fa46d9",
+            "message": "Add New Year's Eve",
+            "parents": [
+              "5e0d023"
+            ],
+            "files": [
+              {
+                "name": "holidays.txt",
+                "state": "modified"
+              },
+              {
+                "name": "make.sh",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "5e0d023",
+            "message": "Add calendar script",
+            "parents": [],
+            "files": [
+              {
+                "name": "holidays.txt",
+                "state": "added"
+              },
+              {
+                "name": "make.sh",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "hotfix/1.1.1",
+            "target": "fe6411b"
+          },
+          {
+            "name": "main",
+            "target": "667d79f"
+          }
+        ],
+        "tags": [
+          {
+            "name": "v1.0",
+            "target": "5e0d023"
+          },
+          {
+            "name": "v1.1",
+            "target": "5fa46d9"
+          },
+          {
+            "name": "v1.1.1",
+            "target": "fe6411b"
+          },
+          {
+            "name": "v2.0",
+            "target": "1e7dadc"
+          }
+        ],
+        "head": {
+          "branch": "hotfix/1.1.1",
+          "target": "fe6411b"
+        }
+      }
+    },
+    "graph": {
+      "areas": {
+        "work": [
+          {
+            "name": "holidays.txt",
+            "state": "clean"
+          },
+          {
+            "name": "make.sh",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "holidays.txt",
+            "state": "clean"
+          },
+          {
+            "name": "make.sh",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "667d79f",
+            "message": "Add week numbers"
+          },
+          "count": 4,
+          "files": [
+            "holidays.txt",
+            "make.sh"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "fe6411b",
+            "message": "Fix New Year's Eve date",
+            "parents": [
+              "5fa46d9"
+            ],
+            "files": [
+              {
+                "name": "holidays.txt",
+                "state": "modified"
+              },
+              {
+                "name": "make.sh",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "667d79f",
+            "message": "Add week numbers",
+            "parents": [
+              "1e7dadc"
+            ],
+            "files": [
+              {
+                "name": "holidays.txt",
+                "state": "same"
+              },
+              {
+                "name": "make.sh",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "1e7dadc",
+            "message": "Print on A4 paper",
+            "parents": [
+              "5fa46d9"
+            ],
+            "files": [
+              {
+                "name": "holidays.txt",
+                "state": "same"
+              },
+              {
+                "name": "make.sh",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "5fa46d9",
+            "message": "Add New Year's Eve",
+            "parents": [
+              "5e0d023"
+            ],
+            "files": [
+              {
+                "name": "holidays.txt",
+                "state": "modified"
+              },
+              {
+                "name": "make.sh",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "5e0d023",
+            "message": "Add calendar script",
+            "parents": [],
+            "files": [
+              {
+                "name": "holidays.txt",
+                "state": "added"
+              },
+              {
+                "name": "make.sh",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "hotfix/1.1.1",
+            "target": "fe6411b"
+          },
+          {
+            "name": "main",
+            "target": "667d79f"
+          }
+        ],
+        "tags": [
+          {
+            "name": "v1.0",
+            "target": "5e0d023"
+          },
+          {
+            "name": "v1.1",
+            "target": "5fa46d9"
+          },
+          {
+            "name": "v1.1.1",
+            "target": "fe6411b"
+          },
+          {
+            "name": "v2.0",
+            "target": "1e7dadc"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "667d79f"
+        }
+      }
+    }
+  }
+}

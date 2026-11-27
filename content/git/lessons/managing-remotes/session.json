@@ -1,0 +1,509 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir bike-notes",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd bike-notes",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"# Brakes\" \"Check pads every 500 km\" > brakes.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"5 mm hex key\" \"tire levers\" > tools.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add .",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add brake and tool notes\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q --bare ~/server/bike-notes.git",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q --bare ~/club/bike-notes.git",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q --bare ~/nas/bike-notes.git",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git remote",
+      "step": "add",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git remote add origin ~/server/bike-notes.git",
+      "step": "add",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git remote -v",
+      "step": "add",
+      "hidden": false,
+      "fail": false,
+      "out": "origin\t/home/sam/server/bike-notes.git (fetch)\norigin\t/home/sam/server/bike-notes.git (push)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git config --get-regexp remote",
+      "step": "config",
+      "hidden": false,
+      "fail": false,
+      "out": "remote.origin.url /home/sam/server/bike-notes.git\nremote.origin.fetch +refs/heads/*:refs/remotes/origin/*\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git remote rename origin home",
+      "step": "rename",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git config --get-regexp remote",
+      "step": "rename",
+      "hidden": false,
+      "fail": false,
+      "out": "remote.home.url /home/sam/server/bike-notes.git\nremote.home.fetch +refs/heads/*:refs/remotes/home/*\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git remote add origin ~/club/bike-notes.git",
+      "step": "rename",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git remote -v",
+      "step": "rename",
+      "hidden": false,
+      "fail": false,
+      "out": "home\t/home/sam/server/bike-notes.git (fetch)\nhome\t/home/sam/server/bike-notes.git (push)\norigin\t/home/sam/club/bike-notes.git (fetch)\norigin\t/home/sam/club/bike-notes.git (push)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git remote set-url home ~/nas/bike-notes.git",
+      "step": "set-url",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git remote -v",
+      "step": "set-url",
+      "hidden": false,
+      "fail": false,
+      "out": "home\t/home/sam/nas/bike-notes.git (fetch)\nhome\t/home/sam/nas/bike-notes.git (push)\norigin\t/home/sam/club/bike-notes.git (fetch)\norigin\t/home/sam/club/bike-notes.git (push)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git remote remove home",
+      "step": "remove",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git remote -v",
+      "step": "remove",
+      "hidden": false,
+      "fail": false,
+      "out": "origin\t/home/sam/club/bike-notes.git (fetch)\norigin\t/home/sam/club/bike-notes.git (push)\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "add": {
+      "areas": {
+        "work": [
+          {
+            "name": "brakes.md",
+            "state": "clean"
+          },
+          {
+            "name": "tools.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "brakes.md",
+            "state": "clean"
+          },
+          {
+            "name": "tools.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "4c1dfc5",
+            "message": "Add brake and tool notes"
+          },
+          "count": 1,
+          "files": [
+            "brakes.md",
+            "tools.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "4c1dfc5",
+            "message": "Add brake and tool notes",
+            "parents": [],
+            "files": [
+              {
+                "name": "brakes.md",
+                "state": "added"
+              },
+              {
+                "name": "tools.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "4c1dfc5"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "4c1dfc5"
+        }
+      }
+    },
+    "config": {
+      "areas": {
+        "work": [
+          {
+            "name": "brakes.md",
+            "state": "clean"
+          },
+          {
+            "name": "tools.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "brakes.md",
+            "state": "clean"
+          },
+          {
+            "name": "tools.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "4c1dfc5",
+            "message": "Add brake and tool notes"
+          },
+          "count": 1,
+          "files": [
+            "brakes.md",
+            "tools.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "4c1dfc5",
+            "message": "Add brake and tool notes",
+            "parents": [],
+            "files": [
+              {
+                "name": "brakes.md",
+                "state": "added"
+              },
+              {
+                "name": "tools.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "4c1dfc5"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "4c1dfc5"
+        }
+      }
+    },
+    "rename": {
+      "areas": {
+        "work": [
+          {
+            "name": "brakes.md",
+            "state": "clean"
+          },
+          {
+            "name": "tools.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "brakes.md",
+            "state": "clean"
+          },
+          {
+            "name": "tools.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "4c1dfc5",
+            "message": "Add brake and tool notes"
+          },
+          "count": 1,
+          "files": [
+            "brakes.md",
+            "tools.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "4c1dfc5",
+            "message": "Add brake and tool notes",
+            "parents": [],
+            "files": [
+              {
+                "name": "brakes.md",
+                "state": "added"
+              },
+              {
+                "name": "tools.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "4c1dfc5"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "4c1dfc5"
+        }
+      }
+    },
+    "set-url": {
+      "areas": {
+        "work": [
+          {
+            "name": "brakes.md",
+            "state": "clean"
+          },
+          {
+            "name": "tools.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "brakes.md",
+            "state": "clean"
+          },
+          {
+            "name": "tools.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "4c1dfc5",
+            "message": "Add brake and tool notes"
+          },
+          "count": 1,
+          "files": [
+            "brakes.md",
+            "tools.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "4c1dfc5",
+            "message": "Add brake and tool notes",
+            "parents": [],
+            "files": [
+              {
+                "name": "brakes.md",
+                "state": "added"
+              },
+              {
+                "name": "tools.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "4c1dfc5"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "4c1dfc5"
+        }
+      }
+    },
+    "remove": {
+      "areas": {
+        "work": [
+          {
+            "name": "brakes.md",
+            "state": "clean"
+          },
+          {
+            "name": "tools.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "brakes.md",
+            "state": "clean"
+          },
+          {
+            "name": "tools.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "4c1dfc5",
+            "message": "Add brake and tool notes"
+          },
+          "count": 1,
+          "files": [
+            "brakes.md",
+            "tools.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "4c1dfc5",
+            "message": "Add brake and tool notes",
+            "parents": [],
+            "files": [
+              {
+                "name": "brakes.md",
+                "state": "added"
+              },
+              {
+                "name": "tools.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "4c1dfc5"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "4c1dfc5"
+        }
+      }
+    }
+  }
+}

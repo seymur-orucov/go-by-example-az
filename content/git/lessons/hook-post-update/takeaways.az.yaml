@@ -1,0 +1,11 @@
+rules:
+  - "Bare repository-də `.git` qovluğu yoxdur: server hook-ları birbaşa `<repo>.git/hooks` qovluğundadır."
+  - "`post-receive` push qəbul olunandan sonra işləyir və hər yenilənən ref üçün stdin-dən `<old> <new> <ref>` sətri alır."
+  - "`git --work-tree=<qovluq> --git-dir=<repo> checkout -f main` bare repository-dən faylları sayt qovluğuna yazır: bu, sadə deploy hook-udur."
+  - "Server hook-larının çıxışı push edənin terminalında `remote:` ilə görünür."
+  - "`post-update` ref adlarını arqument kimi alır, hash-ləri almır; nümunəsi `git update-server-info` işlədir."
+  - "`post-receive` və `post-update` push-u dayandıra bilmir. `pre-receive` 0-dan fərqli çıxış kodu ilə bitsə, push `! [remote rejected] (pre-receive hook declined)` ilə rədd olunur."
+practices:
+  - "Yeni server hook-u üçün `post-update` yox, `post-receive` yazın: o, köhnə və yeni hash-ləri da bilir."
+  - "Hook faylına `chmod +x` verməyi unutmayın, yoxsa Git onu işlətmir."
+  - "GitHub.com-da server hook-u yoxdur: push-dan sonrakı iş üçün GitHub Actions və ya webhook işlədin."

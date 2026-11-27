@@ -11,7 +11,9 @@
 // - graph: the commit graph (commits, parents, branches, tags, HEAD), recorded the same way;
 //   each row draws its own slice of the rail, so a row can grow (files, a narrow screen);
 // - flow: a row of boxes, optionally joined by arrows (text lessons, hand-written);
-// - compare: two variants side by side, aspect by aspect (text lessons, hand-written).
+// - compare: two variants side by side, aspect by aspect (text lessons, hand-written);
+// - diagram: places (computers, servers) side by side with labelled → / ← arrows between
+//   neighbours (diagram lessons, hand-written); stacked with ↓ / ↑ arrows on a phone.
 // The script replays the `pop` animation of `.cell.new` and `.tl-bar` when a step becomes active.
 import type { Vis, VisAreas, VisGraph } from "../lib/lesson";
 import { renderInline } from "../lib/markdown";
@@ -84,12 +86,14 @@ const WORK_STATE: Record<VisAreas["work"][number]["state"], string> = {
   modified: "dəyişib",
   deleted: "silinib",
   ignored: "ignore",
+  unmerged: "konflikt",
 };
 const INDEX_STATE: Record<VisAreas["index"][number]["state"], string> = {
   clean: "",
   added: "yeni",
   modified: "yenilənib",
   deleted: "silinəcək",
+  unmerged: "konflikt",
 };
 const fileClass = (state: string, fresh?: boolean) =>
   `file s-${state}${fresh && state !== "clean" ? " fresh" : ""}`;
@@ -111,7 +115,56 @@ const fileStates = graph?.files
 // ---- flow, compare (text lessons; inline Markdown in the strings)
 const flow = vis.kind === "flow" ? vis : null;
 const cmp = vis.kind === "compare" ? vis : null;
+const dia = vis.kind === "diagram" ? vis : null;
 ---
+
+{dia && (
+  <div class="st-vis">
+    <div class="st-vis-cap">
+      <span class="plain">{dia.caption}</span>
+    </div>
+    <div class="vis vis-diagram">
+      {dia.nodes.map((n, i) => (
+        <>
+          {i > 0 && (
+            <div class="dg-link">
+              {dia.links[i - 1]!.right && (
+                <span class="dg-arrow">
+                  <small set:html={renderInline(dia.links[i - 1]!.right!)} />
+                  <i aria-hidden="true">
+                    <span class="dg-wide">→</span>
+                    <span class="dg-narrow">↓</span>
+                  </i>
+                </span>
+              )}
+              {dia.links[i - 1]!.left && (
+                <span class="dg-arrow">
+                  <i aria-hidden="true">
+                    <span class="dg-wide">←</span>
+                    <span class="dg-narrow">↑</span>
+                  </i>
+                  <small set:html={renderInline(dia.links[i - 1]!.left!)} />
+                </span>
+              )}
+            </div>
+          )}
+          <div class:list={["dg-node", n.tone && `t-${n.tone}`]}>
+            <b set:html={renderInline(n.title)} />
+            {n.sub && <small set:html={renderInline(n.sub)} />}
+            {n.lines && (
+              <ul>
+                {n.lines.map((l) => (
+                  <li set:html={renderInline(l)} />
+                ))}
+              </ul>
+            )}
+          </div>
+        </>
+      ))}
+    </div>
+    {dia.note && <p class="vis-note" set:html={renderInline(dia.note)} />}
+  </div>
+)}
 
 {flow && (
   <div class="st-vis">

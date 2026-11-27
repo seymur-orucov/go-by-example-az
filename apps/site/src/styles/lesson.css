@@ -1945,6 +1945,14 @@ button.vm-row:hover {
 .vis-areas .s-added .fstate {
   color: var(--green);
 }
+.vis-areas .s-unmerged {
+  color: var(--red);
+  border-color: var(--red);
+  border-style: dashed;
+}
+.vis-areas .s-unmerged .fstate {
+  color: var(--red);
+}
 .vis-areas .s-deleted {
   color: var(--red);
   border-color: var(--red);
@@ -2140,6 +2148,11 @@ button.vm-row:hover {
   background: var(--accent-soft);
   border-color: var(--accent-ring);
 }
+/* a remote-tracking branch (origin/main): where the server branch was at the last contact */
+.g-ref.k-remote {
+  color: var(--text-muted);
+  border-style: dashed;
+}
 .g-ref.k-tag {
   color: var(--amber);
   border-color: color-mix(in srgb, var(--amber) 55%, transparent);
@@ -2305,6 +2318,115 @@ button.vm-row:hover {
   }
   .vis-flow.arrows .flow-arrow {
     transform: rotate(90deg);
+  }
+}
+
+/* ---------- Vis kind "diagram": places joined by labelled arrows ----------
+   Side by side on a wide screen (→ / ←), stacked on a phone (↓ / ↑). */
+.vis-diagram {
+  display: flex;
+  align-items: stretch;
+  gap: 6px;
+}
+.dg-node {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  padding: 10px 12px;
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+}
+.dg-node b {
+  font: 600 13px/1.3 var(--font-sans);
+  color: var(--text);
+}
+.dg-node small {
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--text-subtle);
+}
+.vis-diagram .dg-node ul {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.vis-diagram .dg-node li {
+  margin: 0;
+  padding: 3px 7px;
+  font: 500 11.5px/1.4 var(--font-mono);
+  color: var(--text);
+  background: var(--glass);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow-wrap: anywhere;
+}
+.dg-node.t-good {
+  border-color: var(--green);
+  background: var(--green-soft);
+}
+.dg-node.t-bad {
+  border-color: color-mix(in srgb, var(--red) 55%, transparent);
+  border-style: dashed;
+  background: var(--red-soft);
+}
+.dg-node.t-accent {
+  border-color: var(--accent-ring);
+  background: var(--accent-soft);
+}
+.dg-link {
+  display: flex;
+  flex: 0 1 112px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  min-width: 72px;
+}
+.dg-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  text-align: center;
+}
+.dg-arrow small {
+  font-size: 11.5px;
+  line-height: 1.3;
+  color: var(--text-muted);
+}
+.dg-arrow i {
+  font: 600 16px/1 var(--font-mono);
+  font-style: normal;
+  color: var(--accent-ink);
+}
+.dg-narrow {
+  display: none;
+}
+@media (max-width: 520px) {
+  .vis-diagram {
+    flex-direction: column;
+  }
+  .dg-link {
+    flex: none;
+    flex-direction: row;
+    justify-content: center;
+    gap: 18px;
+    min-width: 0;
+  }
+  .dg-arrow {
+    flex-direction: row;
+    gap: 6px;
+  }
+  .dg-wide {
+    display: none;
+  }
+  .dg-narrow {
+    display: inline;
   }
 }
 

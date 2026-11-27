@@ -1,0 +1,53 @@
+- question: "Serverdə sizdə olmayan bir commit var. `git fetch`-dən sonra nə dəyişir?"
+  options:
+    - "`main` yeni commit-ə keçir, fayllar working directory-yə gəlir"
+    - "`origin/main` yeni commit-ə keçir, `main` və fayllar yerində qalır"
+    - "Heç nə dəyişmir, commit yalnız `git pull` ilə yüklənir"
+  answer: 1
+  explain: "Fetch commit-ləri yükləyir və yalnız `origin/main`-i yeniləyir. `main`-ə və working directory-yə toxunmur."
+- question: "Clone-dan sonra Ayla serverə bir commit göndərib. Siz heç bir komanda işlətməmisiniz. `git status`-un ikinci sətri nədir?"
+  code: |
+    git status
+  options:
+    - "`Your branch is up to date with 'origin/main'.`"
+    - "`Your branch is behind 'origin/main' by 1 commit, and can be fast-forwarded.`"
+  answer: 0
+  explain: "Status serverə qoşulmur, `main`-i `origin/main` ilə müqayisə edir. `origin/main` isə fetch olmadan yerində qalır."
+- question: "`git pull` hansı iki komandanı ardıcıl işlədir?"
+  options:
+    - "`git clone`, sonra `git merge`"
+    - "`git fetch`, sonra `git push`"
+    - "`git fetch`, sonra `git merge`"
+  answer: 2
+  explain: "Pull əvvəl fetch edir, sonra branch-ın bağlı olduğu remote-tracking branch-ı (`origin/main`) merge edir."
+- question: "Sizdə və serverdə fərqli yeni commit-lər var, `pull.rebase` ayarı yoxdur. Adi `git pull` nə edir?"
+  options:
+    - "Merge commit yaradır və `main` serverdəki commit-i də alır"
+    - "Xəta verir və heç nə yükləmir: `origin/main` yerində qalır"
+    - "Xəta verir, amma fetch hissəsi işləyir: `origin/main` yenilənir"
+  answer: 2
+  explain: "Ayarsız pull yalnız fast-forward edir, ona görə `Need to specify how to reconcile divergent branches` xətası verir. Fetch isə ondan əvvəl işləyir."
+- question: "Bu repository-də `git pull` ayrılmış tarixçədə həmişə merge etsin. Hansı komanda lazımdır?"
+  options:
+    - "`git config pull.ff only`"
+    - "`git config pull.rebase false`"
+    - "`git config pull.rebase true`"
+  answer: 1
+  explain: "`pull.rebase false` merge seçir. `true` rebase seçir, `pull.ff only` isə yalnız fast-forward-a icazə verir."
+- question: "Sizdə bir yeni commit var, Ayla da serverə bir commit göndərib. Bu komandalardan sonra `git status`-un ikinci sətri nədir?"
+  code: |
+    git pull --no-rebase --no-edit
+    git status
+  options:
+    - "`Your branch is ahead of 'origin/main' by 1 commit.`"
+    - "`Your branch is ahead of 'origin/main' by 2 commits.`"
+    - "`Your branch is up to date with 'origin/main'.`"
+  answer: 1
+  explain: "Serverdə hələ iki commit yoxdur: sizin commit və pull-un yaratdığı merge commit."
+- question: "`origin/main` nə vaxt yerini dəyişir?"
+  options:
+    - "Git serverlə əlaqə quranda, məsələn `git fetch` zamanı"
+    - "Siz `main`-də yeni commit edəndə"
+    - "Serverdə yeni commit olan kimi, özü"
+  answer: 0
+  explain: "`origin/main` serverin son əlaqə anındakı halıdır. Onu fetch, pull və push yeniləyir, lokal commit isə yox."

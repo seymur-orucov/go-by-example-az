@@ -1,0 +1,54 @@
+$ echo "rings: Air on the G String" >> ceremony.txt
+$ git add ceremony.txt
+$ echo "Uptown Funk" >> party.txt
+$ echo "1. Best man" > speeches.txt
+$ git status --short
+M  ceremony.txt
+ M party.txt
+?? speeches.txt
+$ git reset --hard
+HEAD is now at 80d6cc8 Add party songs
+$ git status --short
+?? speeches.txt
+$ cat party.txt
+September
+Dancing Queen
+$ printf "%s\n" "Dancing Queen" "September" > party.txt
+$ git commit -am "Try a new party order"
+[main 979d51e] Try a new party order
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+$ git add speeches.txt
+$ git commit -m "Add the speech order"
+[main d6fc7e4] Add the speech order
+ 1 file changed, 1 insertion(+)
+ create mode 100644 speeches.txt
+$ git log --oneline
+d6fc7e4 Add the speech order
+979d51e Try a new party order
+80d6cc8 Add party songs
+4b57422 Add ceremony songs
+$ git reset --hard HEAD~1
+HEAD is now at 979d51e Try a new party order
+$ git log --oneline
+979d51e Try a new party order
+80d6cc8 Add party songs
+4b57422 Add ceremony songs
+$ ls
+ceremony.txt
+party.txt
+$ git fetch
+From /home/sam/server/playlist
+   80d6cc8..7d3dd6e  main       -> origin/main
+$ git status
+On branch main
+Your branch and 'origin/main' have diverged,
+and have 1 and 1 different commits each, respectively.
+  (use "git pull" if you want to integrate the remote branch with yours)
+
+nothing to commit, working tree clean
+$ git reset --hard origin/main
+HEAD is now at 7d3dd6e Add the first dance
+$ git log --oneline
+7d3dd6e Add the first dance
+80d6cc8 Add party songs
+4b57422 Add ceremony songs

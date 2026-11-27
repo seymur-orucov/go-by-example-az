@@ -1,0 +1,34 @@
+# Hand-written visuals (text lesson): fork vs clone, then the three repositories of the fork workflow.
+fork:
+  vis:
+    kind: compare
+    caption: "Clone və fork"
+    a: { title: "Clone", sub: "Git əməliyyatı" }
+    b: { title: "Fork", sub: "GitHub imkanı" }
+    rows:
+      - aspect: "Necə yaranır"
+        a: "`git clone <URL>` komandası"
+        b: "GitHub-da **Fork** düyməsi"
+      - aspect: "Surət harada"
+        a: "Sizin kompüterinizdə"
+        b: "GitHub-da, sizin hesabınızda"
+      - aspect: "Faylları redaktə etmək"
+        a: "Redaktorda, commit lokal yazılır"
+        b: "Əvvəlcə fork-u clone etmək lazımdır"
+      - aspect: "Push etmək"
+        a: "`origin`-ə yazma icazəniz olmalıdır"
+        b: "Fork sizindir, ora push edə bilərsiniz"
+      - aspect: "Orijinalla əlaqə"
+        a: "`origin` remote-u orijinalı göstərir"
+        b: "GitHub fork-un mənbəyini yadda saxlayır"
+    note: "Biri digərini əvəz etmir: töhfə üçün əvvəl fork, sonra fork-un clone-u lazımdır."
+remotes:
+  vis:
+    kind: flow
+    caption: "Fork ilə iş: üç repository"
+    arrows: true
+    items:
+      - { label: "notely/notely", sub: "orijinal · remote `upstream`" }
+      - { label: "sam/notely", sub: "fork · remote `origin`", tone: accent }
+      - { label: "Sam-ın kompüteri", sub: "fork-un clone-u" }
+    note: "Yeniliklər `git fetch upstream` ilə gəlir, Sam-ın commit-ləri `git push origin` ilə fork-a gedir."

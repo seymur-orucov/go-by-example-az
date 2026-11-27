@@ -1,0 +1,71 @@
+$ git switch release/1.0
+Switched to branch 'release/1.0'
+$ cat contacts.txt
+phone: +1 555 0199
+email: info@club.example
+$ git log --oneline release/1.0..main
+6621b44 Add the shop page
+e25a3d9 Fix the phone number
+7bcb5a0 Add the gallery page
+$ git cherry-pick main~1
+[release/1.0 01525a4] Fix the phone number
+ Date: Thu Jan 15 09:16:00 2026 +0000
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+$ cat contacts.txt
+phone: +1 555 0100
+email: info@club.example
+$ ls
+contacts.txt
+menu.txt
+schedule.html
+$ git log -1 main~1
+commit e25a3d9ab9198e3eb59350341d97a08dd8aaeb46
+Author: Sam Lee <sam@example.com>
+Date:   Thu Jan 15 09:16:00 2026 +0000
+
+    Fix the phone number
+$ git log -1 release/1.0
+commit 01525a4a40ce47a7c2450fd073d1a05fc39bcfde
+Author: Sam Lee <sam@example.com>
+Date:   Thu Jan 15 09:16:00 2026 +0000
+
+    Fix the phone number
+$ git cherry-pick -x main~2..main
+[release/1.0 b457804] Fix the Saturday time
+ Date: Thu Jan 15 09:31:00 2026 +0000
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+[release/1.0 17c7ccf] Fix the Wednesday time
+ Date: Thu Jan 15 09:33:00 2026 +0000
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+$ git log -1
+commit 17c7ccfd76e044bbc911bda2c30939b1b7a80cda
+Author: Sam Lee <sam@example.com>
+Date:   Thu Jan 15 09:33:00 2026 +0000
+
+    Fix the Wednesday time
+    
+    (cherry picked from commit 3111bd29037c9ef8af740570de16461ff57f4a8d)
+$ git cherry-pick ":/Add the shop"
+Auto-merging menu.txt
+CONFLICT (content): Merge conflict in menu.txt
+error: could not apply 6621b44... Add the shop page
+hint: After resolving the conflicts, mark them with
+hint: "git add/rm <pathspec>", then run
+hint: "git cherry-pick --continue".
+hint: You can instead skip this commit with "git cherry-pick --skip".
+hint: To abort and get back to the state before "git cherry-pick",
+hint: run "git cherry-pick --abort".
+hint: Disable this message with "git config set advice.mergeConflict false"
+$ cat menu.txt
+Home
+Schedule
+<<<<<<< HEAD
+=======
+Gallery
+Shop
+>>>>>>> 6621b44 (Add the shop page)
+Contacts
+$ git cherry-pick --abort
+$ git status
+On branch release/1.0
+nothing to commit, working tree clean

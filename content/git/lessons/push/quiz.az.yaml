@@ -1,0 +1,63 @@
+- question: "`git push origin main`-in çıxışındakı `main -> main` nə deməkdir?"
+  options:
+    - "Serverdəki `main` lokal `main`-ə merge olunub"
+    - "Lokal `main` iki dəfə push olunub"
+    - "Lokal `main` serverdəki `main`-ə yazılıb"
+  answer: 2
+  explain: "Soldakı ad lokal branch, sağdakı serverdəki branch-dır. Serverdəki `main` indi lokal `main`-in commit-indədir."
+- question: "Clone edilmiş repository-də bu komandalardan sonra nə çap olunur?"
+  code: |
+    git switch -q -c docs
+    echo "Setup steps" > SETUP.md
+    git add SETUP.md
+    git commit -q -m "Add setup notes"
+    git push
+  options:
+    - "`has no upstream branch` xətası"
+    - "`* [new branch]      docs -> docs`"
+    - "`Everything up-to-date`"
+  answer: 0
+  explain: "Yeni branch-ın upstream-i yoxdur, ona görə arqumentsiz `git push` onu hara göndərəcəyini bilmir və `git push --set-upstream origin docs` təklif edir."
+- question: "`docs` branch-ını `origin`-ə göndərib upstream-i təyin edən komanda hansıdır?"
+  options:
+    - "`git branch -vv docs`"
+    - "`git push -u origin docs`"
+    - "`git push origin docs`"
+  answer: 1
+  explain: "`-u` (`--set-upstream`) push-dan sonra lokal `docs`-u `origin/docs`-a bağlayır. `-u`-suz `git push origin docs` branch-ı göndərir, amma upstream təyin etmir."
+- question: "`git push -u origin docs`-dan sonra `git branch -vv` `docs` sətrində nə göstərir?"
+  options:
+    - "`[main]`"
+    - "`[docs]`"
+    - "`[origin/main]`"
+    - "`[origin/docs]`"
+  answer: 3
+  explain: "Kvadrat mötərizədə branch-ın upstream-i yazılır. `-u` onu `origin/docs` etdi."
+- question: "`git push` `! [rejected] main -> main (fetch first)` çap etdi. Bu nə deməkdir?"
+  options:
+    - "Serverdə sizdə olmayan commit var, push onu branch-dan çıxarardı"
+    - "Serverə yazmaq icazəniz yoxdur, push-u admin bağlayıb"
+    - "Lokal `main`-də commit olunmamış dəyişiklik var, əvvəl commit edin"
+  answer: 0
+  explain: "Başqası sizdən əvvəl push edib. Serverdəki `main` sizin commit-inizə çəkilsəydi, onun commit-i itərdi."
+- question: "Push `fetch first` ilə rədd olundu. Paylaşılan `main` branch-ında düzgün yol hansıdır?"
+  options:
+    - "`git push --force`, sonra komandaya xəbər vermək"
+    - "`git push -u origin main`, sonra `git push`"
+    - "`git pull --no-rebase`, sonra `git push`"
+  answer: 2
+  explain: "Pull başqasının commit-ini gətirib sizinki ilə merge edir. Bundan sonra push serverdəki branch-ı irəli çəkir. `--force` başqasının commit-ini silər."
+- question: "`git push origin main` uğurla bitdi. Sizin `origin/main` indi hansı commit-dədir?"
+  options:
+    - "Köhnə yerində qalıb, onu yalnız `git fetch` yeniləyir"
+    - "Göndərdiyiniz son commit-də"
+    - "Silinib, çünki serverdəki `main` dəyişib"
+  answer: 1
+  explain: "Push qəbul olunanda Git `origin/main`-i də yeni commit-ə keçirir. Ona görə `git status` dərhal `up to date with 'origin/main'` yazır."
+- question: "Push çıxışında `* [new branch]      docs -> docs` sətri nə deməkdir?"
+  options:
+    - "Serverdə `docs` branch-ı bu push ilə yaranıb"
+    - "Lokal `docs` branch-ı bu push ilə yaranıb"
+    - "`docs` branch-ı serverdə silinib, yenisi yazılıb"
+  answer: 0
+  explain: "Serverdə əvvəl `docs` yox idi, ona görə çıxışda köhnə hash yoxdur, `[new branch]` yazılır."

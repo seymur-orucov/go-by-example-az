@@ -1,0 +1,10 @@
+rules:
+  - "`git restore <fayl>` stage edilməmiş dəyişikliyi ləğv edir: fayl staging area-dakı versiyaya qayıdır, son commit-dəkinə yox."
+  - "Ləğv edilən stage edilməmiş dəyişikliyi geri qaytarmaq olmur: Git onu heç yerdə saxlamayıb."
+  - "Silinmiş faylı da `git restore <fayl>` qaytarır, çünki silinmə də diskdəki dəyişiklikdir."
+  - "`git restore --staged <fayl>` faylı staging area-dan çıxarır, dəyişiklik isə diskdə qalır."
+  - "`--staged --worktree` faylı hər iki sahədə son commit-dəki versiyaya qaytarır."
+  - "`--source=HEAD~2` bir faylın köhnə versiyasını working directory-yə yazır; `HEAD` yerində qalır, nəticəni commit etmək lazımdır."
+practices:
+  - "`git restore <fayl>`-dan əvvəl `git diff <fayl>` ilə nəyi itirəcəyinizə baxın."
+  - "Köhnə sənədlərdəki `git checkout -- <fayl>` əvəzinə `git restore <fayl>` yazın."

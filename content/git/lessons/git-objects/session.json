@@ -1,0 +1,700 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir haiku",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd haiku",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Cherry blossoms fall\" > spring.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Red leaves on the path\" > autumn.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "mkdir drafts",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Snow on the roof\" > drafts/winter.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add .",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add first haiku\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git tag -a v1 -m \"First edition\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "porcelain",
+      "hidden": false,
+      "fail": false,
+      "out": "e2f096b Add first haiku\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git rev-parse HEAD",
+      "step": "porcelain",
+      "hidden": false,
+      "fail": false,
+      "out": "e2f096b282b37daba440318e65a97c20d23e4e5e\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git cat-file -t HEAD",
+      "step": "porcelain",
+      "hidden": false,
+      "fail": false,
+      "out": "commit\n",
+      "exit": 0
+    },
+    {
+      "cmd": "find .git/objects -type f | sort",
+      "step": "objects",
+      "hidden": false,
+      "fail": false,
+      "out": ".git/objects/1f/8929249147d63baa92dba9a32d4bcda4d7b34a\n.git/objects/61/3f594680d3c632939735bb117a670d239d937c\n.git/objects/68/3c77f80a9b2e353e384c9c41c2c0269b0ecc9b\n.git/objects/76/f8436a0b9c19b6cdf7349fb745ab732ea13ce2\n.git/objects/8a/7d79f8102cc4ed8357d72b69fa80c3e8e866f7\n.git/objects/ca/468a54c3005e2a00a95448de88bb83cbf38c2b\n.git/objects/e2/f096b282b37daba440318e65a97c20d23e4e5e\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git cat-file --batch-all-objects --batch-check",
+      "step": "objects",
+      "hidden": false,
+      "fail": false,
+      "out": "1f8929249147d63baa92dba9a32d4bcda4d7b34a blob 17\n613f594680d3c632939735bb117a670d239d937c blob 21\n683c77f80a9b2e353e384c9c41c2c0269b0ecc9b tag 132\n76f8436a0b9c19b6cdf7349fb745ab732ea13ce2 blob 23\n8a7d79f8102cc4ed8357d72b69fa80c3e8e866f7 tree 38\nca468a54c3005e2a00a95448de88bb83cbf38c2b tree 109\ne2f096b282b37daba440318e65a97c20d23e4e5e commit 166\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git ls-tree HEAD spring.txt",
+      "step": "hash",
+      "hidden": false,
+      "fail": false,
+      "out": "100644 blob 613f594680d3c632939735bb117a670d239d937c\tspring.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git hash-object spring.txt",
+      "step": "hash",
+      "hidden": false,
+      "fail": false,
+      "out": "613f594680d3c632939735bb117a670d239d937c\n",
+      "exit": 0
+    },
+    {
+      "cmd": "find .git/objects -type f | wc -l",
+      "step": "hash",
+      "hidden": false,
+      "fail": false,
+      "out": "7\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"First frost\" | git hash-object --stdin",
+      "step": "hash",
+      "hidden": false,
+      "fail": false,
+      "out": "48c691a2a3e0197fabf856bc6d710a85e16ff705\n",
+      "exit": 0
+    },
+    {
+      "cmd": "find .git/objects -type f | wc -l",
+      "step": "hash",
+      "hidden": false,
+      "fail": false,
+      "out": "7\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"First frost\" | git hash-object -w --stdin",
+      "step": "hash",
+      "hidden": false,
+      "fail": false,
+      "out": "48c691a2a3e0197fabf856bc6d710a85e16ff705\n",
+      "exit": 0
+    },
+    {
+      "cmd": "find .git/objects -type f | wc -l",
+      "step": "hash",
+      "hidden": false,
+      "fail": false,
+      "out": "8\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cat .git/HEAD",
+      "step": "chain",
+      "hidden": false,
+      "fail": false,
+      "out": "ref: refs/heads/main\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git rev-parse main",
+      "step": "chain",
+      "hidden": false,
+      "fail": false,
+      "out": "e2f096b282b37daba440318e65a97c20d23e4e5e\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git cat-file -p main",
+      "step": "chain",
+      "hidden": false,
+      "fail": false,
+      "out": "tree ca468a54c3005e2a00a95448de88bb83cbf38c2b\nauthor Sam Lee <sam@example.com> 1768468080 +0000\ncommitter Sam Lee <sam@example.com> 1768468080 +0000\n\nAdd first haiku\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git cat-file -p HEAD^{tree}",
+      "step": "chain",
+      "hidden": false,
+      "fail": false,
+      "out": "100644 blob 76f8436a0b9c19b6cdf7349fb745ab732ea13ce2\tautumn.txt\n040000 tree 8a7d79f8102cc4ed8357d72b69fa80c3e8e866f7\tdrafts\n100644 blob 613f594680d3c632939735bb117a670d239d937c\tspring.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git cat-file -p HEAD:drafts",
+      "step": "chain",
+      "hidden": false,
+      "fail": false,
+      "out": "100644 blob 1f8929249147d63baa92dba9a32d4bcda4d7b34a\twinter.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git cat-file -p HEAD:drafts/winter.txt",
+      "step": "chain",
+      "hidden": false,
+      "fail": false,
+      "out": "Snow on the roof\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Warm wind\" >> spring.txt",
+      "step": "new-commit",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -am \"Extend spring haiku\"",
+      "step": "new-commit",
+      "hidden": false,
+      "fail": false,
+      "out": "[main 7f98dd6] Extend spring haiku\n 1 file changed, 1 insertion(+)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "find .git/objects -type f | wc -l",
+      "step": "new-commit",
+      "hidden": false,
+      "fail": false,
+      "out": "11\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git cat-file -p HEAD^{tree}",
+      "step": "new-commit",
+      "hidden": false,
+      "fail": false,
+      "out": "100644 blob 76f8436a0b9c19b6cdf7349fb745ab732ea13ce2\tautumn.txt\n040000 tree 8a7d79f8102cc4ed8357d72b69fa80c3e8e866f7\tdrafts\n100644 blob 32172ec80f4677842a1ab1bc0e6d33655e4428c8\tspring.txt\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "porcelain": {
+      "areas": {
+        "work": [
+          {
+            "name": "autumn.txt",
+            "state": "clean"
+          },
+          {
+            "name": "drafts/winter.txt",
+            "state": "clean"
+          },
+          {
+            "name": "spring.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "autumn.txt",
+            "state": "clean"
+          },
+          {
+            "name": "drafts/winter.txt",
+            "state": "clean"
+          },
+          {
+            "name": "spring.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "e2f096b",
+            "message": "Add first haiku"
+          },
+          "count": 1,
+          "files": [
+            "autumn.txt",
+            "drafts/winter.txt",
+            "spring.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "e2f096b",
+            "message": "Add first haiku",
+            "parents": [],
+            "files": [
+              {
+                "name": "autumn.txt",
+                "state": "added"
+              },
+              {
+                "name": "drafts/winter.txt",
+                "state": "added"
+              },
+              {
+                "name": "spring.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "e2f096b"
+          }
+        ],
+        "tags": [
+          {
+            "name": "v1",
+            "target": "e2f096b"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "e2f096b"
+        }
+      }
+    },
+    "objects": {
+      "areas": {
+        "work": [
+          {
+            "name": "autumn.txt",
+            "state": "clean"
+          },
+          {
+            "name": "drafts/winter.txt",
+            "state": "clean"
+          },
+          {
+            "name": "spring.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "autumn.txt",
+            "state": "clean"
+          },
+          {
+            "name": "drafts/winter.txt",
+            "state": "clean"
+          },
+          {
+            "name": "spring.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "e2f096b",
+            "message": "Add first haiku"
+          },
+          "count": 1,
+          "files": [
+            "autumn.txt",
+            "drafts/winter.txt",
+            "spring.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "e2f096b",
+            "message": "Add first haiku",
+            "parents": [],
+            "files": [
+              {
+                "name": "autumn.txt",
+                "state": "added"
+              },
+              {
+                "name": "drafts/winter.txt",
+                "state": "added"
+              },
+              {
+                "name": "spring.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "e2f096b"
+          }
+        ],
+        "tags": [
+          {
+            "name": "v1",
+            "target": "e2f096b"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "e2f096b"
+        }
+      }
+    },
+    "hash": {
+      "areas": {
+        "work": [
+          {
+            "name": "autumn.txt",
+            "state": "clean"
+          },
+          {
+            "name": "drafts/winter.txt",
+            "state": "clean"
+          },
+          {
+            "name": "spring.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "autumn.txt",
+            "state": "clean"
+          },
+          {
+            "name": "drafts/winter.txt",
+            "state": "clean"
+          },
+          {
+            "name": "spring.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "e2f096b",
+            "message": "Add first haiku"
+          },
+          "count": 1,
+          "files": [
+            "autumn.txt",
+            "drafts/winter.txt",
+            "spring.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "e2f096b",
+            "message": "Add first haiku",
+            "parents": [],
+            "files": [
+              {
+                "name": "autumn.txt",
+                "state": "added"
+              },
+              {
+                "name": "drafts/winter.txt",
+                "state": "added"
+              },
+              {
+                "name": "spring.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "e2f096b"
+          }
+        ],
+        "tags": [
+          {
+            "name": "v1",
+            "target": "e2f096b"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "e2f096b"
+        }
+      }
+    },
+    "chain": {
+      "areas": {
+        "work": [
+          {
+            "name": "autumn.txt",
+            "state": "clean"
+          },
+          {
+            "name": "drafts/winter.txt",
+            "state": "clean"
+          },
+          {
+            "name": "spring.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "autumn.txt",
+            "state": "clean"
+          },
+          {
+            "name": "drafts/winter.txt",
+            "state": "clean"
+          },
+          {
+            "name": "spring.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "e2f096b",
+            "message": "Add first haiku"
+          },
+          "count": 1,
+          "files": [
+            "autumn.txt",
+            "drafts/winter.txt",
+            "spring.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "e2f096b",
+            "message": "Add first haiku",
+            "parents": [],
+            "files": [
+              {
+                "name": "autumn.txt",
+                "state": "added"
+              },
+              {
+                "name": "drafts/winter.txt",
+                "state": "added"
+              },
+              {
+                "name": "spring.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "e2f096b"
+          }
+        ],
+        "tags": [
+          {
+            "name": "v1",
+            "target": "e2f096b"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "e2f096b"
+        }
+      }
+    },
+    "new-commit": {
+      "areas": {
+        "work": [
+          {
+            "name": "autumn.txt",
+            "state": "clean"
+          },
+          {
+            "name": "drafts/winter.txt",
+            "state": "clean"
+          },
+          {
+            "name": "spring.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "autumn.txt",
+            "state": "clean"
+          },
+          {
+            "name": "drafts/winter.txt",
+            "state": "clean"
+          },
+          {
+            "name": "spring.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "7f98dd6",
+            "message": "Extend spring haiku"
+          },
+          "count": 2,
+          "files": [
+            "autumn.txt",
+            "drafts/winter.txt",
+            "spring.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "7f98dd6",
+            "message": "Extend spring haiku",
+            "parents": [
+              "e2f096b"
+            ],
+            "files": [
+              {
+                "name": "autumn.txt",
+                "state": "same"
+              },
+              {
+                "name": "drafts/winter.txt",
+                "state": "same"
+              },
+              {
+                "name": "spring.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "e2f096b",
+            "message": "Add first haiku",
+            "parents": [],
+            "files": [
+              {
+                "name": "autumn.txt",
+                "state": "added"
+              },
+              {
+                "name": "drafts/winter.txt",
+                "state": "added"
+              },
+              {
+                "name": "spring.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "7f98dd6"
+          }
+        ],
+        "tags": [
+          {
+            "name": "v1",
+            "target": "e2f096b"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "7f98dd6"
+        }
+      }
+    }
+  }
+}

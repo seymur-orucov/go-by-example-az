@@ -1,0 +1,82 @@
+- question: "`git reflog` çıxışında `HEAD@{3}` nəyi bildirir?"
+  options:
+    - "HEAD-dən üç parent geridəki commit-i"
+    - "HEAD-in üç hərəkət əvvəl olduğu commit-i"
+    - "Jurnaldakı üçüncü branch-ın son commit-ini"
+  answer: 1
+  explain: "`@{n}` jurnal üzrə geri gedir: HEAD-in n hərəkət əvvəlki yeri. Parent-lər üzrə üç addım `HEAD~3`-dür."
+- question: "Yeni, boş repository-də bu komandalardan sonra hash-dən sonra nə çap olunur?"
+  code: |
+    echo "a" > poem.txt
+    git add poem.txt
+    git commit -q -m "Add first verse"
+    echo "b" >> poem.txt
+    git commit -q -am "Add second verse"
+    git reset -q --hard HEAD~1
+    git reflog -1
+  options:
+    - "`HEAD@{0}: commit: Add second verse`"
+    - "`HEAD@{1}: reset: moving to HEAD~1`"
+    - "`HEAD@{0}: reset: moving to HEAD~1`"
+  answer: 2
+  explain: "Reset də HEAD-in hərəkətidir. Ən yeni sətir həmişə `HEAD@{0}`-dır və burada o, reset-dir."
+- question: "Yeni, boş repository-də bu komandalardan sonra hansı commit mesajı çap olunur?"
+  code: |
+    echo "a" > story.txt
+    git add story.txt
+    git commit -q -m "Add intro"
+    echo "b" >> story.txt
+    git commit -q -am "Add plot"
+    echo "c" >> story.txt
+    git commit -q -am "Add twist"
+    git reset -q --hard HEAD~2
+    git reset -q --hard HEAD@{1}
+    git log --oneline -1
+  options:
+    - "`Add twist`"
+    - "`Add intro`"
+    - "`Add plot`"
+  answer: 0
+  explain: "Birinci reset `main`-i `Add intro`-ya keçirir. `HEAD@{1}` reset-dən əvvəlki yerdir, yəni `Add twist`."
+- question: "`git reset --hard HEAD~2`-dən sonra itən iki commit-i qorumaq istəyirsiniz, `main` isə yerində qalmalıdır. Hansı komanda lazımdır?"
+  options:
+    - "`git reset --hard HEAD@{1}`"
+    - "`git branch rescue HEAD~2`"
+    - "`git branch rescue HEAD@{1}`"
+  answer: 2
+  explain: "`HEAD@{1}` reset-dən əvvəlki yerdir və `git branch` orada yeni branch yaradır. `reset` isə `main`-i tərpədir, `HEAD~2` də indiki HEAD-dən daha geriyə gedir."
+- question: "`git branch -D draft`-dan sonra `draft`-ın son commit-ini harada axtarırsınız?"
+  options:
+    - "`git reflog show draft`-da, branch-ın öz jurnalında"
+    - "`git reflog`-da, HEAD-in jurnalında"
+    - "`git log --all`-da, bütün branch-larda"
+  answer: 1
+  explain: "Branch-ın jurnalı onunla birlikdə silinir və `git reflog show draft` xəta verir. Commit-i yaradanda HEAD `draft`-da idi, ona görə o, HEAD-in jurnalında qalır."
+- question: "`feat` branch-ında `git rebase main` etdiniz, nəticə xoşunuza gəlmədi. Hansı komanda `feat`-i rebase-dən əvvəlki commit-inə qaytarır?"
+  options:
+    - "`git reset --hard HEAD@{1}`"
+    - "`git reset --hard feat@{1}`"
+    - "`git reset --hard feat~1`"
+  answer: 1
+  explain: "Rebase `feat`-i bir dəfə tərpədir, ona görə `feat@{1}` rebase-dən əvvəlki yerdir. `HEAD@{1}` isə `rebase (pick)` sətridir, yəni yeni commit-lərdən biri; `feat~1` yeni commit-in parent-idir."
+- question: "Ayla repository-nizi serverdən clone edir. Sizin `reset` sətirləriniz onun `git reflog`-unda görünür?"
+  options:
+    - "Xeyr, reflog yalnız sizin kompüterinizdədir"
+    - "Bəli, clone reflog-u da köçürür"
+    - "Bəli, amma yalnız son 30 günün sətirləri"
+  answer: 0
+  explain: "Reflog lokal repository-nin jurnalıdır, push və clone onu köçürmür. Ayla-nın jurnalı clone anından başlayır."
+- question: "Ayarlar dəyişməyibsə, heç bir branch-da olmayan commit-in reflog sətri nə qədər qalır?"
+  options:
+    - "30 gün"
+    - "90 gün"
+    - "Həmişəlik"
+  answer: 0
+  explain: "`gc.reflogExpireUnreachable` 30 gündür. 90 gün (`gc.reflogExpire`) branch-da olan commit-lərin sətirləri üçündür."
+- question: "Yeni repository-də `main`-də iki commit etdiniz: `Add the opening` və `Add the second chapter`. Sonra `git switch -c drafts` ilə yeni branch-a keçdiniz və `main`-ə qayıtdınız. Hansı sətir `git reflog show main`-də olmur?"
+  options:
+    - "`commit (initial): Add the opening`"
+    - "`commit: Add the second chapter`"
+    - "`checkout: moving from main to drafts`"
+  answer: 2
+  explain: "Branch dəyişmə HEAD-i tərpədir, `main`-i yox. Bu sətir yalnız HEAD-in jurnalında (`git reflog`) olur."

@@ -1,0 +1,42 @@
+# Hand-written visuals (diagram lesson): three repositories of one project, then HTTPS vs SSH.
+three-repos:
+  vis:
+    kind: diagram
+    caption: "Bir layihənin üç repository-si"
+    nodes:
+      - title: "Sam-ın laptopu"
+        sub: "lokal repository"
+        lines: ["main"]
+      - title: "GitHub"
+        sub: "remote, ünvanı `github.com/sam/shop`"
+        lines: ["main"]
+        tone: accent
+      - title: "Ayla-nın laptopu"
+        sub: "lokal repository"
+        lines: ["main"]
+    links:
+      - { right: "`push`: göndərir", left: "`fetch`, `pull`: götürür" }
+      - { right: "`fetch`, `pull`: götürür", left: "`push`: göndərir" }
+    note: "Sam və Ayla bir-birinə birbaşa yox, GitHub vasitəsilə göndərir. Hər ikisi üçün GitHub-dakı repository `origin` adlanır."
+origin:
+url:
+https-ssh:
+  vis:
+    kind: compare
+    caption: "Eyni repository-yə iki yol"
+    a: { title: "HTTPS", sub: "https://github.com/sam/shop.git" }
+    b: { title: "SSH", sub: "git@github.com:sam/shop.git" }
+    rows:
+      - aspect: "Başlamaq"
+        a: "Heç nə qurmaq lazım deyil"
+        b: "Əvvəlcə açar yaradıb GitHub-a əlavə etmək lazımdır"
+        better: a
+      - aspect: "Push zamanı"
+        a: "Token və ya credential manager"
+        b: "Açar özü tanıdır, heç nə soruşulmur"
+        better: b
+      - aspect: "Port"
+        a: "443 (veb ilə eyni, şəbəkələrdə adətən açıqdır)"
+        b: "22 (bəzi şirkət şəbəkələrində bağlı olur)"
+        better: a
+    note: "İkisi də təhlükəsizdir. Seçim rahatlıq və şəbəkə məsələsidir."

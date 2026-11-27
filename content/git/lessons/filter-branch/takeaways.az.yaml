@@ -1,0 +1,11 @@
+rules:
+  - "Faylı yeni commit-də silmək onu tarixçədən silmir: `git show <commit>:<fayl>` köhnə məzmunu göstərir."
+  - "Push olunan sirr ələ keçmiş sayılır: birinci addım açarı ləğv edib yenisini yaratmaqdır."
+  - "`git filter-branch --index-filter` hər commit-i yenidən yazır; faylı saxlayan commit-lərin və onlardan sonrakıların hash-i dəyişir."
+  - "filter-branch köhnə tarixçəni `refs/original/` altında saxlayır; yoxlayandan sonra onu `git update-ref -d` ilə silin."
+  - "Git `git filter-repo`-nu tövsiyə edir: o, ayrıca quraşdırılır və təzə clone-da işləyir."
+  - "Tarixçəni yenidən yazandan sonra force push lazımdır, komandadakı hər kəs isə repository-ni yenidən clone etməlidir."
+practices:
+  - "Sirli faylı `.gitignore`-a əlavə edin, komandaya isə açarsız nümunə fayl (`config.env.example`) verin."
+  - "`git add .`-dan əvvəl `git status`-a baxın ki, açar commit-ə düşməsin."
+  - "Real layihədə `git filter-repo --path <fayl> --invert-paths` işlədin, filter-branch-ı yox."

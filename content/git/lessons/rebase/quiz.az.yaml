@@ -1,0 +1,80 @@
+- question: "`feat` branch-ında `main`-də olmayan iki commit var. `feat`-də `git rebase main` yazırsınız. Bu iki commit-ə nə olur?"
+  options:
+    - "Git onları olduğu kimi `main`-in sonuna köçürür, hash-lər eyni qalır"
+    - "Git onların dəyişikliklərini `main`-in üstündə yeni commit-lər kimi yazır"
+    - "Git `main`-in commit-lərini `feat`-in üstünə köçürür"
+  answer: 1
+  explain: "Rebase hazırkı branch-ın commit-lərini yeni əsasın üstündə təkrar tətbiq edir. Mesajlar eyni qalır, amma commit-lər yenidir."
+- question: "Rebase-dən sonra branch-dakı commit-lərin mesajı eynidir. Hash-lar niyə dəyişir?"
+  options:
+    - "Git hər rebase-də mesajın sonuna gizli işarə əlavə edir"
+    - "Hash yalnız commit-in yarandığı vaxtdan hesablanır"
+    - "Commit-in parent-i dəyişir, hash isə parent-dən də asılıdır"
+  answer: 2
+  explain: "Birinci köçürülən commit-in parent-i indi `main`-in son commit-idir. Parent-i fərqli olan commit başqa commit-dir, onun hash-i də başqadır."
+- question: "Yeni, boş repository-də bu komandalardan sonra `git log --oneline` neçə sətir çap edir?"
+  code: |
+    echo "a" > a.txt
+    git add a.txt
+    git commit -q -m "Start"
+    git switch -q -c feat
+    echo "b" > b.txt
+    git add b.txt
+    git commit -q -m "Add b"
+    echo "c" > c.txt
+    git add c.txt
+    git commit -q -m "Add c"
+    git switch -q main
+    echo "d" > d.txt
+    git add d.txt
+    git commit -q -m "Add d"
+    git switch -q feat
+    git rebase main
+  options:
+    - "4"
+    - "5"
+    - "3"
+  answer: 0
+  explain: "`Start`, `Add d` və köçürülmüş `Add b`, `Add c`. Rebase merge commit yaratmır, köhnə `Add b` və `Add c` isə artıq branch-da deyil."
+- question: "Əvvəlki sualdakı komandalardan sonra `git switch main` və `git merge feat` yazırsınız. Çıxışda hansı sətir olur?"
+  options:
+    - "`Merge made by the 'ort' strategy.`"
+    - "`Fast-forward`"
+    - "`Already up to date.`"
+  answer: 1
+  explain: "Rebase-dən sonra `main`-in son commit-i `feat`-in tarixçəsindədir. Git `main`-i sadəcə irəli çəkir."
+- question: "Rebase konfliktlə dayanıb. Faylı düzəldib `git add` etdiniz. Rebase-i hansı komanda davam etdirir?"
+  options:
+    - "`git rebase --continue`"
+    - "`git merge --continue`"
+    - "`git rebase --skip`"
+  answer: 0
+  explain: "`--continue` commit-i yaradır və növbəti commit-ə keçir. `--skip` isə konfliktli commit-i tamamilə atlayardı."
+- question: "Rebase konfliktlə dayanıb və siz başa qayıtmaq istəyirsiniz. `git rebase --abort` nə edir?"
+  options:
+    - "Konfliktli commit-i atlayır və rebase-i davam etdirir"
+    - "Konflikti hazırkı branch-ın xeyrinə həll edir"
+    - "Rebase-i ləğv edir, branch rebase-dən əvvəlki commit-ə qayıdır"
+  answer: 2
+  explain: "Branch rebase bitənə qədər köhnə commit-lərdə qalır. `--abort` HEAD-i ora qaytarır və fayllar da əvvəlki kimi olur."
+- question: "`feat`-də `git rebase main` faylda konflikt yaratdı. `<<<<<<< HEAD` ilə `=======` arasında kimin versiyası olur?"
+  options:
+    - "`feat`-dəki tətbiq olunan commit-in versiyası"
+    - "`main`-in, yəni yeni əsasın versiyası"
+    - "Merge base-dəki köhnə versiya"
+  answer: 1
+  explain: "Rebase zamanı HEAD yeni əsasın üstündədir. Tətbiq olunan commit `>>>>>>>` tərəfində olur: tərəflər merge-dəkinin əksidir."
+- question: "`git rebase --skip` nə edir?"
+  options:
+    - "Rebase-i ləğv edir, branch əvvəlki commit-ə qayıdır"
+    - "Konfliktli faylı yoxlamadan commit edir"
+    - "Konfliktli commit-i atlayır, onun dəyişikliyi branch-a düşmür"
+  answer: 2
+  explain: "`--skip` bu commit-i köçürmür və növbəti commit-ə keçir. Branch-ı əvvəlki vəziyyətə `--abort` qaytarır."
+- question: "`feat` artıq `main`-in son commit-inin üstündədir, `main` o vaxtdan dəyişməyib. `feat`-də `git rebase main` nə çap edir?"
+  options:
+    - "`Current branch feat is up to date.`"
+    - "`Successfully rebased and updated refs/heads/feat.`"
+    - "`Already up to date.`"
+  answer: 0
+  explain: "Köçürmək üçün yer yoxdur: branch artıq `main`-in üstündədir. Git heç bir commit yaratmır."

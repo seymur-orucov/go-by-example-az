@@ -1,0 +1,42 @@
+# Hand-written visuals (text lesson): the same branches with random and agreed names, then the
+# parts of one name.
+why:
+  vis:
+    kind: compare
+    caption: "Eyni beş iş, `git branch` siyahısında"
+    a: { title: "Təsadüfi adlar", sub: "nə olduğu bilinmir" }
+    b: { title: "Razılaşdırılmış adlar", sub: "növ, tapşırıq, mövzu" }
+    rows:
+      - aspect: "Hədiyyə kartları"
+        a: "`new`"
+        b: "`feat/BOOK-142-gift-cards`"
+        better: b
+      - aspect: "Səbətdə cəmin səhvi"
+        a: "`fix`"
+        b: "`fix/BOOK-150-cart-total`"
+        better: b
+      - aspect: "README-nin yenilənməsi"
+        a: "`sam2`"
+        b: "`docs/update-readme`"
+        better: b
+      - aspect: "Node versiyasının yenilənməsi"
+        a: "`temp`"
+        b: "`chore/upgrade-node`"
+        better: b
+      - aspect: "Ödəniş səhifəsi çöküb"
+        a: "`test`"
+        b: "`hotfix/payment-page-crash`"
+        better: b
+    note: "Git hər iki sütunu qəbul edir; fərqi yalnız siyahını oxuyan insan görür."
+prefixes:
+format:
+  vis:
+    kind: flow
+    caption: "`feat/BOOK-142-gift-cards` adının hissələri"
+    items:
+      - { label: "feat/", sub: "işin növü", tone: accent }
+      - { label: "BOOK-142", sub: "tapşırığın nömrəsi" }
+      - { label: "gift-cards", sub: "qısa təsvir, kebab-case" }
+    note: "Hissələri komanda seçir; Git yalnız simvolların düzgünlüyünə baxır."
+git-rules:
+slash:

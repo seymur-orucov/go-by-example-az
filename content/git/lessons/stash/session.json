@@ -1,0 +1,802 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir timetable",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd timetable",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"08:30 math\" \"09:30 history\" \"10:30 science\" > monday.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"math: room 12\" \"history: room 7\" > rooms.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add .",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add Monday timetable\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q -c clubs",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"14:00 art club\" >> monday.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add art club\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"art club: room 3\" >> rooms.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add rooms.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"15:00 chess club\" >> monday.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status --short",
+      "step": "stash",
+      "hidden": false,
+      "fail": false,
+      "out": " M monday.txt\nM  rooms.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch main",
+      "step": "stash",
+      "hidden": false,
+      "fail": true,
+      "out": "error: Your local changes to the following files would be overwritten by checkout:\n\tmonday.txt\nPlease commit your changes or stash them before you switch branches.\nAborting\n",
+      "exit": 1
+    },
+    {
+      "cmd": "git stash",
+      "step": "stash",
+      "hidden": false,
+      "fail": false,
+      "out": "Saved working directory and index state WIP on clubs: 2311ed1 Add art club\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git status --short",
+      "step": "stash",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git stash list",
+      "step": "stash",
+      "hidden": false,
+      "fail": false,
+      "out": "stash@{0}: WIP on clubs: 2311ed1 Add art club\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch main",
+      "step": "fix",
+      "hidden": false,
+      "fail": false,
+      "out": "Switched to branch 'main'\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"science: lab 2\" >> rooms.txt",
+      "step": "fix",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add rooms.txt",
+      "step": "fix",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"Add science lab room\"",
+      "step": "fix",
+      "hidden": false,
+      "fail": false,
+      "out": "[main c40d154] Add science lab room\n 1 file changed, 1 insertion(+)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch clubs",
+      "step": "pop",
+      "hidden": false,
+      "fail": false,
+      "out": "Switched to branch 'clubs'\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git stash pop",
+      "step": "pop",
+      "hidden": false,
+      "fail": false,
+      "out": "On branch clubs\nChanges not staged for commit:\n  (use \"git add <file>...\" to update what will be committed)\n  (use \"git restore <file>...\" to discard changes in working directory)\n\tmodified:   monday.txt\n\tmodified:   rooms.txt\n\nno changes added to commit (use \"git add\" and/or \"git commit -a\")\nDropped refs/stash@{0} (a82ac041ae821b01f8d21ce50b91c09a30272b13)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git status --short",
+      "step": "pop",
+      "hidden": false,
+      "fail": false,
+      "out": " M monday.txt\n M rooms.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git stash list",
+      "step": "pop",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"14:00 drama club\" > tuesday.txt",
+      "step": "untracked",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git stash push -m \"art and chess\"",
+      "step": "untracked",
+      "hidden": false,
+      "fail": false,
+      "out": "Saved working directory and index state On clubs: art and chess\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git status --short",
+      "step": "untracked",
+      "hidden": false,
+      "fail": false,
+      "out": "?? tuesday.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git stash push -u -m \"Tuesday clubs\"",
+      "step": "untracked",
+      "hidden": false,
+      "fail": false,
+      "out": "Saved working directory and index state On clubs: Tuesday clubs\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git status --short",
+      "step": "untracked",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git stash list",
+      "step": "untracked",
+      "hidden": false,
+      "fail": false,
+      "out": "stash@{0}: On clubs: Tuesday clubs\nstash@{1}: On clubs: art and chess\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git stash apply stash@{1}",
+      "step": "apply",
+      "hidden": false,
+      "fail": false,
+      "out": "On branch clubs\nChanges not staged for commit:\n  (use \"git add <file>...\" to update what will be committed)\n  (use \"git restore <file>...\" to discard changes in working directory)\n\tmodified:   monday.txt\n\tmodified:   rooms.txt\n\nno changes added to commit (use \"git add\" and/or \"git commit -a\")\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git stash list",
+      "step": "apply",
+      "hidden": false,
+      "fail": false,
+      "out": "stash@{0}: On clubs: Tuesday clubs\nstash@{1}: On clubs: art and chess\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git stash drop stash@{1}",
+      "step": "apply",
+      "hidden": false,
+      "fail": false,
+      "out": "Dropped stash@{1} (26bd6b38e5e3abe016d1e98699fc162868afc0ac)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git stash list",
+      "step": "apply",
+      "hidden": false,
+      "fail": false,
+      "out": "stash@{0}: On clubs: Tuesday clubs\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git status --short",
+      "step": "apply",
+      "hidden": false,
+      "fail": false,
+      "out": " M monday.txt\n M rooms.txt\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "stash": {
+      "areas": {
+        "work": [
+          {
+            "name": "monday.txt",
+            "state": "clean"
+          },
+          {
+            "name": "rooms.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "monday.txt",
+            "state": "clean"
+          },
+          {
+            "name": "rooms.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "2311ed1",
+            "message": "Add art club"
+          },
+          "count": 2,
+          "files": [
+            "monday.txt",
+            "rooms.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "2311ed1",
+            "message": "Add art club",
+            "parents": [
+              "6dbcd74"
+            ],
+            "files": [
+              {
+                "name": "monday.txt",
+                "state": "modified"
+              },
+              {
+                "name": "rooms.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "6dbcd74",
+            "message": "Add Monday timetable",
+            "parents": [],
+            "files": [
+              {
+                "name": "monday.txt",
+                "state": "added"
+              },
+              {
+                "name": "rooms.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "clubs",
+            "target": "2311ed1"
+          },
+          {
+            "name": "main",
+            "target": "6dbcd74"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "clubs",
+          "target": "2311ed1"
+        }
+      }
+    },
+    "fix": {
+      "areas": {
+        "work": [
+          {
+            "name": "monday.txt",
+            "state": "clean"
+          },
+          {
+            "name": "rooms.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "monday.txt",
+            "state": "clean"
+          },
+          {
+            "name": "rooms.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "c40d154",
+            "message": "Add science lab room"
+          },
+          "count": 2,
+          "files": [
+            "monday.txt",
+            "rooms.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "c40d154",
+            "message": "Add science lab room",
+            "parents": [
+              "6dbcd74"
+            ],
+            "files": [
+              {
+                "name": "monday.txt",
+                "state": "same"
+              },
+              {
+                "name": "rooms.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "2311ed1",
+            "message": "Add art club",
+            "parents": [
+              "6dbcd74"
+            ],
+            "files": [
+              {
+                "name": "monday.txt",
+                "state": "modified"
+              },
+              {
+                "name": "rooms.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "6dbcd74",
+            "message": "Add Monday timetable",
+            "parents": [],
+            "files": [
+              {
+                "name": "monday.txt",
+                "state": "added"
+              },
+              {
+                "name": "rooms.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "clubs",
+            "target": "2311ed1"
+          },
+          {
+            "name": "main",
+            "target": "c40d154"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "c40d154"
+        }
+      }
+    },
+    "pop": {
+      "areas": {
+        "work": [
+          {
+            "name": "monday.txt",
+            "state": "modified"
+          },
+          {
+            "name": "rooms.txt",
+            "state": "modified"
+          }
+        ],
+        "index": [
+          {
+            "name": "monday.txt",
+            "state": "clean"
+          },
+          {
+            "name": "rooms.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "2311ed1",
+            "message": "Add art club"
+          },
+          "count": 2,
+          "files": [
+            "monday.txt",
+            "rooms.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "c40d154",
+            "message": "Add science lab room",
+            "parents": [
+              "6dbcd74"
+            ],
+            "files": [
+              {
+                "name": "monday.txt",
+                "state": "same"
+              },
+              {
+                "name": "rooms.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "2311ed1",
+            "message": "Add art club",
+            "parents": [
+              "6dbcd74"
+            ],
+            "files": [
+              {
+                "name": "monday.txt",
+                "state": "modified"
+              },
+              {
+                "name": "rooms.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "6dbcd74",
+            "message": "Add Monday timetable",
+            "parents": [],
+            "files": [
+              {
+                "name": "monday.txt",
+                "state": "added"
+              },
+              {
+                "name": "rooms.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "clubs",
+            "target": "2311ed1"
+          },
+          {
+            "name": "main",
+            "target": "c40d154"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "clubs",
+          "target": "2311ed1"
+        }
+      }
+    },
+    "untracked": {
+      "areas": {
+        "work": [
+          {
+            "name": "monday.txt",
+            "state": "clean"
+          },
+          {
+            "name": "rooms.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "monday.txt",
+            "state": "clean"
+          },
+          {
+            "name": "rooms.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "2311ed1",
+            "message": "Add art club"
+          },
+          "count": 2,
+          "files": [
+            "monday.txt",
+            "rooms.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "c40d154",
+            "message": "Add science lab room",
+            "parents": [
+              "6dbcd74"
+            ],
+            "files": [
+              {
+                "name": "monday.txt",
+                "state": "same"
+              },
+              {
+                "name": "rooms.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "2311ed1",
+            "message": "Add art club",
+            "parents": [
+              "6dbcd74"
+            ],
+            "files": [
+              {
+                "name": "monday.txt",
+                "state": "modified"
+              },
+              {
+                "name": "rooms.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "6dbcd74",
+            "message": "Add Monday timetable",
+            "parents": [],
+            "files": [
+              {
+                "name": "monday.txt",
+                "state": "added"
+              },
+              {
+                "name": "rooms.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "clubs",
+            "target": "2311ed1"
+          },
+          {
+            "name": "main",
+            "target": "c40d154"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "clubs",
+          "target": "2311ed1"
+        }
+      }
+    },
+    "apply": {
+      "areas": {
+        "work": [
+          {
+            "name": "monday.txt",
+            "state": "modified"
+          },
+          {
+            "name": "rooms.txt",
+            "state": "modified"
+          }
+        ],
+        "index": [
+          {
+            "name": "monday.txt",
+            "state": "clean"
+          },
+          {
+            "name": "rooms.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "2311ed1",
+            "message": "Add art club"
+          },
+          "count": 2,
+          "files": [
+            "monday.txt",
+            "rooms.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "c40d154",
+            "message": "Add science lab room",
+            "parents": [
+              "6dbcd74"
+            ],
+            "files": [
+              {
+                "name": "monday.txt",
+                "state": "same"
+              },
+              {
+                "name": "rooms.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "2311ed1",
+            "message": "Add art club",
+            "parents": [
+              "6dbcd74"
+            ],
+            "files": [
+              {
+                "name": "monday.txt",
+                "state": "modified"
+              },
+              {
+                "name": "rooms.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "6dbcd74",
+            "message": "Add Monday timetable",
+            "parents": [],
+            "files": [
+              {
+                "name": "monday.txt",
+                "state": "added"
+              },
+              {
+                "name": "rooms.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "clubs",
+            "target": "2311ed1"
+          },
+          {
+            "name": "main",
+            "target": "c40d154"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "clubs",
+          "target": "2311ed1"
+        }
+      }
+    }
+  }
+}

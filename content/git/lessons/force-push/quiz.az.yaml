@@ -1,0 +1,71 @@
+- question: "Sam `main`-i push etdi, sonra son commit-in mesajını dəyişdi. Arada serverə heç kim push etməyib. `git push` mötərizədə nə yazır?"
+  code: |
+    git push
+    git commit --amend -m "Add bus stop names"
+    git push
+  options:
+    - "`(fetch first)`"
+    - "`(stale info)`"
+    - "`(non-fast-forward)`"
+  answer: 2
+  explain: "Serverdəki commit Sam-da var, amma yeni commit onun davamı deyil. `fetch first` serverdə sizdə olmayan commit olanda yazılır."
+- question: "Sam son commit-ini amend etdi. Bu vaxt Ayla həmin branch-a commit push etmişdi, Sam isə fetch etməyib. `git push` mötərizədə nə yazır?"
+  options:
+    - "`(non-fast-forward)`"
+    - "`(fetch first)`"
+    - "`(forced update)`"
+  answer: 1
+  explain: "Serverdə Sam-da olmayan commit var. Bu mesaj Sam-a amend-dən yox, başqasının push-undan xəbər verir."
+- question: "Eyni vəziyyətdə Sam `git push --force-with-lease` yazır. Nə olur?"
+  options:
+    - "Push `(stale info)` ilə rədd olunur, serverdə heç nə dəyişmir"
+    - "Push keçir, Ayla-nın commit-i branch-dan silinir"
+    - "Git Ayla-nın commit-ini gətirib Sam-ın commit-i ilə merge edir"
+  answer: 0
+  explain: "Serverdəki branch Sam-ın `origin/<branch>`-ının göstərdiyi commit-də deyil: Ayla ondan sonra push edib."
+- question: "Bu dəfə Sam əvvəlcə `git fetch`, sonra `git push --force-with-lease` yazır. Ayla-nın commit-inə baxmayıb. Nə olur?"
+  code: |
+    git fetch
+    git push --force-with-lease
+  options:
+    - "Push `(stale info)` ilə rədd olunur"
+    - "Push `(fetch first)` ilə rədd olunur"
+    - "Push keçir, Ayla-nın commit-i branch-dan silinir"
+  answer: 2
+  explain: "Fetch `origin/<branch>`-ı Ayla-nın commit-inə keçirdi. Lease yalnız onunla müqayisə edir, ona görə yoxlama keçir."
+- question: "Force push-un çıxışında branch-ın sətri necə görünür?"
+  options:
+    - "`*` ilə başlayır, sonunda `[new branch]` yazılır"
+    - "`!` ilə başlayır, sonunda `(rejected)` yazılır"
+    - "Adi push-dakı kimidir, fərq yoxdur"
+    - "`+` ilə başlayır, sonunda `(forced update)` yazılır"
+  answer: 3
+  explain: "`+` və `(forced update)` serverdəki branch-ın irəli çəkilmədiyini, əvəz olunduğunu göstərir."
+- question: "`git push --force-with-lease` serverdəki branch-ı nə ilə müqayisə edir?"
+  options:
+    - "Sizin lokal branch-ınızın son commit-i ilə"
+    - "Sizin `origin/<branch>` remote-tracking branch-ınızla"
+    - "Serverdəki `main` branch-ı ilə"
+  answer: 1
+  explain: "`origin/<branch>` serverdə son gördüyünüz haldır. Server branch-ı başqa yerdədirsə, push rədd olunur."
+- question: "Hansı halda force push adi işdir?"
+  options:
+    - "Yalnız sizin işlədiyiniz branch-ı `main`-in üstünə rebase edəndən sonra"
+    - "Komandanın ortaq `main`-ində səhv commit-i silmək üçün"
+    - "Push `fetch first` ilə rədd olunanda, mesajı keçmək üçün"
+  answer: 0
+  explain: "Branch-ın köhnə commit-lərini sizdən başqa heç kim götürməyibsə, onları əvəz etmək heç kimin işini silmir."
+- question: "Ayla commit-ini push etmişdi, sonra Sam force push ilə onu branch-dan sildi. Ayla `git pull --rebase` yazır. Onun commit-i ilə nə olur?"
+  options:
+    - "Sam-ın yeni commit-inin üstünə köçürülür"
+    - "Merge commit yaranır, köhnə və yeni surətlər qalır"
+    - "Ayla-nın branch-ından da çıxır"
+  answer: 2
+  explain: "`origin/<branch>` bir vaxt Ayla-nın commit-ini göstərib. Git onu serverdən gəlmiş commit sayır və köçürmür."
+- question: "Sam `git fetch` etdi, amma gələn commit-i öz branch-ına gətirmədi. `git push --force-with-lease --force-if-includes` nə edir?"
+  options:
+    - "Push keçir, gələn commit branch-dan silinir"
+    - "Push `(remote ref updated since checkout)` ilə rədd olunur"
+    - "Push `(stale info)` ilə rədd olunur"
+  answer: 1
+  explain: "`--force-if-includes` serverdəki commit-in sizin branch-ınızda nə vaxtsa olub-olmadığını yoxlayır."

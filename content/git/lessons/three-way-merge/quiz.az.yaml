@@ -1,0 +1,76 @@
+- question: "`main`-də olarkən `git merge feature` yazırsınız. Git nə vaxt merge commit yaradır?"
+  options:
+    - "`feature`-da yalnız bir yeni commit olanda"
+    - "Ayrıldıqdan sonra hər iki branch-da yeni commit olanda"
+    - "`main` ayrıldığı yerdə qalıb, yalnız `feature` irəliləyəndə"
+  answer: 1
+  explain: "Yalnız `feature` irəliləyibsə, Git fast-forward edir. Hər iki tərəf irəliləyibsə, birləşdirmə üçün yeni commit lazımdır."
+- question: "`git merge-base main feature` nə çap edir?"
+  options:
+    - "İki branch-ın son ortaq commit-inin hash-i"
+    - "`feature` branch-ının ilk commit-inin hash-i"
+    - "`main` branch-ının son commit-inin hash-i"
+  answer: 0
+  explain: "Merge base iki branch-ın son ortaq commit-idir; Git onun tam hash-ini çap edir."
+- question: "Yeni repository-də bu komandalardan sonra son komanda hansı ədədi çap edir?"
+  code: |
+    echo "Mon: Sam" > rota.txt
+    git add rota.txt
+    git commit -q -m "Start rota"
+    git switch -q -c bills
+    echo "rent: 900 USD" > bills.txt
+    git add bills.txt
+    git commit -q -m "Add bills"
+    git switch -q main
+    echo "Tue: Ayla" >> rota.txt
+    git commit -q -am "Add Tuesday"
+    git merge -q --no-edit bills
+    git cat-file -p HEAD | grep -c parent
+  options:
+    - "`1`"
+    - "`2`"
+    - "`3`"
+  answer: 1
+  explain: "Hər iki branch irəliləyib, ona görə Git merge commit yaradır. Onun iki `parent` sətri var: `Add Tuesday` və `Add bills`."
+- question: "`main` və `topic` ayrıldıqdan sonra hər birində fərqli fayllarda bir commit var. `main`-də `git merge --no-edit topic` hansı sətri çap edir?"
+  options:
+    - "`Fast-forward`"
+    - "`Already up to date.`"
+    - "`Merge made by the 'ort' strategy.`"
+  answer: 2
+  explain: "Fast-forward mümkün deyil, çünki `main`-də də yeni commit var. Git `ort` strategiyası ilə merge commit yaradır."
+- question: "Bir sətir merge base-də `rice`, `main`-də `rice`, birləşdirilən branch-da `brown rice`-dır. Merge-dən sonra bu sətir necə olur?"
+  options:
+    - "`brown rice`"
+    - "`rice`"
+    - "Konflikt yaranır"
+  answer: 0
+  explain: "Sətri yalnız bir tərəf dəyişib, Git həmin dəyişikliyi götürür."
+- question: "Merge base-də siyahıda `bread` var. `main`-də Sam onu silib, birləşdirilən branch-da isə bu sətrə toxunulmayıb. Merge-dən sonra nə olur?"
+  options:
+    - "`bread` siyahıda qalır"
+    - "Git konflikt göstərir"
+    - "`bread` siyahıdan silinir"
+  answer: 2
+  explain: "Base ilə müqayisədə sətri yalnız `main` dəyişib (silib). Git bu dəyişikliyi götürür. Base olmasaydı, bunu bilmək mümkün olmazdı."
+- question: "`main`-də `git merge feature` merge commit yaratdı. `HEAD^2` hansı commit-dir?"
+  options:
+    - "Merge-dən əvvəl `main`-in son commit-i"
+    - "Merge-dən əvvəl `feature`-un son commit-i"
+    - "HEAD-dən iki addım geri, birinci parent-lərlə"
+  answer: 1
+  explain: "Birinci parent merge zamanı olduğunuz branch-dan, ikincisi birləşdirdiyiniz branch-dan gəlir. İki addım geri `HEAD~2`-dir."
+- question: "Dərsdəki merge-dən sonra `main`-də yenidən `git merge --no-edit cleaning` yazsanız, nə çap olunur?"
+  options:
+    - "`Already up to date.`"
+    - "`Merge made by the 'ort' strategy.`"
+    - "`Fast-forward`"
+  answer: 0
+  explain: "`cleaning`-in son commit-i artıq merge commit-in ikinci parent-idir, yəni `main`-in tarixçəsindədir. Gətiriləcək yeni commit yoxdur."
+- question: "Merge çıxışındakı `'ort'` nədir?"
+  options:
+    - "Birləşdirilən branch-ın qısa adı"
+    - "Merge commit-in qısa hash-i"
+    - "Git-in default merge strategiyasının adı"
+  answer: 2
+  explain: "`ort` Git 2.34-dən bəri default merge strategiyasıdır; ondan əvvəl `recursive` idi."

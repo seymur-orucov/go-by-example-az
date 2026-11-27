@@ -1,0 +1,67 @@
+- question: "Repository-də dərsdəki pre-commit hook var. Bu komandalardan sonra `git status --short` nə çap edir?"
+  code: |
+    echo "TODO: check dates" > plan.md
+    git add plan.md
+    git commit -m "Add plan"
+    git status --short
+  options:
+    - "Heç nə: commit yarandı"
+    - "`A  plan.md`"
+    - "`?? plan.md`"
+  answer: 1
+  explain: "Hook `+TODO: check dates` sətrini tapıb `1` qaytardı, commit yaranmadı. Fayl staging area-da qaldı."
+- question: "Repository-də dərsdəki pre-commit hook var. Bu komandalardan sonra commit yaranırmı?"
+  code: |
+    echo "Day 1: museum" > plan.md
+    git add plan.md
+    echo "TODO: book hotel" >> plan.md
+    git commit -m "Add plan"
+  options:
+    - "Xeyr: diskdəki `plan.md`-də `TODO` var"
+    - "Xeyr: stage olunmamış dəyişiklik commit-i dayandırır"
+    - "Bəli: staging area-dakı `plan.md`-də `TODO` yoxdur"
+  answer: 2
+  explain: "Hook `git diff --cached`-ə, yəni staging area-ya baxır. `TODO` sətri stage olunmayıb, ona görə commit yaranır, sətir isə working directory-də qalır."
+- question: "`index.md`-də köhnə commit-dən qalan `TODO` sətri var. Siz faylın sonuna `Links` sətrini əlavə edib commit edirsiniz. Dərsdəki hook commit-i dayandırırmı?"
+  options:
+    - "Xeyr: `grep` yalnız yeni əlavə olunan sətirlərə baxır"
+    - "Bəli: staging area-dakı faylda `TODO` var"
+    - "Bəli: `git diff --cached` faylın hamısını göstərir"
+  answer: 0
+  explain: "Diff-də köhnə sətirlər boşluqla, yeni sətirlər `+` ilə başlayır. `^+.*TODO` yalnız `+` ilə başlayan sətri tutur."
+- question: "pre-commit hook hansı halda commit-ə icazə verir?"
+  options:
+    - "Skript `exit 1` ilə bitəndə"
+    - "Skript ekrana heç nə yazmayanda"
+    - "Həmişə: hook yalnız xəbərdarlıq edir"
+    - "Skript `0` kodu ilə bitəndə"
+  answer: 3
+  explain: "Git yalnız çıxış koduna baxır. `0` uğurdur, başqa istənilən kod commit-i dayandırır, skript heç nə yazmasa belə."
+- question: "Commit dayananda çıxışın birinci sətri `+TODO: add contact link` idi. Bu sətri kim çap etdi?"
+  options:
+    - "`git commit` özü, xəta mesajı kimi"
+    - "Hook-dakı `grep`, tapdığı sətri"
+    - "Hook-dakı `echo`, `exit 1`-dən əvvəl"
+  answer: 1
+  explain: "`grep` `-q` olmadan tapdığı sətirləri çap edir. `echo` ikinci sətri, `TODO found: commit stopped`-u yazır. Git özü heç nə əlavə etmir."
+- question: "`git commit --no-verify` hansı hook-ları işə salmır?"
+  options:
+    - "Yalnız pre-commit-i"
+    - "Bütün hook-ları, pre-push da daxil"
+    - "pre-commit və commit-msg hook-larını"
+  answer: 2
+  explain: "`git commit` sənədinə görə `--no-verify` (`-n`) pre-commit və commit-msg hook-larını keçir. pre-push `git push` zamanı işləyir."
+- question: "Hook commit-i dayandırdı və siz `about.md`-dən `TODO` sətrini sildiniz. Commit-in keçməsi üçün nə etməlisiniz?"
+  options:
+    - "`git add about.md`, sonra yenidən `git commit`"
+    - "Yalnız `git commit`-i eyni mesajla təkrarlamaq"
+    - "`git restore --staged about.md`, sonra `git commit`"
+  answer: 0
+  explain: "Hook staging area-ya baxır, orada isə köhnə versiya qalıb. `git add` düzəlişi stage edir. `git restore --staged` isə faylı staging area-dan çıxarır və commit-ə heç nə qalmır."
+- question: "Linux-da hook faylını yazdınız, amma `chmod +x` etmədiniz. `git commit` nə edir?"
+  options:
+    - "Hook-u `sh` ilə yenə işə salır"
+    - "Hook-u nəzərə almır və commit yaradır"
+    - "Hər commit-i xəta ilə dayandırır"
+  answer: 1
+  explain: "githooks sənədinə görə icra biti olmayan hook-lar nəzərə alınmır. Git bu barədə `hint` də çap edə bilər."

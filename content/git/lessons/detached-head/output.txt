@@ -1,0 +1,53 @@
+$ git log --oneline
+375a42a Add second verse
+2217cf4 Add chorus
+b4dfaa6 Add first verse
+$ git switch HEAD~2
+fatal: a branch is expected, got commit 'HEAD~2'
+hint: If you want to detach HEAD at the commit, try again with the --detach option.
+$ git switch --detach HEAD~2
+HEAD is now at b4dfaa6 Add first verse
+$ cat lyrics.txt
+Verse 1: rain on the window
+$ cat .git/HEAD
+b4dfaa60e7308d1e9d523a8df5d0e08d7a020f90
+$ git status
+HEAD detached at b4dfaa6
+nothing to commit, working tree clean
+$ git branch
+* (HEAD detached at b4dfaa6)
+  main
+$ echo "Chorus: slow and quiet" >> lyrics.txt
+$ git add lyrics.txt
+$ git commit -m "Try a quiet chorus"
+[detached HEAD 71988e0] Try a quiet chorus
+ 1 file changed, 1 insertion(+)
+$ git branch
+* (HEAD detached from b4dfaa6)
+  main
+$ git switch -c quiet-chorus
+Switched to a new branch 'quiet-chorus'
+$ cat .git/HEAD
+ref: refs/heads/quiet-chorus
+$ git branch
+  main
+* quiet-chorus
+$ git switch main
+Switched to branch 'main'
+$ git switch --detach HEAD~1
+HEAD is now at 2217cf4 Add chorus
+$ echo "Bridge: one more time" >> lyrics.txt
+$ git add lyrics.txt
+$ git commit -q -m "Try a bridge"
+$ git switch main
+Warning: you are leaving 1 commit behind, not connected to
+any of your branches:
+
+  b8987a9 Try a bridge
+
+If you want to keep it by creating a new branch, this may be a good time
+to do so with:
+
+ git branch <new-branch-name> b8987a9
+
+Switched to branch 'main'

@@ -1,0 +1,16 @@
+# The visuals are recorded from the real repository by `pnpm content:run`.
+porcelain:
+  vis: graph
+  files: true
+objects:
+  vis: graph
+  files: true
+hash:
+  vis: graph
+  files: true
+chain:
+  vis: graph
+  files: true
+new-commit:
+  vis: graph
+  files: true

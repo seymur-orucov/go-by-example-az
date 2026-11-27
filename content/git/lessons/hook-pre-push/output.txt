@@ -1,0 +1,69 @@
+$ printf '%s\n' '#!/bin/sh' 'echo "$1 $2"' 'cat' > .git/hooks/pre-push
+$ chmod +x .git/hooks/pre-push
+$ git push -u origin main
+origin /home/sam/server/landing.git
+refs/heads/main 4bfe21a88b559b05058fb3e8961b090cb47d97ac refs/heads/main 0000000000000000000000000000000000000000
+To /home/sam/server/landing.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
+$ echo '<p>Price: 49 USD</p>' >> index.html
+$ git commit -q -am "Add the price"
+$ git push
+origin /home/sam/server/landing.git
+refs/heads/main 9d1007e4c0ee83ccfc7ad9e26eaa49fd425a74f0 refs/heads/main 4bfe21a88b559b05058fb3e8961b090cb47d97ac
+To /home/sam/server/landing.git
+   4bfe21a..9d1007e  main -> main
+$ cat check.sh
+if grep -qi lorem index.html; then
+  echo "check failed: index.html has lorem text"
+  exit 1
+fi
+echo "check passed"
+$ printf '%s\n' '#!/bin/sh' 'sh check.sh || exit 1' > .git/hooks/pre-push
+$ echo '<p>Lorem ipsum dolor sit amet.</p>' >> index.html
+$ git commit -q -am "Add the features section"
+$ git push
+check failed: index.html has lorem text
+error: failed to push some refs to '/home/sam/server/landing.git'
+$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+$ printf '%s\n' '<h1>Lumo desk lamp</h1>' '<p>Warm light for late work.</p>' '<p>Price: 49 USD</p>' '<p>Three brightness levels.</p>' > index.html
+$ git commit -q -am "Replace the placeholder text"
+$ git push
+check passed
+To /home/sam/server/landing.git
+   9d1007e..4d93a1e  main -> main
+$ printf '%s\n' '#!/bin/sh' 'sh check.sh || exit 1' 'while read local_ref local_sha remote_ref remote_sha; do' '  if [ "$remote_ref" = refs/heads/main ]; then' '    echo "Do not push to main. Push a branch and open a pull request."' '    exit 1' '  fi' 'done' > .git/hooks/pre-push
+$ cat .git/hooks/pre-push
+#!/bin/sh
+sh check.sh || exit 1
+while read local_ref local_sha remote_ref remote_sha; do
+  if [ "$remote_ref" = refs/heads/main ]; then
+    echo "Do not push to main. Push a branch and open a pull request."
+    exit 1
+  fi
+done
+$ echo '<a href="/buy">Buy now</a>' >> index.html
+$ git commit -q -am "Add the buy button"
+$ git push
+check passed
+Do not push to main. Push a branch and open a pull request.
+error: failed to push some refs to '/home/sam/server/landing.git'
+$ git switch -c buy-button
+Switched to a new branch 'buy-button'
+$ git push -u origin buy-button
+check passed
+To /home/sam/server/landing.git
+ * [new branch]      buy-button -> buy-button
+branch 'buy-button' set up to track 'origin/buy-button'.
+$ git switch main
+Switched to branch 'main'
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+$ git push --no-verify
+To /home/sam/server/landing.git
+   4d93a1e..522e0ca  main -> main

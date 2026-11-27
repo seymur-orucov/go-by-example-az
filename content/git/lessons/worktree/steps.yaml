@@ -1,0 +1,7 @@
+# The visuals are recorded from the real repository by `pnpm content:run`.
+problem:
+add:
+fix:
+  vis: graph
+shared:
+remove:

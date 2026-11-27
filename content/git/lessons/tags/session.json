@@ -1,0 +1,776 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir calculator",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd calculator",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"def add(a, b): return a + b\" > calc.py",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"# Changelog\" > CHANGELOG.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add .",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add calculator\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"def div(a, b): return a / b\" >> calc.py",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "sed -i '1a - 1.0.0: add and divide' CHANGELOG.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add division\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git tag v1.0.0",
+      "step": "lightweight",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git tag",
+      "step": "lightweight",
+      "hidden": false,
+      "fail": false,
+      "out": "v1.0.0\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cat .git/refs/tags/v1.0.0",
+      "step": "lightweight",
+      "hidden": false,
+      "fail": false,
+      "out": "8b856943f34944c823654af9bd27bd2c500f1407\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline --decorate",
+      "step": "lightweight",
+      "hidden": false,
+      "fail": false,
+      "out": "8b85694 (HEAD -> main, tag: v1.0.0) Add division\n081a77f Add calculator\n",
+      "exit": 0
+    },
+    {
+      "cmd": "sed -i 's|a / b|a / b if b else None|' calc.py",
+      "step": "stays",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "sed -i '1a - 1.0.1: fix division by zero' CHANGELOG.md",
+      "step": "stays",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -am \"Fix division by zero\"",
+      "step": "stays",
+      "hidden": false,
+      "fail": false,
+      "out": "[main c3d1836] Fix division by zero\n 2 files changed, 2 insertions(+), 1 deletion(-)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline --decorate",
+      "step": "stays",
+      "hidden": false,
+      "fail": false,
+      "out": "c3d1836 (HEAD -> main) Fix division by zero\n8b85694 (tag: v1.0.0) Add division\n081a77f Add calculator\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git tag -a v1.0.1 -m \"Release 1.0.1: fix division by zero\"",
+      "step": "annotated",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git tag",
+      "step": "annotated",
+      "hidden": false,
+      "fail": false,
+      "out": "v1.0.0\nv1.0.1\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git cat-file -t v1.0.0",
+      "step": "annotated",
+      "hidden": false,
+      "fail": false,
+      "out": "commit\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git cat-file -t v1.0.1",
+      "step": "annotated",
+      "hidden": false,
+      "fail": false,
+      "out": "tag\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git show v1.0.1",
+      "step": "show",
+      "hidden": false,
+      "fail": false,
+      "out": "tag v1.0.1\nTagger: Sam Lee <sam@example.com>\nDate:   Thu Jan 15 09:18:00 2026 +0000\n\nRelease 1.0.1: fix division by zero\n\ncommit c3d18363b26a456398fd209b5bd32f345820113b\nAuthor: Sam Lee <sam@example.com>\nDate:   Thu Jan 15 09:16:00 2026 +0000\n\n    Fix division by zero\n\ndiff --git a/CHANGELOG.md b/CHANGELOG.md\nindex 1d7cddf..1bdb100 100644\n--- a/CHANGELOG.md\n+++ b/CHANGELOG.md\n@@ -1,2 +1,3 @@\n # Changelog\n+- 1.0.1: fix division by zero\n - 1.0.0: add and divide\ndiff --git a/calc.py b/calc.py\nindex 87634e7..7ed7ebc 100644\n--- a/calc.py\n+++ b/calc.py\n@@ -1,2 +1,2 @@\n def add(a, b): return a + b\n-def div(a, b): return a / b\n+def div(a, b): return a / b if b else None\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"def pct(a, b): return a * b / 100\" >> calc.py",
+      "step": "semver",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "sed -i '1a - 1.1.0: add percent' CHANGELOG.md",
+      "step": "semver",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -am \"Add percent function\"",
+      "step": "semver",
+      "hidden": false,
+      "fail": false,
+      "out": "[main 10d8310] Add percent function\n 2 files changed, 2 insertions(+)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git tag -a v1.1.0 -m \"Release 1.1.0: add percent\"",
+      "step": "semver",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cat CHANGELOG.md",
+      "step": "semver",
+      "hidden": false,
+      "fail": false,
+      "out": "# Changelog\n- 1.1.0: add percent\n- 1.0.1: fix division by zero\n- 1.0.0: add and divide\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline --decorate",
+      "step": "semver",
+      "hidden": false,
+      "fail": false,
+      "out": "10d8310 (HEAD -> main, tag: v1.1.0) Add percent function\nc3d1836 (tag: v1.0.1) Fix division by zero\n8b85694 (tag: v1.0.0) Add division\n081a77f Add calculator\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "lightweight": {
+      "areas": {
+        "work": [
+          {
+            "name": "CHANGELOG.md",
+            "state": "clean"
+          },
+          {
+            "name": "calc.py",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "CHANGELOG.md",
+            "state": "clean"
+          },
+          {
+            "name": "calc.py",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "8b85694",
+            "message": "Add division"
+          },
+          "count": 2,
+          "files": [
+            "CHANGELOG.md",
+            "calc.py"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "8b85694",
+            "message": "Add division",
+            "parents": [
+              "081a77f"
+            ],
+            "files": [
+              {
+                "name": "CHANGELOG.md",
+                "state": "modified"
+              },
+              {
+                "name": "calc.py",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "081a77f",
+            "message": "Add calculator",
+            "parents": [],
+            "files": [
+              {
+                "name": "CHANGELOG.md",
+                "state": "added"
+              },
+              {
+                "name": "calc.py",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "8b85694"
+          }
+        ],
+        "tags": [
+          {
+            "name": "v1.0.0",
+            "target": "8b85694"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "8b85694"
+        }
+      }
+    },
+    "stays": {
+      "areas": {
+        "work": [
+          {
+            "name": "CHANGELOG.md",
+            "state": "clean"
+          },
+          {
+            "name": "calc.py",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "CHANGELOG.md",
+            "state": "clean"
+          },
+          {
+            "name": "calc.py",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "c3d1836",
+            "message": "Fix division by zero"
+          },
+          "count": 3,
+          "files": [
+            "CHANGELOG.md",
+            "calc.py"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "c3d1836",
+            "message": "Fix division by zero",
+            "parents": [
+              "8b85694"
+            ],
+            "files": [
+              {
+                "name": "CHANGELOG.md",
+                "state": "modified"
+              },
+              {
+                "name": "calc.py",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "8b85694",
+            "message": "Add division",
+            "parents": [
+              "081a77f"
+            ],
+            "files": [
+              {
+                "name": "CHANGELOG.md",
+                "state": "modified"
+              },
+              {
+                "name": "calc.py",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "081a77f",
+            "message": "Add calculator",
+            "parents": [],
+            "files": [
+              {
+                "name": "CHANGELOG.md",
+                "state": "added"
+              },
+              {
+                "name": "calc.py",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "c3d1836"
+          }
+        ],
+        "tags": [
+          {
+            "name": "v1.0.0",
+            "target": "8b85694"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "c3d1836"
+        }
+      }
+    },
+    "annotated": {
+      "areas": {
+        "work": [
+          {
+            "name": "CHANGELOG.md",
+            "state": "clean"
+          },
+          {
+            "name": "calc.py",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "CHANGELOG.md",
+            "state": "clean"
+          },
+          {
+            "name": "calc.py",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "c3d1836",
+            "message": "Fix division by zero"
+          },
+          "count": 3,
+          "files": [
+            "CHANGELOG.md",
+            "calc.py"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "c3d1836",
+            "message": "Fix division by zero",
+            "parents": [
+              "8b85694"
+            ],
+            "files": [
+              {
+                "name": "CHANGELOG.md",
+                "state": "modified"
+              },
+              {
+                "name": "calc.py",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "8b85694",
+            "message": "Add division",
+            "parents": [
+              "081a77f"
+            ],
+            "files": [
+              {
+                "name": "CHANGELOG.md",
+                "state": "modified"
+              },
+              {
+                "name": "calc.py",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "081a77f",
+            "message": "Add calculator",
+            "parents": [],
+            "files": [
+              {
+                "name": "CHANGELOG.md",
+                "state": "added"
+              },
+              {
+                "name": "calc.py",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "c3d1836"
+          }
+        ],
+        "tags": [
+          {
+            "name": "v1.0.0",
+            "target": "8b85694"
+          },
+          {
+            "name": "v1.0.1",
+            "target": "c3d1836"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "c3d1836"
+        }
+      }
+    },
+    "show": {
+      "areas": {
+        "work": [
+          {
+            "name": "CHANGELOG.md",
+            "state": "clean"
+          },
+          {
+            "name": "calc.py",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "CHANGELOG.md",
+            "state": "clean"
+          },
+          {
+            "name": "calc.py",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "c3d1836",
+            "message": "Fix division by zero"
+          },
+          "count": 3,
+          "files": [
+            "CHANGELOG.md",
+            "calc.py"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "c3d1836",
+            "message": "Fix division by zero",
+            "parents": [
+              "8b85694"
+            ],
+            "files": [
+              {
+                "name": "CHANGELOG.md",
+                "state": "modified"
+              },
+              {
+                "name": "calc.py",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "8b85694",
+            "message": "Add division",
+            "parents": [
+              "081a77f"
+            ],
+            "files": [
+              {
+                "name": "CHANGELOG.md",
+                "state": "modified"
+              },
+              {
+                "name": "calc.py",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "081a77f",
+            "message": "Add calculator",
+            "parents": [],
+            "files": [
+              {
+                "name": "CHANGELOG.md",
+                "state": "added"
+              },
+              {
+                "name": "calc.py",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "c3d1836"
+          }
+        ],
+        "tags": [
+          {
+            "name": "v1.0.0",
+            "target": "8b85694"
+          },
+          {
+            "name": "v1.0.1",
+            "target": "c3d1836"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "c3d1836"
+        }
+      }
+    },
+    "semver": {
+      "areas": {
+        "work": [
+          {
+            "name": "CHANGELOG.md",
+            "state": "clean"
+          },
+          {
+            "name": "calc.py",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "CHANGELOG.md",
+            "state": "clean"
+          },
+          {
+            "name": "calc.py",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "10d8310",
+            "message": "Add percent function"
+          },
+          "count": 4,
+          "files": [
+            "CHANGELOG.md",
+            "calc.py"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "10d8310",
+            "message": "Add percent function",
+            "parents": [
+              "c3d1836"
+            ],
+            "files": [
+              {
+                "name": "CHANGELOG.md",
+                "state": "modified"
+              },
+              {
+                "name": "calc.py",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "c3d1836",
+            "message": "Fix division by zero",
+            "parents": [
+              "8b85694"
+            ],
+            "files": [
+              {
+                "name": "CHANGELOG.md",
+                "state": "modified"
+              },
+              {
+                "name": "calc.py",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "8b85694",
+            "message": "Add division",
+            "parents": [
+              "081a77f"
+            ],
+            "files": [
+              {
+                "name": "CHANGELOG.md",
+                "state": "modified"
+              },
+              {
+                "name": "calc.py",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "081a77f",
+            "message": "Add calculator",
+            "parents": [],
+            "files": [
+              {
+                "name": "CHANGELOG.md",
+                "state": "added"
+              },
+              {
+                "name": "calc.py",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "10d8310"
+          }
+        ],
+        "tags": [
+          {
+            "name": "v1.0.0",
+            "target": "8b85694"
+          },
+          {
+            "name": "v1.0.1",
+            "target": "c3d1836"
+          },
+          {
+            "name": "v1.1.0",
+            "target": "10d8310"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "10d8310"
+        }
+      }
+    }
+  }
+}

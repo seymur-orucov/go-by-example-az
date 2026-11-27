@@ -1,0 +1,43 @@
+# Hand-written visuals (text lesson).
+two-ways:
+  vis:
+    kind: compare
+    caption: "git merge main və git rebase main"
+    a: { title: "git merge main", sub: "merge commit əlavə edir" }
+    b: { title: "git rebase main", sub: "commit-ləri köçürür" }
+    rows:
+      - aspect: "Branch-ın commit-ləri"
+        a: "Olduğu kimi qalır"
+        b: "Yeni hash-li surətlərlə əvəz olunur"
+      - aspect: "`git log --graph`"
+        a: "İki xətt merge commit-də birləşir"
+        b: "Düz xətt, merge commit yoxdur"
+        better: b
+      - aspect: "Tarixçə nəyi göstərir"
+        a: "İşin həqiqətən necə getdiyini"
+        b: "Sanki iş `main`-in son halından başlayıb"
+        better: a
+      - aspect: "Konflikt"
+        a: "Bir dəfə həll olunur"
+        b: "Hər commit-də ayrıca çıxa bilər"
+        better: a
+      - aspect: "Push olunmuş branch"
+        a: "Təhlükəsizdir, push adi qaydada keçir"
+        b: "Push rədd olunur, başqalarında təkrar commit-lər yaranır"
+        better: a
+      - aspect: "Push olunmamış commit-lər"
+        a: "İşləyir, amma tarixçəyə əlavə merge commit düşür"
+        b: "Tarixçə düz qalır, əlavə commit yoxdur"
+        better: b
+    note: "Commit başqasında da varsa `git merge`, yalnız sizdə varsa `git rebase`."
+broken-rule:
+  vis:
+    kind: flow
+    caption: "Paylaşılmış branch-ı rebase etmək"
+    arrows: true
+    items:
+      - { label: "Sam: push", sub: "`feat/weather-widget` serverdədir" }
+      - { label: "Ayla: commit + push", sub: "Sam-ın commit-lərinin üstündə" }
+      - { label: "Sam: rebase", sub: "yeni surətlər, push yalnız `--force` ilə", tone: accent }
+      - { label: "Ayla: git pull", sub: "köhnə və yeni surətlər birləşir" }
+      - { label: "git log", sub: "`Add weather box` iki dəfə", tone: bad }

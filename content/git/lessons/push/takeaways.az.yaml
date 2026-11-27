@@ -1,0 +1,10 @@
+rules:
+  - "`git push origin main` lokal commit-ləri serverə göndərir və serverdəki `main`-i onlara çəkir; çıxışdakı `main -> main` lokal branch-ın serverdəkinə yazıldığını göstərir."
+  - "Upstream lokal branch-ın bağlı olduğu remote-tracking branch-dır; arqumentsiz `git push` və `git pull` onunla işləyir."
+  - "Clone `main`-ə upstream verir, yeni branch-ın isə upstream-i yoxdur: arqumentsiz `git push` `has no upstream branch` xətası verir."
+  - "`git push -u origin <branch>` branch-ı göndərir və upstream təyin edir; `git branch -vv` onu `[origin/<branch>]` kimi göstərir."
+  - "Push yalnız serverdəki branch-ı irəli çəkə bilər; serverdə sizdə olmayan commit varsa, push `! [rejected] (fetch first)` ilə rədd olunur."
+practices:
+  - "Rədd edilən push-dan sonra `git pull --no-rebase` (və ya `git fetch` + `git merge`) edin, sonra yenidən push edin."
+  - "Paylaşılan branch-da rədd edilən push-u `--force` ilə keçməyin: başqasının commit-i silinir."
+  - "Yeni branch-ı ilk dəfə `-u` ilə push edin, sonra arqumentsiz `git push` və `git pull` yazın."

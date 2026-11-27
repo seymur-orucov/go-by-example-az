@@ -1,0 +1,759 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir gifts",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd gifts",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"Mia: scarf\" \"Leo: puzzle\" > gifts.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"total: 150 USD\" > budget.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add .",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Start gift list\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"total: 250 USD\" > budget.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Raise budget to 250 USD\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Ana: tea set\" >> gifts.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add Ana\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Sam: socks\" > gifts.txt",
+      "step": "discard",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "rm budget.txt",
+      "step": "discard",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status",
+      "step": "discard",
+      "hidden": false,
+      "fail": false,
+      "out": "On branch main\nChanges not staged for commit:\n  (use \"git add/rm <file>...\" to update what will be committed)\n  (use \"git restore <file>...\" to discard changes in working directory)\n\tdeleted:    budget.txt\n\tmodified:   gifts.txt\n\nno changes added to commit (use \"git add\" and/or \"git commit -a\")\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git restore gifts.txt budget.txt",
+      "step": "discard",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cat gifts.txt budget.txt",
+      "step": "discard",
+      "hidden": false,
+      "fail": false,
+      "out": "Mia: scarf\nLeo: puzzle\nAna: tea set\ntotal: 250 USD\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Sam: socks\" >> gifts.txt",
+      "step": "unstage",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add gifts.txt",
+      "step": "unstage",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status",
+      "step": "unstage",
+      "hidden": false,
+      "fail": false,
+      "out": "On branch main\nChanges to be committed:\n  (use \"git restore --staged <file>...\" to unstage)\n\tmodified:   gifts.txt\n\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git restore --staged gifts.txt",
+      "step": "unstage",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status --short",
+      "step": "unstage",
+      "hidden": false,
+      "fail": false,
+      "out": " M gifts.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git add gifts.txt",
+      "step": "to-index",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Sam: gloves\" >> gifts.txt",
+      "step": "to-index",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git restore gifts.txt",
+      "step": "to-index",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status --short",
+      "step": "to-index",
+      "hidden": false,
+      "fail": false,
+      "out": "M  gifts.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git restore --staged --worktree gifts.txt",
+      "step": "both",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status --short",
+      "step": "both",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cat gifts.txt",
+      "step": "both",
+      "hidden": false,
+      "fail": false,
+      "out": "Mia: scarf\nLeo: puzzle\nAna: tea set\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "source",
+      "hidden": false,
+      "fail": false,
+      "out": "7230794 Add Ana\nd288e90 Raise budget to 250 USD\n5f7c8c6 Start gift list\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git restore --source=HEAD~2 budget.txt",
+      "step": "source",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status --short",
+      "step": "source",
+      "hidden": false,
+      "fail": false,
+      "out": " M budget.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git diff",
+      "step": "source",
+      "hidden": false,
+      "fail": false,
+      "out": "diff --git a/budget.txt b/budget.txt\nindex f3fdbac..ae1ae05 100644\n--- a/budget.txt\n+++ b/budget.txt\n@@ -1 +1 @@\n-total: 250 USD\n+total: 150 USD\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "discard": {
+      "areas": {
+        "work": [
+          {
+            "name": "budget.txt",
+            "state": "clean"
+          },
+          {
+            "name": "gifts.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "budget.txt",
+            "state": "clean"
+          },
+          {
+            "name": "gifts.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "7230794",
+            "message": "Add Ana"
+          },
+          "count": 3,
+          "files": [
+            "budget.txt",
+            "gifts.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "7230794",
+            "message": "Add Ana",
+            "parents": [
+              "d288e90"
+            ],
+            "files": [
+              {
+                "name": "budget.txt",
+                "state": "same"
+              },
+              {
+                "name": "gifts.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "d288e90",
+            "message": "Raise budget to 250 USD",
+            "parents": [
+              "5f7c8c6"
+            ],
+            "files": [
+              {
+                "name": "budget.txt",
+                "state": "modified"
+              },
+              {
+                "name": "gifts.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "5f7c8c6",
+            "message": "Start gift list",
+            "parents": [],
+            "files": [
+              {
+                "name": "budget.txt",
+                "state": "added"
+              },
+              {
+                "name": "gifts.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "7230794"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "7230794"
+        }
+      }
+    },
+    "unstage": {
+      "areas": {
+        "work": [
+          {
+            "name": "budget.txt",
+            "state": "clean"
+          },
+          {
+            "name": "gifts.txt",
+            "state": "modified"
+          }
+        ],
+        "index": [
+          {
+            "name": "budget.txt",
+            "state": "clean"
+          },
+          {
+            "name": "gifts.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "7230794",
+            "message": "Add Ana"
+          },
+          "count": 3,
+          "files": [
+            "budget.txt",
+            "gifts.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "7230794",
+            "message": "Add Ana",
+            "parents": [
+              "d288e90"
+            ],
+            "files": [
+              {
+                "name": "budget.txt",
+                "state": "same"
+              },
+              {
+                "name": "gifts.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "d288e90",
+            "message": "Raise budget to 250 USD",
+            "parents": [
+              "5f7c8c6"
+            ],
+            "files": [
+              {
+                "name": "budget.txt",
+                "state": "modified"
+              },
+              {
+                "name": "gifts.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "5f7c8c6",
+            "message": "Start gift list",
+            "parents": [],
+            "files": [
+              {
+                "name": "budget.txt",
+                "state": "added"
+              },
+              {
+                "name": "gifts.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "7230794"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "7230794"
+        }
+      }
+    },
+    "to-index": {
+      "areas": {
+        "work": [
+          {
+            "name": "budget.txt",
+            "state": "clean"
+          },
+          {
+            "name": "gifts.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "budget.txt",
+            "state": "clean"
+          },
+          {
+            "name": "gifts.txt",
+            "state": "modified"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "7230794",
+            "message": "Add Ana"
+          },
+          "count": 3,
+          "files": [
+            "budget.txt",
+            "gifts.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "7230794",
+            "message": "Add Ana",
+            "parents": [
+              "d288e90"
+            ],
+            "files": [
+              {
+                "name": "budget.txt",
+                "state": "same"
+              },
+              {
+                "name": "gifts.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "d288e90",
+            "message": "Raise budget to 250 USD",
+            "parents": [
+              "5f7c8c6"
+            ],
+            "files": [
+              {
+                "name": "budget.txt",
+                "state": "modified"
+              },
+              {
+                "name": "gifts.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "5f7c8c6",
+            "message": "Start gift list",
+            "parents": [],
+            "files": [
+              {
+                "name": "budget.txt",
+                "state": "added"
+              },
+              {
+                "name": "gifts.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "7230794"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "7230794"
+        }
+      }
+    },
+    "both": {
+      "areas": {
+        "work": [
+          {
+            "name": "budget.txt",
+            "state": "clean"
+          },
+          {
+            "name": "gifts.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "budget.txt",
+            "state": "clean"
+          },
+          {
+            "name": "gifts.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "7230794",
+            "message": "Add Ana"
+          },
+          "count": 3,
+          "files": [
+            "budget.txt",
+            "gifts.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "7230794",
+            "message": "Add Ana",
+            "parents": [
+              "d288e90"
+            ],
+            "files": [
+              {
+                "name": "budget.txt",
+                "state": "same"
+              },
+              {
+                "name": "gifts.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "d288e90",
+            "message": "Raise budget to 250 USD",
+            "parents": [
+              "5f7c8c6"
+            ],
+            "files": [
+              {
+                "name": "budget.txt",
+                "state": "modified"
+              },
+              {
+                "name": "gifts.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "5f7c8c6",
+            "message": "Start gift list",
+            "parents": [],
+            "files": [
+              {
+                "name": "budget.txt",
+                "state": "added"
+              },
+              {
+                "name": "gifts.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "7230794"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "7230794"
+        }
+      }
+    },
+    "source": {
+      "areas": {
+        "work": [
+          {
+            "name": "budget.txt",
+            "state": "modified"
+          },
+          {
+            "name": "gifts.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "budget.txt",
+            "state": "clean"
+          },
+          {
+            "name": "gifts.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "7230794",
+            "message": "Add Ana"
+          },
+          "count": 3,
+          "files": [
+            "budget.txt",
+            "gifts.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "7230794",
+            "message": "Add Ana",
+            "parents": [
+              "d288e90"
+            ],
+            "files": [
+              {
+                "name": "budget.txt",
+                "state": "same"
+              },
+              {
+                "name": "gifts.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "d288e90",
+            "message": "Raise budget to 250 USD",
+            "parents": [
+              "5f7c8c6"
+            ],
+            "files": [
+              {
+                "name": "budget.txt",
+                "state": "modified"
+              },
+              {
+                "name": "gifts.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "5f7c8c6",
+            "message": "Start gift list",
+            "parents": [],
+            "files": [
+              {
+                "name": "budget.txt",
+                "state": "added"
+              },
+              {
+                "name": "gifts.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "7230794"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "7230794"
+        }
+      }
+    }
+  }
+}

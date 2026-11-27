@@ -1,0 +1,73 @@
+- question: "Hansı ad branch-da nə iş getdiyini deyir?"
+  options:
+    - "`ayla-branch-new-2`"
+    - "`fix/BOOK-150-cart-total`"
+    - "`test-something-new`"
+    - "`final-version-try-3`"
+  answer: 1
+  explain: "Prefiks işin növünü, `BOOK-150` tapşırığı, `cart-total` isə mövzunu deyir; qalan adlardan heç biri işi adlandırmır."
+- question: "Git hansı adla branch yaratmır?"
+  options:
+    - "`Feat/Gift_Cards`"
+    - "`docs/README-update`"
+    - "`feat/gift-cards`"
+    - "`fix/cart total`"
+  answer: 3
+  explain: "Branch adında boşluq ola bilməz. Böyük hərf və `_` Git üçün qadağan deyil, sadəcə çox komandanın üslubuna uyğun gəlmir."
+- question: "Bu komandalardan sonra ikinci komanda nə edir?"
+  code: |
+    git branch fix
+    git branch fix/cart-total
+  options:
+    - "`fix/cart-total` yaradır, `fix` branch-ı da olduğu kimi qalır"
+    - "`fix` branch-ının adını `fix/cart-total` olaraq dəyişir"
+    - "Dayanır: `cannot lock ref`, çünki `refs/heads/fix` artıq var"
+  answer: 2
+  explain: "`fix` fayl kimi saxlanır, `fix/cart-total` üçün isə eyni adda qovluq lazımdır; ikisi eyni vaxtda ola bilməz."
+- question: "`feat/`, `fix/`, `hotfix/` kimi prefikslər haradan gəlir?"
+  options:
+    - "Komandanın razılaşmasıdır; Git üçün `/` adın adi simvoludur"
+    - "Git onları tələb edir; prefikssiz ad xəta verir"
+    - "Git onları `git switch -c` zamanı özü əlavə edir"
+  answer: 0
+  explain: "Git prefiksləri yoxlamır; hansı prefiksin işləndiyini komanda seçir, ona görə layihədən layihəyə fərqlənir."
+- question: "Bu komanda nə çap edir?"
+  code: |
+    git check-ref-format --branch "gift cards"
+  options:
+    - "Boşluğu defislə əvəz edib `gift-cards` çap edir"
+    - "Adı rədd edir: `'gift cards' is not a valid branch name`"
+    - "`gift cards` adlı yeni branch yaradıb ona keçir"
+  answer: 1
+  explain: "`check-ref-format` adı yalnız yoxlayır: düzgün adı olduğu kimi çap edir, səhv ada `fatal` xətası verir. Branch yaratmır."
+- question: "Hansı ad Git üçün düzgündür?"
+  options:
+    - "`feat/search.lock`"
+    - "`-search-page`"
+    - "`feat/search-v2.0`"
+    - "`feat..search`"
+  answer: 2
+  explain: "Ad `.lock` ilə bitə, `-` ilə başlaya və `..` saxlaya bilməz; ortadakı tək nöqtə isə icazəlidir."
+- question: "`feat/BOOK-142-gift-cards` adında `BOOK-142` nədir?"
+  options:
+    - "Tapşırıq sistemindəki tapşırığın nömrəsi"
+    - "Branch-ın başladığı commit-in qısa hash-i"
+    - "Git-in branch-a verdiyi sıra nömrəsi"
+  answer: 0
+  explain: "Nömrə branch-ı tapşırığa bağlayır. Jira GitHub-a qoşulanda belə branch-ı tapşırığın səhifəsində göstərir."
+- question: "Layihədəki branch-lar `feature/...` və `bugfix/...` kimidir. Yeni imkan üçün hansı ad uyğundur?"
+  options:
+    - "`feat/wishlist`"
+    - "`Feature/Wishlist`"
+    - "`wishlist`"
+    - "`feature/wishlist`"
+  answer: 3
+  explain: "Prefiks konvensiyadır: layihədə `feature/` işlənirsə, siz də onu yazırsınız, kiçik hərflə."
+- question: "Hansı ad kebab-case ilə yazılıb?"
+  options:
+    - "`gift_cards`"
+    - "`gift-cards`"
+    - "`giftCards`"
+    - "`GiftCards`"
+  answer: 1
+  explain: "Kebab-case-də sözlər kiçik hərflə yazılır və defislə ayrılır."

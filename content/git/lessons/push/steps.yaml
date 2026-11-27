@@ -1,0 +1,8 @@
+# The visuals are recorded from the real repository by `pnpm content:run`.
+push-main:
+no-upstream:
+set-upstream:
+rejected:
+  vis: graph
+pull-then-push:
+  vis: graph

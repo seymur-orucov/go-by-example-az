@@ -1,0 +1,72 @@
+- question: "`git clone git@github.com:ayla/icons.git` hansı qovluğu yaradır?"
+  options:
+    - "`ayla`"
+    - "`icons.git`"
+    - "`icons`"
+  answer: 2
+  explain: "Git qovluğun adını ünvanın son hissəsindən götürür və sondakı `.git`-i atır. HTTPS ünvanında da nəticə eynidir."
+- question: "Bu komandalardan sonra nə çap olunur?"
+  code: |
+    git clone ~/server/notes.git
+    cd notes
+    git remote
+  options:
+    - "`origin`"
+    - "`notes`"
+    - "`main`"
+    - "`server`"
+  answer: 0
+  explain: "Clone serveri `origin` adı ilə əlavə edir. `-v` olmadan `git remote` yalnız adları çap edir."
+- question: "Serverdəki repository-də `main` və `docs` branch-ları var, default branch `main`-dir. Clone-dan sonra `git branch` nə çap edir?"
+  options:
+    - "`* main` və `docs`"
+    - "Yalnız `* main`"
+    - "`* docs` və `main`"
+  answer: 1
+  explain: "Clone yalnız default branch-ı lokal yaradır. `docs` `remotes/origin/docs` kimi gəlir, onu `git branch -a` göstərir."
+- question: "Repository-ni `my-icons` qovluğuna hansı komanda clone edir?"
+  options:
+    - "`git clone my-icons ~/server/icons.git`"
+    - "`git clone ~/server/icons.git my-icons`"
+    - "`git clone --name my-icons ~/server/icons.git`"
+  answer: 1
+  explain: "Qovluğun adı ünvandan sonra yazılır."
+- question: "Serverdəki `main`-də 5 commit var. Bu komandalardan sonra nə çap olunur?"
+  code: |
+    git clone --depth 2 file://$HOME/server/notes.git notes
+    cd notes
+    git log --oneline | wc -l
+  options:
+    - "`1`"
+    - "`5`"
+    - "`2`"
+  answer: 2
+  explain: "`--depth 2` son iki commit-i gətirir, `wc -l` sətirləri sayır."
+- question: "`git clone --depth 1 ~/server/notes.git` (qovluq yolu, `file://` yoxdur) nə edir?"
+  options:
+    - "Tam tarixçəni kopyalayır və xəbərdarlıq verir"
+    - "Yalnız son commit-i gətirir, xəbərdarlıq vermir"
+    - "Xəta verir və heç nəyi kopyalamır"
+  answer: 0
+  explain: "Qovluq yolunda Git faylları birbaşa kopyalayır və `--depth is ignored in local clones` yazır. Shallow clone üçün `file://` lazımdır."
+- question: "Clone-dan sonra `git branch -a`-da görünən `origin/main` nədir?"
+  options:
+    - "Lokal `main`-in ehtiyat surəti"
+    - "Serverdəki `main`-in Git-in yadda saxladığı yeri"
+    - "Serverdə clone zamanı yaradılan yeni branch"
+  answer: 1
+  explain: "`origin/main` serverin branch-ını göstərir, siz isə lokal `main`-də işləyirsiniz."
+- question: "`icons` qovluğu artıq var və içində fayllar var. `git clone ~/server/icons.git` nə edir?"
+  options:
+    - "Faylları serverdəkilərlə əvəz edir"
+    - "Yeni `icons2` qovluğu yaradır"
+    - "Xəta verir: qovluq boş deyil"
+  answer: 2
+  explain: "Git `destination path 'icons' already exists and is not an empty directory` yazıb dayanır. Başqa qovluq adı verin."
+- question: "Shallow clone-un mənfi tərəfi nədir?"
+  options:
+    - "Köhnə commit-lər lokalda yoxdur"
+    - "Son commit-in faylları natamam gəlir"
+    - "Belə repository-də commit etmək olmur"
+  answer: 0
+  explain: "Fayllar tamdır və commit etmək olur. Yalnız tarixçə qısadır; onu `git fetch --unshallow` ilə gətirmək olar."

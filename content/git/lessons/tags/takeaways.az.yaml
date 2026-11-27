@@ -1,0 +1,9 @@
+rules:
+  - "Tag commit-ə qoyulan sabit addır: branch yeni commit-lə irəli gedir, tag yerində qalır."
+  - "`git tag <ad>` lightweight tag yaradır: `.git/refs/tags/`-də commit-in hash-i yazılmış fayl."
+  - "`git tag -a <ad> -m \"mesaj\"` annotated tag yaradır: tagger, tarix və mesaj saxlayan ayrıca obyekt."
+  - "Arqumentsiz `git tag` tag-ları siyahılayır, `git show <tag>` annotated tag-ın başlığını və commit-i göstərir."
+  - "Semantic versioning `MAJOR.MINOR.PATCH`-dir: patch səhv düzəlişi, minor uyğun yeni imkan, major uyğunluğu pozan dəyişiklikdir."
+practices:
+  - "Buraxılışlara annotated tag qoyun; lightweight tag-ı şəxsi, müvəqqəti qeydlər üçün saxlayın."
+  - "Proqramın tag adını `v` və semver versiyası ilə yazın: `v1.0.1`, `v1.1.0`."

@@ -166,12 +166,12 @@ Once the Go prototype is live, the site becomes a unified platform.
   - [x] **Git syllabus v2**: full roadmap.sh/git-github scope, one node per topic — 2 parts (Git 13 modules / 78 nodes, GitHub 12 modules / 68 nodes), 146 nodes, ~13.7 h; `parts` in the syllabus schema and on `/git/`; new kind `ui` (planned)
   - [ ] Lesson kind `ui` on the site (needed by the GitHub part)
   - [x] Lesson kinds `terminal` and `state` on the site: `session.sh` + `pnpm content:run` (recorded output), the `areas` visual, `/git/` and `/git/<id>/` pages, shared `LessonView`; `pnpm content:check` validates syllabi and session lessons
-  - [ ] Lesson kind `diagram` (`compare`, `concept` and the commit-graph visual `vis: graph` are done)
+  - [x] Lesson kind `diagram` (pilot `remotes-and-clone`, 2026-11-28); `compare`, `concept` and the commit-graph visual `vis: graph` are done
   - [x] `write-content` skill (pilot lesson per kind → approval → module by module)
   - [x] Git pilot lessons `three-areas` and `first-commit` — approved by the user (2026-11-27)
   - [x] Lesson kinds `concept` and `compare` on the site (text lessons, `flow` / `compare` visuals)
   - [x] Git pilot lessons `what-is-version-control` (`concept`) and `git-vs-other-vcs` (`compare`) — approved by the user (2026-11-27)
-  - [ ] The remaining Git lessons, module by module (written, awaiting the user's review: "Əsaslar" — `what-is-a-repository`, `install-git`, `git-config`, `git-init`; "İlk commit-lər" — `git-status`, `diff-unstaged`, `diff-staged`, `gitignore`). Commit-graph visual (`vis: graph`) done; pilot `commit-snapshot` approved (2026-11-27); "Tarixçə" written, awaiting review — `git-log`, `git-log-options`, `head`, `diff-between-commits`, `commit-messages`. Next: "Branch-lar"
+  - [x] The remaining Git lessons of part 1, module by module (written by subagents, reviewed, awaiting the user's review), including the `diagram` nodes `remotes-and-clone`, `force-push`, `pull-requests` — part 1 is complete
   - [ ] CI: run `pnpm content:run` and fail on a diff (needs a pinned Git version: output differs slightly between versions)
   - [x] Technology statuses computed from content (`lib/technologies.ts`: ready / started / soon) feed the v2 header nav, mega menu, Ctrl+K and the home stack map (`applyTechStates`); the hand-written `TECHS` statuses only remain as the fallback for technologies without content
 - [ ] Two kinds of roadmap:

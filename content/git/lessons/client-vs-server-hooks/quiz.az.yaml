@@ -1,0 +1,64 @@
+- question: "Bu hook-lardan hansı serverdə işləyir?"
+  options:
+    - "`pre-push`"
+    - "`commit-msg`"
+    - "`update`"
+    - "`post-checkout`"
+  answer: 2
+  explain: "`update` push serverə çatanda hər branch üçün işləyir. Qalan üçü developer-in kompüterindəki `.git/hooks`-dadır."
+- question: "Sam-ın commit mesajında tapşırıq nömrəsi yoxdur. Bu səhvi ona ən tez hansı hook göstərir?"
+  options:
+    - "Serverdəki `pre-receive`, push zamanı"
+    - "Sam-ın `commit-msg`-i, commit anında"
+    - "Serverdəki `post-receive`, push-dan sonra"
+  answer: 1
+  explain: "`commit-msg` commit yaranmazdan əvvəl işləyir. Server səhvi yalnız push zamanı görür, o vaxt commit artıq tarixçədədir. `post-receive` isə push-u dayandıra bilmir."
+- question: "Serverdəki `pre-receive` hook-u `refs/heads/main`-i görəndə `1` kodu ilə çıxır. Sam bu komandanı yazır. Nə olur?"
+  code: |
+    git push origin main feat/refund
+  options:
+    - "Heç bir branch yenilənmir: `main` də, `feat/refund` da rədd olunur"
+    - "`feat/refund` qəbul olunur, yalnız `main` rədd olunur"
+    - "Hər iki branch qəbul olunur, sonra server `main`-i geri qaytarır"
+  answer: 0
+  explain: "`pre-receive` bütün push üçün bir dəfə işləyir. O, sıfırdan fərqli kodla çıxanda push-dakı heç bir ref yenilənmir."
+- question: "Eyni yoxlama `pre-receive`-də yox, `update` hook-unda yazılıb. `git push origin main feat/refund`-un nəticəsi nədir?"
+  options:
+    - "Heç bir branch yenilənmir"
+    - "Hər iki branch qəbul olunur, çünki `update` push-u dayandıra bilmir"
+    - "Push serverə çatmır, Sam-ın kompüterində dayanır"
+    - "`feat/refund` qəbul olunur, `main` rədd olunur"
+  answer: 3
+  explain: "`update` hər ref üçün ayrıca işləyir və yalnız rədd etdiyi ref-i saxlayır; digər branch-lar yenilənir."
+- question: "Komanda hər push-dan sonra çata bildiriş göndərmək istəyir. Bu iş serverdə hansı hook-a yazılır?"
+  options:
+    - "`pre-receive`"
+    - "`post-receive`"
+    - "`pre-push`"
+    - "`commit-msg`"
+  answer: 1
+  explain: "`post-receive` branch-lar yeniləndikdən sonra işləyir. O, push-u dayandırmır, ona görə bildiriş və deploy üçün yerdir."
+- question: "Serverdəki `post-receive` skripti `1` kodu ilə çıxdı. Sam-ın push-u nə oldu?"
+  options:
+    - "Push qəbul olunub, branch yeni commit-dədir"
+    - "Push rədd olunub, branch köhnə commit-ə qaytarılıb"
+    - "Push yarımçıq qalıb: commit-lər gedib, branch isə yenilənməyib"
+  answer: 0
+  explain: "`post-receive` push-un nəticəsinə təsir etmir. Push-u yalnız `pre-receive` və `update` rədd edə bilər."
+- question: "Repository GitHub.com-a köçürülür. Komanda `main`-ə birbaşa push-u hamı üçün qadağan etmək istəyir. Nə etməlidir?"
+  options:
+    - "GitHub.com-a öz `pre-receive` hook-unu yükləməlidir"
+    - "Hər developer-ə `pre-push` hook-u göndərməlidir"
+    - "`main` üçün branch qorunma qaydası və ya ruleset qurmalıdır"
+    - "`.git/hooks` qovluğunu commit edib push etməlidir"
+  answer: 2
+  explain: "GitHub.com-da öz server hook-unuzu quraşdıra bilməzsiniz. `main`-i branch qorunma qaydası və ya ruleset qoruyur. `pre-push`-u isə developer `--no-verify` ilə keçə bilər."
+- question: "Serverdəki `pre-receive` `main`-ə push-u qadağan edir. Sam bu komandanı yazır. Nə olur?"
+  code: |
+    git push --no-verify origin main
+  options:
+    - "Push qəbul olunur, çünki `--no-verify` bütün hook-ları keçir"
+    - "Push rədd olunur: serverdəki `pre-receive` yenə işləyir"
+    - "Push qəbul olunur, amma `remote:` sətrində xəbərdarlıq çıxır"
+  answer: 1
+  explain: "`--no-verify` yalnız Sam-ın kompüterindəki `pre-push`-u keçir. Server hook-u hər push-da işləyir və Sam `! [remote rejected] main -> main (pre-receive hook declined)` görür."

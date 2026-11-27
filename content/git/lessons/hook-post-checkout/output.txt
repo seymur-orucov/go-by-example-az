@@ -1,0 +1,42 @@
+$ printf '%s\n' '#!/bin/sh' 'echo "post-checkout: $1 $2 $3"' > .git/hooks/post-checkout
+$ chmod +x .git/hooks/post-checkout
+$ git branch -v
+  feat/payments 542f6a7 Add the payments module
+  fix/port      9f37e6d Change the port
+* main          4b0b1db Start the shop API
+$ git switch feat/payments
+Switched to branch 'feat/payments'
+post-checkout: 4b0b1dbbb7c379d0515cff36482f54455f968fc5 542f6a7383f76b23efb0e6bcb35ed467a4fa9857 1
+$ git switch main
+Switched to branch 'main'
+post-checkout: 542f6a7383f76b23efb0e6bcb35ed467a4fa9857 4b0b1dbbb7c379d0515cff36482f54455f968fc5 1
+$ git switch -c feat/refunds
+Switched to a new branch 'feat/refunds'
+post-checkout: 4b0b1dbbb7c379d0515cff36482f54455f968fc5 4b0b1dbbb7c379d0515cff36482f54455f968fc5 1
+$ echo 'echo "debug"' >> app.sh
+$ git restore app.sh
+post-checkout: 4b0b1dbbb7c379d0515cff36482f54455f968fc5 4b0b1dbbb7c379d0515cff36482f54455f968fc5 0
+$ printf '%s\n' '#!/bin/sh' 'if [ "$3" = 1 ]; then' '  git diff --quiet "$1" "$2" -- deps.txt || echo "deps.txt changed: run the installer"' 'fi' > .git/hooks/post-checkout
+$ cat .git/hooks/post-checkout
+#!/bin/sh
+if [ "$3" = 1 ]; then
+  git diff --quiet "$1" "$2" -- deps.txt || echo "deps.txt changed: run the installer"
+fi
+$ git switch fix/port
+Switched to branch 'fix/port'
+$ git switch feat/payments
+Switched to branch 'feat/payments'
+deps.txt changed: run the installer
+$ git restore --source=main deps.txt
+$ git status --short
+ M deps.txt
+$ printf '%s\n' '#!/bin/sh' 'echo "post-checkout: failed"' 'exit 1' > .git/hooks/post-checkout
+$ git switch main; echo $?
+Switched to branch 'main'
+post-checkout: failed
+1
+$ git branch
+  feat/payments
+  feat/refunds
+  fix/port
+* main

@@ -1,0 +1,6 @@
+# The visuals are recorded from the real repository by `pnpm content:run`.
+message-file:
+check:
+blocked:
+  vis: areas
+valid:

@@ -1,0 +1,40 @@
+# Hand-written visuals (diagram lesson): what the server holds after a force push, then --force vs --force-with-lease.
+rejected:
+lost-work:
+  vis:
+    kind: diagram
+    caption: "translate-az branch-ı force push-dan sonra (yuxarıda ən yeni commit)"
+    nodes:
+      - title: "Sam-ın laptopu"
+        sub: "amend-dən sonra"
+        lines: ["`Add menu strings` (yeni surət)", "`Add English strings`"]
+      - title: "Server"
+        sub: "`translate-az` Sam-ınkı ilə əvəz olunub"
+        lines: ["`Add menu strings` (yeni surət)", "`Add English strings`"]
+        tone: bad
+      - title: "Ayla-nın laptopu"
+        sub: "hələ fetch etməyib"
+        lines: ["`Translate settings screen`", "`Add menu strings` (köhnə)", "`Add English strings`"]
+    links:
+      - { right: "`git push --force`: branch-ı əvəz edir" }
+      - { left: "`git push`: Ayla-nın commit-i, force push-dan əvvəl" }
+    note: "Serverdə `Translate settings screen` artıq `translate-az`-da yoxdur. O, yalnız Ayla-nın laptopunda qalıb."
+lease:
+  vis:
+    kind: compare
+    caption: "git push --force və git push --force-with-lease"
+    a: { title: "--force", sub: "heç nəyi yoxlamır" }
+    b: { title: "--force-with-lease", sub: "serverdəki branch-ı `origin/<branch>` ilə yoxlayır" }
+    rows:
+      - aspect: "Arada heç kim push etməyib"
+        a: "Branch əvəz olunur"
+        b: "Branch əvəz olunur"
+      - aspect: "Arada kimsə push edib, siz fetch etməmisiniz"
+        a: "Onun commit-i branch-dan silinir"
+        b: "Push `stale info` ilə rədd olunur"
+        better: b
+      - aspect: "Arada kimsə push edib, siz fetch etmisiniz"
+        a: "Onun commit-i branch-dan silinir"
+        b: "Yoxlama keçir, commit yenə silinir"
+    note: "Lease yalnız sizin son gördüyünüzlə müqayisə edir. Fetch-dən sonra gələn commit-lərə özünüz baxın."
+when-to-force:

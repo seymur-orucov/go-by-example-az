@@ -1,0 +1,11 @@
+rules:
+  - "Submodule başqa repository-ni sizin repository-nin içində ayrıca qovluq kimi saxlayır və onu bir konkret commit-ə bağlayır."
+  - "`git submodule add <ünvan> <qovluq>` repository-ni clone edir, `.gitmodules`-u və submodule-u stage edir."
+  - "`.gitmodules` submodule-un yolunu və ünvanını saxlayır, commit-in hash-ini yox."
+  - "Tree-də submodule `160000 commit` sətridir (gitlink): əsas repository yalnız commit-in hash-ini saxlayır, faylları yox."
+  - "Submodule irəliləyəndə əsas repository `modified: ui-kit (new commits)` görür; yeni commit-i `git add` və commit ilə bağlayırsınız."
+  - "Subtree başqa repository-nin fayllarını tarixçənizə köçürür: istifadəsi sadədir, düzəlişi geri göndərmək çətindir."
+practices:
+  - "Submodule-dakı commit-i əvvəl onun serverinə push edin, sonra əsas repository-də gitlink-i commit edin."
+  - "Submodule-da nəyin dəyişdiyini görmək üçün `git diff --submodule` işlədin."
+  - "Kitabxana ayrıca komandada inkişaf edirsə və versiyanı dəqiq seçmək lazımdırsa submodule, kod nadir dəyişirsə subtree seçin."

@@ -1,0 +1,8 @@
+# The visuals are recorded from the real repository by `pnpm content:run`.
+todo:
+fixup-drop:
+  vis: graph
+reword:
+squash:
+autosquash:
+  vis: graph

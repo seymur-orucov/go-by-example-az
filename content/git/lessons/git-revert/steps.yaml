@@ -1,0 +1,12 @@
+# The visuals are recorded from the real repository by `pnpm content:run`.
+revert-last:
+  vis: graph
+  files: true
+shared:
+  vis: graph
+older:
+  vis: graph
+no-commit:
+  vis: graph
+merge:
+  vis: graph

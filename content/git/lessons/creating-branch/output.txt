@@ -1,0 +1,27 @@
+$ git branch
+* main
+$ git branch dark-mode
+$ git branch
+  dark-mode
+* main
+$ git branch -v
+  dark-mode faac389 Add mountain photo
+* main      faac389 Add mountain photo
+$ git branch print-version HEAD~1
+$ git branch -v
+  dark-mode     faac389 Add mountain photo
+* main          faac389 Add mountain photo
+  print-version 2124de6 Add album page
+$ git switch -c slideshow
+Switched to a new branch 'slideshow'
+$ echo '<div id="slideshow"></div>' >> index.html
+$ git commit -am "Add slideshow block"
+[slideshow 2b7aa3f] Add slideshow block
+ 1 file changed, 1 insertion(+)
+$ git branch
+  dark-mode
+  main
+  print-version
+* slideshow
+$ git switch -c dark-mode
+fatal: a branch named 'dark-mode' already exists

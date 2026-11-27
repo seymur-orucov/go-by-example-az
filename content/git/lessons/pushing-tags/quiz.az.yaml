@@ -1,0 +1,73 @@
+- question: "Serverdə heç bir tag yoxdur. Bu komandalardan sonra son komanda nə çap edir?"
+  code: |
+    git tag -a v2.0 -m "Version 2.0"
+    git push origin main
+    git ls-remote --tags origin
+  options:
+    - "`refs/tags/v2.0` və `refs/tags/v2.0^{}` sətirləri"
+    - "Heç nə: `git push` tag-ı göndərməyib"
+    - "Yalnız `refs/tags/v2.0^{}` sətri"
+  answer: 1
+  explain: "`git push origin main` yalnız branch-ı göndərir. Tag lokal repository-də qalıb, serverdə tag yoxdur."
+- question: "Yalnız `v2.0` tag-ını serverə göndərən komanda hansıdır?"
+  options:
+    - "`git push origin --tags`"
+    - "`git push --follow-tags`"
+    - "`git push origin v2.0`"
+  answer: 2
+  explain: "Branch adının yerində tag adı yazanda push yalnız o tag-ı göndərir. `--tags` bütün lokal tag-ları, `--follow-tags` isə branch-ı və onun annotated tag-larını göndərir."
+- question: "Bu komandalardan sonra serverə hansı tag gedir?"
+  code: |
+    git commit -q -am "Add dark mode"
+    git tag -a v2.1 -m "Version 2.1"
+    git tag try-colors
+    git push --follow-tags
+  options:
+    - "Yalnız `v2.1`"
+    - "`v2.1` və `try-colors`"
+    - "Heç biri, yalnız branch gedir"
+  answer: 0
+  explain: "`--follow-tags` yalnız annotated tag-ları göndərir. `try-colors` lightweight tag-dır, eyni commit-də olsa da getmir."
+- question: "`git push origin --tags` nəyi göndərir?"
+  options:
+    - "Yalnız annotated tag-ları"
+    - "Push olunan branch-ın tag-larını"
+    - "Branch-ı və onun annotated tag-larını"
+    - "Serverdə olmayan bütün lokal tag-ları"
+  answer: 3
+  explain: "`--tags` annotated və lightweight fərqi qoymur və branch-ı göndərmir. Ona görə unudulmuş şəxsi tag-lar da serverə gedə bilər."
+- question: "Serverdəki `beta` tag-ını hansı komanda silir?"
+  options:
+    - "`git tag -d beta`"
+    - "`git push origin --delete beta`"
+    - "`git fetch --prune beta`"
+  answer: 1
+  explain: "Serverdəki ref push ilə silinir. `git tag -d beta` yalnız lokal tag-ı silir."
+- question: "Ayla `beta` tag-ını fetch edib. Sonra Sam onu serverdən sildi. Ayla `git fetch` edir. Ayla-nın `beta` tag-ına nə olur?"
+  options:
+    - "Silinir, çünki fetch serverdəki tag-ları izləyir"
+    - "Silinir, fetch çıxışında `- [deleted]` sətri olur"
+    - "Qalır, onu Ayla `git tag -d` ilə özü silməlidir"
+  answer: 2
+  explain: "Serverdən silmək başqalarının clone-undakı tag-a toxunmur. Adi `git fetch` lokal tag-ları silmir."
+- question: "Ayla `git fetch` etdi. Çıxışdakı `* [new tag] v1.0 -> v1.0` sətri nə deməkdir?"
+  options:
+    - "Ayla-nın repository-sində `v1.0` tag-ı yarandı"
+    - "Ayla `v1.0` tag-ını serverə göndərdi"
+    - "Serverdə `v1.0` tag-ı bu fetch ilə yarandı"
+  answer: 0
+  explain: "Fetch serverdən gətirir. Serverdəki `v1.0` Ayla-da yoxdur, ona görə Git onu Ayla-nın repository-sində yaradıb."
+- question: "Adi `git push` annotated tag-ları da göndərsin deyə hansı ayarı yazmaq lazımdır?"
+  options:
+    - "`git config fetch.followTags true`"
+    - "`git config push.followTags true`"
+    - "`git config tag.autoPush true`"
+  answer: 1
+  explain: "`push.followTags` hər push-u `--follow-tags` kimi işlədir."
+- question: "Ayla-da `v1.1` var. Sam `v1.1`-i silib başqa commit-ə qoydu və push etdi. Ayla `git fetch` edir. Nə olur?"
+  options:
+    - "Ayla-nın `v1.1`-i yeni commit-ə keçir"
+    - "Fetch xəta verir və heç nə gətirmir"
+    - "Ayla-nın `v1.1`-i köhnə commit-də qalır"
+  answer: 2
+  explain: "Fetch Ayla-da artıq olan tag-ı dəyişmir və bu barədə heç nə demir. Ona görə paylaşılmış tag-ı köçürmək olmaz, yeni tag yaradılır."

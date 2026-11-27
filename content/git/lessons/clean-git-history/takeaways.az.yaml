@@ -1,0 +1,11 @@
+rules:
+  - "Atomik commit bir məntiqi dəyişiklikdir: ayrı işləri ayrı commit edin."
+  - "`git add <fayl>` yalnız o faylı stage edir; `git add .` və `git commit -a` hər şeyi bir commit-ə yığır."
+  - "`git commit --fixup=<commit>` köhnə commit-ə düzəlişi `fixup! <mesaj>` commit-i kimi yazır; `--amend` isə yalnız son commit-i dəyişir."
+  - "`\":/mətn\"` mesajında bu mətn olan ən yeni commit-dir."
+  - "`git rebase -i --autosquash origin/main` branch-ı son `origin/main`-in üstünə köçürür və `fixup!` commit-lərini hədəflərinə qatır."
+  - "`git log --oneline origin/main..HEAD` PR-ın gətirəcəyi commit-ləri göstərir."
+practices:
+  - "PR-dan əvvəl `git fetch` edin, sonra bir `rebase -i --autosquash` ilə düzəlişləri qatın və pis mesajları `reword` ilə dəyişin."
+  - "Tarixçəni yalnız push etmədiyiniz commit-lərdə təmizləyin."
+  - "Bir faylda iki ayrı iş varsa, `git add -p` ilə onu hissə-hissə stage edin."

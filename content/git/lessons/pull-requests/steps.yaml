@@ -1,0 +1,34 @@
+# Hand-written visuals (diagram lesson): a pull request from a fork, then the life of a pull request.
+what-is:
+two-starts:
+  vis:
+    kind: diagram
+    caption: "Fork-dan pull request"
+    nodes:
+      - title: "Murad-ın laptopu"
+        sub: "fork-un clone-u"
+        lines: ["main", "fix/stop-name"]
+      - title: "murad/timetable"
+        sub: "fork · remote `origin`"
+        lines: ["main", "fix/stop-name"]
+      - title: "citybus/timetable"
+        sub: "orijinal · remote `upstream`"
+        lines: ["main"]
+        tone: accent
+    links:
+      - { right: "`git push origin fix/stop-name`", left: "`git clone`" }
+      - { right: "pull request: `fix/stop-name` → `main`" }
+    note: "Ayla-ya fork lazım deyil: onun branch-ı birbaşa `citybus/timetable`-dadır və PR eyni repository-nin içində açılır."
+lifecycle:
+  vis:
+    kind: flow
+    caption: "Pull request-in yolu"
+    arrows: true
+    items:
+      - { label: "Draft", sub: "iş gedir, merge olunmur" }
+      - { label: "Ready for review", sub: "reviewer-lər oxuyur" }
+      - { label: "Review", sub: "şərhlər, yeni commit-lər, check-lər", tone: accent }
+      - { label: "Merge", sub: "iş base branch-a gəlir", tone: good }
+    note: "PR draft olmadan da açıla bilər. Merge olunmayan PR **Close** ilə bağlanır."
+updates:
+merge:

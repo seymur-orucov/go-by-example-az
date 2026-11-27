@@ -1,0 +1,10 @@
+rules:
+  - "Üç rejimin üçü də hazırkı branch-ı göstərilən commit-ə aparır; fərq staging area və working directory-dədir."
+  - "`--soft` yalnız branch-ı dəyişir: geri alınan dəyişikliklər `Changes to be committed` bölməsində qalır."
+  - "`--mixed` (default) staging area-nı da dəyişir: dəyişikliklər `Changes not staged for commit`-də, yeni fayllar `Untracked files`-da qalır."
+  - "`--hard` üç sahəni də dəyişir: `git status` `nothing to commit, working tree clean` göstərir, dəyişikliklər diskdən silinir."
+  - "Yalnız `--hard` commit olunmamış işi itirə bilər; `--soft` və `--mixed` working directory-yə toxunmur."
+practices:
+  - "Commit-ləri birləşdirmək üçün `--soft`, commit-i başqa cür bölmək üçün `--mixed`, dəyişiklikləri atmaq üçün `--hard` seçin."
+  - "`--hard`-dan əvvəl `git status`-a baxın və saxlamaq istədiyiniz işi commit edin."
+  - "Reset-i push olunmamış commit-lər üçün işlədin; serverdəki commit-i `git revert` ilə geri alın."

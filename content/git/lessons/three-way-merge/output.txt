@@ -1,0 +1,78 @@
+$ git merge groceries
+Updating b256534..2cf4af6
+Fast-forward
+ groceries.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+$ git log --oneline --graph --all --decorate
+* 2cf4af6 (HEAD -> main, groceries) Switch to oat milk
+| * 55b9576 (cleaning) Add dish soap to the list
+| * 658c294 Add the hallway to the rota
+|/  
+* b256534 Add the cleaning rota
+* dec4ad9 Start the grocery list
+$ git merge-base main cleaning
+b25653410b3457a26d37b8d5377b0111d522ede1
+$ git log --oneline -1 $(git merge-base main cleaning)
+b256534 Add the cleaning rota
+$ git diff cleaning...main
+diff --git a/groceries.txt b/groceries.txt
+index 3bc99fa..77bb52d 100644
+--- a/groceries.txt
++++ b/groceries.txt
+@@ -1,4 +1,4 @@
+-milk
++oat milk
+ bread
+ eggs
+ rice
+$ git diff main...cleaning
+diff --git a/cleaning.txt b/cleaning.txt
+index f840686..f4e66d2 100644
+--- a/cleaning.txt
++++ b/cleaning.txt
+@@ -1,2 +1,3 @@
+ kitchen: Sam
+ bathroom: Ayla
++hallway: Ayla
+diff --git a/groceries.txt b/groceries.txt
+index 3bc99fa..3da6544 100644
+--- a/groceries.txt
++++ b/groceries.txt
+@@ -2,3 +2,4 @@ milk
+ bread
+ eggs
+ rice
++dish soap
+$ git merge --no-edit cleaning
+Auto-merging groceries.txt
+Merge made by the 'ort' strategy.
+ cleaning.txt  | 1 +
+ groceries.txt | 1 +
+ 2 files changed, 2 insertions(+)
+$ cat groceries.txt
+oat milk
+bread
+eggs
+rice
+dish soap
+$ git log --oneline --graph
+*   bd86331 Merge branch 'cleaning'
+|\  
+| * 55b9576 Add dish soap to the list
+| * 658c294 Add the hallway to the rota
+* | 2cf4af6 Switch to oat milk
+|/  
+* b256534 Add the cleaning rota
+* dec4ad9 Start the grocery list
+$ git cat-file -p HEAD
+tree 5b5d4772a1b64a9c6bb55e9f19043a02bcd95e22
+parent 2cf4af69bf4db55d4a080e59cb4dc7dc0ec64c22
+parent 55b9576e233c4d11fd446f4f3b001c864d58b735
+author Sam Lee <sam@example.com> 1768469100 +0000
+committer Sam Lee <sam@example.com> 1768469100 +0000
+
+Merge branch 'cleaning'
+$ git log --oneline -1 HEAD^1
+2cf4af6 Switch to oat milk
+$ git log --oneline -1 HEAD^2
+55b9576 Add dish soap to the list

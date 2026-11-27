@@ -1,0 +1,11 @@
+rules:
+  - "`git bisect` xətanı gətirən commit-i ikili axtarışla tapır: hər yoxlama şübhəli commit-ləri təxminən iki dəfə azaldır."
+  - "`git bisect start`, `git bisect bad` və `git bisect good <commit>` axtarışı başladır; `git bisect start <bad> <good>` eyni işi bir komandada görür."
+  - "Bisect yoxlanacaq commit-ə detached HEAD ilə keçir; hər yoxlamadan sonra `git bisect good` və ya `git bisect bad` yazılır."
+  - "`0 revisions left` sətrindən sonra da cari commit-i yoxlamaq lazımdır; axtarış `is the first 'bad' commit` ilə bitir."
+  - "`git bisect reset` axtarışı bitirir və əvvəlki branch-a qaytarır."
+  - "`git bisect run <komanda>` yoxlamanı özü edir: çıxış kodu `0` yaxşı, `125` ötürmək, 1–127 arası qalan kodlar isə pis deməkdir."
+practices:
+  - "Bisect-dən əvvəl xətanı göstərən qısa yoxlama tapın, məsələn bir komanda və gözlənilən nəticə."
+  - "Yoxlamanı skriptə yazın və `git bisect run` ilə işə salın: əllə verilən səhv cavab axtarışı korlayır."
+  - "Axtarış bitəndə `git bisect reset` yazmağı unutmayın."

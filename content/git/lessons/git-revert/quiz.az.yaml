@@ -1,0 +1,89 @@
+- question: "`git revert HEAD` nə edir?"
+  options:
+    - "Son commit-i tarixçədən silir və `main`-i bir commit geri çəkir"
+    - "Son commit-in dəyişikliyini tərsinə çevirən yeni commit yaradır"
+    - "Son commit-in dəyişikliyini yalnız faylda geri alır, commit yaratmır"
+  answer: 1
+  explain: "Revert tarixçəni dəyişmir: köhnə commit qalır, onun üstünə tərs dəyişikliyi olan yeni commit gəlir. Commit yaratmamaq üçün `--no-commit` lazımdır."
+- question: "Yeni, boş repository-də bu komandalardan sonra nə çap olunur?"
+  code: |
+    echo "van: 70 USD/day" > prices.txt
+    git add prices.txt
+    git commit -q -m "Add the van price"
+    echo "van: 75 USD/day" > prices.txt
+    git commit -q -am "Raise the van price"
+    git revert --no-edit HEAD
+    cat prices.txt
+  options:
+    - "`van: 70 USD/day`"
+    - "`van: 75 USD/day`"
+    - "Heç nə: revert faylı silir"
+  answer: 0
+  explain: "Son commit `70`-i `75` ilə əvəz edib. Onun tərsi `75`-i yenidən `70` edir."
+- question: "Əvvəlki sualdakı komandalardan sonra `git log --oneline` neçə sətir çap edir?"
+  options:
+    - "1"
+    - "2"
+    - "3"
+  answer: 2
+  explain: "İki commit yerində qalır və onların üstünə `Revert \"Raise the van price\"` commit-i gəlir."
+- question: "`HEAD`-in mesajı `Add the convertible`-dır. `git revert --no-edit HEAD` hansı mesajla commit yaradır?"
+  options:
+    - "`Undo \"Add the convertible\"`"
+    - "`Revert \"Add the convertible\"`"
+    - "`Revert: Add the convertible`"
+  answer: 1
+  explain: "Hazır mesaj `Revert` sözü və dırnaqda köhnə mesajdır. Altında `This reverts commit` və köhnə commit-in hash-i yazılır."
+- question: "Yeni, boş repository-də bu komandalardan sonra `ls` nə çap edir?"
+  code: |
+    echo "economy: 40 USD/day" > prices.txt
+    git add prices.txt
+    git commit -q -m "Add the prices"
+    echo "van: 3" > vans.txt
+    git add vans.txt
+    git commit -q -m "Add the vans"
+    echo "suv: 80 USD/day" >> prices.txt
+    git commit -q -am "Add the SUV price"
+    git revert --no-edit HEAD~1
+    ls
+  options:
+    - "`prices.txt` və `vans.txt`"
+    - "Heç nə: `HEAD~1` adlı commit yoxdur"
+    - "Yalnız `prices.txt`"
+  answer: 2
+  explain: "`HEAD~1` `Add the vans`-dır. Revert yalnız onu geri alır və `vans.txt`-i silir; `Add the SUV price` yerində qalır."
+- question: "Son üç commit-i bir revert commit-i ilə geri almaq lazımdır. Hansı komandalar bunu edir?"
+  options:
+    - "`git revert --no-commit HEAD~3..HEAD`, sonra `git commit -m \"...\"`"
+    - "`git revert --no-edit HEAD~3..HEAD`, sonra `git push`"
+    - "`git revert --no-edit HEAD~3`, sonra `git commit -m \"...\"`"
+  answer: 0
+  explain: "`--no-commit` geri alınan dəyişiklikləri staging-də yığır, `git commit` onları bir commit edir. `--no-edit` hər commit üçün ayrıca `Revert` commit-i yaradar."
+- question: "Push olunmuş commit-i `git revert --no-edit HEAD` ilə geri aldınız. Arqumentsiz `git push` nə edir?"
+  options:
+    - "Rədd olunur: `non-fast-forward`"
+    - "Serverdəki `main`-i revert commit-inə irəli çəkir"
+    - "Yalnız `--force` ilə qəbul olunur"
+  answer: 1
+  explain: "Revert commit-i serverdəki `main`-in davamıdır. Push branch-ı irəli çəkir, ona görə adi qaydada qəbul olunur."
+- question: "`HEAD` `--no-ff` ilə yaranmış merge commit-dir. `git revert HEAD` nə edir?"
+  options:
+    - "Merge-i geri alır, çünki birinci parent default seçilir"
+    - "Branch-ın yalnız son commit-ini geri alır"
+    - "`is a merge but no -m option was given` xətası verir"
+  answer: 2
+  explain: "Merge commit-in iki parent-i var və Git hansı tərəfə qayıtmaq lazım olduğunu özü seçmir. `-m 1` və ya `-m 2` yazmaq lazımdır."
+- question: "`git revert -m 1 HEAD` merge commit-də nəyi saxlayır?"
+  options:
+    - "Birinci parent-in tərəfini: merge-dən əvvəlki `main`-i"
+    - "İkinci parent-in tərəfini: branch-ın son commit-ini"
+    - "Hər iki tərəfi, yalnız merge commit-in mesajı silinir"
+  answer: 0
+  explain: "`-m 1` birinci parent-i əsas götürür. Revert branch-ın gətirdiyini geri alır, `main`-in öz dəyişiklikləri qalır."
+- question: "Commit-i revert etdiniz, sonra fikrinizi dəyişdiniz. Revert commit-inin özünü də revert etsəniz, nə olur?"
+  options:
+    - "Git xəta verir: revert commit-ini revert etmək olmur"
+    - "İlk commit-in dəyişikliyi geri qayıdır"
+    - "Hər iki commit tarixçədən silinir"
+  answer: 1
+  explain: "Revert-in tərsi ilk dəyişikliyin özüdür. Yeni commit-in mesajı `Reapply` ilə başlayır, tarixçədən heç nə silinmir."

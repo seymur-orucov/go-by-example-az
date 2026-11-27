@@ -1,0 +1,8 @@
+rules:
+  - "`commit-msg` bir arqument alır: mesajın yazıldığı faylın yolu (`.git/COMMIT_EDITMSG`). Skriptdə o `$1`-dir."
+  - "Git hook-u mesaj hazır olandan sonra, commit-i yaratmazdan əvvəl çağırır. Hook 0-dan fərqli kodla çıxsa, commit yaranmır və dəyişiklik staging area-da qalır."
+  - "`head -n1 \"$1\"` başlığı götürür, `grep -Eq` onu nümunə ilə müqayisə edib yalnız çıxış kodu qaytarır."
+  - "`git commit --no-verify` `pre-commit` kimi `commit-msg` hook-unu da keçir."
+practices:
+  - "Hook-un xəta mesajında düzgün formatı və bir nümunə göstərin: Git özündən izah əlavə etmir."
+  - "Komanda layihəsində commitlint-i hook manager ilə qoşun: onun konfiqurasiyası repository-də saxlanır və hər kəsdə eyni işləyir."

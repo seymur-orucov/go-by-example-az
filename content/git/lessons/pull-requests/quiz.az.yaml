@@ -1,0 +1,76 @@
+- question: "Pull request nədir?"
+  options:
+    - "Serverdəki branch-ı lokal repository-yə gətirən komanda"
+    - "Bir branch-ı başqasına merge etmək təklifi və onun müzakirəsi"
+    - "Başqasının repository-sinin GitHub hesabınızdakı surəti"
+  answer: 1
+  explain: "PR branch-ın işini base branch-a, adətən `main`-ə gətirməyi təklif edir; review və müzakirə onun səhifəsində olur."
+- question: "Pull request-i nə yaradır?"
+  options:
+    - "Git-in özü, `git push` zamanı avtomatik"
+    - "Git-in `git pull` komandası, `--request` seçimi ilə"
+    - "Hostinq xidməti: GitHub-da pull request, GitLab-da merge request"
+  answer: 2
+  explain: "Git-də PR komandası yoxdur. PR fork kimi hostinq xidmətinin imkanıdır."
+- question: "Murad `citybus/timetable`-a yaza bilmir və düzəlişi öz fork-unda, `fix/stop-name`-də edib. PR-da base və compare hansıdır?"
+  options:
+    - "Base `citybus/timetable`-ın `main`-i, compare `murad/timetable`-ın `fix/stop-name`-i"
+    - "Base `murad/timetable`-ın `main`-i, compare `citybus/timetable`-ın `fix/stop-name`-i"
+    - "Base `murad/timetable`-ın `fix/stop-name`-i, compare `citybus/timetable`-ın `main`-i"
+  answer: 0
+  explain: "Base dəyişikliyin merge olunacağı branch-dır, compare isə dəyişikliyin yazıldığı branch."
+- question: "Reviewer PR-da **Request changes** seçib. Düzəlişi necə göndərirsiniz?"
+  options:
+    - "Yeni branch yaradıb ondan ikinci PR açıram"
+    - "Düzəlişi eyni branch-a commit edib push edirəm"
+    - "PR-ı bağlayıb düzəlişdən sonra yenidən açıram"
+  answer: 1
+  explain: "PR branch-ın özünə baxır: branch-a push olunan yeni commit PR-da avtomatik görünür."
+- question: "Draft PR haqqında hansı doğrudur?"
+  options:
+    - "Draft PR-a yeni commit push etmək olmur"
+    - "Draft PR yalnız fork-dan açıla bilər"
+    - "Draft PR merge olunmur, sonra adi PR-a çevrilir"
+  answer: 2
+  explain: "İş hazır olanda draft **Ready for review** ilə adi PR olur və merge oluna bilər."
+- question: "PR-ın branch-ında üç commit var. PR **Squash and merge** ilə merge olunur. `main`-ə neçə yeni commit gəlir?"
+  options:
+    - "1"
+    - "3"
+    - "4"
+  answer: 0
+  explain: "Squash üç commit-in dəyişikliyini bir yeni commit kimi `main`-ə əlavə edir."
+- question: "PR-ın branch-ında iki commit var. PR **Create a merge commit** ilə merge olunur. `main`-ə neçə yeni commit gəlir?"
+  options:
+    - "1"
+    - "2"
+    - "3"
+  answer: 2
+  explain: "Branch-ın iki commit-i `main`-ə gəlir, üstəlik `--no-ff` bir merge commit yaradır."
+- question: "PR **Rebase and merge** ilə merge olunub. `main`-ə gələn commit-lər haqqında hansı doğrudur?"
+  options:
+    - "Branch-dakı commit-lərin özüdür, hash-lər də eynidir"
+    - "Mesajlar eynidir, amma hash-lər yenidir"
+    - "Hamısı bir commit-ə birləşib, mesajı yenidir"
+  answer: 1
+  explain: "GitHub rebase and merge zamanı həmişə yeni commit-lər yaradır, ona görə hash-lər dəyişir."
+- question: "PR **Squash and merge** ilə merge olunub, GitHub `fix/stop-name`-i serverdən silib. Son komanda nə çap edir?"
+  code: |
+    git switch main
+    git pull
+    git fetch --prune
+    git branch -d fix/stop-name
+  options:
+    - "`Deleted branch fix/stop-name` və köhnə hash"
+    - "Heç nə: `-d` səssiz işləyir"
+    - "`fatal: not a valid branch name`"
+    - "`error: the branch 'fix/stop-name' is not fully merged`"
+  answer: 3
+  explain: "`main`-də branch-ın commit-ləri yox, yeni bir commit var. Git branch-ı merge olunmuş saymır, onu `git branch -D` silir."
+- question: "Repository merge üçün uğurlu check-lər tələb edir, CI isə qırmızı nəticə verib. Nə olur?"
+  options:
+    - "PR merge olunmur, branch-a düzəliş push etmək lazımdır"
+    - "PR merge olunur, check sadəcə xəbərdarlıqdır"
+    - "GitHub PR-ı avtomatik bağlayır və branch-ı silir"
+  answer: 0
+  explain: "Şərt ödənməyibsə GitHub PR-ı merge etmir. Düzəliş push olunanda CI yenidən işləyir."

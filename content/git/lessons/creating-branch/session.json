@@ -1,0 +1,541 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir photo-album",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd photo-album",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"<h1>Photo Album</h1>\" > index.html",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"beach.jpg: Sunset at the beach\" > captions.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add .",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add album page\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"mountain.jpg: Morning fog\" >> captions.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add mountain photo\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch",
+      "step": "create",
+      "hidden": false,
+      "fail": false,
+      "out": "* main\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch dark-mode",
+      "step": "create",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch",
+      "step": "create",
+      "hidden": false,
+      "fail": false,
+      "out": "  dark-mode\n* main\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch -v",
+      "step": "verbose",
+      "hidden": false,
+      "fail": false,
+      "out": "  dark-mode faac389 Add mountain photo\n* main      faac389 Add mountain photo\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch print-version HEAD~1",
+      "step": "start-point",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch -v",
+      "step": "start-point",
+      "hidden": false,
+      "fail": false,
+      "out": "  dark-mode     faac389 Add mountain photo\n* main          faac389 Add mountain photo\n  print-version 2124de6 Add album page\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -c slideshow",
+      "step": "switch-create",
+      "hidden": false,
+      "fail": false,
+      "out": "Switched to a new branch 'slideshow'\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo '<div id=\"slideshow\"></div>' >> index.html",
+      "step": "switch-create",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -am \"Add slideshow block\"",
+      "step": "switch-create",
+      "hidden": false,
+      "fail": false,
+      "out": "[slideshow 2b7aa3f] Add slideshow block\n 1 file changed, 1 insertion(+)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch",
+      "step": "switch-create",
+      "hidden": false,
+      "fail": false,
+      "out": "  dark-mode\n  main\n  print-version\n* slideshow\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -c dark-mode",
+      "step": "switch-create",
+      "hidden": false,
+      "fail": true,
+      "out": "fatal: a branch named 'dark-mode' already exists\n",
+      "exit": 128
+    }
+  ],
+  "frames": {
+    "create": {
+      "areas": {
+        "work": [
+          {
+            "name": "captions.txt",
+            "state": "clean"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "captions.txt",
+            "state": "clean"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "faac389",
+            "message": "Add mountain photo"
+          },
+          "count": 2,
+          "files": [
+            "captions.txt",
+            "index.html"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "faac389",
+            "message": "Add mountain photo",
+            "parents": [
+              "2124de6"
+            ],
+            "files": [
+              {
+                "name": "captions.txt",
+                "state": "modified"
+              },
+              {
+                "name": "index.html",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "2124de6",
+            "message": "Add album page",
+            "parents": [],
+            "files": [
+              {
+                "name": "captions.txt",
+                "state": "added"
+              },
+              {
+                "name": "index.html",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "dark-mode",
+            "target": "faac389"
+          },
+          {
+            "name": "main",
+            "target": "faac389"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "faac389"
+        }
+      }
+    },
+    "verbose": {
+      "areas": {
+        "work": [
+          {
+            "name": "captions.txt",
+            "state": "clean"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "captions.txt",
+            "state": "clean"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "faac389",
+            "message": "Add mountain photo"
+          },
+          "count": 2,
+          "files": [
+            "captions.txt",
+            "index.html"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "faac389",
+            "message": "Add mountain photo",
+            "parents": [
+              "2124de6"
+            ],
+            "files": [
+              {
+                "name": "captions.txt",
+                "state": "modified"
+              },
+              {
+                "name": "index.html",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "2124de6",
+            "message": "Add album page",
+            "parents": [],
+            "files": [
+              {
+                "name": "captions.txt",
+                "state": "added"
+              },
+              {
+                "name": "index.html",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "dark-mode",
+            "target": "faac389"
+          },
+          {
+            "name": "main",
+            "target": "faac389"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "faac389"
+        }
+      }
+    },
+    "start-point": {
+      "areas": {
+        "work": [
+          {
+            "name": "captions.txt",
+            "state": "clean"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "captions.txt",
+            "state": "clean"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "faac389",
+            "message": "Add mountain photo"
+          },
+          "count": 2,
+          "files": [
+            "captions.txt",
+            "index.html"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "faac389",
+            "message": "Add mountain photo",
+            "parents": [
+              "2124de6"
+            ],
+            "files": [
+              {
+                "name": "captions.txt",
+                "state": "modified"
+              },
+              {
+                "name": "index.html",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "2124de6",
+            "message": "Add album page",
+            "parents": [],
+            "files": [
+              {
+                "name": "captions.txt",
+                "state": "added"
+              },
+              {
+                "name": "index.html",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "dark-mode",
+            "target": "faac389"
+          },
+          {
+            "name": "main",
+            "target": "faac389"
+          },
+          {
+            "name": "print-version",
+            "target": "2124de6"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "faac389"
+        }
+      }
+    },
+    "switch-create": {
+      "areas": {
+        "work": [
+          {
+            "name": "captions.txt",
+            "state": "clean"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "captions.txt",
+            "state": "clean"
+          },
+          {
+            "name": "index.html",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "2b7aa3f",
+            "message": "Add slideshow block"
+          },
+          "count": 3,
+          "files": [
+            "captions.txt",
+            "index.html"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "2b7aa3f",
+            "message": "Add slideshow block",
+            "parents": [
+              "faac389"
+            ],
+            "files": [
+              {
+                "name": "captions.txt",
+                "state": "same"
+              },
+              {
+                "name": "index.html",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "faac389",
+            "message": "Add mountain photo",
+            "parents": [
+              "2124de6"
+            ],
+            "files": [
+              {
+                "name": "captions.txt",
+                "state": "modified"
+              },
+              {
+                "name": "index.html",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "2124de6",
+            "message": "Add album page",
+            "parents": [],
+            "files": [
+              {
+                "name": "captions.txt",
+                "state": "added"
+              },
+              {
+                "name": "index.html",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "dark-mode",
+            "target": "faac389"
+          },
+          {
+            "name": "main",
+            "target": "faac389"
+          },
+          {
+            "name": "print-version",
+            "target": "2124de6"
+          },
+          {
+            "name": "slideshow",
+            "target": "2b7aa3f"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "slideshow",
+          "target": "2b7aa3f"
+        }
+      }
+    }
+  }
+}

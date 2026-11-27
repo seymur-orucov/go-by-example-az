@@ -1,0 +1,57 @@
+$ echo "Wed 18:00 Vinyasa" >> schedule.txt
+$ git add schedule.txt
+$ git commit -m "Add Wednsday class"
+[main 5ef486e] Add Wednsday class
+ 1 file changed, 1 insertion(+)
+$ git log --oneline
+5ef486e Add Wednsday class
+90beeb5 Add Monday class
+$ git commit --amend -m "Add Wednesday class"
+[main c27d7b9] Add Wednesday class
+ Date: Thu Jan 15 09:08:00 2026 +0000
+ 1 file changed, 1 insertion(+)
+$ git log --oneline
+c27d7b9 Add Wednesday class
+90beeb5 Add Monday class
+$ echo "Fri 09:00 Yin" >> schedule.txt
+$ echo "Drop-in: 15 USD" > prices.txt
+$ git add schedule.txt
+$ git commit -m "Add Friday class and prices"
+[main 743f38e] Add Friday class and prices
+ 1 file changed, 1 insertion(+)
+$ git status --short
+?? prices.txt
+$ git add prices.txt
+$ git commit --amend --no-edit
+[main e61b772] Add Friday class and prices
+ Date: Thu Jan 15 09:15:00 2026 +0000
+ 2 files changed, 2 insertions(+)
+ create mode 100644 prices.txt
+$ git log --oneline
+e61b772 Add Friday class and prices
+c27d7b9 Add Wednesday class
+90beeb5 Add Monday class
+$ git push -u origin main
+To /home/sam/server/yoga.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
+$ git commit --amend -m "Add Friday class and drop-in price"
+[main d9b0fb1] Add Friday class and drop-in price
+ Date: Thu Jan 15 09:15:00 2026 +0000
+ 2 files changed, 2 insertions(+)
+ create mode 100644 prices.txt
+$ git status
+On branch main
+Your branch and 'origin/main' have diverged,
+and have 1 and 1 different commits each, respectively.
+  (use "git pull" if you want to integrate the remote branch with yours)
+
+nothing to commit, working tree clean
+$ git push
+To /home/sam/server/yoga.git
+ ! [rejected]        main -> main (non-fast-forward)
+error: failed to push some refs to '/home/sam/server/yoga.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. If you want to integrate the remote changes,
+hint: use 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.

@@ -1,0 +1,9 @@
+rules:
+  - "Branch commit-i göstərən addır (pointer): `.git/refs/heads/<ad>` faylında yalnız commit-in hash-i yazılır."
+  - "Yeni branch yaratmaq kiçik bir fayl yazmaq deməkdir; layihənin faylları köçürülmür, ona görə branch ucuzdur."
+  - "Bir neçə branch eyni commit-i göstərə bilər."
+  - "Commit zamanı yalnız HEAD-in göstərdiyi branch yeni commit-ə keçir; digər branch-lar yerində qalır."
+  - "`git branch` branch-ları siyahılayır; `*` HEAD-in göstərdiyi branch-ın qarşısındadır."
+practices:
+  - "Branch-ların hansı commit-də olduğunu `git log --oneline --decorate` ilə görün; bütün branch-lar üçün `--graph --all` əlavə edin."
+  - "`.git/refs/heads/`-dəki faylları əl ilə dəyişməyin: Git onları `.git/packed-refs`-ə yığa bilər."

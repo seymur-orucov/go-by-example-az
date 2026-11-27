@@ -1,0 +1,10 @@
+rules:
+  - "`git log main..feature` `feature`-da olub `main`-də olmayan commit-ləri göstərir; `feature..main` isə əksini."
+  - "`git diff main feature` və `git diff main..feature` eynidir: iki branch-ın son snapshot-larını müqayisə edir."
+  - "İki snapshot-un diff-ində `main`-in ayrılandan sonrakı dəyişiklikləri branch tərəfdən geri qaytarılma kimi görünür."
+  - "`git diff main...feature` branch-ı merge base ilə, yəni iki branch-ın son ortaq commit-i ilə müqayisə edir: yalnız branch-ın dəyişiklikləri görünür."
+  - "`..` `git log`-da commit siyahısı, `git diff`-də iki snapshot-un müqayisəsi deməkdir."
+  - "`--stat` branch adları ilə də işləyir; buraxılan adın yerinə `HEAD` götürülür."
+practices:
+  - "Pull request-in nə göstərəcəyini əvvəlcədən görmək üçün `git diff main...feature` işlədin."
+  - "Branch-ı yoxlayanda əvvəlcə `git log --oneline main..feature`, sonra `git diff --stat main...feature`-a baxın."

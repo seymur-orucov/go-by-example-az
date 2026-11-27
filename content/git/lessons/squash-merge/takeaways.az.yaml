@@ -1,0 +1,10 @@
+rules:
+  - "`git merge --squash <branch>` merge-in nəticəsini staging area-ya yazır, amma commit etmir və HEAD-i tərpətmir."
+  - "Squash merge-i adi `git commit` başa çatdırır; yaranan commit-in bir parent-i var."
+  - "Branch-ın commit-ləri `main`-in tarixçəsinə düşmür, yalnız onların birlikdə gətirdiyi dəyişiklik düşür."
+  - "Squash-dan sonra `git branch -d` branch-ı merge olunmamış sayır; onu `-D` ilə silirlər."
+  - "GitHub-da **Squash and merge** düyməsi PR-ın commit-lərini bir commit kimi əsas branch-a əlavə edir."
+practices:
+  - "Çoxlu kiçik, `wip` kimi commit-i olan branch-ı squash edin; mənalı commit-ləri olan branch-ı adi merge ilə birləşdirin."
+  - "Squash commit-ə bütün işi təsvir edən bir mesaj yazın."
+  - "Squash merge-dən sonra köhnə branch-da işə davam etməyin; yeni iş üçün `main`-dən yeni branch yaradın."
