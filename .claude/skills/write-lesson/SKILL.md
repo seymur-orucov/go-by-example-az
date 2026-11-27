@@ -149,9 +149,17 @@ lesson, runs it in an empty temporary directory (stdout and stderr together,
 - From the repo root: `pnpm content:check` (ids, `out` in order, quiz and takeaways shape, `source`).
 - `pnpm build`, then look at `/go/<slug>/` (steps, highlighted lines, output, visual, summary card, quiz).
 
-## 6. Hand-off
+## 6. Review before hand-off
+
+Run the review-lesson skill on the lesson in a **fresh subagent** (it gets the lesson path and
+the review-lesson files, not your view of the lesson — you wrote it, so you are the wrong
+reader). Fix its `blocker` and `major` findings with the polish-lesson skill, then section 5
+again if the code changed. Leave `minor` findings for the user to decide.
+
+## 7. Hand-off
 
 - Tell the user, in Azerbaijani, what the lesson teaches, which real-life context it uses
-  and what was verified; ask them to review tone and clarity. Do not mark a lesson done in
+  and what was verified; give the review verdict and scores (before → after polish) and the
+  open `minor` findings; ask them to review tone and clarity. Do not mark a lesson done in
   docs/ROADMAP.md before the user has reviewed it.
 - Commit on a content branch: `feat(content): …` (new) or `refactor(content): …` (rewrite).
