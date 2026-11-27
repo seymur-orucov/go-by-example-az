@@ -617,7 +617,18 @@ Done (branch `feat/git-commit-graph`):
 - Checked: `content:run` twice (identical), every quiz answer in a scratch sandbox, `content:check` (97/97), build, lint, format, `astro check`; the page at 1440px and 390px (iframe); a throwaway session with two branches, a merge, a tag, a hotfix branch and a detached HEAD to check lanes and curves (deleted afterwards).
 - The user approved the pilot without notes and asked for a PR and the rest of "Tarixçə".
 
-### 72. Git module 3 "Tarixçə"
+### 72. Lesson review and polish skills
+The user asked for a skill that analyses AI-written lesson text so it reads like an instructor or expert wrote it (Azerbaijani readers skip content that looks generated), and scores the lesson's quality and clarity; and a second skill that rewrites the gaps the first one finds.
+
+Done (branch `feat/lesson-review-skills`):
+- `.claude/skills/review-lesson/`: `SKILL.md` (two readings — a beginner who knows only the earlier lessons and a senior engineer who teaches; accuracy checked by running the code and every quiz answer; located, quoted findings with category and severity; seven 1–5 scores — Səs, Dil, Aydınlıq, Pedaqogika, Dəqiqlik, Nümunə, Yoxlama — with anchors; a verdict; a report in the git-ignored `.reviews/<technology>/<id>.md`; batch mode with a summary of recurring patterns). Read-only on the lesson.
+- `ai-tells.md`: Azerbaijani AI tells with before → after rewrites — frames, recaps, hype and metaphor, filler, calques from English and Russian ("hansı ki", "imkan verir", "öz növbəsində", …), structure tells, and what a real instructor does instead.
+- `scan.mjs`: a triage scan with no dependencies of its own (the quiz is read with the site's `yaml` package) (phrase hits, long and comma-heavy sentences, dash density, intro length, `main.go` length, quiz answer spread, giveaway options). Today Git lessons score 0–7 and average 8–12 words per sentence; the weakest Go lessons score 11–16 at 13–15 words, and `go/mutexes` has the right answer at position 0 in all 7 questions.
+- `.claude/skills/polish-lesson/SKILL.md`: fixes only the findings in scope (blocker + major by default), keeps step ids and the report's strengths, re-scans, verifies (content:go / content:run, quiz answers), re-reviews in a fresh subagent when needed, updates the report and hands off old → new sentence pairs. New patterns the user flags go back into `ai-tells.md` and `scan.mjs`.
+- `write-lesson` gets a "Review before hand-off" step (section 6): review-lesson in a fresh subagent, blocker and major findings fixed with polish-lesson before the user sees the lesson.
+- Piloted on `go/text-templates` by an independent subagent: verdict "Düzəliş lazımdır" (2 major: an unclear `{{-` explanation, a giveaway quiz option; 9 minor), not perceived as AI text. Its notes on the skill (no accuracy-by-running step, no Go exemplar, missing `structure` category, no anchors for scores 4 and 2, false positives in the scan) were applied.
+
+### 73. Git module 3 "Tarixçə"
 The user approved the `commit-snapshot` pilot and asked for a PR (#31, merged) and the rest of the module. The five lessons were written by parallel subagents from one brief each, then read, edited and re-checked by Claude.
 
 Done (branch `feat/git-history-lessons`):
