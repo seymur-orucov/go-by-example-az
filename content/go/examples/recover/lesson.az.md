@@ -14,4 +14,4 @@ Bu dərsdə foto çap edən kiosk yazırıq: səhv sifariş bütün kiosku dayan
 
 ## Panic-i xətaya çevirmək {#to-error}
 
-`pick` adlı nəticələrdən istifadə edir: `photo` və `err`. Defer `return`-dan sonra işlədiyi üçün `err`-i dəyişə bilir və çağıran adi xəta alır. `album[5]` Go-nun öz panic-idir, `recover` onun dəyərini də qaytarır: `runtime error: index out of range [5] with length 3`. `%v` bu dəyəri mətnə çevirib qoyur. Beləcə panic funksiyanın içində qalır, çöldəki kod isə tanış `if err != nil` yoxlaması ilə işləyir.
+`pick` nəticələrinə ad verir: `(photo string, err error)`. Belə adlı nəticələr (named results) adi dəyişənlərdir: funksiya başlayanda zero value alır, funksiya bitəndə isə son dəyərləri qaytarılır. Defer funksiya bitəndə, panic olsa da, işləyir və `err`-ə xəta yazır. Çağıran məhz bu son dəyəri alır. `album[5]` Go-nun öz panic-idir, `recover` onun dəyərini də qaytarır: `runtime error: index out of range [5] with length 3`. `%v` bu dəyəri mətnə çevirib qoyur. Beləcə panic funksiyanın içində qalır, çöldəki kod isə tanış `if err != nil` yoxlaması ilə işləyir.

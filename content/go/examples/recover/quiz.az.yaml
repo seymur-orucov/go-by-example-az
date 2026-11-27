@@ -9,8 +9,8 @@
 
     safe()
     fmt.Println("after")
-  options: ["`recovered: boom`, `after`", "yalnız panic mesajı", "`after`, `recovered: boom`"]
-  answer: 0
+  options: ["yalnız panic mesajı", "`after`, `recovered: boom`", "`recovered: boom`, `after`"]
+  answer: 2
   explain: "Defer panic-i tutur, `safe` normal bitir və `main` davam edir."
 
 - question: Bu kod nə çap edəcək?
@@ -23,8 +23,8 @@
     }
 
     calm()
-  options: ["`work`, `r: <nil>`", "`r: <nil>`, `work`", "yalnız `work`"]
-  answer: 0
+  options: ["`r: <nil>`, `work`", "`work`, `r: <nil>`", "yalnız `work`"]
+  answer: 1
   explain: "Panic olmayanda `recover` `nil` qaytarır, defer isə yenə funksiyanın sonunda işləyir."
 
 - question: Bu kod işə düşəndə nə olacaq?
@@ -49,10 +49,10 @@
         }
     }
   options:
-    - "`defer helper()`"
-    - "`defer func() { helper() }()`"
     - "hər ikisi"
-  answer: 0
+    - "`defer func() { helper() }()`"
+    - "`defer helper()`"
+  answer: 2
   explain: "`recover` birbaşa defer olunan funksiyada işləyir; ikinci halda defer olunan funksiya literal-dır, `helper` isə onun çağırdığı funksiyadır."
 
 - question: Bu kod nə çap edəcək?
@@ -67,8 +67,8 @@
     }
 
     fmt.Println(div(6, 0))
-  options: ["0 bad input", "panic mesajı", "0 <nil>"]
-  answer: 0
+  options: ["panic mesajı", "0 bad input", "0 <nil>"]
+  answer: 1
   explain: "Sıfıra bölmə panic edir, defer onu tutur və adlı nəticə `err`-ə xəta yazır."
 
 - question: Bu kod nə çap edəcək?
