@@ -757,3 +757,14 @@ Done:
 - `submodules-update` (`terminal`, a docs site with a theme): an empty folder after a plain clone, `update --init`, `--recurse-submodules`, `update --remote`, teammates after `git pull`.
 - `git-patch` (`terminal`, an email-patch library): `git diff > file` + `git apply`, `format-patch`, `git am` keeping the author.
 - Determinism fixes in the sessions: `.gitmodules` URLs rewritten to `/home/sam/...` (or relative) in hidden commands, a fixed `openssl` stream for the fake texture, single `git config` reads instead of `--get-regexp`.
+
+### 84. Lesson kind `diagram` and the last Git part 1 lessons
+The user approved continuing with the `diagram` pilot (`remotes-and-clone`); it became the exemplar of the kind in the write-content skill.
+
+Done:
+- The `diagram` kind: a text lesson whose main visual is `vis: diagram`, 2–4 blocks side by side with labelled arrows between them, stacked with vertical arrows on a phone (schema in `lesson.ts`, a branch in `Vis.astro`, CSS in `lesson.css`, a check that the lesson has one).
+- `remotes-and-clone` (pilot, an online shop): local and remote repositories, `origin`, the URL, HTTPS vs SSH.
+- `force-push` (a bus-ticket app translation): the `non-fast-forward` and `fetch first` rejections, `--force` replacing the branch and losing a teammate's commit, `--force-with-lease` and `stale info`, the lease passing after a fetch, `--force-if-includes`, `git pull --rebase` dropping the teammate's own commit after a force push, the golden rule and protected branches.
+- `pull-requests` (an open-source bus timetable): base and compare branch, a PR from a branch and from a fork, draft, the three review answers, new commits and checks, the three GitHub merge methods, cleaning up after a merge (`-d` fails after squash or rebase).
+- With these, every node of part 1 ("Hissə 1 · Git", 78 lessons) is written.
+
