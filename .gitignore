@@ -21,3 +21,6 @@ dist/
 
 # Translations awaiting author consent (roadmap.sh, itbooster.ru) — must not reach the public repo
 content-private/
+
+# Lesson review reports (review-lesson / polish-lesson skills)
+.reviews/
