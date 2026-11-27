@@ -61,10 +61,10 @@
     re := regexp.MustCompile("\d{3}")
   options:
     - "`MustCompile` iki nəticə qaytarır"
-    - "Adi dırnaq içində `\\d` tanınmayan escape-dir, pattern-i backtick-lərlə yazmaq lazımdır"
-    - "`{3}` Go pattern-lərində icazəli deyil"
+    - "Adi dırnaqda `\\d` tanınmayan escape-dir"
+    - "Go `\\d`-ni tanımır, `[0-9]` yazmaq lazımdır"
   answer: 1
-  explain: "Kompilyator `unknown escape` xətası verir; raw string literal-da isə `\\` xüsusi simvol deyil."
+  explain: "Kompilyator `unknown escape` xətası verir. Pattern-i backtick-lərlə yazın: raw string literal-da `\\` xüsusi simvol deyil."
 
 - question: Commit mesajında `revert` sözünün olub-olmadığını yoxlamaq lazımdır. Hansı ən uyğundur?
   options:
