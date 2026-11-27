@@ -4,5 +4,5 @@ rules:
   - "Panic olan yerdən sonrakı kod işləmir, çağıranın qalan kodu da."
   - "Gözlənilən uğursuzluqlar üçün `error` qaytarılır, `panic` isə proqramçı səhvləri üçündür."
 practices:
-  - "Panic mesajına səbəbi yazın: `panic(\"unknown row \" + row)`."
+  - "Panic mesajına səbəbi yazın: `panic(fmt.Sprintf(\"unknown row %d\", r))`."
   - "İndeks proqramın çölündən gəlirsə, müraciətdən əvvəl `i < len(s)` yoxlayın."
