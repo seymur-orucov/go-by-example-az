@@ -39,8 +39,9 @@ async function serve(req, res) {
   res.end(Buffer.from(await response.arrayBuffer()));
 }
 
-// Static site. Cloudflare Pages deployment is configured in Phase 4; `site` is set then.
+// Static site, served at https://stackrise.dev (Cloudflare Pages deployment is configured in Phase 4).
 export default defineConfig({
+  site: "https://stackrise.dev",
   output: "static",
   trailingSlash: "always",
   build: { format: "directory" },

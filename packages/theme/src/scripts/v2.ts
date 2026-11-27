@@ -1,7 +1,7 @@
-// Shared runtime of the v2 design for every page (no dependencies): theme, palette, brand-name
-// preview, menus, Ctrl+K search, scroll reveal, count-up, pointer light, tilt, toast and the
+// Shared runtime of the v2 design for every page (no dependencies): theme, palette,
+// menus, Ctrl+K search, scroll reveal, count-up, pointer light, tilt, toast and the
 // WebGL aurora. Page scripts import the helpers; the shell part runs once on import.
-import { BRANDS, DIRECTIONS, PLATFORM, STATUS, TECHS } from "../data/platform";
+import { DIRECTIONS, PLATFORM, STATUS, TECHS } from "../data/platform";
 
 const root = document.documentElement;
 root.classList.add("js");
@@ -121,26 +121,6 @@ export function paintIcons(scope?: ParentNode): void {
     const svg = I[el.getAttribute("data-icon") ?? ""] ?? "";
     el.outerHTML = el.className ? svg.replace("<svg ", `<svg class="${el.className}" `) : svg;
   });
-}
-
-// ---------- brand name preview (w3hub.dev | beststack.dev) ----------
-let brand = new URLSearchParams(location.search).get("brand") || store.get("w3:brand", "w3hub");
-if (!BRANDS[brand]) brand = "w3hub";
-function paintBrand(): void {
-  const [name, tld] = BRANDS[brand];
-  document.querySelectorAll("[data-brand]").forEach((el) => {
-    el.innerHTML = `${esc(name)}<span class="logo-tld">${tld}</span>`;
-  });
-  document.querySelectorAll("[data-brand-plain]").forEach((el) => {
-    el.textContent = name + tld;
-  });
-  document.querySelectorAll("[data-brand-huge]").forEach((el) => {
-    el.textContent = name;
-  });
-  document
-    .querySelectorAll<HTMLElement>("[data-brand-pick]")
-    .forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.brandPick === brand)));
-  document.title = document.title.replace(/^(w3hub|beststack)\.dev/, name + tld);
 }
 
 // ---------- theme + palette ----------
@@ -644,7 +624,6 @@ export function aurora(canvas: HTMLCanvasElement, opts: AuroraOptions = {}): voi
 // ---------- shell wiring (runs once per page) ----------
 function initShell(): void {
   paintIcons();
-  paintBrand();
 
   document.querySelectorAll<HTMLElement>("[data-look-menu]").forEach((m) => {
     m.innerHTML =
@@ -665,12 +644,6 @@ function initShell(): void {
   });
   document.addEventListener("click", (e) => {
     const target = e.target as Element;
-    const b = target.closest<HTMLElement>("[data-brand-pick]");
-    if (b) {
-      brand = b.dataset.brandPick ?? "w3hub";
-      store.set("w3:brand", brand);
-      paintBrand();
-    }
     const t = target.closest<HTMLElement>("[data-theme-set]");
     if (t) applyTheme(t.dataset.themeSet ?? "system");
     const p = target.closest<HTMLElement>("[data-palette-set]");

@@ -598,3 +598,12 @@ Done (branch `feat/git-first-commits-lessons`):
 - `diff-staged`: a party plan — `git diff --staged` vs plain `git diff`, a new file (`new file mode`, `--- /dev/null`), `--cached` with a path, both diffs after the commit; a note on `git diff HEAD`; 4 steps, 7 questions.
 - `gitignore`: a small site with `.env`, `build/` and logs — three patterns, `git check-ignore -v`, a tracked log that the rule does not hide, `git rm --cached`; 5 steps, 8 questions.
 - Checked: `content:run` twice (identical), every quiz answer and the `git diff HEAD` note in a scratch sandbox, `content:check` (96/96), build, `gitignore` at 1440px and `diff-unstaged` at 390px (iframe). The next module ("Tarixçə") needs the commit-graph visual first.
+
+### 70. Name and logo: stackrise.dev
+The user asked to switch the domain and logo to `stackrise.dev`.
+
+Done (branch `feat/stackrise-brand`):
+- Header: the "Ox qatları" mark (concept A of `design/brand/stackrise.html`, small-size variant, drawn with the site tokens `--cyan` / `--accent` / `--accent-3`) and the wordmark `stack` + raised coral `rise` + mono `.dev`; the footer and the huge footer word use the same name.
+- Page titles, the home comparison table and the slim lesson footer say `stackrise.dev`; `apps/site/public/favicon.svg` (light/dark aware) is linked from the layout; `site: "https://stackrise.dev"` in the Astro config.
+- Removed the name-preview switch (`BRANDS`, `paintBrand`, `?brand=`, `.brand-switch`). The `w3:` localStorage keys stay as they are (internal, renaming would reset saved settings).
+- Checked: lint, format check, `astro check`, build, the home page header in headless Edge.

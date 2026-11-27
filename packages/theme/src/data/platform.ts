@@ -300,9 +300,3 @@ if (typeof document !== "undefined") {
     /* no states on this page: keep the hand-written statuses */
   }
 }
-
-/** Name previews of the platform (undecided: w3hub.dev / beststack.dev). */
-export const BRANDS: Record<string, [string, string]> = {
-  w3hub: ["w3hub", ".dev"],
-  beststack: ["beststack", ".dev"],
-};

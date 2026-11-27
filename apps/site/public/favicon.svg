@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <!-- stackrise.dev mark "Ox qatları" (design/brand/stackrise.html, concept A), small-size variant. -->
+  <style>
+    .tile { fill: #ffffff; }
+    .c1 { fill: #0ea5c6; }
+    .c2 { fill: #3b6ef5; }
+    .c4 { fill: #f97362; }
+    @media (prefers-color-scheme: dark) {
+      .tile { fill: #0a0f1c; }
+      .c1 { fill: #4fd6ff; }
+      .c2 { fill: #6d8dff; }
+      .c4 { fill: #ff8a6b; }
+    }
+  </style>
+  <defs>
+    <linearGradient id="t" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0ea5c6" />
+      <stop offset=".5" stop-color="#3b6ef5" />
+      <stop offset="1" stop-color="#8b5cf6" />
+    </linearGradient>
+  </defs>
+  <rect class="tile" x="1" y="1" width="46" height="46" rx="13" />
+  <rect x="1.5" y="1.5" width="45" height="45" rx="12.5" fill="none" stroke="url(#t)" stroke-opacity=".6" />
+  <g transform="translate(24 24) scale(.84) translate(-24 -24)">
+    <g class="c1" opacity=".7">
+      <polygon points="9,35 24,26 24,33.5 9,42.5" />
+      <polygon points="39,35 24,26 24,33.5 39,42.5" />
+      <polygon points="39,35 24,26 24,33.5 39,42.5" fill="#000" fill-opacity=".32" />
+    </g>
+    <g class="c2" opacity=".85">
+      <polygon points="9,25 24,16 24,23.5 9,32.5" />
+      <polygon points="39,25 24,16 24,23.5 39,32.5" />
+      <polygon points="39,25 24,16 24,23.5 39,32.5" fill="#000" fill-opacity=".32" />
+    </g>
+    <g class="c4">
+      <polygon points="9,15 24,6 24,13.5 9,22.5" />
+      <polygon points="39,15 24,6 24,13.5 39,22.5" />
+      <polygon points="39,15 24,6 24,13.5 39,22.5" fill="#000" fill-opacity=".32" />
+    </g>
+  </g>
+</svg>
