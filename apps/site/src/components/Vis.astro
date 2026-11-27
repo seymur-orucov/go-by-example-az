@@ -84,12 +84,14 @@ const WORK_STATE: Record<VisAreas["work"][number]["state"], string> = {
   modified: "dəyişib",
   deleted: "silinib",
   ignored: "ignore",
+  unmerged: "konflikt",
 };
 const INDEX_STATE: Record<VisAreas["index"][number]["state"], string> = {
   clean: "",
   added: "yeni",
   modified: "yenilənib",
   deleted: "silinəcək",
+  unmerged: "konflikt",
 };
 const fileClass = (state: string, fresh?: boolean) =>
   `file s-${state}${fresh && state !== "clean" ? " fresh" : ""}`;
