@@ -1,0 +1,937 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "git init -q --bare ~/server/charity-run.git",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git clone -q ~/server/charity-run.git ~/ayla/charity-run",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "warning: You appear to have cloned an empty repository.\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ~/ayla/charity-run",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"<h1>Charity Run</h1>\" \"<p>Date: May 24</p>\" > index.html",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"5 km: Park loop\" > routes.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add .",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git -c user.name=\"Ayla Karimova\" -c user.email=\"ayla@example.com\" commit -q -m \"Start the registration page\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push -q origin main",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ~",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git clone -q ~/server/charity-run.git",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ~/ayla/charity-run",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"10 km: River path\" >> routes.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git -c user.name=\"Ayla Karimova\" -c user.email=\"ayla@example.com\" commit -q -am \"Add the 10 km route\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"<p>Entry fee: 15 USD</p>\" >> index.html",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git -c user.name=\"Ayla Karimova\" -c user.email=\"ayla@example.com\" commit -q -am \"Add the entry fee\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push -q origin main",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q -c feat/tshirt-sizes",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"S\" \"M\" \"L\" \"XL\" > sizes.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add sizes.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git -c user.name=\"Ayla Karimova\" -c user.email=\"ayla@example.com\" commit -q -m \"Add T-shirt sizes\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push -q origin feat/tshirt-sizes",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ~/charity-run",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git fetch",
+      "step": "fetch",
+      "hidden": false,
+      "fail": false,
+      "out": "From /home/sam/server/charity-run\n   90be296..b4c29e5  main              -> origin/main\n * [new branch]      feat/tshirt-sizes -> origin/feat/tshirt-sizes\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git status",
+      "step": "fetch",
+      "hidden": false,
+      "fail": false,
+      "out": "On branch main\nYour branch is behind 'origin/main' by 2 commits, and can be fast-forwarded.\n  (use \"git pull\" to update your local branch)\n\nnothing to commit, working tree clean\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline HEAD..origin/main",
+      "step": "look",
+      "hidden": false,
+      "fail": false,
+      "out": "b4c29e5 Add the entry fee\nc7090bb Add the 10 km route\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git diff --stat HEAD...origin/main",
+      "step": "look",
+      "hidden": false,
+      "fail": false,
+      "out": " index.html | 1 +\n routes.txt | 1 +\n 2 files changed, 2 insertions(+)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git diff HEAD...origin/main -- index.html",
+      "step": "look",
+      "hidden": false,
+      "fail": false,
+      "out": "diff --git a/index.html b/index.html\nindex 1ed694c..75c0ff1 100644\n--- a/index.html\n+++ b/index.html\n@@ -1,2 +1,3 @@\n <h1>Charity Run</h1>\n <p>Date: May 24</p>\n+<p>Entry fee: 15 USD</p>\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git merge origin/main",
+      "step": "merge",
+      "hidden": false,
+      "fail": false,
+      "out": "Updating 90be296..b4c29e5\nFast-forward\n index.html | 1 +\n routes.txt | 1 +\n 2 files changed, 2 insertions(+)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git status",
+      "step": "merge",
+      "hidden": false,
+      "fail": false,
+      "out": "On branch main\nYour branch is up to date with 'origin/main'.\n\nnothing to commit, working tree clean\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch -r",
+      "step": "remote-branches",
+      "hidden": false,
+      "fail": false,
+      "out": "  origin/HEAD -> origin/main\n  origin/feat/tshirt-sizes\n  origin/main\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline main..origin/feat/tshirt-sizes",
+      "step": "remote-branches",
+      "hidden": false,
+      "fail": false,
+      "out": "7034252 Add T-shirt sizes\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ~/ayla/charity-run",
+      "step": "prune",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push -q origin --delete feat/tshirt-sizes",
+      "step": "prune",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ~/charity-run",
+      "step": "prune",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git fetch",
+      "step": "prune",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch -r",
+      "step": "prune",
+      "hidden": false,
+      "fail": false,
+      "out": "  origin/HEAD -> origin/main\n  origin/feat/tshirt-sizes\n  origin/main\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git fetch --prune",
+      "step": "prune",
+      "hidden": false,
+      "fail": false,
+      "out": "From /home/sam/server/charity-run\n - [deleted]         (none)     -> origin/feat/tshirt-sizes\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch -r",
+      "step": "prune",
+      "hidden": false,
+      "fail": false,
+      "out": "  origin/HEAD -> origin/main\n  origin/main\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "fetch": {
+      "areas": {
+        "work": [
+          {
+            "name": "index.html",
+            "state": "clean"
+          },
+          {
+            "name": "routes.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "index.html",
+            "state": "clean"
+          },
+          {
+            "name": "routes.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "90be296",
+            "message": "Start the registration page"
+          },
+          "count": 1,
+          "files": [
+            "index.html",
+            "routes.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "7034252",
+            "message": "Add T-shirt sizes",
+            "parents": [
+              "b4c29e5"
+            ],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "same"
+              },
+              {
+                "name": "routes.txt",
+                "state": "same"
+              },
+              {
+                "name": "sizes.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "b4c29e5",
+            "message": "Add the entry fee",
+            "parents": [
+              "c7090bb"
+            ],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "modified"
+              },
+              {
+                "name": "routes.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "c7090bb",
+            "message": "Add the 10 km route",
+            "parents": [
+              "90be296"
+            ],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "same"
+              },
+              {
+                "name": "routes.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "90be296",
+            "message": "Start the registration page",
+            "parents": [],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "added"
+              },
+              {
+                "name": "routes.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "90be296"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/feat/tshirt-sizes",
+            "target": "7034252"
+          },
+          {
+            "name": "origin/main",
+            "target": "b4c29e5"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "90be296"
+        }
+      }
+    },
+    "look": {
+      "areas": {
+        "work": [
+          {
+            "name": "index.html",
+            "state": "clean"
+          },
+          {
+            "name": "routes.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "index.html",
+            "state": "clean"
+          },
+          {
+            "name": "routes.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "90be296",
+            "message": "Start the registration page"
+          },
+          "count": 1,
+          "files": [
+            "index.html",
+            "routes.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "7034252",
+            "message": "Add T-shirt sizes",
+            "parents": [
+              "b4c29e5"
+            ],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "same"
+              },
+              {
+                "name": "routes.txt",
+                "state": "same"
+              },
+              {
+                "name": "sizes.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "b4c29e5",
+            "message": "Add the entry fee",
+            "parents": [
+              "c7090bb"
+            ],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "modified"
+              },
+              {
+                "name": "routes.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "c7090bb",
+            "message": "Add the 10 km route",
+            "parents": [
+              "90be296"
+            ],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "same"
+              },
+              {
+                "name": "routes.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "90be296",
+            "message": "Start the registration page",
+            "parents": [],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "added"
+              },
+              {
+                "name": "routes.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "90be296"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/feat/tshirt-sizes",
+            "target": "7034252"
+          },
+          {
+            "name": "origin/main",
+            "target": "b4c29e5"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "90be296"
+        }
+      }
+    },
+    "merge": {
+      "areas": {
+        "work": [
+          {
+            "name": "index.html",
+            "state": "clean"
+          },
+          {
+            "name": "routes.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "index.html",
+            "state": "clean"
+          },
+          {
+            "name": "routes.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "b4c29e5",
+            "message": "Add the entry fee"
+          },
+          "count": 3,
+          "files": [
+            "index.html",
+            "routes.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "7034252",
+            "message": "Add T-shirt sizes",
+            "parents": [
+              "b4c29e5"
+            ],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "same"
+              },
+              {
+                "name": "routes.txt",
+                "state": "same"
+              },
+              {
+                "name": "sizes.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "b4c29e5",
+            "message": "Add the entry fee",
+            "parents": [
+              "c7090bb"
+            ],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "modified"
+              },
+              {
+                "name": "routes.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "c7090bb",
+            "message": "Add the 10 km route",
+            "parents": [
+              "90be296"
+            ],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "same"
+              },
+              {
+                "name": "routes.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "90be296",
+            "message": "Start the registration page",
+            "parents": [],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "added"
+              },
+              {
+                "name": "routes.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "b4c29e5"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/feat/tshirt-sizes",
+            "target": "7034252"
+          },
+          {
+            "name": "origin/main",
+            "target": "b4c29e5"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "b4c29e5"
+        }
+      }
+    },
+    "remote-branches": {
+      "areas": {
+        "work": [
+          {
+            "name": "index.html",
+            "state": "clean"
+          },
+          {
+            "name": "routes.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "index.html",
+            "state": "clean"
+          },
+          {
+            "name": "routes.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "b4c29e5",
+            "message": "Add the entry fee"
+          },
+          "count": 3,
+          "files": [
+            "index.html",
+            "routes.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "7034252",
+            "message": "Add T-shirt sizes",
+            "parents": [
+              "b4c29e5"
+            ],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "same"
+              },
+              {
+                "name": "routes.txt",
+                "state": "same"
+              },
+              {
+                "name": "sizes.txt",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "b4c29e5",
+            "message": "Add the entry fee",
+            "parents": [
+              "c7090bb"
+            ],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "modified"
+              },
+              {
+                "name": "routes.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "c7090bb",
+            "message": "Add the 10 km route",
+            "parents": [
+              "90be296"
+            ],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "same"
+              },
+              {
+                "name": "routes.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "90be296",
+            "message": "Start the registration page",
+            "parents": [],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "added"
+              },
+              {
+                "name": "routes.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "b4c29e5"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/feat/tshirt-sizes",
+            "target": "7034252"
+          },
+          {
+            "name": "origin/main",
+            "target": "b4c29e5"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "b4c29e5"
+        }
+      }
+    },
+    "prune": {
+      "areas": {
+        "work": [
+          {
+            "name": "index.html",
+            "state": "clean"
+          },
+          {
+            "name": "routes.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "index.html",
+            "state": "clean"
+          },
+          {
+            "name": "routes.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "b4c29e5",
+            "message": "Add the entry fee"
+          },
+          "count": 3,
+          "files": [
+            "index.html",
+            "routes.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "b4c29e5",
+            "message": "Add the entry fee",
+            "parents": [
+              "c7090bb"
+            ],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "modified"
+              },
+              {
+                "name": "routes.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "c7090bb",
+            "message": "Add the 10 km route",
+            "parents": [
+              "90be296"
+            ],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "same"
+              },
+              {
+                "name": "routes.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "90be296",
+            "message": "Start the registration page",
+            "parents": [],
+            "files": [
+              {
+                "name": "index.html",
+                "state": "added"
+              },
+              {
+                "name": "routes.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "b4c29e5"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "b4c29e5"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "b4c29e5"
+        }
+      }
+    }
+  }
+}

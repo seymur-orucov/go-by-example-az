@@ -1,0 +1,10 @@
+rules:
+  - "`git clone <ünvan>` repository-ni bütün commit-ləri və branch-ları ilə yeni qovluğa köçürür; ünvan HTTPS, SSH və ya qovluq yolu ola bilər."
+  - "Qovluğun adı ünvanın son hissəsindən götürülür (`icons.git` → `icons`); başqa ad ünvandan sonra yazılır."
+  - "Clone serveri `origin` adı ilə əlavə edir, `git remote -v` onun ünvanını göstərir."
+  - "Lokal branch yalnız default branch olur; serverin branch-ları `git branch -a`-da `remotes/origin/...` kimi görünür, bunlar remote-tracking branch-lardır."
+  - "`--depth 1` yalnız son commit-i gətirir: yükləmə tez olur, amma köhnə tarixçə lokalda yoxdur."
+practices:
+  - "Clone-dan sonra `cd` ilə yeni qovluğa keçin və `git log --oneline`, `git branch -a` ilə nəyin gəldiyinə baxın."
+  - "Tarixçə lazım olmayanda, məsələn CI-da, `--depth 1` işlədin."
+  - "Kompüterdəki qovluqdan shallow clone üçün ünvanı `file://` ilə yazın."

@@ -1,0 +1,10 @@
+rules:
+  - "`git fetch` yalnız `origin/...` remote-tracking branch-larını yeniləyir; sizin `main` və fayllarınız dəyişmir."
+  - "Fetch çıxışında `köhnə..yeni main -> origin/main` yenilənən branch-ı, `* [new branch]` yeni branch-ı, `- [deleted]` silinən surəti göstərir."
+  - "`git log --oneline HEAD..origin/main` gələn commit-ləri, `git diff HEAD...origin/main` onların dəyişikliyini göstərir."
+  - "Baxdıqdan sonra `git merge origin/main` dəyişiklikləri sizin branch-a gətirir."
+  - "`git branch -r` remote-tracking branch-ları göstərir; başqasının branch-ına `git log main..origin/<branch>` ilə keçmədən baxmaq olar."
+  - "`git fetch --prune` serverdə silinmiş branch-ların `origin/...` surətini silir; lokal branch-lar qalır."
+practices:
+  - "Merge etməzdən əvvəl `git fetch`, sonra `git log HEAD..origin/main` və `git diff --stat HEAD...origin/main` işlədin."
+  - "`git config --global fetch.prune true` yazın ki, `git branch -r` serverdə olmayan branch-ları göstərməsin."

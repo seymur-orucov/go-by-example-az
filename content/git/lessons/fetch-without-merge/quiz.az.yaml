@@ -1,0 +1,66 @@
+- question: "`git fetch` nəyi dəyişir?"
+  options:
+    - "Sizin `main`-i və working directory-dəki faylları"
+    - "Yalnız `origin/main` kimi remote-tracking branch-ları"
+    - "`origin/main`-i, staging area-nı və faylları"
+  answer: 1
+  explain: "Fetch commit-ləri gətirib `origin/...` branch-larını yeniləyir. Sizin branch-ınız və fayllarınız merge edənə qədər dəyişmir."
+- question: "Fetch `origin/feat/tshirt-sizes`-ı gətirdi. Hansı komanda bu branch-dan lokal branch yaradıb ona keçir?"
+  options:
+    - "`git switch origin/feat/tshirt-sizes`"
+    - "`git fetch feat/tshirt-sizes`"
+    - "`git switch feat/tshirt-sizes`"
+  answer: 2
+  explain: "`git switch` eyni adlı `origin/...` branch-ı tapıb ondan lokal branch yaradır. `origin/...` adı ilə isə xəta verir: `a branch is expected, got remote branch`."
+- question: "Fetch-dən sonra serverdə olub sizin `main`-də olmayan commit-ləri hansı komanda göstərir?"
+  options:
+    - "`git log --oneline HEAD..origin/main`"
+    - "`git log --oneline origin/main..HEAD`"
+    - "`git log --oneline origin/main`"
+  answer: 0
+  explain: "`A..B` B-də olub A-da olmayan commit-ləri göstərir. `origin/main..HEAD` əksinədir: sizdə olub serverdə olmayanlar. Sonuncu komanda `origin/main`-in bütün tarixçəsini verir."
+- question: "Fetch çıxışında bu sətir nə deməkdir?"
+  code: |
+     * [new branch]      docs       -> origin/docs
+  options:
+    - "Sizdə lokal `docs` branch-ı yaranıb və ona keçmisiniz"
+    - "Serverdə `docs` silinib, sizdəki `origin/docs` qalıb"
+    - "Sizin lokal `docs` branch-ınız serverə göndərilib"
+    - "Serverdə yeni `docs` branch-ı var, sizdə `origin/docs` yaranıb"
+  answer: 3
+  explain: "`*` yeni branch deməkdir. Solda serverdəki branch, sağda sizdəki remote-tracking branch var. Lokal branch yaranmır."
+- question: "`git fetch --prune` bu sətri çap edib. Bu nə deməkdir?"
+  code: |
+     - [deleted]         (none)     -> origin/old-menu
+  options:
+    - "Serverdə `old-menu` silinib, sizin lokal `old-menu` də silinib"
+    - "Serverdə `old-menu` yoxdur, sizdəki `origin/old-menu` silinib"
+    - "Serverdə `old-menu` yoxdur, amma `origin/old-menu` sizdə qalıb"
+  answer: 1
+  explain: "`-` silinmədir, `(none)` serverdə bu branch-ın artıq olmadığını bildirir. Sağdakı `origin/old-menu` sizdə silinən remote-tracking branch-dır."
+- question: "Ayla `old-menu` branch-ını serverdən silib. Bu komandalardan sonra `git branch` nə çap edir?"
+  code: |
+    git switch old-menu    # origin/old-menu-dan lokal branch yaranır
+    git switch main
+    git fetch --prune
+    git branch
+  options:
+    - "`* main` və `old-menu`"
+    - "Yalnız `* main`"
+    - "`* main`, `old-menu` və `origin/old-menu`"
+  answer: 0
+  explain: "`--prune` yalnız remote-tracking branch-ları silir. Lokal `old-menu` qalır, `git branch` isə `origin/...` branch-larını göstərmir."
+- question: "Hər `git fetch`-in serverdə silinmiş branch-ların `origin/...` surətini özü silməsi üçün nə yazmaq lazımdır?"
+  options:
+    - "`git config --global pull.prune true`"
+    - "`git config --global branch.prune true`"
+    - "`git config --global fetch.prune true`"
+  answer: 2
+  explain: "`fetch.prune` `true` olanda fetch elə işləyir ki, sanki `--prune` yazılıb."
+- question: "Fetch-dən sonra `git status` deyir ki, `main` və `origin/main` ayrılıb: hər birində bir yeni commit var. Hansı komanda yalnız serverdən gələn dəyişikliyi göstərir?"
+  options:
+    - "`git diff HEAD origin/main`"
+    - "`git diff HEAD...origin/main`"
+    - "`git diff origin/main...HEAD`"
+  answer: 1
+  explain: "Üç nöqtə `origin/main`-i merge base ilə müqayisə edir. İki nöqtəli və ya boşluqlu diff sizin commit-inizi də tərsinə göstərir, `origin/main...HEAD` isə yalnız sizin dəyişikliyinizi."

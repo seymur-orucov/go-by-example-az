@@ -1,0 +1,10 @@
+rules:
+  - "`git init` ilə yaradılan repository-nin remote-u olmur; `git remote add <ad> <URL>` onu əlavə edir və serverə qoşulmur."
+  - "`git remote -v` hər remote-u URL ilə göstərir: `(fetch)` götürmək, `(push)` göndərmək üçündür."
+  - "Remote `.git/config` faylında `[remote \"<ad>\"]` bölməsində saxlanır: `url` və `fetch` sətirləri."
+  - "`git remote rename <köhnə> <yeni>` adı, `git remote set-url <ad> <URL>` isə yalnız ünvanı dəyişir."
+  - "`git remote remove <ad>` lokal qeydi və remote-tracking branch-ları silir, serverdəki repository-yə toxunmur."
+practices:
+  - "Əsas serveri `origin` adlandırın, qalanlara mənalı adlar verin: `home`, `backup`."
+  - "HTTPS-dən SSH-a keçəndə remote-u silməyin, `git remote set-url` işlədin."
+  - "Remote-u dəyişəndən sonra `git remote -v` ilə yoxlayın."
