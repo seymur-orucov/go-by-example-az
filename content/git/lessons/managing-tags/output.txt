@@ -1,0 +1,58 @@
+$ git tag
+playtest
+v1.10
+v1.7
+v1.9
+v2.0
+$ git tag -n
+playtest        Add the scoring rules
+v1.10           Edition 1.10
+v1.7            Edition 1.7
+v1.9            Edition 1.9
+v2.0            Edition 2.0
+$ git tag -l "v1.*"
+v1.10
+v1.7
+v1.9
+$ git tag -l "v1.*" --sort=v:refname
+v1.7
+v1.9
+v1.10
+$ git tag -l "v1.*" --sort=-v:refname
+v1.10
+v1.9
+v1.7
+$ git log --oneline --decorate
+91a8fb9 (HEAD -> main, tag: v2.0) Add the turn order
+a2a2fda (tag: playtest) Add the scoring rules
+709ecc2 (tag: v1.10) Clarify trading
+dbb6f74 (tag: v1.9) Add a two-player variant
+862847c Fix the dice rule
+521621a Add the setup section
+f10e3d1 (tag: v1.7) Add the basic rules
+$ git tag -a v1.8 HEAD~4 -m "Edition 1.8"
+$ git tag -l "v1.*" --sort=v:refname
+v1.7
+v1.8
+v1.9
+v1.10
+$ git tag -d playtest
+Deleted tag 'playtest' (was a2a2fda)
+$ git tag
+v1.10
+v1.7
+v1.8
+v1.9
+v2.0
+$ git log --oneline -3
+91a8fb9 Add the turn order
+a2a2fda Add the scoring rules
+709ecc2 Clarify trading
+$ git commit -q -am "Fix a typo in the turn order"
+$ git tag -a v2.0 -m "Edition 2.0"
+fatal: tag 'v2.0' already exists
+$ git tag -a -f v2.0 -m "Edition 2.0"
+Updated tag 'v2.0' (was 1013556)
+$ git log --oneline --decorate -2
+5c2e12b (HEAD -> main, tag: v2.0) Fix a typo in the turn order
+91a8fb9 Add the turn order

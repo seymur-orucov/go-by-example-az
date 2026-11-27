@@ -1,0 +1,10 @@
+rules:
+  - "Tag branch deyil: `git switch <tag>` `a branch is expected, got tag` xətası verir."
+  - "`git switch --detach <tag>` HEAD-i tag-ın commit-inə keçirir, `git status` `HEAD detached at <tag>` yazır."
+  - "`git checkout <tag>` da HEAD-i tag-da ayırır."
+  - "`git switch -c <branch> <tag>` tag-ın commit-indən branch yaradıb ona keçir."
+  - "Yeni commit branch-ı irəli aparır, tag isə köhnə commit-də qalır."
+practices:
+  - "Köhnə versiyaya baxmaq üçün `git switch --detach <tag>`, qayıtmaq üçün `git switch main` yazın."
+  - "Köhnə buraxılışın səhvini `main`-də yox, tag-dan yaradılmış `hotfix/...` branch-ında düzəldin və yeni patch tag-ı qoyun."
+  - "Düzəliş `main`-ə də lazımdırsa, hotfix branch-ını `main`-ə merge edin."

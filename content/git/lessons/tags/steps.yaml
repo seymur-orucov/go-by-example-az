@@ -1,0 +1,9 @@
+# The visuals are recorded from the real repository by `pnpm content:run`.
+lightweight:
+  vis: graph
+stays:
+  vis: graph
+annotated:
+show:
+semver:
+  vis: graph

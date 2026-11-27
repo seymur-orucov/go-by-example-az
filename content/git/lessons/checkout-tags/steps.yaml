@@ -1,0 +1,9 @@
+# The visuals are recorded from the real repository by `pnpm content:run`.
+switch-fails:
+detach:
+  vis: graph
+hotfix-branch:
+  vis: graph
+fix:
+  vis: graph
+graph:

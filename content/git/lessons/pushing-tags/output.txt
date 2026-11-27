@@ -1,0 +1,55 @@
+$ echo '{"name": "Tab Saver", "version": "1.0"}' > manifest.json
+$ git commit -q -am "Release version 1.0"
+$ git tag -a v1.0 -m "Version 1.0"
+$ git push origin main
+To /home/sam/server/tab-saver.git
+   6a34898..65907b8  main -> main
+$ git ls-remote --tags origin
+$ git push origin v1.0
+To /home/sam/server/tab-saver.git
+ * [new tag]         v1.0 -> v1.0
+$ git ls-remote --tags origin
+e1a5fd4973981d4d8034546fafd0bd9c257b32bb	refs/tags/v1.0
+65907b8808de757fc700bd2fb9ff7c21a842d287	refs/tags/v1.0^{}
+$ git tag old-popup
+$ echo '<button>Save tabs</button><input placeholder="Search tabs">' > popup.html
+$ echo '{"name": "Tab Saver", "version": "1.1"}' > manifest.json
+$ git commit -q -am "Add tab search"
+$ git tag -a v1.1 -m "Version 1.1"
+$ git tag
+old-popup
+v1.0
+v1.1
+$ git push --follow-tags
+To /home/sam/server/tab-saver.git
+   65907b8..e3fd0ed  main -> main
+ * [new tag]         v1.1 -> v1.1
+$ git config push.followTags true
+$ git tag -a v0.9 -m "Version 0.9" HEAD~2
+$ git push origin --tags
+To /home/sam/server/tab-saver.git
+ * [new tag]         old-popup -> old-popup
+ * [new tag]         v0.9 -> v0.9
+$ git push origin --delete old-popup
+To /home/sam/server/tab-saver.git
+ - [deleted]         old-popup
+$ git tag -d old-popup
+Deleted tag 'old-popup' (was 65907b8)
+$ git ls-remote --tags origin
+b1f9ed00227269b89db0eb79db3710af2a4e44a0	refs/tags/v0.9
+6a34898ad5371d46405dde75eac4c8a0d26a710b	refs/tags/v0.9^{}
+e1a5fd4973981d4d8034546fafd0bd9c257b32bb	refs/tags/v1.0
+65907b8808de757fc700bd2fb9ff7c21a842d287	refs/tags/v1.0^{}
+7c62a66dc3f636c2b7a5b250e618a06203d6a7b1	refs/tags/v1.1
+e3fd0ed30ef8a45653d98cc9ffb6049f760fe17d	refs/tags/v1.1^{}
+$ cd ~/ayla/tab-saver
+$ git fetch
+From /home/sam/server/tab-saver
+   6a34898..e3fd0ed  main       -> origin/main
+ * [new tag]         v0.9       -> v0.9
+ * [new tag]         v1.1       -> v1.1
+ * [new tag]         v1.0       -> v1.0
+$ git tag
+v0.9
+v1.0
+v1.1
