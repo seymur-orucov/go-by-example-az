@@ -1,0 +1,68 @@
+- question: "`v2.0` tag-dır, belə adda branch yoxdur. `git switch v2.0` nə edir?"
+  options:
+    - "HEAD-i `v2.0`-ın commit-inə keçirir"
+    - "`v2.0` adlı yeni branch yaradır"
+    - "Xəta verir: Git branch adı gözləyir"
+  answer: 2
+  explain: "`git switch` tag-a yalnız `--detach` ilə keçir. Onsuz `a branch is expected, got tag 'v2.0'` xətası çıxır."
+- question: "Bu komandalardan sonra `git status`-un birinci sətri nədir?"
+  code: |
+    git switch --detach v1.0
+    git status
+  options:
+    - "`On branch v1.0`"
+    - "`HEAD detached at v1.0`"
+    - "`HEAD detached at main`"
+  answer: 1
+  explain: "HEAD tag-ın commit-ini göstərir və heç bir branch-a bağlı deyil. Git commit-i tag adı ilə yazır."
+- question: "Hansı komanda `v2.0`-dan `fix/margins` branch-ı yaradıb sizi ona keçirir?"
+  options:
+    - "`git switch -c fix/margins v2.0`"
+    - "`git switch fix/margins v2.0`"
+    - "`git tag -c fix/margins v2.0`"
+  answer: 0
+  explain: "`-c` yeni branch yaradır, son arqument isə start nöqtəsidir. `-c` olmadan `git switch` bir ad gözləyir və `only one reference expected` xətası verir."
+- question: "Bu komandalardan sonra `v1.0` tag-ı harada olur?"
+  code: |
+    git switch -c hotfix/1.0.1 v1.0
+    echo "Jul 4 Independence Day" >> holidays.txt
+    git commit -qam "Add Independence Day"
+  options:
+    - "Yeni commit-də, branch ilə birlikdə irəli gedir"
+    - "Heç yerdə: tag-ın commit-i artıq son deyil"
+    - "Köhnə yerində: `v1.0`-ın commit-ində"
+  answer: 2
+  explain: "Tag yerindən tərpənmir. Yeni commit-i yalnız `hotfix/1.0.1` və HEAD göstərir."
+- question: "`git switch --detach v1.1`-dən sonra `git switch -c hotfix/1.1.1` yazdınız, start nöqtəsi vermədiniz. Branch hansı commit-dən başlayır?"
+  options:
+    - "`main`-in son commit-indən"
+    - "`v1.1`-in commit-indən"
+    - "Heç birindən: boş branch yaranır"
+  answer: 1
+  explain: "Start nöqtəsi verilməyəndə branch HEAD-in olduğu commit-dən yaranır. HEAD isə `v1.1`-in commit-ində idi."
+- question: "Hansı komanda da HEAD-i `v1.1` tag-ında ayırır?"
+  options:
+    - "`git checkout v1.1`"
+    - "`git branch v1.1`"
+    - "`git tag v1.1`"
+  answer: 0
+  explain: "`git checkout` tag-a keçəndə HEAD-i ayırır və detached HEAD haqda uzun izah çap edir. `git branch v1.1` isə `v1.1` adlı branch yaradır, HEAD-i tərpətmir."
+- question: "`v1.1`-in səhvini düzəldirsiniz, `main` isə artıq `v2.0`-dan irəlidədir. Branch-ı niyə `main`-dən yox, `v1.1`-dən yaradırsınız?"
+  options:
+    - "Tag-dan yaradılan branch-da commit daha sürətli olur"
+    - "Düzəlişlə birlikdə `v2.0`-ın dəyişiklikləri gəlməsin"
+    - "Git `main`-dən yeni branch yaratmağa icazə vermir"
+  answer: 1
+  explain: "`v1.1`-dən başlayan branch-ın tarixçəsində `v2.0`-ın commit-ləri yoxdur. `v1.1.1` yalnız düzəlişi əlavə edir."
+- question: "Bu komandalardan sonra `git status`-un birinci sətri nədir?"
+  code: |
+    git switch --detach v1.1
+    echo "Dec 31 New Year's Eve" > holidays.txt
+    git commit -qam "Fix the date"
+    git status
+  options:
+    - "`HEAD detached at v1.1`"
+    - "`On branch v1.1`"
+    - "`HEAD detached from v1.1`"
+  answer: 2
+  explain: "Commit branch-a düşmədi, HEAD isə `v1.1`-dən irəli getdi. Ona görə `at` yox, `from` yazılır."

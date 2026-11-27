@@ -1,0 +1,70 @@
+- question: "`app.py` artıq commit olunub. Bu komandalardan sonra `git log --oneline --decorate` çıxışında `tag: v2.0.0` hansı commit-in yanında olur?"
+  code: |
+    echo "panel" >> app.py
+    git commit -q -am "Add history panel"
+    git tag v2.0.0
+    echo "round" >> app.py
+    git commit -q -am "Fix rounding"
+  options:
+    - "`Add history panel`"
+    - "`Fix rounding`"
+    - "Heç birinin: commit tag-ı silir"
+  answer: 0
+  explain: "Commit yalnız HEAD-in göstərdiyi branch-ı irəli aparır. Tag qoyulduğu commit-də qalır."
+- question: "Commit-ləri olan repository-də bu komandalardan sonra nə çap olunur?"
+  code: |
+    git tag beta
+    git tag -a v0.9.0 -m "Beta"
+    git cat-file -t beta
+    git cat-file -t v0.9.0
+  options:
+    - "`tag` və `tag`"
+    - "`commit` və `commit`"
+    - "`tag` və `commit`"
+    - "`commit` və `tag`"
+  answer: 3
+  explain: "Lightweight `beta` birbaşa commit-i göstərir. Annotated `v0.9.0` isə ayrıca tag obyektidir."
+- question: "`git tag v1.2.0 -m \"Release\"` komandası (`-a` yoxdur) nə edir?"
+  options:
+    - "Lightweight tag yaradır, mesaj saxlanmır"
+    - "Annotated tag yaradır, mesaj tag obyektindədir"
+    - "Xəta verir, `-m` yalnız `-a` ilə işləyir"
+  answer: 1
+  explain: "`-m` `-a`-nı da nəzərdə tutur, ona görə Git annotated tag yaradır."
+- question: "Proqramın versiyası `2.3.1`-dir. Köhnə kodu pozmayan yeni funksiya əlavə etdiniz. Semantic versioning ilə növbəti versiya hansıdır?"
+  options:
+    - "`2.3.2`"
+    - "`2.4.0`"
+    - "`3.0.0`"
+    - "`2.4.1`"
+  answer: 1
+  explain: "Uyğun yeni imkan minor-u artırır, patch isə sıfırlanır."
+- question: "Proqramın versiyası `1.7.4`-dür. İstifadəçilərin çağırdığı funksiyanı sildiniz. Növbəti versiya hansıdır?"
+  options:
+    - "`1.8.0`"
+    - "`2.7.4`"
+    - "`2.0.0`"
+    - "`1.7.5`"
+  answer: 2
+  explain: "Uyğunluğu pozan dəyişiklik major-u artırır, minor və patch sıfırlanır."
+- question: "`v1.0.0` lightweight tag-dır. `cat .git/refs/tags/v1.0.0` nə çap edir?"
+  options:
+    - "Commit-in tam hash-i"
+    - "`ref: refs/heads/main`"
+    - "Tag-ın mesajı və tarixi"
+  answer: 0
+  explain: "Lightweight tag branch kimi fayldır: içində commit-in hash-i yazılıb."
+- question: "`git show <tag>` çıxışında hansı sətir yalnız annotated tag-da olur?"
+  options:
+    - "`Author:`"
+    - "`Date:`"
+    - "`Tagger:`"
+  answer: 2
+  explain: "`Tagger` tag obyektinin sahəsidir. `Author` və `Date` commit hissəsində də var."
+- question: "Repository-də `v1.0.0` lightweight, `v1.0.1` annotated tag-dır. `git describe` susmaya görə hansı tag-ları nəzərə alır?"
+  options:
+    - "Yalnız `v1.0.0`-ı"
+    - "Hər ikisini"
+    - "Yalnız `v1.0.1`-i"
+  answer: 2
+  explain: "`git describe` susmaya görə yalnız annotated tag-ları görür. Lightweight tag üçün `--tags` lazımdır."

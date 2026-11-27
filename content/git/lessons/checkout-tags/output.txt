@@ -1,0 +1,57 @@
+$ git tag
+v1.0
+v1.1
+v2.0
+$ git log --oneline --decorate
+667d79f (HEAD -> main) Add week numbers
+1e7dadc (tag: v2.0) Print on A4 paper
+5fa46d9 (tag: v1.1) Add New Year's Eve
+5e0d023 (tag: v1.0) Add calendar script
+$ git switch v1.1
+fatal: a branch is expected, got tag 'v1.1'
+hint: If you want to detach HEAD at the commit, try again with the --detach option.
+$ git switch --detach v1.1
+HEAD is now at 5fa46d9 Add New Year's Eve
+$ cat holidays.txt
+Jan 1 New Year's Day
+Dec 13 New Year's Eve
+$ git status
+HEAD detached at v1.1
+nothing to commit, working tree clean
+$ git switch -c hotfix/1.1.1 v1.1
+Switched to a new branch 'hotfix/1.1.1'
+$ git branch
+* hotfix/1.1.1
+  main
+$ echo "Jan 1 New Year's Day" > holidays.txt
+$ echo "Dec 31 New Year's Eve" >> holidays.txt
+$ git diff
+diff --git a/holidays.txt b/holidays.txt
+index 30ebacb..33d1c4a 100644
+--- a/holidays.txt
++++ b/holidays.txt
+@@ -1,2 +1,2 @@
+ Jan 1 New Year's Day
+-Dec 13 New Year's Eve
++Dec 31 New Year's Eve
+$ git commit -am "Fix New Year's Eve date"
+[hotfix/1.1.1 fe6411b] Fix New Year's Eve date
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+$ git tag -a v1.1.1 -m "Version 1.1.1"
+$ git tag
+v1.0
+v1.1
+v1.1.1
+v2.0
+$ git log --oneline --decorate --all --graph
+* fe6411b (HEAD -> hotfix/1.1.1, tag: v1.1.1) Fix New Year's Eve date
+| * 667d79f (main) Add week numbers
+| * 1e7dadc (tag: v2.0) Print on A4 paper
+|/  
+* 5fa46d9 (tag: v1.1) Add New Year's Eve
+* 5e0d023 (tag: v1.0) Add calendar script
+$ git switch main
+Switched to branch 'main'
+$ cat holidays.txt
+Jan 1 New Year's Day
+Dec 13 New Year's Eve

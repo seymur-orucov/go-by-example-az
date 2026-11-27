@@ -1,0 +1,849 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "git init -q --bare ~/server/tab-saver.git",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "mkdir tab-saver",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd tab-saver",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo '{\"name\": \"Tab Saver\", \"version\": \"0.9\"}' > manifest.json",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo '<button>Save tabs</button>' > popup.html",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add .",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Start the extension\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git remote add origin ~/server/tab-saver.git",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push -q -u origin main",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git clone -q ~/server/tab-saver.git ~/ayla/tab-saver",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo '{\"name\": \"Tab Saver\", \"version\": \"1.0\"}' > manifest.json",
+      "step": "push-one-tag",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Release version 1.0\"",
+      "step": "push-one-tag",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git tag -a v1.0 -m \"Version 1.0\"",
+      "step": "push-one-tag",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push origin main",
+      "step": "push-one-tag",
+      "hidden": false,
+      "fail": false,
+      "out": "To /home/sam/server/tab-saver.git\n   6a34898..65907b8  main -> main\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git ls-remote --tags origin",
+      "step": "push-one-tag",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push origin v1.0",
+      "step": "push-one-tag",
+      "hidden": false,
+      "fail": false,
+      "out": "To /home/sam/server/tab-saver.git\n * [new tag]         v1.0 -> v1.0\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git ls-remote --tags origin",
+      "step": "push-one-tag",
+      "hidden": false,
+      "fail": false,
+      "out": "e1a5fd4973981d4d8034546fafd0bd9c257b32bb\trefs/tags/v1.0\n65907b8808de757fc700bd2fb9ff7c21a842d287\trefs/tags/v1.0^{}\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git tag old-popup",
+      "step": "follow-tags",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo '<button>Save tabs</button><input placeholder=\"Search tabs\">' > popup.html",
+      "step": "follow-tags",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo '{\"name\": \"Tab Saver\", \"version\": \"1.1\"}' > manifest.json",
+      "step": "follow-tags",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add tab search\"",
+      "step": "follow-tags",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git tag -a v1.1 -m \"Version 1.1\"",
+      "step": "follow-tags",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git tag",
+      "step": "follow-tags",
+      "hidden": false,
+      "fail": false,
+      "out": "old-popup\nv1.0\nv1.1\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git push --follow-tags",
+      "step": "follow-tags",
+      "hidden": false,
+      "fail": false,
+      "out": "To /home/sam/server/tab-saver.git\n   65907b8..e3fd0ed  main -> main\n * [new tag]         v1.1 -> v1.1\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git config push.followTags true",
+      "step": "follow-tags",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git tag -a v0.9 -m \"Version 0.9\" HEAD~2",
+      "step": "all-tags",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push origin --tags",
+      "step": "all-tags",
+      "hidden": false,
+      "fail": false,
+      "out": "To /home/sam/server/tab-saver.git\n * [new tag]         old-popup -> old-popup\n * [new tag]         v0.9 -> v0.9\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git push origin --delete old-popup",
+      "step": "delete-remote-tag",
+      "hidden": false,
+      "fail": false,
+      "out": "To /home/sam/server/tab-saver.git\n - [deleted]         old-popup\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git tag -d old-popup",
+      "step": "delete-remote-tag",
+      "hidden": false,
+      "fail": false,
+      "out": "Deleted tag 'old-popup' (was 65907b8)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git ls-remote --tags origin",
+      "step": "delete-remote-tag",
+      "hidden": false,
+      "fail": false,
+      "out": "b1f9ed00227269b89db0eb79db3710af2a4e44a0\trefs/tags/v0.9\n6a34898ad5371d46405dde75eac4c8a0d26a710b\trefs/tags/v0.9^{}\ne1a5fd4973981d4d8034546fafd0bd9c257b32bb\trefs/tags/v1.0\n65907b8808de757fc700bd2fb9ff7c21a842d287\trefs/tags/v1.0^{}\n7c62a66dc3f636c2b7a5b250e618a06203d6a7b1\trefs/tags/v1.1\ne3fd0ed30ef8a45653d98cc9ffb6049f760fe17d\trefs/tags/v1.1^{}\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ~/ayla/tab-saver",
+      "step": "fetch-tags",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git fetch",
+      "step": "fetch-tags",
+      "hidden": false,
+      "fail": false,
+      "out": "From /home/sam/server/tab-saver\n   6a34898..e3fd0ed  main       -> origin/main\n * [new tag]         v0.9       -> v0.9\n * [new tag]         v1.1       -> v1.1\n * [new tag]         v1.0       -> v1.0\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git tag",
+      "step": "fetch-tags",
+      "hidden": false,
+      "fail": false,
+      "out": "v0.9\nv1.0\nv1.1\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "push-one-tag": {
+      "areas": {
+        "work": [
+          {
+            "name": "manifest.json",
+            "state": "clean"
+          },
+          {
+            "name": "popup.html",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "manifest.json",
+            "state": "clean"
+          },
+          {
+            "name": "popup.html",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "65907b8",
+            "message": "Release version 1.0"
+          },
+          "count": 2,
+          "files": [
+            "manifest.json",
+            "popup.html"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "65907b8",
+            "message": "Release version 1.0",
+            "parents": [
+              "6a34898"
+            ],
+            "files": [
+              {
+                "name": "manifest.json",
+                "state": "modified"
+              },
+              {
+                "name": "popup.html",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "6a34898",
+            "message": "Start the extension",
+            "parents": [],
+            "files": [
+              {
+                "name": "manifest.json",
+                "state": "added"
+              },
+              {
+                "name": "popup.html",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "65907b8"
+          }
+        ],
+        "tags": [
+          {
+            "name": "v1.0",
+            "target": "65907b8"
+          }
+        ],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "65907b8"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "65907b8"
+        }
+      }
+    },
+    "follow-tags": {
+      "areas": {
+        "work": [
+          {
+            "name": "manifest.json",
+            "state": "clean"
+          },
+          {
+            "name": "popup.html",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "manifest.json",
+            "state": "clean"
+          },
+          {
+            "name": "popup.html",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "e3fd0ed",
+            "message": "Add tab search"
+          },
+          "count": 3,
+          "files": [
+            "manifest.json",
+            "popup.html"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "e3fd0ed",
+            "message": "Add tab search",
+            "parents": [
+              "65907b8"
+            ],
+            "files": [
+              {
+                "name": "manifest.json",
+                "state": "modified"
+              },
+              {
+                "name": "popup.html",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "65907b8",
+            "message": "Release version 1.0",
+            "parents": [
+              "6a34898"
+            ],
+            "files": [
+              {
+                "name": "manifest.json",
+                "state": "modified"
+              },
+              {
+                "name": "popup.html",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "6a34898",
+            "message": "Start the extension",
+            "parents": [],
+            "files": [
+              {
+                "name": "manifest.json",
+                "state": "added"
+              },
+              {
+                "name": "popup.html",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "e3fd0ed"
+          }
+        ],
+        "tags": [
+          {
+            "name": "old-popup",
+            "target": "65907b8"
+          },
+          {
+            "name": "v1.0",
+            "target": "65907b8"
+          },
+          {
+            "name": "v1.1",
+            "target": "e3fd0ed"
+          }
+        ],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "e3fd0ed"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "e3fd0ed"
+        }
+      }
+    },
+    "all-tags": {
+      "areas": {
+        "work": [
+          {
+            "name": "manifest.json",
+            "state": "clean"
+          },
+          {
+            "name": "popup.html",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "manifest.json",
+            "state": "clean"
+          },
+          {
+            "name": "popup.html",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "e3fd0ed",
+            "message": "Add tab search"
+          },
+          "count": 3,
+          "files": [
+            "manifest.json",
+            "popup.html"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "e3fd0ed",
+            "message": "Add tab search",
+            "parents": [
+              "65907b8"
+            ],
+            "files": [
+              {
+                "name": "manifest.json",
+                "state": "modified"
+              },
+              {
+                "name": "popup.html",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "65907b8",
+            "message": "Release version 1.0",
+            "parents": [
+              "6a34898"
+            ],
+            "files": [
+              {
+                "name": "manifest.json",
+                "state": "modified"
+              },
+              {
+                "name": "popup.html",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "6a34898",
+            "message": "Start the extension",
+            "parents": [],
+            "files": [
+              {
+                "name": "manifest.json",
+                "state": "added"
+              },
+              {
+                "name": "popup.html",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "e3fd0ed"
+          }
+        ],
+        "tags": [
+          {
+            "name": "old-popup",
+            "target": "65907b8"
+          },
+          {
+            "name": "v0.9",
+            "target": "6a34898"
+          },
+          {
+            "name": "v1.0",
+            "target": "65907b8"
+          },
+          {
+            "name": "v1.1",
+            "target": "e3fd0ed"
+          }
+        ],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "e3fd0ed"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "e3fd0ed"
+        }
+      }
+    },
+    "delete-remote-tag": {
+      "areas": {
+        "work": [
+          {
+            "name": "manifest.json",
+            "state": "clean"
+          },
+          {
+            "name": "popup.html",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "manifest.json",
+            "state": "clean"
+          },
+          {
+            "name": "popup.html",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "e3fd0ed",
+            "message": "Add tab search"
+          },
+          "count": 3,
+          "files": [
+            "manifest.json",
+            "popup.html"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "e3fd0ed",
+            "message": "Add tab search",
+            "parents": [
+              "65907b8"
+            ],
+            "files": [
+              {
+                "name": "manifest.json",
+                "state": "modified"
+              },
+              {
+                "name": "popup.html",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "65907b8",
+            "message": "Release version 1.0",
+            "parents": [
+              "6a34898"
+            ],
+            "files": [
+              {
+                "name": "manifest.json",
+                "state": "modified"
+              },
+              {
+                "name": "popup.html",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "6a34898",
+            "message": "Start the extension",
+            "parents": [],
+            "files": [
+              {
+                "name": "manifest.json",
+                "state": "added"
+              },
+              {
+                "name": "popup.html",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "e3fd0ed"
+          }
+        ],
+        "tags": [
+          {
+            "name": "v0.9",
+            "target": "6a34898"
+          },
+          {
+            "name": "v1.0",
+            "target": "65907b8"
+          },
+          {
+            "name": "v1.1",
+            "target": "e3fd0ed"
+          }
+        ],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "e3fd0ed"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "e3fd0ed"
+        }
+      }
+    },
+    "fetch-tags": {
+      "areas": {
+        "work": [
+          {
+            "name": "manifest.json",
+            "state": "clean"
+          },
+          {
+            "name": "popup.html",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "manifest.json",
+            "state": "clean"
+          },
+          {
+            "name": "popup.html",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "6a34898",
+            "message": "Start the extension"
+          },
+          "count": 1,
+          "files": [
+            "manifest.json",
+            "popup.html"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "e3fd0ed",
+            "message": "Add tab search",
+            "parents": [
+              "65907b8"
+            ],
+            "files": [
+              {
+                "name": "manifest.json",
+                "state": "modified"
+              },
+              {
+                "name": "popup.html",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "65907b8",
+            "message": "Release version 1.0",
+            "parents": [
+              "6a34898"
+            ],
+            "files": [
+              {
+                "name": "manifest.json",
+                "state": "modified"
+              },
+              {
+                "name": "popup.html",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "6a34898",
+            "message": "Start the extension",
+            "parents": [],
+            "files": [
+              {
+                "name": "manifest.json",
+                "state": "added"
+              },
+              {
+                "name": "popup.html",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "6a34898"
+          }
+        ],
+        "tags": [
+          {
+            "name": "v0.9",
+            "target": "6a34898"
+          },
+          {
+            "name": "v1.0",
+            "target": "65907b8"
+          },
+          {
+            "name": "v1.1",
+            "target": "e3fd0ed"
+          }
+        ],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "e3fd0ed"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "6a34898"
+        }
+      }
+    }
+  }
+}

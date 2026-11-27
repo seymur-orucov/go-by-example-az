@@ -1,0 +1,11 @@
+rules:
+  - "`git tag` tag-ları əlifbaya görə, `git tag -n` isə mesajları ilə göstərir; lightweight tag üçün commit-in mesajı çıxır."
+  - "`git tag -l \"v1.*\"` siyahını nümunəyə görə filtrləyir; `*` istənilən simvolları əvəz edir."
+  - "Adi siyahı mətn sırasındadır (`v1.10` `v1.7`-dən əvvəl); `--sort=v:refname` versiya sırası verir, `-v:refname` isə tərsini."
+  - "`git tag -a v1.8 HEAD~4 -m \"...\"` köhnə commit-ə tag qoyur: tag-ın adından sonra commit yazılır."
+  - "`git tag -d` yalnız tag-ı silir, commit tarixçədə qalır."
+  - "Eyni adla tag yaratmaq xəta verir; `-f` mövcud tag-ı yeni commit-ə köçürür."
+practices:
+  - "Tag nümunəsini dırnağa alın: `\"v1.*\"`."
+  - "Versiya tag-larını `--sort=v:refname` ilə siyahılayın ki, boşluqlar görünsün."
+  - "Yalnız hələ heç kimə göndərilməmiş tag-ı `-f` ilə köçürün; göndərilmişsə, yeni versiya tag-ı qoyun."

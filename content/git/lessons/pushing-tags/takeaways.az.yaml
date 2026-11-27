@@ -1,0 +1,11 @@
+rules:
+  - "`git push` branch-ı göndərir, tag-ları yox; `git ls-remote --tags origin` serverdəki tag-ları göstərir."
+  - "`git push origin <tag>` bir tag-ı göndərir; çıxışdakı `* [new tag]` serverdə tag yarandığını bildirir."
+  - "`git push --follow-tags` push olunan tarixçədəki annotated tag-ları da göndərir, lightweight tag-ları yox; `push.followTags true` bunu default edir."
+  - "`git push origin --tags` serverdə olmayan bütün lokal tag-ları göndərir, şəxsi tag-ları da."
+  - "`git push origin --delete <tag>` tag-ı serverdən silir; lokal tag `git tag -d` ilə ayrıca silinir."
+  - "`git fetch` gətirdiyi commit-lərə baxan tag-ları da gətirir, amma sizdə olan tag-ı dəyişmir və silmir."
+practices:
+  - "Release-ləri annotated, şəxsi qeydləri lightweight tag ilə edin və `push.followTags`-i yandırın."
+  - "`--tags`-dan əvvəl `git tag` ilə nəyin gedəcəyinə baxın."
+  - "Paylaşılmış tag-ı silib başqa commit-ə qoymayın; düzəliş üçün yeni tag yaradın, məsələn `v1.1.1`."

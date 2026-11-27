@@ -1,0 +1,7 @@
+# The visuals are recorded from the real repository by `pnpm content:run`.
+push-one-tag:
+follow-tags:
+all-tags:
+  vis: graph
+delete-remote-tag:
+fetch-tags:

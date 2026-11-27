@@ -1,0 +1,64 @@
+- question: "Yeni repository-də üç commit-ə ardıcıl `v1.2`, `v1.9` və `v1.10` tag-ları qoyulub. `git tag -l \"v1.*\"` nə çap edir?"
+  options:
+    - "`v1.2`, `v1.9`, `v1.10`"
+    - "`v1.10`, `v1.2`, `v1.9`"
+    - "`v1.10`, `v1.9`, `v1.2`"
+  answer: 1
+  explain: "Siyahı mətn kimi sıralanır. `v1.`-dan sonra `1` simvolu `2` və `9`-dan kiçikdir, ona görə `v1.10` birinci gəlir."
+- question: "Eyni repository-də `git tag -l \"v1.*\" --sort=-v:refname` nə çap edir?"
+  options:
+    - "`v1.9`, `v1.2`, `v1.10`"
+    - "`v1.2`, `v1.9`, `v1.10`"
+    - "`v1.10`, `v1.9`, `v1.2`"
+  answer: 2
+  explain: "`v:refname` adları versiya kimi müqayisə edir, `-` isə sıranı tərsinə çevirir: ən böyük versiya birinci."
+- question: "Repository-də `v1.0`, `v1.5` və `v10.0` tag-ları var. `git tag -l \"v1*\"` hansılarını göstərir?"
+  options:
+    - "Üçünü də"
+    - "Yalnız `v1.0` və `v1.5`"
+    - "Heç birini: nümunədə nöqtə yoxdur"
+  answer: 0
+  explain: "`*` istənilən simvolları əvəz edir, `v10.0` da `v1` ilə başlayır. Yalnız birinci versiya lazımdırsa, `\"v1.*\"` yazın."
+- question: "Hansı komanda HEAD-dən üç addım əvvəlki commit-ə annotated `v0.9` tag-ı qoyur?"
+  options:
+    - "`git tag -a HEAD~3 v0.9 -m \"Playtest\"`"
+    - "`git tag -a v0.9 -m \"Playtest\"`"
+    - "`git tag -a v0.9 HEAD~3 -m \"Playtest\"`"
+  answer: 2
+  explain: "Əvvəl tag-ın adı, sonra commit gəlir. Commit yazılmasa, tag HEAD-ə qoyulur."
+- question: "`git tag -n` lightweight tag-ın yanında nə göstərir?"
+  options:
+    - "Boş yer: lightweight tag-ın mesajı yoxdur"
+    - "Tag-ın göstərdiyi commit-in mesajını"
+    - "Tag-ın yaradıldığı tarixi və müəllifi"
+  answer: 1
+  explain: "Lightweight tag-ın öz mesajı olmadığı üçün Git commit-in mesajını göstərir."
+- question: "Yeni, boş repository-də bu komandalardan sonra nə çap olunur?"
+  code: |
+    echo "a" > notes.txt
+    git add notes.txt
+    git commit -q -m "Start"
+    git tag v1.0
+    echo "b" >> notes.txt
+    git commit -q -am "Fix"
+    git tag v1.0
+  options:
+    - "`fatal: tag 'v1.0' already exists`"
+    - "`Updated tag 'v1.0'`, tag `Fix` commit-inə keçir"
+    - "Heç nə: ikinci `v1.0` tag-ı yaranır"
+  answer: 0
+  explain: "Eyni adlı tag yaratmaq olmur. Tag-ı köçürmək üçün `-f` lazımdır."
+- question: "`git tag -d v1.3`-dən sonra `v1.3`-ün göstərdiyi commit-ə nə olur?"
+  options:
+    - "Commit də silinir"
+    - "Commit qalır, amma `git log`-da görünmür"
+    - "Commit qalır və `git log`-da görünür"
+  answer: 2
+  explain: "Tag commit-ə verilmiş addır. Onu silmək commit-ə toxunmur."
+- question: "`v2.0` tag-ı komandaya göndərilib, hamı onu yükləyib. Sonra bu versiyada səhv tapırsınız. Nə etmək düzgündür?"
+  options:
+    - "Səhvi düzəltmək, `v2.0`-ı `-f` ilə yeni commit-ə köçürmək"
+    - "Səhvi düzəltmək, yeni commit-ə `v2.1` tag-ı qoymaq"
+    - "Səhvi düzəltmək, `v2.0`-ı silib yeni commit-də yaratmaq"
+  answer: 1
+  explain: "Göndərilmiş tag-ı köçürsəniz və ya yenidən yaratsanız, başqalarında köhnə `v2.0` qalır. Yeni ad qarışıqlıq yaratmır."

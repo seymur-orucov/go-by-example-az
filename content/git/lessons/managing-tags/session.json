@@ -1,0 +1,1092 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir rulebook",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd rulebook",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"# Harbor Traders\" \"Each player starts with 5 coins.\" \"Roll one die on your turn.\" > rules.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add rules.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add the basic rules\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git tag -a v1.7 -m \"Edition 1.7\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"## Setup\" \"Deal 4 cards to each player.\" >> rules.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add the setup section\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "sed -i \"s/Roll one die/Roll two dice/\" rules.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Fix the dice rule\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Two players: remove the red cards.\" >> rules.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add a two-player variant\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git tag -a v1.9 -m \"Edition 1.9\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Trade only on your own turn.\" >> rules.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Clarify trading\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git tag -a v1.10 -m \"Edition 1.10\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Score: 1 point per coin, 3 per ship.\" >> rules.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add the scoring rules\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git tag playtest",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Turns go clockwise, startng with the youngest player.\" >> rules.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add the turn order\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git tag -a v2.0 -m \"Edition 2.0\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git tag",
+      "step": "list",
+      "hidden": false,
+      "fail": false,
+      "out": "playtest\nv1.10\nv1.7\nv1.9\nv2.0\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git tag -n",
+      "step": "list",
+      "hidden": false,
+      "fail": false,
+      "out": "playtest        Add the scoring rules\nv1.10           Edition 1.10\nv1.7            Edition 1.7\nv1.9            Edition 1.9\nv2.0            Edition 2.0\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git tag -l \"v1.*\"",
+      "step": "filter",
+      "hidden": false,
+      "fail": false,
+      "out": "v1.10\nv1.7\nv1.9\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git tag -l \"v1.*\" --sort=v:refname",
+      "step": "filter",
+      "hidden": false,
+      "fail": false,
+      "out": "v1.7\nv1.9\nv1.10\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git tag -l \"v1.*\" --sort=-v:refname",
+      "step": "filter",
+      "hidden": false,
+      "fail": false,
+      "out": "v1.10\nv1.9\nv1.7\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline --decorate",
+      "step": "older",
+      "hidden": false,
+      "fail": false,
+      "out": "91a8fb9 (HEAD -> main, tag: v2.0) Add the turn order\na2a2fda (tag: playtest) Add the scoring rules\n709ecc2 (tag: v1.10) Clarify trading\ndbb6f74 (tag: v1.9) Add a two-player variant\n862847c Fix the dice rule\n521621a Add the setup section\nf10e3d1 (tag: v1.7) Add the basic rules\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git tag -a v1.8 HEAD~4 -m \"Edition 1.8\"",
+      "step": "older",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git tag -l \"v1.*\" --sort=v:refname",
+      "step": "older",
+      "hidden": false,
+      "fail": false,
+      "out": "v1.7\nv1.8\nv1.9\nv1.10\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git tag -d playtest",
+      "step": "delete",
+      "hidden": false,
+      "fail": false,
+      "out": "Deleted tag 'playtest' (was a2a2fda)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git tag",
+      "step": "delete",
+      "hidden": false,
+      "fail": false,
+      "out": "v1.10\nv1.7\nv1.8\nv1.9\nv2.0\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline -3",
+      "step": "delete",
+      "hidden": false,
+      "fail": false,
+      "out": "91a8fb9 Add the turn order\na2a2fda Add the scoring rules\n709ecc2 Clarify trading\n",
+      "exit": 0
+    },
+    {
+      "cmd": "sed -i \"s/startng/starting/\" rules.md",
+      "step": "force",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Fix a typo in the turn order\"",
+      "step": "force",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git tag -a v2.0 -m \"Edition 2.0\"",
+      "step": "force",
+      "hidden": false,
+      "fail": true,
+      "out": "fatal: tag 'v2.0' already exists\n",
+      "exit": 128
+    },
+    {
+      "cmd": "git tag -a -f v2.0 -m \"Edition 2.0\"",
+      "step": "force",
+      "hidden": false,
+      "fail": false,
+      "out": "Updated tag 'v2.0' (was 1013556)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline --decorate -2",
+      "step": "force",
+      "hidden": false,
+      "fail": false,
+      "out": "5c2e12b (HEAD -> main, tag: v2.0) Fix a typo in the turn order\n91a8fb9 Add the turn order\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "list": {
+      "areas": {
+        "work": [
+          {
+            "name": "rules.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "rules.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "91a8fb9",
+            "message": "Add the turn order"
+          },
+          "count": 7,
+          "files": [
+            "rules.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "91a8fb9",
+            "message": "Add the turn order",
+            "parents": [
+              "a2a2fda"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "a2a2fda",
+            "message": "Add the scoring rules",
+            "parents": [
+              "709ecc2"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "709ecc2",
+            "message": "Clarify trading",
+            "parents": [
+              "dbb6f74"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "dbb6f74",
+            "message": "Add a two-player variant",
+            "parents": [
+              "862847c"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "862847c",
+            "message": "Fix the dice rule",
+            "parents": [
+              "521621a"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "521621a",
+            "message": "Add the setup section",
+            "parents": [
+              "f10e3d1"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "f10e3d1",
+            "message": "Add the basic rules",
+            "parents": [],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "91a8fb9"
+          }
+        ],
+        "tags": [
+          {
+            "name": "playtest",
+            "target": "a2a2fda"
+          },
+          {
+            "name": "v1.10",
+            "target": "709ecc2"
+          },
+          {
+            "name": "v1.7",
+            "target": "f10e3d1"
+          },
+          {
+            "name": "v1.9",
+            "target": "dbb6f74"
+          },
+          {
+            "name": "v2.0",
+            "target": "91a8fb9"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "91a8fb9"
+        }
+      }
+    },
+    "filter": {
+      "areas": {
+        "work": [
+          {
+            "name": "rules.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "rules.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "91a8fb9",
+            "message": "Add the turn order"
+          },
+          "count": 7,
+          "files": [
+            "rules.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "91a8fb9",
+            "message": "Add the turn order",
+            "parents": [
+              "a2a2fda"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "a2a2fda",
+            "message": "Add the scoring rules",
+            "parents": [
+              "709ecc2"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "709ecc2",
+            "message": "Clarify trading",
+            "parents": [
+              "dbb6f74"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "dbb6f74",
+            "message": "Add a two-player variant",
+            "parents": [
+              "862847c"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "862847c",
+            "message": "Fix the dice rule",
+            "parents": [
+              "521621a"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "521621a",
+            "message": "Add the setup section",
+            "parents": [
+              "f10e3d1"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "f10e3d1",
+            "message": "Add the basic rules",
+            "parents": [],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "91a8fb9"
+          }
+        ],
+        "tags": [
+          {
+            "name": "playtest",
+            "target": "a2a2fda"
+          },
+          {
+            "name": "v1.10",
+            "target": "709ecc2"
+          },
+          {
+            "name": "v1.7",
+            "target": "f10e3d1"
+          },
+          {
+            "name": "v1.9",
+            "target": "dbb6f74"
+          },
+          {
+            "name": "v2.0",
+            "target": "91a8fb9"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "91a8fb9"
+        }
+      }
+    },
+    "older": {
+      "areas": {
+        "work": [
+          {
+            "name": "rules.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "rules.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "91a8fb9",
+            "message": "Add the turn order"
+          },
+          "count": 7,
+          "files": [
+            "rules.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "91a8fb9",
+            "message": "Add the turn order",
+            "parents": [
+              "a2a2fda"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "a2a2fda",
+            "message": "Add the scoring rules",
+            "parents": [
+              "709ecc2"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "709ecc2",
+            "message": "Clarify trading",
+            "parents": [
+              "dbb6f74"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "dbb6f74",
+            "message": "Add a two-player variant",
+            "parents": [
+              "862847c"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "862847c",
+            "message": "Fix the dice rule",
+            "parents": [
+              "521621a"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "521621a",
+            "message": "Add the setup section",
+            "parents": [
+              "f10e3d1"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "f10e3d1",
+            "message": "Add the basic rules",
+            "parents": [],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "91a8fb9"
+          }
+        ],
+        "tags": [
+          {
+            "name": "playtest",
+            "target": "a2a2fda"
+          },
+          {
+            "name": "v1.10",
+            "target": "709ecc2"
+          },
+          {
+            "name": "v1.7",
+            "target": "f10e3d1"
+          },
+          {
+            "name": "v1.8",
+            "target": "862847c"
+          },
+          {
+            "name": "v1.9",
+            "target": "dbb6f74"
+          },
+          {
+            "name": "v2.0",
+            "target": "91a8fb9"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "91a8fb9"
+        }
+      }
+    },
+    "delete": {
+      "areas": {
+        "work": [
+          {
+            "name": "rules.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "rules.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "91a8fb9",
+            "message": "Add the turn order"
+          },
+          "count": 7,
+          "files": [
+            "rules.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "91a8fb9",
+            "message": "Add the turn order",
+            "parents": [
+              "a2a2fda"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "a2a2fda",
+            "message": "Add the scoring rules",
+            "parents": [
+              "709ecc2"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "709ecc2",
+            "message": "Clarify trading",
+            "parents": [
+              "dbb6f74"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "dbb6f74",
+            "message": "Add a two-player variant",
+            "parents": [
+              "862847c"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "862847c",
+            "message": "Fix the dice rule",
+            "parents": [
+              "521621a"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "521621a",
+            "message": "Add the setup section",
+            "parents": [
+              "f10e3d1"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "f10e3d1",
+            "message": "Add the basic rules",
+            "parents": [],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "91a8fb9"
+          }
+        ],
+        "tags": [
+          {
+            "name": "v1.10",
+            "target": "709ecc2"
+          },
+          {
+            "name": "v1.7",
+            "target": "f10e3d1"
+          },
+          {
+            "name": "v1.8",
+            "target": "862847c"
+          },
+          {
+            "name": "v1.9",
+            "target": "dbb6f74"
+          },
+          {
+            "name": "v2.0",
+            "target": "91a8fb9"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "91a8fb9"
+        }
+      }
+    },
+    "force": {
+      "areas": {
+        "work": [
+          {
+            "name": "rules.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "rules.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "5c2e12b",
+            "message": "Fix a typo in the turn order"
+          },
+          "count": 8,
+          "files": [
+            "rules.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "5c2e12b",
+            "message": "Fix a typo in the turn order",
+            "parents": [
+              "91a8fb9"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "91a8fb9",
+            "message": "Add the turn order",
+            "parents": [
+              "a2a2fda"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "a2a2fda",
+            "message": "Add the scoring rules",
+            "parents": [
+              "709ecc2"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "709ecc2",
+            "message": "Clarify trading",
+            "parents": [
+              "dbb6f74"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "dbb6f74",
+            "message": "Add a two-player variant",
+            "parents": [
+              "862847c"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "862847c",
+            "message": "Fix the dice rule",
+            "parents": [
+              "521621a"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "521621a",
+            "message": "Add the setup section",
+            "parents": [
+              "f10e3d1"
+            ],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "f10e3d1",
+            "message": "Add the basic rules",
+            "parents": [],
+            "files": [
+              {
+                "name": "rules.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "5c2e12b"
+          }
+        ],
+        "tags": [
+          {
+            "name": "v1.10",
+            "target": "709ecc2"
+          },
+          {
+            "name": "v1.7",
+            "target": "f10e3d1"
+          },
+          {
+            "name": "v1.8",
+            "target": "862847c"
+          },
+          {
+            "name": "v1.9",
+            "target": "dbb6f74"
+          },
+          {
+            "name": "v2.0",
+            "target": "5c2e12b"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "5c2e12b"
+        }
+      }
+    }
+  }
+}

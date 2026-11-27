@@ -1,0 +1,67 @@
+$ git tag v1.0.0
+$ git tag
+v1.0.0
+$ cat .git/refs/tags/v1.0.0
+8b856943f34944c823654af9bd27bd2c500f1407
+$ git log --oneline --decorate
+8b85694 (HEAD -> main, tag: v1.0.0) Add division
+081a77f Add calculator
+$ git commit -am "Fix division by zero"
+[main c3d1836] Fix division by zero
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+$ git log --oneline --decorate
+c3d1836 (HEAD -> main) Fix division by zero
+8b85694 (tag: v1.0.0) Add division
+081a77f Add calculator
+$ git tag -a v1.0.1 -m "Release 1.0.1: fix division by zero"
+$ git tag
+v1.0.0
+v1.0.1
+$ git cat-file -t v1.0.0
+commit
+$ git cat-file -t v1.0.1
+tag
+$ git show v1.0.1
+tag v1.0.1
+Tagger: Sam Lee <sam@example.com>
+Date:   Thu Jan 15 09:18:00 2026 +0000
+
+Release 1.0.1: fix division by zero
+
+commit c3d18363b26a456398fd209b5bd32f345820113b
+Author: Sam Lee <sam@example.com>
+Date:   Thu Jan 15 09:16:00 2026 +0000
+
+    Fix division by zero
+
+diff --git a/CHANGELOG.md b/CHANGELOG.md
+index 1d7cddf..1bdb100 100644
+--- a/CHANGELOG.md
++++ b/CHANGELOG.md
+@@ -1,2 +1,3 @@
+ # Changelog
++- 1.0.1: fix division by zero
+ - 1.0.0: add and divide
+diff --git a/calc.py b/calc.py
+index 87634e7..7ed7ebc 100644
+--- a/calc.py
++++ b/calc.py
+@@ -1,2 +1,2 @@
+ def add(a, b): return a + b
+-def div(a, b): return a / b
++def div(a, b): return a / b if b else None
+$ echo "def pct(a, b): return a * b / 100" >> calc.py
+$ git commit -am "Add percent function"
+[main 10d8310] Add percent function
+ 2 files changed, 2 insertions(+)
+$ git tag -a v1.1.0 -m "Release 1.1.0: add percent"
+$ cat CHANGELOG.md
+# Changelog
+- 1.1.0: add percent
+- 1.0.1: fix division by zero
+- 1.0.0: add and divide
+$ git log --oneline --decorate
+10d8310 (HEAD -> main, tag: v1.1.0) Add percent function
+c3d1836 (tag: v1.0.1) Fix division by zero
+8b85694 (tag: v1.0.0) Add division
+081a77f Add calculator

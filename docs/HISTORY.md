@@ -679,3 +679,13 @@ Done (branch `feat/git-remotes-lessons`):
 - `push` (`terminal`, quiz question bank): `git push origin main`, no upstream, `-u`, `git branch -vv`, a rejected push (`fetch first`) and pull-then-push.
 - The recorder now shows `origin/*` in the graph (separate site PR), so the reviewer re-recorded all five, added graphs where the remote-tracking branch is the point, and rewrote texts that said the visual shows only local branches. It also removed repeated explanations (bare repository, `(fetch)`/`(push)`, `--no-edit`) in favour of back-references and unified spelling ("serverə", "Sam-ın").
 - A `git pull` merge commit puts the sandbox's temp path into its message; the sessions amend it in a hidden command so the output stays deterministic.
+
+### 77. Git module 7 "Tag-lar"
+Same process.
+
+Done (branch `feat/git-tags-lessons`):
+- `tags` (`terminal`, a desktop calculator's releases): a lightweight tag as a file in `.git/refs/tags/`, a tag does not move, annotated tags (`-a`, `-m`, `git cat-file -t`, `git show` with `Tagger`), semantic versioning (MAJOR.MINOR.PATCH, a zero patch may be left out of the name), annotated tags for releases (`git describe`).
+- `managing-tags` (`terminal`, a board-game rulebook's editions): `git tag -n`, `-l "v1.*"`, text order vs `--sort=v:refname`, tagging an older commit, `git tag -d`, "already exists" and `-f`, never move a shared tag.
+- `pushing-tags` (`terminal`, a browser extension): `git push` does not send tags, `git push origin <tag>`, `--follow-tags` vs `--tags`, `push.followTags`, deleting a server tag, teammates get tags with `git fetch`.
+- `checkout-tags` (`terminal`, a printable calendar generator): `git switch <tag>` refuses, `--detach`, a hotfix branch from a tag (`git switch -c hotfix/1.1.1 v1.1`), a new patch tag.
+- The reviewer explained the two- and three-part version names, removed a repeated explanation of annotated tag objects, fixed spellings ("serverdə", "Sam-ın", "merge-i") and a giveaway quiz option.
