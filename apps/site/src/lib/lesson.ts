@@ -9,8 +9,10 @@ import {
   sessionFileSchema,
   transcript,
   type AreasFrame,
+  type GraphFrame,
   type SessionFile,
 } from "./session.ts";
+import { layoutGraph, type GraphLayout } from "./graph.ts";
 
 /** Both `astro build` and the check script run with apps/site as the working directory. */
 export const CONTENT_ROOT = resolve(process.cwd(), "../../content");
@@ -196,7 +198,17 @@ export interface VisAreas {
   index: Fresh<AreasFrame["index"][number]>[];
   repo: Fresh<AreasFrame["repo"]>;
 }
-export type Vis = z.infer<typeof visSchema> | VisAreas;
+/**
+ * The commit graph after a step, recorded like `areas`; `files` (set in steps.yaml) also shows
+ * each commit's parent and snapshot: which files are new, changed or the same as in the parent.
+ */
+export interface VisGraph extends GraphLayout {
+  kind: "graph";
+  files: boolean;
+  head: GraphFrame["head"];
+  count: number;
+}
+export type Vis = z.infer<typeof visSchema> | VisAreas | VisGraph;
 
 const stepDataSchema = z
   .object({ out: z.string().optional(), vis: visSchema.optional() })
@@ -453,8 +465,15 @@ export function loadLesson(
 const sessionStepsSchema = z.record(
   z.string().regex(ID),
   z
-    .object({ vis: z.enum(["areas"]).optional() })
+    .object({
+      vis: z.enum(["areas", "graph"]).optional(),
+      /** graph only: show each commit's parent and files. */
+      files: z.boolean().optional(),
+    })
     .strict()
+    .refine((v) => v.files === undefined || v.vis === "graph", {
+      message: "files is an option of vis: graph",
+    })
     .nullable()
     .transform((v) => v ?? {}),
 );
@@ -554,11 +573,17 @@ export function loadSessionLesson(
     if (stepData[s.id]?.vis === "areas" && !recorded?.frames[s.id]?.areas) {
       problems.push(`step "${s.id}": vis areas, but the step does not end inside a Git repository`);
     }
+    if (stepData[s.id]?.vis === "graph" && !recorded?.frames[s.id]?.graph) {
+      problems.push(
+        `step "${s.id}": vis graph, but no graph was recorded (outside a repository, or run: pnpm content:run ${technology}/${slug})`,
+      );
+    }
   }
 
   if (problems.length) throw new Error(`${technology}/${slug}:\n  - ${problems.join("\n  - ")}`);
 
   let prev: AreasFrame | null = null;
+  let prevGraph: GraphFrame | null = null;
   return {
     slug,
     mode: "session",
@@ -571,8 +596,21 @@ export function loadSessionLesson(
       const section = text.sections.find((t) => t.id === s.id)!;
       const ran = recorded!.commands.filter((c) => c.step === s.id);
       const frame = recorded!.frames[s.id]?.areas ?? null;
-      const vis = stepData[s.id]?.vis === "areas" && frame ? areasVis(frame, prev) : undefined;
+      const graph = recorded!.frames[s.id]?.graph ?? null;
+      const want = stepData[s.id] ?? {};
+      let vis: Vis | undefined;
+      if (want.vis === "areas" && frame) vis = areasVis(frame, prev);
+      if (want.vis === "graph" && graph) {
+        vis = {
+          kind: "graph",
+          files: !!want.files,
+          head: graph.head,
+          count: graph.commits.length,
+          ...layoutGraph(graph, prevGraph, { detail: !!want.files }),
+        };
+      }
       prev = frame;
+      prevGraph = graph;
       const out = transcript(ran);
       return { ...s, title: section.title, body: section.body, out: out || undefined, vis };
     }),

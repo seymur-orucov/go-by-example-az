@@ -1,0 +1,16 @@
+# The visuals are recorded from the real repository by `pnpm content:run`.
+first-commit:
+  vis: graph
+  files: true
+snapshot:
+  vis: graph
+  files: true
+parent:
+  vis: graph
+  files: true
+same-files:
+  vis: graph
+  files: true
+chain:
+  vis: graph
+  files: true

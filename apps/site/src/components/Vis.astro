@@ -8,11 +8,14 @@
 //   values the receiver took and who had to wait;
 // - timeline: goroutines on a time axis (sequential vs concurrent, cut off when main returns);
 // - areas: the three areas of a Git repository, recorded by `pnpm content:run`;
+// - graph: the commit graph (commits, parents, branches, tags, HEAD), recorded the same way;
+//   each row draws its own slice of the rail, so a row can grow (files, a narrow screen);
 // - flow: a row of boxes, optionally joined by arrows (text lessons, hand-written);
 // - compare: two variants side by side, aspect by aspect (text lessons, hand-written).
 // The script replays the `pop` animation of `.cell.new` and `.tl-bar` when a step becomes active.
-import type { Vis, VisAreas } from "../lib/lesson";
+import type { Vis, VisAreas, VisGraph } from "../lib/lesson";
 import { renderInline } from "../lib/markdown";
+import GraphRail from "./GraphRail.astro";
 
 interface Props {
   vis: Vis;
@@ -90,6 +93,20 @@ const INDEX_STATE: Record<VisAreas["index"][number]["state"], string> = {
 };
 const fileClass = (state: string, fresh?: boolean) =>
   `file s-${state}${fresh && state !== "clean" ? " fresh" : ""}`;
+
+// ---- graph (lib/graph.ts lays it out; newest commit on top)
+const graph = vis.kind === "graph" ? vis : null;
+const FILE_STATE: Record<VisGraph["rows"][number]["commit"]["files"][number]["state"], string> = {
+  added: "yeni",
+  modified: "dəyişib",
+  same: "parent-dəki ilə eyni",
+  deleted: "silinib",
+};
+const fileStates = graph?.files
+  ? (["added", "modified", "same", "deleted"] as const).filter((s) =>
+      graph.rows.some((r) => r.commit.files.some((f) => f.state === s)),
+    )
+  : [];
 
 // ---- flow, compare (text lessons; inline Markdown in the strings)
 const flow = vis.kind === "flow" ? vis : null;
@@ -339,6 +356,80 @@ const cmp = vis.kind === "compare" ? vis : null;
         ))}
       </p>
       {tl.note && <p class="vis-note">{tl.note}</p>}
+    </div>
+  </div>
+)}
+
+{graph && (
+  <div class="st-vis">
+    <div class="st-vis-cap">
+      <span>Commit qrafı</span>
+      <small class="mono">
+        {graph.count} commit{graph.count > 1 ? " · ən yenisi yuxarıda" : ""}
+      </small>
+    </div>
+    <div class:list={["vis vis-graph", { "with-files": graph.files }]}>
+      {graph.rows.length ? (
+        <ol class="g-rows">
+          {graph.rows.map((r, i) => (
+            <li class:list={["g-row", { fresh: r.fresh }]} style={`--d:${i * 60}ms`}>
+              <div class="g-line">
+                <GraphRail width={graph.width} paths={r.paths} dot={{ x: r.x, lane: r.lane }} />
+                <p class="g-head">
+                  <span class="g-hash">{r.commit.hash}</span>
+                  {r.refs.map((ref) => (
+                    <span
+                      class:list={[
+                        "g-ref",
+                        `k-${ref.kind}`,
+                        { current: ref.current, fresh: ref.fresh },
+                      ]}
+                    >
+                      {ref.kind === "tag"
+                        ? `tag: ${ref.name}`
+                        : ref.current
+                          ? `HEAD → ${ref.name}`
+                          : ref.name}
+                    </span>
+                  ))}
+                  <span class="g-msg">{r.commit.message}</span>
+                </p>
+              </div>
+              {graph.files && (
+                <div class="g-line">
+                  <GraphRail width={graph.width} paths={r.detailPaths} />
+                  <p class="g-files">
+                    <span class="g-parent">
+                      {r.commit.parents.length === 0
+                        ? "parent yoxdur"
+                        : `${r.commit.parents.length > 1 ? "parents" : "parent"} ${r.commit.parents.join(", ")}`}
+                    </span>
+                    {r.commit.files.map((f) => (
+                      <span
+                        class={`g-file s-${f.state}`}
+                        title={`${f.name}: ${FILE_STATE[f.state]}`}
+                      >
+                        {f.name}
+                      </span>
+                    ))}
+                  </p>
+                </div>
+              )}
+            </li>
+          ))}
+        </ol>
+      ) : (
+        <p class="area-empty">
+          hələ commit yoxdur{graph.head.branch ? ` · HEAD → ${graph.head.branch}` : ""}
+        </p>
+      )}
+      {fileStates.length > 0 && (
+        <p class="g-legend">
+          {fileStates.map((s) => (
+            <span class={`s-${s}`}>{FILE_STATE[s]}</span>
+          ))}
+        </p>
+      )}
     </div>
   </div>
 )}

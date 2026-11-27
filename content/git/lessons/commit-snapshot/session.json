@@ -1,0 +1,550 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir workout",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd workout",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Mon: run 3 km\" > plan.txt",
+      "step": "first-commit",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Run 5 km by May\" > goals.txt",
+      "step": "first-commit",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add plan.txt goals.txt",
+      "step": "first-commit",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"Add workout plan and goals\"",
+      "step": "first-commit",
+      "hidden": false,
+      "fail": false,
+      "out": "[main (root-commit) ab0c831] Add workout plan and goals\n 2 files changed, 2 insertions(+)\n create mode 100644 goals.txt\n create mode 100644 plan.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git cat-file -p HEAD",
+      "step": "first-commit",
+      "hidden": false,
+      "fail": false,
+      "out": "tree 45ea27463f6e242c496894cf90140119fd238aa1\nauthor Sam Lee <sam@example.com> 1768467960 +0000\ncommitter Sam Lee <sam@example.com> 1768467960 +0000\n\nAdd workout plan and goals\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git ls-tree --abbrev HEAD",
+      "step": "snapshot",
+      "hidden": false,
+      "fail": false,
+      "out": "100644 blob 27e92fc\tgoals.txt\n100644 blob ed9ad65\tplan.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Wed: push-ups 3x10\" >> plan.txt",
+      "step": "parent",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add plan.txt",
+      "step": "parent",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"Add Wednesday workout\"",
+      "step": "parent",
+      "hidden": false,
+      "fail": false,
+      "out": "[main 69d7f8a] Add Wednesday workout\n 1 file changed, 1 insertion(+)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git cat-file -p HEAD",
+      "step": "parent",
+      "hidden": false,
+      "fail": false,
+      "out": "tree 9adcb7d025f1078a27b097e91c87d5f0b1665786\nparent ab0c8310bde9b40afa8d3b90e7f2ac028c02fd63\nauthor Sam Lee <sam@example.com> 1768468260 +0000\ncommitter Sam Lee <sam@example.com> 1768468260 +0000\n\nAdd Wednesday workout\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git ls-tree --abbrev HEAD",
+      "step": "same-files",
+      "hidden": false,
+      "fail": false,
+      "out": "100644 blob 27e92fc\tgoals.txt\n100644 blob 5129dc1\tplan.txt\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Week 1: done\" > log.txt",
+      "step": "chain",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add log.txt",
+      "step": "chain",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -m \"Start training log\"",
+      "step": "chain",
+      "hidden": false,
+      "fail": false,
+      "out": "[main cec89e6] Start training log\n 1 file changed, 1 insertion(+)\n create mode 100644 log.txt\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "first-commit": {
+      "areas": {
+        "work": [
+          {
+            "name": "goals.txt",
+            "state": "clean"
+          },
+          {
+            "name": "plan.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "goals.txt",
+            "state": "clean"
+          },
+          {
+            "name": "plan.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "ab0c831",
+            "message": "Add workout plan and goals"
+          },
+          "count": 1,
+          "files": [
+            "goals.txt",
+            "plan.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "ab0c831",
+            "message": "Add workout plan and goals",
+            "parents": [],
+            "files": [
+              {
+                "name": "goals.txt",
+                "state": "added"
+              },
+              {
+                "name": "plan.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "ab0c831"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "ab0c831"
+        }
+      }
+    },
+    "snapshot": {
+      "areas": {
+        "work": [
+          {
+            "name": "goals.txt",
+            "state": "clean"
+          },
+          {
+            "name": "plan.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "goals.txt",
+            "state": "clean"
+          },
+          {
+            "name": "plan.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "ab0c831",
+            "message": "Add workout plan and goals"
+          },
+          "count": 1,
+          "files": [
+            "goals.txt",
+            "plan.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "ab0c831",
+            "message": "Add workout plan and goals",
+            "parents": [],
+            "files": [
+              {
+                "name": "goals.txt",
+                "state": "added"
+              },
+              {
+                "name": "plan.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "ab0c831"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "ab0c831"
+        }
+      }
+    },
+    "parent": {
+      "areas": {
+        "work": [
+          {
+            "name": "goals.txt",
+            "state": "clean"
+          },
+          {
+            "name": "plan.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "goals.txt",
+            "state": "clean"
+          },
+          {
+            "name": "plan.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "69d7f8a",
+            "message": "Add Wednesday workout"
+          },
+          "count": 2,
+          "files": [
+            "goals.txt",
+            "plan.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "69d7f8a",
+            "message": "Add Wednesday workout",
+            "parents": [
+              "ab0c831"
+            ],
+            "files": [
+              {
+                "name": "goals.txt",
+                "state": "same"
+              },
+              {
+                "name": "plan.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "ab0c831",
+            "message": "Add workout plan and goals",
+            "parents": [],
+            "files": [
+              {
+                "name": "goals.txt",
+                "state": "added"
+              },
+              {
+                "name": "plan.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "69d7f8a"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "69d7f8a"
+        }
+      }
+    },
+    "same-files": {
+      "areas": {
+        "work": [
+          {
+            "name": "goals.txt",
+            "state": "clean"
+          },
+          {
+            "name": "plan.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "goals.txt",
+            "state": "clean"
+          },
+          {
+            "name": "plan.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "69d7f8a",
+            "message": "Add Wednesday workout"
+          },
+          "count": 2,
+          "files": [
+            "goals.txt",
+            "plan.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "69d7f8a",
+            "message": "Add Wednesday workout",
+            "parents": [
+              "ab0c831"
+            ],
+            "files": [
+              {
+                "name": "goals.txt",
+                "state": "same"
+              },
+              {
+                "name": "plan.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "ab0c831",
+            "message": "Add workout plan and goals",
+            "parents": [],
+            "files": [
+              {
+                "name": "goals.txt",
+                "state": "added"
+              },
+              {
+                "name": "plan.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "69d7f8a"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "69d7f8a"
+        }
+      }
+    },
+    "chain": {
+      "areas": {
+        "work": [
+          {
+            "name": "goals.txt",
+            "state": "clean"
+          },
+          {
+            "name": "log.txt",
+            "state": "clean"
+          },
+          {
+            "name": "plan.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "goals.txt",
+            "state": "clean"
+          },
+          {
+            "name": "log.txt",
+            "state": "clean"
+          },
+          {
+            "name": "plan.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "cec89e6",
+            "message": "Start training log"
+          },
+          "count": 3,
+          "files": [
+            "goals.txt",
+            "log.txt",
+            "plan.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "cec89e6",
+            "message": "Start training log",
+            "parents": [
+              "69d7f8a"
+            ],
+            "files": [
+              {
+                "name": "goals.txt",
+                "state": "same"
+              },
+              {
+                "name": "log.txt",
+                "state": "added"
+              },
+              {
+                "name": "plan.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "69d7f8a",
+            "message": "Add Wednesday workout",
+            "parents": [
+              "ab0c831"
+            ],
+            "files": [
+              {
+                "name": "goals.txt",
+                "state": "same"
+              },
+              {
+                "name": "plan.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "ab0c831",
+            "message": "Add workout plan and goals",
+            "parents": [],
+            "files": [
+              {
+                "name": "goals.txt",
+                "state": "added"
+              },
+              {
+                "name": "plan.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "cec89e6"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "cec89e6"
+        }
+      }
+    }
+  }
+}

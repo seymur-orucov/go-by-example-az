@@ -19,7 +19,13 @@ import {
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { CONTENT_ROOT } from "../src/lib/lesson.ts";
-import { parseSession, transcript, type AreasFrame, type SessionFile } from "../src/lib/session.ts";
+import {
+  parseSession,
+  transcript,
+  type AreasFrame,
+  type GraphFrame,
+  type SessionFile,
+} from "../src/lib/session.ts";
 
 const SHOWN_HOME = "/home/sam";
 const START = Date.UTC(2026, 0, 15, 9, 0, 0) / 1000;
@@ -109,13 +115,15 @@ function runLesson(dir: string, bash: string): void {
       }
       // Record the repository after the last command of each step.
       const next = commands[i + 1];
-      if (c.step && next?.step !== c.step) frames[c.step] = { areas: snapshot(cwd) };
+      if (c.step && next?.step !== c.step) {
+        frames[c.step] = { areas: snapshot(cwd), graph: graphSnapshot(cwd) };
+      }
     });
   } finally {
     rmSync(root, { recursive: true, force: true });
   }
 
-  for (const s of steps) frames[s.id] ??= { areas: null };
+  for (const s of steps) frames[s.id] ??= { areas: null, graph: null };
   const file: SessionFile = {
     generatedBy: "pnpm content:run",
     git: git(process.cwd(), ["--version"])
@@ -182,6 +190,89 @@ function runLesson(dir: string, bash: string): void {
       };
     }
     return { work, index, repo };
+  }
+
+  /** The commit graph: commits reachable from branches, tags and HEAD, with Git's short hashes. */
+  function graphSnapshot(at: string): GraphFrame | null {
+    if (git(at, ["rev-parse", "--is-inside-work-tree"]).stdout.trim() !== "true") return null;
+    const out = (args: string[]) => git(at, args).stdout;
+    const headTarget = git(at, ["rev-parse", "--verify", "-q", "HEAD"]).stdout.trim() || null;
+    const headBranch = git(at, ["symbolic-ref", "-q", "--short", "HEAD"]).stdout.trim() || null;
+
+    // An annotated tag points to a tag object; %(*objectname) is the commit behind it.
+    const refs = out([
+      "for-each-ref",
+      "--format=%(refname)%00%(objectname)%00%(*objectname)",
+      "refs/heads",
+      "refs/tags",
+    ])
+      .split("\n")
+      .filter((l) => l !== "")
+      .map((l) => {
+        const [name, obj, peeled] = l.split("\0");
+        return { name: name!, target: peeled || obj! };
+      });
+    const tips = [...new Set([...refs.map((r) => r.target), ...(headTarget ? [headTarget] : [])])];
+    if (!tips.length) {
+      return { commits: [], branches: [], tags: [], head: { branch: headBranch, target: null } };
+    }
+
+    // Full hashes inside, Git's own short spelling in the frame.
+    const log = out(["log", "--topo-order", "--format=%H%x00%h%x00%P%x00%s", ...tips, "--"])
+      .split("\n")
+      .filter((l) => l !== "")
+      .map((l) => {
+        const [full, short, parents, message] = l.split("\0");
+        return {
+          full: full!,
+          short: short!,
+          parents: parents ? parents.split(" ") : [],
+          message: message ?? "",
+        };
+      });
+    const short = new Map(log.map((c) => [c.full, c.short]));
+    const abbrev = (h: string) => short.get(h) ?? h.slice(0, 7);
+
+    type FileState = GraphFrame["commits"][number]["files"][number]["state"];
+    const STATE: Record<string, FileState> = { A: "added", M: "modified", D: "deleted" };
+    const commits: GraphFrame["commits"] = log.map((c) => {
+      // What changed against the first parent (everything is new in a root commit).
+      const changed = new Map<string, string>();
+      const diff = c.parents.length
+        ? ["diff-tree", "-r", "-z", "--name-status", c.parents[0]!, c.full]
+        : ["diff-tree", "-r", "-z", "--name-status", "--root", c.full];
+      const parts = out(diff)
+        .split("\0")
+        .filter((p) => p !== "");
+      // With --root the commit's own hash comes first; then status and path pairs.
+      if (parts[0] === c.full) parts.shift();
+      for (let i = 0; i + 1 < parts.length; i += 2) changed.set(parts[i + 1]!, parts[i]!);
+
+      const files: { name: string; state: FileState }[] = out([
+        "ls-tree",
+        "-r",
+        "-z",
+        "--name-only",
+        c.full,
+      ])
+        .split("\0")
+        .filter((n) => n !== "")
+        .map((name) => ({ name, state: STATE[changed.get(name) ?? ""] ?? "same" }));
+      for (const [name, st] of changed) if (st === "D") files.push({ name, state: "deleted" });
+      files.sort((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0));
+      return { hash: c.short, message: c.message, parents: c.parents.map(abbrev), files };
+    });
+
+    const pick = (prefix: string) =>
+      refs
+        .filter((r) => r.name.startsWith(prefix))
+        .map((r) => ({ name: r.name.slice(prefix.length), target: abbrev(r.target) }));
+    return {
+      commits,
+      branches: pick("refs/heads/"),
+      tags: pick("refs/tags/"),
+      head: { branch: headBranch, target: headTarget ? abbrev(headTarget) : null },
+    };
   }
 }
 
