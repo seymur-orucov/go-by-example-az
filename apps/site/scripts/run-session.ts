@@ -82,6 +82,12 @@ function runLesson(dir: string, bash: string): void {
   const paths = spellings(home);
   const clean = (s: string) => {
     let out = s.replace(/\r\n/g, "\n");
+    // Progress messages ("Rebasing (1/2)\rRebasing (2/2)\r…") overwrite each other in a
+    // terminal: keep what the reader would see, the text after the last carriage return.
+    out = out
+      .split("\n")
+      .map((l) => l.slice(l.lastIndexOf("\r") + 1))
+      .join("\n");
     for (const p of paths) out = out.split(p).join(SHOWN_HOME);
     return out;
   };
