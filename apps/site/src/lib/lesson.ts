@@ -221,6 +221,159 @@ const visDiagram = z
     });
   });
 
+/**
+ * A drawn mockup of a web page (ui lessons, hand-written — not a screenshot, so it does not go
+ * stale and follows the site theme): an address bar, optional tabs, a main column and an
+ * optional side column of simple elements. `mark` puts a numbered badge on an element (or tab)
+ * and its text in the legend under the mockup; numbers follow the order of the page (tabs,
+ * main, side).
+ */
+const uiMark = { mark: z.string().min(1).optional() };
+const uiIcon = z.enum(["folder", "file", "open", "closed", "merged", "key", "device", "user"]);
+const uiBase = z.discriminatedUnion("type", [
+  z
+    .object({
+      type: z.literal("heading"),
+      text: z.string().min(1),
+      sub: z.string().optional(),
+      ...uiMark,
+    })
+    .strict(),
+  z.object({ type: z.literal("text"), text: z.string().min(1), ...uiMark }).strict(),
+  z
+    .object({
+      type: z.literal("field"),
+      label: z.string().min(1),
+      value: z.string().optional(),
+      placeholder: z.string().optional(),
+      hint: z.string().optional(),
+      /** A green check (`ok`) or a red message (`error`) under the field. */
+      state: z.enum(["ok", "error"]).optional(),
+      ...uiMark,
+    })
+    .strict(),
+  z
+    .object({
+      type: z.literal("select"),
+      label: z.string().min(1),
+      value: z.string().min(1),
+      ...uiMark,
+    })
+    .strict(),
+  z
+    .object({
+      type: z.literal("button"),
+      label: z.string().min(1),
+      tone: z.enum(["primary", "default", "danger"]).optional(),
+      ...uiMark,
+    })
+    .strict(),
+  z
+    .object({
+      type: z.literal("check"),
+      label: z.string().min(1),
+      sub: z.string().optional(),
+      checked: z.boolean().optional(),
+      radio: z.boolean().optional(),
+      ...uiMark,
+    })
+    .strict(),
+  z
+    .object({
+      type: z.literal("list"),
+      items: z
+        .array(
+          z
+            .object({
+              title: z.string().min(1),
+              sub: z.string().optional(),
+              icon: uiIcon.optional(),
+              /** Short text on the right: a date, a count, a label. */
+              meta: z.string().optional(),
+            })
+            .strict(),
+        )
+        .min(1)
+        .max(8),
+      ...uiMark,
+    })
+    .strict(),
+  /** Monospace box: a clone URL, recovery codes, a token. */
+  z
+    .object({
+      type: z.literal("code"),
+      text: z.string().min(1),
+      label: z.string().optional(),
+      ...uiMark,
+    })
+    .strict(),
+  /** A grey placeholder for a picture: a QR code, an avatar, an image. */
+  z
+    .object({
+      type: z.literal("box"),
+      label: z.string().min(1),
+      shape: z.enum(["square", "round", "wide"]).optional(),
+      ...uiMark,
+    })
+    .strict(),
+  z.object({ type: z.literal("divider") }).strict(),
+]);
+const uiElement = z.union([
+  uiBase,
+  /** Elements side by side (stacked on a phone). */
+  z.object({ type: z.literal("row"), items: z.array(uiBase).min(2).max(4), ...uiMark }).strict(),
+]);
+export type UiElement = z.infer<typeof uiElement>;
+const visUi = z
+  .object({
+    kind: z.literal("ui"),
+    caption: z.string().min(1),
+    /** Shown in the address bar, e.g. `github.com/signup`. */
+    url: z.string().min(1),
+    tabs: z
+      .array(
+        z
+          .object({
+            label: z.string().min(1),
+            count: z.number().int().nonnegative().optional(),
+            active: z.boolean().optional(),
+            ...uiMark,
+          })
+          .strict(),
+      )
+      .max(8)
+      .optional(),
+    main: z.array(uiElement).min(1).max(14),
+    side: z.array(uiElement).max(8).optional(),
+    note: z.string().optional(),
+  })
+  .strict()
+  .superRefine((v, ctx) => {
+    const marks = uiMarks(v);
+    if (marks.length > 6) {
+      ctx.addIssue({ code: "custom", message: `${marks.length} marks; keep it to 6 per mockup` });
+    }
+  });
+
+/** The mark texts of a mockup in page order (tabs, main, side), numbered from 1 by the renderer. */
+export function uiMarks(v: {
+  tabs?: { mark?: string }[];
+  main: UiElement[];
+  side?: UiElement[];
+}): string[] {
+  const out: string[] = [];
+  const walk = (els: UiElement[]) => {
+    for (const el of els) {
+      if ("mark" in el && el.mark) out.push(el.mark);
+      if (el.type === "row") walk(el.items);
+    }
+  };
+  for (const t of v.tabs ?? []) if (t.mark) out.push(t.mark);
+  walk(v.main);
+  walk(v.side ?? []);
+  return out;
+}
+
 export const visSchema = z.discriminatedUnion("kind", [
   visSlice,
   visMap,
@@ -229,6 +382,7 @@ export const visSchema = z.discriminatedUnion("kind", [
   visFlow,
   visCompare,
   visDiagram,
+  visUi,
 ]);
 
 type Fresh<T> = T & { fresh?: boolean };
@@ -678,13 +832,13 @@ const textStepsSchema = z.record(
 /**
  * Loads and validates a ready text lesson (kinds `concept` and `compare`): content/<technology>/
  * lessons/<slug>/ with `lesson.<locale>.md`, `steps.yaml` (optional `vis` per step: `flow`,
- * `compare` or `diagram`), `quiz.<locale>.yaml` and `takeaways.<locale>.yaml` — no code, no
- * session. `require` demands that visual in at least one step (compare and diagram lessons).
+ * `compare`, `diagram` or `ui`), `quiz.<locale>.yaml` and `takeaways.<locale>.yaml` — no code, no
+ * session. `require` demands that visual in at least one step (compare, diagram and ui lessons).
  */
 export function loadTextLesson(
   technology: string,
   slug: string,
-  opts: { locale?: string; require?: "compare" | "diagram" } = {},
+  opts: { locale?: string; require?: "compare" | "diagram" | "ui" } = {},
 ): Lesson {
   const { locale = "az", require } = opts;
   const dir = join(CONTENT_ROOT, technology, "lessons", slug);
@@ -727,11 +881,11 @@ export function loadTextLesson(
     if (!ids.includes(id)) problems.push(`steps.yaml: unknown step "${id}"`);
   }
   const vises = Object.values(stepData).map((d) => d.vis);
-  const TEXT_VIS = ["flow", "compare", "diagram"];
+  const TEXT_VIS = ["flow", "compare", "diagram", "ui"];
   const goOnly = vises.find((v) => v && !TEXT_VIS.includes(v.kind));
   if (goOnly) {
     problems.push(
-      `steps.yaml: "${goOnly.kind}" is a Go visual; text lessons use flow, compare or diagram`,
+      `steps.yaml: "${goOnly.kind}" is a Go visual; text lessons use flow, compare, diagram or ui`,
     );
   }
   if (require && !vises.some((v) => v?.kind === require)) {

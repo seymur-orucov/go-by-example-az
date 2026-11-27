@@ -1,0 +1,107 @@
+---
+// One element of a drawn page mockup (vis kind "ui", see UiMock.astro). A `row` renders its
+// items side by side through Astro.self. `nums` maps a marked element to its badge number.
+import type { UiElement } from "../lib/lesson";
+import { renderInline } from "../lib/markdown";
+
+interface Props {
+  el: UiElement;
+  nums: Map<object, number>;
+}
+
+const { el, nums } = Astro.props;
+const n = nums.get(el);
+const md = (s: string) => renderInline(s);
+
+// 16×16 line icons (drawn for this site), stroked with currentColor; the colour comes from CSS.
+const ICONS: Record<string, string> = {
+  folder: '<path d="M1.5 3.5h4l1.5 1.5h7.5v8h-13z"/>',
+  file: '<path d="M3.5 1.5h6l3 3v10h-9z"/><path d="M9.5 1.5v3h3"/>',
+  open: '<circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="1.2"/>',
+  closed: '<circle cx="8" cy="8" r="6"/><path d="M5.5 8.2l1.8 1.8 3.2-3.6"/>',
+  merged:
+    '<circle cx="4.5" cy="3.5" r="1.5"/><circle cx="4.5" cy="12.5" r="1.5"/><circle cx="11.5" cy="9" r="1.5"/><path d="M4.5 5v6M4.5 6c0 3 2.5 3 5.5 3"/>',
+  key: '<circle cx="5" cy="8" r="3"/><path d="M8 8h6.5M12.5 8v2.5M14.5 8v2"/>',
+  device: '<rect x="4.5" y="1.5" width="7" height="13" rx="1.5"/><path d="M7 12.5h2"/>',
+  user: '<circle cx="8" cy="5.5" r="2.5"/><path d="M3 14c0-3 2.2-4.5 5-4.5s5 1.5 5 4.5"/>',
+};
+---
+
+<div class:list={["ui-el", `ui-${el.type}`, n && "is-marked"]}>
+  {n && (
+    <span class="ui-mark" aria-label={`işarə ${n}`}>
+      {n}
+    </span>
+  )}
+  {el.type === "heading" && (
+    <>
+      <b set:html={md(el.text)} />
+      {el.sub && <small set:html={md(el.sub)} />}
+    </>
+  )}
+  {el.type === "text" && <p set:html={md(el.text)} />}
+  {el.type === "field" && (
+    <>
+      <span class="ui-label" set:html={md(el.label)} />
+      <span class:list={["ui-input", el.state && `s-${el.state}`, !el.value && "is-empty"]}>
+        {el.value ?? el.placeholder ?? ""}
+      </span>
+      {el.hint && <small class:list={[el.state && `s-${el.state}`]} set:html={md(el.hint)} />}
+    </>
+  )}
+  {el.type === "select" && (
+    <>
+      <span class="ui-label" set:html={md(el.label)} />
+      <span class="ui-input ui-dropdown">{el.value}</span>
+    </>
+  )}
+  {el.type === "button" && (
+    <span class:list={["ui-btn", `t-${el.tone ?? "default"}`]} set:html={md(el.label)} />
+  )}
+  {el.type === "check" && (
+    <>
+      <span
+        class:list={["ui-tick", el.radio && "is-radio", el.checked && "is-on"]}
+        aria-hidden="true"
+      />
+      <span class="ui-check-text">
+        <span set:html={md(el.label)} />
+        {el.sub && <small set:html={md(el.sub)} />}
+      </span>
+    </>
+  )}
+  {el.type === "list" && (
+    <ul>
+      {el.items.map((it) => (
+        <li>
+          {it.icon && (
+            <svg
+              class:list={["ui-ico", `i-${it.icon}`]}
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+              set:html={ICONS[it.icon]}
+            />
+          )}
+          <span class="ui-li-text">
+            <span set:html={md(it.title)} />
+            {it.sub && <small set:html={md(it.sub)} />}
+          </span>
+          {it.meta && <small class="ui-meta" set:html={md(it.meta)} />}
+        </li>
+      ))}
+    </ul>
+  )}
+  {el.type === "code" && (
+    <>
+      {el.label && <span class="ui-label" set:html={md(el.label)} />}
+      <code class="ui-code">{el.text}</code>
+    </>
+  )}
+  {el.type === "box" && (
+    <span class:list={["ui-ph", `sh-${el.shape ?? "square"}`]}>
+      <small set:html={md(el.label)} />
+    </span>
+  )}
+  {el.type === "divider" && <hr />}
+  {el.type === "row" && el.items.map((item) => <Astro.self el={item} nums={nums} />)}
+</div>
