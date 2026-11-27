@@ -1,0 +1,831 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir server ayla",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q --bare server/study-notes.git",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git clone -q ~/server/study-notes.git ayla/study-notes",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "warning: You appear to have cloned an empty repository.\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ayla/study-notes",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"# Biology\" \"- cells\" > biology.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add biology.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git -c user.name=\"Ayla Karimova\" -c user.email=\"ayla@example.com\" commit -q -m \"Add biology notes\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ~",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git clone -q ~/server/study-notes.git",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ayla/study-notes",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"# History\" \"- 1914: World War I starts\" > history.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add history.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git -c user.name=\"Ayla Karimova\" -c user.email=\"ayla@example.com\" commit -q -m \"Add history notes\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ~/study-notes",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch -a",
+      "step": "tracking",
+      "hidden": false,
+      "fail": false,
+      "out": "* main\n  remotes/origin/HEAD -> origin/main\n  remotes/origin/main\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline --graph --all --decorate",
+      "step": "tracking",
+      "hidden": false,
+      "fail": false,
+      "out": "* e3b3f1c (HEAD -> main, origin/main, origin/HEAD) Add biology notes\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git status",
+      "step": "tracking",
+      "hidden": false,
+      "fail": false,
+      "out": "On branch main\nYour branch is up to date with 'origin/main'.\n\nnothing to commit, working tree clean\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git fetch",
+      "step": "fetch",
+      "hidden": false,
+      "fail": false,
+      "out": "From /home/sam/server/study-notes\n   e3b3f1c..6818c69  main       -> origin/main\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git status",
+      "step": "fetch",
+      "hidden": false,
+      "fail": false,
+      "out": "On branch main\nYour branch is behind 'origin/main' by 1 commit, and can be fast-forwarded.\n  (use \"git pull\" to update your local branch)\n\nnothing to commit, working tree clean\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline --graph --all --decorate",
+      "step": "fetch",
+      "hidden": false,
+      "fail": false,
+      "out": "* 6818c69 (origin/main, origin/HEAD) Add history notes\n* e3b3f1c (HEAD -> main) Add biology notes\n",
+      "exit": 0
+    },
+    {
+      "cmd": "ls",
+      "step": "fetch",
+      "hidden": false,
+      "fail": false,
+      "out": "biology.md\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git merge origin/main",
+      "step": "merge",
+      "hidden": false,
+      "fail": false,
+      "out": "Updating e3b3f1c..6818c69\nFast-forward\n history.md | 2 ++\n 1 file changed, 2 insertions(+)\n create mode 100644 history.md\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git status",
+      "step": "merge",
+      "hidden": false,
+      "fail": false,
+      "out": "On branch main\nYour branch is up to date with 'origin/main'.\n\nnothing to commit, working tree clean\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ~/ayla/study-notes",
+      "step": "pull",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"- 1945: World War II ends\" >> history.md",
+      "step": "pull",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git -c user.name=\"Ayla Karimova\" -c user.email=\"ayla@example.com\" commit -q -am \"Add 1945 to history\"",
+      "step": "pull",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push -q",
+      "step": "pull",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ~/study-notes",
+      "step": "pull",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git pull",
+      "step": "pull",
+      "hidden": false,
+      "fail": false,
+      "out": "From /home/sam/server/study-notes\n   6818c69..65f8fa5  main       -> origin/main\nUpdating 6818c69..65f8fa5\nFast-forward\n history.md | 1 +\n 1 file changed, 1 insertion(+)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline --graph --all --decorate",
+      "step": "pull",
+      "hidden": false,
+      "fail": false,
+      "out": "* 65f8fa5 (HEAD -> main, origin/main, origin/HEAD) Add 1945 to history\n* 6818c69 Add history notes\n* e3b3f1c Add biology notes\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ~/ayla/study-notes",
+      "step": "diverged",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"- mitosis\" >> biology.md",
+      "step": "diverged",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git -c user.name=\"Ayla Karimova\" -c user.email=\"ayla@example.com\" commit -q -am \"Add mitosis\"",
+      "step": "diverged",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push -q",
+      "step": "diverged",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ~/study-notes",
+      "step": "diverged",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"- 1991: USSR dissolves\" >> history.md",
+      "step": "diverged",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add 1991 to history\"",
+      "step": "diverged",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git pull",
+      "step": "diverged",
+      "hidden": false,
+      "fail": true,
+      "out": "From /home/sam/server/study-notes\n   65f8fa5..8b3f841  main       -> origin/main\nhint: You have divergent branches and need to specify how to reconcile them.\nhint: You can do so by running one of the following commands sometime before\nhint: your next pull:\nhint:\nhint:   git config pull.rebase false  # merge\nhint:   git config pull.rebase true   # rebase\nhint:   git config pull.ff only       # fast-forward only\nhint:\nhint: You can replace \"git config\" with \"git config --global\" to set a default\nhint: preference for all repositories. You can also pass --rebase, --no-rebase,\nhint: or --ff-only on the command line to override the configured default per\nhint: invocation.\nfatal: Need to specify how to reconcile divergent branches.\n",
+      "exit": 128
+    },
+    {
+      "cmd": "git pull --no-rebase --no-edit",
+      "step": "diverged",
+      "hidden": false,
+      "fail": false,
+      "out": "Merge made by the 'ort' strategy.\n biology.md | 1 +\n 1 file changed, 1 insertion(+)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q --amend -m \"Merge branch 'main' of /home/sam/server/study-notes\"",
+      "step": "diverged",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline --graph --all --decorate",
+      "step": "diverged",
+      "hidden": false,
+      "fail": false,
+      "out": "*   2445737 (HEAD -> main) Merge branch 'main' of /home/sam/server/study-notes\n|\\  \n| * 8b3f841 (origin/main, origin/HEAD) Add mitosis\n* | 2751440 Add 1991 to history\n|/  \n* 65f8fa5 Add 1945 to history\n* 6818c69 Add history notes\n* e3b3f1c Add biology notes\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git status",
+      "step": "diverged",
+      "hidden": false,
+      "fail": false,
+      "out": "On branch main\nYour branch is ahead of 'origin/main' by 2 commits.\n  (use \"git push\" to publish your local commits)\n\nnothing to commit, working tree clean\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "tracking": {
+      "areas": {
+        "work": [
+          {
+            "name": "biology.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "biology.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "e3b3f1c",
+            "message": "Add biology notes"
+          },
+          "count": 1,
+          "files": [
+            "biology.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "e3b3f1c",
+            "message": "Add biology notes",
+            "parents": [],
+            "files": [
+              {
+                "name": "biology.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "e3b3f1c"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "e3b3f1c"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "e3b3f1c"
+        }
+      }
+    },
+    "fetch": {
+      "areas": {
+        "work": [
+          {
+            "name": "biology.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "biology.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "e3b3f1c",
+            "message": "Add biology notes"
+          },
+          "count": 1,
+          "files": [
+            "biology.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "6818c69",
+            "message": "Add history notes",
+            "parents": [
+              "e3b3f1c"
+            ],
+            "files": [
+              {
+                "name": "biology.md",
+                "state": "same"
+              },
+              {
+                "name": "history.md",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "e3b3f1c",
+            "message": "Add biology notes",
+            "parents": [],
+            "files": [
+              {
+                "name": "biology.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "e3b3f1c"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "6818c69"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "e3b3f1c"
+        }
+      }
+    },
+    "merge": {
+      "areas": {
+        "work": [
+          {
+            "name": "biology.md",
+            "state": "clean"
+          },
+          {
+            "name": "history.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "biology.md",
+            "state": "clean"
+          },
+          {
+            "name": "history.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "6818c69",
+            "message": "Add history notes"
+          },
+          "count": 2,
+          "files": [
+            "biology.md",
+            "history.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "6818c69",
+            "message": "Add history notes",
+            "parents": [
+              "e3b3f1c"
+            ],
+            "files": [
+              {
+                "name": "biology.md",
+                "state": "same"
+              },
+              {
+                "name": "history.md",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "e3b3f1c",
+            "message": "Add biology notes",
+            "parents": [],
+            "files": [
+              {
+                "name": "biology.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "6818c69"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "6818c69"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "6818c69"
+        }
+      }
+    },
+    "pull": {
+      "areas": {
+        "work": [
+          {
+            "name": "biology.md",
+            "state": "clean"
+          },
+          {
+            "name": "history.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "biology.md",
+            "state": "clean"
+          },
+          {
+            "name": "history.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "65f8fa5",
+            "message": "Add 1945 to history"
+          },
+          "count": 3,
+          "files": [
+            "biology.md",
+            "history.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "65f8fa5",
+            "message": "Add 1945 to history",
+            "parents": [
+              "6818c69"
+            ],
+            "files": [
+              {
+                "name": "biology.md",
+                "state": "same"
+              },
+              {
+                "name": "history.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "6818c69",
+            "message": "Add history notes",
+            "parents": [
+              "e3b3f1c"
+            ],
+            "files": [
+              {
+                "name": "biology.md",
+                "state": "same"
+              },
+              {
+                "name": "history.md",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "e3b3f1c",
+            "message": "Add biology notes",
+            "parents": [],
+            "files": [
+              {
+                "name": "biology.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "65f8fa5"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "65f8fa5"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "65f8fa5"
+        }
+      }
+    },
+    "diverged": {
+      "areas": {
+        "work": [
+          {
+            "name": "biology.md",
+            "state": "clean"
+          },
+          {
+            "name": "history.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "biology.md",
+            "state": "clean"
+          },
+          {
+            "name": "history.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "2445737",
+            "message": "Merge branch 'main' of /home/sam/server/study-notes"
+          },
+          "count": 6,
+          "files": [
+            "biology.md",
+            "history.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "2445737",
+            "message": "Merge branch 'main' of /home/sam/server/study-notes",
+            "parents": [
+              "2751440",
+              "8b3f841"
+            ],
+            "files": [
+              {
+                "name": "biology.md",
+                "state": "modified"
+              },
+              {
+                "name": "history.md",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "8b3f841",
+            "message": "Add mitosis",
+            "parents": [
+              "65f8fa5"
+            ],
+            "files": [
+              {
+                "name": "biology.md",
+                "state": "modified"
+              },
+              {
+                "name": "history.md",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "2751440",
+            "message": "Add 1991 to history",
+            "parents": [
+              "65f8fa5"
+            ],
+            "files": [
+              {
+                "name": "biology.md",
+                "state": "same"
+              },
+              {
+                "name": "history.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "65f8fa5",
+            "message": "Add 1945 to history",
+            "parents": [
+              "6818c69"
+            ],
+            "files": [
+              {
+                "name": "biology.md",
+                "state": "same"
+              },
+              {
+                "name": "history.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "6818c69",
+            "message": "Add history notes",
+            "parents": [
+              "e3b3f1c"
+            ],
+            "files": [
+              {
+                "name": "biology.md",
+                "state": "same"
+              },
+              {
+                "name": "history.md",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "e3b3f1c",
+            "message": "Add biology notes",
+            "parents": [],
+            "files": [
+              {
+                "name": "biology.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "2445737"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "8b3f841"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "2445737"
+        }
+      }
+    }
+  }
+}

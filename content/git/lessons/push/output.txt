@@ -1,0 +1,64 @@
+$ echo '["What is 2 + 2?", "What is 5 x 3?"]' > questions.json
+$ git commit -q -am "Add a multiplication question"
+$ git push origin main
+To /home/sam/server/quiz-bank.git
+   af2e336..5982987  main -> main
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+$ git switch -c hard-questions
+Switched to a new branch 'hard-questions'
+$ echo '["What is 17 x 23?"]' > hard.json
+$ git add hard.json
+$ git commit -q -m "Add hard questions"
+$ git push
+fatal: The current branch hard-questions has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin hard-questions
+
+To have this happen automatically for branches without a tracking
+upstream, see 'push.autoSetupRemote' in 'git help config'.
+
+$ git push -u origin hard-questions
+To /home/sam/server/quiz-bank.git
+ * [new branch]      hard-questions -> hard-questions
+branch 'hard-questions' set up to track 'origin/hard-questions'.
+$ git branch -vv
+* hard-questions 095a2cb [origin/hard-questions] Add hard questions
+  main           5982987 [origin/main] Add a multiplication question
+$ git status
+On branch hard-questions
+Your branch is up to date with 'origin/hard-questions'.
+
+nothing to commit, working tree clean
+$ git switch main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+$ echo "Questions live in questions.json." >> README.md
+$ git commit -q -am "Describe the question format"
+$ git push
+To /home/sam/server/quiz-bank.git
+ ! [rejected]        main -> main (fetch first)
+error: failed to push some refs to '/home/sam/server/quiz-bank.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+$ git pull --no-rebase --no-edit
+From /home/sam/server/quiz-bank
+   5982987..e4b2c88  main       -> origin/main
+Merge made by the 'ort' strategy.
+ questions.json | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+$ git push
+To /home/sam/server/quiz-bank.git
+   e4b2c88..9e2cf5e  main -> main
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean

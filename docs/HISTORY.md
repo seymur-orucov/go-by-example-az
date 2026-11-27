@@ -667,3 +667,15 @@ Done (branch `feat/git-merge-lessons`):
 - `merge-conflicts` (`terminal`, club meeting agenda): `CONFLICT`, `Unmerged paths`, the markers, `--abort`, resolving with `git add` + `git commit`, `mergetool` mentioned.
 - The reviewer fixed the `pull.ff only` claim for current Git (a diverged pull already refuses), repeated `--no-edit` explanations, two confusing sentences in `fast-forward-merge`, wording and back-references.
 - Found on the way: the areas recorder showed a conflicted file as clean, and the graph did not show `origin/*`; both fixed in a separate site PR.
+
+### 76. Git module 6 "Remote-lar" (without the diagram pilot)
+Same process. The first lesson, `remotes-and-clone`, is the pilot of the new `diagram` kind (branch `feat/diagram-kind`, awaiting the user's approval), so it is not part of this PR.
+
+Done (branch `feat/git-remotes-lessons`):
+- `cloning-repositories` (`terminal`, an open-source icon pack): `git clone` from a local bare repository (explained once here), the full history, `origin`, `git branch -a` and remote-tracking branches, cloning into another folder, `--depth 1` over `file://`.
+- `managing-remotes` (`terminal`, bike repair notes): `git remote add`, `-v`, `.git/config` via `git config --get-regexp`, `rename`, `set-url`, `remove`.
+- `fetch-and-pull` (`state`, exam notes with Ayla's clone): `origin/main` as the last known server position, `git fetch` moving only `origin/main`, `git merge origin/main`, `git pull`, a diverged pull refusing and `--no-rebase`.
+- `fetch-without-merge` (`terminal`, charity run page): reading `fetch` output, `log HEAD..origin/main`, `diff --stat`, `git branch -r`, `fetch --prune`, `fetch.prune`.
+- `push` (`terminal`, quiz question bank): `git push origin main`, no upstream, `-u`, `git branch -vv`, a rejected push (`fetch first`) and pull-then-push.
+- The recorder now shows `origin/*` in the graph (separate site PR), so the reviewer re-recorded all five, added graphs where the remote-tracking branch is the point, and rewrote texts that said the visual shows only local branches. It also removed repeated explanations (bare repository, `(fetch)`/`(push)`, `--no-edit`) in favour of back-references and unified spelling ("serverə", "Sam-ın").
+- A `git pull` merge commit puts the sandbox's temp path into its message; the sessions amend it in a hidden command so the output stays deterministic.

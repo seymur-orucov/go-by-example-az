@@ -1,0 +1,1000 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir ayla",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ayla",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q icons",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd icons",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"# Icons\" \"Small SVG icons for web pages.\" > README.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"MIT License\" > LICENSE",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add .",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git -c user.name=\"Ayla Karimova\" -c user.email=\"ayla@example.com\" commit -q -m \"Start the icon pack\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "mkdir svg",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo '<svg viewBox=\"0 0 24 24\"><path d=\"M3 12 12 3l9 9\"/></svg>' > svg/home.svg",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add svg",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git -c user.name=\"Ayla Karimova\" -c user.email=\"ayla@example.com\" commit -q -m \"Add home icon\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo '<svg viewBox=\"0 0 24 24\"><circle cx=\"11\" cy=\"11\" r=\"7\"/></svg>' > svg/search.svg",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add svg",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git -c user.name=\"Ayla Karimova\" -c user.email=\"ayla@example.com\" commit -q -m \"Add search icon\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q -c outline",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo '<svg viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M3 12 12 3l9 9\"/></svg>' > svg/home-outline.svg",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add svg",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git -c user.name=\"Ayla Karimova\" -c user.email=\"ayla@example.com\" commit -q -m \"Add outline home icon\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q main",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"\" \"Copy an SVG file into your project.\" >> README.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git -c user.name=\"Ayla Karimova\" -c user.email=\"ayla@example.com\" commit -q -am \"Explain how to use the icons\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git clone -q --bare ~/ayla/icons ~/server/icons.git",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ~",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "mkdir projects",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd projects",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git clone ~/server/icons.git",
+      "step": "clone",
+      "hidden": false,
+      "fail": false,
+      "out": "Cloning into 'icons'...\ndone.\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cd icons",
+      "step": "clone",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "ls",
+      "step": "clone",
+      "hidden": false,
+      "fail": false,
+      "out": "LICENSE\nREADME.md\nsvg\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "history",
+      "hidden": false,
+      "fail": false,
+      "out": "2a5538f Explain how to use the icons\n30ff833 Add search icon\n2f4035b Add home icon\nfd899a9 Start the icon pack\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git remote -v",
+      "step": "history",
+      "hidden": false,
+      "fail": false,
+      "out": "origin\t/home/sam/server/icons.git (fetch)\norigin\t/home/sam/server/icons.git (push)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch -a",
+      "step": "branches",
+      "hidden": false,
+      "fail": false,
+      "out": "* main\n  remotes/origin/HEAD -> origin/main\n  remotes/origin/main\n  remotes/origin/outline\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ..",
+      "step": "folder-name",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git clone ~/server/icons.git my-icons",
+      "step": "folder-name",
+      "hidden": false,
+      "fail": false,
+      "out": "Cloning into 'my-icons'...\ndone.\n",
+      "exit": 0
+    },
+    {
+      "cmd": "ls",
+      "step": "folder-name",
+      "hidden": false,
+      "fail": false,
+      "out": "icons\nmy-icons\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git clone --depth 1 file://$HOME/server/icons.git icons-ci",
+      "step": "shallow",
+      "hidden": false,
+      "fail": false,
+      "out": "Cloning into 'icons-ci'...\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cd icons-ci",
+      "step": "shallow",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "shallow",
+      "hidden": false,
+      "fail": false,
+      "out": "2a5538f Explain how to use the icons\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch -a",
+      "step": "shallow",
+      "hidden": false,
+      "fail": false,
+      "out": "* main\n  remotes/origin/HEAD -> origin/main\n  remotes/origin/main\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "clone": {
+      "areas": {
+        "work": [
+          {
+            "name": "LICENSE",
+            "state": "clean"
+          },
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "svg/home.svg",
+            "state": "clean"
+          },
+          {
+            "name": "svg/search.svg",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "LICENSE",
+            "state": "clean"
+          },
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "svg/home.svg",
+            "state": "clean"
+          },
+          {
+            "name": "svg/search.svg",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "2a5538f",
+            "message": "Explain how to use the icons"
+          },
+          "count": 4,
+          "files": [
+            "LICENSE",
+            "README.md",
+            "svg/home.svg",
+            "svg/search.svg"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "2a5538f",
+            "message": "Explain how to use the icons",
+            "parents": [
+              "30ff833"
+            ],
+            "files": [
+              {
+                "name": "LICENSE",
+                "state": "same"
+              },
+              {
+                "name": "README.md",
+                "state": "modified"
+              },
+              {
+                "name": "svg/home.svg",
+                "state": "same"
+              },
+              {
+                "name": "svg/search.svg",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "6d7b0ea",
+            "message": "Add outline home icon",
+            "parents": [
+              "30ff833"
+            ],
+            "files": [
+              {
+                "name": "LICENSE",
+                "state": "same"
+              },
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "svg/home-outline.svg",
+                "state": "added"
+              },
+              {
+                "name": "svg/home.svg",
+                "state": "same"
+              },
+              {
+                "name": "svg/search.svg",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "30ff833",
+            "message": "Add search icon",
+            "parents": [
+              "2f4035b"
+            ],
+            "files": [
+              {
+                "name": "LICENSE",
+                "state": "same"
+              },
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "svg/home.svg",
+                "state": "same"
+              },
+              {
+                "name": "svg/search.svg",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "2f4035b",
+            "message": "Add home icon",
+            "parents": [
+              "fd899a9"
+            ],
+            "files": [
+              {
+                "name": "LICENSE",
+                "state": "same"
+              },
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "svg/home.svg",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "fd899a9",
+            "message": "Start the icon pack",
+            "parents": [],
+            "files": [
+              {
+                "name": "LICENSE",
+                "state": "added"
+              },
+              {
+                "name": "README.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "2a5538f"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "2a5538f"
+          },
+          {
+            "name": "origin/outline",
+            "target": "6d7b0ea"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "2a5538f"
+        }
+      }
+    },
+    "history": {
+      "areas": {
+        "work": [
+          {
+            "name": "LICENSE",
+            "state": "clean"
+          },
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "svg/home.svg",
+            "state": "clean"
+          },
+          {
+            "name": "svg/search.svg",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "LICENSE",
+            "state": "clean"
+          },
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "svg/home.svg",
+            "state": "clean"
+          },
+          {
+            "name": "svg/search.svg",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "2a5538f",
+            "message": "Explain how to use the icons"
+          },
+          "count": 4,
+          "files": [
+            "LICENSE",
+            "README.md",
+            "svg/home.svg",
+            "svg/search.svg"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "2a5538f",
+            "message": "Explain how to use the icons",
+            "parents": [
+              "30ff833"
+            ],
+            "files": [
+              {
+                "name": "LICENSE",
+                "state": "same"
+              },
+              {
+                "name": "README.md",
+                "state": "modified"
+              },
+              {
+                "name": "svg/home.svg",
+                "state": "same"
+              },
+              {
+                "name": "svg/search.svg",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "6d7b0ea",
+            "message": "Add outline home icon",
+            "parents": [
+              "30ff833"
+            ],
+            "files": [
+              {
+                "name": "LICENSE",
+                "state": "same"
+              },
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "svg/home-outline.svg",
+                "state": "added"
+              },
+              {
+                "name": "svg/home.svg",
+                "state": "same"
+              },
+              {
+                "name": "svg/search.svg",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "30ff833",
+            "message": "Add search icon",
+            "parents": [
+              "2f4035b"
+            ],
+            "files": [
+              {
+                "name": "LICENSE",
+                "state": "same"
+              },
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "svg/home.svg",
+                "state": "same"
+              },
+              {
+                "name": "svg/search.svg",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "2f4035b",
+            "message": "Add home icon",
+            "parents": [
+              "fd899a9"
+            ],
+            "files": [
+              {
+                "name": "LICENSE",
+                "state": "same"
+              },
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "svg/home.svg",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "fd899a9",
+            "message": "Start the icon pack",
+            "parents": [],
+            "files": [
+              {
+                "name": "LICENSE",
+                "state": "added"
+              },
+              {
+                "name": "README.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "2a5538f"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "2a5538f"
+          },
+          {
+            "name": "origin/outline",
+            "target": "6d7b0ea"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "2a5538f"
+        }
+      }
+    },
+    "branches": {
+      "areas": {
+        "work": [
+          {
+            "name": "LICENSE",
+            "state": "clean"
+          },
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "svg/home.svg",
+            "state": "clean"
+          },
+          {
+            "name": "svg/search.svg",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "LICENSE",
+            "state": "clean"
+          },
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "svg/home.svg",
+            "state": "clean"
+          },
+          {
+            "name": "svg/search.svg",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "2a5538f",
+            "message": "Explain how to use the icons"
+          },
+          "count": 4,
+          "files": [
+            "LICENSE",
+            "README.md",
+            "svg/home.svg",
+            "svg/search.svg"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "2a5538f",
+            "message": "Explain how to use the icons",
+            "parents": [
+              "30ff833"
+            ],
+            "files": [
+              {
+                "name": "LICENSE",
+                "state": "same"
+              },
+              {
+                "name": "README.md",
+                "state": "modified"
+              },
+              {
+                "name": "svg/home.svg",
+                "state": "same"
+              },
+              {
+                "name": "svg/search.svg",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "6d7b0ea",
+            "message": "Add outline home icon",
+            "parents": [
+              "30ff833"
+            ],
+            "files": [
+              {
+                "name": "LICENSE",
+                "state": "same"
+              },
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "svg/home-outline.svg",
+                "state": "added"
+              },
+              {
+                "name": "svg/home.svg",
+                "state": "same"
+              },
+              {
+                "name": "svg/search.svg",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "30ff833",
+            "message": "Add search icon",
+            "parents": [
+              "2f4035b"
+            ],
+            "files": [
+              {
+                "name": "LICENSE",
+                "state": "same"
+              },
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "svg/home.svg",
+                "state": "same"
+              },
+              {
+                "name": "svg/search.svg",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "2f4035b",
+            "message": "Add home icon",
+            "parents": [
+              "fd899a9"
+            ],
+            "files": [
+              {
+                "name": "LICENSE",
+                "state": "same"
+              },
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "svg/home.svg",
+                "state": "added"
+              }
+            ]
+          },
+          {
+            "hash": "fd899a9",
+            "message": "Start the icon pack",
+            "parents": [],
+            "files": [
+              {
+                "name": "LICENSE",
+                "state": "added"
+              },
+              {
+                "name": "README.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "2a5538f"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "2a5538f"
+          },
+          {
+            "name": "origin/outline",
+            "target": "6d7b0ea"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "2a5538f"
+        }
+      }
+    },
+    "folder-name": {
+      "areas": null,
+      "graph": null
+    },
+    "shallow": {
+      "areas": {
+        "work": [
+          {
+            "name": "LICENSE",
+            "state": "clean"
+          },
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "svg/home.svg",
+            "state": "clean"
+          },
+          {
+            "name": "svg/search.svg",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "LICENSE",
+            "state": "clean"
+          },
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "svg/home.svg",
+            "state": "clean"
+          },
+          {
+            "name": "svg/search.svg",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "2a5538f",
+            "message": "Explain how to use the icons"
+          },
+          "count": 1,
+          "files": [
+            "LICENSE",
+            "README.md",
+            "svg/home.svg",
+            "svg/search.svg"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "2a5538f",
+            "message": "Explain how to use the icons",
+            "parents": [],
+            "files": [
+              {
+                "name": "LICENSE",
+                "state": "added"
+              },
+              {
+                "name": "README.md",
+                "state": "added"
+              },
+              {
+                "name": "svg/home.svg",
+                "state": "added"
+              },
+              {
+                "name": "svg/search.svg",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "2a5538f"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "2a5538f"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "2a5538f"
+        }
+      }
+    }
+  }
+}

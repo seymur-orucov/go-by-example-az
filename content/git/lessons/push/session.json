@@ -1,0 +1,959 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "git init -q --bare ~/server/quiz-bank.git",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "mkdir seed",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd seed",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo '[\"What is 2 + 2?\"]' > questions.json",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"# Quiz bank\" > README.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add .",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Start the question bank\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push -q ~/server/quiz-bank.git main",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ~",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "rm -rf seed",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git clone -q ~/server/quiz-bank.git",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd quiz-bank",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo '[\"What is 2 + 2?\", \"What is 5 x 3?\"]' > questions.json",
+      "step": "push-main",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add a multiplication question\"",
+      "step": "push-main",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push origin main",
+      "step": "push-main",
+      "hidden": false,
+      "fail": false,
+      "out": "To /home/sam/server/quiz-bank.git\n   af2e336..5982987  main -> main\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git status",
+      "step": "push-main",
+      "hidden": false,
+      "fail": false,
+      "out": "On branch main\nYour branch is up to date with 'origin/main'.\n\nnothing to commit, working tree clean\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -c hard-questions",
+      "step": "no-upstream",
+      "hidden": false,
+      "fail": false,
+      "out": "Switched to a new branch 'hard-questions'\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo '[\"What is 17 x 23?\"]' > hard.json",
+      "step": "no-upstream",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add hard.json",
+      "step": "no-upstream",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add hard questions\"",
+      "step": "no-upstream",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push",
+      "step": "no-upstream",
+      "hidden": false,
+      "fail": true,
+      "out": "fatal: The current branch hard-questions has no upstream branch.\nTo push the current branch and set the remote as upstream, use\n\n    git push --set-upstream origin hard-questions\n\nTo have this happen automatically for branches without a tracking\nupstream, see 'push.autoSetupRemote' in 'git help config'.\n\n",
+      "exit": 128
+    },
+    {
+      "cmd": "git push -u origin hard-questions",
+      "step": "set-upstream",
+      "hidden": false,
+      "fail": false,
+      "out": "To /home/sam/server/quiz-bank.git\n * [new branch]      hard-questions -> hard-questions\nbranch 'hard-questions' set up to track 'origin/hard-questions'.\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch -vv",
+      "step": "set-upstream",
+      "hidden": false,
+      "fail": false,
+      "out": "* hard-questions 095a2cb [origin/hard-questions] Add hard questions\n  main           5982987 [origin/main] Add a multiplication question\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git status",
+      "step": "set-upstream",
+      "hidden": false,
+      "fail": false,
+      "out": "On branch hard-questions\nYour branch is up to date with 'origin/hard-questions'.\n\nnothing to commit, working tree clean\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git clone -q ~/server/quiz-bank.git ~/ayla/quiz-bank",
+      "step": "rejected",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ~/ayla/quiz-bank",
+      "step": "rejected",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo '[\"What is 2 + 2?\", \"What is 5 x 3?\", \"What is 9 - 4?\"]' > questions.json",
+      "step": "rejected",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git -c user.name=\"Ayla Karimova\" -c user.email=\"ayla@example.com\" commit -q -am \"Add a subtraction question\"",
+      "step": "rejected",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push -q origin main",
+      "step": "rejected",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd ~/quiz-bank",
+      "step": "rejected",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch main",
+      "step": "rejected",
+      "hidden": false,
+      "fail": false,
+      "out": "Switched to branch 'main'\nYour branch is up to date with 'origin/main'.\n",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Questions live in questions.json.\" >> README.md",
+      "step": "rejected",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Describe the question format\"",
+      "step": "rejected",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push",
+      "step": "rejected",
+      "hidden": false,
+      "fail": true,
+      "out": "To /home/sam/server/quiz-bank.git\n ! [rejected]        main -> main (fetch first)\nerror: failed to push some refs to '/home/sam/server/quiz-bank.git'\nhint: Updates were rejected because the remote contains work that you do not\nhint: have locally. This is usually caused by another repository pushing to\nhint: the same ref. If you want to integrate the remote changes, use\nhint: 'git pull' before pushing again.\nhint: See the 'Note about fast-forwards' in 'git push --help' for details.\n",
+      "exit": 1
+    },
+    {
+      "cmd": "git pull --no-rebase --no-edit",
+      "step": "pull-then-push",
+      "hidden": false,
+      "fail": false,
+      "out": "From /home/sam/server/quiz-bank\n   5982987..e4b2c88  main       -> origin/main\nMerge made by the 'ort' strategy.\n questions.json | 2 +-\n 1 file changed, 1 insertion(+), 1 deletion(-)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q --amend -m \"Merge branch 'main' of /home/sam/server/quiz-bank\"",
+      "step": "pull-then-push",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git push",
+      "step": "pull-then-push",
+      "hidden": false,
+      "fail": false,
+      "out": "To /home/sam/server/quiz-bank.git\n   e4b2c88..9e2cf5e  main -> main\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git status",
+      "step": "pull-then-push",
+      "hidden": false,
+      "fail": false,
+      "out": "On branch main\nYour branch is up to date with 'origin/main'.\n\nnothing to commit, working tree clean\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "push-main": {
+      "areas": {
+        "work": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "questions.json",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "questions.json",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "5982987",
+            "message": "Add a multiplication question"
+          },
+          "count": 2,
+          "files": [
+            "README.md",
+            "questions.json"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "5982987",
+            "message": "Add a multiplication question",
+            "parents": [
+              "af2e336"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "questions.json",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "af2e336",
+            "message": "Start the question bank",
+            "parents": [],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "added"
+              },
+              {
+                "name": "questions.json",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "5982987"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "5982987"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "5982987"
+        }
+      }
+    },
+    "no-upstream": {
+      "areas": {
+        "work": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "hard.json",
+            "state": "clean"
+          },
+          {
+            "name": "questions.json",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "hard.json",
+            "state": "clean"
+          },
+          {
+            "name": "questions.json",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "095a2cb",
+            "message": "Add hard questions"
+          },
+          "count": 3,
+          "files": [
+            "README.md",
+            "hard.json",
+            "questions.json"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "095a2cb",
+            "message": "Add hard questions",
+            "parents": [
+              "5982987"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "hard.json",
+                "state": "added"
+              },
+              {
+                "name": "questions.json",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "5982987",
+            "message": "Add a multiplication question",
+            "parents": [
+              "af2e336"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "questions.json",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "af2e336",
+            "message": "Start the question bank",
+            "parents": [],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "added"
+              },
+              {
+                "name": "questions.json",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "hard-questions",
+            "target": "095a2cb"
+          },
+          {
+            "name": "main",
+            "target": "5982987"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/main",
+            "target": "5982987"
+          }
+        ],
+        "head": {
+          "branch": "hard-questions",
+          "target": "095a2cb"
+        }
+      }
+    },
+    "set-upstream": {
+      "areas": {
+        "work": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "hard.json",
+            "state": "clean"
+          },
+          {
+            "name": "questions.json",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "hard.json",
+            "state": "clean"
+          },
+          {
+            "name": "questions.json",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "095a2cb",
+            "message": "Add hard questions"
+          },
+          "count": 3,
+          "files": [
+            "README.md",
+            "hard.json",
+            "questions.json"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "095a2cb",
+            "message": "Add hard questions",
+            "parents": [
+              "5982987"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "hard.json",
+                "state": "added"
+              },
+              {
+                "name": "questions.json",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "5982987",
+            "message": "Add a multiplication question",
+            "parents": [
+              "af2e336"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "questions.json",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "af2e336",
+            "message": "Start the question bank",
+            "parents": [],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "added"
+              },
+              {
+                "name": "questions.json",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "hard-questions",
+            "target": "095a2cb"
+          },
+          {
+            "name": "main",
+            "target": "5982987"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/hard-questions",
+            "target": "095a2cb"
+          },
+          {
+            "name": "origin/main",
+            "target": "5982987"
+          }
+        ],
+        "head": {
+          "branch": "hard-questions",
+          "target": "095a2cb"
+        }
+      }
+    },
+    "rejected": {
+      "areas": {
+        "work": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "questions.json",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "questions.json",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "1019406",
+            "message": "Describe the question format"
+          },
+          "count": 3,
+          "files": [
+            "README.md",
+            "questions.json"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "1019406",
+            "message": "Describe the question format",
+            "parents": [
+              "5982987"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "modified"
+              },
+              {
+                "name": "questions.json",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "095a2cb",
+            "message": "Add hard questions",
+            "parents": [
+              "5982987"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "hard.json",
+                "state": "added"
+              },
+              {
+                "name": "questions.json",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "5982987",
+            "message": "Add a multiplication question",
+            "parents": [
+              "af2e336"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "questions.json",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "af2e336",
+            "message": "Start the question bank",
+            "parents": [],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "added"
+              },
+              {
+                "name": "questions.json",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "hard-questions",
+            "target": "095a2cb"
+          },
+          {
+            "name": "main",
+            "target": "1019406"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/hard-questions",
+            "target": "095a2cb"
+          },
+          {
+            "name": "origin/main",
+            "target": "5982987"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "1019406"
+        }
+      }
+    },
+    "pull-then-push": {
+      "areas": {
+        "work": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "questions.json",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "README.md",
+            "state": "clean"
+          },
+          {
+            "name": "questions.json",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "9e2cf5e",
+            "message": "Merge branch 'main' of /home/sam/server/quiz-bank"
+          },
+          "count": 5,
+          "files": [
+            "README.md",
+            "questions.json"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "9e2cf5e",
+            "message": "Merge branch 'main' of /home/sam/server/quiz-bank",
+            "parents": [
+              "1019406",
+              "e4b2c88"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "questions.json",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "e4b2c88",
+            "message": "Add a subtraction question",
+            "parents": [
+              "5982987"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "questions.json",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "1019406",
+            "message": "Describe the question format",
+            "parents": [
+              "5982987"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "modified"
+              },
+              {
+                "name": "questions.json",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "095a2cb",
+            "message": "Add hard questions",
+            "parents": [
+              "5982987"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "hard.json",
+                "state": "added"
+              },
+              {
+                "name": "questions.json",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "5982987",
+            "message": "Add a multiplication question",
+            "parents": [
+              "af2e336"
+            ],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "same"
+              },
+              {
+                "name": "questions.json",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "af2e336",
+            "message": "Start the question bank",
+            "parents": [],
+            "files": [
+              {
+                "name": "README.md",
+                "state": "added"
+              },
+              {
+                "name": "questions.json",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "hard-questions",
+            "target": "095a2cb"
+          },
+          {
+            "name": "main",
+            "target": "9e2cf5e"
+          }
+        ],
+        "tags": [],
+        "remotes": [
+          {
+            "name": "origin/hard-questions",
+            "target": "095a2cb"
+          },
+          {
+            "name": "origin/main",
+            "target": "9e2cf5e"
+          }
+        ],
+        "head": {
+          "branch": "main",
+          "target": "9e2cf5e"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+rules:
+  - "`origin/main` remote-tracking branch-dır: serverdəki `main`-in son əlaqə anında harada olduğunu yadda saxlayır və özü hərəkət etmir."
+  - "`git status` serverə qoşulmur, `main`-i `origin/main` ilə müqayisə edir; fetch olmadan `up to date` köhnə məlumat ola bilər."
+  - "`git fetch` commit-ləri yükləyir və `origin/main`-i yeniləyir, amma `main`-ə və working directory-yə toxunmur."
+  - "`git pull` = `git fetch` + `git merge origin/main`."
+  - "Hər iki tərəfdə yeni commit varsa, ayarsız `git pull` xəta verir; `--no-rebase` merge commit yaradır, `--rebase` sizin commit-ləri `origin/main`-in üstünə köçürür."
+practices:
+  - "Serverdə nə olduğunu bilmək üçün əvvəl `git fetch`, sonra `git status` işlədin."
+  - "Pull-un ayrılmış tarixçədə nə edəcəyini bir dəfə ayarda seçin: `git config --global pull.rebase false` (merge) və ya `true` (rebase)."

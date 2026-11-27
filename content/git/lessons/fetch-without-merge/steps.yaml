@@ -1,0 +1,8 @@
+# The visuals are recorded from the real repository by `pnpm content:run`.
+fetch:
+  vis: graph
+look:
+merge:
+remote-branches:
+prune:
+  vis: graph
