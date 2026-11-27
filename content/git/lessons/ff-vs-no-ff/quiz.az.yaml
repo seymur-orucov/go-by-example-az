@@ -1,0 +1,65 @@
+- question: "`feat/daily-reward` yaradılandan sonra `main`-ə commit edilməyib. `main`-də `git merge feat/daily-reward` nə edir?"
+  options:
+    - "`main`-i branch-ın son commit-inə çəkir, yeni commit yaratmır"
+    - "Merge commit yaradır, onun iki parent-i olur"
+    - "Branch-ın commit-lərini köçürüb yeni hash-lərlə yazır"
+  answer: 0
+  explain: "`main` branch-ın tarixçəsindədir, ona görə default `git merge` fast-forward edir: yalnız `main` pointer-i irəli gedir."
+- question: "Eyni vəziyyətdə `git merge --no-ff feat/daily-reward` yazılır. Branch-da iki commit var. Git neçə yeni commit yaradır?"
+  code: |
+    git switch main
+    git merge --no-ff feat/daily-reward
+  options:
+    - "Heç biri"
+    - "Bir: merge commit"
+    - "Üç: iki commit-in surəti və merge commit"
+  answer: 1
+  explain: "`--no-ff` bir merge commit yaradır. Branch-ın iki commit-i köçürülmür, onlar merge commit-in ikinci parent-i tərəfdə olduğu kimi qalır."
+- question: "`main` branch ayrılandan sonra bir commit irəliləyib. Bu komandadan sonra nə olur?"
+  code: |
+    git switch main
+    git merge --ff-only fix/sound-toggle
+  options:
+    - "Git fast-forward edir və `main`-in commit-i itir"
+    - "Git merge commit yaradır, çünki fast-forward mümkün deyil"
+    - "`fatal: Not possible to fast-forward, aborting.` çap olunur, `main` dəyişmir"
+  answer: 2
+  explain: "`--ff-only` yalnız fast-forward edir. Mümkün olmayanda merge-dən imtina edir və xəta ilə bitir."
+- question: "Hansı komandadan sonra bu repository-də hər `git merge` `--no-ff` kimi işləyir?"
+  options:
+    - "`git config merge.ff only`"
+    - "`git config merge.ff false`"
+    - "`git config pull.ff false`"
+    - "`git config merge.ff true`"
+  answer: 1
+  explain: "`merge.ff false` həmişə merge commit deməkdir. `only` `--ff-only`-dir, `true` default-dur, `pull.ff` isə yalnız `git pull`-a aiddir."
+- question: "Branch merge olunub və silinib. Hansı halda `git log --oneline --graph` feature-in harada başlayıb bitdiyini göstərir?"
+  options:
+    - "Fast-forward ilə merge olunubsa"
+    - "`--no-ff` ilə merge olunubsa"
+    - "Hər iki halda: Git branch adını commit-lərdə saxlayır"
+  answer: 1
+  explain: "`--no-ff` merge commit yaradır və qrafda branch qabarcıq kimi qalır. Fast-forward-dan sonra tarixçə düz xətt olur, branch adı isə heç yerdə qalmır."
+- question: "GitHub-da pull request-i **Create a merge commit** üsulu ilə merge etmək hansı komandaya uyğundur?"
+  options:
+    - "`git merge --no-ff`"
+    - "`git merge --ff-only`"
+    - "`git merge --squash`"
+  answer: 0
+  explain: "GitHub sənədlərinə görə default üsul `--no-ff` ilə merge edir: fast-forward mümkün olsa da, merge commit yaranır."
+- question: "Repository-də `merge.ff false` yazılıb. Fast-forward mümkündür. Bu komanda nə edir?"
+  code: |
+    git merge --ff fix/sound-toggle
+  options:
+    - "Merge commit yaradır, çünki config komandadan üstündür"
+    - "Xəta verir, çünki config ilə seçim ziddiyyət təşkil edir"
+    - "Fast-forward edir, çünki komanda sətrindəki seçim üstündür"
+  answer: 2
+  explain: "Config yalnız default-u dəyişir. Komanda sətrindəki `--ff`, `--no-ff` və ya `--ff-only` həmin merge üçün onu əvəz edir."
+- question: "Komandalar feature branch-larını niyə çox vaxt `--no-ff` ilə merge edir?"
+  options:
+    - "Merge commit feature-in commit-lərini qruplaşdırır və onu bir `git revert` ilə geri almaq olur"
+    - "Tarixçə düz xətt olur və `git log --graph` heç bir budaq göstərmir"
+    - "Merge zamanı konflikt yaranmır və fast-forward-dan daha tez işləyir"
+  answer: 0
+  explain: "Merge commit feature-in sərhədini saxlayır: `git log --first-parent`-də o bir sətirdir, `git revert -m 1` isə onu bir commit ilə ləğv edir."

@@ -1,0 +1,39 @@
+$ git log --oneline --graph --all --decorate
+* 71dccee (HEAD -> encore) Add a second encore song
+* 8cf1058 Add an encore song
+* 35e338d (main) Add the main set
+$ git switch main
+Switched to branch 'main'
+$ git merge encore
+Updating 35e338d..71dccee
+Fast-forward
+ songs.txt | 2 ++
+ 1 file changed, 2 insertions(+)
+$ git log --oneline --graph --all --decorate
+* 71dccee (HEAD -> main, encore) Add a second encore song
+* 8cf1058 Add an encore song
+* 35e338d Add the main set
+$ git branch -d encore
+Deleted branch encore (was 71dccee).
+$ git branch
+* main
+$ git log --oneline --graph --all --decorate
+* bbdb8c7 (HEAD -> main) Shorten Slow River
+| * e753126 (keyboard) Add the keyboard
+|/  
+* 71dccee Add a second encore song
+* 8cf1058 Add an encore song
+* 35e338d Add the main set
+$ git merge --no-edit keyboard
+Merge made by the 'ort' strategy.
+ gear.txt | 1 +
+ 1 file changed, 1 insertion(+)
+$ git log --oneline --graph --all --decorate
+*   be90154 (HEAD -> main) Merge branch 'keyboard'
+|\  
+| * e753126 (keyboard) Add the keyboard
+* | bbdb8c7 Shorten Slow River
+|/  
+* 71dccee Add a second encore song
+* 8cf1058 Add an encore song
+* 35e338d Add the main set

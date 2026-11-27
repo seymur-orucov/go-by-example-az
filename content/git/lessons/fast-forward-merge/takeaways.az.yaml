@@ -1,0 +1,10 @@
+rules:
+  - "Fast-forward o zaman olur ki, target branch source ayrılandan sonra irəliləməyib və source sadəcə irəlidədir."
+  - "Fast-forward-da Git yeni commit yaratmır, target-i source-un son commit-inə irəli çəkir; HEAD də onunla gedir."
+  - "`Updating A..B` target-in hansı commit-dən hansına keçdiyini, `Fast-forward` isə merge commit yaranmadığını bildirir."
+  - "Commit-lər və onların hash-ləri dəyişmir, tarixçə düz xətt kimi qalır, source branch yerində qalır."
+  - "Gətiriləcək yeni commit yoxdursa, `git merge` `Already up to date.` yazır və heç nəyi dəyişmir."
+  - "`--ff-only` yalnız fast-forward edir; branch-lar ayrılıbsa, merge etmədən xəta ilə dayanır."
+practices:
+  - "Merge-dən əvvəl `git log --oneline feature..main`-ə baxın: boşdursa, merge fast-forward olacaq."
+  - "Merge commit-in yaranmasını istəmirsinizsə, `git merge --ff-only` yazın: alınmasa, Git heç nəyi dəyişmir."

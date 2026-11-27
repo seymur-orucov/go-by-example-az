@@ -1,0 +1,9 @@
+# The visuals are recorded from the real repository by `pnpm content:run`.
+# No `vis: areas` here: the recorder has no state for an unmerged (UU) file and would show it as clean.
+conflict:
+  vis: graph
+abort:
+markers:
+resolve:
+finish:
+  vis: graph

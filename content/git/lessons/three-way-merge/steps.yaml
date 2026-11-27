@@ -1,0 +1,11 @@
+# The visuals are recorded from the real repository by `pnpm content:run`.
+fork:
+  vis: graph
+merge-base:
+  vis: graph
+two-sides:
+  vis: graph
+merge:
+  vis: graph
+parents:
+  vis: graph

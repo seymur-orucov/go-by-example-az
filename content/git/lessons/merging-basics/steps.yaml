@@ -1,0 +1,8 @@
+# The visuals are recorded from the real repository by `pnpm content:run`.
+branch-ahead:
+merge:
+  vis: graph
+delete:
+both-moved:
+merge-commit:
+  vis: graph

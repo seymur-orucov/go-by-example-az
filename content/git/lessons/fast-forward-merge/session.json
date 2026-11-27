@@ -1,0 +1,853 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir trails",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd trails",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Lake Loop: 5 km, easy\" > routes.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add routes.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add the lake trail\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"water\" \"map\" > checklist.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add checklist.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add the packing checklist\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q -c ridge-trail",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Ridge Path: 12 km, hard\" >> routes.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add the ridge trail\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"rain jacket\" >> checklist.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add a rain jacket to the checklist\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q main",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch -v",
+      "step": "ahead",
+      "hidden": false,
+      "fail": false,
+      "out": "* main        94ad99e Add the packing checklist\n  ridge-trail f32bef9 Add a rain jacket to the checklist\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline ridge-trail",
+      "step": "ahead",
+      "hidden": false,
+      "fail": false,
+      "out": "f32bef9 Add a rain jacket to the checklist\n3686ebb Add the ridge trail\n94ad99e Add the packing checklist\n719a377 Add the lake trail\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline ridge-trail..main",
+      "step": "ahead",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git merge ridge-trail",
+      "step": "merge",
+      "hidden": false,
+      "fail": false,
+      "out": "Updating 94ad99e..f32bef9\nFast-forward\n checklist.txt | 1 +\n routes.md     | 1 +\n 2 files changed, 2 insertions(+)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cat routes.md",
+      "step": "merge",
+      "hidden": false,
+      "fail": false,
+      "out": "Lake Loop: 5 km, easy\nRidge Path: 12 km, hard\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline",
+      "step": "after",
+      "hidden": false,
+      "fail": false,
+      "out": "f32bef9 Add a rain jacket to the checklist\n3686ebb Add the ridge trail\n94ad99e Add the packing checklist\n719a377 Add the lake trail\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch -v",
+      "step": "after",
+      "hidden": false,
+      "fail": false,
+      "out": "* main        f32bef9 Add a rain jacket to the checklist\n  ridge-trail f32bef9 Add a rain jacket to the checklist\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git merge ridge-trail",
+      "step": "up-to-date",
+      "hidden": false,
+      "fail": false,
+      "out": "Already up to date.\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q -c campsites HEAD~2",
+      "step": "ff-only",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"Pine Camp: near Lake Loop\" > campsites.md",
+      "step": "ff-only",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add campsites.md",
+      "step": "ff-only",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add the campsites\"",
+      "step": "ff-only",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q main",
+      "step": "ff-only",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline campsites..main",
+      "step": "ff-only",
+      "hidden": false,
+      "fail": false,
+      "out": "f32bef9 Add a rain jacket to the checklist\n3686ebb Add the ridge trail\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git merge --ff-only campsites",
+      "step": "ff-only",
+      "hidden": false,
+      "fail": true,
+      "out": "hint: Diverging branches can't be fast-forwarded, you need to either:\nhint:\nhint: \tgit merge --no-ff\nhint:\nhint: or:\nhint:\nhint: \tgit rebase\nhint:\nhint: Disable this message with \"git config set advice.diverging false\"\nfatal: Not possible to fast-forward, aborting.\n",
+      "exit": 128
+    }
+  ],
+  "frames": {
+    "ahead": {
+      "areas": {
+        "work": [
+          {
+            "name": "checklist.txt",
+            "state": "clean"
+          },
+          {
+            "name": "routes.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "checklist.txt",
+            "state": "clean"
+          },
+          {
+            "name": "routes.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "94ad99e",
+            "message": "Add the packing checklist"
+          },
+          "count": 2,
+          "files": [
+            "checklist.txt",
+            "routes.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "f32bef9",
+            "message": "Add a rain jacket to the checklist",
+            "parents": [
+              "3686ebb"
+            ],
+            "files": [
+              {
+                "name": "checklist.txt",
+                "state": "modified"
+              },
+              {
+                "name": "routes.md",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "3686ebb",
+            "message": "Add the ridge trail",
+            "parents": [
+              "94ad99e"
+            ],
+            "files": [
+              {
+                "name": "checklist.txt",
+                "state": "same"
+              },
+              {
+                "name": "routes.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "94ad99e",
+            "message": "Add the packing checklist",
+            "parents": [
+              "719a377"
+            ],
+            "files": [
+              {
+                "name": "checklist.txt",
+                "state": "added"
+              },
+              {
+                "name": "routes.md",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "719a377",
+            "message": "Add the lake trail",
+            "parents": [],
+            "files": [
+              {
+                "name": "routes.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "94ad99e"
+          },
+          {
+            "name": "ridge-trail",
+            "target": "f32bef9"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "94ad99e"
+        }
+      }
+    },
+    "merge": {
+      "areas": {
+        "work": [
+          {
+            "name": "checklist.txt",
+            "state": "clean"
+          },
+          {
+            "name": "routes.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "checklist.txt",
+            "state": "clean"
+          },
+          {
+            "name": "routes.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "f32bef9",
+            "message": "Add a rain jacket to the checklist"
+          },
+          "count": 4,
+          "files": [
+            "checklist.txt",
+            "routes.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "f32bef9",
+            "message": "Add a rain jacket to the checklist",
+            "parents": [
+              "3686ebb"
+            ],
+            "files": [
+              {
+                "name": "checklist.txt",
+                "state": "modified"
+              },
+              {
+                "name": "routes.md",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "3686ebb",
+            "message": "Add the ridge trail",
+            "parents": [
+              "94ad99e"
+            ],
+            "files": [
+              {
+                "name": "checklist.txt",
+                "state": "same"
+              },
+              {
+                "name": "routes.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "94ad99e",
+            "message": "Add the packing checklist",
+            "parents": [
+              "719a377"
+            ],
+            "files": [
+              {
+                "name": "checklist.txt",
+                "state": "added"
+              },
+              {
+                "name": "routes.md",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "719a377",
+            "message": "Add the lake trail",
+            "parents": [],
+            "files": [
+              {
+                "name": "routes.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "f32bef9"
+          },
+          {
+            "name": "ridge-trail",
+            "target": "f32bef9"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "f32bef9"
+        }
+      }
+    },
+    "after": {
+      "areas": {
+        "work": [
+          {
+            "name": "checklist.txt",
+            "state": "clean"
+          },
+          {
+            "name": "routes.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "checklist.txt",
+            "state": "clean"
+          },
+          {
+            "name": "routes.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "f32bef9",
+            "message": "Add a rain jacket to the checklist"
+          },
+          "count": 4,
+          "files": [
+            "checklist.txt",
+            "routes.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "f32bef9",
+            "message": "Add a rain jacket to the checklist",
+            "parents": [
+              "3686ebb"
+            ],
+            "files": [
+              {
+                "name": "checklist.txt",
+                "state": "modified"
+              },
+              {
+                "name": "routes.md",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "3686ebb",
+            "message": "Add the ridge trail",
+            "parents": [
+              "94ad99e"
+            ],
+            "files": [
+              {
+                "name": "checklist.txt",
+                "state": "same"
+              },
+              {
+                "name": "routes.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "94ad99e",
+            "message": "Add the packing checklist",
+            "parents": [
+              "719a377"
+            ],
+            "files": [
+              {
+                "name": "checklist.txt",
+                "state": "added"
+              },
+              {
+                "name": "routes.md",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "719a377",
+            "message": "Add the lake trail",
+            "parents": [],
+            "files": [
+              {
+                "name": "routes.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "f32bef9"
+          },
+          {
+            "name": "ridge-trail",
+            "target": "f32bef9"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "f32bef9"
+        }
+      }
+    },
+    "up-to-date": {
+      "areas": {
+        "work": [
+          {
+            "name": "checklist.txt",
+            "state": "clean"
+          },
+          {
+            "name": "routes.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "checklist.txt",
+            "state": "clean"
+          },
+          {
+            "name": "routes.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "f32bef9",
+            "message": "Add a rain jacket to the checklist"
+          },
+          "count": 4,
+          "files": [
+            "checklist.txt",
+            "routes.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "f32bef9",
+            "message": "Add a rain jacket to the checklist",
+            "parents": [
+              "3686ebb"
+            ],
+            "files": [
+              {
+                "name": "checklist.txt",
+                "state": "modified"
+              },
+              {
+                "name": "routes.md",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "3686ebb",
+            "message": "Add the ridge trail",
+            "parents": [
+              "94ad99e"
+            ],
+            "files": [
+              {
+                "name": "checklist.txt",
+                "state": "same"
+              },
+              {
+                "name": "routes.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "94ad99e",
+            "message": "Add the packing checklist",
+            "parents": [
+              "719a377"
+            ],
+            "files": [
+              {
+                "name": "checklist.txt",
+                "state": "added"
+              },
+              {
+                "name": "routes.md",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "719a377",
+            "message": "Add the lake trail",
+            "parents": [],
+            "files": [
+              {
+                "name": "routes.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "main",
+            "target": "f32bef9"
+          },
+          {
+            "name": "ridge-trail",
+            "target": "f32bef9"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "f32bef9"
+        }
+      }
+    },
+    "ff-only": {
+      "areas": {
+        "work": [
+          {
+            "name": "checklist.txt",
+            "state": "clean"
+          },
+          {
+            "name": "routes.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "checklist.txt",
+            "state": "clean"
+          },
+          {
+            "name": "routes.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "f32bef9",
+            "message": "Add a rain jacket to the checklist"
+          },
+          "count": 4,
+          "files": [
+            "checklist.txt",
+            "routes.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "6192b83",
+            "message": "Add the campsites",
+            "parents": [
+              "94ad99e"
+            ],
+            "files": [
+              {
+                "name": "campsites.md",
+                "state": "added"
+              },
+              {
+                "name": "checklist.txt",
+                "state": "same"
+              },
+              {
+                "name": "routes.md",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "f32bef9",
+            "message": "Add a rain jacket to the checklist",
+            "parents": [
+              "3686ebb"
+            ],
+            "files": [
+              {
+                "name": "checklist.txt",
+                "state": "modified"
+              },
+              {
+                "name": "routes.md",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "3686ebb",
+            "message": "Add the ridge trail",
+            "parents": [
+              "94ad99e"
+            ],
+            "files": [
+              {
+                "name": "checklist.txt",
+                "state": "same"
+              },
+              {
+                "name": "routes.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "94ad99e",
+            "message": "Add the packing checklist",
+            "parents": [
+              "719a377"
+            ],
+            "files": [
+              {
+                "name": "checklist.txt",
+                "state": "added"
+              },
+              {
+                "name": "routes.md",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "719a377",
+            "message": "Add the lake trail",
+            "parents": [],
+            "files": [
+              {
+                "name": "routes.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "campsites",
+            "target": "6192b83"
+          },
+          {
+            "name": "main",
+            "target": "f32bef9"
+          },
+          {
+            "name": "ridge-trail",
+            "target": "f32bef9"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "f32bef9"
+        }
+      }
+    }
+  }
+}

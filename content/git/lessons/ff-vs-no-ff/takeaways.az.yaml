@@ -1,0 +1,12 @@
+rules:
+  - "`main` yerində qalıbsa, `git merge` default olaraq fast-forward edir: yeni commit yaranmır, tarixçə düz xətt olur."
+  - "`git merge --no-ff` fast-forward mümkün olsa da merge commit yaradır; branch qrafda qabarcıq kimi qalır."
+  - "Merge commit feature-in commit-lərini qruplaşdırır: `git log --first-parent`-də o bir sətirdir, `git revert -m 1` onu bir commit ilə geri alır."
+  - "`git merge --ff-only` yalnız fast-forward edir; mümkün olmayanda `fatal: Not possible to fast-forward, aborting.` verir və heç nəyi dəyişmir."
+  - "`merge.ff` (`false` və ya `only`) default-u dəyişir, `pull.ff` isə `git pull` üçün; komanda sətrindəki seçim config-dən üstündür."
+  - "GitHub-ın **Create a merge commit** üsulu `--no-ff` ilə merge edir."
+practices:
+  - "Bir neçə commit-lik feature branch-larını `--no-ff` ilə merge edin ki, feature tarixçədə görünsün və bütövlükdə geri alına bilsin."
+  - "`main`-i düz xətt saxlamaq istəyirsinizsə, `merge.ff only` qoyun və branch-ı merge-dən əvvəl rebase edin."
+  - "`git pull` üçün seçimi açıq qoyun: `git config --global pull.ff only` ilə o, yalnız fast-forward edir və heç vaxt merge commit yaratmır."
+  - "Merge üsulunu komanda bir dəfə seçsin və hamı ona əməl etsin."

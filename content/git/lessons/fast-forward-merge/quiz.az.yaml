@@ -1,0 +1,84 @@
+- question: "`feature` branch-ı ayrılandan sonra `main`-də yeni commit olmayıb, `feature`-da isə üç commit var. `main`-də `git merge feature` nə edir?"
+  options:
+    - "Üç commit-i birləşdirən yeni merge commit yaradır"
+    - "`main`-i `feature`-un son commit-inə irəli çəkir"
+    - "`feature`-u `main`-in son commit-inə geri çəkir"
+  answer: 1
+  explain: "`main` ayrılandan sonra irəliləməyib, ona görə Git yeni commit yaratmır, sadəcə `main`-i irəli çəkir (fast-forward)."
+- question: "Yeni, boş repository-də bu komandalardan sonra çıxışın ikinci sətri nədir?"
+  code: |
+    echo "tent" > gear.txt
+    git add gear.txt
+    git commit -q -m "Add gear list"
+    git switch -q -c stove
+    echo "stove" >> gear.txt
+    git commit -q -am "Add stove"
+    git switch -q main
+    git merge stove
+  options:
+    - "`Fast-forward`"
+    - "`Already up to date.`"
+    - "`Merge made by the 'ort' strategy.`"
+  answer: 0
+  explain: "`main` `stove` ayrılandan sonra dəyişməyib. Birinci sətir `Updating ...`, ikincisi `Fast-forward`-dur."
+- question: "Yeni, boş repository-də bu komandalardan sonra `git log --oneline` neçə sətir çap edir?"
+  code: |
+    echo "tent" > gear.txt
+    git add gear.txt
+    git commit -q -m "Add gear list"
+    git switch -q -c stove
+    echo "stove" >> gear.txt
+    git commit -q -am "Add stove"
+    echo "fuel" >> gear.txt
+    git commit -q -am "Add fuel"
+    git switch -q main
+    git merge -q stove
+    git log --oneline
+  options:
+    - "4"
+    - "2"
+    - "3"
+  answer: 2
+  explain: "Fast-forward yeni commit yaratmır. `main`-in tarixçəsində `stove`-un üç commit-i var, merge commit yoxdur."
+- question: "Əvvəlki sualdakı komandalardan sonra `git merge stove`-u yenidən yazsanız, nə çap olunur?"
+  options:
+    - "`Fast-forward`"
+    - "`fatal: Not possible to fast-forward, aborting.`"
+    - "`Already up to date.`"
+  answer: 2
+  explain: "`stove`-un bütün commit-ləri artıq `main`-dədir. Gətiriləcək commit yoxdur və Git heç nəyi dəyişmir."
+- question: "Fast-forward merge-dən sonra hansı ad yerini dəyişir?"
+  options:
+    - "Source branch; target branch yerində qalır"
+    - "Target branch və HEAD; source yerində qalır"
+    - "Hər iki branch yeni merge commit-ə keçir"
+  answer: 1
+  explain: "Merge hazırkı branch-ı, yəni target-i dəyişir. HEAD ona baxdığı üçün onunla gedir, source isə olduğu yerdə qalır."
+- question: "`main`-də və `stove`-da ayrılandan sonra bir-bir commit olub. `main`-də `git merge --ff-only stove` nə edir?"
+  options:
+    - "Merge commit yaradır"
+    - "Merge etmir və xəta ilə dayanır"
+    - "`main`-i `stove`-un commit-inə çəkir"
+  answer: 1
+  explain: "Branch-lar ayrılıb, fast-forward mümkün deyil. `--ff-only` belə halda heç nəyi dəyişmir: `fatal: Not possible to fast-forward, aborting.`"
+- question: "Fast-forward merge-dən sonra source-dan gələn commit-lərin hash-ləri nə olur?"
+  options:
+    - "Dəyişmir, commit-lər eynidir"
+    - "Hamısı yeni hash alır"
+    - "Yalnız sonuncunun hash-i dəyişir"
+  answer: 0
+  explain: "Commit-lər kopyalanmır. Target branch sadəcə source-un son commit-inə keçir, ona görə hash-lər eyni qalır."
+- question: "`main`-dəsiniz, `feature`-da yeni commit-lər var. Hansı çıxış `git merge feature`-un fast-forward olacağını göstərir?"
+  options:
+    - "`git log --oneline main..feature` heç nə çap etmir"
+    - "`git status` `nothing to commit` yazır"
+    - "`git log --oneline feature..main` heç nə çap etmir"
+  answer: 2
+  explain: "`feature..main` `main`-də olub `feature`-da olmayan commit-ləri göstərir. Boşdursa, `main` ayrılandan sonra irəliləməyib."
+- question: "`Updating A..B` sətrində `A` nədir?"
+  options:
+    - "Target-in merge-dən əvvəl göstərdiyi commit"
+    - "Source-un merge-dən əvvəl göstərdiyi commit"
+    - "Merge-in yaratdığı yeni commit"
+  answer: 0
+  explain: "`A` target-in köhnə yeridir, `B` source-un son commit-i. Fast-forward target-i `A`-dan `B`-yə keçirir."

@@ -1,0 +1,9 @@
+rules:
+  - "`git merge <source>` source branch-ın commit-lərini hazırkı branch-a, yəni target-ə gətirir."
+  - "Merge-dən əvvəl `git switch` ilə commit-ləri qəbul edəcək branch-a keçin."
+  - "Merge yalnız target-i dəyişir; source branch olduğu commit-də qalır."
+  - "Target-də yeni commit yoxdursa, Git onu irəli çəkir (`Fast-forward`); iki branch da irəliləyibsə, iki parent-li merge commit yaradır."
+  - "`main`-də merge commit-in hazır mesajı `Merge branch '<ad>'`-dir: real terminalda Git onu redaktorda açır, `--no-edit` olduğu kimi götürür, `-m` öz mesajınızı verir."
+practices:
+  - "Merge-dən sonra nəticəni `git log --oneline --graph --all` ilə yoxlayın."
+  - "Merge olunmuş branch-ı `git branch -d` ilə silin."

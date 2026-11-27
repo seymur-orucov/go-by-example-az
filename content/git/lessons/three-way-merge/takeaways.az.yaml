@@ -1,0 +1,10 @@
+rules:
+  - "Ayrıldıqdan sonra hər iki branch irəliləyibsə, fast-forward mümkün deyil və Git merge commit yaradır."
+  - "Merge base iki branch-ın son ortaq commit-idir; `git merge-base A B` onun hash-ini çap edir."
+  - "Three-way merge base, ours və theirs versiyalarını müqayisə edir: yalnız bir tərəfin dəyişdirdiyi sətir nəticəyə həmin dəyişikliklə düşür."
+  - "Eyni sətri iki tərəf fərqli dəyişibsə, konflikt yaranır."
+  - "Merge commit-in iki parent-i var: `HEAD^1` olduğunuz branch-dan, `HEAD^2` birləşdirdiyiniz branch-dan gəlir."
+  - "`ort` Git 2.34-dən bəri default merge strategiyasıdır."
+practices:
+  - "Merge-dən əvvəl `git log --oneline --graph --all` ilə branch-ların ayrılıb-ayrılmadığına baxın."
+  - "Hər tərəfin nə gətirdiyini merge-dən əvvəl üç nöqtəli `git diff` ilə yoxlayın."

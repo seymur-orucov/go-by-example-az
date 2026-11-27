@@ -1,0 +1,859 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir setlist",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd setlist",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"1. Night Drive\" \"2. Paper Moon\" \"3. Slow River\" > songs.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"2 guitars\" \"1 bass\" \"drum kit\" > gear.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add .",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add the main set\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q -c encore",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"4. Encore: Last Train\" >> songs.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add an encore song\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"5. Encore: Blue Hour\" >> songs.txt",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add a second encore song\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline --graph --all --decorate",
+      "step": "branch-ahead",
+      "hidden": false,
+      "fail": false,
+      "out": "* 71dccee (HEAD -> encore) Add a second encore song\n* 8cf1058 Add an encore song\n* 35e338d (main) Add the main set\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch main",
+      "step": "merge",
+      "hidden": false,
+      "fail": false,
+      "out": "Switched to branch 'main'\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git merge encore",
+      "step": "merge",
+      "hidden": false,
+      "fail": false,
+      "out": "Updating 35e338d..71dccee\nFast-forward\n songs.txt | 2 ++\n 1 file changed, 2 insertions(+)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline --graph --all --decorate",
+      "step": "merge",
+      "hidden": false,
+      "fail": false,
+      "out": "* 71dccee (HEAD -> main, encore) Add a second encore song\n* 8cf1058 Add an encore song\n* 35e338d Add the main set\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch -d encore",
+      "step": "delete",
+      "hidden": false,
+      "fail": false,
+      "out": "Deleted branch encore (was 71dccee).\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git branch",
+      "step": "delete",
+      "hidden": false,
+      "fail": false,
+      "out": "* main\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q -c keyboard",
+      "step": "delete",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "echo \"keyboard\" >> gear.txt",
+      "step": "delete",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Add the keyboard\"",
+      "step": "delete",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q main",
+      "step": "delete",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "sed -i \"s/Slow River/Slow River (short)/\" songs.txt",
+      "step": "delete",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Shorten Slow River\"",
+      "step": "delete",
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline --graph --all --decorate",
+      "step": "both-moved",
+      "hidden": false,
+      "fail": false,
+      "out": "* bbdb8c7 (HEAD -> main) Shorten Slow River\n| * e753126 (keyboard) Add the keyboard\n|/  \n* 71dccee Add a second encore song\n* 8cf1058 Add an encore song\n* 35e338d Add the main set\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git merge --no-edit keyboard",
+      "step": "merge-commit",
+      "hidden": false,
+      "fail": false,
+      "out": "Merge made by the 'ort' strategy.\n gear.txt | 1 +\n 1 file changed, 1 insertion(+)\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline --graph --all --decorate",
+      "step": "merge-commit",
+      "hidden": false,
+      "fail": false,
+      "out": "*   be90154 (HEAD -> main) Merge branch 'keyboard'\n|\\  \n| * e753126 (keyboard) Add the keyboard\n* | bbdb8c7 Shorten Slow River\n|/  \n* 71dccee Add a second encore song\n* 8cf1058 Add an encore song\n* 35e338d Add the main set\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "branch-ahead": {
+      "areas": {
+        "work": [
+          {
+            "name": "gear.txt",
+            "state": "clean"
+          },
+          {
+            "name": "songs.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "gear.txt",
+            "state": "clean"
+          },
+          {
+            "name": "songs.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "71dccee",
+            "message": "Add a second encore song"
+          },
+          "count": 3,
+          "files": [
+            "gear.txt",
+            "songs.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "71dccee",
+            "message": "Add a second encore song",
+            "parents": [
+              "8cf1058"
+            ],
+            "files": [
+              {
+                "name": "gear.txt",
+                "state": "same"
+              },
+              {
+                "name": "songs.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "8cf1058",
+            "message": "Add an encore song",
+            "parents": [
+              "35e338d"
+            ],
+            "files": [
+              {
+                "name": "gear.txt",
+                "state": "same"
+              },
+              {
+                "name": "songs.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "35e338d",
+            "message": "Add the main set",
+            "parents": [],
+            "files": [
+              {
+                "name": "gear.txt",
+                "state": "added"
+              },
+              {
+                "name": "songs.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "encore",
+            "target": "71dccee"
+          },
+          {
+            "name": "main",
+            "target": "35e338d"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "encore",
+          "target": "71dccee"
+        }
+      }
+    },
+    "merge": {
+      "areas": {
+        "work": [
+          {
+            "name": "gear.txt",
+            "state": "clean"
+          },
+          {
+            "name": "songs.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "gear.txt",
+            "state": "clean"
+          },
+          {
+            "name": "songs.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "71dccee",
+            "message": "Add a second encore song"
+          },
+          "count": 3,
+          "files": [
+            "gear.txt",
+            "songs.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "71dccee",
+            "message": "Add a second encore song",
+            "parents": [
+              "8cf1058"
+            ],
+            "files": [
+              {
+                "name": "gear.txt",
+                "state": "same"
+              },
+              {
+                "name": "songs.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "8cf1058",
+            "message": "Add an encore song",
+            "parents": [
+              "35e338d"
+            ],
+            "files": [
+              {
+                "name": "gear.txt",
+                "state": "same"
+              },
+              {
+                "name": "songs.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "35e338d",
+            "message": "Add the main set",
+            "parents": [],
+            "files": [
+              {
+                "name": "gear.txt",
+                "state": "added"
+              },
+              {
+                "name": "songs.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "encore",
+            "target": "71dccee"
+          },
+          {
+            "name": "main",
+            "target": "71dccee"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "71dccee"
+        }
+      }
+    },
+    "delete": {
+      "areas": {
+        "work": [
+          {
+            "name": "gear.txt",
+            "state": "clean"
+          },
+          {
+            "name": "songs.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "gear.txt",
+            "state": "clean"
+          },
+          {
+            "name": "songs.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "bbdb8c7",
+            "message": "Shorten Slow River"
+          },
+          "count": 4,
+          "files": [
+            "gear.txt",
+            "songs.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "bbdb8c7",
+            "message": "Shorten Slow River",
+            "parents": [
+              "71dccee"
+            ],
+            "files": [
+              {
+                "name": "gear.txt",
+                "state": "same"
+              },
+              {
+                "name": "songs.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "e753126",
+            "message": "Add the keyboard",
+            "parents": [
+              "71dccee"
+            ],
+            "files": [
+              {
+                "name": "gear.txt",
+                "state": "modified"
+              },
+              {
+                "name": "songs.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "71dccee",
+            "message": "Add a second encore song",
+            "parents": [
+              "8cf1058"
+            ],
+            "files": [
+              {
+                "name": "gear.txt",
+                "state": "same"
+              },
+              {
+                "name": "songs.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "8cf1058",
+            "message": "Add an encore song",
+            "parents": [
+              "35e338d"
+            ],
+            "files": [
+              {
+                "name": "gear.txt",
+                "state": "same"
+              },
+              {
+                "name": "songs.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "35e338d",
+            "message": "Add the main set",
+            "parents": [],
+            "files": [
+              {
+                "name": "gear.txt",
+                "state": "added"
+              },
+              {
+                "name": "songs.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "keyboard",
+            "target": "e753126"
+          },
+          {
+            "name": "main",
+            "target": "bbdb8c7"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "bbdb8c7"
+        }
+      }
+    },
+    "both-moved": {
+      "areas": {
+        "work": [
+          {
+            "name": "gear.txt",
+            "state": "clean"
+          },
+          {
+            "name": "songs.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "gear.txt",
+            "state": "clean"
+          },
+          {
+            "name": "songs.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "bbdb8c7",
+            "message": "Shorten Slow River"
+          },
+          "count": 4,
+          "files": [
+            "gear.txt",
+            "songs.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "bbdb8c7",
+            "message": "Shorten Slow River",
+            "parents": [
+              "71dccee"
+            ],
+            "files": [
+              {
+                "name": "gear.txt",
+                "state": "same"
+              },
+              {
+                "name": "songs.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "e753126",
+            "message": "Add the keyboard",
+            "parents": [
+              "71dccee"
+            ],
+            "files": [
+              {
+                "name": "gear.txt",
+                "state": "modified"
+              },
+              {
+                "name": "songs.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "71dccee",
+            "message": "Add a second encore song",
+            "parents": [
+              "8cf1058"
+            ],
+            "files": [
+              {
+                "name": "gear.txt",
+                "state": "same"
+              },
+              {
+                "name": "songs.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "8cf1058",
+            "message": "Add an encore song",
+            "parents": [
+              "35e338d"
+            ],
+            "files": [
+              {
+                "name": "gear.txt",
+                "state": "same"
+              },
+              {
+                "name": "songs.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "35e338d",
+            "message": "Add the main set",
+            "parents": [],
+            "files": [
+              {
+                "name": "gear.txt",
+                "state": "added"
+              },
+              {
+                "name": "songs.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "keyboard",
+            "target": "e753126"
+          },
+          {
+            "name": "main",
+            "target": "bbdb8c7"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "bbdb8c7"
+        }
+      }
+    },
+    "merge-commit": {
+      "areas": {
+        "work": [
+          {
+            "name": "gear.txt",
+            "state": "clean"
+          },
+          {
+            "name": "songs.txt",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "gear.txt",
+            "state": "clean"
+          },
+          {
+            "name": "songs.txt",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "be90154",
+            "message": "Merge branch 'keyboard'"
+          },
+          "count": 6,
+          "files": [
+            "gear.txt",
+            "songs.txt"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "be90154",
+            "message": "Merge branch 'keyboard'",
+            "parents": [
+              "bbdb8c7",
+              "e753126"
+            ],
+            "files": [
+              {
+                "name": "gear.txt",
+                "state": "modified"
+              },
+              {
+                "name": "songs.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "e753126",
+            "message": "Add the keyboard",
+            "parents": [
+              "71dccee"
+            ],
+            "files": [
+              {
+                "name": "gear.txt",
+                "state": "modified"
+              },
+              {
+                "name": "songs.txt",
+                "state": "same"
+              }
+            ]
+          },
+          {
+            "hash": "bbdb8c7",
+            "message": "Shorten Slow River",
+            "parents": [
+              "71dccee"
+            ],
+            "files": [
+              {
+                "name": "gear.txt",
+                "state": "same"
+              },
+              {
+                "name": "songs.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "71dccee",
+            "message": "Add a second encore song",
+            "parents": [
+              "8cf1058"
+            ],
+            "files": [
+              {
+                "name": "gear.txt",
+                "state": "same"
+              },
+              {
+                "name": "songs.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "8cf1058",
+            "message": "Add an encore song",
+            "parents": [
+              "35e338d"
+            ],
+            "files": [
+              {
+                "name": "gear.txt",
+                "state": "same"
+              },
+              {
+                "name": "songs.txt",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "35e338d",
+            "message": "Add the main set",
+            "parents": [],
+            "files": [
+              {
+                "name": "gear.txt",
+                "state": "added"
+              },
+              {
+                "name": "songs.txt",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "keyboard",
+            "target": "e753126"
+          },
+          {
+            "name": "main",
+            "target": "be90154"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "be90154"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,624 @@
+{
+  "generatedBy": "pnpm content:run",
+  "git": "2.56.1.windows.1",
+  "commands": [
+    {
+      "cmd": "mkdir club",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "cd club",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git init -q",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"Day: Friday\" \"Time: 18:00\" \"Place: Library\" > agenda.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add .",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -m \"Add meeting agenda\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q -c ayla-time",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "sed -i 's/18:00/19:00/' agenda.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git -c user.name=\"Ayla Karimova\" -c user.email=\"ayla@example.com\" commit -q -am \"Move meeting to 19:00\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git switch -q main",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "sed -i 's/18:00/17:30/' agenda.md",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit -q -am \"Move meeting to 17:30\"",
+      "step": null,
+      "hidden": true,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git merge ayla-time",
+      "step": "conflict",
+      "hidden": false,
+      "fail": true,
+      "out": "Auto-merging agenda.md\nCONFLICT (content): Merge conflict in agenda.md\nAutomatic merge failed; fix conflicts and then commit the result.\n",
+      "exit": 1
+    },
+    {
+      "cmd": "git status",
+      "step": "conflict",
+      "hidden": false,
+      "fail": false,
+      "out": "On branch main\nYou have unmerged paths.\n  (fix conflicts and run \"git commit\")\n  (use \"git merge --abort\" to abort the merge)\n\nUnmerged paths:\n  (use \"git add <file>...\" to mark resolution)\n\tboth modified:   agenda.md\n\nno changes added to commit (use \"git add\" and/or \"git commit -a\")\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git merge --abort",
+      "step": "abort",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status",
+      "step": "abort",
+      "hidden": false,
+      "fail": false,
+      "out": "On branch main\nnothing to commit, working tree clean\n",
+      "exit": 0
+    },
+    {
+      "cmd": "cat agenda.md",
+      "step": "abort",
+      "hidden": false,
+      "fail": false,
+      "out": "Day: Friday\nTime: 17:30\nPlace: Library\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git merge ayla-time",
+      "step": "markers",
+      "hidden": false,
+      "fail": true,
+      "out": "Auto-merging agenda.md\nCONFLICT (content): Merge conflict in agenda.md\nAutomatic merge failed; fix conflicts and then commit the result.\n",
+      "exit": 1
+    },
+    {
+      "cmd": "cat agenda.md",
+      "step": "markers",
+      "hidden": false,
+      "fail": false,
+      "out": "Day: Friday\n<<<<<<< HEAD\nTime: 17:30\n=======\nTime: 19:00\n>>>>>>> ayla-time\nPlace: Library\n",
+      "exit": 0
+    },
+    {
+      "cmd": "printf \"%s\\n\" \"Day: Friday\" \"Time: 18:30\" \"Place: Library\" > agenda.md",
+      "step": "resolve",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git add agenda.md",
+      "step": "resolve",
+      "hidden": false,
+      "fail": false,
+      "out": "",
+      "exit": 0
+    },
+    {
+      "cmd": "git status",
+      "step": "resolve",
+      "hidden": false,
+      "fail": false,
+      "out": "On branch main\nAll conflicts fixed but you are still merging.\n  (use \"git commit\" to conclude merge)\n\nChanges to be committed:\n\tmodified:   agenda.md\n\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git commit --no-edit",
+      "step": "finish",
+      "hidden": false,
+      "fail": false,
+      "out": "[main fd7de09] Merge branch 'ayla-time'\n",
+      "exit": 0
+    },
+    {
+      "cmd": "git log --oneline --graph",
+      "step": "finish",
+      "hidden": false,
+      "fail": false,
+      "out": "*   fd7de09 Merge branch 'ayla-time'\n|\\  \n| * e4f86e2 Move meeting to 19:00\n* | 74cb38f Move meeting to 17:30\n|/  \n* 9e9cd5a Add meeting agenda\n",
+      "exit": 0
+    }
+  ],
+  "frames": {
+    "conflict": {
+      "areas": {
+        "work": [
+          {
+            "name": "agenda.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "agenda.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "74cb38f",
+            "message": "Move meeting to 17:30"
+          },
+          "count": 2,
+          "files": [
+            "agenda.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "74cb38f",
+            "message": "Move meeting to 17:30",
+            "parents": [
+              "9e9cd5a"
+            ],
+            "files": [
+              {
+                "name": "agenda.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "e4f86e2",
+            "message": "Move meeting to 19:00",
+            "parents": [
+              "9e9cd5a"
+            ],
+            "files": [
+              {
+                "name": "agenda.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "9e9cd5a",
+            "message": "Add meeting agenda",
+            "parents": [],
+            "files": [
+              {
+                "name": "agenda.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "ayla-time",
+            "target": "e4f86e2"
+          },
+          {
+            "name": "main",
+            "target": "74cb38f"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "74cb38f"
+        }
+      }
+    },
+    "abort": {
+      "areas": {
+        "work": [
+          {
+            "name": "agenda.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "agenda.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "74cb38f",
+            "message": "Move meeting to 17:30"
+          },
+          "count": 2,
+          "files": [
+            "agenda.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "74cb38f",
+            "message": "Move meeting to 17:30",
+            "parents": [
+              "9e9cd5a"
+            ],
+            "files": [
+              {
+                "name": "agenda.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "e4f86e2",
+            "message": "Move meeting to 19:00",
+            "parents": [
+              "9e9cd5a"
+            ],
+            "files": [
+              {
+                "name": "agenda.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "9e9cd5a",
+            "message": "Add meeting agenda",
+            "parents": [],
+            "files": [
+              {
+                "name": "agenda.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "ayla-time",
+            "target": "e4f86e2"
+          },
+          {
+            "name": "main",
+            "target": "74cb38f"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "74cb38f"
+        }
+      }
+    },
+    "markers": {
+      "areas": {
+        "work": [
+          {
+            "name": "agenda.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "agenda.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "74cb38f",
+            "message": "Move meeting to 17:30"
+          },
+          "count": 2,
+          "files": [
+            "agenda.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "74cb38f",
+            "message": "Move meeting to 17:30",
+            "parents": [
+              "9e9cd5a"
+            ],
+            "files": [
+              {
+                "name": "agenda.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "e4f86e2",
+            "message": "Move meeting to 19:00",
+            "parents": [
+              "9e9cd5a"
+            ],
+            "files": [
+              {
+                "name": "agenda.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "9e9cd5a",
+            "message": "Add meeting agenda",
+            "parents": [],
+            "files": [
+              {
+                "name": "agenda.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "ayla-time",
+            "target": "e4f86e2"
+          },
+          {
+            "name": "main",
+            "target": "74cb38f"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "74cb38f"
+        }
+      }
+    },
+    "resolve": {
+      "areas": {
+        "work": [
+          {
+            "name": "agenda.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "agenda.md",
+            "state": "modified"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "74cb38f",
+            "message": "Move meeting to 17:30"
+          },
+          "count": 2,
+          "files": [
+            "agenda.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "74cb38f",
+            "message": "Move meeting to 17:30",
+            "parents": [
+              "9e9cd5a"
+            ],
+            "files": [
+              {
+                "name": "agenda.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "e4f86e2",
+            "message": "Move meeting to 19:00",
+            "parents": [
+              "9e9cd5a"
+            ],
+            "files": [
+              {
+                "name": "agenda.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "9e9cd5a",
+            "message": "Add meeting agenda",
+            "parents": [],
+            "files": [
+              {
+                "name": "agenda.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "ayla-time",
+            "target": "e4f86e2"
+          },
+          {
+            "name": "main",
+            "target": "74cb38f"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "74cb38f"
+        }
+      }
+    },
+    "finish": {
+      "areas": {
+        "work": [
+          {
+            "name": "agenda.md",
+            "state": "clean"
+          }
+        ],
+        "index": [
+          {
+            "name": "agenda.md",
+            "state": "clean"
+          }
+        ],
+        "repo": {
+          "commit": {
+            "hash": "fd7de09",
+            "message": "Merge branch 'ayla-time'"
+          },
+          "count": 4,
+          "files": [
+            "agenda.md"
+          ]
+        }
+      },
+      "graph": {
+        "commits": [
+          {
+            "hash": "fd7de09",
+            "message": "Merge branch 'ayla-time'",
+            "parents": [
+              "74cb38f",
+              "e4f86e2"
+            ],
+            "files": [
+              {
+                "name": "agenda.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "e4f86e2",
+            "message": "Move meeting to 19:00",
+            "parents": [
+              "9e9cd5a"
+            ],
+            "files": [
+              {
+                "name": "agenda.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "74cb38f",
+            "message": "Move meeting to 17:30",
+            "parents": [
+              "9e9cd5a"
+            ],
+            "files": [
+              {
+                "name": "agenda.md",
+                "state": "modified"
+              }
+            ]
+          },
+          {
+            "hash": "9e9cd5a",
+            "message": "Add meeting agenda",
+            "parents": [],
+            "files": [
+              {
+                "name": "agenda.md",
+                "state": "added"
+              }
+            ]
+          }
+        ],
+        "branches": [
+          {
+            "name": "ayla-time",
+            "target": "e4f86e2"
+          },
+          {
+            "name": "main",
+            "target": "fd7de09"
+          }
+        ],
+        "tags": [],
+        "head": {
+          "branch": "main",
+          "target": "fd7de09"
+        }
+      }
+    }
+  }
+}
