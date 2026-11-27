@@ -101,7 +101,7 @@
   answer: 0
   explain: "Hər iş yenə 100 ms çəkir; üç worker işləyir, qalan yeddisi boş dayanır."
 
-- question: "Dərsdəki `washAll` nəticələri niyə `range washes` ilə yox, düz `len(queue)` dəfə oxuyur?"
+- question: "Dərsdəki `washAll` nəticələri niyə `range washes` ilə yox, düz `len(plates)` dəfə oxuyur?"
   options:
     - "`range` buffered channel-da işləmir"
     - "`washes`-i heç kim bağlamır, `range` heç vaxt bitməzdi"
