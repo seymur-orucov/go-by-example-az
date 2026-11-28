@@ -30,8 +30,8 @@
 
     left, ok := take(5, 7)
     fmt.Println(left, ok)
-  options: ["5 false", "-2 true", "0 false"]
-  answer: 0
+  options: ["-2 true", "5 false", "0 false"]
+  answer: 1
   explain: "`7 > 5` olduğu üçün birinci `return` işləyir: anbar dəyişmir, `ok` `false` olur."
 
 - question: Bu kod nə çap edəcək?
@@ -42,8 +42,8 @@
 
     _, m := hoursMinutes(200)
     fmt.Println(m)
-  options: ["20", "3", "200"]
-  answer: 0
+  options: ["3", "200", "20"]
+  answer: 2
   explain: "Saat `_` ilə atılır, `m` isə qalıq dəqiqələri, `200 % 60 = 20` saxlayır."
 
 - question: Bu kod nə çap edəcək?
@@ -76,10 +76,10 @@
         return w * h
     }
   options:
+    - "nəticələrə ad verilməyib, ona görə `return` işləmir"
+    - "`w * h` ifadəsi `int` deyil, ona görə qaytarmaq olmaz"
     - "iki nəticə elan olunub, `return` isə bir dəyər qaytarır"
-    - "`w * h` `int` deyil"
-    - "nəticələrə ad verilməyib"
-  answer: 0
+  answer: 2
   explain: "`return` elanda olan qədər dəyər qaytarmalıdır, burada iki."
 
 - question: Bu kod nə çap edəcək?
@@ -89,6 +89,6 @@
     }
 
     fmt.Println(hoursMinutes(75))
-  options: ["1 15", "75", "kompilyasiya xətası"]
-  answer: 0
+  options: ["75", "1 15", "kompilyasiya xətası"]
+  answer: 1
   explain: "Çoxlu nəticə birbaşa `fmt.Println`-ə ötürülür və hər ikisi çap olunur."
