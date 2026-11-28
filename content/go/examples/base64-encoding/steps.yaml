@@ -1,15 +1,15 @@
 encode:
   out: |
-    29 bytes -> 40 characters
-    RnJlZSBGcmlkYXk/IEFsaWVuICh+MTE3IG1pbik=
+    32 bytes -> 44 characters
+    N0LxWal0hMWYyiEmQuBtD/yip+VYrjoVI8fJ8rrBngQ=
 decode:
   out: |
-    Free Friday? Alien (~117 min) <nil>
-    error: illegal base64 data at input byte 4
+    true <nil>
+    error: illegal base64 data at input byte 6
 url:
-  out: "https://cinema.example.com/invite/RnJlZSBGcmlkYXk_IEFsaWVuICh-MTE3IG1pbik="
+  out: "https://cinema.example.com/invite/N0LxWal0hMWYyiEmQuBtD_yip-VYrjoVI8fJ8rrBngQ="
 raw:
   out: |
-    RnJlZSBGcmlkYXk_IEFsaWVuICh-MTE3IG1pbik
-    wrong decoder: illegal base64 data at input byte 36
-    Free Friday? Alien (~117 min) <nil>
+    N0LxWal0hMWYyiEmQuBtD_yip-VYrjoVI8fJ8rrBngQ
+    wrong decoder: illegal base64 data at input byte 40
+    true <nil>
