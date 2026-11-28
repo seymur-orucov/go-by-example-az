@@ -1,0 +1,98 @@
+# Drawn mockups (ui lesson): the signup form, the username setting, the 2FA section and the
+# authenticator setup. Simplified; labels follow GitHub Docs where the docs name them.
+signup:
+  vis:
+    kind: ui
+    caption: "Qeydiyyat forması (sadələşdirilmiş)"
+    url: "github.com/signup"
+    main:
+      - type: heading
+        text: "Sign up to GitHub"
+      - type: button
+        label: "Continue with Google"
+      - type: divider
+      - type: field
+        label: "Email"
+        value: "sam@example.com"
+      - type: field
+        label: "Password"
+        value: "••••••••••••••••"
+        state: ok
+        hint: "15+ simvol, ya da 8+ simvol, içində rəqəm və kiçik hərf"
+        mark: "Parol qaydası: ən azı 15 simvol, ya da ən azı 8 simvol, içində rəqəm və kiçik hərf."
+      - type: field
+        label: "Username"
+        value: "sam-lee"
+        mark: "İstifadəçi adı profilin və repository-lərin ünvanında olacaq: `github.com/sam-lee`."
+      - type: button
+        label: "Create account"
+        tone: primary
+username:
+  vis:
+    kind: ui
+    caption: "Settings → Account: adı dəyişmək"
+    url: "github.com/settings/admin"
+    main:
+      - type: heading
+        text: "Change username"
+      - type: text
+        text: "Changing your username can have unintended side effects."
+      - type: button
+        label: "Change username"
+        mark: "Düymədən sonra GitHub nəticələri göstərir və təsdiq istəyir."
+    side:
+      - type: list
+        items:
+          - { title: "Public profile", icon: user }
+          - { title: "**Account**" }
+          - { title: "Password and authentication", icon: key }
+two-factor:
+  vis:
+    kind: ui
+    caption: "Settings → Password and authentication"
+    url: "github.com/settings/security"
+    main:
+      - type: heading
+        text: "Two-factor authentication"
+        sub: "Two-factor authentication is not enabled yet."
+      - type: button
+        label: "Enable two-factor authentication"
+        tone: primary
+        mark: "2FA buradan başlayır. Sonrakı səhifədə üsul seçilir: authenticator tətbiqi və ya SMS."
+    side:
+      - type: list
+        items:
+          - { title: "Public profile", icon: user }
+          - { title: "Account" }
+          - { title: "**Password and authentication**", icon: key }
+          - { title: "SSH and GPG keys", icon: key }
+totp:
+  vis:
+    kind: ui
+    caption: "Authenticator tətbiqini qoşmaq"
+    url: "github.com/settings/two_factor_authentication/setup/intro"
+    main:
+      - type: row
+        items:
+          - type: box
+            label: "QR kod"
+            mark: "Telefondakı authenticator tətbiqi ilə skan edilir. Alınmasa, **setup key** eyni sirri mətn kimi verir."
+          - type: text
+            text: "Scan the QR code with your authenticator app. Unable to scan? Use the **setup key**."
+      - type: field
+        label: "Verify the code from the app"
+        value: "492 107"
+        state: ok
+        mark: "Tətbiqin göstərdiyi 6 rəqəmli kod: GitHub tətbiqin düzgün qoşulduğunu yoxlayır."
+      - type: code
+        label: "Save your recovery codes"
+        text: "4f2a1-9c0d3   b81e7-03fa6\n7d0c2-e5b94   1a6f8-c2d07\n…"
+        mark: "16 ehtiyat kod. Hər biri bir dəfə işləyir; telefondan ayrı yerdə saxlanır."
+      - type: row
+        items:
+          - type: button
+            label: "Download"
+          - type: button
+            label: "I have saved my recovery codes"
+            tone: primary
+    note: "Kodlar nümunədir. Sizin kodlarınız başqa olacaq, onları heç kimə göstərməyin."

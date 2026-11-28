@@ -1,0 +1,86 @@
+---
+// Vis kind "ui": a drawn mockup of a web page (GitHub screens in the GitHub lessons) — an
+// address bar, optional tabs, a main column and an optional side column, with numbered badges
+// on the marked elements and their texts in a legend. Hand-written data, not a screenshot: it
+// does not go stale and follows the light / dark theme. The side column drops under the main
+// one on a phone.
+import type { UiElement, Vis } from "../lib/lesson";
+import { uiMarks } from "../lib/lesson";
+import { renderInline } from "../lib/markdown";
+import UiEl from "./UiEl.astro";
+
+interface Props {
+  vis: Extract<Vis, { kind: "ui" }>;
+}
+
+const { vis } = Astro.props;
+
+// Badge numbers in page order: tabs, main, side (the same walk as uiMarks).
+const nums = new Map<object, number>();
+let next = 1;
+const walk = (els: UiElement[]) => {
+  for (const el of els) {
+    if ("mark" in el && el.mark) nums.set(el, next++);
+    if (el.type === "row") walk(el.items);
+  }
+};
+for (const t of vis.tabs ?? []) if (t.mark) nums.set(t, next++);
+walk(vis.main);
+walk(vis.side ?? []);
+const legend = uiMarks(vis);
+---
+
+<div class="st-vis">
+  <div class="st-vis-cap">
+    <span class="plain">{vis.caption}</span>
+  </div>
+  <div class="vis vis-ui">
+    <div class="ui-bar" aria-hidden="true">
+      <span class="ui-dots">
+        <i></i>
+        <i></i>
+        <i></i>
+      </span>
+      <span class="ui-url">{vis.url}</span>
+    </div>
+    {vis.tabs && (
+      <div class="ui-tabs">
+        {vis.tabs.map((t) => {
+          const n = nums.get(t);
+          return (
+            <span class:list={["ui-tab", t.active && "is-active", n && "is-marked"]}>
+              {n && <span class="ui-mark">{n}</span>}
+              <span set:html={renderInline(t.label)} />
+              {t.count !== undefined && <span class="ui-count">{t.count}</span>}
+            </span>
+          );
+        })}
+      </div>
+    )}
+    <div class:list={["ui-page", vis.side && "has-side"]}>
+      <div class="ui-col">
+        {vis.main.map((el) => (
+          <UiEl el={el} nums={nums} />
+        ))}
+      </div>
+      {vis.side && (
+        <div class="ui-col ui-side">
+          {vis.side.map((el) => (
+            <UiEl el={el} nums={nums} />
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+  {legend.length > 0 && (
+    <ol class="ui-legend">
+      {legend.map((text, i) => (
+        <li>
+          <span class="ui-mark">{i + 1}</span>
+          <span set:html={renderInline(text)} />
+        </li>
+      ))}
+    </ol>
+  )}
+  {vis.note && <p class="vis-note" set:html={renderInline(vis.note)} />}
+</div>

@@ -1,0 +1,149 @@
+# Drawn mockups (ui lesson): the repository header and tabs, the Code tab, the About column and
+# the Code button, the pull request list and the Watch menu (the search step has no mockup). Simplified; labels
+# follow GitHub Docs where the docs name them.
+header:
+  vis:
+    kind: ui
+    caption: "Repository-nin başlığı və tab-lar (sadələşdirilmiş)"
+    url: "github.com/windvane/logger"
+    tabs:
+      - label: "Code"
+        active: true
+      - label: "Issues"
+        count: 9
+        mark: "Açıq issue-ların sayı."
+      - label: "Pull requests"
+        count: 2
+        mark: "Açıq PR-ların sayı."
+      - label: "Actions"
+    main:
+      - type: heading
+        text: "windvane / logger"
+        sub: "Public"
+        mark: "Əvvəl sahibi, sonra repository-nin adı: ünvan da `github.com/windvane/logger`-dir."
+      - type: row
+        items:
+          - type: button
+            label: "Watch 14"
+            mark: "Bu repository-dən hansı bildirişlərin gələcəyini seçir."
+          - type: button
+            label: "Fork 37"
+            mark: "Repository-nin surətini sizin hesabınızda yaradır."
+          - type: button
+            label: "Star 210"
+            mark: "Repository-ni **Your stars** siyahınıza əlavə edir."
+    note: "Sam-da **Settings** tab-ı yoxdur: onu yalnız repository-ni idarə edənlər görür."
+code-tab:
+  vis:
+    kind: ui
+    caption: "Code tab-ı: branch, fayllar və commit-lər (sadələşdirilmiş)"
+    url: "github.com/windvane/logger"
+    tabs:
+      - label: "Code"
+        active: true
+      - label: "Issues"
+        count: 9
+      - label: "Pull requests"
+        count: 2
+      - label: "Actions"
+    main:
+      - type: row
+        items:
+          - type: select
+            label: "Branch"
+            value: "main"
+            mark: "Branch seçimi: siyahı seçilmiş branch-ın fayllarını göstərir."
+          - type: text
+            text: "Add humidity sensor support · 3 days ago · **214 Commits**"
+            mark: "Branch-ın son commit-i və commit-lərin sayı. Saya basanda tarixçə açılır."
+      - type: list
+        mark: "Fayl və qovluqlar; sağda onlara toxunan son commit."
+        items:
+          - { title: "docs", icon: folder, meta: "Describe CSV format" }
+          - { title: "src", icon: folder, meta: "Add humidity sensor support" }
+          - { title: "README.md", icon: file, meta: "Add wiring diagram" }
+          - { title: "LICENSE", icon: file, meta: "Initial commit" }
+      - type: heading
+        text: "README.md"
+        sub: "Logs temperature and humidity from a home weather station."
+        mark: "README fayl siyahısının altında göstərilir."
+about-and-clone:
+  vis:
+    kind: ui
+    caption: "Code düyməsinin menyusu və About bölməsi (sadələşdirilmiş)"
+    url: "github.com/windvane/logger"
+    main:
+      - type: button
+        label: "Code"
+        tone: primary
+        mark: "Yaşıl **Code** düyməsi fayl siyahısının üstündədir."
+      - type: row
+        items:
+          - type: button
+            label: "**HTTPS**"
+          - type: button
+            label: "SSH"
+          - type: button
+            label: "GitHub CLI"
+      - type: code
+        text: "https://github.com/windvane/logger.git"
+        mark: "Bu ünvan `git clone`-a verilir."
+    side:
+      - type: heading
+        text: "About"
+        sub: "Logs temperature and humidity from a home weather station."
+        mark: "Layihənin qısa təsviri və mövzuları."
+      - type: text
+        text: "weather · sensors · csv"
+issues-and-prs:
+  vis:
+    kind: ui
+    caption: "Pull requests tab-ı (sadələşdirilmiş)"
+    url: "github.com/windvane/logger/pulls"
+    tabs:
+      - label: "Code"
+      - label: "Issues"
+        count: 9
+      - label: "Pull requests"
+        count: 2
+        active: true
+      - label: "Actions"
+    main:
+      - type: row
+        mark: "Açıq və bağlanmış PR-ların sayı; əvvəlcə açıqlar göstərilir."
+        items:
+          - type: button
+            label: "**2 Open**"
+          - type: button
+            label: "51 Closed"
+      - type: list
+        mark: "Hər sətirdə ikon, başlıq, nömrə və müəllif."
+        items:
+          - { title: "Add wind speed sensor", sub: "#42 opened by ayla-karimova", icon: open }
+          - { title: "Fix CSV header on first run", sub: "#38 opened by ayla-karimova", icon: open }
+notifications:
+  vis:
+    kind: ui
+    caption: "Watch menyusu (sadələşdirilmiş)"
+    url: "github.com/windvane/logger"
+    main:
+      - type: button
+        label: "Watch"
+      - type: check
+        label: "Participating and @mentions"
+        radio: true
+        mark: "Yalnız iştirak etdiyiniz və sizi çəkən müzakirələr."
+      - type: check
+        label: "All Activity"
+        radio: true
+        mark: "Bütün müzakirələr: böyük layihədə çox olur."
+      - type: check
+        label: "Ignore"
+        radio: true
+      - type: check
+        label: "Custom"
+        sub: "Releases"
+        radio: true
+        checked: true
+        mark: "Sam yalnız yeni versiyalar haqqında bildiriş seçir."
+    note: "Gələn bildirişlər `github.com/notifications` səhifəsindədir, yuxarı sağdakı inbox ikonu oranı açır."

@@ -569,7 +569,6 @@ Done (branch `feat/go-visuals`):
 - `docs/GLOSSARY.md`: 88 terms in the nine sections — kept in English or translated (sabit, rekursiya, heş, dövr…), a short Azerbaijani explanation and the lesson that introduces it, checked against the lesson texts. The `write-lesson` skill points to it and lists the visual kinds.
 - Checked in headless Chrome: every new visual in the dark theme, the timeline in the light theme, channel-buffering and goroutines at 390 px (no horizontal scroll); `content:check` with deliberately broken data (six cases rejected).
 
-
 ### 67. Text lessons: `concept` and `compare` pilots
 The user ran `/write-content git`. The first module ("Əsaslar") needs two kinds the site could not render, so Claude built them and wrote one pilot each; the `terminal` and `state` pilots are still awaiting review.
 
@@ -785,3 +784,21 @@ Also polished on the same branch:
 - `panic`: the example panicked on a row letter, the kind of input the lesson itself says must get an `error`; `seatPrice` now takes a `Row` enum (`iota`, as in the enums lesson) and the crash step calls it with `Row(7)`, a real programmer error; one sentence says user input is converted by an `error`-returning function first; quiz answers spread. `content:go --write panic`.
 - `worker-pools`: `main.go` 78 → 62 lines (no `Wash` struct, embedding or prices; the worker sends the washed `Car` back, ordered collection by `Slot` and the speed check stay); the steps say worker / iş / nəticə instead of "bölmə", "kassa", "maşın yuyur". `content:go --write worker-pools`. Scan 14 → 12.
 - `regular-expressions`: the 36-word sentence with the whole pattern syntax is now a list in pattern order; four other 22–28-word sentences split; the giveaway quiz option (it carried the backtick fix) shortened, with a distractor of the same shape. Scan 15 → 6.
+
+### 86. Lesson kind `ui` (pilot `github-account`)
+The user chose drawn mockups over screenshots for the 33 `ui` nodes of part 2, and "code + rendered result" for its Markdown and YAML `code` nodes.
+
+Done:
+- `vis: ui`: a browser frame with an address bar and optional tabs, a main and a side column of simple elements, numbered marks with a legend; data in `steps.yaml`, checked by Zod (`UiMock.astro`, `UiEl.astro`, CSS in `lesson.css`, own 16×16 line icons). The side column drops under the main one on a phone.
+- Pilot `github-account` (Sam starts a new job): signup and the password rule, the username and what renaming breaks, why 2FA and who must enable it (45 + 7 days), the authenticator app, the setup key, the 6-digit check, 16 recovery codes. Facts checked against GitHub Docs (creating an account, strong passwords, configuring 2FA, mandatory 2FA, recovery methods, changing your username); the signup form labels are not in the docs, so the mockup is called simplified.
+
+### 87. GitHub module 14 "GitHub ilə tanışlıq"
+The user approved the `ui` pilot and asked for the rest of the module. Four lessons were written by parallel subagents from a common brief; an independent reviewer checked facts against GitHub Docs, consistency and the quizzes and fixed them.
+
+Done:
+- `github-interface` (`ui`, a weather-station logger): the repository header and tabs, the Code tab, About and the Code button, Issues and Pull requests lists, notifications and Watch levels, search with `repo:`.
+- `github-profile` (`ui`, Sam's own account): Public profile, pinned items, the contribution graph and what counts, private email and the noreply address, `user.email` for commits.
+- `private-vs-public` (`compare`, a bakery's app and its helper library): who sees, clones, forks and pushes, when to choose which, changing visibility and its effects, internal repositories.
+- `creating-repositories` (`ui`, a habit tracker): the New repository form, README / `.gitignore` / license templates, why to keep the repository empty for an existing project (`fetch first`, unrelated histories), Quick setup and `git push -u`, creating first and cloning.
+- The reviewer removed claims no doc confirms (UTC days, a 24-hour delay, "Search all of GitHub"), trimmed busy lessons to 4–5 mockups and replaced giveaway quiz options.
+

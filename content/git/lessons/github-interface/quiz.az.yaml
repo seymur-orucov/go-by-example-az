@@ -1,0 +1,57 @@
+- question: "Ayla `windvane/logger` səhifəsində **Settings** tab-ını görür, Sam isə görmür. Səbəb nədir?"
+  options:
+    - "Sam repository-ni hələ fork etməyib"
+    - "Sam repository-yə **Star** verməyib"
+    - "Ayla-nın repository-ni idarə etmək icazəsi var"
+  answer: 2
+  explain: "Settings yalnız repository-ni idarə etmək icazəsi olanlara görünür. Fork və Star buna təsir etmir."
+- question: "Tab-da **Issues 9** yazılıb. Bu 9 nəyin sayıdır?"
+  options:
+    - "Repository-də indiyə qədər açılmış bütün issue-ların"
+    - "Hazırda açıq olan issue-ların"
+    - "Sizin bu repository-də açdığınız issue-ların"
+  answer: 1
+  explain: "Issues və Pull requests yanındakı rəqəm açıq olanların sayıdır. Bağlanmışlar siyahının üstündəki **Closed** sayındadır."
+- question: "Sam `fix/csv-header` branch-ının commit tarixçəsinə baxmaq istəyir. Code tab-ında nə edir?"
+  options:
+    - "Branch seçimində `fix/csv-header`-i seçir, sonra commit-lərin sayına basır"
+    - "**About** bölməsində `fix/csv-header` mövzusuna basır"
+    - "Yaşıl **Code** düyməsində `fix/csv-header` variantını seçir"
+  answer: 0
+  explain: "Commit sayı seçilmiş branch-ın tarixçəsini açır. Ona görə əvvəl branch seçilir. Code düyməsi clone ünvanını verir, About isə layihənin təsviridir."
+- question: "Yaşıl **Code** düyməsinin menyusu nəyə lazımdır?"
+  options:
+    - "Faylların kodunu brauzerdə redaktə etmək üçün"
+    - "Code tab-ına qayıtmaq üçün"
+    - "Repository-ni yeni commit-lə yeniləmək üçün"
+    - "Clone ünvanını köçürmək üçün"
+  answer: 3
+  explain: "Menyu clone ünvanlarını verir. HTTPS ünvanı `git clone`-a verilir, məsələn `git clone https://github.com/windvane/logger.git`."
+- question: "Sam **Watch** menyusunda **Participating and @mentions** seçib. Ayla bir issue-da `@sam-lee` yazır. Sam bildiriş alacaqmı?"
+  options:
+    - "Xeyr: bu səviyyədə repository-dən heç bir bildiriş gəlmir"
+    - "Bəli: adı çəkilən müzakirədən bildiriş gəlir"
+    - "Yalnız Sam həmin issue-ya əvvəl şərh yazıbsa"
+  answer: 1
+  explain: "Bu səviyyədə iştirak etdiyiniz və adınızı çəkən müzakirələrdən bildiriş gəlir. Heç bir bildiriş istəməyəndə **Ignore** seçilir."
+- question: "Sam yalnız layihənin yeni versiyaları haqqında bildiriş almaq istəyir. Watch menyusunda nəyi seçməlidir?"
+  options:
+    - "**All Activity**"
+    - "**Ignore**"
+    - "**Custom**, sonra **Releases**"
+  answer: 2
+  explain: "**Custom** iştirakdan əlavə seçilmiş növləri verir. **All Activity** bütün müzakirələri gətirər, **Ignore** isə heç nə."
+- question: "Hansı düymə kursoru axtarış sətrinə qoyur?"
+  options:
+    - "`t`"
+    - "`/`"
+    - "`w`"
+  answer: 1
+  explain: "`/` və ya `s` axtarış sətrini seçir. `t` və `w` repository-də başqa qısayollardır: fayl axtarışı və branch seçimi."
+- question: "Sam-ın sorğusu `repo:windvane/logger humidity`-dir. O, başqa layihələrdəki nəticələri də görmək istəyir. Nə etməlidir?"
+  options:
+    - "Sorğuya `repo:windvane/logger` də əlavə etməlidir"
+    - "Əvvəl repository-ni fork etməlidir"
+    - "Sorğudan `repo:windvane/logger` hissəsini silməlidir"
+  answer: 2
+  explain: "`repo:` axtarışı bir repository ilə məhdudlaşdırır. Onu silsəniz, axtarış bütün GitHub-da aparılır. Fork axtarışa təsir etmir."

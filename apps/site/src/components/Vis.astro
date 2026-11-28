@@ -13,11 +13,13 @@
 // - flow: a row of boxes, optionally joined by arrows (text lessons, hand-written);
 // - compare: two variants side by side, aspect by aspect (text lessons, hand-written);
 // - diagram: places (computers, servers) side by side with labelled → / ← arrows between
-//   neighbours (diagram lessons, hand-written); stacked with ↓ / ↑ arrows on a phone.
+//   neighbours (diagram lessons, hand-written); stacked with ↓ / ↑ arrows on a phone;
+// - ui: a drawn mockup of a web page with numbered marks (ui lessons), see UiMock.astro.
 // The script replays the `pop` animation of `.cell.new` and `.tl-bar` when a step becomes active.
 import type { Vis, VisAreas, VisGraph } from "../lib/lesson";
 import { renderInline } from "../lib/markdown";
 import GraphRail from "./GraphRail.astro";
+import UiMock from "./UiMock.astro";
 
 interface Props {
   vis: Vis;
@@ -117,6 +119,8 @@ const flow = vis.kind === "flow" ? vis : null;
 const cmp = vis.kind === "compare" ? vis : null;
 const dia = vis.kind === "diagram" ? vis : null;
 ---
+
+{vis.kind === "ui" && <UiMock vis={vis} />}
 
 {dia && (
   <div class="st-vis">

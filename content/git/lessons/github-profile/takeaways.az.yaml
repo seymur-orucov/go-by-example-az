@@ -1,0 +1,10 @@
+rules:
+  - "Ad, bio, şəkil və linklər **Settings** → **Public profile** səhifəsində dəyişir; bio ən çox 160 simvoldur."
+  - "Profilə repository və gist birlikdə ən çox altı element pin etmək olar."
+  - "Commit-in contribution graph-da sayılması üçün email hesaba bağlı olmalı, commit default branch-da olmalı, repository fork olmamalıdır."
+  - "**Keep my email addresses private** saytdakı əməliyyatlara noreply ünvanı yazır; kompüterdəki commit-lər üçün Git-də `user.email` ayrıca dəyişir."
+  - "Email ayarı yalnız yeni commit-lərə təsir edir; köhnə commit-lər köhnə email ilə qalır."
+practices:
+  - "Profilə ən yaxşı 3–6 işinizi pin edin."
+  - "Noreply ünvanını **Emails** səhifəsindən köçürüb `git config --global user.email` ilə təyin edin."
+  - "**Block command line pushes that expose my email** qutusunu da işarələyin."

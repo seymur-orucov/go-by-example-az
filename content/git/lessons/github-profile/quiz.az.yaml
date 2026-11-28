@@ -1,0 +1,58 @@
+- question: "Profildə göstərilən adı və bio-nu harada dəyişmək olar?"
+  options:
+    - "**Settings** → **Account**"
+    - "**Settings** → **Public profile**"
+    - "**Settings** → **Emails**"
+  answer: 1
+  explain: "Ad, bio, linklər və yer **Public profile** səhifəsindədir və **Update profile** ilə saxlanır. **Account** istifadəçi adını dəyişmək üçündür."
+- question: "Ayla profilinə pin etmək üçün 5 repository və 3 gist seçmək istəyir. Nə olacaq?"
+  options:
+    - "Hamısı pin olunacaq: limit yalnız repository-lərə aiddir"
+    - "Gist-ləri pin etmək olmur, yalnız 5 repository qalacaq"
+    - "Hamısını seçə bilməz: repository və gist birlikdə ən çox 6"
+  answer: 2
+  explain: "Limit ümumidir: repository və gist birlikdə ən çox altı element."
+- question: "Sam `feature/search` branch-ında 4 commit edib push etdi, amma branch-ı hələ `main`-ə birləşdirmədi. Commit-lər contribution graph-da görünəcəkmi?"
+  options:
+    - "Xeyr: commit default branch-da olmalıdır"
+    - "Bəli: push edilən hər commit sayılır"
+    - "Bəli, amma yalnız PR açılandan sonra"
+  answer: 0
+  explain: "Commit default branch-da olmalıdır. Branch `main`-ə birləşəndən sonra commit-lər sayılır."
+- question: "Ayla commit-lərində `ayla@laptop.local` email-ini işlədib. Commit-lər public repository-nin `main` branch-ındadır. Niyə qrafikdə görünmür?"
+  options:
+    - "Public repository-lərin commit-ləri qrafikdə sayılmır"
+    - "Qrafik yalnız brauzerdə edilən commit-ləri göstərir"
+    - "Bu email Ayla-nın GitHub hesabına bağlı deyil"
+  answer: 2
+  explain: "GitHub commit-i email ilə hesaba bağlayır. `ayla@laptop.local` Ayla-nın hesabına əlavə olunmayıb, ona görə commit-lər ona aid edilmir."
+- question: "**Keep my email addresses private** işarələnəndən sonra nə dəyişir?"
+  options:
+    - "Kompüterdəki bütün köhnə commit-lərin email-i dəyişir"
+    - "Saytda edilən əməliyyatlarda commit-ə noreply ünvanı yazılır"
+    - "`git config user.email` avtomatik noreply ünvanına dəyişir"
+  answer: 1
+  explain: "Bu ayar GitHub-ın saytda yaratdığı commit-lərə aiddir: brauzerdə redaktə, PR birləşdirmə. Kompüterdəki Git-in ayarını özünüz dəyişməlisiniz."
+- question: "Bu komandadan sonra Sam-ın hansı commit-ləri noreply ünvanı ilə yazılacaq?"
+  code: |
+    git config --global user.email "12345678+sam-lee@users.noreply.github.com"
+  options:
+    - "Bütün repository-lərdə yalnız yeni commit-lər"
+    - "Bütün repository-lərdə köhnə və yeni commit-lər"
+    - "Yalnız komandanın işlədildiyi repository-nin commit-ləri"
+  answer: 0
+  explain: "`--global` ayarı bütün repository-lərə aiddir, lokal ayarı olmayanlara. Köhnə commit-lər isə köhnə email ilə qalır."
+- question: "**Block command line pushes that expose my email** aktivdir. Push zamanı GitHub nəyi yoxlayır?"
+  options:
+    - "Branch-dakı bütün commit-lərin email-ini"
+    - "Repository-nin bütün tarixçəsini"
+    - "Ən son commit-in müəllif email-ini"
+  answer: 2
+  explain: "GitHub yalnız ən son commit-ə baxır. Onun müəllif email-i sizin gizli email-inizdirsə, push rədd edilir."
+- question: "Sam private repository-lərdə də işləyir. Standart ayarda bu iş contribution graph-da görünürmü?"
+  options:
+    - "Bəli, repository-lərin adı ilə birlikdə"
+    - "Xeyr, amma ayarla göstərmək olar: adlar gizli qalır"
+    - "Xeyr, private repository-ləri qrafikə heç vaxt əlavə etmək olmur"
+  answer: 1
+  explain: "Standart olaraq qrafik yalnız public repository-lərdəki işi göstərir. Ayarla private iş də sayılır, amma təfərrüatı gizli qalır."

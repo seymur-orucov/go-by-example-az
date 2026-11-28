@@ -1,0 +1,11 @@
+rules:
+  - "Repository səhifəsinin ünvanı `github.com/<sahib>/<ad>`-dır; başlıqda Watch, Fork və Star düymələri var."
+  - "Issues və Pull requests tab-larının yanındakı rəqəm açıq olanların sayıdır; Settings yalnız idarə icazəsi olanlara görünür."
+  - "Code tab-ında fayl siyahısı, branch seçimi, commit sayı və README var; commit sayı seçilmiş branch-ın tarixçəsini açır."
+  - "Yaşıl **Code** düyməsi clone ünvanını verir: HTTPS, SSH və ya GitHub CLI."
+  - "Watch səviyyəsi repository-dən hansı bildirişlərin gələcəyini təyin edir."
+  - "`/` axtarış sətrini seçir; `repo:<sahib>/<ad>` axtarışı bir repository ilə məhdudlaşdırır."
+practices:
+  - "Yeni layihədə əvvəl About və README-ni oxuyun, sonra Issues və Pull requests-ə baxın."
+  - "Böyük layihədə **All Activity** yox, **Custom** ilə yalnız lazım olan növləri seçin."
+  - "Tab-lar arasında `g` ilə başlayan qısayollarla keçin: `g` `i` Issues, `g` `p` Pull requests."
