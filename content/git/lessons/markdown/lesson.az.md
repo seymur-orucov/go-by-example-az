@@ -1,4 +1,4 @@
-**Markdown** sadə mətnə bir neçə işarə əlavə edərək formatlama yazma üsuludur. Fayl `.md` ilə bitir və istənilən redaktorda oxunur. GitHub isə onu formatlanmış göstərir. README-lər, issue-lar və şərhlər Markdown-la yazılır.
+**Markdown** sadə mətnə bir neçə işarə əlavə edərək formatlama yazma üsuludur. `.md` faylını istənilən redaktorda oxumaq olur, GitHub isə onu formatlanmış göstərir. README-lər, issue-lar və şərhlər Markdown-la yazılır.
 
 Nümunə Ayla-nın komandaya yeni gələnlər üçün yazdığı `SETUP.md` faylıdır: laptopu işə necə hazırlamaq.
 
