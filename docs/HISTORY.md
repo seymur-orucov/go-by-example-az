@@ -874,3 +874,11 @@ Done:
 - non-blocking-channel-operations: intro cut to 4 sentences without the game story, the 16 ms parenthesis split, the Q6 options evened, the "qeyd etmək" clause dropped (scan 11 → 5).
 - number-parsing: the base-0 note now covers a plain leading `0` (octal: `"017"` is 15, `"08"` is an error), intro cut to 4 sentences, dense float/range sentences split, `errors.As` wording made concrete (scan 12 → 6).
 - pointers: quiz answers spread, writing through a nil pointer also panics (lesson and takeaway), a neutral `return &c` example, the VIP-floor story trimmed, "sən" → "biz" (scan 5 → 3).
+
+### 96. Polish batch 6
+Done:
+- range-over-channels: quiz answers spread with same-shape Q2 distractors, the `close` recap sentence dropped, the drain step cut to two sentences that refer back to Closing Channels (scan 2 → 1).
+- range-over-iterators: quiz answers spread, "prices" → ticket types in #std, explained that Go builds `yield` from the loop body, intro cut to 4 sentences, the "imkan verir" calque dropped (scan 3 → 1).
+- range: quiz answers spread, backticks removed from the #blank heading, the Q1 explain wording and the "ilə gəlir" calque fixed, two weak distractors replaced (scan 5 → 4).
+- rate-limiting: the burst step no longer claims an idle ticker queues ticks (it holds at most one, checked with Go), "bilet" → "token", shorter intro, garbage collector glossed, quiz answers spread; `token bucket`, `garbage collector` added to GLOSSARY (scan 11 → 6).
+- recursion: intro cut from 8 sentences to 4 without the box and lift comparisons, the `nil` slice named correctly, a #base sentence shows the reversed order when printing after the recursive call, the Q2 explanation fixed (the deepest call is `n == 0`), quiz answers spread; `base case`, `call stack` added to GLOSSARY. A fresh re-review found a new major point, which was fixed in a second pass (scan 8 → 2).

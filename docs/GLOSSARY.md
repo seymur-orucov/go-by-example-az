@@ -49,6 +49,8 @@ Explanations below are in Azerbaijani, as on the site. Checked against the lesso
 | function literal | kept | adsız, yerindəcə yazılan funksiya | closures |
 | closure | kept | ətrafındakı dəyişənləri "yadda saxlayan" function literal | closures |
 | recursion | translated: **rekursiya** | funksiyanın özünü çağırması; dayanma şərti mütləqdir | recursion |
+| base case | kept | rekursiyanın dayandığı hal: funksiya özünü bir daha çağırmır | recursion |
+| call stack | kept | gözləyən funksiya çağırışlarının saxlandığı yaddaş sahəsi | recursion |
 | stack overflow | kept as code | dayanmayan rekursiyada call stack-in dolması | recursion |
 
 ## Tiplər və strukturlar
@@ -105,6 +107,8 @@ Explanations below are in Azerbaijani, as on the site. Checked against the lesso
 | timer / ticker | kept | bir dəfə / hər `d` müddətindən bir siqnal verən saat | timers, tickers |
 | worker pool | kept (işçi hovuzu) | eyni növbədən iş götürən bir neçə goroutine | worker-pools |
 | rate limiting | kept (sürət məhdudiyyəti) | vahid vaxtda ən çox N əməliyyat | rate-limiting |
+| token bucket | kept | token-lərlə limit: buffered channel-da ən çox N token yığılır, hər iş bir token götürür, token-lər müəyyən aralıqla bərpa olunur | rate-limiting |
+| garbage collector | kept | lazımsız yaddaşı özü boşaldan mexanizm | rate-limiting |
 | atomic | translated: **atomik** | bölünməz əməliyyat: oxumaq, dəyişmək və yazmaq bir addımda | atomic-counters |
 | mutex | kept | kodun bir hissəsinə eyni anda yalnız bir goroutine-i buraxan kilid | mutexes |
 
