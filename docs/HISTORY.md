@@ -804,9 +804,12 @@ Done:
 
 
 ### 88. Polish `strings-and-runes` (Go)
-Applied the review's major findings only (F1, F2); minor F3–F6 left open.
+Applied all six review findings: the major F1, F2 first, then the minor F3–F6 at the user's request.
 
 Done:
 - #range talks about byte indexes ("1 indeksində") instead of ordinals, which clashed with "4-cü bayt" in #index.
 - Quiz right answers spread over positions 0/1/2 (3/2/3 instead of 1/6/1); every changed answer re-run with Go.
-- Scan 7 → 6 pts.
+- Scan 7 → 6 pts after F1, F2.
+- Intro cut to 4 sentences; the byte sizes of `ü`, `é` and the Azerbaijani letters moved to #bytes; "ASCII" replaced by "ingilis əlifbasından kənar" (also in takeaways); `Unicode` added to GLOSSARY.
+- #runes says a rune is not always one letter (some emoji, `é` with a separate accent); #index shows that `city[0] = 'z'` does not compile (error message checked with Go).
+- Scan 6 → 5 pts.

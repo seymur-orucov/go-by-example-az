@@ -36,6 +36,7 @@ Explanations below are in Azerbaijani, as on the site. Checked against the lesso
 | byte | translated: **bayt** | 0–255 arası kiçik ədəd; mətn yaddaşda baytlarla saxlanılır | strings-and-runes |
 | rune | kept | bir simvolu təmsil edən ədəd, simvolun Unicode-dakı nömrəsi | strings-and-runes |
 | UTF-8 | kept | mətni baytlara çevirən kodlaşdırma; bir hərf 1–4 bayt tuta bilər | strings-and-runes |
+| Unicode | kept | dünyadakı simvolların ümumi cədvəli; hər simvolun orada nömrəsi var | strings-and-runes |
 
 ## Funksiyalar
 
