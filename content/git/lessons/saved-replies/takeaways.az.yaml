@@ -1,0 +1,9 @@
+rules:
+  - "Saved reply hesabınıza bağlıdır: hər repository-də işləyir, başqaları onu görmür."
+  - "Saved reply **Settings** → **Saved replies** səhifəsində yaradılır; mətndə Markdown işləyir."
+  - "Şərhdə saved replies düyməsi və ya `Ctrl` + `.` cavabların siyahısını açır."
+  - "Seçilən cavab şərh sahəsinə düşür və göndərilməzdən əvvəl dəyişdirilə bilər."
+  - "Cavab qələm işarəsi ilə dəyişir, X işarəsi ilə silinir; yazılmış şərhlər dəyişmir."
+practices:
+  - "Başlığı qısa yazın: siyahını başlığa görə süzürsünüz."
+  - "Göndərməzdən əvvəl hazır mətni konkret issue-ya uyğunlaşdırın."

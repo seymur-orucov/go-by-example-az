@@ -68,6 +68,8 @@ const steps = (lesson?.steps ?? []).map((s) => ({
   outLines: s.out ? s.out.replace(/\n$/, "").split("\n") : [],
 }));
 const hasVis = steps.some((s) => s.vis);
+// Markdown code lessons show the rendered file instead of program output.
+const preview = !!lesson?.fullPreview;
 const pad = (n: number) => String(n).padStart(2, "0");
 // Client data: line ranges and expected output per step.
 const clientData = {
@@ -81,6 +83,8 @@ const clientData = {
   copied: lesson?.lang === "bash" ? "Komandalar kopyalandı" : "Kod kopyalandı",
   next: next ? { title: next.title, href: next.href } : null,
   prev: prev ? { href: prev.href } : null,
+  previews: preview ? steps.map((s) => s.preview ?? "") : null,
+  fullPreview: lesson?.fullPreview ?? null,
 };
 // The nearest ready lesson after this one, for the "in preparation" page.
 const nextReady = sections
@@ -192,6 +196,12 @@ const readyInSection = section.items.filter((it) => it.status === "ready" && it.
                   <div class="st-body" set:html={s.html} />
                   {!textOnly && <pre class="code st-snip" set:html={s.snippet} />}
                   {s.vis && <Vis vis={s.vis} />}
+                  {s.preview && (
+                    <div class="st-preview">
+                      <span class="st-preview-cap">Nəticə</span>
+                      <div class="md-preview" set:html={s.preview} />
+                    </div>
+                  )}
                   {s.outLines.length > 0 && (
                     <div class="st-out">
                       {session ? (
@@ -337,13 +347,13 @@ const readyInSection = section.items.filter((it) => it.status === "ready" && it.
                   {runnable && <div class="cw-editor" id="cw-editor" hidden />}
                   <div class="cw-term" aria-live="polite">
                     <div class="cw-term-head">
-                      <span>Çıxış</span>
+                      <span>{preview ? "Nəticə" : "Çıxış"}</span>
                       <span class="cw-status" id="cw-status">
                         <i />
                         addım rejimi
                       </span>
                       <button class="btn btn-ghost btn-sm" id="btn-full" aria-pressed="false">
-                        Tam çıxış
+                        {preview ? "Tam nəticə" : "Tam çıxış"}
                       </button>
                       {runnable && (
                         <button
@@ -355,7 +365,7 @@ const readyInSection = section.items.filter((it) => it.status === "ready" && it.
                         </button>
                       )}
                     </div>
-                    <div class="cw-term-body" id="cw-term" />
+                    <div class:list={["cw-term-body", preview && "md-preview"]} id="cw-term" />
                   </div>
                 </div>
                 <div class="cw-hint">

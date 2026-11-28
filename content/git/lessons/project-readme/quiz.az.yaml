@@ -1,0 +1,53 @@
+- question: "Repository-də həm `.github/README.md`, həm kökdə `README.md` var. GitHub əsas səhifədə hansını göstərir?"
+  options:
+    - "Kökdəki `README.md`-ni"
+    - "`.github/README.md`-ni"
+    - "İkisini ardıcıl"
+    - "Heç birini, xəbərdarlıq göstərir"
+  answer: 1
+  explain: "GitHub README-ni əvvəl `.github` qovluğunda, sonra kökdə, sonra `docs`-da axtarır. Birinci tapdığını göstərir."
+- question: "README-dəki bu sətir GitHub-da nə göstərir?"
+  code: |
+    ![Version](https://img.shields.io/badge/version-1.4-blue)
+  options:
+    - "`Version` mətni olan keçid"
+    - "`1.4` versiyasını yükləyən düymə"
+    - "shields.io-nun yaratdığı `version | 1.4` nişanı"
+  answer: 2
+  explain: "Badge adi şəkildir. Şəkli shields.io ünvandakı mətndən düzəldir: etiket, dəyər və rəng."
+- question: "Badge-ə klikləyəndə testlərin səhifəsi açılsın. Hansı yazılış doğrudur?"
+  options:
+    - "`[![Tests](tests.svg)](runs.html)`"
+    - "`![[Tests](runs.html)](tests.svg)`"
+    - "`![Tests](tests.svg)(runs.html)`"
+  answer: 0
+  explain: "Şəkil keçidin kvadrat mötərizəsinə, mətnin yerinə yazılır. Onda bütün şəkil keçid olur."
+- question: "Oxucular yazır ki, quraşdırmadan sonra alətin işləyib-işləmədiyini bilmirlər. README-yə nə əlavə etmək kömək edər?"
+  options:
+    - "Testlərin vəziyyətini göstərən Actions badge-i"
+    - "`LICENSE` faylının tam mətni"
+    - "Yoxlama komandası: `tidy-photos --version`"
+  answer: 2
+  explain: "Quraşdırma bölməsinin sonunda yoxlama komandası olsa, oxucu alətin hazır olduğunu özü görür."
+- question: "Niyə `CONTRIBUTING.md`-yə nisbi keçid tam URL-dən yaxşıdır?"
+  options:
+    - "GitHub README-də tam URL-li keçidləri göstərmir"
+    - "Açıq branch-ın faylına aparır və clone-da da işləyir"
+    - "Nisbi keçid faylın mətnini README-yə daxil edir"
+  answer: 1
+  explain: "GitHub nisbi keçidi açıq olan branch-a uyğunlaşdırır. Clone edilmiş repository-də də fayl eyni yoldadır."
+- question: "README-də `## Installation`, `## Usage` və `## License` başlıqları var. GitHub onlardan nə qurur?"
+  options:
+    - "Məzmun cədvəli, **Outline** düyməsi ilə açılır"
+    - "Repository-nin **About** hissəsindəki izahı"
+    - "Hər başlıq üçün repository-də ayrıca fayl"
+  answer: 0
+  explain: "GitHub README-nin bölmə başlıqlarından avtomatik məzmun cədvəli qurur. Onu faylın yuxarı küncündəki **Outline** düyməsi açır."
+- question: "Bunlardan hansı layihə README-sinin cavab verdiyi əsas suallardan deyil?"
+  options:
+    - "Layihə nə edir və nəyə lazımdır?"
+    - "Necə quraşdırılır və işlədilir?"
+    - "Kod hansı license ilə yayılır?"
+    - "Hər commit-də nə dəyişib?"
+  answer: 3
+  explain: "README layihənin nə olduğunu, quraşdırılmasını, istifadəsini, kömək yerini və license-i deyir. Commit-lərin tarixçəsi `git log`-dadır."

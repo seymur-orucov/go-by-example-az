@@ -1,0 +1,58 @@
+- question: "Bu başlıqlardan hansı issue üçün ən aydındır?"
+  options:
+    - "Site problem on the adoption page, please check"
+    - "Adoption form does not submit on mobile Safari"
+    - "Urgent: fix this as soon as possible today"
+  answer: 1
+  explain: "Yaxşı başlıq nəyin və harada xarab olduğunu deyir. Qalan ikisi problemi adlandırmır."
+- question: "Xəta haqqında issue-nun mətnində hansı üç hissə olmalıdır?"
+  options:
+    - "Təkrarlamaq üçün addımlar, gözlənilən və real nəticə"
+    - "Prioritet, son tarix və işi görəcək adamın adı"
+    - "Düzəldilmiş kod, test faylı və commit mesajı"
+  answer: 0
+  explain: "Addımlar və iki nəticə xətanı başqasının da təkrarlamasına kömək edir. Təyinat və milestone sağ tərəfdəki sahələrdir."
+- question: "Issue şablonları repository-də harada saxlanır?"
+  options:
+    - "`docs/templates/` qovluğunda"
+    - "`.git/ISSUE_TEMPLATE/` qovluğunda"
+    - "Kökdəki `ISSUES.md` faylında"
+    - "`.github/ISSUE_TEMPLATE/` qovluğunda"
+  answer: 3
+  explain: "Şablonlar `.github/ISSUE_TEMPLATE/` qovluğundakı fayllardır. `.git/` qovluğu GitHub-a push olunmur."
+- question: "Ayla `bug_report.md` şablonunu `templates` branch-ına commit edib, hələ merge etməyib. **New issue** basanda nə olur?"
+  options:
+    - "Şablon seçim siyahısında görünür"
+    - "Şablon görünmür: o, default branch-da deyil"
+    - "GitHub şablonu özü `main`-ə köçürür"
+  answer: 1
+  explain: "Şablon yalnız default branch-da olanda işləyir. Merge-dən sonra seçim siyahısında görünəcək."
+- question: "Sam `Closes #7` mesajlı commit-i `feature/filter` branch-ına push edir. Issue `#7` nə olur?"
+  options:
+    - "Bağlanır: commit artıq GitHub-dadır"
+    - "Bağlanır, amma not planned kimi"
+    - "Açıq qalır: commit `main`-də deyil"
+  answer: 2
+  explain: "Açar söz commit default branch-a düşəndə işləyir. Branch `main`-ə merge olunanda issue bağlanacaq."
+- question: "Hansı sətir merge-dən sonra issue `#12`-ni bağlamır?"
+  options:
+    - "`Fixes #12`"
+    - "`Resolved: #12`"
+    - "`CLOSES #12`"
+    - "`Fixing #12`"
+  answer: 3
+  explain: "`fixing` açar sözlərin siyahısında yoxdur. Böyük hərf və sözdən sonra iki nöqtə qəbul olunur."
+- question: "Ayla bir ideyanı heç vaxt etməyəcəyini bilir. Issue-nu necə bağlamalıdır?"
+  options:
+    - "**Close issue** yanındakı oxdan not planned seçib"
+    - "Completed seçib, çünki issue artıq lazım deyil"
+    - "Issue-nu açıq qoyub başlığa \"won't do\" yazıb"
+  answer: 0
+  explain: "Not planned işin görülməyəcəyini göstərir. Completed iş görüləndə seçilir."
+- question: "Hamı görsün ki, `#12` üzərində Sam işləyir. Ayla bunu harada qeyd edir?"
+  options:
+    - "**Milestone** sahəsində Sam-ın adını yazır"
+    - "Sağ tərəfdəki **Assignees** sahəsində"
+    - "Başlığın sonuna `@sam-lee` əlavə edir"
+  answer: 1
+  explain: "Assignees issue-nu kimin gördüyünü göstərir. Milestone issue-nu bir məqsəd altında toplayır, adam üçün deyil."

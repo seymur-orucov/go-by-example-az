@@ -1,0 +1,19 @@
+# @step required
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "airq"
+authors:
+  - family-names: "Karimova"
+    given-names: "Ayla"
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+  - family-names: "Lee"
+    given-names: "Sam"
+
+# @step release
+version: 1.2.0
+date-released: "2026-03-02"
+
+# @step links
+doi: "10.5281/zenodo.1234"
+repository-code: "https://github.com/ayla-karimova/airq"
+license: MIT

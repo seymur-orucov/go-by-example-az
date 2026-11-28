@@ -1,0 +1,105 @@
+# Drawn mockups (ui lesson): the Labels page, the New label form, the issue list filtered by a
+# label and an issue with good first issue in the sidebar. Simplified; labels follow GitHub Docs
+# ("Managing labels", "Filtering and searching issues and pull requests").
+what-is-a-label:
+  vis:
+    kind: ui
+    caption: "Labels səhifəsi: standart etiketlərin bir hissəsi (sadələşdirilmiş)"
+    url: "github.com/sam-lee/bike-stations/labels"
+    tabs:
+      - label: "Code"
+      - label: "Issues"
+        count: 23
+        active: true
+      - label: "Pull requests"
+        count: 2
+    main:
+      - type: heading
+        text: "10 labels"
+      - type: list
+        mark: "Etiketlərin adları. Sağda: neçə açıq issue-da olduğu. Əsl səhifədə adın yanında təsvir də görünür."
+        items:
+          - { title: "bug", meta: "3" }
+          - { title: "documentation", meta: "3" }
+          - { title: "enhancement", meta: "7" }
+          - { title: "good first issue", meta: "2" }
+          - { title: "help wanted", meta: "1" }
+          - { title: "wontfix", meta: "0" }
+    note: "Qalan standart etiketlər: `accessibility`, `duplicate`, `invalid`, `question`."
+apply-and-create:
+  vis:
+    kind: ui
+    caption: "Issues → Labels → New label (sadələşdirilmiş)"
+    url: "github.com/sam-lee/bike-stations/labels"
+    main:
+      - type: field
+        label: "Label name"
+        value: "station-data"
+        mark: "Etiketin adı: issue-da və axtarışda (`label:station-data`) bu ad işlənir."
+      - type: field
+        label: "Description"
+        value: "Wrong bike count or station status"
+        mark: "Qısa təsvir: etiketin nə vaxt qoyulduğunu izah edir."
+      - type: row
+        items:
+          - type: field
+            label: "Color"
+            value: "#1d76db"
+            mark: "Hex kodu ilə rəng. Yanındakı düymə təsadüfi rəng seçir."
+          - type: button
+            label: "Create label"
+            tone: primary
+filter:
+  vis:
+    kind: ui
+    caption: "Issue siyahısı `label:bug` ilə filtrlənib (sadələşdirilmiş)"
+    url: "github.com/sam-lee/bike-stations/issues"
+    tabs:
+      - label: "Code"
+      - label: "Issues"
+        count: 23
+        active: true
+      - label: "Pull requests"
+        count: 2
+    main:
+      - type: row
+        items:
+          - type: field
+            label: "Search"
+            value: "is:issue state:open label:bug"
+            mark: "`label:bug` yalnız `bug` etiketli issue-ları saxlayır."
+          - type: button
+            label: "Labels"
+            mark: "Sorğu yazmadan etiketi siyahıdan seçmək üçün."
+          - type: button
+            label: "New issue"
+            tone: primary
+      - type: list
+        mark: "Hər issue-nun etiketləri başlığın yanında görünür. Etiketə basmaq da filtr qurur."
+        items:
+          - { title: "Bike count stays at 0 after refresh", sub: "#41 opened by tural-h", meta: "bug", icon: open }
+          - { title: "Central Square shows as closed, but it is open", sub: "#38 opened by nika-v", meta: "bug, station-data", icon: open }
+          - { title: "Map does not load on slow connections", sub: "#35 opened by sam-lee", meta: "bug", icon: open }
+newcomers:
+  vis:
+    kind: ui
+    caption: "Yeni gələn üçün issue (sadələşdirilmiş)"
+    url: "github.com/sam-lee/bike-stations/issues/44"
+    main:
+      - type: heading
+        text: "Typo in the station list header #44"
+        sub: "Open · sam-lee opened this issue"
+      - type: text
+        text: "The header says **Avialable bikes**. It should be **Available bikes**. The text is in `src/StationList.jsx`."
+        mark: "Hansı faylın dəyişəcəyi yazılıb: yeni gələn haradan başlayacağını bilir."
+    side:
+      - type: heading
+        text: "Labels"
+        mark: "Sağ paneldəki **Labels**: etiketlər buradan qoyulur və silinir."
+      - type: list
+        items:
+          - { title: "good first issue" }
+          - { title: "bug" }
+      - type: heading
+        text: "Assignees"
+        sub: "No one assigned"

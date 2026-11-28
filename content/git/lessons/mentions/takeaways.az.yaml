@@ -1,0 +1,11 @@
+rules:
+  - "`@istifadəçi` həmin adama bildiriş göndərir və onu müzakirəyə abunə edir."
+  - "Bildiriş yalnız repository-ni görə bilən adama gedir; təşkilatın repository-sində adam həm də təşkilatın üzvü olmalıdır."
+  - "`@təşkilat/team` team-in hər üzvünə bildiriş göndərir."
+  - "`#12` eyni repository-nin issue və ya PR-ına, `owner/repo#12` başqa repository-yə link olur."
+  - "Commit SHA-sı linkə çevrilir və ilk 7 simvolu göstərilir."
+  - "İstinad istinad edilən issue-da geri link yaradır, amma onu bağlamır."
+practices:
+  - "Sualı cavablandıra bilən konkret adamı çağırın; team-i yalnız kimin lazım olduğu bilinməyəndə çağırın."
+  - "Abunə olan adamı hər şərhdə təkrar çağırmayın."
+  - "Mention-la birlikdə adamdan nə istədiyinizi yazın."

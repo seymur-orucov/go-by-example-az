@@ -6,7 +6,13 @@ import { join } from "node:path";
 import { z } from "astro/zod";
 import { parse as parseYaml } from "yaml";
 import type { CatalogItem, CatalogSection } from "./catalog.ts";
-import { CONTENT_ROOT, loadSessionLesson, loadTextLesson, type Lesson } from "./lesson.ts";
+import {
+  CONTENT_ROOT,
+  loadCodeLesson,
+  loadSessionLesson,
+  loadTextLesson,
+  type Lesson,
+} from "./lesson.ts";
 
 const ID = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 
@@ -183,6 +189,7 @@ export function loadNodeLesson(technology: string, node: SyllabusNode): Lesson {
         : undefined;
     return loadTextLesson(technology, node.id, { require });
   }
+  if (node.kind === "code" && technology !== "go") return loadCodeLesson(technology, node.id);
   if (node.kind === "terminal" || node.kind === "state")
     return loadSessionLesson(technology, node.id);
   throw new Error(

@@ -18,6 +18,10 @@ interface LessonData {
   copied: string;
   next: { title: string; href: string } | null;
   prev: { href: string } | null;
+  /** Markdown code lessons: each step's lines rendered (HTML) instead of program output. */
+  previews: string[] | null;
+  /** Markdown code lessons: the whole file rendered, for the "Tam nəticə" view. */
+  fullPreview: string | null;
 }
 
 const root = document.documentElement;
@@ -222,6 +226,10 @@ function initWalkthrough(data: LessonData): () => void {
       term.innerHTML = runHtml;
       return;
     }
+    if (data.previews) {
+      term.innerHTML = fullOut ? (data.fullPreview ?? "") : (data.previews[i] ?? "");
+      return;
+    }
     term.innerHTML = fullOut
       ? outputLines.map((l) => `<span class="on">${lineHtml(l)}</span>`).join("")
       : outLines
@@ -365,7 +373,8 @@ function initWalkthrough(data: LessonData): () => void {
     if (runHtml !== null) runHtml = null;
     else fullOut = !fullOut;
     paintFullBtn();
-    setStatus(fullOut ? "tam çıxış · output.txt" : "addım rejimi", fullOut ? "full" : "");
+    const fullText = data.previews ? "bütün fayl" : "tam çıxış · output.txt";
+    setStatus(fullOut ? fullText : "addım rejimi", fullOut ? "full" : "");
     paintTerm(cur);
   });
   const play = data.runnable

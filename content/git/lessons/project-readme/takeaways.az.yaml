@@ -1,0 +1,10 @@
+rules:
+  - "GitHub `README.md`-ni repository-nin əsas səhifəsində göstərir; onu `.github`, kök və `docs` qovluqlarında bu sıra ilə axtarır."
+  - "Yaxşı README deyir: layihə nədir və nəyə lazımdır, necə quraşdırılır və işlədilir, kömək haradadır, license hansıdır."
+  - "Badge bir xidmətin (GitHub Actions, shields.io) yaratdığı şəkildir; `[![alt](şəkil)](ünvan)` onu keçidə çevirir."
+  - "GitHub README-nin başlıqlarından məzmun cədvəli qurur, o **Outline** düyməsi ilə açılır."
+  - "Nisbi keçid açıq olan branch-ın faylına aparır və clone edilmiş repository-də də işləyir."
+practices:
+  - "Başlığın altında layihəni bir cümlə ilə izah edin."
+  - "Quraşdırma və istifadə komandalarını ayrıca kod bloklarında, nümunə çıxışla verin."
+  - "Ətraflı qaydaları `CONTRIBUTING.md` və `LICENSE` fayllarında saxlayıb README-dən onlara keçid verin."

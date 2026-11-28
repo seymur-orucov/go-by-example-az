@@ -1,4 +1,4 @@
-// Build-time Go and shell highlighting with Shiki. Shiki tokenizes; colors come from the theme's
+// Build-time Go, shell, Markdown and YAML highlighting with Shiki. Shiki tokenizes; colors come from the theme's
 // --tok-* CSS variables (so palettes and light/dark keep working), not from a Shiki theme.
 import { createHighlighterCore, type HighlighterCore, type ThemeRegistrationRaw } from "shiki/core";
 import { createJavaScriptRegexEngine } from "shiki/engine/javascript";
@@ -11,11 +11,23 @@ let highlighter: Promise<HighlighterCore> | undefined;
 const getHighlighter = () =>
   (highlighter ??= createHighlighterCore({
     themes: [PLAIN],
-    langs: [import("shiki/langs/go.mjs"), import("shiki/langs/shellscript.mjs")],
+    langs: [
+      import("shiki/langs/go.mjs"),
+      import("shiki/langs/shellscript.mjs"),
+      import("shiki/langs/markdown.mjs"),
+      import("shiki/langs/yaml.mjs"),
+    ],
     engine: createJavaScriptRegexEngine(),
   }));
 
-export type Lang = "go" | "bash";
+export type Lang = "go" | "bash" | "markdown" | "yaml";
+
+const SHIKI_LANG: Record<Lang, string> = {
+  go: "go",
+  bash: "shellscript",
+  markdown: "markdown",
+  yaml: "yaml",
+};
 
 /** TextMate scope (innermost first) -> token class suffix. Order matters. */
 const GO_RULES: [RegExp, string][] = [
@@ -37,6 +49,32 @@ const BASH_RULES: [RegExp, string][] = [
   [/^keyword\.operator\.(redirect|pipe)/, "kw"],
 ];
 
+/** Markdown: headings, code, links, emphasis and list or quote markers stand out from the prose. */
+const MD_RULES: [RegExp, string][] = [
+  [/^(markup\.heading|entity\.name\.section|punctuation\.definition\.heading)/, "kw"],
+  [/^(markup\.inline\.raw|markup\.fenced_code|markup\.raw)/, "str"],
+  [/^(markup\.underline\.link|string\.other\.link)/, "fn"],
+  [/^(markup\.bold|markup\.italic|markup\.strikethrough)/, "type"],
+  [/^(punctuation\.definition\.(list|quote)|meta\.separator)/, "num"],
+  [/^markup\.quote/, "com"],
+];
+
+/** YAML (CITATION.cff): keys stand out from values; list dashes and comments are muted. */
+const YAML_RULES: [RegExp, string][] = [
+  [/^comment/, "com"],
+  [/^entity\.name\.tag/, "kw"],
+  [/^constant\.numeric/, "num"],
+  [/^(string|constant\.other|constant\.language)/, "str"],
+  [/^punctuation\.definition\.block\.sequence/, "num"],
+];
+
+const RULES: Record<Lang, [RegExp, string][]> = {
+  go: GO_RULES,
+  bash: BASH_RULES,
+  markdown: MD_RULES,
+  yaml: YAML_RULES,
+};
+
 function classFor(scopes: string[], rules: [RegExp, string][]): string | undefined {
   for (let i = scopes.length - 1; i >= 0; i--) {
     for (const [re, cls] of rules) if (re.test(scopes[i]!)) return cls;
@@ -49,7 +87,7 @@ export async function highlightLines(code: string, lang: Lang = "go"): Promise<s
   const hl = await getHighlighter();
   const src = code.replace(/\n$/, "");
   const lines = hl.codeToTokens(src, {
-    lang: lang === "bash" ? "shellscript" : "go",
+    lang: SHIKI_LANG[lang],
     theme: "plain",
     includeExplanation: "scopeName",
     // No per-line time limit: with explanations Shiki tokenizes each line twice, and if only one
@@ -57,7 +95,7 @@ export async function highlightLines(code: string, lang: Lang = "go"): Promise<s
     // "Cannot read properties of undefined (reading 'startIndex')". Build time has no deadline.
     tokenizeTimeLimit: 0,
   }).tokens;
-  const rules = lang === "bash" ? BASH_RULES : GO_RULES;
+  const rules = RULES[lang];
   return lines.map((line) => {
     // Merge neighbours with the same class ("fmt" with its quotes becomes one string token).
     const runs: { cls: string | undefined; text: string }[] = [];

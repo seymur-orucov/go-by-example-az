@@ -1,0 +1,11 @@
+rules:
+  - "README layihəni qısa təqdim edir; uzun bələdçi, FAQ və qısayollar wiki-yə yazılır."
+  - "Wiki Settings-in Features bölməsində Wikis qutusu ilə açılır; söndürəndə səhifələr gizlənir, silinmir."
+  - "GitHub Free-də wiki yalnız public repository-lərdədir."
+  - "Restrict editing to collaborators only işarəli olanda wiki-ni yalnız collaborator-lar dəyişir."
+  - "Save Page hər dəfə commit yaradır, Edit message onun mesajıdır; ilk səhifə Home-dur."
+  - "Wiki-nin öz Git repository-si var (`.wiki.git`): hər səhifə bir fayldır, `_Sidebar` və `_Footer` bütün səhifələrdə görünür."
+practices:
+  - "README-də təsvir, quraşdırma və istifadəni saxlayın, sonunda wiki-yə keçid verin."
+  - "Səhifələri yalnız komanda yazırsa, redaktəni collaborator-larla məhdudlaşdırın."
+  - "Çox səhifəni birdən dəyişmək üçün wiki-ni clone edin və redaktorda işləyin."

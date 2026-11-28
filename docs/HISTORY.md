@@ -802,7 +802,6 @@ Done:
 - `creating-repositories` (`ui`, a habit tracker): the New repository form, README / `.gitignore` / license templates, why to keep the repository empty for an existing project (`fetch first`, unrelated histories), Quick setup and `git push -u`, creating first and cloning.
 - The reviewer removed claims no doc confirms (UTC days, a 24-hour delay, "Search all of GitHub"), trimmed busy lessons to 4–5 mockups and replaced giveaway quiz options.
 
-
 ### 88. Polish `strings-and-runes` (Go)
 Applied all six review findings: the major F1, F2 first, then the minor F3–F6 at the user's request.
 
@@ -900,3 +899,34 @@ Done:
 - xml: the leading header quiz option shortened, the intro's list of XML domains cut to one case, "paket" → "package"; `attribute`, `root element` added to GLOSSARY (scan 7 → 5).
 
 All 41 "Düzəliş lazımdır" Go lessons from the 2026-11-28 review are polished (plus the minor findings of strings-and-runes, arrays and channel-buffering). Not yet read by the user, so ROADMAP is unchanged. Minor notes that fresh re-reviews raised outside the original findings stay open in the reports (constants, channel-synchronization, multiple-return-values, values, if-else).
+
+### 99. Lesson kind `code` for Markdown (pilot `markdown`)
+The user approved module 14 and asked to continue; module 15 needs `code` lessons about Markdown.
+
+Done:
+- `loadCodeLesson`: one Markdown file per lesson split by `<!-- @step id -->` markers; Shiki highlights Markdown; `renderPreview` renders GitHub Flavored Markdown with GitHub alerts, task lists, links in a new tab and images as alt-text placeholders. The pane shows "Nəticə" (the current step rendered) and "Tam nəticə" (the whole file) instead of the terminal output; each step also shows its result.
+- Pilot `markdown` (Ayla's `SETUP.md` for new developers): headings, paragraphs and emphasis, lists and task lists, links and images (alt text), code blocks and tables (alignment), blockquotes and the five GitHub alerts. Facts from GitHub Docs "Basic writing and formatting syntax" and "Organizing information with tables".
+
+### 100. GitHub module 15 "Sənədləşmə"
+The user approved the `markdown` pilot and asked to continue the module.
+
+Done:
+- `code` lessons can also be about a `CITATION.cff` (`# @step id` markers, YAML highlighting): each step shows the **Cite this repository** box built from the file so far by `lib/citation.ts`, a port of ruby-cff's APA and BibTeX formatters (the APA output matches the GitHub Docs example).
+- `project-readme` (`code`, Sam's `tidy-photos` CLI): title, badges (Actions status, shields.io) and one-line description; why; installation with a check command; usage with example output; contributing and license with relative links; where GitHub looks for the README and the Outline table of contents.
+- `profile-readme` (`ui`, Sam's `sam-lee/sam-lee`): the special repository, writing the README, the four conditions for it to show, hiding it.
+- `github-wikis` (`ui`, Ayla's `quicknote`): README vs wiki, turning the wiki on and edit rights, pages and links, `_Sidebar` / `_Footer`, the wiki as its own Git repository (`.wiki.git`).
+- `citation-files` (`code`, Ayla's `airq` research package): the required keys, version and release date, DOI, `repository-code` and license; `preferred-citation` and other citation files in a note.
+- Three lessons were written by parallel agents; every lesson was checked against GitHub Docs, by `content:check` and the scan, then by an independent reviewer; pages checked at 1440px and 375px.
+
+### 101. GitHub module 16 "Issue-lar və müzakirələr"
+The user asked to continue with module 16 before pushing, so modules 15 and 16 go out in one PR.
+
+Done (all `ui`, written by six parallel agents, then read, aligned and given to an independent reviewer):
+- `issues` (an animal shelter's `pet-adopt` site): what an issue is, a clear bug report, Markdown issue templates, assignees and milestones, closing keywords and closing by hand.
+- `labelling` (`bike-stations`): name, colour and description, the 10 default labels, applying and creating labels, `label:` filters (AND, OR, `-label:`), `good first issue` and `help wanted`.
+- `mentions` (`bright-school/school-timetable`): `@user`, `@org/team`, `#12` and `owner/repo#12` references, commit SHAs, backlinks, when to mention.
+- `reactions` (`font-picker`): the eight reactions, a 👍 instead of "+1" comments, sorting by reactions.
+- `saved-replies` (`csv-tidy`): creating, using (button and `Ctrl` + `.`), editing and deleting saved replies.
+- `github-discussions` (`pixel-paint`): issue vs discussion, enabling, categories and formats, marking an answer, converting an issue and creating an issue from a discussion.
+- Facts and UI labels checked against GitHub Docs; pages checked at 1440px and 375px.
+
