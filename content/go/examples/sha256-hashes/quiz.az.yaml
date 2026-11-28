@@ -69,15 +69,15 @@
     fmt.Println(fromStream == fromSum)
   options:
     - "`h.Sum` arqumentsiz çağırılmalıdır"
-    - "`Write`-ın qaytardığı xəta yoxlanmayıb"
-    - "`[]byte` ilə `[32]byte` fərqli tiplərdir, onları `==` ilə müqayisə etmək olmaz"
+    - "`Sum(nil)` `nil` qaytarır"
+    - "`[]byte` ilə `[32]byte` müqayisə olunmur"
   answer: 2
   explain: "`Sum` slice, `Sum256` isə array qaytarır; müqayisə üçün hər ikisini, məsələn, `%x` ilə sətrə çevirmək olar."
 
 - question: SHA-256 heşindən ilkin mətni geri almaq olarmı?
   options:
-    - "Bəli, `sha256` package-ində bunun üçün funksiya var"
-    - "Xeyr: heş birtərəflidir, ondan məlumatı geri hesablamaq mümkün deyil"
-    - "Bəli, əgər şifrələmə açarını bilirsinizsə"
+    - "Bəli, `sha256` package-i ilə"
+    - "Xeyr, heş birtərəflidir"
+    - "Bəli, açarı bilsəniz"
   answer: 1
   explain: "Heş şifrələmə deyil, açarı da yoxdur; onu yalnız yenidən hesablayıb müqayisə etmək olar."
