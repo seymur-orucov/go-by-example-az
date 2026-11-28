@@ -42,30 +42,30 @@
 
 - question: Bu kod nə çap edəcək?
   code: |
-    deadline := time.After(250 * time.Millisecond)
+    deadline := time.After(300 * time.Millisecond)
     for i := 1; i <= 5; i++ {
         select {
         case <-deadline:
             fmt.Println("stopped at", i)
             return
-        case <-time.After(100 * time.Millisecond):
+        case <-time.After(200 * time.Millisecond):
             fmt.Println("box", i, "packed")
         }
     }
   options:
-    - "`box 1 packed`, `box 2 packed`, `stopped at 3`"
+    - "`box 1 packed`, `stopped at 2`"
     - "`box 1` ... `box 5 packed`, beş sətir"
     - "`stopped at 1`"
   answer: 0
-  explain: "`deadline` bir dəfə yaradılıb və 250 ms-də hazır olur; hər qutu isə 100 ms çəkir, ona görə üçüncüsü bitmir."
+  explain: "`deadline` bir dəfə yaradılıb və 300 ms-də hazır olur; hər qutu isə 200 ms çəkir, ona görə ikincisi bitmir."
 
-- question: "Əvvəlki kodda `case <-deadline:` yerinə `case <-time.After(250 * time.Millisecond):` yazsaq, nə çap olunacaq?"
+- question: "Əvvəlki kodda `case <-deadline:` yerinə `case <-time.After(300 * time.Millisecond):` yazsaq, nə çap olunacaq?"
   options:
-    - "`box 1 packed`, `box 2 packed`, `stopped at 3`"
+    - "`box 1 packed`, `stopped at 2`"
     - "`box 1 packed` ... `box 5 packed`, beş sətir"
     - "`stopped at 1`"
   answer: 1
-  explain: "Hər təkrarda yeni 250 ms-lik timer yaranır, 100 ms-lik isə həmişə ondan əvvəl hazır olur."
+  explain: "Hər təkrarda yeni 300 ms-lik timer yaranır, 200 ms-lik isə həmişə ondan əvvəl hazır olur."
 
 - question: "`charge`-dəki channel buffer-siz (`make(chan string)`) olsaydı, timeout-dan sonra bankın goroutine-i nə edərdi?"
   options:
