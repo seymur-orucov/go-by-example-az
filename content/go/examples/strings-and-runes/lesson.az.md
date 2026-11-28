@@ -18,7 +18,7 @@ Bir simvolu təmsil edən ədəd isə `rune`-dur — onun Unicode-dakı nömrəs
 
 ## range ilə gəzinti {#range}
 
-`range` mətni bayt-bayt yox, hərf-hərf gəzir: `r` `rune`-dur, `i` isə həmin hərfin başladığı baytın indeksidir. Ona görə indekslər 0, 1, 3, 4, 5, 6 kimi gedir: `ü` 1-ci baytda başlayır, 2-ci bayt da ona məxsusdur, növbəti hərf `r` isə 3-dədir.
+`range` mətni bayt-bayt yox, hərf-hərf gəzir: `r` `rune`-dur, `i` isə həmin hərfin başladığı baytın indeksidir. Ona görə indekslər 0, 1, 3, 4, 5, 6 kimi gedir: `ü` 1 indeksində başlayır, 2 indeksli bayt da ona məxsusdur, növbəti hərf `r` isə 3 indeksindədir.
 
 ## Rune literal {#literal}
 

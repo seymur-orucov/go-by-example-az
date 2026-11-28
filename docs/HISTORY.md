@@ -802,3 +802,11 @@ Done:
 - `creating-repositories` (`ui`, a habit tracker): the New repository form, README / `.gitignore` / license templates, why to keep the repository empty for an existing project (`fetch first`, unrelated histories), Quick setup and `git push -u`, creating first and cloning.
 - The reviewer removed claims no doc confirms (UTC days, a 24-hour delay, "Search all of GitHub"), trimmed busy lessons to 4–5 mockups and replaced giveaway quiz options.
 
+
+### 88. Polish `strings-and-runes` (Go)
+Applied the review's major findings only (F1, F2); minor F3–F6 left open.
+
+Done:
+- #range talks about byte indexes ("1 indeksində") instead of ordinals, which clashed with "4-cü bayt" in #index.
+- Quiz right answers spread over positions 0/1/2 (3/2/3 instead of 1/6/1); every changed answer re-run with Go.
+- Scan 7 → 6 pts.
