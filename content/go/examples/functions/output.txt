@@ -1,5 +1,4 @@
 age 8: 6 USD
-age 35: 10 USD
 2 adults + 3 kids: 38 USD
-ticket: Space Trip - 6 USD
+ticket: Space Trip - 10 USD
 price: 10 after discount: 8
