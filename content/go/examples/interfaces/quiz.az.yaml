@@ -21,18 +21,18 @@
 
 - question: "`Tick` metodu `func (c *Clock) Tick()` kimi yazılıb, `Ticker` interface-i isə `Tick()` tələb edir. Hansı sətir kompilyasiya olunur?"
   options:
-    - "`var t Ticker = &Clock{}`"
     - "`var t Ticker = Clock{}`"
     - "hər ikisi"
-  answer: 0
+    - "`var t Ticker = &Clock{}`"
+  answer: 2
   explain: "Metod pointer receiver ilədir, ona görə interface-i yalnız `*Clock` ödəyir."
 
 - question: Bu kod nə çap edəcək?
   code: |
     var s Shipping
     fmt.Println(s == nil)
-  options: ["true", "false", "kompilyasiya xətası"]
-  answer: 0
+  options: ["false", "true", "kompilyasiya xətası"]
+  answer: 1
   explain: "Heç bir dəyər yazılmamış interface dəyişəni `nil`-dir."
 
 - question: Bu kod nə çap edəcək?
@@ -41,8 +41,8 @@
     var s Shipping = c
     c.PerKg = 10
     fmt.Println(s.Price(1))
-  options: ["2", "10", "kompilyasiya xətası"]
-  answer: 0
+  options: ["10", "2", "kompilyasiya xətası"]
+  answer: 1
   explain: "Interface dəyişəni `c`-nin surətini saxlayır, sonrakı dəyişiklik ona toxunmur."
 
 - question: Bu kod nə çap edəcək?
@@ -50,8 +50,8 @@
     var s Shipping = Locker{}
     c, ok := s.(Courier)
     fmt.Println(c.PerKg, ok)
-  options: ["0 false", "panic", "4 true"]
-  answer: 0
+  options: ["panic", "4 true", "0 false"]
+  answer: 2
   explain: "Tip uyğun gəlmir: `ok` `false` olur, `c` isə `Courier`-in zero value-sudur."
 
 - question: Bu kod işə düşəndə nə olacaq?
@@ -77,6 +77,6 @@
     }
 
     fmt.Println(kind(3.5), kind("7"))
-  options: ["other string", "int string", "other int"]
-  answer: 0
+  options: ["int string", "other string", "other int"]
+  answer: 1
   explain: "`3.5` `float64`-dür və `default`-a düşür, `\"7\"` isə dırnaqda olduğu üçün `string`-dir."

@@ -1,10 +1,10 @@
-Interface tipin nə bacardığını təsvir edir, necə qurulduğunu yox. O, sadəcə metodların siyahısıdır: bu metodları olan istənilən tip həmin interface-i ödəyir. Elektrik rozetkası kimi: ona istənilən cihazı qoşmaq olar, təki çəngəli uyğun gəlsin. Struct konkret dəyəri təsvir edir, interface isə "bunu bacaran istənilən dəyər" deməkdir və fərqli tipləri eyni kodla işlətməyə imkan verir.
+Interface tipin nə bacardığını təsvir edir, necə qurulduğunu yox. O, sadəcə metodların siyahısıdır: bu metodları olan istənilən tip həmin interface-i ödəyir (satisfy). Struct konkret dəyəri təsvir edir, interface isə "bunu bacaran istənilən dəyər" deməkdir: eyni kod fərqli tiplərlə işləyir.
 
 Bu dərsdə internet mağazası üçün iki çatdırılma üsulu yazırıq: kuryer və bağlama terminalı (parcel locker).
 
 ## Interface və onu ödəyən tiplər {#define}
 
-`Shipping` interface-i bir metod tələb edir: `Price(kg int) int`. `Courier` və `Locker` bu metodu yazıb, başqa heç nə etmir: Go-da `implements` sözü yoxdur, uyğunluğu kompilyator metodlara görə özü yoxlayır. `main`-də `var s Shipping` əvvəl `Courier`, sonra `Locker` saxlayır və `s.Price(3)` hər dəfə saxlanan tipin öz metodunu çağırır.
+`Shipping` interface-i bir metod tələb edir: `Price(kg int) int`. `Courier` və `Locker` sadəcə bu metodu yazır. Go-da `implements` sözü yoxdur: uyğunluğu kompilyator metodlara görə yoxlayır. `main`-də `var s Shipping` əvvəl `Courier`, sonra `Locker` saxlayır və `s.Price(3)` hər dəfə saxlanan tipin öz metodunu çağırır.
 
 Interface dəyişəninə dəyər yazılanda onun surəti saxlanılır. Heç nə yazılmamış interface dəyişəni isə `nil`-dir.
 
