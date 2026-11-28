@@ -1,6 +1,6 @@
-Metod receiver-i olan funksiyadır. Receiver metodun aid olduğu dəyərdir və `func` ilə metodun adı arasında yazılır. Adi funksiya `long(road)` kimi çağırılır, metod isə dəyərin özündən: `road.Long()`. Beləcə tipin davranışı onun yanında toplanır və kodu oxuyanda nəyin nəyə aid olduğu aydın görünür.
+Metod receiver-i olan funksiyadır: receiver metodun aid olduğu dəyərdir və `func` ilə metodun adı arasında yazılır. Adi funksiya `long(road)` kimi çağırılır, metod isə dəyərin özündən: `road.Long()`. Package-də `long` adlı yalnız bir funksiya ola bilər, amma `Playlist`-in də, `Album`-un da öz `Long()` metodu ola bilər.
 
-Bu dərsdə musiqi siyahısı (playlist) üçün metodlar yazırıq: siyahının uzun olub-olmadığını yoxlayırıq, mahnı əlavə edirik və ümumi müddəti saat və dəqiqəyə bölürük.
+Nümunədə musiqi siyahısı (playlist) var: adı, mahnıları və ümumi müddəti.
 
 ## Value receiver {#value}
 
@@ -8,7 +8,7 @@ Bu dərsdə musiqi siyahısı (playlist) üçün metodlar yazırıq: siyahının
 
 ## Pointer receiver {#pointer}
 
-`Add` siyahıya mahnı əlavə edir, yəni çağıranın dəyərini dəyişməlidir. Ona görə receiver `*Playlist`-dir. `road.Add(...)` yazanda Go `road`-un ünvanını özü götürür, `(&road).Add(...)` yazmaq lazım deyil. Əlavədən sonra müddət 65 dəqiqədir və `Long()` artıq `true` qaytarır.
+`Add` siyahıya mahnı əlavə edir və çağıranın dəyərini dəyişməlidir, ona görə receiver `*Playlist`-dir. `road.Add(...)` yazanda Go `road`-un ünvanını özü götürür, `(&road).Add(...)` yazmaq lazım deyil. Əlavədən sonra müddət 65 dəqiqədir və `Long()` artıq `true` qaytarır. Praktikada tipin bir metodu pointer receiver istəyirsə, qalanları da pointer receiver ilə yazılır. Burada `Long` iki növü müqayisə etmək üçün value receiver ilə qalıb.
 
 > **Diqqət:** `Add`-i `(p Playlist)` ilə yazsaq, kod kompilyasiya olunar, amma mahnı surətə əlavə olunar və `road` dəyişməz.
 
