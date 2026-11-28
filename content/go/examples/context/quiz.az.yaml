@@ -15,12 +15,12 @@
   code: |
     parent, stopParent := context.WithCancel(context.Background())
     defer stopParent()
-    child, stopChild := context.WithCancel(parent)
+    _, stopChild := context.WithCancel(parent)
     stopChild()
     fmt.Println(parent.Err())
   options: ["context canceled", "<nil>"]
   answer: 1
-  explain: "Siqnal yalnız valideyndən övlada gedir; övladı dayandırmaq valideynə təsir etmir."
+  explain: "Siqnal yalnız valideyndən uşağa gedir; uşaq context-i dayandırmaq valideynə təsir etmir."
 
 - question: Bu kod nə çap edəcək?
   code: |
@@ -38,9 +38,9 @@
     fetch(ctx)
   options:
     - "kompilyasiya xətası"
-    - "problem yoxdur"
+    - "context 1 saniyə sonra özü bitir, `cancel` lazım deyil"
     - "context heç vaxt bitmir"
-    - "`cancel` atılıb: resurs sızması, `go vet` xəbərdarlıq edir"
+    - "`cancel` çağırılmır: resurs sızması"
   answer: 3
   explain: "Kod işləyir, amma `cancel` çağırılmadığı üçün context-in resursları vaxtından əvvəl azad olunmur; `go vet` bunu tapır."
 
@@ -64,7 +64,7 @@
     fmt.Println(errors.Is(child.Err(), context.DeadlineExceeded))
   options: ["false", "true"]
   answer: 1
-  explain: "Övlad valideyndən uzun yaşaya bilməz: valideynin 50 ms-i bitəndə övlad da eyni səbəblə bitir."
+  explain: "Uşaq context valideyndən uzun yaşaya bilməz: valideynin 50 ms-i bitəndə uşaq da eyni səbəblə bitir."
 
 - question: Bu kod nə çap edəcək?
   code: |

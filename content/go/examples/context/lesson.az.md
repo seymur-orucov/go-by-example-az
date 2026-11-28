@@ -1,10 +1,10 @@
-`context` paketi işə "nə vaxta qədər davam et" xəbərini ötürür: vaxt limiti (deadline) və ya ləğv (cancel) siqnalı. Əvvəl `select` və `time.After` ilə bir yerdə timeout qururduq; real proqramda isə bir iş funksiyadan funksiyaya, goroutine-dən goroutine-ə, hətta şəbəkə sorğusuna ötürülür və hamısı eyni anda dayanmalıdır. `context.Context` bu siqnalı daşıyan dəyərdir: onu ilk arqument kimi `ctx` adı ilə ötürmək Go-da ümumi qaydadır.
+`context` paketi işə "nə vaxta qədər davam et" xəbərini ötürür: vaxt limiti (deadline) və ya ləğv (cancel) siqnalı. Əvvəl `select` və `time.After` ilə timeout-u yalnız bir yerdə qururduq. Real proqramda iş bir neçə funksiyadan, goroutine-dən və şəbəkə sorğusundan keçir və `context.Context` dayanma siqnalını hamısına eyni anda çatdırır.
 
 Bu dərsdə taksi tətbiqi yazırıq: sürücü axtarışı vaxt limitinə sığmalı, sərnişin "Ləğv et" basanda dayanmalı, tətbiq bağlananda isə bütün işlər birlikdə bitməlidir.
 
 ## ctx.Done {#done}
 
-`ctx.Done()` channel qaytarır və context bitəndə bu channel bağlanır. `findDriver` `select` ilə iki hadisəni gözləyir: axtarışın bitməsini və ya context-in bitməsini, hansı tez olsa. Context bitibsə, `ctx.Err()` səbəbi deyir. Funksiya context-i özü yaratmır, çağırandan alır: limiti nə vaxt qoymağı çağıran bilir.
+`ctx.Done()` channel qaytarır və context bitəndə bu channel bağlanır. `findDriver` `select` ilə iki hadisəni gözləyir: axtarışın bitməsini və ya context-in bitməsini, hansı tez olsa. Context bitibsə, `ctx.Err()` səbəbi deyir. Funksiya context-i özü yaratmır, çağırandan alır: limiti nə vaxt qoymağı çağıran bilir. Go-da context-i ilk arqument kimi `ctx` adı ilə ötürmək ümumi qaydadır.
 
 ## WithTimeout {#timeout}
 
@@ -18,10 +18,10 @@ Bu dərsdə taksi tətbiqi yazırıq: sürücü axtarışı vaxt limitinə sığ
 
 ## Context ağacı {#tree}
 
-Yeni context həmişə başqa birindən yaranır, ona görə context-lər ağac qurur. Siqnal yalnız yuxarıdan aşağı gedir: övlad (`search`) dayandırılanda valideyn (`app`) işləməyə davam edir, valideyn dayandırılanda isə bütün övladlar da dərhal dayanır. `pay`-in limiti bir saatdır, amma tətbiq bağlananda o da bitir. Beləcə bir `cancel` çağırışı bütün asılı işləri birdən dayandırır.
+Yeni context həmişə başqa birindən yaranır, ona görə context-lər ağac qurur. Burada `app` valideyn context-dir, `search` və `pay` isə onun uşaq context-ləridir. Siqnal yalnız yuxarıdan aşağı gedir: `search` dayandırılanda `app` işləməyə davam edir, `app` dayandırılanda isə bütün uşaqları da dərhal dayanır. `pay`-in limiti bir saatdır, amma bir `closeApp()` çağırışı onu da dayandırır.
 
 ## HTTP sorğusunda context {#http}
 
-`http.NewRequestWithContext` sorğunu context-ə bağlayır: context bitəndə müştəri gözləməyi dayandırır və `Do` xəta qaytarır, `errors.Is` isə səbəbin vaxt limiti olduğunu təsdiqləyir. Server tərəfində `r.Context()` müştəri bağlantını kəsəndə bitir; handler bunu görüb boşuna işləməyə davam etmir. Beləcə bir context şəbəkənin hər iki tərəfində işi dayandırır.
+`http.NewRequestWithContext` sorğunu context-ə bağlayır: context bitəndə müştəri gözləməyi dayandırır və `Do` xəta qaytarır, `errors.Is` isə səbəbin vaxt limiti olduğunu təsdiqləyir. Server tərəfində `r.Context()` müştəri bağlantını kəsəndə bitir; handler bunu görüb boşuna işləməyə davam etmir.
 
 > **Bilgi:** `context.WithValue` context-ə dəyər də əlavə edə bilir (məsələn sorğunun id-si), amma adi funksiya arqumentlərini onunla əvəz etməyin.
