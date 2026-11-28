@@ -1,0 +1,51 @@
+- question: "Bu etiketlərdən hansı yeni repository-də standart olaraq yoxdur?"
+  options:
+    - "`help wanted`"
+    - "`wontfix`"
+    - "`priority`"
+    - "`duplicate`"
+  answer: 2
+  explain: "`priority` standart etiket deyil, onu özünüz yaratmalısınız. `help wanted`, `wontfix` və `duplicate` hər yeni repository-də olur."
+- question: "Hansı sorğu həm `bug`, həm də `station-data` etiketi olan issue-ları göstərir?"
+  options:
+    - "`label:bug,station-data`"
+    - "`label:bug label:station-data`"
+    - "`label:bug -label:station-data`"
+  answer: 1
+  explain: "Ayrı-ayrı `label:` filtrləri hər ikisini tələb edir. Vergüllü yazılış etiketlərdən ən azı birini istəyir, `-label:` isə etiketi istisna edir."
+- question: "`is:issue state:open -label:wontfix` sorğusu nəyi göstərir?"
+  options:
+    - "Yalnız `wontfix` etiketli açıq issue-ları"
+    - "`wontfix` etiketi olmayan açıq issue-ları"
+    - "`wontfix` etiketli bağlı issue-ları"
+  answer: 1
+  explain: "`-` filtri tərsinə çevirir: `wontfix` etiketi olan issue-lar siyahıdan çıxır."
+- question: "`help wanted` etiketinə görə axtarışda sorğunu necə yazmaq lazımdır?"
+  options:
+    - "`label:help wanted`"
+    - "`label:help-wanted`"
+    - "`label:\"help wanted\"`"
+  answer: 2
+  explain: "Adında boşluq olan etiket dırnaq içində yazılır."
+- question: "Sam yeni `station-data` etiketini harada yaradır?"
+  options:
+    - "Issues → Labels → New label"
+    - "Issue-nun sağ panelindəki Assignees bölməsində"
+    - "Settings → Account bölməsində"
+  answer: 0
+  explain: "Etiketlər **Issues** səhifəsindəki **Labels**-də idarə olunur. **New label** düyməsi ad, təsvir və rəng istəyir."
+- question: "Kiçik və layihəni dərindən bilmədən görülə bilən iş üçün hansı etiket uyğundur?"
+  options:
+    - "`question`"
+    - "`enhancement`"
+    - "`invalid`"
+    - "`good first issue`"
+  answer: 3
+  explain: "`good first issue` ilk dəfə töhfə verənlər üçündür. Public repository-də bu etiket issue-nun GitHub-da başqa yerlərdə də göstərilmə ehtimalını artırır."
+- question: "Sam `bike-stations`-da `bug` etiketinin rəngini dəyişdi. Onun başqa repository-sindəki `bug` etiketi nə olur?"
+  options:
+    - "Əvvəlki rəngində qalır"
+    - "O da avtomatik yeni rəngi alır"
+    - "Silinir və yeni rənglə yaradılır"
+  answer: 0
+  explain: "Etiket yaradıldığı repository-yə aiddir. Bir repository-də edilən dəyişiklik başqalarına təsir etmir."

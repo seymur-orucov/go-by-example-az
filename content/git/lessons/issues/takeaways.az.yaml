@@ -1,0 +1,11 @@
+rules:
+  - "Issue repository-yə bağlı xəta, ideya və ya işdir; hər birinin nömrəsi var, məsələn `#12`."
+  - "Issue şablonları `.github/ISSUE_TEMPLATE/` qovluğundadır və yalnız default branch-da olanda işləyir."
+  - "Bir issue-ya 10 nəfərə qədər assignee təyin etmək olar; milestone bir məqsədə aid issue-ları toplayır."
+  - "`Fixes #12` kimi açar söz issue-nu commit və ya PR default branch-a düşəndə bağlayır."
+  - "Açar sözlər: `close`, `closes`, `closed`, `fix`, `fixes`, `fixed`, `resolve`, `resolves`, `resolved`."
+  - "Əllə bağlayanda səbəb seçilir: completed, not planned və ya duplicate."
+practices:
+  - "Başlıqda nəyin və harada xarab olduğunu yazın; mətnə addımları, gözlənilən və real nəticəni əlavə edin."
+  - "Yeni issue açmazdan əvvəl oxşarını axtarın; varsa, ona şərh yazın."
+  - "Tez-tez açılan issue növləri üçün şablon əlavə edin."

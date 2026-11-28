@@ -1,0 +1,10 @@
+rules:
+  - "Etiketin adı, rəngi və təsviri var; bir issue və ya PR-da bir neçə etiket ola bilər."
+  - "Hər yeni repository-də standart etiketlər olur: `bug`, `enhancement`, `good first issue`, `help wanted` və başqaları."
+  - "Etiket issue-nun sağ panelindəki **Labels**-dən qoyulur, yenisi **Issues → Labels → New label** ilə yaranır."
+  - "`label:a label:b` hər iki etiketi, `label:a,b` ən azı birini istəyir; `-label:` etiketi istisna edir."
+  - "Etiketlər repository-yə aiddir: bir repository-də dəyişiklik başqalarına təsir etmir."
+practices:
+  - "Standart etiketlərə uyğun gəlməyən mövzu üçün qısa təsviri olan öz etiketinizi yaradın."
+  - "Kiçik işlərə `good first issue` qoyun və issue-da haradan başlamaq lazım olduğunu yazın."
+  - "Adında boşluq olan etiketi axtarışda dırnaq içində yazın: `label:\"help wanted\"`."

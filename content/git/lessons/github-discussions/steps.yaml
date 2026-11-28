@@ -1,0 +1,118 @@
+# Drawn mockups (ui lesson): the Features section of Settings, the Discussions tab with its
+# categories, a Q&A discussion with a marked answer, and an issue with "Convert to discussion".
+# Simplified; labels follow GitHub Docs where the docs name them.
+enable:
+  vis:
+    kind: ui
+    caption: "Settings → Features (sadələşdirilmiş)"
+    url: "github.com/ayla-karimova/pixel-paint/settings"
+    main:
+      - type: heading
+        text: "Features"
+      - type: check
+        label: "Wikis"
+        checked: true
+      - type: check
+        label: "Issues"
+        checked: true
+      - type: check
+        label: "Discussions"
+        checked: true
+        mark: "Discussions burada açılır. Bunu repository sahibi və ya write icazəsi olan adam edə bilər."
+      - type: button
+        label: "Set up discussions"
+        tone: primary
+        mark: "Sonra GitHub salamlama yazısını redaktə etməyi təklif edir; **Start discussion** onu dərc edir."
+    side:
+      - type: list
+        items:
+          - { title: "**General**" }
+          - { title: "Collaborators", icon: user }
+          - { title: "Branches" }
+categories:
+  vis:
+    kind: ui
+    caption: "Discussions tab-ı və hazır kateqoriyalar (sadələşdirilmiş)"
+    url: "github.com/ayla-karimova/pixel-paint/discussions"
+    tabs:
+      - label: "Code"
+      - label: "Issues"
+        count: 3
+      - label: "Discussions"
+        active: true
+        mark: "Discussions açılandan sonra repository-də bu tab görünür."
+    main:
+      - type: row
+        items:
+          - type: heading
+            text: "Discussions"
+          - type: button
+            label: "New discussion"
+            tone: primary
+      - type: list
+        items:
+          - { title: "Welcome to pixel-paint Discussions!", meta: "Announcements" }
+          - { title: "How do I export a GIF?", sub: "Answered", meta: "Q&A" }
+          - { title: "Add a dark theme", meta: "Ideas" }
+          - { title: "My first 32×32 sprite", meta: "Show and tell" }
+    side:
+      - type: list
+        mark: "Altı hazır kateqoriya. Qələm ikonu ilə onları dəyişmək və yenisini əlavə etmək olur, 25-ə qədər."
+        items:
+          - { title: "Announcements", sub: "Announcement" }
+          - { title: "General", sub: "Open-ended discussion" }
+          - { title: "Ideas", sub: "Open-ended discussion" }
+          - { title: "Polls", sub: "Polls" }
+          - { title: "Q&A", sub: "Question and Answer" }
+          - { title: "Show and tell", sub: "Open-ended discussion" }
+    note: "Kateqoriyaların altındakı yazı onların formatıdır. Real səhifədə format yazılmır, kateqoriyanın emojisi və təsviri görünür."
+answer:
+  vis:
+    kind: ui
+    caption: "Q&A kateqoriyasında discussion (sadələşdirilmiş)"
+    url: "github.com/ayla-karimova/pixel-paint/discussions/4"
+    main:
+      - type: heading
+        text: "How do I export a GIF?"
+        sub: "Category: Q&A"
+      - type: text
+        text: "I made an animation with 8 frames. How do I save it as a GIF?"
+      - type: divider
+      - type: text
+        text: "**ayla-karimova**: Use **File** → **Export** → **GIF**. Each frame becomes one GIF frame."
+        mark: "Ayla-nın cavabı. İşarələnəndən sonra GitHub onu vurğulayır."
+      - type: button
+        label: "Mark as answer"
+        mark: "Müəllif və triage icazəsi olanlar görür. Yalnız Question and Answer formatlı kateqoriyada var."
+convert:
+  vis:
+    kind: ui
+    caption: "Issue-nu discussion-a çevirmək (sadələşdirilmiş)"
+    url: "github.com/ayla-karimova/pixel-paint/issues/12"
+    tabs:
+      - label: "Code"
+      - label: "Issues"
+        count: 3
+        active: true
+      - label: "Discussions"
+    main:
+      - type: heading
+        text: "Can I change the canvas size after starting?"
+        sub: "Open · #12"
+      - type: select
+        label: "Choose a category"
+        value: "Q&A"
+        mark: "Discussion hansı kateqoriyaya düşəcək."
+      - type: button
+        label: "I understand, convert this issue to a discussion"
+        tone: primary
+        mark: "Discussion issue-nun mətni ilə avtomatik yaranır."
+    side:
+      - type: list
+        items:
+          - { title: "Assignees", sub: "No one assigned" }
+          - { title: "Labels", sub: "No labels" }
+      - type: button
+        label: "Convert to discussion"
+        mark: "Issue-nun sağ panelində. Ən azı triage icazəsi lazımdır."
+    note: "Real səhifədə kateqoriya seçimi və təsdiq düyməsi **Convert to discussion** basılandan sonra ayrıca pəncərədə açılır."

@@ -1,0 +1,60 @@
+- question: "`pixel-paint`-ə bu yazılardan hansı issue kimi açılmalıdır?"
+  options:
+    - "\"How do I change the brush size?\""
+    - "\"Saving a file with an empty layer crashes the app\""
+    - "\"Here is a sprite I drew with pixel-paint\""
+    - "\"Should the next version support layers?\""
+  answer: 1
+  explain: "Çökmə xətadır: onu düzəltmək lazımdır və iş bitəndə issue bağlanır. Sual, öz işini göstərmək və fikir soruşmaq discussion-a uyğundur."
+- question: "Repository-də Discussions harada aktivləşdirilir?"
+  options:
+    - "**Issues** tab-ında, **New issue** düyməsinin yanında"
+    - "Profil səhifəsində, **Edit profile** altında"
+    - "Repository-nin **Settings** səhifəsində, **Features** bölməsində"
+  answer: 2
+  explain: "Discussions repository-nin xüsusiyyətidir və **Settings** → **Features** bölməsində açılır. Bunu sahib və ya write icazəsi olan adam edə bilər."
+- question: "Bu kateqoriyalardan hansı yeni Discussions-da hazır gəlmir?"
+  options:
+    - "Bugs"
+    - "Show and tell"
+    - "Polls"
+    - "Announcements"
+  answer: 0
+  explain: "Hazır kateqoriyalar: Announcements, General, Ideas, Polls, Q&A, Show and tell. Xətalar üçün issue var."
+- question: "Ayla yalnız özünün yeni yazı aça biləcəyi, amma hamının şərh yaza biləcəyi kateqoriya istəyir. Hansı formatı seçməlidir?"
+  options:
+    - "Open-ended discussion"
+    - "Question and Answer"
+    - "Announcement"
+    - "Polls"
+  answer: 2
+  explain: "Announcement formatında yeni discussion-u yalnız maintain və ya admin icazəsi olanlar açır, şərhi isə hamı yazır."
+- question: "Ideas kateqoriyasındakı discussion-da şərhin altında **Mark as answer** düyməsi yoxdur. Niyə?"
+  options:
+    - "Düymə yalnız repository sahibinə görünür"
+    - "Ideas kateqoriyası Question and Answer formatında deyil"
+    - "Discussion-da hələ üç şərh yoxdur"
+  answer: 1
+  explain: "**Mark as answer** yalnız Question and Answer formatlı kateqoriyada var. Orada da onu discussion-un müəllifi və triage icazəsi olanlar görür."
+- question: "Q&A-dakı sualda cavabı kim işarələyə bilər?"
+  options:
+    - "Yalnız cavabı yazan adam"
+    - "Discussion-u oxuyan hər kəs"
+    - "Yalnız repository sahibi"
+    - "Sual verən və triage icazəsi olanlar"
+  answer: 3
+  explain: "Sual verən adam və repository-də triage və ya daha yüksək icazəsi olanlar **Mark as answer** basa bilər."
+- question: "Sual kimi açılmış issue-nu discussion-a çevirmək üçün nə basılır?"
+  options:
+    - "Issue-nun sağ panelində **Convert to discussion**"
+    - "Discussions tab-ında **New discussion**, sonra issue-nun linki"
+    - "Issue-nu bağlayanda **Close as discussion**"
+  answer: 0
+  explain: "**Convert to discussion** issue-nun sağ panelindədir. Sonra kateqoriya seçilir və **I understand, convert this issue to a discussion** basılır."
+- question: "Ayla \"Add a dark theme\" discussion-undan **Create issue from discussion** ilə issue yaratdı. Discussion-a nə olur?"
+  options:
+    - "Silinir, onun yerində issue qalır"
+    - "Bağlanır və issue-ya link qoyulur"
+    - "Yerində qalır, issue isə onun mətni ilə yaranır"
+  answer: 2
+  explain: "Bu əməliyyat discussion-u issue-ya çevirmir və silmir. Yeni issue-nun mətninə discussion-un mətni yazılır, etiketlər saxlanır."

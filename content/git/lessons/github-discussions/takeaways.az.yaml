@@ -1,0 +1,10 @@
+rules:
+  - "Issue görüləcək işi izləyir; sual, ideya, elan və sorğu üçün Discussions var."
+  - "Discussions **Settings** → **Features** bölməsində açılır; bunu sahib və ya write icazəsi olan adam edir."
+  - "Hazır kateqoriyalar: Announcements, General, Ideas, Polls, Q&A və Show and tell; 25-ə qədər kateqoriya ola bilər."
+  - "**Mark as answer** yalnız Question and Answer formatlı kateqoriyada var; onu müəllif və triage icazəsi olanlar basır."
+  - "**Convert to discussion** issue-nu discussion-a çevirir; **Create issue from discussion** isə discussion-u yerində saxlayıb yeni issue yaradır."
+practices:
+  - "Sual kimi açılmış issue-ları Q&A kateqoriyasına çevirin ki, issue siyahısında yalnız iş qalsın."
+  - "Q&A-da düzgün cavabı işarələyin: növbəti adam onu tez tapır."
+  - "İdeya konkret işə çevriləndə ondan issue yaradın."

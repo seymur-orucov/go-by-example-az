@@ -1,0 +1,76 @@
+# Drawn mockups (ui lesson): the reaction row under an issue, a thread of "+1" comments and the
+# issue list sorted by thumbs-up reactions. Simplified; labels follow GitHub Docs where the docs name them.
+add-reaction:
+  vis:
+    kind: ui
+    caption: "Issue və onun reaksiyaları (sadələşdirilmiş)"
+    url: "github.com/ayla-karimova/font-picker/issues/12"
+    main:
+      - type: heading
+        text: "Support variable fonts #12"
+        sub: "Open · opened by dev-mira"
+      - type: text
+        text: "Many Google Fonts are variable now. Could the picker show a weight slider for them?"
+      - type: row
+        items:
+          - type: button
+            label: "👍 41"
+            mark: "Qoyulmuş reaksiya və sayı. Basanda sizin səsiniz də əlavə olunur, bir də basanda geri götürülür."
+          - type: button
+            label: "🚀 6"
+          - type: button
+            label: "🙂"
+            mark: "Reaksiya düyməsi: səkkiz emojidən birini seçməyə açır."
+      - type: code
+        label: "Seçim"
+        text: "👍  👎  😄  🎉  😕  ❤️  🚀  👀"
+        mark: "GitHub-ın verdiyi səkkiz reaksiya. Başqa emoji yoxdur."
+instead-of-plus-one:
+  vis:
+    kind: ui
+    caption: "Eyni issue-da +1 şərhləri (sadələşdirilmiş)"
+    url: "github.com/ayla-karimova/font-picker/issues/12"
+    main:
+      - type: list
+        items:
+          - { title: "**tom-reyes** commented", sub: "+1", icon: user }
+          - { title: "**lina-park** commented", sub: "+1, need this too", icon: user }
+          - { title: "**omar-haddad** commented", sub: "+1", icon: user }
+        mark: "Hər şərh abunə olan hər kəsə bildiriş göndərir, amma yeni məlumat vermir."
+      - type: row
+        items:
+          - type: button
+            label: "👍 41"
+            mark: "Eyni səs reaksiya ilə: yeni şərh yoxdur, sayda görünür."
+          - type: button
+            label: "🙂"
+    side:
+      - type: heading
+        text: "Notifications"
+      - type: button
+        label: "Subscribe"
+        mark: "Issue-dakı xəbərləri şərh yazmadan izləmək üçün."
+sort-by-reactions:
+  vis:
+    kind: ui
+    caption: "Issue siyahısı 👍 sayına görə (sadələşdirilmiş)"
+    url: "github.com/ayla-karimova/font-picker/issues"
+    tabs:
+      - label: "Code"
+      - label: "Issues"
+        count: 30
+        active: true
+      - label: "Pull requests"
+        count: 2
+    main:
+      - type: field
+        label: "Filter"
+        value: "is:issue state:open sort:reactions-+1-desc"
+        mark: "Axtarış sətrində sıralama: ən çox 👍 alan issue yuxarıda."
+      - type: list
+        items:
+          - { title: "Support variable fonts", sub: "#12", icon: open, meta: "👍 41" }
+          - { title: "Preview fonts on hover", sub: "#7", icon: open, meta: "👍 23" }
+          - { title: "Group fonts by category", sub: "#19", icon: open, meta: "👍 9" }
+          - { title: "Remember the last chosen font", sub: "#25", icon: open, meta: "👍 4" }
+        mark: "Ayla siyahının başından, ən çox istənən imkandan başlayır."

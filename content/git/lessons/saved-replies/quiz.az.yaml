@@ -1,0 +1,43 @@
+- question: "Sam `Need CSV sample` adlı saved reply yaradıb. Ayla da `csv-tidy`-də işləyir. Ayla bu cavabı öz şərhlərində görə bilərmi?"
+  options:
+    - "Bəli: cavab repository-yə bağlıdır, orada işləyən hamı görür"
+    - "Xeyr: saved reply Sam-ın hesabına bağlıdır, başqaları görmür"
+    - "Bəli, əgər Sam cavabı **Preview** ilə yoxlayıbsa"
+  answer: 1
+  explain: "Saved reply şəxsidir. Ayla eyni mətni istəyirsə, öz hesabında ayrıca saved reply yaratmalıdır."
+- question: "Saved reply harada yaradılır?"
+  options:
+    - "Repository-nin **Settings** səhifəsində, **Issues** bölməsində"
+    - "Issue-nun şərh sahəsində, **Comment** düyməsi ilə"
+    - "Hesabın **Settings** səhifəsində, **Saved replies** bölməsində"
+  answer: 2
+  explain: "Profil şəkli → **Settings** → **Saved replies**. Orada başlıq və mətn yazılır, sonra **Add saved reply** basılır."
+- question: "Sam siyahıdan saved reply seçdi. Bundan sonra nə olur?"
+  options:
+    - "Şərh dərhal, dəyişmədən issue-ya göndərilir"
+    - "Mətn şərh sahəsinə düşür, onu dəyişib **Comment** basmaq olar"
+    - "Issue təkrar kimi qeyd olunur və bağlanır"
+  answer: 1
+  explain: "Seçim yalnız mətni sahəyə qoyur. Sam onu bu issue-ya uyğunlaşdırıb özü göndərir."
+- question: "Sam `csv-tidy` üçün yaratdığı cavabı başqa repository-sində, `json-tidy`-də işlədə bilərmi?"
+  options:
+    - "Bəli: cavab hesabdadır və hər repository-də işləyir"
+    - "Xeyr: cavab yalnız yaradıldığı repository-də işləyir"
+    - "Yalnız cavabı `json-tidy`-yə köçürəndən sonra"
+  answer: 0
+  explain: "Saved reply hesabın ayarlarındadır, repository-nin yox. Ona görə Sam onu hər repository-də görür."
+- question: "Klaviatura ilə saved replies siyahısını hansı düymələr açır?"
+  options:
+    - "`Ctrl` + `S`"
+    - "`Ctrl` + `Enter`"
+    - "`Ctrl` + `/`"
+    - "`Ctrl` + `.`"
+  answer: 3
+  explain: "`Ctrl` + `.` siyahını açır. Sonra `Ctrl` + cavabın nömrəsi onu şərhə qoyur."
+- question: "Sam `Need CSV sample` cavabının mətnini dəyişdi. Bu cavabla əvvəl yazdığı şərhlərə nə olur?"
+  options:
+    - "Heç nə: şərhə düşən mətn surət idi"
+    - "Hamısı yeni mətnlə yenilənir"
+    - "Silinir, çünki köhnə cavaba bağlı idi"
+  answer: 0
+  explain: "Saved reply mətni şərhə köçürülür. Cavabı sonra dəyişmək və ya silmək yazılmış şərhlərə toxunmur."

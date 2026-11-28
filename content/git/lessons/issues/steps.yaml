@@ -1,0 +1,112 @@
+# Drawn mockups (ui lesson): the issue list, the New issue form, the template chooser, the issue
+# sidebar and closing an issue. Simplified; labels follow GitHub Docs where the docs name them.
+what-is-an-issue:
+  vis:
+    kind: ui
+    caption: "Issues tab-ı (sadələşdirilmiş)"
+    url: "github.com/ayla-karimova/pet-adopt/issues"
+    tabs:
+      - { label: "Code" }
+      - { label: "Issues", count: 3, active: true, mark: "Açıq issue-ların sayı tab-ın yanında görünür." }
+      - { label: "Pull requests" }
+    main:
+      - type: row
+        items:
+          - type: button
+            label: "Milestones"
+          - type: button
+            label: "New issue"
+            tone: primary
+            mark: "Yeni issue-nun forması: növbəti addım."
+      - type: list
+        items:
+          - { title: "Adoption form does not submit on mobile", sub: "#12 opened by sam-lee", icon: open }
+          - { title: "Filter animals by type", sub: "#11 opened by ayla-karimova", icon: open }
+          - { title: "Update the list of animals", sub: "#10 opened by ayla-karimova", icon: open }
+        mark: "Xəta, ideya və iş. Hər issue-nun nömrəsi var: `#12`, `#11`, `#10`."
+clear-issue:
+  vis:
+    kind: ui
+    caption: "New issue forması (sadələşdirilmiş)"
+    url: "github.com/ayla-karimova/pet-adopt/issues/new"
+    main:
+      - type: field
+        label: "Title"
+        value: "Adoption form does not submit on mobile"
+        mark: "Başlıq problemi bir cümlədə deyir: nə və harada."
+      - type: code
+        label: "Description"
+        text: "**Steps to reproduce**\n1. Open /animals/luna on a phone\n2. Fill in the adoption form\n3. Tap **Send**\n\n**Expected:** a \"Thank you\" message.\n**Actual:** nothing happens…"
+        mark: "Addımlar, gözlənilən və real nəticə."
+      - type: button
+        label: "Submit new issue"
+        tone: primary
+templates:
+  vis:
+    kind: ui
+    caption: "Şablon seçimi: New issue-dan sonra (sadələşdirilmiş)"
+    url: "github.com/ayla-karimova/pet-adopt/issues/new/choose"
+    main:
+      - type: row
+        items:
+          - type: text
+            text: "**Bug report**: Something on the site does not work"
+            mark: "`name` və `about` şablon faylından gəlir."
+          - type: button
+            label: "Get started"
+            tone: primary
+            mark: "Şablonun mətni ilə New issue forması açılır."
+      - type: divider
+      - type: text
+        text: "Open a blank issue"
+        mark: "Şablonsuz, boş forma."
+    note: "Şablon `.github/ISSUE_TEMPLATE/bug_report.md` faylıdır və default branch-da olmalıdır."
+assignees-milestones:
+  vis:
+    kind: ui
+    caption: "Issue səhifəsi və sağ tərəf (sadələşdirilmiş)"
+    url: "github.com/ayla-karimova/pet-adopt/issues/12"
+    main:
+      - type: heading
+        text: "Adoption form does not submit on mobile #12"
+        sub: "Open · sam-lee opened this issue"
+      - type: text
+        text: "**Steps to reproduce** …"
+    side:
+      - type: select
+        label: "Assignees"
+        value: "sam-lee"
+        mark: "Kim işləyir: 10 nəfərə qədər."
+      - type: select
+        label: "Labels"
+        value: "No labels"
+        mark: "Etiketlər: növbəti dərs."
+      - type: select
+        label: "Milestone"
+        value: "Launch v1"
+        mark: "Issue \"Launch v1\" buraxılışına aiddir."
+closing:
+  vis:
+    kind: ui
+    caption: "Issue-nu əllə bağlamaq (sadələşdirilmiş)"
+    url: "github.com/ayla-karimova/pet-adopt/issues/11"
+    main:
+      - type: heading
+        text: "Filter animals by type #11"
+      - type: field
+        label: "Add a comment"
+        value: "Not for the first launch."
+      - type: row
+        items:
+          - type: button
+            label: "Close issue"
+            mark: "Yanındakı oxdan səbəb seçilir."
+          - type: button
+            label: "Comment"
+            tone: primary
+      - type: list
+        items:
+          - { title: "Completed", icon: closed }
+          - { title: "**Not planned**", icon: closed }
+          - { title: "Duplicate", icon: closed }
+        mark: "Səbəblər: iş görülüb, görülməyəcək, təkrardır."

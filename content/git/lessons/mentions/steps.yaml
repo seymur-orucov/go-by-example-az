@@ -1,0 +1,60 @@
+# Drawn mockups (ui lesson): the @ suggestion list in an issue comment, a team mention and a
+# comment with references (raw and rendered). Simplified; labels follow GitHub Docs where the
+# docs name them. The last step (when to mention) has no mockup.
+user-mention:
+  vis:
+    kind: ui
+    caption: "Şərhdə `@` yazanda açılan siyahı (sadələşdirilmiş)"
+    url: "github.com/bright-school/school-timetable/issues/14"
+    tabs:
+      - label: "Code"
+      - label: "Issues"
+        active: true
+      - label: "Pull requests"
+    main:
+      - type: heading
+        text: "Lessons overlap on Monday #14"
+        sub: "Open · ayla-karimova opened this issue"
+      - type: field
+        label: "Add a comment"
+        value: "@sa"
+        mark: "`@` və adın ilk hərfləri: siyahı yazdıqca daralır."
+      - type: list
+        mark: "Siyahıda repository-nin əməkdaşları və bu müzakirədə yazanlar var."
+        items:
+          - { title: "sam-lee", sub: "Sam Lee", icon: user }
+      - type: button
+        label: "Comment"
+        tone: primary
+        mark: "Şərh göndəriləndə Sam bildiriş alır və issue-ya abunə olur."
+team-mention:
+  vis:
+    kind: ui
+    caption: "Team-i çağırmaq: `@təşkilat/team` (sadələşdirilmiş)"
+    url: "github.com/bright-school/school-timetable/issues/14"
+    main:
+      - type: field
+        label: "Add a comment"
+        value: "@bright-school/"
+      - type: list
+        mark: "`@` siyahısında team-lər də çıxır: `təşkilat/team`."
+        items:
+          - { title: "bright-school/backend", icon: user }
+          - { title: "bright-school/frontend", icon: user }
+      - type: text
+        text: "**@bright-school/backend** the API returns two lessons for Monday 9:00. Can someone check?"
+        mark: "Göndəriləndən sonra backend team-in hər üzvü bildiriş alır."
+references:
+  vis:
+    kind: ui
+    caption: "Yazılan mətn və GitHub-ın göstərdiyi (sadələşdirilmiş, linklər qalın yazılıb)"
+    url: "github.com/bright-school/school-timetable/issues/14"
+    main:
+      - type: code
+        label: "Write"
+        text: "Looks like #12 again. Same overlap in bright-school/school-website#5.\nBroken since 1234567890abcdef1234567890abcdef12345678."
+        mark: "Şərhin mətni: iki istinad və commit-in tam SHA-sı."
+      - type: text
+        text: "Looks like **#12** again. Same overlap in **bright-school/school-website#5**. Broken since **1234567**."
+        mark: "Göstərilən: hər istinad linkdir, SHA ilk 7 simvola qısalır."
+    note: "SHA uydurmadır. #12-nin tarixçəsində bu şərhə geri link görünür."

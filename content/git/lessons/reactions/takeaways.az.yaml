@@ -1,0 +1,9 @@
+rules:
+  - "GitHub səkkiz reaksiya verir: 👍 👎 😄 🎉 😕 ❤️ 🚀 👀; başqa emoji seçmək olmur."
+  - "Qoyulmuş reaksiyaya basmaq sizin səsinizi əlavə edir, bir də basmaq onu geri götürür."
+  - "Hər şərh abunəçilərə bildiriş göndərir; reaksiya isə yeni şərh yaratmır, sadəcə sayı artırır."
+  - "`sort:reactions-+1-desc` issue-ları 👍 sayına görə çoxdan aza düzür, `-asc` azdan çoxa."
+practices:
+  - "\"+1\" yazmaq əvəzinə 👍 qoyun; şərhi yalnız yeni məlumat olanda yazın."
+  - "Xəbərləri izləmək üçün şərh yox, **Subscribe** düyməsini işlədin."
+  - "Maintainer kimi işə ən çox 👍 alan issue-lardan başlayın."

@@ -1,0 +1,43 @@
+- question: "Bir issue-da artıq 👍 12 görünür. Siz ona basırsınız. Nə olur?"
+  options:
+    - "Issue-ya \"👍\" mətni olan yeni şərh əlavə olunur"
+    - "Sizin səsiniz əlavə olunur və say 13 olur"
+    - "Sayı yalnız issue-nu açan adam dəyişə bilər"
+  answer: 1
+  explain: "Qoyulmuş reaksiyaya basmaq sizin reaksiyanızı əlavə edir. Bir də basanda geri götürülür."
+- question: "Bunlardan hansı GitHub-ın reaksiyaları arasında yoxdur?"
+  options:
+    - "👀"
+    - "🚀"
+    - "😕"
+    - "🔥"
+  answer: 3
+  explain: "Reaksiyalar səkkizdir: 👍 👎 😄 🎉 😕 ❤️ 🚀 👀. 🔥 aralarında yoxdur."
+- question: "Bir imkanı siz də istəyirsiniz, əlavə deyəcəyiniz bir şey yoxdur. Nə etmək daha düzgündür?"
+  options:
+    - "Issue-ya 👍 qoymaq"
+    - "\"+1\" şərhi yazmaq"
+    - "Eyni mövzuda yeni issue açmaq"
+  answer: 0
+  explain: "👍 səsi sayın içinə əlavə edir və abunəçilərə yeni şərh bildirişi göndərmir."
+- question: "\"+1\" şərhləri issue-ya abunə olanlara niyə mane olur?"
+  options:
+    - "Bu şərhlər issue-nu avtomatik bağlayır"
+    - "GitHub belə şərhləri spam sayıb gizlədir"
+    - "Hər şərh hər abunəçiyə bildiriş göndərir"
+  answer: 2
+  explain: "Hər yeni şərh abunəçilərə gedir, amma \"+1\" yeni məlumat vermir. Reaksiya bu səs-küyü yaratmır."
+- question: "Hansı yazılış issue-ları 👍 sayına görə, ən çox səs alandan başlayaraq düzür?"
+  options:
+    - "`sort:reactions-+1-asc`"
+    - "`sort:reactions-+1-desc`"
+    - "`sort:comments-desc`"
+  answer: 1
+  explain: "`-desc` çoxdan aza düzür, `-asc` azdan çoxa. `comments` reaksiyaları yox, şərhləri sayır."
+- question: "Issue-dakı xəbərləri izləmək istəyirsiniz, amma şərh yazmaq istəmirsiniz. Nə edirsiniz?"
+  options:
+    - "\"Subscribing\" sözü ilə şərh yazırsınız"
+    - "Issue-ya 👀 reaksiyası qoyursunuz"
+    - "Sağ sütunda **Subscribe** düyməsinə basırsınız"
+  answer: 2
+  explain: "**Subscribe** sizi abunəçi edir. Reaksiya abunə etmir, sadəcə sayda görünür."

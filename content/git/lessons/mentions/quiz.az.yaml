@@ -1,0 +1,50 @@
+- question: "Ayla #14-də `@sam-lee` yazıb şərhi göndərir. Nə olur?"
+  options:
+    - "Sam-ın adı şərhdə qalın yazılır, başqa heç nə olmur"
+    - "Sam bildiriş alır və bu issue-ya abunə olur"
+    - "Issue avtomatik olaraq Sam-a təyin edilir"
+  answer: 1
+  explain: "Mention bildiriş göndərir və adamı müzakirəyə abunə edir. Təyinat (assignee) ayrıca seçilir."
+- question: "Ayla köhnə şərhini redaktə edib içinə `@sam-lee` əlavə edir. Sam bildiriş alırmı?"
+  options:
+    - "Bəli, redaktə ilə əlavə olunan mention da bildiriş göndərir"
+    - "Xeyr, bildiriş yalnız yeni şərhdəki mention üçün gəlir"
+    - "Xeyr, redaktə edilmiş şərhlərdə mention işləmir"
+  answer: 0
+  explain: "GitHub Docs: şərhi redaktə edib mention əlavə etsəniz, həmin adam da bildiriş alır."
+- question: "`bright-school` təşkilatının backend team-ini necə çağırmaq olar?"
+  options:
+    - "`@backend`"
+    - "`#bright-school/backend`"
+    - "`@bright-school/backend`"
+  answer: 2
+  explain: "Team mention formatı `@təşkilat/team`-dir. `#` issue və PR-lara istinad üçündür."
+- question: "`school-timetable`-in issue-sunda `#12` yazılıb. Bu nəyə link olur?"
+  options:
+    - "Eyni repository-nin 12 nömrəli issue və ya PR-ına"
+    - "Təşkilatın istənilən repository-sindəki 12 nömrəli issue-ya"
+    - "Şərhlər siyahısındakı 12-ci şərhə"
+  answer: 0
+  explain: "`#12` həmişə eyni repository-yə aiddir. Başqa repository üçün `owner/repo#12` yazılır."
+- question: "Ayla `school-timetable`-dən `school-website` repository-sinin 5 nömrəli issue-suna link vermək istəyir. Nə yazmalıdır?"
+  options:
+    - "`#5`"
+    - "`school-website@5`"
+    - "`bright-school/school-website#5`"
+  answer: 2
+  explain: "Başqa repository-yə istinad `sahib/repository#nömrə` formasındadır."
+- question: "Ayla #14-də `Looks like #12 again` yazır. #12-də nə dəyişir?"
+  options:
+    - "#12 bağlanır, çünki #14-də ona istinad var"
+    - "#12-nin tarixçəsində #14-ə geri link görünür"
+    - "#12 #14-ün içinə köçürülür"
+  answer: 1
+  explain: "İstinad geri link yaradır. Issue-nu bağlamaq üçün `Closes #12` kimi açar söz lazımdır."
+- question: "Şərhə commit-in 40 simvolluq SHA-sı yapışdırılıb. GitHub onu necə göstərir?"
+  options:
+    - "Adi mətn kimi, link olmadan"
+    - "Tam 40 simvolluq link kimi"
+    - "Commit mesajının ilk sətri kimi"
+    - "İlk 7 simvoldan ibarət link kimi"
+  answer: 3
+  explain: "SHA commit-ə link olur və ilk 7 simvolu göstərilir."

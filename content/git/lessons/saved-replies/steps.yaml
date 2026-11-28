@@ -1,0 +1,64 @@
+# Drawn mockups (ui lesson): the Saved replies settings page and an issue comment with the
+# saved replies menu. Simplified; labels follow GitHub Docs where the docs name them.
+create:
+  vis:
+    kind: ui
+    caption: "Settings → Saved replies (sadələşdirilmiş)"
+    url: "github.com/settings/replies"
+    main:
+      - type: heading
+        text: "Saved replies"
+      - type: list
+        items:
+          - { title: "Need CSV sample", sub: "Thanks for the report! Please attach a small CSV file…" }
+        mark: "Saxlanmış cavablar burada görünür. Qələm işarəsi dəyişir, X işarəsi silir."
+      - type: divider
+      - type: heading
+        text: "Add a saved reply"
+      - type: field
+        label: "Title"
+        value: "Need CSV sample"
+        mark: "Başlıq: siyahıda cavabı bununla tapırsınız."
+      - type: code
+        label: "Write"
+        text: "Thanks for the report! Please attach a small CSV file\nthat shows the problem and tell us which **csv-tidy**\nversion you use."
+        mark: "Mətn Markdown-dur. **Preview** onun necə görünəcəyini göstərir."
+      - type: button
+        label: "Add saved reply"
+        tone: primary
+    side:
+      - type: list
+        items:
+          - { title: "Public profile", icon: user }
+          - { title: "Notifications" }
+          - { title: "**Saved replies**" }
+use:
+  vis:
+    kind: ui
+    caption: "Issue-da saved reply seçmək (sadələşdirilmiş)"
+    url: "github.com/sam-lee/csv-tidy/issues/14"
+    main:
+      - type: heading
+        text: "Parser crashes on empty lines #14"
+        sub: "tom-w opened this issue"
+      - type: row
+        items:
+          - type: button
+            label: "B"
+          - type: button
+            label: "I"
+          - type: button
+            label: "↩ Saved replies"
+            mark: "Saved replies düyməsi (ox işarəsi). Klaviatura ilə: `Ctrl` + `.`"
+      - type: list
+        items:
+          - { title: "Need CSV sample", meta: "Ctrl + 1" }
+          - { title: "Duplicate issue", meta: "GitHub" }
+        mark: "Siyahı: sizin cavablarınız və GitHub-ın **Duplicate issue** cavabı."
+      - type: field
+        label: "Add a comment"
+        value: "Thanks for the report! Please attach a small CSV file… Does it also happen with one empty line?"
+        mark: "Mətn sahəyə düşür, amma hələ göndərilmir. Sam sonuna bir sual əlavə edib."
+      - type: button
+        label: "Comment"
+        tone: primary
