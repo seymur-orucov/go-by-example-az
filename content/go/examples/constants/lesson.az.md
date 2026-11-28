@@ -1,14 +1,14 @@
-Sabit — proqram işləyərkən dəyişməyən dəyərdir: şəhərin adı, taksi tarifi, vergi faizi. Dəyişəndən fərqi budur ki, sabitə sonradan yeni dəyər yazmaq olmur: onu təsadüfən dəyişmək cəhdini kompilyator özü tutur və proqram heç işə düşmür.
+Sabit `const` ilə elan olunan və proqram işləyərkən dəyişməyən dəyərdir: şəhərin adı, taksi tarifi, vergi faizi. Dəyişəndən fərqli olaraq, sabitə sonradan yeni dəyər yazmaq olmur. Belə cəhdi kompilyator tutur və proqram işə düşmür.
 
-Sabit `const` ilə elan olunur. Onun dəyəri kompilyasiya zamanı, yəni proqram işə düşməzdən əvvəl məlum olmalıdır: rəqəm, mətn, `true`/`false` və ya bunlardan qurulan ifadə. Adlı sabit kodu oxunaqlı edir — `0.5`-in nə demək olduğunu təxmin etmək lazım deyil, `perKm` adı özü deyir.
+Sabitin dəyəri kompilyasiya zamanı, yəni proqram işə düşməzdən əvvəl məlum olmalıdır: rəqəm, mətn, `true`/`false` və ya bunlardan qurulan ifadə.
 
-## Paket səviyyəsində sabit {#declare}
+## Package səviyyəsində sabit {#declare}
 
-`city` funksiyadan kənarda elan olunub, ona görə faylın bütün funksiyalarında görünür. Bir dəfə yazılır və hər yerdə eyni qalır.
+`city` funksiyadan kənarda elan olunub, ona görə package-in bütün funksiyalarında görünür, başqa fayldakılarda da. Bir dəfə yazılır və hər yerdə eyni qalır.
 
 ## Sabitlər qrupu {#group}
 
-Bir-birinə aid sabitləri `const ( ... )` blokunda yığmaq rahatdır: taksi tarifinin hər iki rəqəmi bir yerdədir. Tarif dəyişəndə kodda yalnız bu iki sətri düzəldirik.
+Bir-birinə aid sabitləri `const ( ... )` blokunda yığmaq rahatdır: taksi tarifinin hər iki rəqəmi bir yerdədir. Tarif dəyişəndə kodda yalnız bu iki sətri düzəldirik. `perKm` adı deyir ki, `0.5` 1 km-in qiymətidir. Rəqəmin mənasını təxmin etmək lazım gəlmir.
 
 > **Diqqət:** sabitə yeni dəyər yazmaq olmaz — `minFare = 3` kompilyasiya xətası verir.
 
