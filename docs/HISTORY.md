@@ -842,3 +842,11 @@ Done:
 - channel-directions: quiz answers spread, the intro cut to 4 sentences with the signature point moved into #send-only, the story sentence and the "easy to remember" note trimmed (scan 4 → 1).
 - channel-synchronization: quiz answers spread with sharper distractors, the "unbuffered receive" claim fixed, the repeated intro scenario and `time` explanation removed, `till:` renamed to `register:` (scan 5 → 1; re-reviewed by a fresh subagent).
 - channels: the pizzeria roles (soba/piştaxta) dropped from the text and the `vis` labels, the long intro sentence split, the deadlock quiz options shortened (scan 5 → 2).
+
+### 92. Polish batch 2
+Done:
+- closing-channels: quiz answers spread with Q6/Q7 giveaway reasons trimmed, the intro sentence that pre-told #zero cut, the intro story matched to the point values sent, the "vacibdir" opener dropped (scan 4 → 2).
+- closures: quiz answers spread; the pass/card calls moved under their step markers in `main` (`countIf` above `main`); shorter intro; `string` instead of "sətir", "fərq etmir" instead of "önəmli deyil" (scan 5 → 2).
+- command-line-subcommands: quiz 2 explain fixed (the subcommand name was passed to `Parse`), simpler intro sentence, `FlagSet` named "flag dəsti", the flags-before-name pitfall added; the `main.go` length note skipped (scan 5 → 3).
+- constants: shorter intro, package scope corrected ("package-in bütün fayllarında"), quiz distractors limited to taught material and answers spread, `untyped constant` added to GLOSSARY (scan 7 → 3; re-reviewed by a fresh subagent).
+- context: quiz 4 answer giveaway and quiz 2 snippet fixed, two "Beləcə" closers removed, "övlad" → "uşaq context", long intro sentence split, `parent / child context` added to GLOSSARY (scan 6 → 3).

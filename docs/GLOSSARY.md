@@ -21,6 +21,7 @@ Explanations below are in Azerbaijani, as on the site. Checked against the lesso
 | `:=` (short variable declaration) | kept as code | dəyişəni elan edib dəyər vermək, tipi dəyərdən çıxarılır; yalnız funksiyanın içində | variables |
 | zero value | kept | dəyər verilməyən dəyişənin avtomatik aldığı dəyər: `0`, `""`, `false`, `nil` | variables |
 | constant | translated: **sabit** | proqram işləyərkən dəyişməyən, kompilyasiya zamanı məlum olan dəyər (`const`) | constants |
+| untyped constant | kept: **untyped sabit** | tipi yazılmayan sabit; istifadə olunduğu yerin tipinə uyğunlaşır | constants |
 | loop | translated: **dövr** | kodu təkrar-təkrar icra etmək; Go-da yeganə dövr `for`-dur | for |
 | literal | kept | dəyəri kodda birbaşa yazmaq: `42`, `"çay"`, `[]int{1, 2}` | arrays |
 
@@ -143,6 +144,7 @@ Explanations below are in Azerbaijani, as on the site. Checked against the lesso
 | environment variable | translated: **mühit dəyişəni** | əməliyyat sisteminin proqrama verdiyi `AD=dəyər` cütü | environment-variables |
 | handler | kept | qeydin (slog) və ya HTTP sorğusunun necə işlənəcəyini təyin edən dəyər | logging, http-server |
 | context | kept as `context` | işə vaxt limiti (deadline) və ya ləğv (cancel) siqnalı ötürən dəyər | context |
+| parent / child context | translated: **valideyn context / uşaq context** | başqa context-dən yaranan context uşaqdır; valideyn bitəndə uşaq da bitir | context |
 | child process | translated: **uşaq proses** | Go proqramının işə saldığı başqa proqram (`os/exec`) | spawning-processes |
 | PID | kept | proses id-si | execing-processes |
 | signal | translated: **siqnal** | əməliyyat sisteminin prosesə göndərdiyi xəbər: `SIGINT`, `SIGTERM` | signals |
