@@ -1,6 +1,6 @@
 Array — eyni tipli elementlərin sabit ölçülü siyahısıdır: həftənin 7 günü, ilin 12 ayı, şahmat taxtasının 8 sırası. Ölçü tipin bir hissəsidir: `[7]int` "7 ədəd `int`" deməkdir və proqram işləyərkən bu ölçü dəyişmir.
 
-Bu dərsdə bir həftəlik hava məlumatını array-də saxlayırıq. Praktikada Go kodunda array-dən çox növbəti dərsin mövzusu olan slice istifadə olunur, amma slice array-in üzərində qurulub, ona görə əvvəl array-i tanımaq lazımdır.
+Bu dərsdə bir həftəlik hava məlumatını array-də saxlayırıq. Praktikada array-dən çox slice istifadə olunur, amma slice array-in üzərində qurulub, ona görə əvvəl array-i tanıyırıq.
 
 ## Elan və zero value {#zero}
 
@@ -8,7 +8,7 @@ Bu dərsdə bir həftəlik hava məlumatını array-də saxlayırıq. Praktikada
 
 ## Literal və indeks {#literal}
 
-Elementlər əvvəlcədən məlumdursa, array literal ilə yazırıq: `[7]int{12, 14, ...}`. Elementə indekslə müraciət edirik, saymaq 0-dan başlayır: `temps[2]` üçüncü gündür, yəni çərşənbə (`Wednesday`). Eyni yolla dəyəri dəyişirik: bazar gününün temperaturunu 18-ə dəyişdik.
+Elementlər əvvəlcədən məlumdursa, array-i literal ilə yaradırıq. Literal dəyərləri kodda birbaşa yazmaq deməkdir: `[7]int{12, 14, ...}`. Elementə indekslə müraciət edirik, saymaq 0-dan başlayır: `temps[2]` üçüncü gündür, yəni çərşənbə (`Wednesday`). Eyni yolla dəyəri dəyişirik: bazar gününün temperaturunu 18-ə dəyişdik.
 
 > **Bilgi:** ölçünü əllə saymaq istəmirsinizsə, `[...]int{12, 14, 11}` yazın — kompilyator elementləri sayıb ölçünü özü qoyur (burada 3).
 
