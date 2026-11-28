@@ -2,7 +2,7 @@ rules:
   - "`&x` dəyişənin ünvanını verir, `*p` isə həmin ünvandakı dəyəri oxuyur və ya dəyişir."
   - "`*int` tipli pointer-ə yalnız `int` dəyişənin ünvanı yazıla bilər, `int` dəyərin özü yox."
   - "Parametr surətdir: funksiyanın çağıranın dəyişənini dəyişməsi üçün ona pointer ötürülür."
-  - "Pointer-in zero value-su `nil`-dir; `nil` pointer-in dəyərini oxumaq proqramı panic ilə dayandırır."
+  - "Pointer-in zero value-su `nil`-dir; `nil` pointer-in dəyərini oxumaq və ya ona yazmaq proqramı panic ilə dayandırır."
   - "`new(T)` zero value ilə yeni dəyişən yaradıb ünvanını qaytarır; lokal dəyişənin ünvanını qaytarmaq da təhlükəsizdir."
 practices:
   - "Pointer-i funksiya dəyişəni həqiqətən dəyişməli olanda ötürün; yalnız oxumaq üçün adi dəyər kifayətdir."
