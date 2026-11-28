@@ -33,16 +33,16 @@
   code: |
     ch := make(chan int, 3)
     fmt.Println(<-ch)
-  options: ["0", "`fatal error: all goroutines are asleep - deadlock!`", "kompilyasiya xətası"]
-  answer: 1
+  options: ["0", "kompilyasiya xətası", "`fatal error: all goroutines are asleep - deadlock!`"]
+  answer: 2
   explain: "Boş buffered channel-dan almaq dəyər gələnə qədər gözləyir, göndərən isə yoxdur."
 
 - question: Bu kod nə çap edəcək?
   code: |
     ch := make(chan string)
     fmt.Println(len(ch), cap(ch))
-  options: ["0 1", "0 0", "1 1"]
-  answer: 1
+  options: ["0 0", "0 1", "1 1"]
+  answer: 0
   explain: "Ölçüsüz yaradılan channel buffer-sizdir, onun tutumu 0-dır."
 
 - question: Hansı `ch` ilə bu kod goroutine-siz işləyir?
@@ -63,6 +63,6 @@
     }()
     time.Sleep(100 * time.Millisecond)
     fmt.Println(len(ch))
-  options: ["3", "2", "0"]
-  answer: 1
+  options: ["2", "3", "0"]
+  answer: 0
   explain: "İki dəyər buffer-ə sığır, üçüncü göndərmə isə yer açılana qədər goroutine-də gözləyir."
