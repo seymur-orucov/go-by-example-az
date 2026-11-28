@@ -20,10 +20,10 @@
         fmt.Println("closing")
     }
   options:
+    - "hər iki sətir mütləq çap olunur, çünki goroutine əvvəl başladılıb"
     - "`closing` mütləq çap olunur, `saved` isə çap olunmaya da bilər"
-    - "hər iki sətir mütləq çap olunur"
-    - "`saved` həmişə `closing`-dən əvvəl çap olunur"
-  answer: 0
+    - "`saved` həmişə `closing`-dən əvvəl çap olunur, çünki `go` sətri əvvəldir"
+  answer: 1
   explain: "`main` goroutine-i gözləmir və bitəndə proqram da bitir."
 
 - question: Bu kod işə düşəndə nə olacaq?
@@ -34,10 +34,10 @@
     }()
     <-done
   options:
-    - "`copying` çap olunur, sonra proqram `deadlock` xətası ilə dayanır"
     - "`copying` çap olunur və proqram normal bitir"
     - "heç nə çap olunmur, proqram normal bitir"
-  answer: 0
+    - "`copying` çap olunur, sonra proqram `deadlock` xətası ilə dayanır"
+  answer: 2
   explain: "Goroutine siqnal göndərmədən bitir, `<-done` isə heç vaxt gəlməyəcək dəyəri gözləyir."
 
 - question: "`done` `chan struct{}` tiplidir. Hansı sətir kompilyasiya olunmur?"
@@ -56,10 +56,10 @@
     <-done
     fmt.Println("main")
   options:
-    - "`step 1` və `main`; `step 2` çap olunmaya da bilər"
     - "hər üçü, məhz bu sıra ilə: `step 1`, `step 2`, `main`"
-    - "yalnız `main`"
-  answer: 0
+    - "yalnız `main`, çünki goroutine çap etməyə çatmır"
+    - "`step 1` və `main`; `step 2` çap olunmaya da bilər"
+  answer: 2
   explain: "Siqnal işin ortasında göndərilib: ondan sonrakı kodu `main` gözləmir və proqram ondan əvvəl bitə bilər."
 
 - question: Bu kodda nə səhvdir?
@@ -74,8 +74,8 @@
     <-done
     fmt.Println("inventory over")
   options:
-    - "`main` yalnız bir siqnal gözləyir, `inventory over` ikinci rəf sayılmadan çap oluna bilər"
-    - "heç nə, `main` hər iki goroutine-i gözləyir"
-    - "proqram mütləq `deadlock` xətası ilə dayanır"
-  answer: 0
+    - "heç nə: `inventory over` həmişə hər iki rəf sayılandan sonra çap olunur"
+    - "`main` yalnız bir siqnal gözləyir, `inventory over` ikinci rəfdən əvvəl çap oluna bilər"
+    - "ikinci goroutine siqnalı göndərə bilmir, proqram `deadlock` xətası ilə dayanır"
+  answer: 1
   explain: "Hər goroutine bir siqnal göndərir, ona görə iki goroutine üçün `<-done` iki dəfə yazılmalıdır."

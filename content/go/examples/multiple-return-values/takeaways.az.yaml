@@ -1,6 +1,6 @@
 rules:
   - "Bir neçə nəticənin tipləri mötərizədə yazılır, `(int, bool)`, `return` də o qədər dəyər qaytarmalıdır."
-  - "Nəticələrin hamısını qəbul etmək lazımdır; lazım olmayanı `_` ilə atın."
+  - "Nəticələri dəyişənlərə yazanda hər nəticəyə bir dəyişən lazımdır; lazım olmayanı `_` ilə atın."
   - "`:=` solda ən azı bir yeni dəyişən tələb edir; mövcud dəyişənlərə `=` ilə yazın."
   - "Adlı nəticələr zero value ilə başlayır, boş `return` onların cari dəyərini qaytarır."
   - "Çoxlu nəticəni birbaşa başqa funksiyaya ötürmək olar: `fmt.Println(split(50, 3))`."

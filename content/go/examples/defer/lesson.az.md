@@ -8,7 +8,9 @@ Bu dərsdə çörəkxananın iş gününü yazırıq.
 
 ## Bir neçə defer {#order}
 
-Hər `defer` çağırışı yığına (stack) qoyulur və funksiya bitəndə sonuncudan birinciyə doğru icra olunur. Boşqab yığını kimi: sonuncu qoyulan birinci götürülür. Dövrdə `oven`, `kitchen`, `shop` sırası ilə təxirə saldıq, işıqlar isə tərs sıra ilə sönür.
+Hər `defer` çağırışı yığına (stack) qoyulur və funksiya bitəndə sonuncudan birinciyə doğru icra olunur. Dövrdə `oven`, `kitchen`, `shop` sırası ilə təxirə saldıq, işıqlar isə tərs sıra ilə sönür.
+
+> **Diqqət:** Dövrdəki `defer` hər addımın sonunda yox, funksiya bitəndə işləyir: `closing up` işıqlardan əvvəl çap olunur. Uzun dövrdə açdığınız faylları `defer` ilə bağlasanız, hamısı funksiya bitənə qədər açıq qalır.
 
 ## Arqumentlər nə vaxt hesablanır {#args}
 
@@ -16,6 +18,6 @@ Hər `defer` çağırışı yığına (stack) qoyulur və funksiya bitəndə son
 
 ## Erkən return {#early}
 
-`sell` iki yerdən bitə bilər, amma qəbz (`receipt`) hər iki halda çap olunur, çünki `defer` istənilən `return`-dan sonra işləyir. Çap sırasına diqqət edin: `fmt.Println("sold:", ...)` əvvəlcə arqumentini, yəni `sell`-i hesablayır. `sell`-in defer-i onun içində, `sell` bitəndə işləyir, `"sold:"` sətri isə bundan sonra çap olunur.
+`sell` iki yerdən bitə bilər, amma qəbz (`receipt`) hər iki halda çap olunur, çünki `defer` istənilən `return`-dan sonra işləyir. Çıxışda `receipt for croissant` sətri `sold: true`-dan əvvəl gəlir, çünki `Println` əvvəlcə öz arqumentini, yəni `sell(...)`-i hesablayır. Qəbz `sell` bitəndə çap olunur, `sold:` sətri isə ondan sonra.
 
 > **Bilgi:** `defer` panic zamanı da işləyir. Bunu növbəti dərsdə, `recover` ilə istifadə edəcəyik.

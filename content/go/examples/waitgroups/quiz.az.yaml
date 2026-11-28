@@ -27,8 +27,8 @@
     fmt.Println("done")
   options:
     - "`work`, sonra `fatal error: all goroutines are asleep - deadlock!`"
-    - "`work`, `done`"
-    - "Kompilyasiya xətası"
+    - "`work`, sonra `done`, proqram normal bitir"
+    - "Kompilyasiya xətası: WaitGroup dəyər kimi ötürülə bilməz"
   answer: 0
   explain: "`work` WaitGroup-un kopyasını alıb, `Done` kopyanı azaldır və `main`-dəki `Wait` heç vaxt bitmir; `go vet` bunu `passes lock by value` kimi göstərir."
 
@@ -40,8 +40,8 @@
     wg.Done()
     fmt.Println("ok")
   options:
-    - "`ok` çap olunur"
-    - "Deadlock"
+    - "`ok` çap olunur, ikinci `Done` heç nə etmir"
+    - "`fatal error: all goroutines are asleep - deadlock!`"
     - "`panic: sync: negative WaitGroup counter`"
   answer: 2
   explain: "İkinci `Done` sayğacı mənfi edir və WaitGroup panic verir."

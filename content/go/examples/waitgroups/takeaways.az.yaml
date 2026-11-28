@@ -4,7 +4,7 @@ rules:
   - "WaitGroup funksiyaya pointer kimi verilir (`*sync.WaitGroup`); kopyanın öz sayğacı olur və `Wait` bitmir."
   - "`wg.Go(f)` `Add(1)`, yeni goroutine və `Done`-u bir çağırışda edir; `f` parametrsiz və nəticəsiz `func()` olmalıdır."
   - "`Done` `Add`-dən çox çağırılsa, `sync: negative WaitGroup counter` panic-i olur."
-  - "Results channel-ı ayrıca goroutine-də `wg.Wait()`-dən sonra bağlanır, `range` isə yalnız bundan sonra bitir."
+  - "Nəticə channel-ı ayrıca goroutine-də, `wg.Wait()`-dən sonra bağlanır, `range` isə yalnız bundan sonra bitir."
 practices:
   - "Mümkün olanda `wg.Go` yazın: `Add`-i və ya `Done`-u unutmaq mümkün olmur."
   - "`Add`/`Done` ilə yazanda `defer wg.Done()`-u funksiyanın ilk sətrinə qoyun."

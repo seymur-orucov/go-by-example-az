@@ -1,6 +1,6 @@
-`sync.WaitGroup`, yəni gözləmə qrupu, bir neçə goroutine-in hamısı bitənə qədər gözləməyə imkan verir. İçində sadə bir sayğac var: hər yeni iş onu artırır, bitən iş azaldır, gözləyən tərəf isə sayğac sıfır olana qədər dayanır. Done channel-ı bir goroutine-i gözləmək üçün rahatdır; worker pool-da isə nəticələri düz N dəfə oxuyurduq, çünki onların sayını bilirdik. WaitGroup-a nə channel, nə də nəticələrin sayı lazımdır: o, "hamısı bitdimi?" sualına cavab verir. `sync` paketi goroutine-lərin işini bir-biri ilə uzlaşdıran alətləri saxlayır.
+Goroutines dərsində `wg.Go` və `wg.Wait()` ilə bir neçə goroutine-in hamısı bitənə qədər gözlədik. İçəridə `sync.WaitGroup` sayğacdır: `Add` onu artırır, `Done` isə azaldır. `Wait` sayğac sıfır olana qədər gözləyir.
 
-Bu dərsdə deploy aləti yazırıq: yeni versiyanı yayımlamazdan əvvəl bütün serverlərin sağlamlığını eyni anda yoxlayır, hamısının cavabını gözləyir və yeniliyi yalnız sağlam serverlərə göndərir.
+Bu dərsdə deploy aləti yazırıq: o, bütün serverlərin sağlamlığını eyni anda yoxlayır və yeni versiyanı yalnız sağlam serverlərə göndərir.
 
 ## Done {#done}
 
@@ -12,7 +12,7 @@ Bu dərsdə deploy aləti yazırıq: yeni versiyanı yayımlamazdan əvvəl büt
 
 `var wg sync.WaitGroup` sıfır sayğacla hazırdır, onu ayrıca yaratmaq lazım deyil. Hər server üçün `wg.Add(1)` sayğacı artırır, sonra `go check(...)` yoxlamanı ayrıca goroutine-də başladır. `Add` `go`-dan əvvəl çağırılır: goroutine-in içində olsaydı, `Wait` hələ heç bir `Add` olmamış sıfır sayğac görüb dərhal qayıda bilərdi.
 
-`wg.Wait()` sayğac sıfır olana qədər `main`-i saxlayır, ona görə `up`-ı oxuyanda bütün cavablar artıq yazılıb: `web-3` cavab vermir. `time.Now()` indiki anı, `time.Since(start)` isə o andan keçən vaxtı verir. Dörd yoxlama bir-bir 400 millisaniyə çəkərdi; eyni anda isə təxminən 100 millisaniyəyə bitir. Dəqiq vaxtı çap etmirik, çünki o, kompüterdən asılıdır.
+`wg.Wait()` sayğac sıfır olana qədər `main`-i saxlayır, ona görə `up`-ı oxuyanda bütün cavablar artıq yazılıb. Çıxışda `web-3` `false`-dur: o cavab vermir. `time.Now()` indiki anı, `time.Since(start)` isə o andan keçən vaxtı verir. Dörd yoxlama bir-bir 400 millisaniyə çəkərdi; eyni anda isə təxminən 100 millisaniyəyə bitir. Dəqiq vaxtı çap etmirik, çünki o, kompüterdən asılıdır.
 
 ## wg.Go {#go}
 

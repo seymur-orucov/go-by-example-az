@@ -802,3 +802,101 @@ Done:
 - `creating-repositories` (`ui`, a habit tracker): the New repository form, README / `.gitignore` / license templates, why to keep the repository empty for an existing project (`fetch first`, unrelated histories), Quick setup and `git push -u`, creating first and cloning.
 - The reviewer removed claims no doc confirms (UTC days, a 24-hour delay, "Search all of GitHub"), trimmed busy lessons to 4–5 mockups and replaced giveaway quiz options.
 
+
+### 88. Polish `strings-and-runes` (Go)
+Applied all six review findings: the major F1, F2 first, then the minor F3–F6 at the user's request.
+
+Done:
+- #range talks about byte indexes ("1 indeksində") instead of ordinals, which clashed with "4-cü bayt" in #index.
+- Quiz right answers spread over positions 0/1/2 (3/2/3 instead of 1/6/1); every changed answer re-run with Go.
+- Scan 7 → 6 pts after F1, F2.
+- Intro cut to 4 sentences; the byte sizes of `ü`, `é` and the Azerbaijani letters moved to #bytes; "ASCII" replaced by "ingilis əlifbasından kənar" (also in takeaways); `Unicode` added to GLOSSARY.
+- #runes says a rune is not always one letter (some emoji, `é` with a separate accent); #index shows that `city[0] = 'z'` does not compile (error message checked with Go).
+- Scan 6 → 5 pts.
+
+### 89. Polish `arrays` (Go)
+Applied all four review findings (major F1, F2, then minor F3, F4 at the user's request).
+
+Done:
+- #loop says the index starts at 1 because `temps[0]` is taken as the warmest day first (the text said 0, the code starts at 1).
+- The Diqqət note separates a constant index (`temps[7]`, compile error) from a loop with `i <= len(temps)` (compiles, then `panic: runtime error: index out of range [7] with length 7`, checked with Go).
+- The 23-word intro sentence shortened; "literal" explained where it first appears.
+- Scan 4 → 3 pts.
+
+### 90. Polish `channel-buffering` (Go)
+Applied all four review findings (F3 sat in the rewritten intro, F4 at the user's request).
+
+Done:
+- The text names the code instead of the café roles: `main` sends to `rail`, the goroutine takes a value (no more "kassir", "barista", "rəf", "çek" in the prose; the drink names stay as data, the code and its output are unchanged).
+- The intro's story paragraph became one sentence about `rail`.
+- Quiz right answers spread 3/2/2 over positions 0/1/2 (was 1/5/1); the moved answers re-run with Go.
+- #full and the takeaways say what a buffer does in numbers: the sender may run at most `cap` values ahead of the receiver.
+- Scan 4 → 3 pts.
+
+### 91. Polish the "Düzəliş lazımdır" Go lessons, batch 1
+The user asked to run polish-lesson in a loop over every "Düzəliş lazımdır" lesson, all findings (major and minor). Each lesson was polished by its own subagent; scan and Go checks per lesson, `content:check` per batch.
+
+Done:
+- atomic-counters: quiz answers spread over 0/1/2, Q2's right option shortened, the intro links back to the Goroutines data race, the real Go 1.26 `c++` error quoted, the double-print pitfall hedged ("çap edə bilər") (scan 10 → 8).
+- base64-encoding: the example now encodes a 32-byte SHA-256 hash instead of plain text, with a note that `url.QueryEscape` is enough for text; the padding reason, the decode wording and the JWT gloss fixed; `padding`, `encode / decode` added to GLOSSARY (scan 6 → 4).
+- channel-directions: quiz answers spread, the intro cut to 4 sentences with the signature point moved into #send-only, the story sentence and the "easy to remember" note trimmed (scan 4 → 1).
+- channel-synchronization: quiz answers spread with sharper distractors, the "unbuffered receive" claim fixed, the repeated intro scenario and `time` explanation removed, `till:` renamed to `register:` (scan 5 → 1; re-reviewed by a fresh subagent).
+- channels: the pizzeria roles (soba/piştaxta) dropped from the text and the `vis` labels, the long intro sentence split, the deadlock quiz options shortened (scan 5 → 2).
+
+### 92. Polish batch 2
+Done:
+- closing-channels: quiz answers spread with Q6/Q7 giveaway reasons trimmed, the intro sentence that pre-told #zero cut, the intro story matched to the point values sent, the "vacibdir" opener dropped (scan 4 → 2).
+- closures: quiz answers spread; the pass/card calls moved under their step markers in `main` (`countIf` above `main`); shorter intro; `string` instead of "sətir", "fərq etmir" instead of "önəmli deyil" (scan 5 → 2).
+- command-line-subcommands: quiz 2 explain fixed (the subcommand name was passed to `Parse`), simpler intro sentence, `FlagSet` named "flag dəsti", the flags-before-name pitfall added; the `main.go` length note skipped (scan 5 → 3).
+- constants: shorter intro, package scope corrected ("package-in bütün fayllarında"), quiz distractors limited to taught material and answers spread, `untyped constant` added to GLOSSARY (scan 7 → 3; re-reviewed by a fresh subagent).
+- context: quiz 4 answer giveaway and quiz 2 snippet fixed, two "Beləcə" closers removed, "övlad" → "uşaq context", long intro sentence split, `parent / child context` added to GLOSSARY (scan 6 → 3).
+
+### 93. Polish batch 3
+Done:
+- defer: the plate-stack comparison dropped, the early-return output order explained from the output, a Diqqət note on `defer` inside loops, quiz answers spread, `main.go` 51 → 48 lines (scan 3 → 2).
+- enums: quiz answers spread, the intro's type-safety claim narrowed to `int` variables, the renumbering cost of inserting a constant added, the zero-value takeaway clarified, `fmt.Stringer` added to GLOSSARY (scan 5 → 4).
+- environment-variables: the compile quiz with two failing lines fixed (Q7), three translated-sounding sentences rewritten (lookup, unset, setenv with a "proses" gloss), shorter intro (scan 8 → 4).
+- errors: fact-first intro cut to 4 sentences, the `error` interface moved into #new, the wrap chain explained, the quiz explanation about unused `err` corrected, quiz answers spread (scan 6 → 3).
+- execing-processes: quiz right options no longer longer than the distractors, the shell test in the script explained, the Windows caveat moved from the intro into #exec (scan 6 → 2; Linux run not possible here, `GOOS=linux go vet/build` passed).
+
+### 94. Polish batch 4
+Done:
+- for: quiz answers spread, the "imkan verir" calque removed and the intro cut to 4 sentences, the three-part loop header explained one part per sentence, `+=`/`-=` explained, the 600 USD start balance stated in #forever (scan 6 → 1).
+- functions: quiz answers spread, real bodies in the signature question, plainer intro and declare-step wording, one fewer call in `main` (scan 7 → 6; `main.go` still 42 lines).
+- if-else: quiz answers spread, intro cut to 4 sentences, the operator re-explanation replaced by a link back to Values, "çirkləndirmir" and "dar hədd" replaced with concrete statements (scan 4 → 2; re-reviewed by a fresh subagent).
+- interfaces: the socket comparison dropped, the `implements` sentence split, the "imkan verir" calque removed, "ödəmək (satisfy)" glossed and added to GLOSSARY, quiz answers spread (scan 5 → 1).
+- methods: quiz answers spread, the intro trimmed to the data and a concrete name-collision gain, the real compiler error in the literal quiz item, the pointer-receiver consistency convention added (scan 4 → 1).
+
+### 95. Polish batch 5
+Done:
+- multiple-return-values: quiz answers spread with even Q7 options, the "accept all results" rule narrowed to assignments, the "object" comparison dropped from the intro, the `ok`, named-results and `return` sentences reworded; the GLOSSARY `named result` row now points to this lesson (scan 6 → 1; re-reviewed by a fresh subagent).
+- mutexes: quiz answers spread and option lengths evened, runtime error strings moved from the options into the explanations, the non-reentrant mutex takeaway reworded (scan 13 → 6).
+- non-blocking-channel-operations: intro cut to 4 sentences without the game story, the 16 ms parenthesis split, the Q6 options evened, the "qeyd etmək" clause dropped (scan 11 → 5).
+- number-parsing: the base-0 note now covers a plain leading `0` (octal: `"017"` is 15, `"08"` is an error), intro cut to 4 sentences, dense float/range sentences split, `errors.As` wording made concrete (scan 12 → 6).
+- pointers: quiz answers spread, writing through a nil pointer also panics (lesson and takeaway), a neutral `return &c` example, the VIP-floor story trimmed, "sən" → "biz" (scan 5 → 3).
+
+### 96. Polish batch 6
+Done:
+- range-over-channels: quiz answers spread with same-shape Q2 distractors, the `close` recap sentence dropped, the drain step cut to two sentences that refer back to Closing Channels (scan 2 → 1).
+- range-over-iterators: quiz answers spread, "prices" → ticket types in #std, explained that Go builds `yield` from the loop body, intro cut to 4 sentences, the "imkan verir" calque dropped (scan 3 → 1).
+- range: quiz answers spread, backticks removed from the #blank heading, the Q1 explain wording and the "ilə gəlir" calque fixed, two weak distractors replaced (scan 5 → 4).
+- rate-limiting: the burst step no longer claims an idle ticker queues ticks (it holds at most one, checked with Go), "bilet" → "token", shorter intro, garbage collector glossed, quiz answers spread; `token bucket`, `garbage collector` added to GLOSSARY (scan 11 → 6).
+- recursion: intro cut from 8 sentences to 4 without the box and lift comparisons, the `nil` slice named correctly, a #base sentence shows the reversed order when printing after the recursive call, the Q2 explanation fixed (the deepest call is `n == 0`), quiz answers spread; `base case`, `call stack` added to GLOSSARY. A fresh re-review found a new major point, which was fixed in a second pass (scan 8 → 2).
+
+### 97. Polish batch 7
+Done:
+- sha256-hashes: quiz Q7/Q8 options evened out, intro cut to 4 sentences with checksum explained, bcrypt/Argon2 named for passwords, the streaming sentence corrected; `checksum` added to GLOSSARY (scan 4 → 1).
+- signals: quiz 1 options rebalanced, the "shop owner loses patience" story beat removed from the text, intro trimmed to 4 sentences (scan 5 → 3).
+- struct-embedding: quiz answers spread, the "inner type does not know the outer type" pitfall added, the "qalib gəlir" calque replaced, inheritance/composition glossed and added to GLOSSARY (scan 4 → 2).
+- structs: quiz answers spread, every quiz snippet declares `Seat`, capitalised (exported) field names explained (GLOSSARY `exported` now points here), the `==` rule completed (slice, map or func fields), "önəmli"/"boş sətir"/"sınır" wording replaced (scan 3 → 2).
+- time: intro cut to 4 sentences, the Before/After/Equal sentence split, "saat qurşağı (qısaca zona)" introduced once, quiz Q3/Q8 right options shortened with believable distractors; `time zone / location`, `duration` added to GLOSSARY (scan 10 → 6).
+
+### 98. Polish batch 8 and the end of the loop
+Done:
+- timeouts: quiz Q4–Q5 retimed (200 ms boxes, 300 ms deadline) so the answer holds under timing jitter, the gateway layer replaced by "bank", the intro rewritten, two long sentences split, "timer" replaced by `time.After` in the in-time step (scan 9 → 6).
+- values: quiz answers spread, the "hesab dəqiq çıxır" float claim dropped, the decimal-point rule limited to numbers written in code (`a / 4.0` with an `int` variable is still integer division), plain `true && false` labels instead of story labels in `main.go`, the bool-operators sentence split (scan 6 → 5; re-reviewed by a fresh subagent, its two accuracy notes fixed too).
+- variadic-functions: quiz answers spread, the takeaway grammar fixed ("slice-ın özünü (`f(s)`)"), the shared-array caveat added to the `append(week, extra...)` tip (scan 5 → 4).
+- waitgroups: the intro now builds on the Goroutines lesson (4 sentences), the web-3 sentence split, quiz Q2/Q3 distractors made concrete, "Results channel" in the takeaways fixed (scan 11 → 4).
+- xml: the leading header quiz option shortened, the intro's list of XML domains cut to one case, "paket" → "package"; `attribute`, `root element` added to GLOSSARY (scan 7 → 5).
+
+All 41 "Düzəliş lazımdır" Go lessons from the 2026-11-28 review are polished (plus the minor findings of strings-and-runes, arrays and channel-buffering). Not yet read by the user, so ROADMAP is unchanged. Minor notes that fresh re-reviews raised outside the original findings stay open in the reports (constants, channel-synchronization, multiple-return-values, values, if-else).

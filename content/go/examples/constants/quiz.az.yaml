@@ -2,8 +2,8 @@
   code: |
     const price = 3
     price = 4
-  options: ["price 4 olacaq", "kompilyasiya xətası verəcək", "proqram işləyərkən xəta verəcək"]
-  answer: 1
+  options: ["price 4 olacaq", "proqram işləyərkən xəta verəcək", "kompilyasiya xətası verəcək"]
+  answer: 2
   explain: Sabitə yeni dəyər yazmaq olmaz; xəta hələ kompilyasiya zamanı tutulur.
 
 - question: Bu kod nə çap edəcək?
@@ -39,7 +39,9 @@
   answer: 1
   explain: "`2.0` kəsr ədəd olduğu üçün bölmə kəsr nəticə verir."
 
-- question: Bunlardan hansı sabit ola bilər?
-  options: ["const now = time.Now()", "const day = 24 * 60", "const list = []int{1}"]
-  answer: 1
-  explain: Sabitin dəyəri kompilyasiya zamanı bilinməlidir; cari vaxt və slice belə dəyər deyil.
+- question: "`y` dəyişəndir. Bunlardan hansı sabit ola bilər?"
+  code: |
+    var y = 5
+  options: ["const day = 24 * 60", "const a = y", "const b = y + 1"]
+  answer: 0
+  explain: "Sabitin dəyəri kompilyasiya zamanı bilinməlidir. `y` dəyişəndir, ona görə `y` və `y + 1` sabit ola bilməz."

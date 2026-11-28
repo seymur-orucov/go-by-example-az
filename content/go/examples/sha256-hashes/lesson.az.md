@@ -1,6 +1,6 @@
-Heş funksiyası istənilən uzunluqda məlumatdan sabit ölçülü "barmaq izi" hesablayır. SHA-256-da bu iz həmişə 32 baytdır: istər bir sözün, istər bir neçə gigabaytlıq faylın heşi olsun. Heş şifrələmə deyil, birtərəfli çevirmədir: açar yoxdur və heşdən ilkin məlumatı geri almaq mümkün deyil. Ona görə heş məlumatı gizlətmək üçün yox, onun dəyişib-dəyişmədiyini yoxlamaq üçündür.
+Heş funksiyası istənilən uzunluqda məlumatdan sabit ölçülü "barmaq izi" hesablayır. SHA-256-da bu iz həmişə 32 baytdır: istər bir sözün, istər bir neçə gigabaytlıq faylın heşi olsun. Heş şifrələmə deyil, birtərəfli çevirmədir: açar yoxdur və heşdən ilkin məlumatı geri almaq mümkün deyil.
 
-Proqram yükləmə səhifələrində faylın yanında çox vaxt uzun hex sətir görünür: bu, faylın SHA-256 heşidir, yəni checksum-u. Bu dərsdə quraşdırma faylını "yükləyirik" və onun yolda pozulmadığını checksum ilə yoxlayırıq.
+Ona görə heş məlumatın dəyişmədiyini yoxlamaq üçün işlədilir: bu dərsdə faylı checksum ilə, yəni yükləmə səhifəsində dərc olunan heşlə yoxlayırıq.
 
 ## Heşi hesablamaq {#sum}
 
@@ -12,7 +12,7 @@ Eyni baytlar həmişə eyni heşi verir, ona görə `sum == again` `true`-dur. A
 
 ## Hissə-hissə hesablamaq {#stream}
 
-Böyük fayl yaddaşa birdən yüklənmir, şəbəkədən və ya diskdən hissə-hissə gəlir. `sha256.New()` hesablamanın vəziyyətini saxlayan obyekt qaytarır, hər `Write` ona növbəti hissəni əlavə edir, `Sum(nil)` isə nəticəni `[]byte` kimi verir. Üç hissə birlikdə eyni baytları təşkil etdiyi üçün heş birinci addımdakı ilə eynidir. `Write` `(int, error)` qaytarır, amma heş funksiyası üçün xəta heç vaxt olmur, ona görə nəticəyə baxmırıq.
+Böyük faylı yaddaşa bütöv yükləmək lazım deyil: o, şəbəkədən və ya diskdən hissə-hissə oxunur. `sha256.New()` hesablamanın vəziyyətini saxlayan obyekt qaytarır, hər `Write` ona növbəti hissəni əlavə edir, `Sum(nil)` isə nəticəni `[]byte` kimi verir. Üç hissə birlikdə eyni baytları təşkil etdiyi üçün heş birinci addımdakı ilə eynidir. `Write` `(int, error)` qaytarır, amma heş funksiyası üçün xəta heç vaxt olmur, ona görə nəticəyə baxmırıq.
 
 > **Bilgi:** `Sum` vəziyyəti sıfırlamır: ondan sonra yenə `Write` çağırmaq olar, növbəti `Sum` isə indiyə qədər yazılan bütün baytların heşini verəcək.
 
@@ -20,4 +20,4 @@ Böyük fayl yaddaşa birdən yüklənmir, şəbəkədən və ya diskdən hissə
 
 Yükləmə səhifəsi faylın heşini dərc edir, biz də yüklədiyimiz baytların heşini özümüz hesablayıb müqayisə edirik. Eynidirsə, fayl yolda pozulmayıb və quraşdırmaq olar; fərqlidirsə, onu yenidən yükləmək lazımdır. `%x` hex rəqəmləri kiçik hərflə yazır, böyük hərflə dərc olunmuş checksum-u `strings.EqualFold` ilə müqayisə etmək olar. Checksum yalnız etibarlı mənbədən götürüləndə kömək edir: faylı dəyişən adam saxta səhifədə heşi də dəyişə bilər.
 
-> **Diqqət:** Parolları tək SHA-256 heşi ilə saxlamaq olmaz. SHA-256 çox sürətlidir, ona görə hücumçu milyonlarla ehtimal olunan parolun heşini hesablayıb sizinkilərlə müqayisə edə bilər. Parollar üçün qəsdən yavaş işləyən xüsusi alqoritmlər var.
+> **Diqqət:** Parolları tək SHA-256 heşi ilə saxlamaq olmaz. SHA-256 çox sürətlidir, ona görə hücumçu milyonlarla ehtimal olunan parolun heşini hesablayıb sizinkilərlə müqayisə edə bilər. Parollar üçün qəsdən yavaş işləyən bcrypt və ya Argon2 işlədilir (`golang.org/x/crypto/bcrypt`).

@@ -6,8 +6,8 @@
         South
     )
     fmt.Println(North, East, South)
-  options: ["0 1 2", "1 2 3", "0 0 0"]
-  answer: 0
+  options: ["1 2 3", "0 1 2", "0 0 0"]
+  answer: 1
   explain: "`iota` `0`-dan başlayır və hər sətirdə bir artır."
 
 - question: Bu kod nə çap edəcək?
@@ -19,8 +19,8 @@
         Large
     )
     fmt.Println(Large)
-  options: ["3", "2", "4"]
-  answer: 0
+  options: ["2", "4", "3"]
+  answer: 2
   explain: "`_` `0`-ı tutur, ona görə `Small` `1`, `Large` `3` olur."
 
 - question: Bu kod nə çap edəcək?
@@ -53,8 +53,8 @@
 
     var lvl Level
     fmt.Println(High, int(High), lvl)
-  options: ["high 1 low", "1 1 0", "high high low"]
-  answer: 0
+  options: ["1 1 0", "high 1 low", "high high low"]
+  answer: 1
   explain: "`Println` `String()`-i çağırır, `int(High)` isə rəqəmi verir; zero value `0`, yəni `Low`-dur."
 
 - question: Bu kod niyə kompilyasiya olunmur?
@@ -66,10 +66,10 @@
 
     var c Color = Washing
   options:
-    - "`Stage` tipli sabit `Color` dəyişənə yazıla bilməz"
     - "sabitin dəyəri `iota` ilə verilməlidir"
     - "hər iki tip `int` olduğu üçün xəta yoxdur"
-  answer: 0
+    - "`Stage` tipli sabit `Color` dəyişənə yazıla bilməz"
+  answer: 2
   explain: "`Stage` və `Color` fərqli tiplərdir, hər ikisi `int` üzərində qurulsa belə."
 
 - question: "`func start(s Stage)` funksiyası var. Hansı çağırış kompilyasiya olunmur?"

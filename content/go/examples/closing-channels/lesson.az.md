@@ -1,6 +1,6 @@
-Qəbul edən tərəf adətən neçə dəyər gələcəyini bilmir. Əvvəlki dərslərdə sayı əvvəlcədən verirdik (`for range n`), amma işin nə vaxt bitdiyini çox vaxt yalnız göndərən bilir. `close(ch)` channel-ı bağlayır və "bundan sonra yeni dəyər olmayacaq" xəbərini verir. Bağlı channel-dan qəbul bloklanmır, dərhal qayıdır, ona görə qəbul edən tərəfə bağlanmanı adi dəyərdən ayırmağın yolu lazımdır.
+Qəbul edən tərəf adətən neçə dəyər gələcəyini bilmir. Əvvəlki dərslərdə sayı əvvəlcədən verirdik (`for range n`), amma işin nə vaxt bitdiyini çox vaxt yalnız göndərən bilir. `close(ch)` channel-ı bağlayır və "bundan sonra yeni dəyər olmayacaq" xəbərini verir.
 
-Bu dərsdə imtahan yazırıq: müəllim sualları bir-bir verir və sonda "başqa sual yoxdur" deyir, tələbə isə sualların ballarını toplayır.
+Bu dərsdə imtahan yazırıq: müəllim sualların ballarını bir-bir göndərir və sonda "başqa sual yoxdur" deyir, tələbə isə balları toplayır.
 
 ## Channel-ı bağlamaq {#close}
 
@@ -10,7 +10,7 @@ Bu dərsdə imtahan yazırıq: müəllim sualları bir-bir verir və sonda "baş
 
 `main` channel-ı yaradır və müəllimi goroutine-də işə salır. `p, ok := <-questions` iki dəyər qaytarır: gələn dəyəri və `ok`-u. `ok` `true`-dursa, dəyəri həqiqətən kimsə göndərib; `false`-dursa, channel bağlanıb və boşdur. `ok` `false` olanda `for` dövrü `break` ilə bitir.
 
-Bu fərq burada vacibdir: ilk sual isinmə sualıdır və 0 bal dəyərindədir. Yalnız `p == 0`-a baxsaydıq, tələbə imtahanın ilk sualda bitdiyini düşünərdi.
+Bu nümunədə ilk sual isinmə sualıdır və 0 bal dəyərindədir. Yalnız `p == 0`-a baxsaydıq, tələbə imtahanın ilk sualda bitdiyini düşünərdi.
 
 > **Bilgi:** Növbəti dərsdə bu dövrün qısa yazılışını görəcəyik: `for p := range questions`.
 

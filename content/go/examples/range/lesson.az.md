@@ -6,7 +6,7 @@ Bu dərsdə metro xəttini gəzirik: stansiyaların siyahısı, aralarındakı y
 
 `for i, stop := range stops` hər təkrarda iki dəyər verir: indeks (`i`) və həmin indeksdəki element (`stop`). İndeks 0-dan başladığı üçün sıra nömrəsini `i+1` kimi çap edirik. Array üzərində də `range` eyni cür işləyir.
 
-## Lazımsız dəyər: `_` {#blank}
+## Lazımsız dəyəri atmaq {#blank}
 
 Burada yalnız dəqiqələr lazımdır, indeks yox. Go-da istifadə olunmayan dəyişən kompilyasiya xətasıdır, ona görə indeksin yerinə `_` yazırıq — "bu dəyəri at" deməkdir. Əksinə, yalnız indeks lazımdırsa, ikinci dəyişəni ümumiyyətlə yazmırıq: `for i := range stops`.
 

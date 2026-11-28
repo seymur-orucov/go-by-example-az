@@ -4,8 +4,8 @@
         defer fmt.Println("a")
         fmt.Println("b")
     }
-  options: ["b, sonra a", "a, sonra b", "yalnız b"]
-  answer: 0
+  options: ["a, sonra b", "b, sonra a", "yalnız b"]
+  answer: 1
   explain: "Təxirə salınan çağırış `main` bitəndə işləyir."
 
 - question: Bu kod nə çap edəcək?
@@ -22,8 +22,8 @@
     x := 1
     defer fmt.Println(x)
     x = 2
-  options: ["1", "2", "kompilyasiya xətası"]
-  answer: 0
+  options: ["2", "kompilyasiya xətası", "1"]
+  answer: 2
   explain: "Arqument `defer` sətrində hesablanır, o an `x` `1`-dir."
 
 - question: Bu kod nə çap edəcək?
@@ -33,8 +33,8 @@
         fmt.Println(x)
     }()
     x = 2
-  options: ["2", "1", "kompilyasiya xətası"]
-  answer: 0
+  options: ["1", "2", "kompilyasiya xətası"]
+  answer: 1
   explain: "Closure dəyişənin özünü tutur və funksiya bitəndə onun son dəyərini görür."
 
 - question: Bu kod niyə kompilyasiya olunmur?
@@ -43,10 +43,10 @@
         fmt.Println("bye")
     }
   options:
-    - "sonda `()` yoxdur, `defer` funksiya çağırışı tələb edir"
     - "`defer` function literal ilə işləmir"
     - "`defer` yalnız `main`-də yazıla bilər"
-  answer: 0
+    - "sonda `()` yoxdur, `defer` funksiya çağırışı tələb edir"
+  answer: 2
   explain: "`defer`-dən sonra funksiyanın özü yox, onun çağırışı gəlməlidir: `defer func() { ... }()`."
 
 - question: Bu kod nə çap edəcək?
@@ -75,6 +75,6 @@
 
     greet()
     fmt.Print("C")
-  options: ["ABC", "ACB", "BAC"]
-  answer: 0
+  options: ["ACB", "ABC", "BAC"]
+  answer: 1
   explain: "Defer onu yazan funksiya, yəni `greet` bitəndə işləyir, `main` bitəndə yox."

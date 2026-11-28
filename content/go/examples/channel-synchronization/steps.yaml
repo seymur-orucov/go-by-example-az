@@ -1,6 +1,6 @@
 guess:
-  out: "till: waited 50 ms, close now?"
+  out: "register: waited 50 ms, close now?"
 wait:
   out: |
     backup: saved 4 receipts, 95 USD
-    till: backup confirmed, till closed
+    register: backup confirmed, register closed

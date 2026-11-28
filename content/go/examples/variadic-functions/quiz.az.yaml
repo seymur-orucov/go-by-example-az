@@ -28,8 +28,8 @@
     }
 
     points := []int{2, 4}
-  options: ["`addUp(points...)`", "`addUp(points)`", "`addUp(2, 4)`"]
-  answer: 1
+  options: ["`addUp(points)`", "`addUp(points...)`", "`addUp(2, 4)`"]
+  answer: 0
   explain: "`addUp` ayrı-ayrı `int` dəyərlər gözləyir; slice-ı ötürmək üçün `points...` yazmaq lazımdır."
 
 - question: Hansı çağırış kompilyasiya olunmayacaq?
@@ -47,8 +47,8 @@
     }
 
     show()
-  options: ["0 true", "0 false", "1 false"]
-  answer: 0
+  options: ["1 false", "0 false", "0 true"]
+  answer: 2
   explain: "Arqument verilməyəndə variadic parametr `nil` slice olur."
 
 - question: Bu kod nə çap edəcək?
@@ -58,8 +58,8 @@
     }
 
     label("seat")
-  options: ["seat []", "seat", "kompilyasiya xətası"]
-  answer: 0
+  options: ["kompilyasiya xətası", "seat []", "seat"]
+  answer: 1
   explain: "`\"seat\"` adi parametrə düşür, variadic hissə boş qalır və `[]` kimi çap olunur."
 
 - question: Bu kod nə çap edəcək?
@@ -71,6 +71,6 @@
     scores := []int{1, 2}
     bump(scores...)
     fmt.Println(scores)
-  options: ["[100 2]", "[1 2]", "kompilyasiya xətası"]
-  answer: 0
+  options: ["kompilyasiya xətası", "[1 2]", "[100 2]"]
+  answer: 2
   explain: "`scores...` yeni slice yaratmır, `bump` eyni elementləri dəyişir."

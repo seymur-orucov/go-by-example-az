@@ -21,6 +21,7 @@ Explanations below are in Azerbaijani, as on the site. Checked against the lesso
 | `:=` (short variable declaration) | kept as code | dəyişəni elan edib dəyər vermək, tipi dəyərdən çıxarılır; yalnız funksiyanın içində | variables |
 | zero value | kept | dəyər verilməyən dəyişənin avtomatik aldığı dəyər: `0`, `""`, `false`, `nil` | variables |
 | constant | translated: **sabit** | proqram işləyərkən dəyişməyən, kompilyasiya zamanı məlum olan dəyər (`const`) | constants |
+| untyped constant | kept: **untyped sabit** | tipi yazılmayan sabit; istifadə olunduğu yerin tipinə uyğunlaşır | constants |
 | loop | translated: **dövr** | kodu təkrar-təkrar icra etmək; Go-da yeganə dövr `for`-dur | for |
 | literal | kept | dəyəri kodda birbaşa yazmaq: `42`, `"çay"`, `[]int{1, 2}` | arrays |
 
@@ -36,6 +37,7 @@ Explanations below are in Azerbaijani, as on the site. Checked against the lesso
 | byte | translated: **bayt** | 0–255 arası kiçik ədəd; mətn yaddaşda baytlarla saxlanılır | strings-and-runes |
 | rune | kept | bir simvolu təmsil edən ədəd, simvolun Unicode-dakı nömrəsi | strings-and-runes |
 | UTF-8 | kept | mətni baytlara çevirən kodlaşdırma; bir hərf 1–4 bayt tuta bilər | strings-and-runes |
+| Unicode | kept | dünyadakı simvolların ümumi cədvəli; hər simvolun orada nömrəsi var | strings-and-runes |
 
 ## Funksiyalar
 
@@ -47,6 +49,8 @@ Explanations below are in Azerbaijani, as on the site. Checked against the lesso
 | function literal | kept | adsız, yerindəcə yazılan funksiya | closures |
 | closure | kept | ətrafındakı dəyişənləri "yadda saxlayan" function literal | closures |
 | recursion | translated: **rekursiya** | funksiyanın özünü çağırması; dayanma şərti mütləqdir | recursion |
+| base case | kept | rekursiyanın dayandığı hal: funksiya özünü bir daha çağırmır | recursion |
+| call stack | kept | gözləyən funksiya çağırışlarının saxlandığı yaddaş sahəsi | recursion |
 | stack overflow | kept as code | dayanmayan rekursiyada call stack-in dolması | recursion |
 
 ## Tiplər və strukturlar
@@ -58,16 +62,20 @@ Explanations below are in Azerbaijani, as on the site. Checked against the lesso
 | method | translated: **metod** | receiver-i olan funksiya | methods |
 | receiver | kept | metodun bağlı olduğu dəyər: `func (p Playlist) ...` | methods |
 | interface | kept | tipin nə bacardığını təsvir edən metodlar dəsti | interfaces |
+| satisfy / implement | translated: interface-i **ödəmək** | tipdə interface-in bütün metodları var, ona görə tip o interface-in yerinə işlədilə bilər | interfaces |
 | type assertion | kept | interface-in içindəki konkret tipi yoxlamaq: `c, ok := s.(Circle)` | interfaces |
 | type switch | kept | interface-in tipinə görə `switch` | interfaces |
+| fmt.Stringer | kept as code | `String() string` metodu olan tip; `fmt` onu bu mətnlə çap edir | enums |
 | enum | kept (sadalama) | bir neçə sabit variantdan biri ola bilən dəyər; Go-da `const` + `iota` ilə | enums |
 | iota | kept as code | `const` blokunda 0-dan başlayıb hər sətirdə bir artan sayğac | enums |
 | embedding | kept (daxiletmə) | struct-ın içinə başqa tipi sahə adı olmadan yazmaq | struct-embedding |
+| inheritance | translated: **varislik** | bir tipin başqa tipin növü olması (OOP); Go-da yoxdur, yerinə embedding var | struct-embedding |
+| composition | translated: **tərkib** | tipin başqa tipi öz içində saxlaması: "müştərinin ünvanı var" | struct-embedding |
 | generics | kept | tipi də parametr kimi verib funksiyanı bir dəfə yazmaq | generics |
 | type parameter | kept | generic funksiyada tipin yerini tutan ad: `T` | generics |
 | constraint | kept (məhdudiyyət) | type parameter-in hansı tiplər ola biləcəyini təyin edən interface | generics |
 | iterator | kept | dəyərləri əvvəlcədən yığmadan, lazım olduqca `range`-ə verən funksiya | range-over-iterators |
-| exported | kept | böyük hərflə başlayan, package-dən kənarda görünən ad | text-templates |
+| exported | kept | böyük hərflə başlayan, package-dən kənarda görünən ad | structs |
 
 ## Xətalar
 
@@ -81,7 +89,7 @@ Explanations below are in Azerbaijani, as on the site. Checked against the lesso
 | exit code | translated: **çıxış kodu** | proqramın əməliyyat sisteminə qaytardığı nəticə; 0 uğurdur | panic |
 | defer | kept as code | çağırışı onu yazan funksiya bitənə qədər təxirə salmaq | defer |
 | recover | kept as code | `defer` içində panic-i tutub proqramı davam etdirmək | recover |
-| named result | translated: **adlı nəticə** (named result) | funksiya imzasında adı verilən nəticə: zero value ilə başlayan adi dəyişən, funksiya bitəndə son dəyəri qaytarılır | recover |
+| named result | translated: **adlı nəticə** (named result) | funksiya imzasında adı verilən nəticə: zero value ilə başlayan adi dəyişən, funksiya bitəndə son dəyəri qaytarılır | multiple-return-values |
 
 ## Konkurentlik
 
@@ -101,6 +109,8 @@ Explanations below are in Azerbaijani, as on the site. Checked against the lesso
 | timer / ticker | kept | bir dəfə / hər `d` müddətindən bir siqnal verən saat | timers, tickers |
 | worker pool | kept (işçi hovuzu) | eyni növbədən iş götürən bir neçə goroutine | worker-pools |
 | rate limiting | kept (sürət məhdudiyyəti) | vahid vaxtda ən çox N əməliyyat | rate-limiting |
+| token bucket | kept | token-lərlə limit: buffered channel-da ən çox N token yığılır, hər iş bir token götürür, token-lər müəyyən aralıqla bərpa olunur | rate-limiting |
+| garbage collector | kept | lazımsız yaddaşı özü boşaldan mexanizm | rate-limiting |
 | atomic | translated: **atomik** | bölünməz əməliyyat: oxumaq, dəyişmək və yazmaq bir addımda | atomic-counters |
 | mutex | kept | kodun bir hissəsinə eyni anda yalnız bir goroutine-i buraxan kilid | mutexes |
 
@@ -117,7 +127,14 @@ Explanations below are in Azerbaijani, as on the site. Checked against the lesso
 | layout | kept | Go-da tarix formatı: nümunə tarix `2006-01-02 15:04:05` ilə yazılır | time-formatting-parsing |
 | seed | kept | təsadüfi ədədlər generatorunun başlanğıc ədədi | random-numbers |
 | hash | translated: **heş** | məlumatdan sabit ölçülü "barmaq izi"; birtərəfli çevirmə | sha256-hashes |
+| checksum | kept | faylın düzgünlüyünü yoxlamaq üçün dərc olunan heş | sha256-hashes |
+| time zone / location | translated: **saat qurşağı** (qısaca zona); code: `time.Location` | anın hansı yerli saatla yazıldığı; `time.UTC`, `time.FixedZone` | time |
+| duration | translated: **müddət**; code: `time.Duration` | iki an arasındakı vaxt; nanosaniyələrin sayı (`int64`) | time |
+| attribute | translated: **atribut** | XML elementinin açılış tag-ında yazılan `ad="dəyər"` cütü: `<invoice number="INV-0318">` | xml |
+| root element | translated: **kök element** | XML sənədinin bütün qalan elementləri əhatə edən tək xarici elementi | xml |
 | Base64 | kept | baytları 64 təhlükəsiz simvoldan ibarət mətnə çevirmək | base64-encoding |
+| padding | kept | base64-də uzunluğu 4-ə bölünən etmək üçün sona əlavə olunan `=`; məlumat daşımır | base64-encoding |
+| encode / decode | translated: **kodlaşdırmaq** / **açmaq** | məlumatı başqa formaya çevirmək / ilkin formaya qaytarmaq; metod adlarında kept: `EncodeToString`, `DecodeString` | base64-encoding |
 
 ## Fayllar və test
 
@@ -140,6 +157,7 @@ Explanations below are in Azerbaijani, as on the site. Checked against the lesso
 | environment variable | translated: **mühit dəyişəni** | əməliyyat sisteminin proqrama verdiyi `AD=dəyər` cütü | environment-variables |
 | handler | kept | qeydin (slog) və ya HTTP sorğusunun necə işlənəcəyini təyin edən dəyər | logging, http-server |
 | context | kept as `context` | işə vaxt limiti (deadline) və ya ləğv (cancel) siqnalı ötürən dəyər | context |
+| parent / child context | translated: **valideyn context / uşaq context** | başqa context-dən yaranan context uşaqdır; valideyn bitəndə uşaq da bitir | context |
 | child process | translated: **uşaq proses** | Go proqramının işə saldığı başqa proqram (`os/exec`) | spawning-processes |
 | PID | kept | proses id-si | execing-processes |
 | signal | translated: **siqnal** | əməliyyat sisteminin prosesə göndərdiyi xəbər: `SIGINT`, `SIGTERM` | signals |

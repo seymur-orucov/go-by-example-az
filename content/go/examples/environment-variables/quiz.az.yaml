@@ -55,7 +55,7 @@
 - question: Hansı sətir kompilyasiya olunmur?
   code: |
     os.Setenv("WORKERS", "4")        // 1
-    v, ok := os.LookupEnv("WORKERS") // 2
+    v := os.Getenv("WORKERS")        // 2
     var workers int = v              // 3
   options: ["1", "2", "3"]
   answer: 2

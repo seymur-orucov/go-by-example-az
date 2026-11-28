@@ -6,7 +6,7 @@
     }
   options: ["0Mon 1Tue 2Wed ", "1Mon 2Tue 3Wed ", "Mon Tue Wed "]
   answer: 0
-  explain: "`range` indeksi 0-dan başlayaraq və həmin elementi birlikdə verir."
+  explain: "`range` hər təkrarda indeksi (0-dan başlayır) və həmin elementi verir."
 
 - question: Bu kod nə çap edəcək?
   code: |
@@ -26,8 +26,8 @@
     for i := range list {
         fmt.Print(i)
     }
-  options: ["abcd", "0123", "1234"]
-  answer: 1
+  options: ["abcd", "1234", "0123"]
+  answer: 2
   explain: "Tək dəyişən yazanda `range` yalnız indeksi verir."
 
 - question: Bu kod nə çap edəcək?
@@ -46,8 +46,8 @@
     for i := range 4 {
         fmt.Print(i)
     }
-  options: ["1234", "0123", "01234"]
-  answer: 1
+  options: ["0123", "1234", "01234"]
+  answer: 0
   explain: "`range 4` 0-dan 3-ə qədər, yəni 4 dəfə təkrarlayır."
 
 - question: Bu kod nə çap edəcək?
@@ -58,12 +58,12 @@
         total += n
     }
     fmt.Println(total)
-  options: ["10", "3", "nəticə hər dəfə fərqli olur"]
+  options: ["10", "2", "nəticə hər dəfə fərqli olur"]
   answer: 0
   explain: "Gəzinti sırası təsadüfidir, amma cəm sıradan asılı deyil."
 
 - question: Map üzərində `range` ilə elementləri çap edəndə nə doğrudur?
-  options: ["Elementlər əlavə olunma sırası ilə gəlir", "Elementlər açara görə sıralanmış gəlir", "Sıra təsadüfidir və hər işə salmada dəyişə bilər"]
+  options: ["Elementlər əlavə olunduğu sıra ilə çıxır", "Elementlər açara görə sıralanmış çıxır", "Sıra təsadüfidir və hər işə salmada dəyişə bilər"]
   answer: 2
   explain: "Map-də sıra yoxdur; sıra lazımdırsa, açarları ayrıca sıralamaq lazımdır."
 
@@ -73,6 +73,6 @@
     for i, m := range []int{4, 3} {
         total += m
     }
-  options: ["`range` slice literal qəbul etmir", "`i` elan olunub, amma istifadə olunmayıb", "`total` dövrdən əvvəl elan olunmalı deyil"]
+  options: ["`range` slice literal qəbul etmir", "`i` elan olunub, amma istifadə olunmayıb", "`m` elementin nüsxəsidir, onu `total`-a əlavə etmək olmaz"]
   answer: 1
   explain: "Go-da istifadə olunmayan dəyişən xətadır; indeks lazım deyilsə, `_` yazın."

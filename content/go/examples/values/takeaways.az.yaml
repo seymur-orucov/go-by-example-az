@@ -2,8 +2,8 @@ rules:
   - "Hər dəyərin tipi var: `string` (mətn), `int` (tam ədəd), `float64` (kəsr ədəd), `bool` (`true` / `false`)."
   - "`+` iki mətni birləşdirir, amma arada boşluq qoymur."
   - "İki `int`-in bölünməsi kəsr hissəni atır: `50/4` nəticəsi `12`-dir."
-  - "Ədədlərdən biri nöqtə ilə yazılıbsa (`50.0/4`), nəticə kəsr olur: `12.5`."
+  - "Kodda yazılan ədədlərdən biri nöqtə ilə yazılıbsa (`50.0/4`), nəticə kəsr olur: `12.5`."
   - "`&&` (\"və\"), `||` (\"və ya\") və `!` (\"deyil\") `bool` dəyərləri ilə işləyir; müqayisələr (`>`, `<`, `==`) də `bool` qaytarır."
 practices:
-  - "Bölmə yazanda nəticənin tam, yoxsa kəsr olacağını əvvəlcədən düşünün: kəsr lazımdırsa, ədədlərdən birini kəsr yazın, yoxsa qalıq səssizcə itir."
+  - "Bölmə yazanda nəticənin tam, yoxsa kəsr olacağını əvvəlcədən düşünün: qalıq səssizcə itə bilər. Kəsr lazımdırsa, kodda yazdığınız ədədlərdən birini nöqtə ilə yazın (`50.0/4`)."
   - "Real pul hesablamalarında kəsr ədəd dəqiqlik itirə bilər; məbləği ən kiçik vahidlə (sent) `int` kimi saxlamaq daha etibarlıdır."

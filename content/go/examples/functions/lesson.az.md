@@ -1,4 +1,4 @@
-Funksiya bir işi görən, adı olan kod parçasıdır: bilet qiymətini hesablamaq, sifarişin cəmini tapmaq, bileti çap etmək. Onu bir dəfə yazırıq, sonra lazım olan yerdə adı ilə çağırırıq. Belə olanda eyni hesablama kodda təkrarlanmır, `main` də qısa və oxunaqlı qalır. Əslində funksiyalarla artıq tanışsınız: `main`-in özü funksiyadır, `fmt.Println`, `len`, `append` də funksiyadır.
+Funksiya bir işi görən, adı olan kod parçasıdır: bilet qiymətini hesablamaq, sifarişin cəmini tapmaq, bileti çap etmək. Onu bir dəfə yazırıq, sonra lazım olan yerdə adı ilə çağırırıq. Belə olanda eyni hesablama kodda təkrarlanmır, `main` də qısa və oxunaqlı qalır. `main` özü də funksiyadır, `fmt.Println`, `len` və `append` də: onları artıq çağırmışıq.
 
 Bu dərsdə kinoteatrın kassasını yazırıq: biletin qiyməti yaşa görə dəyişir, böyük və uşaq biletlərinin qiyməti sabitlərdə saxlanır.
 
@@ -6,7 +6,7 @@ Bu dərsdə kinoteatrın kassasını yazırıq: biletin qiyməti yaşa görə d�
 
 `func ticketPrice(age int) int` belə oxunur: funksiyanın adı `ticketPrice`-dır, `int` tipli `age` parametrini qəbul edir və `int` nəticə qaytarır. `return` nəticəni geri verir və funksiyanı dərhal bitirir. Ona görə `age < 12` olanda ikinci `return`-ə növbə çatmır.
 
-Çağıranda mötərizədə dəyər, yəni arqument veririk: `ticketPrice(8)`. Bu çağırışda `age` `8` olur. Funksiyalar `main`-dən kənarda, faylın yuxarı səviyyəsində elan olunur, fayldakı sıraları isə önəmli deyil.
+Çağıranda mötərizədə dəyər, yəni arqument veririk: `ticketPrice(8)`. Bu çağırışda `age` `8` olur. Funksiyalar `main`-dən kənarda, faylın yuxarı səviyyəsində elan olunur. Onların fayldakı sırası fərq etmir.
 
 > **Diqqət:** Nəticə qaytaran funksiya hər yolda `return` ilə bitməlidir. Sonuncu `return`-ü silsək, kompilyator `missing return` xətası verəcək.
 

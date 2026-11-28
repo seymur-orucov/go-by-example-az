@@ -3,7 +3,7 @@
     ch := make(chan int)
     ch <- 7
     fmt.Println(<-ch)
-  options: ["7", "0", "`fatal error: all goroutines are asleep - deadlock!`"]
+  options: ["7", "0", "deadlock xətası"]
   answer: 2
   explain: "Buffer-siz channel-a göndərmə qəbul edəni gözləyir, `main` isə qəbul sətrinə heç vaxt çatmır."
 
@@ -54,6 +54,6 @@
         ch <- "hi"
     }()
     fmt.Println(<-ch)
-  options: ["hi", "boş sətir", "`fatal error: all goroutines are asleep - deadlock!`"]
+  options: ["hi", "boş sətir", "deadlock xətası"]
   answer: 2
   explain: "`ch` `make` ilə yaradılmayıb, `nil`-dir; `nil` channel-da həm göndərmə, həm qəbul əbədi gözləyir."

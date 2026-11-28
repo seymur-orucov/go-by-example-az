@@ -1,6 +1,6 @@
-Siqnal əməliyyat sisteminin işləyən prosesə göndərdiyi qısa bildirişdir. Terminalda Ctrl+C basanda proses `SIGINT` (interrupt) alır, `kill -TERM <pid>` əmri və ya server proqramları dayandıranda (məsələn Docker, systemd) isə `SIGTERM` gəlir. Proqram heç nə etməsə, bu siqnallar onu dərhal öldürür: `defer`-lər işləmir, yarımçıq iş yarımçıq qalır. `os/signal` paketi siqnalı tutub onu adi channel mesajına çevirir, proqram da işi səliqəli bitirməyə vaxt tapır (graceful shutdown).
+Siqnal əməliyyat sisteminin işləyən prosesə göndərdiyi qısa bildirişdir. Terminalda Ctrl+C basanda proses `SIGINT` (interrupt) alır, `kill -TERM <pid>` əmri və ya server proqramları dayandıranda (məsələn Docker, systemd) isə `SIGTERM` gəlir. Proqram heç nə etməsə, bu siqnallar onu dərhal öldürür: `defer`-lər işləmir, yarımçıq iş yarımçıq qalır.
 
-Bu dərsdə çap növbəsini işləyən proqram yazırıq: Ctrl+C basılanda cari sənəd yarımçıq qalmamalı, qalan sənədlər isə sonra çap üçün saxlanmalıdır.
+Bu dərsdə çap növbəsi yazırıq: `os/signal` paketi Ctrl+C-ni channel-a göndərir, proqram cari sənədi bitirib qalanları sonraya saxlayır (graceful shutdown).
 
 ## Siqnalı simulyasiya etmək {#simulate}
 
@@ -14,7 +14,7 @@ Ctrl+C-ni proqramın özündən portativ şəkildə göndərmək olmur: Windows-
 
 ## Növbəni işləmək {#loop}
 
-Hər sənəddən əvvəl `select` siqnal gəlib-gəlmədiyini yoxlayır; `default` qolu sayəsində siqnal yoxdursa, gözləmədən çapa keçir. Siqnal yalnız sənədlər arasında yoxlanır, ona görə çap olunan sənəd heç vaxt yarımçıq kəsilmir. İkinci sənəddən sonra mağaza sahibi səbrini itirir və Ctrl+C basır; növbəti yoxlamada dövr dayanır.
+Hər sənəddən əvvəl `select` siqnal gəlib-gəlmədiyini yoxlayır; `default` qolu sayəsində siqnal yoxdursa, gözləmədən çapa keçir. Siqnal yalnız sənədlər arasında yoxlanır, ona görə çap olunan sənəd heç vaxt yarımçıq kəsilmir. İkinci sənəddən sonra `pressCtrlC` çağırılır; növbəti yoxlamada dövr dayanır.
 
 ## Səliqəli dayanma {#shutdown}
 

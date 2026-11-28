@@ -16,8 +16,8 @@
     close(names)
     name, ok := <-names
     fmt.Println(name == "", ok)
-  options: ["true false", "false false", "heç nə, proqram `deadlock` xətası ilə dayanır"]
-  answer: 0
+  options: ["false false", "true false", "heç nə, proqram `deadlock` xətası ilə dayanır"]
+  answer: 1
   explain: "Bağlı channel-dan qəbul bloklanmır və `string`-in zero value-sunu, yəni boş mətni qaytarır."
 
 - question: Bu kod nə çap edəcək?
@@ -34,8 +34,8 @@
         }
         fmt.Print(v, " ")
     }
-  options: ["3", "3 4", "3 0 4"]
-  answer: 0
+  options: ["3 4", "3 0 4", "3"]
+  answer: 2
   explain: "`0` həqiqi göndərilmiş dəyərdir, amma dövr onu bağlanma kimi qəbul edir; yoxlama `ok` ilə olmalıdır."
 
 - question: Bu kod işə düşəndə nə olacaq?
@@ -52,8 +52,8 @@
     ch := make(chan int)
     close(ch)
     close(ch)
-  options: ["panic: `close of closed channel`", "ikinci `close` heç nə etmir", "kompilyasiya xətası"]
-  answer: 0
+  options: ["ikinci `close` heç nə etmir", "panic: `close of closed channel`", "kompilyasiya xətası"]
+  answer: 1
   explain: "Channel yalnız bir dəfə bağlana bilər; ikinci `close` işləmə zamanı panic edir."
 
 - question: Bu funksiya kompilyasiya olunurmu?
@@ -62,16 +62,16 @@
         close(in)
     }
   options:
-    - "Xeyr: receive-only channel-ı bağlamaq olmaz"
     - "Bəli"
     - "Bəli, amma işə düşəndə panic edir"
-  answer: 0
-  explain: "Bağlamaq göndərənin işidir, kompilyator qəbul edən tərəfə buna icazə vermir."
+    - "Xeyr, kompilyasiya xətası verir"
+  answer: 2
+  explain: "`in` receive-only channel-dır. Bağlamaq göndərənin işidir, ona görə kompilyator qəbul edən tərəfə buna icazə vermir: `cannot close receive-only channel`."
 
 - question: Channel-ı adətən kim bağlamalıdır?
   options:
-    - "göndərən, çünki daha dəyər olmayacağını yalnız o bilir"
     - "qəbul edən, bütün dəyərləri oxuyandan sonra"
+    - "göndərən, son dəyəri göndərəndən sonra"
     - "fərqi yoxdur, hansı goroutine birinci bitirsə"
-  answer: 0
-  explain: "Qəbul edən bağlasa, göndərən sonrakı göndərişdə panic edə bilər."
+  answer: 1
+  explain: "Daha dəyər olmayacağını yalnız göndərən bilir. Qəbul edən bağlasa, göndərən sonrakı göndərişdə panic edə bilər."

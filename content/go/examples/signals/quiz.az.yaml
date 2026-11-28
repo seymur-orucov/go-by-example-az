@@ -4,11 +4,11 @@
     signal.Notify(sigs, os.Interrupt)
     <-sigs
   options:
-    - "kompilyasiya xətası"
-    - "channel buffer-sizdir: siqnal itə bilər, `go vet` xəbərdarlıq edir"
-    - "problem yoxdur"
+    - "kompilyasiya olunmur: buffer ölçüsü lazımdır"
+    - "buffer yoxdur, siqnal itə bilər"
+    - "`<-sigs` deadlock xətası verir"
   answer: 1
-  explain: "`signal.Notify` göndərəndə gözləmir; channel hazır deyilsə, siqnal atılır, ona görə buffer lazımdır: `make(chan os.Signal, 1)`."
+  explain: "`signal.Notify` göndərəndə gözləmir; channel hazır deyilsə, siqnal atılır, ona görə buffer lazımdır: `make(chan os.Signal, 1)`. `go vet` bu xətanı göstərir."
 
 - question: Bu kod nə çap edəcək?
   code: |

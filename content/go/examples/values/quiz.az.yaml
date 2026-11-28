@@ -8,8 +8,8 @@
 - question: Bu kod nə çap edəcək?
   code: |
     fmt.Println(15 / 4)
-  options: ["3.75", "3", "4"]
-  answer: 1
+  options: ["3.75", "4", "3"]
+  answer: 2
   explain: İki tam ədədin bölünməsi tam ədəd verir, kəsr hissə atılır.
 
 - question: Bu kod nə çap edəcək?
@@ -22,8 +22,8 @@
 - question: Bu kod nə çap edəcək?
   code: |
     fmt.Println(10 > 3 && 2 > 5)
-  options: ["true", "false"]
-  answer: 1
+  options: ["false", "true"]
+  answer: 0
   explain: "`10 > 3` doğrudur, amma `2 > 5` yalandır; `&&` üçün ikisi də doğru olmalıdır."
 
 - question: Bu kod nə çap edəcək?
@@ -41,6 +41,6 @@
   explain: "`int` mənfi ədədləri də saxlayır."
 
 - question: Hansı ifadə kompilyasiya olunmayacaq?
-  options: ['"price: " + "5"', '"price: " + 5', "5 + 5"]
-  answer: 1
+  options: ['"price: " + "5"', "5 + 5", '"price: " + 5']
+  answer: 2
   explain: Go tipləri özü çevirmir — mətnlə ədədi toplamaq olmaz.

@@ -1,4 +1,4 @@
-Struct-ın içinə başqa tipi sahə adı olmadan yazmaq olar, buna embedding (daxiletmə) deyilir. Daxil edilən tipin sahələri və metodları xarici tipə keçir və onun öz sahələri kimi istifadə olunur. Bu, varislik (inheritance) deyil, tərkibdir: müştəri ünvan deyil, onun ünvanı var. Beləcə ortaq hissəni bir dəfə yazıb bir neçə tipdə istifadə edirik.
+Struct-ın içinə başqa tipi sahə adı olmadan yazmaq olar, buna embedding (daxiletmə) deyilir. Daxil edilən tipin sahələri və metodları xarici tipə keçir, beləcə ortaq hissəni bir dəfə yazıb bir neçə tipdə istifadə edirik. Embedding varislik (inheritance) deyil, tərkibdir (composition): müştərinin ünvanı var, amma müştəri ünvan deyil.
 
 Bu dərsdə çatdırılma xidməti üçün etiketlər çap edirik: həm müştərinin, həm də anbarın ünvanı var.
 
@@ -8,7 +8,9 @@ Bu dərsdə çatdırılma xidməti üçün etiketlər çap edirik: həm müştə
 
 ## Metodu gizlətmək {#override}
 
-`Warehouse` da `Address`-i daxil edir, amma onun öz `Label` metodu var. Belə olanda xarici tipin metodu qalib gəlir (eyni adlı sahələr üçün də qayda eynidir): `depot.Label()` anbarın metodunu çağırır. Daxili metod itmir, ona tam yolla çatmaq olar: `depot.Address.Label()`. Anbarın metodu da məhz bunu edir və ünvanın qarşısına anbar kodunu əlavə edir.
+`Warehouse` da `Address`-i daxil edir, amma onun öz `Label` metodu var. Belə olanda `depot.Label()` xarici tipin metodunu çağırır, daxili metod gizlənir (eyni adlı sahələr üçün də belədir). Daxili metod itmir, ona tam yolla çatmaq olar: `depot.Address.Label()`. Anbarın metodu da məhz bunu edir və ünvanın qarşısına anbar kodunu əlavə edir.
+
+> **Diqqət:** Daxili tip xarici tipi tanımır. `Address`-in başqa metodu içəridə `a.Label()` çağırsa, `depot` üçün də `Address.Label` işləyir, `Warehouse.Label` yox.
 
 ## Embedding və interface {#interface}
 
