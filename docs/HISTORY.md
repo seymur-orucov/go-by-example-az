@@ -882,3 +882,11 @@ Done:
 - range: quiz answers spread, backticks removed from the #blank heading, the Q1 explain wording and the "ilə gəlir" calque fixed, two weak distractors replaced (scan 5 → 4).
 - rate-limiting: the burst step no longer claims an idle ticker queues ticks (it holds at most one, checked with Go), "bilet" → "token", shorter intro, garbage collector glossed, quiz answers spread; `token bucket`, `garbage collector` added to GLOSSARY (scan 11 → 6).
 - recursion: intro cut from 8 sentences to 4 without the box and lift comparisons, the `nil` slice named correctly, a #base sentence shows the reversed order when printing after the recursive call, the Q2 explanation fixed (the deepest call is `n == 0`), quiz answers spread; `base case`, `call stack` added to GLOSSARY. A fresh re-review found a new major point, which was fixed in a second pass (scan 8 → 2).
+
+### 97. Polish batch 7
+Done:
+- sha256-hashes: quiz Q7/Q8 options evened out, intro cut to 4 sentences with checksum explained, bcrypt/Argon2 named for passwords, the streaming sentence corrected; `checksum` added to GLOSSARY (scan 4 → 1).
+- signals: quiz 1 options rebalanced, the "shop owner loses patience" story beat removed from the text, intro trimmed to 4 sentences (scan 5 → 3).
+- struct-embedding: quiz answers spread, the "inner type does not know the outer type" pitfall added, the "qalib gəlir" calque replaced, inheritance/composition glossed and added to GLOSSARY (scan 4 → 2).
+- structs: quiz answers spread, every quiz snippet declares `Seat`, capitalised (exported) field names explained (GLOSSARY `exported` now points here), the `==` rule completed (slice, map or func fields), "önəmli"/"boş sətir"/"sınır" wording replaced (scan 3 → 2).
+- time: intro cut to 4 sentences, the Before/After/Equal sentence split, "saat qurşağı (qısaca zona)" introduced once, quiz Q3/Q8 right options shortened with believable distractors; `time zone / location`, `duration` added to GLOSSARY (scan 10 → 6).

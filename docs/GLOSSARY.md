@@ -69,11 +69,13 @@ Explanations below are in Azerbaijani, as on the site. Checked against the lesso
 | enum | kept (sadalama) | bir neçə sabit variantdan biri ola bilən dəyər; Go-da `const` + `iota` ilə | enums |
 | iota | kept as code | `const` blokunda 0-dan başlayıb hər sətirdə bir artan sayğac | enums |
 | embedding | kept (daxiletmə) | struct-ın içinə başqa tipi sahə adı olmadan yazmaq | struct-embedding |
+| inheritance | translated: **varislik** | bir tipin başqa tipin növü olması (OOP); Go-da yoxdur, yerinə embedding var | struct-embedding |
+| composition | translated: **tərkib** | tipin başqa tipi öz içində saxlaması: "müştərinin ünvanı var" | struct-embedding |
 | generics | kept | tipi də parametr kimi verib funksiyanı bir dəfə yazmaq | generics |
 | type parameter | kept | generic funksiyada tipin yerini tutan ad: `T` | generics |
 | constraint | kept (məhdudiyyət) | type parameter-in hansı tiplər ola biləcəyini təyin edən interface | generics |
 | iterator | kept | dəyərləri əvvəlcədən yığmadan, lazım olduqca `range`-ə verən funksiya | range-over-iterators |
-| exported | kept | böyük hərflə başlayan, package-dən kənarda görünən ad | text-templates |
+| exported | kept | böyük hərflə başlayan, package-dən kənarda görünən ad | structs |
 
 ## Xətalar
 
@@ -125,6 +127,9 @@ Explanations below are in Azerbaijani, as on the site. Checked against the lesso
 | layout | kept | Go-da tarix formatı: nümunə tarix `2006-01-02 15:04:05` ilə yazılır | time-formatting-parsing |
 | seed | kept | təsadüfi ədədlər generatorunun başlanğıc ədədi | random-numbers |
 | hash | translated: **heş** | məlumatdan sabit ölçülü "barmaq izi"; birtərəfli çevirmə | sha256-hashes |
+| checksum | kept | faylın düzgünlüyünü yoxlamaq üçün dərc olunan heş | sha256-hashes |
+| time zone / location | translated: **saat qurşağı** (qısaca zona); code: `time.Location` | anın hansı yerli saatla yazıldığı; `time.UTC`, `time.FixedZone` | time |
+| duration | translated: **müddət**; code: `time.Duration` | iki an arasındakı vaxt; nanosaniyələrin sayı (`int64`) | time |
 | Base64 | kept | baytları 64 təhlükəsiz simvoldan ibarət mətnə çevirmək | base64-encoding |
 | padding | kept | base64-də uzunluğu 4-ə bölünən etmək üçün sona əlavə olunan `=`; məlumat daşımır | base64-encoding |
 | encode / decode | translated: **kodlaşdırmaq** / **açmaq** | məlumatı başqa formaya çevirmək / ilkin formaya qaytarmaq; metod adlarında kept: `EncodeToString`, `DecodeString` | base64-encoding |
