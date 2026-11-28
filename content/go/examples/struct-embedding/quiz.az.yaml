@@ -24,8 +24,8 @@
 
     p := Phone{Level: "pro", Battery: Battery{Level: 40}}
     fmt.Println(p.Level, p.Battery.Level)
-  options: ["pro 40", "40 40", "kompilyasiya xətası"]
-  answer: 0
+  options: ["40 40", "pro 40", "kompilyasiya xətası"]
+  answer: 1
   explain: "Xarici tipin öz sahəsi daxili eyni adlı sahəni gizlədir, daxiliyə tam yolla çatmaq olar."
 
 - question: Bu kod nə çap edəcək?
@@ -37,8 +37,8 @@
     p := Phone{Battery: Battery{Level: 20}}
     p.Charge()
     fmt.Println(p.Level)
-  options: ["100", "20", "kompilyasiya xətası"]
-  answer: 0
+  options: ["20", "kompilyasiya xətası", "100"]
+  answer: 2
   explain: "Metod da keçir; `p.Charge()` `p.Battery`-nin ünvanı ilə çağırılır və onu dəyişir."
 
 - question: Bu kod nə çap edəcək?
@@ -59,18 +59,18 @@
 
     s := Shop{}
     fmt.Println(s.Hello(), s.Base.Hello())
-  options: ["shop base", "base base", "shop shop"]
-  answer: 0
+  options: ["base base", "shop base", "shop shop"]
+  answer: 1
   explain: "Xarici tipin metodu daxilini gizlədir, daxiliyə isə tam yolla çatmaq olar."
 
 - question: Hansı sətir kompilyasiya olunmur?
   code: |
     p := Phone{Battery: Battery{Level: 70}}
   options:
-    - "`var b Battery = p`"
     - "`var b Battery = p.Battery`"
     - "`fmt.Println(p.Level)`"
-  answer: 0
+    - "`var b Battery = p`"
+  answer: 2
   explain: "Embedding varislik deyil: `Phone` `Battery` deyil, onun içində `Battery` var."
 
 - question: "`Labeler` interface-i `Label() string` tələb edir. `Address`-də bu metod var, `Customer` isə `Address`-i daxil edir və öz `Label` metodu yoxdur. `var l Labeler = Customer{}` kompilyasiya olunurmu?"
