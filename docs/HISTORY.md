@@ -858,3 +858,11 @@ Done:
 - environment-variables: the compile quiz with two failing lines fixed (Q7), three translated-sounding sentences rewritten (lookup, unset, setenv with a "proses" gloss), shorter intro (scan 8 → 4).
 - errors: fact-first intro cut to 4 sentences, the `error` interface moved into #new, the wrap chain explained, the quiz explanation about unused `err` corrected, quiz answers spread (scan 6 → 3).
 - execing-processes: quiz right options no longer longer than the distractors, the shell test in the script explained, the Windows caveat moved from the intro into #exec (scan 6 → 2; Linux run not possible here, `GOOS=linux go vet/build` passed).
+
+### 94. Polish batch 4
+Done:
+- for: quiz answers spread, the "imkan verir" calque removed and the intro cut to 4 sentences, the three-part loop header explained one part per sentence, `+=`/`-=` explained, the 600 USD start balance stated in #forever (scan 6 → 1).
+- functions: quiz answers spread, real bodies in the signature question, plainer intro and declare-step wording, one fewer call in `main` (scan 7 → 6; `main.go` still 42 lines).
+- if-else: quiz answers spread, intro cut to 4 sentences, the operator re-explanation replaced by a link back to Values, "çirkləndirmir" and "dar hədd" replaced with concrete statements (scan 4 → 2; re-reviewed by a fresh subagent).
+- interfaces: the socket comparison dropped, the `implements` sentence split, the "imkan verir" calque removed, "ödəmək (satisfy)" glossed and added to GLOSSARY, quiz answers spread (scan 5 → 1).
+- methods: quiz answers spread, the intro trimmed to the data and a concrete name-collision gain, the real compiler error in the literal quiz item, the pointer-receiver consistency convention added (scan 4 → 1).

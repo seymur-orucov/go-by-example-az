@@ -60,6 +60,7 @@ Explanations below are in Azerbaijani, as on the site. Checked against the lesso
 | method | translated: **metod** | receiver-i olan funksiya | methods |
 | receiver | kept | metodun bağlı olduğu dəyər: `func (p Playlist) ...` | methods |
 | interface | kept | tipin nə bacardığını təsvir edən metodlar dəsti | interfaces |
+| satisfy / implement | translated: interface-i **ödəmək** | tipdə interface-in bütün metodları var, ona görə tip o interface-in yerinə işlədilə bilər | interfaces |
 | type assertion | kept | interface-in içindəki konkret tipi yoxlamaq: `c, ok := s.(Circle)` | interfaces |
 | type switch | kept | interface-in tipinə görə `switch` | interfaces |
 | fmt.Stringer | kept as code | `String() string` metodu olan tip; `fmt` onu bu mətnlə çap edir | enums |
