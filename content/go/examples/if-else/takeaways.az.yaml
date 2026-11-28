@@ -7,6 +7,6 @@ rules:
   - "`if feels := ...; şərt` ilə elan olunan dəyişən yalnız həmin `if`-in və `else` hissələrinin içində görünür."
 practices:
   - "`else if` zəncirində dar həddi əvvəl yazın (əvvəl `< 0`, sonra `< 15`), yoxsa ilk geniş şərt hər şeyi tutar."
-  - "Müvəqqəti dəyəri `if` daxilində elan edin ki, kodun qalanını çirkləndirməsin."
+  - "Yalnız şərt üçün lazım olan dəyişəni `if` daxilində elan edin: o, funksiyanın qalan hissəsində başqa dəyişənlə qarışmır."
   - "`bool` dəyişəni `true` ilə müqayisə etməyin: `raining == true` yox, sadəcə `raining`."
   - "Eyni dəyişənə görə çoxlu `else if` yazırsınızsa, `switch` daha oxunaqlı ola bilər."

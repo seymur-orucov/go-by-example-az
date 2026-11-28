@@ -6,8 +6,8 @@
     } else {
         fmt.Println("few")
     }
-  options: ["many", "few", "heç nə"]
-  answer: 1
+  options: ["few", "many", "heç nə"]
+  answer: 0
   explain: "`5 > 5` yalandır (5 özündən böyük deyil), ona görə `else` bloku işləyir."
 
 - question: Bu kod nə çap edəcək?
@@ -34,8 +34,8 @@
     } else if score >= 90 {
         fmt.Println("A")
     }
-  options: ["A", "C", "C və A"]
-  answer: 1
+  options: ["A", "C və A", "C"]
+  answer: 2
   explain: "İlk doğru şərt (`95 >= 50`) işləyir və zəncir dayanır. Dar həddi (`>= 90`) əvvəl yazmaq lazım idi."
 
 - question: Bu kod nə çap edəcək?
@@ -46,8 +46,8 @@
     } else {
         fmt.Println("no")
     }
-  options: ["yes", "no", "kompilyasiya xətası"]
-  answer: 1
+  options: ["no", "yes", "kompilyasiya xətası"]
+  answer: 0
   explain: "`&&` üçün hər iki şərt doğru olmalıdır; `b < 10` yalandır."
 
 - question: Bu kod nə çap edəcək?
