@@ -6,9 +6,9 @@
     }
     <-tokens
     fmt.Println(len(tokens), cap(tokens))
-  options: ["`2 3`", "`3 3`", "`2 2`"]
-  answer: 0
-  explain: "Bir bilet götürülüb, buffer-də iki qalıb; tutum isə həmişə `3`-dür."
+  options: ["`3 3`", "`2 2`", "`2 3`"]
+  answer: 2
+  explain: "Bir token götürülüb, buffer-də iki qalıb; tutum isə həmişə `3`-dür."
 
 - question: Bu kod nə çap edəcək?
   code: |
@@ -36,7 +36,7 @@
     }
   options: ["`sent a1`, `rejected a2`", "`sent a1`, `sent a2`", "`rejected a1`, `rejected a2`"]
   answer: 0
-  explain: "Yeganə bileti `a1` götürür; `a2` gözləmək əvəzinə `default` ilə rədd olunur."
+  explain: "Yeganə token-i `a1` götürür; `a2` gözləmək əvəzinə `default` ilə rədd olunur."
 
 - question: Bu kod işə düşəndə nə olacaq?
   code: |
@@ -45,9 +45,9 @@
     <-tokens
     <-tokens
     fmt.Println("sent")
-  options: ["`sent` çap olunur", "proqram `deadlock` xətası ilə dayanır", "kompilyasiya xətası"]
+  options: ["`sent` çap olunur", "`deadlock` xətası", "kompilyasiya xətası"]
   answer: 1
-  explain: "Channel-da bir bilet var idi, ikinci `<-tokens` boş channel-da əbədi gözləyir, bilet qoyan isə yoxdur."
+  explain: "Channel-da bir token var idi. İkinci `<-tokens` boş channel-da əbədi gözləyir, token qoyan isə yoxdur."
 
 - question: "Üç goroutine hər mesajdan əvvəl eyni `limit := time.Tick(100 * time.Millisecond)` channel-ından oxuyur. Bir saniyədə təxminən neçə mesaj gedər?"
   options: ["`30`", "`10`", "`3`"]
@@ -56,16 +56,16 @@
 
 - question: "`tokens`-in tutumu 2-dir və channel doludur. Bərpa goroutine-i `tokens <- struct{}{}` icra edəndə nə olur?"
   options:
-    - "yer açılana qədər gözləyir"
-    - "channel genişlənir və üç bilet saxlayır"
+    - "channel genişlənir və üç token saxlayır"
     - "panic baş verir"
+    - "yer açılana qədər gözləyir"
   answer: 0
-  explain: "Dolu buffered channel-a göndərmə bloklanır, ona görə biletlər tutumdan çox yığılmır."
+  explain: "Dolu buffered channel-a göndərmə bloklanır, ona görə token-lər tutumdan çox yığılmır."
 
 - question: "`time.Tick` haqqında hansı doğrudur?"
   options:
     - "yalnız bir dəfə siqnal verir"
-    - "ticker-in özünü qaytarmır, ona görə onu dayandırmaq olmur"
+    - "ticker-in özünü qaytarmır"
     - "Go 1.23-dən sonra istifadə etmək olmaz"
   answer: 1
-  explain: "`time.Tick` yalnız channel qaytarır; Go 1.23-dən istifadə olunmayan ticker-i garbage collector təmizləyir."
+  explain: "`time.Tick` yalnız channel qaytarır, ona görə onu dayandırmaq olmur. Go 1.23-dən istifadə olunmayan ticker-i garbage collector təmizləyir."
