@@ -2,7 +2,7 @@ rules:
   - "`...T` parametri istənilən sayda `T` dəyəri qəbul edir, funksiyanın içində isə `[]T` slice-dır."
   - "Variadic parametr yalnız sonuncu ola bilər; ondan əvvəl adi parametrlər yazmaq olar."
   - "Arqument verilməyəndə variadic parametr `nil` slice olur və `len` `0` qaytarır."
-  - "Hazır slice `s...` ilə ötürülür; `s`-i özünü ötürmək və ya `1, s...` yazmaq kompilyasiya xətasıdır."
+  - "Hazır slice `s...` ilə ötürülür; slice-ın özünü (`f(s)`) ötürmək və ya `1, s...` yazmaq kompilyasiya xətasıdır."
   - "`s...` slice-ı kopyalamır: funksiya elementləri dəyişsə, dəyişiklik çağırana da görünür."
 practices:
   - "Arqumentlər təbii olaraq siyahı təşkil edəndə variadic seçin; mənaları fərqli olan dəyərlər üçün adi parametrlər daha aydındır."
