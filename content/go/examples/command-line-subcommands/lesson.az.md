@@ -1,4 +1,4 @@
-Böyük komanda sətri alətləri işi alt əmrlərə (subcommand) bölür: `git commit`, `git push`, `go build`, `go test`. Proqramın adından sonrakı ilk söz hansı işin görüləcəyini seçir, hər alt əmrin isə öz flag-ları olur: `go test -v` var, `go build -v` də var, amma `go test -run`-ın `go build`-də mənası yoxdur. Go-da bunu ayrıca paket olmadan, `flag.NewFlagSet` ilə qurmaq olur.
+Böyük komanda sətri alətləri işi alt əmrlərə (subcommand) bölür: `git commit`, `git push`, `go build`, `go test`. Proqram adından sonrakı ilk söz işi seçir və hər alt əmrin öz flag-ları olur: `go test -run` var, `go build`-də isə yoxdur. Go-da bunu ayrıca paket olmadan, `flag.NewFlagSet` ilə qurmaq olur.
 
 Bu dərsdə tapşırıqlar siyahısı aləti yazırıq: `todo add` yeni tapşırıq əlavə edir və `-priority` flag-ını qəbul edir, `todo list` siyahını göstərir və `-all` flag-ını qəbul edir.
 
@@ -16,6 +16,6 @@ Dörd komanda sətrini slice kimi yazıb eyni `run`-dan keçiririk. Birincisi ta
 
 ## Hər alt əmrə öz FlagSet-i {#flagsets}
 
-`add` və `list` hər biri öz `FlagSet`-ini yaradır, ona görə `-priority` yalnız `add`-də, `-all` isə yalnız `list`-də keçərlidir. Dəst funksiya daxilində yaradılır: hər çağırışda flag-lar standart dəyərdən başlayır və əvvəlki komanda sətrinin dəyəri qalmır. `fs.Args()` flag-lardan sonrakı sözləri qaytarır, `strings.Join` onları tapşırığın adına birləşdirir.
+`add` və `list` hər biri öz `FlagSet`-ini yaradır, ona görə `-priority` yalnız `add`-də, `-all` isə yalnız `list`-də keçərlidir. `FlagSet` (flag dəsti) funksiyanın içində yaradılır: hər çağırışda flag-lar standart dəyərdən başlayır və əvvəlki komanda sətrinin dəyəri qalmır. `fs.Args()` flag-lardan sonrakı sözləri qaytarır, `strings.Join` onları tapşırığın adına birləşdirir. Flag-lar addan əvvəl gəlməlidir, çünki oxuma ilk flag olmayan sözdə dayanır. `add renew passport -priority 3` yazsaq, prioritet `1` qalır və `-priority 3` tapşırığın adına düşür.
 
 > **Bilgi:** `flag.NewFlagSet`-in ilk arqumenti alt əmrin adıdır. Paketin çap etdiyi istifadə qaydasında (`Usage of add:`) bu ad görünür.
