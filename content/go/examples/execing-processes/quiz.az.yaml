@@ -20,19 +20,19 @@
     syscall.Exec(shell, []string{"-c", "echo hi"}, os.Environ())
   options:
     - "səhv yoxdur"
-    - "`os.Environ()` verilməməlidir"
-    - "ilk element proqramın adı olmalıdır: burada `-c` ad sayılır və skript ötürülmür"
+    - "`os.Environ()` yerinə `nil` verilməlidir"
+    - "`args[0]` proqramın adı olmalıdır"
   answer: 2
-  explain: "`args[0]` qaydaya görə proqramın adıdır; düzgünü `[]string{\"sh\", \"-c\", \"echo hi\"}`-dir."
+  explain: "`args[0]` qaydaya görə proqramın adıdır: burada `-c` ad sayılır və shell skripti görmür; düzgünü `[]string{\"sh\", \"-c\", \"echo hi\"}`-dir."
 
 - question: Windows-da `syscall.Exec` çağırılanda nə olur?
   options:
     - "kompilyasiya xətası"
     - "proses əvəzlənir"
     - "panic"
-    - "`not supported by windows` xətası qaytarır"
+    - "xəta qaytarır"
   answer: 3
-  explain: "Funksiya Windows-da da var, buna görə kod kompilyasiya olunur, amma həmişə xəta qaytarır."
+  explain: "Funksiya Windows-da da var, buna görə kod kompilyasiya olunur, amma həmişə `not supported by windows` xətası qaytarır."
 
 - question: '`syscall.Exec(path, args, nil)` çağırılır. Yeni proqram hansı mühit dəyişənlərini görəcək?'
   options: ["heç birini", "valideynin hamısını", "yalnız `PATH`-ı"]
