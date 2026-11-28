@@ -24,9 +24,9 @@ func main() {
 	done := make(chan struct{})
 	go backup(receipts, done)
 	time.Sleep(50 * time.Millisecond)
-	fmt.Println("till: waited 50 ms, close now?")
+	fmt.Println("register: waited 50 ms, close now?")
 
 	//@step wait
 	<-done
-	fmt.Println("till: backup confirmed, till closed")
+	fmt.Println("register: backup confirmed, register closed")
 }
