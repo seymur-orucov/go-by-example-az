@@ -14,6 +14,7 @@ import {
 } from "./session.ts";
 import { layoutGraph, type GraphLayout } from "./graph.ts";
 import { renderPreview } from "./markdown.ts";
+import { renderCitation } from "./citation.ts";
 
 /** Both `astro build` and the check script run with apps/site as the working directory. */
 export const CONTENT_ROOT = resolve(process.cwd(), "../../content");
@@ -467,7 +468,7 @@ export interface Lesson {
   mode: "code" | "session" | "text";
   /** The code pane: `main.go` (Go) or `session.sh` (terminal sessions), markers removed. */
   code: string;
-  lang: "go" | "bash" | "markdown";
+  lang: "go" | "bash" | "markdown" | "yaml";
   /** Name shown on the code window. */
   file: string;
   /** The command the "full output" button shows above the output; null for sessions (the transcript has its own `$` lines). */
@@ -932,24 +933,56 @@ const MD_MARKERS = {
   step: /^\s*<!--\s*@step\s+(\S+)\s*-->\s*$/,
   end: /^\s*<!--\s*@end\s*-->\s*$/,
 };
+/** Step markers of a YAML file (`CITATION.cff`): `# @step id` and `# @end` on their own lines. */
+const YAML_MARKERS = {
+  step: /^\s*#\s*@step\s+(\S+)\s*$/,
+  end: /^\s*#\s*@end\s*$/,
+};
 
 /**
- * Loads and validates a ready `code` lesson of a syllabus technology about Markdown:
- * content/<technology>/lessons/<slug>/ with ONE Markdown file (e.g. `README.md`) split into steps by
- * `<!-- @step id -->` markers, `lesson.<locale>.md` with the same step ids, an optional
- * `steps.yaml` (hand-written `vis` per step), quiz and takeaways. Instead of a program's output each
- * step shows its lines rendered as GitHub shows them (`preview`), and the pane can show the whole
- * file rendered (`fullPreview`).
+ * The kinds of file a non-Go `code` lesson can be about. `preview(upTo)` renders the result GitHub
+ * shows: a Markdown step is rendered on its own (its lines), a CITATION.cff step as the citation built
+ * from the file up to the end of that step (a CFF fragment is not a citation).
+ */
+const CODE_FILES = [
+  {
+    test: (n: string) => /\.md$/i.test(n) && !/^lesson\./.test(n),
+    lang: "markdown" as const,
+    markers: MD_MARKERS,
+    hint: "<!-- @step -->",
+    preview: (lines: string[], s: CodeStep) =>
+      renderPreview(lines.slice(s.from - 1, s.to).join("\n")),
+    full: (code: string) => renderPreview(code),
+  },
+  {
+    test: (n: string) => n === "CITATION.cff",
+    lang: "yaml" as const,
+    markers: YAML_MARKERS,
+    hint: "# @step",
+    preview: (lines: string[], s: CodeStep) => renderCitation(lines.slice(0, s.to).join("\n")),
+    full: (code: string) => renderCitation(code),
+  },
+];
+
+/**
+ * Loads and validates a ready `code` lesson of a syllabus technology about a file GitHub renders:
+ * content/<technology>/lessons/<slug>/ with ONE such file — Markdown (e.g. `README.md`, split by
+ * `<!-- @step id -->` markers) or `CITATION.cff` (split by `# @step id`) — `lesson.<locale>.md` with
+ * the same step ids, an optional `steps.yaml` (hand-written `vis` per step), quiz and takeaways.
+ * Instead of a program's output each step shows what GitHub shows for it (`preview`: the rendered
+ * Markdown, or the "Cite this repository" box), and the pane can show it for the whole file
+ * (`fullPreview`).
  */
 export function loadCodeLesson(technology: string, slug: string, locale = "az"): Lesson {
   const dir = join(CONTENT_ROOT, technology, "lessons", slug);
-  const docs = readdirSync(dir).filter((n) => /\.md$/i.test(n) && !/^lesson\./.test(n));
+  const docs = readdirSync(dir).filter((n) => CODE_FILES.some((k) => k.test(n)));
   if (docs.length !== 1) {
     throw new Error(
-      `${technology}/${slug}: a code lesson needs exactly one Markdown file besides lesson.${locale}.md, found ${docs.length ? docs.join(", ") : "none"}`,
+      `${technology}/${slug}: a code lesson needs exactly one Markdown or CITATION.cff file besides lesson.${locale}.md, found ${docs.length ? docs.join(", ") : "none"}`,
     );
   }
   const file = docs[0]!;
+  const kind = CODE_FILES.find((k) => k.test(file))!;
   const files = {
     text: join(dir, `lesson.${locale}.md`),
     quiz: join(dir, `quiz.${locale}.yaml`),
@@ -964,7 +997,7 @@ export function loadCodeLesson(technology: string, slug: string, locale = "az"):
   const problems: string[] = [];
   let parsed: { code: string; steps: CodeStep[] } = { code: "", steps: [] };
   try {
-    parsed = parseCode(readFileSync(join(dir, file), "utf8"), MD_MARKERS);
+    parsed = parseCode(readFileSync(join(dir, file), "utf8"), kind.markers);
   } catch (e) {
     problems.push(`${file}: ${(e as Error).message}`);
   }
@@ -985,38 +1018,46 @@ export function loadCodeLesson(technology: string, slug: string, locale = "az"):
 
   const codeIds = codeSteps.map((s) => s.id).join(", ");
   const textIds = text.sections.map((s) => s.id).join(", ");
-  if (!codeSteps.length) problems.push(`${file}: no <!-- @step --> markers`);
+  if (!codeSteps.length) problems.push(`${file}: no ${kind.hint} markers`);
   if (codeIds !== textIds) {
     problems.push(`step ids differ: ${file} [${codeIds}] vs lesson.${locale}.md [${textIds}]`);
   }
   for (const id of Object.keys(stepData)) {
     if (!codeSteps.some((s) => s.id === id)) problems.push(`steps.yaml: unknown step "${id}"`);
   }
+  const lines = code.replace(/\n$/, "").split("\n");
+  let previews: string[] = [];
+  let fullPreview = "";
+  try {
+    previews = codeSteps.map((s) => kind.preview(lines, s));
+    fullPreview = kind.full(code);
+  } catch (e) {
+    problems.push(`${file}: ${(e as Error).message}`);
+  }
   if (problems.length) throw new Error(`${technology}/${slug}:\n  - ${problems.join("\n  - ")}`);
 
-  const lines = code.replace(/\n$/, "").split("\n");
   return {
     slug,
     mode: "code",
     code,
-    lang: "markdown",
+    lang: kind.lang,
     file,
     run: null,
     intro: text.intro,
-    steps: codeSteps.map((s) => {
+    steps: codeSteps.map((s, i) => {
       const section = text.sections.find((t) => t.id === s.id)!;
       return {
         ...s,
         title: section.title,
         body: section.body,
         vis: stepData[s.id]?.vis,
-        preview: renderPreview(lines.slice(s.from - 1, s.to).join("\n")),
+        preview: previews[i],
       };
     }),
     outro: text.outro,
     quiz: quizParsed.data!,
     takeaways: takeawaysParsed.data!,
     output: "",
-    fullPreview: renderPreview(code),
+    fullPreview,
   };
 }

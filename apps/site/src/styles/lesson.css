@@ -3023,3 +3023,30 @@ button.vm-row:hover {
 .md-alert.a-caution .md-alert-title {
   color: var(--red);
 }
+/* CITATION.cff lessons: the "Cite this repository" box GitHub builds from the file */
+.cite-box {
+  padding: 10px 12px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+}
+.md-preview .cite-box p {
+  margin: 0;
+}
+.md-preview .cite-box .cite-title {
+  font-weight: 600;
+}
+.md-preview .cite-box .cite-label {
+  margin-top: 10px;
+  margin-bottom: 4px;
+  font: 600 11px/1.4 var(--font-mono);
+  letter-spacing: 0.04em;
+  color: var(--text-subtle);
+}
+.md-preview .cite-box .cite-out {
+  margin: 0;
+  font: 12.5px/1.5 var(--font-mono);
+  white-space: pre-wrap;
+}
+.md-preview .cite-missing {
+  color: var(--text-muted);
+}

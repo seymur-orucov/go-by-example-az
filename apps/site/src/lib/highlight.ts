@@ -1,4 +1,4 @@
-// Build-time Go, shell and Markdown highlighting with Shiki. Shiki tokenizes; colors come from the theme's
+// Build-time Go, shell, Markdown and YAML highlighting with Shiki. Shiki tokenizes; colors come from the theme's
 // --tok-* CSS variables (so palettes and light/dark keep working), not from a Shiki theme.
 import { createHighlighterCore, type HighlighterCore, type ThemeRegistrationRaw } from "shiki/core";
 import { createJavaScriptRegexEngine } from "shiki/engine/javascript";
@@ -15,13 +15,19 @@ const getHighlighter = () =>
       import("shiki/langs/go.mjs"),
       import("shiki/langs/shellscript.mjs"),
       import("shiki/langs/markdown.mjs"),
+      import("shiki/langs/yaml.mjs"),
     ],
     engine: createJavaScriptRegexEngine(),
   }));
 
-export type Lang = "go" | "bash" | "markdown";
+export type Lang = "go" | "bash" | "markdown" | "yaml";
 
-const SHIKI_LANG: Record<Lang, string> = { go: "go", bash: "shellscript", markdown: "markdown" };
+const SHIKI_LANG: Record<Lang, string> = {
+  go: "go",
+  bash: "shellscript",
+  markdown: "markdown",
+  yaml: "yaml",
+};
 
 /** TextMate scope (innermost first) -> token class suffix. Order matters. */
 const GO_RULES: [RegExp, string][] = [
@@ -53,10 +59,20 @@ const MD_RULES: [RegExp, string][] = [
   [/^markup\.quote/, "com"],
 ];
 
+/** YAML (CITATION.cff): keys stand out from values; list dashes and comments are muted. */
+const YAML_RULES: [RegExp, string][] = [
+  [/^comment/, "com"],
+  [/^entity\.name\.tag/, "kw"],
+  [/^constant\.numeric/, "num"],
+  [/^(string|constant\.other|constant\.language)/, "str"],
+  [/^punctuation\.definition\.block\.sequence/, "num"],
+];
+
 const RULES: Record<Lang, [RegExp, string][]> = {
   go: GO_RULES,
   bash: BASH_RULES,
   markdown: MD_RULES,
+  yaml: YAML_RULES,
 };
 
 function classFor(scopes: string[], rules: [RegExp, string][]): string | undefined {
