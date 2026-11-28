@@ -8,7 +8,7 @@ floats:
   out: "50 dollars, 4 people: 12.5"
 bools:
   out: |
-    open and a free table: false
-    tea or coffee available: true
-    closed: false
+    true && false: false
+    true || false: true
+    !true: false
     more than 10 tables: true
