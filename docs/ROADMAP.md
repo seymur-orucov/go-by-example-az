@@ -168,6 +168,7 @@ Once the Go prototype is live, the site becomes a unified platform.
   - [x] GitHub module 14 "GitHub ilə tanışlıq" (5 lessons, awaiting the user's review)
   - [x] Lesson kind `code` for Markdown and `CITATION.cff` (code + rendered result; the user chose it 2026-11-28): pilot `markdown` approved 2026-11-28; `CITATION.cff` shows the "Cite this repository" box
   - [x] GitHub module 15 "Sənədləşmə" (5 lessons, awaiting the user's review)
+  - [x] GitHub module 16 "Issue-lar və müzakirələr" (6 lessons, awaiting the user's review)
   - [ ] `code` for GitHub Actions workflow YAML (what to show as the result): decide when module 19 starts
   - [x] Lesson kinds `terminal` and `state` on the site: `session.sh` + `pnpm content:run` (recorded output), the `areas` visual, `/git/` and `/git/<id>/` pages, shared `LessonView`; `pnpm content:check` validates syllabi and session lessons
   - [x] Lesson kind `diagram` (pilot `remotes-and-clone`, 2026-11-28); `compare`, `concept` and the commit-graph visual `vis: graph` are done

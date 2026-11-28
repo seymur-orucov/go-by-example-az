@@ -820,3 +820,15 @@ Done:
 - `citation-files` (`code`, Ayla's `airq` research package): the required keys, version and release date, DOI, `repository-code` and license; `preferred-citation` and other citation files in a note.
 - Three lessons were written by parallel agents; every lesson was checked against GitHub Docs, by `content:check` and the scan, then by an independent reviewer; pages checked at 1440px and 375px.
 
+### 90. GitHub module 16 "Issue-lar və müzakirələr"
+The user asked to continue with module 16 before pushing, so modules 15 and 16 go out in one PR.
+
+Done (all `ui`, written by six parallel agents, then read, aligned and given to an independent reviewer):
+- `issues` (an animal shelter's `pet-adopt` site): what an issue is, a clear bug report, Markdown issue templates, assignees and milestones, closing keywords and closing by hand.
+- `labelling` (`bike-stations`): name, colour and description, the 10 default labels, applying and creating labels, `label:` filters (AND, OR, `-label:`), `good first issue` and `help wanted`.
+- `mentions` (`bright-school/school-timetable`): `@user`, `@org/team`, `#12` and `owner/repo#12` references, commit SHAs, backlinks, when to mention.
+- `reactions` (`font-picker`): the eight reactions, a 👍 instead of "+1" comments, sorting by reactions.
+- `saved-replies` (`csv-tidy`): creating, using (button and `Ctrl` + `.`), editing and deleting saved replies.
+- `github-discussions` (`pixel-paint`): issue vs discussion, enabling, categories and formats, marking an answer, converting an issue and creating an issue from a discussion.
+- Facts and UI labels checked against GitHub Docs; pages checked at 1440px and 375px.
+
