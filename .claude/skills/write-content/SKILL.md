@@ -26,8 +26,9 @@ file (approved lessons of the same kind).
 2. If the site cannot render that kind yet, build it first and tell the user: today `code`
    (Go only, see write-lesson), `terminal` and `state` (terminal sessions, `vis: areas` and
    `vis: graph`), `concept`, `compare` and `diagram` (text lessons, `vis: flow` / `vis: compare` /
-   `vis: diagram`), `ui` (drawn mockups, `vis: ui`) and `code` for Markdown (the file and its
-   rendered result) exist; `code` for YAML does not. A new kind or visual = a schema in `apps/site/src/lib/`, a
+   `vis: diagram`), `ui` (drawn mockups, `vis: ui`) and `code` for Markdown and
+   `CITATION.cff` (the file and what GitHub shows for it) exist; `code` for other YAML (e.g.
+   Actions workflows) does not. A new kind or visual = a schema in `apps/site/src/lib/`, a
    branch in `Vis.astro` or a new stage component, CSS in `packages/theme`, and checks in
    `pnpm content:check`. Data-driven, never per-lesson JS; animations off under
    `prefers-reduced-motion`.
@@ -104,7 +105,7 @@ content/<technology>/lessons/<id>/
 - Facts that are not checked by running a command (dates, who made what) must be well known and
   checked against the official documentation or the project's own history page.
 
-### Files of a Markdown `code` lesson
+### Files of a Markdown or CITATION.cff `code` lesson
 
 The pane shows ONE Markdown file (e.g. `README.md`) split into steps; instead of a program's
 output each step shows its lines rendered the way GitHub shows them ("Nəticə"), and "Tam nəticə"
@@ -122,6 +123,11 @@ content/<technology>/lessons/<id>/
   their alt text (no image files in the lesson); raw HTML stays text.
 - Each step renders on its own, so a step should be a complete block (a whole list, a whole
   table).
+- Instead of `README.md` the file may be `CITATION.cff` (markers `# @step id` / `# @end`). Its
+  "Nəticə" is the **Cite this repository** box (APA and BibTeX) built from the file **up to the end
+  of the step** by `lib/citation.ts`, a port of the ruby-cff formatters GitHub uses; the first step
+  must already hold the required keys (`cff-version`, `message`, `title`, `authors`).
+  `preferred-citation` is not ported (the loader refuses it): mention it in the text only.
 
 ### Session format
 
@@ -203,4 +209,5 @@ Approved lessons to imitate, by kind (add one when the user approves a pilot):
 - `compare` — Git `git-vs-other-vcs` (pilot, approved 2026-11-27)
 - `diagram` — Git `remotes-and-clone` (pilot, approved 2026-11-28)
 - `ui` — Git `github-account` (pilot, approved 2026-11-28)
-- `code` (Markdown) — Git `markdown` (pilot, awaiting review)
+- `code` (Markdown) — Git `markdown` (pilot, approved 2026-11-28); with `CITATION.cff`: Git
+  `citation-files`

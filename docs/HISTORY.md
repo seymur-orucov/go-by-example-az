@@ -809,3 +809,14 @@ Done:
 - `loadCodeLesson`: one Markdown file per lesson split by `<!-- @step id -->` markers; Shiki highlights Markdown; `renderPreview` renders GitHub Flavored Markdown with GitHub alerts, task lists, links in a new tab and images as alt-text placeholders. The pane shows "Nəticə" (the current step rendered) and "Tam nəticə" (the whole file) instead of the terminal output; each step also shows its result.
 - Pilot `markdown` (Ayla's `SETUP.md` for new developers): headings, paragraphs and emphasis, lists and task lists, links and images (alt text), code blocks and tables (alignment), blockquotes and the five GitHub alerts. Facts from GitHub Docs "Basic writing and formatting syntax" and "Organizing information with tables".
 
+### 89. GitHub module 15 "Sənədləşmə"
+The user approved the `markdown` pilot and asked to continue the module.
+
+Done:
+- `code` lessons can also be about a `CITATION.cff` (`# @step id` markers, YAML highlighting): each step shows the **Cite this repository** box built from the file so far by `lib/citation.ts`, a port of ruby-cff's APA and BibTeX formatters (the APA output matches the GitHub Docs example).
+- `project-readme` (`code`, Sam's `tidy-photos` CLI): title, badges (Actions status, shields.io) and one-line description; why; installation with a check command; usage with example output; contributing and license with relative links; where GitHub looks for the README and the Outline table of contents.
+- `profile-readme` (`ui`, Sam's `sam-lee/sam-lee`): the special repository, writing the README, the four conditions for it to show, hiding it.
+- `github-wikis` (`ui`, Ayla's `quicknote`): README vs wiki, turning the wiki on and edit rights, pages and links, `_Sidebar` / `_Footer`, the wiki as its own Git repository (`.wiki.git`).
+- `citation-files` (`code`, Ayla's `airq` research package): the required keys, version and release date, DOI, `repository-code` and license; `preferred-citation` and other citation files in a note.
+- Three lessons were written by parallel agents; every lesson was checked against GitHub Docs, by `content:check` and the scan, then by an independent reviewer; pages checked at 1440px and 375px.
+
