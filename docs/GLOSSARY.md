@@ -130,6 +130,8 @@ Explanations below are in Azerbaijani, as on the site. Checked against the lesso
 | checksum | kept | faylın düzgünlüyünü yoxlamaq üçün dərc olunan heş | sha256-hashes |
 | time zone / location | translated: **saat qurşağı** (qısaca zona); code: `time.Location` | anın hansı yerli saatla yazıldığı; `time.UTC`, `time.FixedZone` | time |
 | duration | translated: **müddət**; code: `time.Duration` | iki an arasındakı vaxt; nanosaniyələrin sayı (`int64`) | time |
+| attribute | translated: **atribut** | XML elementinin açılış tag-ında yazılan `ad="dəyər"` cütü: `<invoice number="INV-0318">` | xml |
+| root element | translated: **kök element** | XML sənədinin bütün qalan elementləri əhatə edən tək xarici elementi | xml |
 | Base64 | kept | baytları 64 təhlükəsiz simvoldan ibarət mətnə çevirmək | base64-encoding |
 | padding | kept | base64-də uzunluğu 4-ə bölünən etmək üçün sona əlavə olunan `=`; məlumat daşımır | base64-encoding |
 | encode / decode | translated: **kodlaşdırmaq** / **açmaq** | məlumatı başqa formaya çevirmək / ilkin formaya qaytarmaq; metod adlarında kept: `EncodeToString`, `DecodeString` | base64-encoding |

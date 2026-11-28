@@ -890,3 +890,13 @@ Done:
 - struct-embedding: quiz answers spread, the "inner type does not know the outer type" pitfall added, the "qalib gəlir" calque replaced, inheritance/composition glossed and added to GLOSSARY (scan 4 → 2).
 - structs: quiz answers spread, every quiz snippet declares `Seat`, capitalised (exported) field names explained (GLOSSARY `exported` now points here), the `==` rule completed (slice, map or func fields), "önəmli"/"boş sətir"/"sınır" wording replaced (scan 3 → 2).
 - time: intro cut to 4 sentences, the Before/After/Equal sentence split, "saat qurşağı (qısaca zona)" introduced once, quiz Q3/Q8 right options shortened with believable distractors; `time zone / location`, `duration` added to GLOSSARY (scan 10 → 6).
+
+### 98. Polish batch 8 and the end of the loop
+Done:
+- timeouts: quiz Q4–Q5 retimed (200 ms boxes, 300 ms deadline) so the answer holds under timing jitter, the gateway layer replaced by "bank", the intro rewritten, two long sentences split, "timer" replaced by `time.After` in the in-time step (scan 9 → 6).
+- values: quiz answers spread, the "hesab dəqiq çıxır" float claim dropped, the decimal-point rule limited to numbers written in code (`a / 4.0` with an `int` variable is still integer division), plain `true && false` labels instead of story labels in `main.go`, the bool-operators sentence split (scan 6 → 5; re-reviewed by a fresh subagent, its two accuracy notes fixed too).
+- variadic-functions: quiz answers spread, the takeaway grammar fixed ("slice-ın özünü (`f(s)`)"), the shared-array caveat added to the `append(week, extra...)` tip (scan 5 → 4).
+- waitgroups: the intro now builds on the Goroutines lesson (4 sentences), the web-3 sentence split, quiz Q2/Q3 distractors made concrete, "Results channel" in the takeaways fixed (scan 11 → 4).
+- xml: the leading header quiz option shortened, the intro's list of XML domains cut to one case, "paket" → "package"; `attribute`, `root element` added to GLOSSARY (scan 7 → 5).
+
+All 41 "Düzəliş lazımdır" Go lessons from the 2026-11-28 review are polished (plus the minor findings of strings-and-runes, arrays and channel-buffering). Not yet read by the user, so ROADMAP is unchanged. Minor notes that fresh re-reviews raised outside the original findings stay open in the reports (constants, channel-synchronization, multiple-return-values, values, if-else).
