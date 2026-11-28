@@ -850,3 +850,11 @@ Done:
 - command-line-subcommands: quiz 2 explain fixed (the subcommand name was passed to `Parse`), simpler intro sentence, `FlagSet` named "flag dəsti", the flags-before-name pitfall added; the `main.go` length note skipped (scan 5 → 3).
 - constants: shorter intro, package scope corrected ("package-in bütün fayllarında"), quiz distractors limited to taught material and answers spread, `untyped constant` added to GLOSSARY (scan 7 → 3; re-reviewed by a fresh subagent).
 - context: quiz 4 answer giveaway and quiz 2 snippet fixed, two "Beləcə" closers removed, "övlad" → "uşaq context", long intro sentence split, `parent / child context` added to GLOSSARY (scan 6 → 3).
+
+### 93. Polish batch 3
+Done:
+- defer: the plate-stack comparison dropped, the early-return output order explained from the output, a Diqqət note on `defer` inside loops, quiz answers spread, `main.go` 51 → 48 lines (scan 3 → 2).
+- enums: quiz answers spread, the intro's type-safety claim narrowed to `int` variables, the renumbering cost of inserting a constant added, the zero-value takeaway clarified, `fmt.Stringer` added to GLOSSARY (scan 5 → 4).
+- environment-variables: the compile quiz with two failing lines fixed (Q7), three translated-sounding sentences rewritten (lookup, unset, setenv with a "proses" gloss), shorter intro (scan 8 → 4).
+- errors: fact-first intro cut to 4 sentences, the `error` interface moved into #new, the wrap chain explained, the quiz explanation about unused `err` corrected, quiz answers spread (scan 6 → 3).
+- execing-processes: quiz right options no longer longer than the distractors, the shell test in the script explained, the Windows caveat moved from the intro into #exec (scan 6 → 2; Linux run not possible here, `GOOS=linux go vet/build` passed).

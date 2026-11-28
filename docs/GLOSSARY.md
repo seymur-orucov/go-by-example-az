@@ -62,6 +62,7 @@ Explanations below are in Azerbaijani, as on the site. Checked against the lesso
 | interface | kept | tipin nə bacardığını təsvir edən metodlar dəsti | interfaces |
 | type assertion | kept | interface-in içindəki konkret tipi yoxlamaq: `c, ok := s.(Circle)` | interfaces |
 | type switch | kept | interface-in tipinə görə `switch` | interfaces |
+| fmt.Stringer | kept as code | `String() string` metodu olan tip; `fmt` onu bu mətnlə çap edir | enums |
 | enum | kept (sadalama) | bir neçə sabit variantdan biri ola bilən dəyər; Go-da `const` + `iota` ilə | enums |
 | iota | kept as code | `const` blokunda 0-dan başlayıb hər sətirdə bir artan sayğac | enums |
 | embedding | kept (daxiletmə) | struct-ın içinə başqa tipi sahə adı olmadan yazmaq | struct-embedding |
