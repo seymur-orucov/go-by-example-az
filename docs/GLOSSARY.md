@@ -85,7 +85,7 @@ Explanations below are in Azerbaijani, as on the site. Checked against the lesso
 | exit code | translated: **çıxış kodu** | proqramın əməliyyat sisteminə qaytardığı nəticə; 0 uğurdur | panic |
 | defer | kept as code | çağırışı onu yazan funksiya bitənə qədər təxirə salmaq | defer |
 | recover | kept as code | `defer` içində panic-i tutub proqramı davam etdirmək | recover |
-| named result | translated: **adlı nəticə** (named result) | funksiya imzasında adı verilən nəticə: zero value ilə başlayan adi dəyişən, funksiya bitəndə son dəyəri qaytarılır | recover |
+| named result | translated: **adlı nəticə** (named result) | funksiya imzasında adı verilən nəticə: zero value ilə başlayan adi dəyişən, funksiya bitəndə son dəyəri qaytarılır | multiple-return-values |
 
 ## Konkurentlik
 

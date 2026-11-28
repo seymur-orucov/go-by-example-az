@@ -866,3 +866,11 @@ Done:
 - if-else: quiz answers spread, intro cut to 4 sentences, the operator re-explanation replaced by a link back to Values, "çirkləndirmir" and "dar hədd" replaced with concrete statements (scan 4 → 2; re-reviewed by a fresh subagent).
 - interfaces: the socket comparison dropped, the `implements` sentence split, the "imkan verir" calque removed, "ödəmək (satisfy)" glossed and added to GLOSSARY, quiz answers spread (scan 5 → 1).
 - methods: quiz answers spread, the intro trimmed to the data and a concrete name-collision gain, the real compiler error in the literal quiz item, the pointer-receiver consistency convention added (scan 4 → 1).
+
+### 95. Polish batch 5
+Done:
+- multiple-return-values: quiz answers spread with even Q7 options, the "accept all results" rule narrowed to assignments, the "object" comparison dropped from the intro, the `ok`, named-results and `return` sentences reworded; the GLOSSARY `named result` row now points to this lesson (scan 6 → 1; re-reviewed by a fresh subagent).
+- mutexes: quiz answers spread and option lengths evened, runtime error strings moved from the options into the explanations, the non-reentrant mutex takeaway reworded (scan 13 → 6).
+- non-blocking-channel-operations: intro cut to 4 sentences without the game story, the 16 ms parenthesis split, the Q6 options evened, the "qeyd etmək" clause dropped (scan 11 → 5).
+- number-parsing: the base-0 note now covers a plain leading `0` (octal: `"017"` is 15, `"08"` is an error), intro cut to 4 sentences, dense float/range sentences split, `errors.As` wording made concrete (scan 12 → 6).
+- pointers: quiz answers spread, writing through a nil pointer also panics (lesson and takeaway), a neutral `return &c` example, the VIP-floor story trimmed, "sən" → "biz" (scan 5 → 3).
