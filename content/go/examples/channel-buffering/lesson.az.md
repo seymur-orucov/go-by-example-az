@@ -14,7 +14,7 @@ Nümunədə `rail` kafedə üç sifariş saxlayan channel-dır.
 
 Dolu buffer-ə göndərmə yenə gözləyir, bu dəfə boş yer açılana qədər. Goroutine 100 millisaniyədən sonra `rail`-dən bir dəyər götürür və onu `made` channel-ı ilə `main`-ə qaytarır. `rail <- "espresso"` məhz o ana qədər `main`-i saxlayır, `waited: true` bunu göstərir. Goroutine `latte`-ni götürüb, çünki `rail`-ə ilk göndərilən dəyər o idi.
 
-> **Diqqət:** Dolu buffer-i boşaldacaq başqa goroutine yoxdursa, göndərmə əbədi gözləyir və proqram `fatal error: all goroutines are asleep - deadlock!` ilə dayanır. Buffer qəbul edənin yerini tutmur, o yalnız iki tərəfin qısa fasilələrini yumşaldır.
+> **Diqqət:** Dolu buffer-i boşaldacaq başqa goroutine yoxdursa, göndərmə əbədi gözləyir və proqram `fatal error: all goroutines are asleep - deadlock!` ilə dayanır. Buffer qəbul edəni əvəz etmir: o, göndərənə qəbul edəndən ən çox `cap` dəyər qabağa getməyə icazə verir.
 
 ## Növbə sırası {#fifo}
 

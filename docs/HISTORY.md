@@ -824,10 +824,11 @@ Done:
 - Scan 4 → 3 pts.
 
 ### 90. Polish `channel-buffering` (Go)
-Applied the review's major findings (F1, F2) and F3, which sat in the rewritten intro; minor F4 left open.
+Applied all four review findings (F3 sat in the rewritten intro, F4 at the user's request).
 
 Done:
 - The text names the code instead of the café roles: `main` sends to `rail`, the goroutine takes a value (no more "kassir", "barista", "rəf", "çek" in the prose; the drink names stay as data, the code and its output are unchanged).
 - The intro's story paragraph became one sentence about `rail`.
 - Quiz right answers spread 3/2/2 over positions 0/1/2 (was 1/5/1); the moved answers re-run with Go.
+- #full and the takeaways say what a buffer does in numbers: the sender may run at most `cap` values ahead of the receiver.
 - Scan 4 → 3 pts.
