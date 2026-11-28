@@ -1,0 +1,132 @@
+# Drawn mockups (ui lesson): the short README with the Wiki tab, the Features settings, the new
+# page form, a wiki page with a custom sidebar and footer, and the wiki's clone URL. Simplified;
+# labels follow GitHub Docs where the docs name them.
+readme-or-wiki:
+  vis:
+    kind: ui
+    caption: "Qısaldılmış README və Wiki tab-ı (sadələşdirilmiş)"
+    url: "github.com/ayla-karimova/quicknote"
+    tabs:
+      - label: "Code"
+        active: true
+      - label: "Issues"
+        count: 4
+      - label: "Pull requests"
+        count: 1
+      - label: "Wiki"
+        mark: "Wiki səhifələri bu tab-dadır."
+    main:
+      - type: heading
+        text: "README.md"
+        sub: "Take quick notes from the terminal."
+      - type: list
+        mark: "README-də qalanlar: təsvir, quraşdırma, istifadə nümunəsi."
+        items:
+          - { title: "What it does", icon: file }
+          - { title: "Install", icon: file }
+          - { title: "Usage", icon: file }
+      - type: text
+        text: "User guide, keyboard shortcuts and FAQ: see the **Wiki**."
+        mark: "Uzun bölmələr wiki-yə köçüb, README ona keçid verir."
+enable-wiki:
+  vis:
+    kind: ui
+    caption: "Settings → Features (sadələşdirilmiş)"
+    url: "github.com/ayla-karimova/quicknote/settings"
+    main:
+      - type: heading
+        text: "Features"
+      - type: check
+        label: "Wikis"
+        checked: true
+        mark: "Wiki-ni açır və bağlayır. Söndürəndə səhifələr gizlənir, silinmir."
+      - type: check
+        label: "Restrict editing to collaborators only"
+        checked: true
+        mark: "İşarəli: wiki-ni yalnız collaborator-lar dəyişir, oxumaq hamıya açıqdır."
+      - type: check
+        label: "Issues"
+        checked: true
+    side:
+      - type: list
+        items:
+          - { title: "**General**" }
+          - { title: "Collaborators", icon: user }
+pages-and-links:
+  vis:
+    kind: ui
+    caption: "İlk səhifə: Home (sadələşdirilmiş)"
+    url: "github.com/ayla-karimova/quicknote/wiki/_new"
+    main:
+      - type: heading
+        text: "Create new page"
+      - type: field
+        label: "Title"
+        value: "Home"
+        mark: "İlk səhifə: Wiki tab-ı açılanda o göstərilir."
+      - type: select
+        label: "Edit mode"
+        value: "Markdown"
+      - type: code
+        label: "Content"
+        text: "Take quick notes from the terminal.\n\n- [User guide](https://github.com/ayla-karimova/quicknote/wiki/User-guide)\n- [FAQ](https://github.com/ayla-karimova/quicknote/wiki/FAQ)"
+        mark: "Başqa səhifələrə keçid: tam ünvanla adi Markdown keçidi."
+      - type: field
+        label: "Edit message"
+        value: "Add home page"
+        mark: "Commit mesajı."
+      - type: button
+        label: "Save Page"
+        tone: primary
+        mark: "Səhifəni wiki-yə commit edir."
+sidebar-footer:
+  vis:
+    kind: ui
+    caption: "Custom sidebar və footer olan səhifə (sadələşdirilmiş)"
+    url: "github.com/ayla-karimova/quicknote/wiki/Keyboard-shortcuts"
+    main:
+      - type: row
+        items:
+          - type: button
+            label: "Edit"
+          - type: button
+            label: "New Page"
+            tone: primary
+      - type: heading
+        text: "Keyboard shortcuts"
+      - type: text
+        text: "`Ctrl+N` new note · `Ctrl+F` search · `Ctrl+D` delete note"
+      - type: divider
+      - type: text
+        text: "Found a bug or have a question? Open an issue."
+        mark: "Footer: `_Footer` səhifəsi, hər səhifənin aşağısında görünür."
+    side:
+      - type: list
+        mark: "Custom sidebar: `_Sidebar` səhifəsi, keçidlər Ayla-nın sırası ilə."
+        items:
+          - { title: "User guide", icon: file }
+          - { title: "**Keyboard shortcuts**", icon: file }
+          - { title: "FAQ", icon: file }
+wiki-repository:
+  vis:
+    kind: ui
+    caption: "Wiki-nin clone ünvanı (sadələşdirilmiş)"
+    url: "github.com/ayla-karimova/quicknote/wiki"
+    main:
+      - type: heading
+        text: "Home"
+      - type: text
+        text: "Take quick notes from the terminal."
+    side:
+      - type: list
+        mark: "Hər səhifə wiki repository-sində bir fayldır: `Home.md`, `FAQ.md`…"
+        items:
+          - { title: "Home", icon: file }
+          - { title: "FAQ", icon: file }
+          - { title: "Keyboard shortcuts", icon: file }
+          - { title: "User guide", icon: file }
+      - type: code
+        label: "Clone this wiki locally"
+        text: "https://github.com/ayla-karimova/quicknote.wiki.git"
+        mark: "Wiki-nin öz repository-si: `git clone` ilə kompüterə gəlir."
+    note: "Clone-dan sonra qovluqda: `Home.md`, `FAQ.md`, `Keyboard-shortcuts.md`, `User-guide.md`, `_Sidebar.md`, `_Footer.md`."

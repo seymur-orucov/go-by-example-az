@@ -1,0 +1,57 @@
+- question: "Ayla README-ni qısaldır. Bunlardan hansı wiki-yə köçməlidir?"
+  options:
+    - "Layihənin bir cümləlik təsviri"
+    - "Otuz sualdan ibarət FAQ"
+    - "Quraşdırma komandası"
+  answer: 1
+  explain: "README layihənin nə etdiyini, necə quraşdırıldığını və işlədildiyini qısa deyir. Uzun FAQ wiki-yə yaxşı uyur, README-də isə ona keçid qalır."
+- question: "Sam GitHub Free-də private repository yaradıb. Orada wiki aça bilərmi?"
+  options:
+    - "Bəli, wiki-ni yalnız Sam görəcək"
+    - "Bəli, amma wiki hamıya görünəcək"
+    - "Xeyr, GitHub Free-də bu mümkün deyil"
+  answer: 2
+  explain: "GitHub Free-də wiki yalnız public repository-lərdə var. Private repository-də wiki üçün GitHub Pro, Team və ya Enterprise lazımdır."
+- question: "Public repository-də **Restrict editing to collaborators only** işarəlidir. Wiki-də kim nə edə bilir?"
+  options:
+    - "Hamı oxuyur, collaborator-lar dəyişir"
+    - "Yalnız collaborator-lar oxuyur və dəyişir"
+    - "GitHub hesabı olan hər kəs dəyişir"
+  answer: 0
+  explain: "Qutu yalnız redaktəni məhdudlaşdırır. Public repository-nin wiki-sini oxumaq hamı üçün açıq qalır."
+- question: "Repository-nin 300 ulduzu var, wiki-ni yalnız collaborator-lar dəyişə bilir. Axtarış sistemləri wiki-ni indeksləyəcəkmi?"
+  options:
+    - "Xeyr: ən azı 500 ulduz lazımdır"
+    - "Bəli: redaktə məhdudlaşdırılıb"
+    - "Bəli: public wiki həmişə indekslənir"
+  answer: 0
+  explain: "GitHub Docs-a görə iki şərt birlikdə lazımdır: ən azı 500 ulduz və collaborator-larla məhdud redaktə. Burada birinci şərt yoxdur."
+- question: "Wiki redaktorunda **Edit message** sahəsinə nə yazılır?"
+  options:
+    - "Səhifənin başlığı"
+    - "Dəyişikliyin commit mesajı"
+    - "Oxuculara gedən bildiriş"
+  answer: 1
+  explain: "**Save Page** wiki repository-sində commit yaradır, **Edit message** onun mesajıdır."
+- question: "Ayla wiki-ni clone edib. Hansı fayl wiki-nin bütün səhifələrində görünən sidebar-ı doldurur?"
+  options:
+    - "`Sidebar.md`"
+    - "`_Sidebar.md`"
+    - "`.sidebar.md`"
+    - "`Home.md`"
+  answer: 1
+  explain: "`_Sidebar` adlı səhifə sidebar-ı, `_Footer` isə footer-i doldurur. `Home` wiki-nin ilk səhifəsidir."
+- question: "Layihə `github.com/ayla-karimova/quicknote` ünvanındadır. Wiki-ni hansı komanda clone edir?"
+  options:
+    - "`git clone https://github.com/ayla-karimova/quicknote/wiki.git`"
+    - "`git clone https://github.com/ayla-karimova/quicknote.git wiki`"
+    - "`git clone https://github.com/ayla-karimova/quicknote.wiki.git`"
+  answer: 2
+  explain: "Wiki-nin öz repository-si var. Ünvanı layihənin ünvanına `.wiki` əlavə etməklə alınır. İkinci komanda kodun repository-sini `wiki` qovluğuna clone edir."
+- question: "Ayla wiki-ni clone edib, dəyişiklikləri `draft` branch-ına push edib. Oxucular onları görəcəkmi?"
+  options:
+    - "Bəli, push edilən hər branch dərhal görünür"
+    - "Xeyr, yalnız default branch-dakı dəyişikliklər görünür"
+    - "Bəli, amma yalnız Pages siyahısında görünür"
+  answer: 1
+  explain: "Wiki-də branch yaratmaq olar, amma oxuculara yalnız default branch-a push olunan dəyişikliklər çatır."

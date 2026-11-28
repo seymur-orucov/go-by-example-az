@@ -1,0 +1,56 @@
+- question: "Sam-ın istifadəçi adı `sam-lee`-dir. Profil README-si hansı repository-də olmalıdır?"
+  options:
+    - "`sam-lee/profile`"
+    - "`sam-lee/README`"
+    - "`sam-lee/sam-lee`"
+  answer: 2
+  explain: "Repository-nin adı istifadəçi adı ilə eyni olmalıdır. Başqa adlı repository-nin README-si profildə görünmür."
+- question: "Ayla `ayla-karimova/ayla-karimova` repository-sini **Private** yaradıb, içində dolu `README.md` var. Profildə README görünmür. Niyə?"
+  options:
+    - "Repository public deyil"
+    - "README əvvəlcə pin edilməlidir"
+    - "Fayl `PROFILE.md` adlanmalıdır"
+  answer: 0
+  explain: "Şərtlərdən biri repository-nin public olmasıdır. Ayla onu **Settings** → **Danger Zone** → **Change visibility** ilə public etsə, README görünəcək."
+- question: "Sam-ın xüsusi repository-sinin kökündə README yoxdur, amma `docs/README.md` var. Profildə README görünəcəkmi?"
+  options:
+    - "Bəli: GitHub istənilən qovluqdakı README-ni tapır"
+    - "Xeyr: `README.md` repository-nin kökündə olmalıdır"
+    - "Bəli, amma yalnız `docs` qovluğu pin edilsə"
+  answer: 1
+  explain: "GitHub yalnız kökdəki `README.md`-yə baxır. `docs/README.md` profil üçün sayılmır."
+- question: "Profil README-si profil səhifəsinin harasında görünür?"
+  options:
+    - "Yan sütunda, bio-nun yerində"
+    - "Contribution graph-ın altında"
+    - "Səhifənin yuxarısında, pinned-dən əvvəl"
+  answer: 2
+  explain: "README səhifənin yuxarısında görünür. Pinned repository-lər ondan aşağıdadır, ad, şəkil və bio isə yan sütunda qalır."
+- question: "Sam README-ni bir müddət profildən götürmək, sonra qaytarmaq istəyir. GitHub Docs hansını tövsiyə edir?"
+  options:
+    - "Repository-ni silmək"
+    - "Repository-ni private etmək"
+    - "İstifadəçi adını dəyişmək"
+  answer: 1
+  explain: "Private repository-nin README-si profildə görünmür, fayl və tarixçə isə yerində qalır. Qaytarmaq üçün repository-ni yenə public etmək kifayətdir."
+- question: "Sam istifadəçi adını `sam-lee`-dən `samlee`-yə dəyişdi. Repository `samlee/sam-lee` oldu. README profildə görünəcəkmi?"
+  options:
+    - "Bəli: köhnə ad yeni ada yönləndirilir"
+    - "Bəli: repository-nin adı da özü dəyişir"
+    - "Xeyr: repository adı istifadəçi adı deyil"
+  answer: 2
+  explain: "Repository-nin adı `sam-lee` qalıb, istifadəçi adı isə `samlee`-dir. Adlar eyni deyil, ona görə README profildən çıxır. Repository-nin adını `samlee` etmək lazımdır."
+- question: "Xüsusi repository public-dir, kökdə `README.md` var, amma fayl boşdur. Profildə nə görünür?"
+  options:
+    - "README bölməsi heç görünmür"
+    - "Boş README bölməsi görünür"
+    - "GitHub-ın şablon mətni görünür"
+  answer: 0
+  explain: "Dördüncü şərt faylın boş olmamasıdır. Boş `README.md` profildə göstərilmir."
+- question: "Bunlardan hansını profil README-sinə yazmamaq daha yaxşıdır?"
+  options:
+    - "Hazırda üzərində işlədiyiniz layihə"
+    - "Telefon nömrəsi və ev ünvanı"
+    - "Şəxsi saytınıza keçid"
+  answer: 1
+  explain: "Repository public-dir, README-ni hər kəs oxuyur. Layihə və sayta keçid yaxşı mövzudur, telefon və ünvan isə şəxsi məlumatdır."

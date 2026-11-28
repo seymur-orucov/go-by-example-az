@@ -1,0 +1,9 @@
+rules:
+  - "Profil README-si adı istifadəçi adı ilə eyni olan repository-nin `README.md` faylıdır, məsələn `sam-lee/sam-lee`."
+  - "README profil səhifəsinin yuxarısında, Markdown formatlanmış halda görünür."
+  - "Görünməsi üçün repository public olmalı, `README.md` kökdə olmalı və boş olmamalıdır."
+  - "Repository-ni private etmək, faylı silmək və ya boşaltmaq, adı dəyişmək README-ni profildən çıxarır."
+practices:
+  - "Qısa yazın: kim olduğunuz, indi nə ilə məşğul olduğunuz və əlaqə yolu."
+  - "Telefon nömrəsi və ev ünvanı kimi şəxsi məlumatı yazmayın: README-ni hər kəs oxuyur."
+  - "README-ni müvəqqəti gizlətmək üçün repository-ni silməyin, private edin."

@@ -1,0 +1,10 @@
+rules:
+  - "`CITATION.cff` YAML faylıdır; `cff-version`, `message`, `title` və `authors` məcburidir."
+  - "Şəxs müəllif `family-names` və `given-names` ilə, təşkilat `name` ilə yazılır."
+  - "Fayl default branch-da kökdə olanda GitHub **Cite this repository** linkini və APA, BibTeX sitatını göstərir."
+  - "APA sitatının sonunda DOI linki, DOI yoxdursa `repository-code` gəlir."
+  - "`preferred-citation` sitatı başqa işə, məsələn, məqaləyə yönəldir."
+practices:
+  - "Hər buraxılışda `version` və `date-released`-i yeniləyin."
+  - "Tarixi dırnaqda, `\"YYYY-MM-DD\"` formasında yazın."
+  - "DOI varsa, onu fayla əlavə edin: link dəyişmir."

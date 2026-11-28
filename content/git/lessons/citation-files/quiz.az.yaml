@@ -1,0 +1,56 @@
+- question: "Bu açarlardan hansı `CITATION.cff`-də məcburi deyil?"
+  options:
+    - "`title`"
+    - "`authors`"
+    - "`version`"
+    - "`message`"
+  answer: 2
+  explain: "Məcburi açarlar `cff-version`, `message`, `title` və `authors`-dur. `version` faydalıdır, amma onsuz da sitat qurulur."
+- question: "GitHub **Cite this repository** linkini nə vaxt göstərir?"
+  options:
+    - "README-də `Cite` başlığı olanda"
+    - "`CITATION.cff` default branch-da, kökdə olanda"
+    - "Repository-də ən azı bir release olanda"
+  answer: 1
+  explain: "Link `CITATION.cff` faylı default branch-da, repository-nin kökündə olanda avtomatik çıxır."
+- question: "Bu müəllif APA sitatında necə yazılır?"
+  code: |
+    authors:
+      - family-names: "Lee"
+        given-names: "Sam"
+  options:
+    - "`Lee, S.`"
+    - "`Sam Lee`"
+    - "`S. Lee`"
+    - "`Lee, Sam`"
+  answer: 0
+  explain: "APA-da əvvəl soyad, sonra adın inisialı gəlir: `Lee, S.` Tam ad (`Lee, Sam`) BibTeX-in `author` sahəsində olur."
+- question: "Faylda `doi` da, `repository-code` da var. APA sitatının sonunda hansı keçid olur?"
+  options:
+    - "`repository-code` ünvanı"
+    - "`url` ünvanı"
+    - "Heç bir keçid"
+    - "DOI linki"
+  answer: 3
+  explain: "APA əvvəlcə DOI-ni seçir. DOI yoxdursa, `repository-code`, o da yoxdursa, `url` yazılır."
+- question: "Müəllif şəxs deyil, laboratoriyadır. Onun adı hansı açarla yazılır?"
+  options:
+    - "`family-names`"
+    - "`name`"
+    - "`team`"
+  answer: 1
+  explain: "Təşkilat müəllif `name` açarı ilə yazılır. `family-names` və `given-names` şəxslər üçündür."
+- question: "`date-released` dəyərini necə yazmaq daha düzgündür?"
+  options:
+    - "`date-released: 02.03.2026`"
+    - "`date-released: March 2, 2026`"
+    - "`date-released: \"2026-03-02\"`"
+  answer: 2
+  explain: "Tarix `YYYY-MM-DD` formasında yazılır. Dırnaq onu mətn kimi saxlayır, YAML onu başqa cür oxumur."
+- question: "Ayla istəyir ki, paket yox, onun haqqında yazdığı məqalə sitat gətirilsin. Nə edir?"
+  options:
+    - "Fayla `preferred-citation` hissəsi əlavə edir"
+    - "`title`-ı məqalənin adı ilə əvəz edir"
+    - "Faylın adını `CITATION.bib` edir"
+  answer: 0
+  explain: "`preferred-citation` hissəsi varsa, GitHub onun sitatını göstərir. `CITATION.bib`-i GitHub çevirmir, sadəcə ona keçid verir."

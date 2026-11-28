@@ -1,0 +1,89 @@
+# Drawn mockups (ui lesson): the new repository form for the special repository, the README
+# in the editor and the profile page with the README on top. Simplified; labels follow GitHub
+# Docs where the docs name them. The form's hint for the special name is paraphrased (the docs
+# do not quote it).
+special-repo:
+  vis:
+    kind: ui
+    caption: "New repository forması: xüsusi repository (sadələşdirilmiş)"
+    url: "github.com/new"
+    main:
+      - type: heading
+        text: "Create a new repository"
+      - type: row
+        items:
+          - type: select
+            label: "Owner"
+            value: "sam-lee"
+          - type: field
+            label: "Repository name"
+            value: "sam-lee"
+            state: ok
+            hint: "Xüsusi repository: README-si profildə görünəcək"
+            mark: "Ad istifadəçi adı ilə eynidir: `github.com/sam-lee/sam-lee`."
+      - type: check
+        label: "Public"
+        radio: true
+        checked: true
+        mark: "Private repository-nin README-si profildə görünmür."
+      - type: check
+        label: "Private"
+        radio: true
+      - type: check
+        label: "Add README"
+        checked: true
+        mark: "GitHub kökdə `README.md` yaradır, mətni sonra yazılır."
+      - type: button
+        label: "Create repository"
+        tone: primary
+    note: "Formadakı qeydin mənası Azərbaycanca verilib. GitHub-dakı sözlər başqa ola bilər."
+write:
+  vis:
+    kind: ui
+    caption: "README.md-ni brauzerdə redaktə etmək (sadələşdirilmiş)"
+    url: "github.com/sam-lee/sam-lee/edit/main/README.md"
+    main:
+      - type: heading
+        text: "sam-lee / README.md"
+      - type: code
+        text: "# Hi, I'm Sam\n\nFrontend developer in a small product team.\n\n## Now\n\n- Building a trip planner with maps\n- Learning Git and GitHub\n- Writing tests for my recipe app\n\n## Contact\n\nWebsite: [samlee.example](https://samlee.example)"
+        mark: "Üç hissə: kim olduğu, indi nə ilə məşğul olduğu, əlaqə yolu."
+      - type: button
+        label: "Commit changes..."
+        tone: primary
+        mark: "Dəyişiklik commit edilir və profil yenilənir."
+on-profile:
+  vis:
+    kind: ui
+    caption: "Profil səhifəsi: README yuxarıda (sadələşdirilmiş)"
+    url: "github.com/sam-lee"
+    main:
+      - type: heading
+        text: "Hi, I'm Sam"
+        sub: "Frontend developer in a small product team."
+        mark: "`sam-lee/sam-lee` repository-sinin `README.md`-si, formatlanmış halda."
+      - type: list
+        items:
+          - { title: "Building a trip planner with maps" }
+          - { title: "Learning Git and GitHub" }
+          - { title: "Writing tests for my recipe app" }
+      - type: text
+        text: "Website: [samlee.example](https://samlee.example)"
+      - type: divider
+      - type: heading
+        text: "Pinned"
+        mark: "Pinned repository-lər README-dən aşağıdadır."
+      - type: list
+        items:
+          - { title: "portfolio", icon: folder }
+          - { title: "trip-planner", icon: folder }
+          - { title: "recipe-book", icon: folder }
+    side:
+      - type: box
+        label: "Profile Picture"
+        shape: round
+      - type: heading
+        text: "Sam Lee"
+        sub: "sam-lee"
+        mark: "Ad, şəkil və bio əvvəlki kimi yan sütundadır."
+    note: "README-nin `## Now` və `## Contact` başlıqları maketdə qısaldılıb."
