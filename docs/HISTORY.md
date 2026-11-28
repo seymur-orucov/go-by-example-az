@@ -813,3 +813,11 @@ Done:
 - Intro cut to 4 sentences; the byte sizes of `ü`, `é` and the Azerbaijani letters moved to #bytes; "ASCII" replaced by "ingilis əlifbasından kənar" (also in takeaways); `Unicode` added to GLOSSARY.
 - #runes says a rune is not always one letter (some emoji, `é` with a separate accent); #index shows that `city[0] = 'z'` does not compile (error message checked with Go).
 - Scan 6 → 5 pts.
+
+### 89. Polish `arrays` (Go)
+Applied the review's major findings (F1, F2); minor F3–F4 left open.
+
+Done:
+- #loop says the index starts at 1 because `temps[0]` is taken as the warmest day first (the text said 0, the code starts at 1).
+- The Diqqət note separates a constant index (`temps[7]`, compile error) from a loop with `i <= len(temps)` (compiles, then `panic: runtime error: index out of range [7] with length 7`, checked with Go).
+- Scan 4 → 4 pts.

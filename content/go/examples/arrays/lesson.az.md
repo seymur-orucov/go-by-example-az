@@ -14,9 +14,9 @@ Elementlər əvvəlcədən məlumdursa, array literal ilə yazırıq: `[7]int{12
 
 ## Dövrlə gəzinti {#loop}
 
-Array-in bütün elementlərini yoxlamaq üçün indeksi 0-dan `len(temps)`-ə qədər artıran adi `for` dövründən istifadə edirik. Birinci günü "ən isti" qəbul edib qalan günləri onunla müqayisə edirik.
+Array-in bütün elementlərini yoxlamaq üçün adi `for` dövrü yazırıq. Birinci günü (`temps[0]`) əvvəlcədən "ən isti" qəbul edirik. Ona görə indeksi 1-dən başlayıb `len(temps)`-ə qədər artırırıq və qalan günləri onunla müqayisə edirik.
 
-> **Diqqət:** ən böyük indeks `len(temps) - 1`-dir. `temps[7]` yazsaq, kompilyator xəta verir, çünki ölçü əvvəlcədən məlumdur.
+> **Diqqət:** ən böyük indeks `len(temps) - 1`-dir. `temps[7]` kimi sabit indeksi kompilyator tutur. Amma dövrdə `i <= len(temps)` yazsaq, kod kompilyasiya olunur və xəta proqram işləyəndə çıxır: `panic: runtime error: index out of range [7] with length 7`.
 
 ## Kopyalama və müqayisə {#copy}
 
