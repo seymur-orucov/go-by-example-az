@@ -792,7 +792,7 @@ Done:
 - `vis: ui`: a browser frame with an address bar and optional tabs, a main and a side column of simple elements, numbered marks with a legend; data in `steps.yaml`, checked by Zod (`UiMock.astro`, `UiEl.astro`, CSS in `lesson.css`, own 16×16 line icons). The side column drops under the main one on a phone.
 - Pilot `github-account` (Sam starts a new job): signup and the password rule, the username and what renaming breaks, why 2FA and who must enable it (45 + 7 days), the authenticator app, the setup key, the 6-digit check, 16 recovery codes. Facts checked against GitHub Docs (creating an account, strong passwords, configuring 2FA, mandatory 2FA, recovery methods, changing your username); the signup form labels are not in the docs, so the mockup is called simplified.
 
-### 86. GitHub module 14 "GitHub ilə tanışlıq"
+### 87. GitHub module 14 "GitHub ilə tanışlıq"
 The user approved the `ui` pilot and asked for the rest of the module. Four lessons were written by parallel subagents from a common brief; an independent reviewer checked facts against GitHub Docs, consistency and the quizzes and fixed them.
 
 Done:
