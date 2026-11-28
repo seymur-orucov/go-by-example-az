@@ -12,7 +12,7 @@ Mətnin içində `**qalın**` qalın, `*kursiv*` kursiv, backtick-lər arasında
 
 ## Siyahılar və tapşırıqlar {#lists}
 
-Nömrəli siyahı `1.`, `2.` ilə yazılır. Nöqtəli siyahı `-` ilə yazılır, `*` də olar. İç-içə siyahı üçün sətri boşluqla içəri çəkin: `- pick the LTS version` 3 boşluqla başlayır və ikinci bəndin altına düşür.
+Nömrəli siyahı `1.`, `2.` ilə yazılır. Nöqtəli siyahı `-` ilə yazılır, `*` də olar. İç-içə siyahı üçün bəndi üst bəndin mətninin altına qədər içəri çəkin. `2. ` 3 simvoldur, ona görə `- pick the LTS version` 3 boşluqla başlayır.
 
 `- [ ]` və `- [x]` **tapşırıq siyahısıdır** (*task list*). GitHub onu checkbox kimi göstərir, `[x]` işarələnmiş deməkdir. Bu GitHub Flavored Markdown-un (GFM) imkanıdır. GFM GitHub-ın Markdown dialektidir: adi Markdown-a cədvəl, tapşırıq siyahısı və başqa bir neçə şey əlavə edir.
 
@@ -32,4 +32,4 @@ Cədvəl `|` ilə sütunlara bölünür. İkinci sətir başlığı cədvəldən
 
 `>` ilə başlayan sətirlər sitat blokudur. Son sətir belədir və nəticədə solunda xətt olan mətn kimi görünür.
 
-`> [!NOTE]` və `> [!WARNING]` GitHub-ın **alert**-ləridir. Onlar rəngli başlıqlı blok kimi görünür. Beş növ var: `NOTE`, `TIP`, `IMPORTANT`, `WARNING`, `CAUTION`. Bunlar da GitHub-a xasdır: başqa saytlarda adi sitat kimi görünə bilər. Alert-ləri az işlədin, oxucu hər yerdə xəbərdarlıq görəndə onlara fikir vermir.
+`> [!NOTE]` və `> [!WARNING]` GitHub-ın **alert**-ləridir. Onlar rəngli başlıqlı blok kimi görünür. Beş növ var: `NOTE`, `TIP`, `IMPORTANT`, `WARNING`, `CAUTION`. Bunlar da GitHub-a xasdır: başqa saytlarda adi sitat kimi görünə bilər. GitHub sənəddə bir-iki alert-dən çox işlətməməyi və onları ard-arda qoymamağı tövsiyə edir. Hər yerdə xəbərdarlıq olanda oxucu onlara fikir vermir.
