@@ -16,8 +16,8 @@
     }
     rate = 15
     fmt.Println(fee())
-  options: ["15", "10", "kompilyasiya xətası"]
-  answer: 0
+  options: ["10", "15", "kompilyasiya xətası"]
+  answer: 1
   explain: "Closure dəyişənin özünü tutur, dəyərini yox; çağırış anında `rate` `15`-dir."
 
 - question: Bu kod nə çap edəcək?
@@ -29,8 +29,8 @@
     add()
     add()
     fmt.Println(count)
-  options: ["2", "0", "1"]
-  answer: 0
+  options: ["0", "1", "2"]
+  answer: 2
   explain: "Closure xarici `count` dəyişəninə yazır, ona görə dəyişiklik çöldən də görünür."
 
 - question: Bu kod nə çap edəcək?
@@ -48,8 +48,8 @@
     a()
     a()
     fmt.Println(a(), b())
-  options: ["15 5", "15 15", "5 5"]
-  answer: 0
+  options: ["15 15", "5 5", "15 5"]
+  answer: 2
   explain: "Hər `newPiggyBank()` çağırışı öz `coins` dəyişənini yaradır; `a` üç dəfə, `b` bir dəfə çağırılıb."
 
 - question: Bu kod niyə kompilyasiya olunmur?
@@ -76,4 +76,4 @@
     - "`apply(2, func(x string) int { return 0 })`"
     - "`apply(2, func(y int) int { return y * y })`"
   answer: 1
-  explain: "`f` `func(int) int` tipindədir; `string` qəbul edən funksiya bu tipə uyğun gəlmir, parametrin adı isə önəmli deyil."
+  explain: "`f` `func(int) int` tipindədir; `string` qəbul edən funksiya bu tipə uyğun gəlmir, parametrin adı isə fərq etmir."
