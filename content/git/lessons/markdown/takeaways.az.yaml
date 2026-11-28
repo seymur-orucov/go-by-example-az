@@ -1,0 +1,11 @@
+rules:
+  - "Başlıq sətrin əvvəlində 1–6 `#` və boşluqla yazılır; paraqrafları boş sətir ayırır."
+  - "Siyahı `-` və ya `1.` ilə yazılır; `- [ ]` və `- [x]` GitHub-da tapşırıq siyahısıdır."
+  - "Keçid `[mətn](ünvan)`, şəkil `![alt text](yol)` formasındadır; ünvan nisbi yol da ola bilər."
+  - "Kod bloku üç backtick arasında yazılır, içində Markdown işləmir; dilin adı rəngləməni açır."
+  - "Cədvəldə ikinci sətir başlığı ayırır, `:` işarələri sütunun düzlənməsini təyin edir."
+  - "Tapşırıq siyahısı, cədvəl və alert-lər GitHub Flavored Markdown-dadır; başqa yerdə fərqli görünə bilər."
+practices:
+  - "Şəklin alt text-inə onun nə göstərdiyini yazın."
+  - "Kod bloklarında dilin adını yazın."
+  - "Alert-ləri yalnız həqiqətən vacib məlumat üçün işlədin."

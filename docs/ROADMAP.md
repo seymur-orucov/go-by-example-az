@@ -166,7 +166,7 @@ Once the Go prototype is live, the site becomes a unified platform.
   - [x] **Git syllabus v2**: full roadmap.sh/git-github scope, one node per topic — 2 parts (Git 13 modules / 78 nodes, GitHub 12 modules / 68 nodes), 146 nodes, ~13.7 h; `parts` in the syllabus schema and on `/git/`; new kind `ui` (planned)
   - [x] Lesson kind `ui` on the site (needed by the GitHub part): drawn mockups `vis: ui`, pilot `github-account` approved 2026-11-28
   - [x] GitHub module 14 "GitHub ilə tanışlıq" (5 lessons, awaiting the user's review)
-  - [ ] Lesson kind `code` for Markdown and YAML (code + rendered result; the user chose it 2026-11-28), pilot with the first node of module 15
+  - [ ] Lesson kind `code` for Markdown and YAML (code + rendered result; the user chose it 2026-11-28): Markdown built, pilot `markdown` awaits the user's review; YAML when module 19 starts
   - [x] Lesson kinds `terminal` and `state` on the site: `session.sh` + `pnpm content:run` (recorded output), the `areas` visual, `/git/` and `/git/<id>/` pages, shared `LessonView`; `pnpm content:check` validates syllabi and session lessons
   - [x] Lesson kind `diagram` (pilot `remotes-and-clone`, 2026-11-28); `compare`, `concept` and the commit-graph visual `vis: graph` are done
   - [x] `write-content` skill (pilot lesson per kind → approval → module by module)

@@ -1,0 +1,63 @@
+- question: "Bu sətirlərdən hansı ikinci səviyyəli başlıq olur?"
+  options:
+    - "`#Install`"
+    - "`## Install`"
+    - "`Install ##`"
+  answer: 1
+  explain: "Başlıq sətrin əvvəlindəki `#`-larla yazılır və onlardan sonra boşluq qoyulur. İki `#` ikinci səviyyədir."
+- question: "`README.md`-də bu iki sətir GitHub-da necə görünür?"
+  code: |
+    Install Git.
+    Then clone the repository.
+  options:
+    - "İki ayrı paraqraf kimi"
+    - "Birinci sətir başlıq, ikinci adi mətn kimi"
+    - "Bir paraqraf kimi: `Install Git. Then clone the repository.`"
+  answer: 2
+  explain: "Faylda ardıcıl sətirlər bir paraqrafa birləşir. Ayrı paraqraf üçün aralarına boş sətir qoyun."
+- question: "Hansı sətir tapşırıq siyahısında işarələnmiş bənd olur?"
+  options:
+    - "`- [x] 2FA enabled`"
+    - "`- (x) 2FA enabled`"
+    - "`- [] 2FA enabled`"
+    - "`[x] - 2FA enabled`"
+  answer: 0
+  explain: "Tapşırıq siyahısının bəndi `- [ ]` (boş) və ya `- [x]` (işarələnmiş) ilə başlayır."
+- question: "Bu sətir nə göstərir?"
+  code: |
+    ![Login page](docs/login.png)
+  options:
+    - "`Login page` mətni olan keçid"
+    - "`docs/login.png` şəkli, alt text-i `Login page`"
+    - "`Login page` başlığı və altında şəkil"
+  answer: 1
+  explain: "`!` ilə başlayan keçid şəkildir. Kvadrat mötərizədəki mətn alt text-dir: şəkil görünməyəndə və ekran oxuyucusunda oxunur."
+- question: "Eyni repository-dəki `docs/install.md` faylına keçid necə yazılır?"
+  options:
+    - "`[Install guide](docs/install.md)`"
+    - "`(Install guide)[docs/install.md]`"
+    - "`[docs/install.md](Install guide)`"
+  answer: 0
+  explain: "Keçiddə əvvəl kvadrat mötərizədə görünən mətn, sonra adi mötərizədə ünvan gəlir. Ünvan nisbi yol da ola bilər."
+- question: "Cədvəldə `| ---: |` nə edir?"
+  options:
+    - "Sütunu gizlədir"
+    - "Sütunu mərkəzə düzləyir"
+    - "Sütunu sağa düzləyir"
+  answer: 2
+  explain: "İki nöqtə düzlənməni təyin edir: `:---` sola, `:---:` mərkəzə, `---:` sağa."
+- question: "Üç backtick arasındakı blokda `# Notes` sətri necə görünür?"
+  options:
+    - "Birinci səviyyəli başlıq kimi"
+    - "Olduğu kimi, `# Notes` mətni ilə"
+    - "Heç görünmür, şərh sayılır"
+  answer: 1
+  explain: "Kod blokunun içində Markdown işləmir. Orada hər şey yazıldığı kimi göstərilir."
+- question: "Bunlardan hansı GitHub alert-i deyil?"
+  options:
+    - "`> [!TIP]`"
+    - "`> [!CAUTION]`"
+    - "`> [!IMPORTANT]`"
+    - "`> [!ERROR]`"
+  answer: 3
+  explain: "GitHub-da beş alert var: `NOTE`, `TIP`, `IMPORTANT`, `WARNING`, `CAUTION`. `ERROR` yoxdur, belə blok adi sitat kimi görünür."

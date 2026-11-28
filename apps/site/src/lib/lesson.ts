@@ -1,6 +1,6 @@
 // Lesson loader and validator. Format: docs/DECISIONS.md, "Lesson content format".
 // Pure Node + yaml + zod, so the build and `pnpm content:check` share it.
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { z } from "astro/zod";
 import { parse as parseYaml } from "yaml";
@@ -13,6 +13,7 @@ import {
   type SessionFile,
 } from "./session.ts";
 import { layoutGraph, type GraphLayout } from "./graph.ts";
+import { renderPreview } from "./markdown.ts";
 
 /** Both `astro build` and the check script run with apps/site as the working directory. */
 export const CONTENT_ROOT = resolve(process.cwd(), "../../content");
@@ -456,6 +457,8 @@ export interface LessonStep extends CodeStep {
   body: string;
   out?: string;
   vis?: Vis;
+  /** Markdown code lessons: the step's lines rendered as GitHub shows them (HTML). */
+  preview?: string;
 }
 
 export interface Lesson {
@@ -464,7 +467,7 @@ export interface Lesson {
   mode: "code" | "session" | "text";
   /** The code pane: `main.go` (Go) or `session.sh` (terminal sessions), markers removed. */
   code: string;
-  lang: "go" | "bash";
+  lang: "go" | "bash" | "markdown";
   /** Name shown on the code window. */
   file: string;
   /** The command the "full output" button shows above the output; null for sessions (the transcript has its own `$` lines). */
@@ -476,6 +479,8 @@ export interface Lesson {
   quiz: QuizQuestion[];
   takeaways: Takeaways;
   output: string;
+  /** Markdown code lessons: the whole file rendered (the "full result" view). */
+  fullPreview?: string;
 }
 
 // "// @step" is accepted too: gofmt adds the space when a marker sits right above a top-level declaration.
@@ -484,7 +489,10 @@ const END_MARKER = /^\s*\/\/ ?@end\s*$/;
 const indentOf = (line: string): number => /^\s*/.exec(line)![0].replace(/\t/g, "    ").length;
 
 /** Strips `//@step <id>` / `//@end` markers and computes each step's line range. */
-export function parseCode(src: string): { code: string; steps: CodeStep[] } {
+export function parseCode(
+  src: string,
+  markers: { step: RegExp; end: RegExp } = { step: MARKER, end: END_MARKER },
+): { code: string; steps: CodeStep[] } {
   const lines: string[] = [];
   const steps: CodeStep[] = [];
   let open: CodeStep | null = null;
@@ -495,12 +503,12 @@ export function parseCode(src: string): { code: string; steps: CodeStep[] } {
     open = null;
   };
   for (const line of src.replace(/\r\n/g, "\n").replace(/\n+$/, "").split("\n")) {
-    const m = MARKER.exec(line);
+    const m = markers.step.exec(line);
     if (m) {
       if (!ID.test(m[1]!)) throw new Error(`invalid step id "${m[1]}"`);
       close();
       open = { id: m[1]!, from: lines.length + 1, to: 0 };
-    } else if (END_MARKER.test(line)) {
+    } else if (markers.end.test(line)) {
       close();
     } else {
       lines.push(line);
@@ -916,5 +924,99 @@ export function loadTextLesson(
     quiz: quizParsed.data!,
     takeaways: takeawaysParsed.data!,
     output: "",
+  };
+}
+
+/** Step markers of a Markdown file: `<!-- @step id -->` and `<!-- @end -->` on their own lines. */
+const MD_MARKERS = {
+  step: /^\s*<!--\s*@step\s+(\S+)\s*-->\s*$/,
+  end: /^\s*<!--\s*@end\s*-->\s*$/,
+};
+
+/**
+ * Loads and validates a ready `code` lesson of a syllabus technology about Markdown:
+ * content/<technology>/lessons/<slug>/ with ONE Markdown file (e.g. `README.md`) split into steps by
+ * `<!-- @step id -->` markers, `lesson.<locale>.md` with the same step ids, an optional
+ * `steps.yaml` (hand-written `vis` per step), quiz and takeaways. Instead of a program's output each
+ * step shows its lines rendered as GitHub shows them (`preview`), and the pane can show the whole
+ * file rendered (`fullPreview`).
+ */
+export function loadCodeLesson(technology: string, slug: string, locale = "az"): Lesson {
+  const dir = join(CONTENT_ROOT, technology, "lessons", slug);
+  const docs = readdirSync(dir).filter((n) => /\.md$/i.test(n) && !/^lesson\./.test(n));
+  if (docs.length !== 1) {
+    throw new Error(
+      `${technology}/${slug}: a code lesson needs exactly one Markdown file besides lesson.${locale}.md, found ${docs.length ? docs.join(", ") : "none"}`,
+    );
+  }
+  const file = docs[0]!;
+  const files = {
+    text: join(dir, `lesson.${locale}.md`),
+    quiz: join(dir, `quiz.${locale}.yaml`),
+    takeaways: join(dir, `takeaways.${locale}.yaml`),
+  };
+  const missing = Object.values(files).filter((f) => !existsSync(f));
+  if (missing.length) {
+    const names = missing.map((f) => f.slice(dir.length + 1)).join(", ");
+    throw new Error(`${technology}/${slug}: missing ${names}`);
+  }
+
+  const problems: string[] = [];
+  let parsed: { code: string; steps: CodeStep[] } = { code: "", steps: [] };
+  try {
+    parsed = parseCode(readFileSync(join(dir, file), "utf8"), MD_MARKERS);
+  } catch (e) {
+    problems.push(`${file}: ${(e as Error).message}`);
+  }
+  const { code, steps: codeSteps } = parsed;
+  const text = parseLessonText(readFileSync(files.text, "utf8"));
+  const stepsFile = join(dir, "steps.yaml");
+  const stepsParsed = textStepsSchema.safeParse(
+    existsSync(stepsFile) ? (readYaml(stepsFile) ?? {}) : {},
+  );
+  if (!stepsParsed.success) problems.push(`steps.yaml: ${formatZod(stepsParsed.error)}`);
+  const stepData = stepsParsed.success ? stepsParsed.data : {};
+  const quizParsed = quizSchema.safeParse(readYaml(files.quiz));
+  if (!quizParsed.success) problems.push(`quiz.${locale}.yaml: ${formatZod(quizParsed.error)}`);
+  const takeawaysParsed = takeawaysSchema.safeParse(readYaml(files.takeaways));
+  if (!takeawaysParsed.success) {
+    problems.push(`takeaways.${locale}.yaml: ${formatZod(takeawaysParsed.error)}`);
+  }
+
+  const codeIds = codeSteps.map((s) => s.id).join(", ");
+  const textIds = text.sections.map((s) => s.id).join(", ");
+  if (!codeSteps.length) problems.push(`${file}: no <!-- @step --> markers`);
+  if (codeIds !== textIds) {
+    problems.push(`step ids differ: ${file} [${codeIds}] vs lesson.${locale}.md [${textIds}]`);
+  }
+  for (const id of Object.keys(stepData)) {
+    if (!codeSteps.some((s) => s.id === id)) problems.push(`steps.yaml: unknown step "${id}"`);
+  }
+  if (problems.length) throw new Error(`${technology}/${slug}:\n  - ${problems.join("\n  - ")}`);
+
+  const lines = code.replace(/\n$/, "").split("\n");
+  return {
+    slug,
+    mode: "code",
+    code,
+    lang: "markdown",
+    file,
+    run: null,
+    intro: text.intro,
+    steps: codeSteps.map((s) => {
+      const section = text.sections.find((t) => t.id === s.id)!;
+      return {
+        ...s,
+        title: section.title,
+        body: section.body,
+        vis: stepData[s.id]?.vis,
+        preview: renderPreview(lines.slice(s.from - 1, s.to).join("\n")),
+      };
+    }),
+    outro: text.outro,
+    quiz: quizParsed.data!,
+    takeaways: takeawaysParsed.data!,
+    output: "",
+    fullPreview: renderPreview(code),
   };
 }

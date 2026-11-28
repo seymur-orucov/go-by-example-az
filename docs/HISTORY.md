@@ -802,3 +802,10 @@ Done:
 - `creating-repositories` (`ui`, a habit tracker): the New repository form, README / `.gitignore` / license templates, why to keep the repository empty for an existing project (`fetch first`, unrelated histories), Quick setup and `git push -u`, creating first and cloning.
 - The reviewer removed claims no doc confirms (UTC days, a 24-hour delay, "Search all of GitHub"), trimmed busy lessons to 4–5 mockups and replaced giveaway quiz options.
 
+### 88. Lesson kind `code` for Markdown (pilot `markdown`)
+The user approved module 14 and asked to continue; module 15 needs `code` lessons about Markdown.
+
+Done:
+- `loadCodeLesson`: one Markdown file per lesson split by `<!-- @step id -->` markers; Shiki highlights Markdown; `renderPreview` renders GitHub Flavored Markdown with GitHub alerts, task lists, links in a new tab and images as alt-text placeholders. The pane shows "Nəticə" (the current step rendered) and "Tam nəticə" (the whole file) instead of the terminal output; each step also shows its result.
+- Pilot `markdown` (Ayla's `SETUP.md` for new developers): headings, paragraphs and emphasis, lists and task lists, links and images (alt text), code blocks and tables (alignment), blockquotes and the five GitHub alerts. Facts from GitHub Docs "Basic writing and formatting syntax" and "Organizing information with tables".
+

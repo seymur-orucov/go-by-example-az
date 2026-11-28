@@ -26,8 +26,8 @@ file (approved lessons of the same kind).
 2. If the site cannot render that kind yet, build it first and tell the user: today `code`
    (Go only, see write-lesson), `terminal` and `state` (terminal sessions, `vis: areas` and
    `vis: graph`), `concept`, `compare` and `diagram` (text lessons, `vis: flow` / `vis: compare` /
-   `vis: diagram`) and `ui` (drawn mockups, `vis: ui`) exist; `code` for Markdown and YAML
-   does not. A new kind or visual = a schema in `apps/site/src/lib/`, a
+   `vis: diagram`), `ui` (drawn mockups, `vis: ui`) and `code` for Markdown (the file and its
+   rendered result) exist; `code` for YAML does not. A new kind or visual = a schema in `apps/site/src/lib/`, a
    branch in `Vis.astro` or a new stage component, CSS in `packages/theme`, and checks in
    `pnpm content:check`. Data-driven, never per-lesson JS; animations off under
    `prefers-reduced-motion`.
@@ -103,6 +103,25 @@ content/<technology>/lessons/<id>/
 - Keep it to one or two visuals per lesson (the user found busy visual pages confusing).
 - Facts that are not checked by running a command (dates, who made what) must be well known and
   checked against the official documentation or the project's own history page.
+
+### Files of a Markdown `code` lesson
+
+The pane shows ONE Markdown file (e.g. `README.md`) split into steps; instead of a program's
+output each step shows its lines rendered the way GitHub shows them ("Nəticə"), and "Tam nəticə"
+renders the whole file.
+
+```
+content/<technology>/lessons/<id>/
+  meta.yaml  lesson.az.md  quiz.az.yaml  takeaways.az.yaml
+  README.md           the lesson's file; `<!-- @step id -->` / `<!-- @end -->` on their own lines
+  steps.yaml          optional: hand-written `vis` per step
+```
+
+- Step ids in the file and in `lesson.az.md` are the same, in the same order (`content:check`).
+- The preview is GitHub Flavored Markdown with GitHub alerts; images show as a placeholder with
+  their alt text (no image files in the lesson); raw HTML stays text.
+- Each step renders on its own, so a step should be a complete block (a whole list, a whole
+  table).
 
 ### Session format
 
@@ -184,3 +203,4 @@ Approved lessons to imitate, by kind (add one when the user approves a pilot):
 - `compare` — Git `git-vs-other-vcs` (pilot, approved 2026-11-27)
 - `diagram` — Git `remotes-and-clone` (pilot, approved 2026-11-28)
 - `ui` — Git `github-account` (pilot, approved 2026-11-28)
+- `code` (Markdown) — Git `markdown` (pilot, awaiting review)
