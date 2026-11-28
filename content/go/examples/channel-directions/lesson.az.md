@@ -1,12 +1,12 @@
-Adi channel iki tərəflidir: ona həm göndərmək, həm də ondan qəbul etmək olur. Amma çox vaxt bir funksiya channel-ı yalnız bir istiqamətdə işlətməlidir: dəyəri hazırlayan yalnız göndərir, onu istifadə edən yalnız qəbul edir. Go-da istiqaməti channel-ın tipinə yazmaq olur: `chan<- T` yalnız göndərmək, `<-chan T` yalnız qəbul etmək üçündür. Səhv istiqamətdə istifadə kompilyasiya xətasıdır, yəni səhv proqram işə düşməzdən əvvəl tutulur, funksiyanın imzası isə channel-ın burada hansı rolu oynadığını dərhal göstərir.
+Adi channel iki tərəflidir, amma dəyəri hazırlayan funksiya çox vaxt ona yalnız göndərir, istifadə edən isə yalnız qəbul edir. Go-da istiqaməti channel-ın tipinə yazmaq olur: `chan<- T` yalnız göndərmək, `<-chan T` yalnız qəbul etmək üçündür. Səhv istiqamətdə istifadə kompilyasiya xətasıdır, yəni səhv proqram işə düşməzdən əvvəl tutulur.
 
 Bu dərsdə şirə doldurma xətti yazırıq: doldurma, etiketləmə və qablaşdırma mərhələləri bir-birinə channel-larla bağlıdır.
 
 ## Yalnız göndərmək {#send-only}
 
-`fill` şüşələri doldurur və `filled` channel-ına göndərir. Parametrin tipi `chan<- string`-dir: ox `chan` sözünə tərəf yönəlib, yəni dəyər channel-a daxil olur. `fill` içində `<-filled` yazsaq, kod kompilyasiya olunmaz və xəta `cannot receive from send-only channel` olar. Doldurma maşını hazır şüşəni geri götürmür, kompilyator da buna icazə vermir.
+`fill` şüşələri doldurur və `filled` channel-ına göndərir. Parametrin tipi `chan<- string`-dir: ox `chan` sözünə tərəf yönəlib, yəni dəyər channel-a daxil olur. `fill` içində `<-filled` yazsaq, kod kompilyasiya olunmaz və xəta `cannot receive from send-only channel` olar. Gövdəni oxumadan da imzadan görünür ki, `fill` yalnız göndərir.
 
-> **Bilgi:** Yazılışı yadda saxlamaq asandır: ox həmişə dəyərin hərəkət istiqamətini göstərir. `chan<-` dəyər channel-a girir, `<-chan` dəyər channel-dan çıxır.
+> **Bilgi:** `chan<-`: dəyər channel-a girir; `<-chan`: dəyər channel-dan çıxır.
 
 ## Yalnız qəbul etmək {#receive-only}
 
