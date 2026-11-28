@@ -14,8 +14,8 @@
         sum += i
     }
     fmt.Println(sum)
-  options: ["10", "6", "4"]
-  answer: 0
+  options: ["6", "4", "10"]
+  answer: 2
   explain: "`1 + 2 + 3 + 4 = 10`: hər təkrarda `i` cəmə əlavə olunur."
 
 - question: Bu dövr neçə dəfə işləyəcək?
@@ -23,8 +23,8 @@
     for i := 0; i < 5; i += 2 {
         fmt.Println(i)
     }
-  options: ["3 dəfə", "2 dəfə", "5 dəfə"]
-  answer: 0
+  options: ["2 dəfə", "3 dəfə", "5 dəfə"]
+  answer: 1
   explain: "`i` 0, 2, 4 qiymətlərini alır; 6 artıq `i < 5` şərtini pozur."
 
 - question: Bu kod nə çap edəcək?
@@ -34,8 +34,8 @@
         n -= 4
     }
     fmt.Println(n)
-  options: ["2", "3", "-2"]
-  answer: 0
+  options: ["3", "-2", "2"]
+  answer: 2
   explain: "`n` 10 → 6 → 2 olur; 2 artıq `n > 3` şərtini ödəmir və dövr bitir."
 
 - question: Bu kod nə çap edəcək?
@@ -43,8 +43,8 @@
     for i := 5; i < 3; i++ {
         fmt.Println(i)
     }
-  options: ["5", "heç nə", "sonsuz dövr"]
-  answer: 1
+  options: ["heç nə", "5", "sonsuz dövr"]
+  answer: 0
   explain: Şərt hər təkrardan əvvəl yoxlanır; `5 < 3` ilk yoxlamada yalandır, ona görə dövr bir dəfə də işləmir.
 
 - question: Bu kod nə çap edəcək (hər dəyər ayrı sətirdə)?
@@ -55,8 +55,8 @@
         }
         fmt.Println(i)
     }
-  options: ["1, 2", "1, 2, 4, 5", "1, 2, 3"]
-  answer: 0
+  options: ["1, 2, 3", "1, 2", "1, 2, 4, 5"]
+  answer: 1
   explain: "`i == 3` olanda `break` dövrü tamam bitirir, ona görə 3, 4 və 5 çap olunmur."
 
 - question: Bu kod nə çap edəcək (hər dəyər ayrı sətirdə)?
@@ -67,11 +67,11 @@
         }
         fmt.Println(i)
     }
-  options: ["1, 3, 4", "1", "1, 2, 3, 4"]
-  answer: 0
+  options: ["1", "1, 2, 3, 4", "1, 3, 4"]
+  answer: 2
   explain: "`continue` yalnız `i == 2` təkrarını keçir; dövr 3 və 4 ilə davam edir."
 
 - question: Hansı sətir kompilyasiya olunmayacaq?
-  options: ["for i := 0; i < 3; i++ {", "for (i := 0; i < 3; i++) {", "for i < 3 {"]
-  answer: 1
+  options: ["for (i := 0; i < 3; i++) {", "for i := 0; i < 3; i++ {", "for i < 3 {"]
+  answer: 0
   explain: Go-da `for`-un hissələri mötərizəyə alınmır; mötərizəli yazılış sintaksis xətası verir.
