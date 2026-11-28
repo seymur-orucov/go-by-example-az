@@ -5,5 +5,5 @@ rules:
   - "`select`-in içindəki `break` yalnız `select`-dən çıxır; dövrü bitirmək üçün etiketli `break` lazımdır."
 practices:
   - "Dövrü dayanmadan işləməli olan kodda (oyun kadrı, UI) mesajı `default`-lu `select` ilə yoxlayın."
-  - "Dolu növbəyə göndərəndə nə edəcəyinizi açıq seçin: gözləmək, yoxsa `default`-da atmaq və bunu qeyd etmək."
+  - "Dolu növbəyə göndərəndə nə edəcəyinizi açıq seçin: gözləmək, yoxsa `default`-da atmaq."
   - "Channel-ı boşaltmaq üçün `len`-ə baxıb sonra oxumaq əvəzinə `default`-lu `select` istifadə edin."

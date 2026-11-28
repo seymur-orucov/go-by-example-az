@@ -1,10 +1,10 @@
-Channel-dan qəbul dəyər gələnə qədər, göndərmə isə qəbul edən və ya buffer-də yer olana qədər gözləyir. Çox vaxt elə də lazımdır, amma bəzən gözləmək olmaz: oyun saniyədə onlarla kadr çəkir və yeni mesaj gəlmədi deyə ekran donmamalıdır. `select`-ə `default` əlavə edəndə əməliyyat bloklamayan olur: heç bir `case` dərhal hazır deyilsə, `select` gözləmir, `default`-u icra edib davam edir. Bu, "varsa götür, yoxdursa keç" deməkdir.
+Channel-dan qəbul dəyər gələnə qədər, göndərmə isə qəbul edən və ya buffer-də yer olana qədər gözləyir. Çox vaxt elə də lazımdır, amma bəzən gözləmək olmaz. `select`-ə `default` əlavə edəndə əməliyyat bloklamayan olur: heç bir `case` dərhal hazır deyilsə, `select` gözləmir, `default`-u icra edib davam edir.
 
-Bu dərsdə oyunun bildiriş nişanını (badge) yazırıq: oyun hər kadrda yeni mesaj olub-olmadığını gözləmədən yoxlayır, dolu bildiriş növbəsinə isə yenisini zorla salmır, onu atır.
+Nümunədə oyun hər kadrda yeni mesajı gözləmədən yoxlayır, dolu bildiriş növbəsinə gələn yenisini isə atır.
 
 ## Gözləmədən qəbul {#try-receive}
 
-Dostun mesajı 600 ms sonra gəlir, oyun isə hər 400 ms-dən bir kadr çəkir (real oyunda bu, təxminən 16 ms-dir, burada çıxış sabit olsun deyə aralıq böyükdür). Hər kadrda `select` `chat`-ı yoxlayır: mesaj yoxdursa, dərhal `default` işləyir və oyun növbəti kadra keçir. 1-ci (0 ms) və 2-ci (400 ms) kadrlarda mesaj hələ yoxdur, 3-cü kadrda (800 ms) isə o, artıq channel-dadır. `default` olmasaydı, birinci kadr mesajı 600 ms gözləyəcək və oyun bu müddətdə donacaqdı.
+Dostun mesajı 600 ms sonra gəlir, oyun isə hər 400 ms-dən bir kadr çəkir. Real oyunda kadrlar arası təxminən 16 ms olur; burada aralıq çıxış sabit olsun deyə böyükdür. Hər kadrda `select` `chat`-ı yoxlayır: mesaj yoxdursa, dərhal `default` işləyir və oyun növbəti kadra keçir. 1-ci (0 ms) və 2-ci (400 ms) kadrlarda mesaj hələ yoxdur, 3-cü kadrda (800 ms) isə o, artıq channel-dadır. `default` olmasaydı, birinci kadr mesajı 600 ms gözləyəcək və oyun bu müddətdə donacaqdı.
 
 ## Gözləmədən göndərmə {#try-send}
 
