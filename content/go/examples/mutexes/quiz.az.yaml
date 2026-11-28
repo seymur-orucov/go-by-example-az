@@ -1,9 +1,9 @@
 - question: "Bilet satmaq üçün niyə `atomic.Int64` yetmir, mutex lazımdır?"
   options:
-    - "Yerin boş olduğunu yoxlamaq və onu yazmaq iki addımdır və birlikdə qorunmalıdır"
-    - "Atomik tiplər goroutine-lərdə işləmir"
-    - "Atomik sayğac yalnız artırır, azaltmır"
-  answer: 0
+    - "Atomik tiplər goroutine-lər arasında işləmir"
+    - "Yeri yoxlamaq və satmaq iki addımdır, ikisi birlikdə qorunmalıdır"
+    - "Atomik sayğac yalnız artırır, azaltmağı bilmir"
+  answer: 1
   explain: "Atomik əməliyyat bir dəyəri bölünməz dəyişir, iki addımın arasına isə başqa goroutine girə bilər; mutex bütün hissəni bağlayır."
 
 - question: Bu kod nə çap edəcək?
@@ -22,8 +22,8 @@
     }
     wg.Wait()
     fmt.Println(views["home"])
-  options: ["1000", "250", "1000 və ya daha az, hər dəfə fərqli"]
-  answer: 0
+  options: ["250", "1000 və ya daha az, hər dəfə fərqli", "1000"]
+  answer: 2
   explain: "Hər artım kilidin içindədir, ona görə dörd goroutine-in 1000 artımından heç biri itmir."
 
 - question: Bu metodda nə səhvdir?
@@ -39,9 +39,9 @@
         c.items[item]++
     }
   options:
-    - "Receiver value-dur: hər çağırış mutex-in kopyasını kilidləyir və map qorunmur"
-    - "`defer` ilə `Unlock` çağırmaq olmaz"
-    - "Heç nə, kod düzgündür"
+    - "Receiver value-dur: hər çağırış mutex-in kopyasını kilidləyir"
+    - "`defer` ilə `Unlock` çağırmaq olmaz, kilid açılmır"
+    - "Heç nə səhv deyil, kod düzgün işləyir"
   answer: 0
   explain: "Map hamı üçün eynidir, kilidlər isə kopyadır; `go vet` `Add passes lock by value` deyir, düzgünü `func (c *Cart)`-dır."
 
@@ -67,11 +67,11 @@
     fmt.Println(h.Book("4A"))
     fmt.Println(h.Book("5B"))
   options:
-    - "`true`, `false`, sonra `fatal error: all goroutines are asleep - deadlock!`"
     - "`true`, `false`, `true`"
+    - "`true`, `false`, sonra deadlock xətası"
     - "`true`, sonra deadlock xətası"
-  answer: 0
-  explain: "İkinci çağırış `Unlock` etmədən qayıdır, üçüncü `Lock` isə əbədi gözləyir; `defer h.mu.Unlock()` bunun qarşısını alardı."
+  answer: 1
+  explain: "İkinci çağırış `Unlock` etmədən qayıdır, üçüncü `Lock` isə əbədi gözləyir və Go `fatal error: all goroutines are asleep - deadlock!` ilə dayanır. `defer h.mu.Unlock()` bunun qarşısını alardı."
 
 - question: Bu kod nə çap edəcək?
   code: |
@@ -79,9 +79,9 @@
     mu.Lock()
     mu.Lock()
     fmt.Println("done")
-  options: ["`fatal error: all goroutines are asleep - deadlock!`", "done", "kompilyasiya xətası"]
-  answer: 0
-  explain: "Go-da mutex təkrar bağlanmır: ikinci `Lock` birincinin açılmasını gözləyir, onu isə açan yoxdur."
+  options: ["`done` çap edir", "kompilyasiya xətası verir", "deadlock xətası ilə dayanır"]
+  answer: 2
+  explain: "Go-nun mutex-i eyni goroutine-ə ikinci dəfə `Lock` etməyə icazə vermir: ikinci `Lock` birincinin açılmasını gözləyir, onu isə açan yoxdur. Proqram `fatal error: all goroutines are asleep - deadlock!` ilə dayanır."
 
 - question: Bu kod işə düşəndə nə olacaq?
   code: |
@@ -90,16 +90,16 @@
     mu.Unlock()
     fmt.Println("end")
   options:
-    - "`start`, sonra `fatal error: sync: unlock of unlocked mutex`"
+    - "`start`, sonra fatal error"
     - "`start`, `end`"
     - "kompilyasiya xətası"
   answer: 0
-  explain: "Bağlanmamış mutex-i açmaq proqramı dayandıran xətadır, `recover` onu tutmur."
+  explain: "Bağlanmamış mutex-i açmaq proqramı `fatal error: sync: unlock of unlocked mutex` ilə dayandırır, `recover` onu tutmur."
 
 - question: "Bir goroutine `sync.RWMutex`-də `RLock` tutub. Başqa goroutine `Lock` çağırsa, nə olacaq?"
   options:
-    - "`RUnlock` olana qədər gözləyəcək"
-    - "dərhal keçəcək"
-    - "panic olacaq"
-  answer: 0
+    - "dərhal keçəcək, çünki oxucu yazana mane olmur"
+    - "`RUnlock` çağırılana qədər gözləyəcək"
+    - "panic olacaq, çünki kilid artıq tutulub"
+  answer: 1
   explain: "Oxucular bir-birinə mane olmur, amma yazan bütün oxucular çıxana qədər gözləyir."

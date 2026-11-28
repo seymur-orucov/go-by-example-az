@@ -2,7 +2,7 @@ rules:
   - "`Lock` və `Unlock` arasındakı koda istənilən an yalnız bir goroutine girir."
   - "`sync.Mutex`-in zero value-su açıq kilitdir, onu yaratmaq lazım deyil."
   - "Mutex-i kopyalamaq olmaz: mutex-li struct-ın metodları pointer receiver ilə yazılır, `go vet` kopyanı tutur."
-  - "Açılmamış kilidi yenidən `Lock` etmək goroutine-i əbədi gözlədir; Go mutex-i təkrar bağlanmır."
+  - "Go-nun mutex-i eyni goroutine-ə ikinci dəfə `Lock` etməyə icazə vermir: ikinci `Lock` birincinin açılmasını gözləyir."
   - "Paylaşılan map-i oxumaq da kilid tələb edir, yalnız yazmaq yox."
   - "Atomik tip bir dəyəri qoruyur; \"yoxla, sonra dəyiş\" kimi bir neçə addımı isə mutex qoruyur."
 practices:
