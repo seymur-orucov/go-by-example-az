@@ -9,16 +9,16 @@
   code: |
     s := "café"
     fmt.Println(len(s), utf8.RuneCountInString(s))
-  options: ["4 4", "5 4", "4 5"]
-  answer: 1
+  options: ["4 4", "4 5", "5 4"]
+  answer: 2
   explain: "`é` 2 bayt tutur: 5 bayt, amma 4 hərf."
 
 - question: Bu kod nə çap edəcək?
   code: |
     s := "Rome"
     fmt.Println(s[0])
-  options: ["R", "82", "\"R\""]
-  answer: 1
+  options: ["82", "R", "\"R\""]
+  answer: 0
   explain: "İndeks bayt qaytarır və `Println` onu ədəd kimi çap edir; `R`-nin kodu 82-dir."
 
 - question: Bu kod nə çap edəcək?
@@ -34,8 +34,8 @@
     for i := range "été" {
         fmt.Print(i, " ")
     }
-  options: ["0 1 2 ", "0 2 3 ", "1 2 3 "]
-  answer: 1
+  options: ["0 1 2 ", "1 2 3 ", "0 2 3 "]
+  answer: 2
   explain: "`range` hərfin başladığı baytın indeksini verir; `é` 2 bayt tutduğu üçün indeks 0-dan 2-yə, sonra 3-ə atlayır."
 
 - question: "`'a'` ilə `\"a\"` arasındakı fərq nədir?"
@@ -59,6 +59,6 @@
         }
     }
     fmt.Println(n)
-  options: ["1", "2", "4"]
-  answer: 1
+  options: ["2", "1", "4"]
+  answer: 0
   explain: "`range` hərf-hərf gəzir və hər `ü` bir dəfə sayılır."

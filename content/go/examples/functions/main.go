@@ -33,9 +33,8 @@ func discount(price int) int {
 
 func main() {
 	fmt.Println("age 8:", ticketPrice(8), "USD")
-	fmt.Println("age 35:", ticketPrice(35), "USD")
 	fmt.Println("2 adults + 3 kids:", orderTotal(2, 3), "USD")
-	printTicket("Space Trip", 9)
+	printTicket("Space Trip", 35)
 
 	price := 10
 	newPrice := discount(price)

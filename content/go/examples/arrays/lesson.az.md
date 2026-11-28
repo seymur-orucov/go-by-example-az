@@ -1,6 +1,6 @@
 Array — eyni tipli elementlərin sabit ölçülü siyahısıdır: həftənin 7 günü, ilin 12 ayı, şahmat taxtasının 8 sırası. Ölçü tipin bir hissəsidir: `[7]int` "7 ədəd `int`" deməkdir və proqram işləyərkən bu ölçü dəyişmir.
 
-Bu dərsdə bir həftəlik hava məlumatını array-də saxlayırıq. Praktikada Go kodunda array-dən çox növbəti dərsin mövzusu olan slice istifadə olunur, amma slice array-in üzərində qurulub, ona görə əvvəl array-i tanımaq lazımdır.
+Bu dərsdə bir həftəlik hava məlumatını array-də saxlayırıq. Praktikada array-dən çox slice istifadə olunur, amma slice array-in üzərində qurulub, ona görə əvvəl array-i tanıyırıq.
 
 ## Elan və zero value {#zero}
 
@@ -8,15 +8,15 @@ Bu dərsdə bir həftəlik hava məlumatını array-də saxlayırıq. Praktikada
 
 ## Literal və indeks {#literal}
 
-Elementlər əvvəlcədən məlumdursa, array literal ilə yazırıq: `[7]int{12, 14, ...}`. Elementə indekslə müraciət edirik, saymaq 0-dan başlayır: `temps[2]` üçüncü gündür, yəni çərşənbə (`Wednesday`). Eyni yolla dəyəri dəyişirik: bazar gününün temperaturunu 18-ə dəyişdik.
+Elementlər əvvəlcədən məlumdursa, array-i literal ilə yaradırıq. Literal dəyərləri kodda birbaşa yazmaq deməkdir: `[7]int{12, 14, ...}`. Elementə indekslə müraciət edirik, saymaq 0-dan başlayır: `temps[2]` üçüncü gündür, yəni çərşənbə (`Wednesday`). Eyni yolla dəyəri dəyişirik: bazar gününün temperaturunu 18-ə dəyişdik.
 
 > **Bilgi:** ölçünü əllə saymaq istəmirsinizsə, `[...]int{12, 14, 11}` yazın — kompilyator elementləri sayıb ölçünü özü qoyur (burada 3).
 
 ## Dövrlə gəzinti {#loop}
 
-Array-in bütün elementlərini yoxlamaq üçün indeksi 0-dan `len(temps)`-ə qədər artıran adi `for` dövründən istifadə edirik. Birinci günü "ən isti" qəbul edib qalan günləri onunla müqayisə edirik.
+Array-in bütün elementlərini yoxlamaq üçün adi `for` dövrü yazırıq. Birinci günü (`temps[0]`) əvvəlcədən "ən isti" qəbul edirik. Ona görə indeksi 1-dən başlayıb `len(temps)`-ə qədər artırırıq və qalan günləri onunla müqayisə edirik.
 
-> **Diqqət:** ən böyük indeks `len(temps) - 1`-dir. `temps[7]` yazsaq, kompilyator xəta verir, çünki ölçü əvvəlcədən məlumdur.
+> **Diqqət:** ən böyük indeks `len(temps) - 1`-dir. `temps[7]` kimi sabit indeksi kompilyator tutur. Amma dövrdə `i <= len(temps)` yazsaq, kod kompilyasiya olunur və xəta proqram işləyəndə çıxır: `panic: runtime error: index out of range [7] with length 7`.
 
 ## Kopyalama və müqayisə {#copy}
 

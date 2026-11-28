@@ -21,9 +21,7 @@ func closeUp() {
 func countLoaves() {
 	loaves := 10
 	defer fmt.Println("at defer:", loaves)
-	defer func() {
-		fmt.Println("at the end:", loaves)
-	}()
+	defer func() { fmt.Println("at the end:", loaves) }()
 	loaves = 25
 	fmt.Println("now:", loaves)
 }
@@ -44,7 +42,6 @@ func main() {
 	shift("Nora")
 	closeUp()
 	countLoaves()
-
 	stock := map[string]int{"croissant": 1}
 	fmt.Println("sold:", sell(stock, "croissant"))
 	fmt.Println("sold:", sell(stock, "croissant"))

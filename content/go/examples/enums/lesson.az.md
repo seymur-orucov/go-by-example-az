@@ -1,4 +1,4 @@
-Enum (sadalama) bir neçə sabit variantdan biri ola bilən dəyərdir: həftənin günləri, svetoforun rəngləri, sifarişin vəziyyəti. Go-da `enum` açar sözü yoxdur. Əvəzində öz tipimizi yaradırıq və onun mümkün dəyərlərini `const` blokunda sadalayırıq. Adi `int` sabitlərindən fərqi odur ki, dəyərin tipi onun nə olduğunu deyir və o, təsadüfi ədədlərlə qarışmır.
+Enum (sadalama) bir neçə sabit variantdan biri ola bilən dəyərdir: həftənin günləri, svetoforun rəngləri, sifarişin vəziyyəti. Go-da `enum` açar sözü yoxdur. Əvəzində öz tipimizi yaradırıq və onun mümkün dəyərlərini `const` blokunda sadalayırıq. Adi `int` sabitlərindən fərqi odur ki, tip dəyərin nə olduğunu deyir və onu adi `int` dəyişəni ilə belə qarışdırmaq olmur.
 
 Bu dərsdə paltaryuyan maşının proqram mərhələlərini təsvir edirik.
 
@@ -14,6 +14,6 @@ Bu dərsdə paltaryuyan maşının proqram mərhələlərini təsvir edirik.
 
 ## Növbəti mərhələ {#next}
 
-`Next` mərhələni bir artırır: `s + 1` də `Stage` tiplidir. `Done`-dan sonra mərhələ yoxdur, ona görə `Done` özünü qaytarır. `main`-dəki `for` dövrü `Idle`-dan başlayıb bütün proqramı keçir. Sabitlər ardıcıl olduğu üçün ortaya yeni mərhələ əlavə etsək, `Next` dəyişmədən işləyəcək.
+`Next` mərhələni bir artırır: `s + 1` də `Stage` tiplidir. `Done`-dan sonra mərhələ yoxdur, ona görə `Done` özünü qaytarır. `main`-dəki `for` dövrü `Idle`-dan başlayıb bütün proqramı keçir. Sabitlər ardıcıl olduğu üçün ortaya yeni mərhələ əlavə etsək, `Next` dəyişmədən işləyəcək. Amma sonrakı sabitlərin rəqəmi bir artır: faylda `3` kimi saxlanmış `Spinning` artıq başqa mərhələ kimi oxunur. `String`-ə də yeni `case` lazımdır, yoxsa yeni mərhələ `unknown` çap olunur.
 
 > **Diqqət:** Tipin zero value-su `0`-dır, yəni `var s Stage` `Idle` olur. Ona görə ilk sabitə həqiqətən başlanğıc vəziyyətin adını verin.

@@ -2,7 +2,7 @@ rules:
   - "`ctx.Done()` context bitəndə bağlanan channel-dır, `ctx.Err()` isə səbəbi qaytarır: `context.Canceled` və ya `context.DeadlineExceeded`."
   - "`WithTimeout` və `WithCancel` həmişə `cancel` funksiyası qaytarır; onu çağırmamaq resurs sızmasıdır və `go vet` bunu göstərir."
   - "Vaxt limiti context yarananda başlayır və onu işlədən bütün çağırışlar üçün ortaqdır."
-  - "Valideyn dayananda bütün övladları da dayanır, övlad dayananda isə valideyn işləməyə davam edir."
+  - "Valideyn context dayananda bütün uşaqları da dayanır, uşaq context dayananda isə valideyn işləməyə davam edir."
   - "`http.NewRequestWithContext` sorğunu context-ə bağlayır, server tərəfində isə `r.Context()` müştəri getdikdə bitir."
 practices:
   - "Context-i funksiyanın ilk arqumenti kimi `ctx` adı ilə ötürün: limiti çağıran qoyur, funksiya isə ona əməl edir."

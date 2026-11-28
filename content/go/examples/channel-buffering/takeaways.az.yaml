@@ -6,5 +6,5 @@ rules:
   - "Dəyərlər göndərildiyi sırada çıxır (FIFO)."
   - "Dolu buffer-i boşaldan goroutine yoxdursa, proqram `deadlock` xətası ilə dayanır."
 practices:
-  - "Buffer-i iki tərəfin qısa fasilələrini yumşaltmaq üçün işlədin, qəbul edənin yoxluğunu gizlətmək üçün yox."
+  - "Buffer göndərənə qəbul edəndən ən çox `cap` dəyər qabağa getməyə imkan verir; onu qəbul edənin yoxluğunu gizlətmək üçün işlətməyin."
   - "`len`-ə baxıb gözləməyin: başqa goroutine-lər işləyəndə onun cavabı dərhal köhnəlir."

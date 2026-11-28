@@ -14,8 +14,8 @@ func main() {
 	fmt.Println("50 dollars, 4 people:", 50.0/4)
 
 	//@step bools
-	fmt.Println("open and a free table:", true && false)
-	fmt.Println("tea or coffee available:", true || false)
-	fmt.Println("closed:", !true)
+	fmt.Println("true && false:", true && false)
+	fmt.Println("true || false:", true || false)
+	fmt.Println("!true:", !true)
 	fmt.Println("more than 10 tables:", 12 > 10)
 }

@@ -1,6 +1,6 @@
-Go-da funksiya da dəyərdir, ədəd və ya sətir kimi. Onu dəyişənə yazmaq, başqa funksiyaya arqument kimi vermək, funksiyadan nəticə kimi qaytarmaq olar. Adsız, yerindəcə yazılan funksiyaya function literal deyilir. Function literal ətrafındakı dəyişənləri "yadda saxlayıb" onlardan istifadə edirsə, ona closure deyilir.
+Go-da funksiya da dəyərdir, ədəd və ya `string` kimi. Onu dəyişənə yazmaq, başqa funksiyaya arqument kimi vermək, funksiyadan nəticə kimi qaytarmaq olar. Adsız, yerindəcə yazılan funksiyaya function literal deyilir. Function literal ətrafındakı dəyişənləri "yadda saxlayıb" onlardan istifadə edirsə, ona closure deyilir.
 
-Bu dərsdə qəhvəxana üçün kiçik qaydalar yazırıq: ölçüyə görə qiymət, süd əlavəsi, sifarişləri saymaq və hər üçüncü qəhvəsi pulsuz olan bonus kartı.
+Nümunələr kiçik qəhvəxanadandır: qiymət, süd əlavəsi və bonus kartı.
 
 ## Function literal {#literal}
 
@@ -12,12 +12,12 @@ Bu dərsdə qəhvəxana üçün kiçik qaydalar yazırıq: ölçüyə görə qiy
 
 ## Funksiyanı arqument kimi vermək {#pass}
 
-`countIf` sifarişləri gəzir və hansının sayılacağını özü bilmir. Bu qərarı `keep` parametrinə ötürülən funksiya verir. Parametrin tipi `func(string) bool`-dur: `string` qəbul edib `bool` qaytaran istənilən funksiya. `main`-də function literal-ı birbaşa çağırışın içində yazırıq. O, `want` dəyişənini tutur, beləcə `countIf`-ə ayrıca parametr ötürmək lazım olmur.
+Faylın əvvəlindəki `countIf` sifarişləri gəzir və hansının sayılacağını özü bilmir. Bu qərarı `keep` parametrinə ötürülən funksiya verir. Parametrin tipi `func(string) bool`-dur: `string` qəbul edib `bool` qaytaran istənilən funksiya. `main`-də function literal-ı birbaşa çağırışın içində yazırıq. O, `want` dəyişənini tutur, beləcə `countIf`-ə ayrıca parametr ötürmək lazım olmur.
 
-Bu funksiyalar `main`-dən sonra yazılıb. Yuxarı səviyyədəki funksiyalar üçün sıra önəmli deyil.
+`countIf` `main`-dən əvvəl, `newCard` isə sonra yazılıb. Yuxarı səviyyədəki funksiyaların sırası fərq etmir.
 
 ## Vəziyyəti saxlayan closure {#card}
 
 `newCard` funksiya qaytarır, nəticə tipi `func() string`-dir. Qaytarılan closure `cups` dəyişənini tutur. `newCard` bitəndən sonra da `cups` yox olmur, closure onu hər çağırışda artırır. Beləcə kart neçə qəhvə alındığını yadda saxlayır və hər üçüncüsünü pulsuz edir.
 
-Hər `newCard()` çağırışı yeni `cups` dəyişəni yaradır. Ona görə `other` kartı sıfırdan başlayır. `cups`-a closure-dan başqa heç kəs çata bilməz, onu çöldən təsadüfən dəyişmək mümkün deyil.
+Hər `newCard()` çağırışı yeni `cups` dəyişəni yaradır. Ona görə `other` kartı sıfırdan başlayır. `cups`-a closure-dan başqa heç bir kod çata bilmir, onu çöldən təsadüfən dəyişmək mümkün deyil.

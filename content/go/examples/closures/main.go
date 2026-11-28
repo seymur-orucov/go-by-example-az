@@ -2,6 +2,16 @@ package main
 
 import "fmt"
 
+func countIf(orders []string, keep func(string) bool) int {
+	n := 0
+	for _, o := range orders {
+		if keep(o) {
+			n++
+		}
+	}
+	return n
+}
+
 func main() {
 	//@step literal
 	price := func(size string) int {
@@ -21,31 +31,20 @@ func main() {
 	milk = 2
 	fmt.Println("after price change:", withMilk("small"), "USD")
 
-	//@end
+	//@step pass
 	orders := []string{"latte", "tea", "latte", "mocha"}
 	want := "latte"
 	fmt.Println("lattes:", countIf(orders, func(o string) bool {
 		return o == want
 	}))
 
+	//@step card
 	card := newCard()
 	fmt.Println(card(), card(), card())
 	other := newCard()
 	fmt.Println("other card:", other())
 }
 
-// @step pass
-func countIf(orders []string, keep func(string) bool) int {
-	n := 0
-	for _, o := range orders {
-		if keep(o) {
-			n++
-		}
-	}
-	return n
-}
-
-// @step card
 func newCard() func() string {
 	cups := 0
 	return func() string {

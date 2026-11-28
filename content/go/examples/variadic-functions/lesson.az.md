@@ -20,4 +20,4 @@ Həftənin qaçışları artıq `week` slice-ındadırsa, onu `totalKm(week)` ki
 
 > **Diqqət:** `week...` yeni slice yaratmır, funksiya eyni elementləri alır. Funksiya `runs[0]`-ı dəyişsə, `week[0]` da dəyişəcək.
 
-> **Bilgi:** Eyni yazılışla iki slice-ı birləşdirmək olar: `all := append(week, extra...)`.
+> **Bilgi:** Eyni yazılışla iki slice-ı birləşdirmək olar: `all := append(week, extra...)`. `week`-də boş yer (`cap` > `len`) varsa, `append` yeni array yaratmır və `all` `week`-in array-ini paylaşır.

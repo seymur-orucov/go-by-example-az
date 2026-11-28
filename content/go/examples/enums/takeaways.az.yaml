@@ -5,5 +5,5 @@ rules:
   - "`Stage` tipli sabit başqa tipə yazıla bilməz, tipsiz ədəd isə (`start(2)`) yenə də keçir."
   - "Tipin zero value-su `0`-dır, yəni ilk sabit."
 practices:
-  - "İlk sabitə `Idle` və ya `Unknown` kimi mənalı ad verin ki, unudulmuş dəyişən səhv vəziyyət kimi görünməsin."
+  - "İlk sabit həm də zero value-dur, ona görə o ya real başlanğıc vəziyyəti (`Idle`), ya da \"təyin olunmayıb\" (`Unknown`) olsun."
   - "`String()`-də naməlum dəyər üçün də nəticə qaytarın, məsələn `\"unknown\"`."

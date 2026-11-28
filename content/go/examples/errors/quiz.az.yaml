@@ -9,16 +9,16 @@
 
     r, err := half(7)
     fmt.Println(r, err)
-  options: ["0 odd number", "3 odd number", "3 <nil>"]
-  answer: 0
+  options: ["3 odd number", "0 odd number", "3 <nil>"]
+  answer: 1
   explain: "Tək ədəddə funksiya `0` və xəta qaytarır, `fmt` xətanın mətnini çap edir."
 
 - question: Bu kod nə çap edəcək?
   code: |
     r, err := half(8)
     fmt.Println(r, err)
-  options: ["4 <nil>", "4", "4 nil"]
-  answer: 0
+  options: ["4", "4 nil", "4 <nil>"]
+  answer: 2
   explain: "Uğurlu halda xəta `nil`-dir və `fmt` onu `<nil>` kimi çap edir."
 
 - question: Bu kod nə çap edəcək?
@@ -34,16 +34,16 @@
   code: |
     err := fmt.Errorf("load: %w", ErrNotFound)
     fmt.Println(err == ErrNotFound, errors.Is(err, ErrNotFound))
-  options: ["false true", "true true", "false false"]
-  answer: 0
+  options: ["true true", "false true", "false false"]
+  answer: 1
   explain: "Bükülmüş xəta yeni dəyərdir, `errors.Is` isə içəridəki xətanı tapır."
 
 - question: Bu kod nə çap edəcək?
   code: |
     err := fmt.Errorf("load: %v", ErrNotFound)
     fmt.Println(errors.Is(err, ErrNotFound))
-  options: ["false", "true"]
-  answer: 0
+  options: ["true", "false"]
+  answer: 1
   explain: "`%v` yalnız mətni götürür, orijinal xəta zəncirə düşmür."
 
 - question: Bu kod nə çap edəcək?
@@ -51,8 +51,8 @@
     inner := fmt.Errorf("db: %w", ErrNotFound)
     err := fmt.Errorf("api: %w", inner)
     fmt.Println(err)
-  options: ["api: db: book not found", "book not found", "api: book not found"]
-  answer: 0
+  options: ["book not found", "api: book not found", "api: db: book not found"]
+  answer: 2
   explain: "Hər bükmə öz kontekstini əvvələ əlavə edir."
 
 - question: Bu kod niyə kompilyasiya olunmur?
@@ -71,8 +71,8 @@
     r, err := half(4)
     fmt.Println(r)
   options:
-    - "`err` elan olunub, amma istifadə olunmayıb"
     - "`half` yalnız bir nəticə qaytarır"
     - "`r` `int` deyil"
-  answer: 0
-  explain: "Go istifadə olunmayan lokal dəyişənə icazə vermir, bu da xətanı unutmağa mane olur."
+    - "`err` elan olunub, amma istifadə olunmayıb"
+  answer: 2
+  explain: "Go istifadə olunmayan lokal dəyişənə icazə vermir: `err` ya yoxlanmalı, ya da açıq şəkildə `_` ilə atılmalıdır."

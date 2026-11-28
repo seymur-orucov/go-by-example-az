@@ -21,11 +21,11 @@
     wait := n * time.Minute
     fmt.Println(wait)
   options:
-    - "`n` `int`-dir, `time.Minute` isə `time.Duration`; `time.Duration(n) * time.Minute` yazmaq lazımdır"
+    - "`n` `int`-dir, `time.Minute` isə `time.Duration`"
     - "`time.Minute` sabit deyil, funksiyadır"
-    - "Duration-u ümumiyyətlə vurmaq olmaz"
+    - "`n` `int64` olmalıdır, çünki Duration `int64`-dür"
   answer: 0
-  explain: "Go fərqli tipləri özü çevirmir; tipsiz sabit `15` olsaydı, kod işləyərdi."
+  explain: "Go fərqli tipləri özü çevirmir, `int64` də Duration deyil. `time.Duration(n) * time.Minute` yazılmalıdır; tipsiz sabit `15` olsaydı, kod işləyərdi."
 
 - question: Bu kod nə çap edəcək?
   code: |
@@ -67,8 +67,8 @@
     later := t + time.Hour
     fmt.Println(later)
   options:
-    - "`time.Time`-a `+` ilə müddət əlavə etmək olmaz, `t.Add(time.Hour)` lazımdır"
+    - "`time.Time` üçün `+` operatoru yoxdur"
     - "`time.Hour` ilə `time.Minute` qarışdırılıb"
-    - "`later` dəyişəni istifadə olunmayıb"
+    - "`time.Hour` əvəzinə `1 * time.Hour` yazılmalıdır"
   answer: 0
-  explain: "`time.Time` struct-dır, onun üçün `+` operatoru yoxdur; vaxt metodlarla dəyişir."
+  explain: "`time.Time` struct-dır, onun üçün `+` operatoru yoxdur; müddəti `t.Add(time.Hour)` əlavə edir."

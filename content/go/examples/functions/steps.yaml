@@ -1,10 +1,8 @@
 declare:
-  out: |
-    age 8: 6 USD
-    age 35: 10 USD
+  out: "age 8: 6 USD"
 params:
   out: "2 adults + 3 kids: 38 USD"
 no-result:
-  out: "ticket: Space Trip - 6 USD"
+  out: "ticket: Space Trip - 10 USD"
 copy:
   out: "price: 10 after discount: 8"

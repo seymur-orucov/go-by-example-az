@@ -14,7 +14,7 @@
     fmt.Println(*n, fs.Args())
   options: ["`2 []`", "`2 [add]`", "`1 [add -n 2]`"]
   answer: 2
-  explain: "Alt əmrin adı ötürülməyib: oxuma ilk flag olmayan `add` sözündə dayanır, ona görə `args[1:]` vermək lazımdır."
+  explain: "Alt əmrin adı da `Parse`-a verilib: oxuma ilk flag olmayan `add` sözündə dayanır, ona görə `args[1:]` vermək lazımdır."
 
 - question: Bu kod nə çap edəcək?
   code: |

@@ -81,8 +81,8 @@
         }
     }
   options:
-    - "İki dəyər çap olunandan sonra"
-    - "Heç vaxt: dəyərlər çap olunur, sonra dövr dayanmadan fırlanır"
+    - "İki dəyər çap olunandan sonra, `default`-da"
+    - "Heç vaxt bitmir"
     - "Kompilyasiya olunmur"
   answer: 1
   explain: "`select`-in içindəki `break` yalnız `select`-dən çıxır; dövrü bitirmək üçün etiketli `break` lazımdır."

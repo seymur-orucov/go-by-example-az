@@ -16,4 +16,4 @@ Channel üzərində `range` yalnız bir dəyişən verir, çünki channel-da ind
 
 ## Bağlı, amma boş olmayan channel {#drain}
 
-Gecə stansiya ölçmələri buffered `night` channel-ına yığır və onu bağlayır, ekran isə onları sonra oxuyur. Channel bağlı olsa da, buffer-dəki üç dəyər itmir: `range` əvvəlcə onları göndərildikləri sıra ilə verir və yalnız channel boşalanda bitir. Yəni `close` "hər şey bitdi" yox, "bundan sonra yeni dəyər olmayacaq" deməkdir.
+Closing Channels dərsində gördük ki, bağlı channel-ın buffer-indəki dəyərlər itmir. `range` də `night`-dakı üç ölçməni göndərildikləri sıra ilə verir və yalnız channel boşalanda bitir.

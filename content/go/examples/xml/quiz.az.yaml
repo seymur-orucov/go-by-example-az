@@ -79,12 +79,9 @@
   explain: "Atribut da, element də tag-lara görə oxunur, struct-da olmayan `<view>` isə səssizcə atılır."
 
 - question: "`xml.MarshalIndent` nəticəsi `<?xml version=\"1.0\" ...?>` başlığı ilə başlayırmı?"
-  options:
-    - "Bəli, həmişə"
-    - "Xeyr, lazımdırsa, `xml.Header`-i özümüz əlavə edirik"
-    - "Yalnız `XMLName` sahəsi olanda"
+  options: ["Bəli", "Xeyr", "Yalnız `XMLName` sahəsi olanda"]
   answer: 1
-  explain: "`Marshal` və `MarshalIndent` yalnız elementləri yazır, başlıq `xml.Header` sabitindədir."
+  explain: "`Marshal` və `MarshalIndent` yalnız elementləri yazır. Başlıq lazımdırsa, `xml.Header`-i əvvələ özümüz əlavə edirik."
 
 - question: Bu kod nə çap edəcək?
   code: |

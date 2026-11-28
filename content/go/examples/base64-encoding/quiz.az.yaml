@@ -50,7 +50,7 @@
     fmt.Println(err1 == nil, err2 == nil)
   options: ["true true", "false true", "true false"]
   answer: 2
-  explain: "`RawURLEncoding` `=` simvolunu tanımır və xəta verir: decode edəndə kodlaşdırmadakı encoding seçilməlidir."
+  explain: "`RawURLEncoding` `=` simvolunu tanımır və xəta verir: mətni açanda kodlaşdırmada işlənən encoding seçilməlidir."
 
 - question: Linkdə `?ref=` dəyəri base64 ilə kodlaşdırılıb. Bu nə deməkdir?
   options:
