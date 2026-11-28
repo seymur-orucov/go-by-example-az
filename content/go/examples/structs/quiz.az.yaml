@@ -13,61 +13,75 @@
 
 - question: Bu kod nə çap edəcək?
   code: |
+    type Seat struct{ Row, Number int }
+
     a := Seat{Row: 1, Number: 2}
     b := a
     b.Row = 9
     fmt.Println(a.Row)
-  options: ["1", "9", "kompilyasiya xətası"]
-  answer: 0
+  options: ["9", "1", "kompilyasiya xətası"]
+  answer: 1
   explain: "`b := a` struct-ın surətini çıxarır, `b`-ni dəyişmək `a`-ya toxunmur."
 
 - question: Bu kod nə çap edəcək?
   code: |
+    type Seat struct{ Row, Number int }
+
     a := Seat{Row: 1}
     p := &a
     p.Row = 9
     fmt.Println(a.Row)
-  options: ["9", "1", "kompilyasiya xətası, `(*p).Row` yazmaq lazımdır"]
-  answer: 0
+  options: ["1", "kompilyasiya xətası, `(*p).Row` yazmaq lazımdır", "9"]
+  answer: 2
   explain: "`p.Row` pointer-in göstərdiyi struct-ın, yəni `a`-nın sahəsidir; `*` yazmaq lazım deyil."
 
 - question: Bu kod nə çap edəcək?
   code: |
+    type Seat struct{ Row, Number int }
+
     fmt.Println(Seat{1, 2} == Seat{Number: 2, Row: 1})
-  options: ["true", "false", "kompilyasiya xətası"]
-  answer: 0
+  options: ["false", "true", "kompilyasiya xətası"]
+  answer: 1
   explain: "Hər iki literal eyni sahə dəyərlərini verir, struct-lar sahə-sahə müqayisə olunur."
 
 - question: Bu kod niyə kompilyasiya olunmur?
   code: |
+    type Seat struct{ Row, Number int }
+
     s := Seat{Row: 3, Number: 5, Zone: "A"}
   options:
-    - "`Seat`-də `Zone` sahəsi yoxdur"
     - "bütün sahələri sıra ilə yazmaq lazımdır"
     - "struct literal-da sahə adları yazılmır"
-  answer: 0
+    - "`Seat`-də `Zone` sahəsi yoxdur"
+  answer: 2
   explain: "Literal-da yalnız tipdə elan olunmuş sahələrdən istifadə etmək olar."
 
 - question: Bu kod nə çap edəcək?
   code: |
+    type Seat struct{ Row, Number int }
+
     fmt.Println(Seat{4})
-  options: ["kompilyasiya xətası", "{4 0}", "{0 4}"]
-  answer: 0
+  options: ["{4 0}", "kompilyasiya xətası", "{0 4}"]
+  answer: 1
   explain: "Adsız literal-da bütün sahələr yazılmalıdır; çatışmayanı zero value ilə doldurmaq yalnız adlı literal-da olur."
 
 - question: Bu kod nə çap edəcək?
   code: |
+    type Seat struct{ Row, Number int }
+
     seats := []Seat{{Row: 1}, {Row: 2}}
     for _, s := range seats {
         s.Row = 0
     }
     fmt.Println(seats[0].Row, seats[1].Row)
-  options: ["1 2", "0 0", "0 2"]
-  answer: 0
+  options: ["0 0", "0 2", "1 2"]
+  answer: 2
   explain: "`range` `s`-ə elementin surətini verir, slice-ın özü dəyişmir."
 
 - question: Bu kod nə çap edəcək?
   code: |
+    type Seat struct{ Row, Number int }
+
     func moveBack(s Seat) {
         s.Row++
     }

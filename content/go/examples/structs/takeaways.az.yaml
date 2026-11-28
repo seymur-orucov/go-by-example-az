@@ -2,8 +2,8 @@ rules:
   - "`type Parcel struct { ... }` yeni tip yaradır; sahələrə nöqtə ilə müraciət olunur: `box.City`."
   - "Literal-da yazılmayan sahələr öz zero value-sunu alır; adsız literal-da isə bütün sahələr sıra ilə yazılmalıdır."
   - "Struct dəyərdir: mənimsətmə, funksiyaya ötürmə və `range` surət yaradır."
-  - "Sahələrində slice və ya map olmayan struct-lar `==` ilə müqayisə olunur."
+  - "Sahələrində slice, map və ya funksiya olmayan struct-lar `==` ilə müqayisə olunur."
   - "Struct pointer-i ilə sahəyə `*` yazmadan müraciət olunur: `ptr.Delivered = true`."
 practices:
-  - "Literal-da sahə adlarını yazın: `Parcel{ID: \"P-101\"}`; sıraya bağlı literal yeni sahə əlavə olunanda sınır."
+  - "Literal-da sahə adlarını yazın: `Parcel{ID: \"P-101\"}`; sıraya bağlı literal yeni sahə əlavə olunanda kompilyasiya olunmur."
   - "Struct-ı funksiyada dəyişmək lazımdırsa, ona pointer ötürün; slice elementini isə indekslə dəyişin."

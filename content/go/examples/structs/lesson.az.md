@@ -4,17 +4,17 @@ Bu dərsdə poçt xidməti üçün bağlamaları (parcel) təsvir edirik.
 
 ## Tip elan etmək {#define}
 
-`type Parcel struct { ... }` yeni tip yaradır: hər sahənin adı və tipi var. `Parcel{ID: "P-101", ...}` struct literal-dır, sahələrə isə nöqtə ilə müraciət olunur: `box.City`. `fmt.Println` struct-ı fiqurlu mötərizədə, sahələrin dəyərləri ilə elan sırasına görə çap edir.
+`type Parcel struct { ... }` yeni tip yaradır: hər sahənin adı və tipi var. Sahə adları böyük hərflə başlayır: belə sahələr başqa package-lərdən də görünür (exported). `Parcel{ID: "P-101", ...}` struct literal-dır, sahələrə isə nöqtə ilə müraciət olunur: `box.City`. `fmt.Println` struct-ı fiqurlu mötərizədə, sahələrin dəyərləri ilə elan sırasına görə çap edir.
 
 ## Zero value və natamam literal {#zero}
 
-`var empty Parcel` hər sahəni öz zero value-su ilə doldurur: `0`, `false`, boş sətir. Literal-da yazılmayan sahələr də belədir: məktubun (`letter`) çəkisini vermədik, ona görə `WeightKg` `0` oldu. Sahə adları ilə yazılan literal-da sahələrin sırası önəmli deyil.
+`var empty Parcel` hər sahəni öz zero value-su ilə doldurur: `0`, `false`, boş string. Literal-da yazılmayan sahələr də belədir: məktubun (`letter`) çəkisini vermədik, ona görə `WeightKg` `0` oldu. Sahə adları ilə yazılan literal-da sahələrin sırası fərq etmir.
 
-> **Diqqət:** Adsız literal da var: `Parcel{"L-7", "Oslo", 0, false}`. Orada bütün sahələr elan sırası ilə yazılmalıdır və struct-a yeni sahə əlavə olunanda belə kod sınır.
+> **Diqqət:** Adsız literal da var: `Parcel{"L-7", "Oslo", 0, false}`. Orada bütün sahələr elan sırası ilə yazılmalıdır və struct-a yeni sahə əlavə olunanda belə kod kompilyasiya olunmur.
 
 ## Struct dəyərdir {#copy}
 
-`redirected := box` bütün sahələrin surətini çıxarır, ona görə `redirected.City`-ni dəyişmək `box`-a toxunmur. Funksiyaya ötürəndə və `range` ilə gəzəndə də surət alınır. Sahələrində slice və ya map olmayan struct-ları `==` ilə bütövlükdə müqayisə etmək olar: şəhərlər fərqli olduğu üçün nəticə `false`-dur.
+`redirected := box` bütün sahələrin surətini çıxarır, ona görə `redirected.City`-ni dəyişmək `box`-a toxunmur. Funksiyaya ötürəndə və `range` ilə gəzəndə də surət alınır. Struct-ları `==` ilə bütövlükdə müqayisə etmək olar: şəhərlər fərqli olduğu üçün nəticə `false`-dur. Sahələrdən biri slice, map və ya funksiya olanda isə `==` kompilyasiya olunmur.
 
 ## Struct pointer-i {#pointer}
 
