@@ -7,16 +7,16 @@
     }
     wg.Wait()
     fmt.Println(likes.Load())
-  options: ["50", "5", "50 və ya daha az, hər dəfə fərqli"]
-  answer: 0
+  options: ["5", "50", "50 və ya daha az, hər dəfə fərqli"]
+  answer: 1
   explain: "On goroutine-in hər biri atomik olaraq 5 əlavə edir və `Wait`-dən sonra heç bir artım itmir."
 
 - question: "`n` adi `int`-dir, üç goroutine-in hər biri onu 1000 dəfə `n++` ilə artırır. `wg.Wait()`-dən sonra `n` haqqında nə demək olar?"
   options:
-    - "3000 və ya daha az ola bilər, nəticə müəyyən deyil"
     - "həmişə 3000"
     - "kompilyasiya xətası"
-  answer: 0
+    - "3000-dən az ola bilər"
+  answer: 2
   explain: "Bu data race-dir: iki goroutine eyni dəyəri oxuyub eyni nəticəni yaza bilər və artımlardan biri itir."
 
 - question: Hansı sətir kompilyasiya olunmur?
@@ -27,14 +27,14 @@
     fmt.Println(c.Load()) // C
   options: ["B", "A", "C"]
   answer: 0
-  explain: "`atomic.Int64` struct-dır, `++` ona tətbiq olunmur: `invalid operation: c++ (non-numeric type atomic.Int64)`."
+  explain: "`atomic.Int64` struct-dır, `++` ona tətbiq olunmur: `invalid operation: c++ (non-numeric type \"sync/atomic\".Int64)`."
 
 - question: Bu kod nə çap edəcək?
   code: |
     var n atomic.Int64
     fmt.Println(n.Add(7), n.Add(-2), n.Load())
-  options: ["7 5 5", "7 -2 5", "0 7 5"]
-  answer: 0
+  options: ["7 -2 5", "0 7 5", "7 5 5"]
+  answer: 2
   explain: "`Add` dəyişiklikdən sonrakı yeni dəyəri qaytarır: əvvəl 7, sonra 5."
 
 - question: Bu kod nə çap edəcək?
@@ -46,16 +46,16 @@
     var visits atomic.Int64
     record(visits)
     fmt.Println(visits.Load())
-  options: ["0", "1"]
-  answer: 0
+  options: ["1", "0"]
+  answer: 1
   explain: "`record` sayğacın kopyasını artırır, `visits` dəyişmir; `go vet` də bu kopyalama barədə xəbərdarlıq edir, düzgünü `*atomic.Int64` verməkdir."
 
 - question: "Kitabxanada 100 yer var, `seats` `atomic.Int64`-dür və çox goroutine-dən artırılır. Hansı yazılış `full` sözünü dəqiq bir dəfə çap edir?"
   options:
-    - "`if seats.Add(1) == 100 { fmt.Println(\"full\") }`"
     - "`seats.Add(1); if seats.Load() == 100 { fmt.Println(\"full\") }`"
+    - "`if seats.Add(1) == 100 { fmt.Println(\"full\") }`"
     - "hər ikisi"
-  answer: 0
+  answer: 1
   explain: "`Add`-in nəticəsi hər çağırışa məxsusdur; ayrıca `Load` isə başqa goroutine-in artımından sonra oxuna bilər və 100-ü buraxar və ya iki dəfə görər."
 
 - question: Bu kod nə çap edəcək?
