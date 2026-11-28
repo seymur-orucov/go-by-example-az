@@ -119,6 +119,8 @@ Explanations below are in Azerbaijani, as on the site. Checked against the lesso
 | seed | kept | təsadüfi ədədlər generatorunun başlanğıc ədədi | random-numbers |
 | hash | translated: **heş** | məlumatdan sabit ölçülü "barmaq izi"; birtərəfli çevirmə | sha256-hashes |
 | Base64 | kept | baytları 64 təhlükəsiz simvoldan ibarət mətnə çevirmək | base64-encoding |
+| padding | kept | base64-də uzunluğu 4-ə bölünən etmək üçün sona əlavə olunan `=`; məlumat daşımır | base64-encoding |
+| encode / decode | translated: **kodlaşdırmaq** / **açmaq** | məlumatı başqa formaya çevirmək / ilkin formaya qaytarmaq; metod adlarında kept: `EncodeToString`, `DecodeString` | base64-encoding |
 
 ## Fayllar və test
 

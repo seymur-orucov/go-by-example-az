@@ -832,3 +832,13 @@ Done:
 - Quiz right answers spread 3/2/2 over positions 0/1/2 (was 1/5/1); the moved answers re-run with Go.
 - #full and the takeaways say what a buffer does in numbers: the sender may run at most `cap` values ahead of the receiver.
 - Scan 4 → 3 pts.
+
+### 91. Polish the "Düzəliş lazımdır" Go lessons, batch 1
+The user asked to run polish-lesson in a loop over every "Düzəliş lazımdır" lesson, all findings (major and minor). Each lesson was polished by its own subagent; scan and Go checks per lesson, `content:check` per batch.
+
+Done:
+- atomic-counters: quiz answers spread over 0/1/2, Q2's right option shortened, the intro links back to the Goroutines data race, the real Go 1.26 `c++` error quoted, the double-print pitfall hedged ("çap edə bilər") (scan 10 → 8).
+- base64-encoding: the example now encodes a 32-byte SHA-256 hash instead of plain text, with a note that `url.QueryEscape` is enough for text; the padding reason, the decode wording and the JWT gloss fixed; `padding`, `encode / decode` added to GLOSSARY (scan 6 → 4).
+- channel-directions: quiz answers spread, the intro cut to 4 sentences with the signature point moved into #send-only, the story sentence and the "easy to remember" note trimmed (scan 4 → 1).
+- channel-synchronization: quiz answers spread with sharper distractors, the "unbuffered receive" claim fixed, the repeated intro scenario and `time` explanation removed, `till:` renamed to `register:` (scan 5 → 1; re-reviewed by a fresh subagent).
+- channels: the pizzeria roles (soba/piştaxta) dropped from the text and the `vis` labels, the long intro sentence split, the deadlock quiz options shortened (scan 5 → 2).
