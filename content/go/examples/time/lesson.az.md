@@ -1,10 +1,10 @@
-Qatar cədvəlində iki cür məlumat var: an (qatar 14 martda saat 08:45-də yola düşür) və müddət (yol 2 saat 35 dəqiqə çəkir). `time` package-i bunlar üçün iki tip verir: `time.Time` konkret anı, yəni tarixi, saatı və saat qurşağını saxlayır, `time.Duration` isə iki an arasındakı müddəti. Vaxtı `"08:45"` kimi string-də saxlasaq, ona yol müddətini əlavə etmək və ya iki vaxtı müqayisə etmək üçün mətni özümüz parçalamalı olardıq; bu tiplər isə bunu hazır metodlarla edir.
+Qatar cədvəlində iki cür məlumat var: an (qatar 14 martda saat 08:45-də yola düşür) və müddət (yol 2 saat 35 dəqiqə çəkir). `time` package-i bunlar üçün iki tip verir: `time.Time` konkret anı, yəni tarixi, saatı və saat qurşağını saxlayır, `time.Duration` isə iki an arasındakı müddəti. Vaxtı `"08:45"` kimi string-də saxlasaq, yol müddətini əlavə etmək və ya iki vaxtı müqayisə etmək üçün mətni özümüz parçalamalı olardıq.
 
-Konkurentlik bölməsində indiki anı `time.Now()` ilə götürürdük, amma onun dəyəri hər işə salmada fərqlidir. Ona görə bu dərsdə sabit tarixlərlə işləyirik: qatarın yola düşməsini, çatmasını və gecikməsini hesablayırıq.
+Konkurentlik bölməsindəki `time.Now()` hər işə salmada fərqli dəyər verir, ona görə bu dərsdə sabit tarixlərlə işləyirik.
 
 ## Tarix yaratmaq {#date}
 
-`time.Date` ili, ayı, günü, saatı, dəqiqəni, saniyəni, nanosaniyəni və saat qurşağını (location) alıb bir an qaytarır. Ay `time.Month` tipindədir və `time.March` kimi sabitlə yazılır; `time.UTC` isə bütün dünya üçün ortaq olan UTC saatıdır. `Println` anı tarix, saat və zona ilə birlikdə çap edir. `Year`, `Month`, `Day`, `Weekday` metodları anın hissələrini ayrıca qaytarır: həftənin gününü özümüz hesablamırıq, `Weekday` 14 martın şənbə olduğunu özü tapır.
+`time.Date` ili, ayı, günü, saatı, dəqiqəni, saniyəni, nanosaniyəni və saat qurşağını (location, qısaca zona) alıb bir an qaytarır. Ay `time.Month` tipindədir və `time.March` kimi sabitlə yazılır; `time.UTC` isə bütün dünya üçün ortaq olan UTC saatıdır. `Println` anı tarix, saat və zona ilə birlikdə çap edir. `Year`, `Month`, `Day`, `Weekday` metodları anın hissələrini ayrıca qaytarır: həftənin gününü özümüz hesablamırıq, `Weekday` 14 martın şənbə olduğunu özü tapır.
 
 > **Bilgi:** `time.Date` həddən çıxan dəyərləri xəta saymır, düzəldir: 30 fevral 2 mart olur.
 
@@ -26,6 +26,6 @@ Həftəlik qatar növbəti dəfə 7 gün sonra gedir. `AddDate(il, ay, gün)` t�
 
 ## Müqayisə {#compare}
 
-Sərnişin platformaya 08:47-də çatıb. `a.Before(b)` `a` `b`-dən əvvəldirsə `true` qaytarır, `After` sonradırsa, `Equal` isə eyni andırsa. Sərnişin qatara çatmayıb, `Sub` isə nə qədər gecikdiyini göstərir. Qatar da cədvəldəki vaxtda çatmayıb, ona görə `Equal` `false`-dur.
+Sərnişin platformaya 08:47-də çatıb. `a.Before(b)` `a` `b`-dən əvvəl olanda `true` qaytarır. `After` sonra olanda, `Equal` isə eyni an olanda `true` verir. Sərnişin qatara çatmayıb, `Sub` isə nə qədər gecikdiyini göstərir. Qatar da cədvəldəki vaxtda çatmayıb, ona görə `Equal` `false`-dur.
 
 > **Diqqət:** `time.Time`-ı `==` ilə müqayisə etməyin: `==` saat qurşağını da müqayisə edir və eyni an fərqli zonada yazılanda `false` verir. `Equal` yalnız anın özünə baxır.
