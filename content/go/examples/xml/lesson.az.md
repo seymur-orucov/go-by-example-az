@@ -1,4 +1,4 @@
-XML JSON-dan köhnə mətn formatıdır: verilənlər HTML-ə bənzər açılan və bağlanan elementlərin içində yazılır, məsələn `<total>240</total>`. Yeni API-lər əsasən JSON seçir, amma XML elektron hesab-fakturalarda, bank və vergi sistemlərində, RSS lentlərində və köhnə servislərdə hələ də geniş işlənir. Go-da `encoding/xml` paketi `encoding/json` kimi işləyir: `Marshal`, `MarshalIndent`, `Unmarshal` və struct tag-lar. Fərq formatın özündədir: XML elementinin atributları ola bilər və hər sənədin adı olan bir kök elementi var.
+XML JSON-dan köhnə mətn formatıdır: verilənlər HTML-ə bənzər açılan və bağlanan elementlərin içində yazılır, məsələn `<total>240</total>`. Yeni API-lər əsasən JSON seçir, amma elektron hesab-fakturalar və RSS hələ də XML-dədir. Go-da `encoding/xml` package-i `encoding/json` kimi işləyir: `Marshal`, `MarshalIndent`, `Unmarshal` və struct tag-lar. Fərq formatın özündədir: XML elementinin atributları ola bilər və hər sənədin adı olan bir kök elementi var.
 
 Bu dərsdə onlayn mağazanın hesab-fakturasını (invoice) mühasibat servisinə XML kimi göndəririk və oradan gələn başqa fakturanı oxuyuruq.
 
@@ -12,9 +12,9 @@ Tag-lar JSON-dakı kimi yazılır, sadəcə açar `xml`-dir: `xml:"total"` sahə
 
 ## MarshalIndent və Header {#marshal}
 
-`xml.MarshalIndent` JSON-dakı kimi `[]byte` və `error` qaytarır, girintini də eyni arqumentlərlə alır. `Buyer` və `Country` yan-yana yazılıb və yolları eyni `buyer`-lə başlayır, ona görə paket onları bir `<buyer>` elementinin içində birləşdirir.
+`xml.MarshalIndent` JSON-dakı kimi `[]byte` və `error` qaytarır, girintini də eyni arqumentlərlə alır. `Buyer` və `Country` yan-yana yazılıb və yolları eyni `buyer`-lə başlayır, ona görə package onları bir `<buyer>` elementinin içində birləşdirir.
 
-XML sənədi adətən `<?xml version="1.0" ...?>` başlığı ilə başlayır, amma `Marshal` onu yazmır. Paket bu sətri `xml.Header` sabitində saxlayır və biz onu əvvələ özümüz əlavə edirik. `xml.Header` sətir sonu ilə bitir, ona görə başlıq ayrıca sətirdə qalır.
+XML sənədi adətən `<?xml version="1.0" ...?>` başlığı ilə başlayır, amma `Marshal` onu yazmır. Package bu sətri `xml.Header` sabitində saxlayır və biz onu əvvələ özümüz əlavə edirik. `xml.Header` sətir sonu ilə bitir, ona görə başlıq ayrıca sətirdə qalır.
 
 ## Unmarshal {#unmarshal}
 
